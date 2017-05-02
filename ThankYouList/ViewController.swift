@@ -49,19 +49,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 //Insert
                 self.thankYouDataList.insert(myThankYouData, at: 0)
 
-                
-                //print(self.thankYouDataList[0].thankYouValue!)
-                //print(self.sectionDate[0])
-                //print(self.sectionDate[1])
-                //print(self.sectionDate[2])
-                
-                // テーブルに行が追加されたことをテーブルに通知
-              //  self.tableView.insertSections(NSIndexSet(index: 1) as IndexSet, with: UITableViewRowAnimation.right)
-               // self.tableView.insertRows(at: [IndexPath(row: 0, section: 1)],
-                //                          with: UITableViewRowAnimation.right)
-
-                
-                //print(self.tableView.)
                 // ThankYouの保存処理
                 let userDefaults = UserDefaults.standard
                 // Data型にシリアライズする
@@ -102,26 +89,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 with: storedThankYouDataList) as? [ThankYouData] {
                 thankYouDataList.append(contentsOf: unarchiveThankYouDataList)
                 
-                /**
-                // セクションに日付を格納していく
-                var tmpSectionDate = [String]()
-                for index in 0...thankYouDataList.count-1 {
-                    tmpSectionDate.insert(thankYouDataList[index].thankYouDate!, at: index)
-                }
-                let tmpSectionDate2 = NSOrderedSet(array: tmpSectionDate)
-                // 重複日付の削除完了
-                sectionDate = tmpSectionDate2.array as! [String]
-                **/
-            
+
             }
         }
         if let storedSectionDate = userDefaults.array(forKey: "sectionDate") as? [String] {
             sectionDate.append(contentsOf: storedSectionDate)
         }
-        //print(self.thankYouDataList[0].thankYouValue!)
-        //print(self.sectionDate[0])
-        //print(sectionDate.count)
-        //print(self.getSectionItems(section: 2))
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -152,26 +126,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // テーブルの行数を返却する
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      /**
-        var count = 0
-        // section数の分forでループ
-        for index in 0...sectionDate.count {
-            if index == 0 {
-                return 0
-            } else {
-                if section == index {
-                    for (i, thankYouDataList) in thankYouDataList.enumerated() {
-                        if thankYouDataList.thankYouDate == sectionDate[index] {
-                            //let tmpSection = thankYouDataList.filter {$0.thankYouDate == sectionDate[index]} {
-                            count = count + 1
-                        }
-                        return count
-                    }
-                }
-            }
-        }
-        return 0
- **/
+
         
         return self.getSectionItems(section: section).count
     }

@@ -18,63 +18,70 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var tableView: UITableView!
     @IBAction func addButton(_ sender: Any) {
-        // アラートダイアログを生成
-        let alertController = UIAlertController(title: "THANKYOU追加",
-                                                message: "ありがとうを入力してください",
-                                                preferredStyle: UIAlertControllerStyle.alert)
-        // テキストエリアを追加
-        alertController.addTextField(configurationHandler: nil)
-        // OKボタンを追加
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
-            (action:UIAlertAction) in
-            // OKボタンがタップされたときの処理
-            if let textField = alertController.textFields?.first {
-                // THANKYOULISTの配列に入力値を挿入。先頭に挿入する。
-                let myThankYouData = ThankYouData()
-                myThankYouData.thankYouValue = textField.text!
-                myThankYouData.thankYouDate = self.getToday()
-                
-                print(myThankYouData.thankYouDate!)
-                print(myThankYouData.thankYouValue!)
-                
-                //section
-                let sections: NSSet = NSSet(array: self.sectionDate)
-                
-                // if sectionDate doesn't contain the thankYouDate, then add it
-                if !sections.contains(myThankYouData.thankYouDate!) {
-                    self.sectionDate.append(myThankYouData.thankYouDate!)
-                    print("sectiondate.append happens")
-                }
-                
-                //Insert
-                self.thankYouDataList.insert(myThankYouData, at: 0)
-
-                // ThankYouの保存処理
-                let userDefaults = UserDefaults.standard
-                // Data型にシリアライズする
-                let data = NSKeyedArchiver.archivedData(withRootObject: self.thankYouDataList)
-                userDefaults.set(data, forKey: "thankYouDataList")
-                userDefaults.set(self.sectionDate, forKey: "sectionDate")
-                userDefaults.synchronize()
-            }
-            // UserDefaultsに保存後の再読み込み処理
-            self.tableView.reloadData()
-        }
         
-        // OKボタんを追加
-        alertController.addAction(okAction)
+        // 入力画面に遷移
+        let storyboard: UIStoryboard = self.storyboard!
+        let addThankYouDataVC = storyboard.instantiateViewController(withIdentifier: "addThankYouDataVC") as! ThankYouList.AddThankYouDataVC
+        let navi = UINavigationController(rootViewController: addThankYouDataVC)
+        self.present(navi, animated: true, completion: nil)
         
-        //Cancelボタンがタップされた時の処理
-        let cancelButton = UIAlertAction(title: "CANCEL",
-                                         style: UIAlertActionStyle.cancel, handler:nil)
-        // Cancelボタんを追加
-        alertController.addAction(cancelButton)
-        
-        // Alertdialogを表示
-        present(alertController, animated:true, completion: nil)
-        
-        
-
+//        // アラートダイアログを生成
+//        let alertController = UIAlertController(title: "THANKYOU追加",
+//                                                message: "ありがとうを入力してください",
+//                                                preferredStyle: UIAlertControllerStyle.alert)
+//        // テキストエリアを追加
+//        alertController.addTextField(configurationHandler: nil)
+//        // OKボタンを追加
+//        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+//            (action:UIAlertAction) in
+//            // OKボタンがタップされたときの処理
+//            if let textField = alertController.textFields?.first {
+//                // THANKYOULISTの配列に入力値を挿入。先頭に挿入する。
+//                let myThankYouData = ThankYouData()
+//                myThankYouData.thankYouValue = textField.text!
+//                myThankYouData.thankYouDate = self.getToday()
+//                
+//                print(myThankYouData.thankYouDate!)
+//                print(myThankYouData.thankYouValue!)
+//                
+//                //section
+//                let sections: NSSet = NSSet(array: self.sectionDate)
+//                
+//                // if sectionDate doesn't contain the thankYouDate, then add it
+//                if !sections.contains(myThankYouData.thankYouDate!) {
+//                    self.sectionDate.append(myThankYouData.thankYouDate!)
+//                    print("sectiondate.append happens")
+//                }
+//                
+//                //Insert
+//                self.thankYouDataList.insert(myThankYouData, at: 0)
+//
+//                // ThankYouの保存処理
+//                let userDefaults = UserDefaults.standard
+//                // Data型にシリアライズする
+//                let data = NSKeyedArchiver.archivedData(withRootObject: self.thankYouDataList)
+//                userDefaults.set(data, forKey: "thankYouDataList")
+//                userDefaults.set(self.sectionDate, forKey: "sectionDate")
+//                userDefaults.synchronize()
+//            }
+//            // UserDefaultsに保存後の再読み込み処理
+//            self.tableView.reloadData()
+//        }
+//        
+//        // OKボタんを追加
+//        alertController.addAction(okAction)
+//        
+//        //Cancelボタンがタップされた時の処理
+//        let cancelButton = UIAlertAction(title: "CANCEL",
+//                                         style: UIAlertActionStyle.cancel, handler:nil)
+//        // Cancelボタんを追加
+//        alertController.addAction(cancelButton)
+//        
+//        // Alertdialogを表示
+//        present(alertController, animated:true, completion: nil)
+//        
+//        
+//
     }
     
     override func viewDidLoad() {

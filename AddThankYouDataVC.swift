@@ -10,9 +10,8 @@ import UIKit
 
 class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
 
-    @IBOutlet var addView: UITableView!
+    @IBOutlet weak var thankYouDatePicker: UIDatePicker!
     @IBOutlet weak var addThankYou: UINavigationItem!
-    
     @IBOutlet weak var thankYouTextView: UITextView!
     
 
@@ -24,8 +23,8 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
     
     
     func textViewDidChange(_ textView: UITextView) {
-        addView.beginUpdates()
-        addView.endUpdates()
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
     
     
@@ -35,8 +34,10 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         thankYouTextView.delegate = self
-        addView.rowHeight = UITableViewAutomaticDimension
-        addView.estimatedRowHeight = 10000
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 10000
+        
+        thankYouTextView.becomeFirstResponder()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -59,7 +60,7 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

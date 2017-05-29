@@ -13,12 +13,32 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
     @IBOutlet weak var thankYouDatePicker: UIDatePicker!
     @IBOutlet weak var addThankYou: UINavigationItem!
     @IBOutlet weak var thankYouTextView: UITextView!
-    
+    @IBOutlet weak var dateLabel: UILabel!
 
+    
     @IBAction func goBack(_ sender: Any) {
         // Return
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func add(_ sender: Any) {
+        
+        // when 'Done' button is tapped
+        // if thankYouTextView is not empty
+        if !thankYouTextView.isEqual("") {
+            
+            // THANKYOULISTの配列に入力値を挿入。先頭に挿入する。
+            let myThankYouData = ThankYouData()
+            myThankYouData.thankYouValue = thankYouTextView.text!
+            myThankYouData.thankYouDate = self.dateLabel.text
+            
+            //section
+            //let sections: NSSet = NSSet(array: ViewController.sectionDate)
+            
+            
+        }
+    }
+    
     
     
     
@@ -33,11 +53,23 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // put today on dateLabel
+        let now = NSDate()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd"
+        let nowString = formatter.string(from: now as Date)
+        dateLabel.text = nowString
+        
+        
+        
         thankYouTextView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 10000
         
         thankYouTextView.becomeFirstResponder()
+        
+        thankYouDatePicker.addTarget(self, action: #selector(AddThankYouDataVC.datePickerValueChanged), for: UIControlEvents.valueChanged)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -45,7 +77,16 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+    
+    func datePickerValueChanged (thankYouDatePicker: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        let dateValue = dateFormatter.string(from: thankYouDatePicker.date)
+        dateLabel.text = dateValue
+        
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -60,7 +101,11 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        //if (section == 2) {
+        //    return 2
+        //} else {
+            return 1
+        //}
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

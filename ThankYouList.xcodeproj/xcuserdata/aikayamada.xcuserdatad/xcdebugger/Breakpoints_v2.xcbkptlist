@@ -259,15 +259,15 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "globalinit_33_2EB65260DAAE660A0CF0FC7D50812A88_func1"
+                  symbolName = "globalinit_33_2EB65260DAAE660A0CF0FC7D50812A88_func0"
                   moduleName = "ThankYouList"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aikayamada/Documents/ThankYouList/ThankYouList/GlobalThankYouData.swift"
-                  timestampString = "518875541.153268"
+                  timestampString = "518876638.142566"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
                   offsetFromSymbolStart = "4">
                </Location>
                <Location
@@ -278,11 +278,11 @@
                   moduleName = "ThankYouList"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aikayamada/Documents/ThankYouList/ThankYouList/GlobalThankYouData.swift"
-                  timestampString = "518875541.156793"
+                  timestampString = "518876638.145186"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
                   offsetFromSymbolStart = "4">
                </Location>
                <Location
@@ -293,11 +293,11 @@
                   moduleName = "ThankYouList"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aikayamada/Documents/ThankYouList/ThankYouList/GlobalThankYouData.swift"
-                  timestampString = "518875541.160238"
+                  timestampString = "518876638.147489"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
                   offsetFromSymbolStart = "32">
                </Location>
                <Location
@@ -308,11 +308,11 @@
                   moduleName = "ThankYouList"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aikayamada/Documents/ThankYouList/ThankYouList/GlobalThankYouData.swift"
-                  timestampString = "518875541.164193"
+                  timestampString = "518876638.149954"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
                   offsetFromSymbolStart = "60">
                </Location>
             </Locations>

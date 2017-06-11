@@ -25,20 +25,56 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
         
         // when 'Done' button is tapped
         // if thankYouTextView is not empty
-        if !thankYouTextView.isEqual("") {
+        if (!thankYouTextView.isEqual("")) {
             
-            // THANKYOULISTの配列に入力値を挿入。先頭に挿入する。
+            // thankYouDataクラスに格納
             let myThankYouData = ThankYouData()
-            myThankYouData.thankYouValue = thankYouTextView.text!
+            myThankYouData.thankYouValue = thankYouTextView.text
             myThankYouData.thankYouDate = self.dateLabel.text
             
-            //section
-            //let sections: NSSet = NSSet(array: ViewController.sectionDate)
             
+            
+            // addします
+            addThankYou(thankYouData: myThankYouData)
+            
+        
+            
+            // Go back to the previous screen
+            self.dismiss(animated: true, completion: nil)
             
         }
     }
     
+    func addThankYou(thankYouData: ThankYouData) -> Void{
+        
+        // Get the singleton
+        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
+        
+        
+        //section
+        let sections: NSSet = NSSet(array: thankYouDataSingleton.sectionDate)
+        
+        // if sectionDate doesn't contain the thankYouDate, then add it
+        if !sections.contains(thankYouData.thankYouDate!) {
+            thankYouDataSingleton.sectionDate.append(thankYouData.thankYouDate!)
+            print("sectiondate.append happens")
+        }
+        
+        //Insert
+        thankYouDataSingleton.thankYouDataList.insert(thankYouData, at: 0)
+        
+        // ThankYouの保存処理
+        let userDefaults = UserDefaults.standard
+        // Data型にシリアライズする
+        let data = NSKeyedArchiver.archivedData(withRootObject: thankYouDataSingleton.thankYouDataList)
+        userDefaults.set(data, forKey: "thankYouDataList")
+        userDefaults.set(thankYouDataSingleton.sectionDate, forKey: "sectionDate")
+        userDefaults.synchronize()
+        
+
+        
+        
+    }
     
     
     
@@ -53,6 +89,7 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         // put today on dateLabel
         let now = NSDate()

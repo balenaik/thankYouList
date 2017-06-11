@@ -9,14 +9,14 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
-    //ThankYouを格納した配列
-    var thankYouDataList = [ThankYouData]()
     
-    // Sectionで利用する配列
-    var sectionDate: [String] = []
+
+    
     
     @IBOutlet weak var tableView: UITableView!
+
+    
+    
     @IBAction func addButton(_ sender: Any) {
         
         // 入力画面に遷移
@@ -25,67 +25,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let navi = UINavigationController(rootViewController: addThankYouDataVC)
         self.present(navi, animated: true, completion: nil)
         
-//        // アラートダイアログを生成
-//        let alertController = UIAlertController(title: "THANKYOU追加",
-//                                                message: "ありがとうを入力してください",
-//                                                preferredStyle: UIAlertControllerStyle.alert)
-//        // テキストエリアを追加
-//        alertController.addTextField(configurationHandler: nil)
-//        // OKボタンを追加
-//        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
-//            (action:UIAlertAction) in
-//            // OKボタンがタップされたときの処理
-//            if let textField = alertController.textFields?.first {
-//                // THANKYOULISTの配列に入力値を挿入。先頭に挿入する。
-//                let myThankYouData = ThankYouData()
-//                myThankYouData.thankYouValue = textField.text!
-//                myThankYouData.thankYouDate = self.getToday()
-//                
-//                print(myThankYouData.thankYouDate!)
-//                print(myThankYouData.thankYouValue!)
-//                
-//                //section
-//                let sections: NSSet = NSSet(array: self.sectionDate)
-//                
-//                // if sectionDate doesn't contain the thankYouDate, then add it
-//                if !sections.contains(myThankYouData.thankYouDate!) {
-//                    self.sectionDate.append(myThankYouData.thankYouDate!)
-//                    print("sectiondate.append happens")
-//                }
-//                
-//                //Insert
-//                self.thankYouDataList.insert(myThankYouData, at: 0)
-//
-//                // ThankYouの保存処理
-//                let userDefaults = UserDefaults.standard
-//                // Data型にシリアライズする
-//                let data = NSKeyedArchiver.archivedData(withRootObject: self.thankYouDataList)
-//                userDefaults.set(data, forKey: "thankYouDataList")
-//                userDefaults.set(self.sectionDate, forKey: "sectionDate")
-//                userDefaults.synchronize()
-//            }
-//            // UserDefaultsに保存後の再読み込み処理
-//            self.tableView.reloadData()
-//        }
-//        
-//        // OKボタんを追加
-//        alertController.addAction(okAction)
-//        
-//        //Cancelボタンがタップされた時の処理
-//        let cancelButton = UIAlertAction(title: "CANCEL",
-//                                         style: UIAlertActionStyle.cancel, handler:nil)
-//        // Cancelボタんを追加
-//        alertController.addAction(cancelButton)
-//        
-//        // Alertdialogを表示
-//        present(alertController, animated:true, completion: nil)
-//        
-//        
-//
+
     }
+    
+
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        // Get the singleton
+        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
+        
 
         
         // 保存しているThankYouの読み込み処理
@@ -94,13 +47,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             if let unarchiveThankYouDataList = NSKeyedUnarchiver.unarchiveObject(
                 with: storedThankYouDataList) as? [ThankYouData] {
-                thankYouDataList.append(contentsOf: unarchiveThankYouDataList)
-                
-
+                thankYouDataSingleton.thankYouDataList.append(contentsOf: unarchiveThankYouDataList)
             }
         }
         if let storedSectionDate = userDefaults.array(forKey: "sectionDate") as? [String] {
-            sectionDate.append(contentsOf: storedSectionDate)
+            thankYouDataSingleton.sectionDate.append(contentsOf: storedSectionDate)
         }
 
     }
@@ -115,6 +66,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // the function for getting section items
     func getSectionItems(section: Int) -> [ThankYouData] {
         var sectionItems = [ThankYouData]()
+        // Get the singleton
+        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
+        
+        // ThankYouを格納した配列
+        let thankYouDataList: [ThankYouData] = thankYouDataSingleton.thankYouDataList
+        // Sectionで利用する配列
+        var sectionDate: [String] = thankYouDataSingleton.sectionDate
         
         // Loop through the thankYouDataList to get the items for this section's date
         for item in thankYouDataList {
@@ -133,8 +91,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // テーブルの行数を返却する
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        
+        print(self.getSectionItems(section: section).count)
         return self.getSectionItems(section: section).count
     }
     
@@ -146,11 +103,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let sectionItems = self.getSectionItems(section: indexPath.section)
         // 行番号にあったThankYouのタイトルを取得 & get the item for the row in this section
         let myThankYouData = sectionItems[indexPath.row]
-        // ( it was used to be "thankYouData[indexPath.row] )
         
         // セルのラベルにthankYouのタイトルをセット
         cell.textLabel?.text = myThankYouData.thankYouValue
-        return cell
+        return cell 
     }
     
     
@@ -158,6 +114,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
      セクションの数を返す.
      */
     func numberOfSections(in tableView: UITableView) -> Int {
+        // Get the singleton
+        print(GlobalThankYouData.sharedInstance)
+        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
+        print(thankYouDataSingleton)
+        // Sectionで利用する配列
+        let sectionDate: [String] = thankYouDataSingleton.sectionDate
+        print(sectionDate.count)
         return sectionDate.count
     }
     
@@ -165,11 +128,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
      セクションのタイトルを返す.
      */
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-      //  if section < 1 {
-      //      return "なし"
-      //  } else {
-            return sectionDate[section]
-      //  }
+        // Get the singleton
+        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
+        // Sectionで利用する配列
+        var sectionDate: [String] = thankYouDataSingleton.sectionDate
+        return sectionDate[section]
+    }
+    
+    
+    // reload again
+    override func viewWillAppear(_ animated: Bool) {
+        // Get the singleton
+        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
+        print("thankYouDataList.count:", thankYouDataSingleton.thankYouDataList.count)
+        self.tableView.reloadData()
     }
     
     

@@ -60,6 +60,10 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
             print("sectiondate.append happens")
         }
         
+        // Sort the sectionDate
+        thankYouDataSingleton.sectionDate.sort(by:>)
+        print(thankYouDataSingleton.sectionDate[0])
+        
         //Insert
         thankYouDataSingleton.thankYouDataList.insert(thankYouData, at: 0)
         

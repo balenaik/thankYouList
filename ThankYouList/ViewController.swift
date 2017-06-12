@@ -35,6 +35,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // change the height of cells depending on the text
+        tableView.estimatedRowHeight = 40
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         // Get the singleton
         let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance

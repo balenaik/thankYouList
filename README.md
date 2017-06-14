@@ -11,7 +11,7 @@ Thank You List is an iOS application developed using Swift 3.0. This project is 
 Screenshots
 -----------
 ![thankYouList](https://github.com/balenaik/thankYouList/blob/master/img/list1.png)
-![thankYouList](thttps://github.com/balenaik/thankYouList/blob/master/img/input.png)
+![thankYouList](https://github.com/balenaik/thankYouList/blob/master/img/input.png)
 ![thankYouList](https://github.com/balenaik/thankYouList/blob/master/img/list2.png)
 
 

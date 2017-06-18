@@ -111,6 +111,7 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
         thankYouTextView.becomeFirstResponder()
         
         thankYouDatePicker.addTarget(self, action: #selector(AddThankYouDataVC.datePickerValueChanged), for: UIControlEvents.valueChanged)
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -141,12 +142,11 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        //if (section == 2) {
-        //    return 2
-        //} else {
+        if (section == 1) {
+            return 2
+        } else {
             return 1
-        //}
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

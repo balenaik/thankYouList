@@ -20,7 +20,7 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
     @IBOutlet weak var datePickerCell: UITableViewCell!
     
     // datePickerの表示状態
-    private var _datePickerIsShowing = true
+    private var _datePickerIsShowing = false
     // datePicker表示時のセルの高さ
     private let _DATEPICKER_CELL_HEIGHT: CGFloat = 210
     
@@ -247,6 +247,8 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
             dspDatePicker()
             thankYouTextView.endEditing(true)
         }
+        // セルがタップされても残らないように設定
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     /*

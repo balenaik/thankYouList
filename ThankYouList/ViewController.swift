@@ -146,13 +146,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
         // Sectionで利用する配列
         var sectionDate: [String] = thankYouDataSingleton.sectionDate
-        // 余白を作る
+        // 余白を作る(UIViewをセクションのビューに指定（だからxとかy指定しても意味ない）
         let view = UIView(frame: CGRect(x:0, y:0, width:20, height:20))
         view.backgroundColor = UIColor(red: 252/255.0, green: 181/255.0, blue: 181/255.0, alpha: 1.0)
         let label :UILabel = UILabel(frame: CGRect(x: 15, y: 7.5, width: tableView.frame.width, height: 20))
         label.textColor = UIColor.white
         label.text = sectionDate[section]
-
+        //指定したlabelをセクションビューのサブビューに指定
         view.addSubview(label)
         return view
     }

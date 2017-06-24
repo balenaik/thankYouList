@@ -15,6 +15,15 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
     @IBOutlet weak var thankYouTextView: UITextView!
     @IBOutlet weak var dateLabel: UILabel!
 
+    @IBOutlet weak var textViewCell: UITableViewCell!
+    @IBOutlet weak var dateCell: UITableViewCell!
+    @IBOutlet weak var datePickerCell: UITableViewCell!
+    
+    // datePickerの表示状態
+    private var _datePickerIsShowing = true
+    // datePicker表示時のセルの高さ
+    private let _DATEPICKER_CELL_HEIGHT: CGFloat = 210
+    
     
     @IBAction func goBack(_ sender: Any) {
         // Return
@@ -89,10 +98,59 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
     
     
     
+    func showDatePickerCell() {
+        // フラグの更新
+        self._datePickerIsShowing = true
+        
+        //　datePickerを表示する。
+        self.tableView.beginUpdates()
+        self.tableView.endUpdates()
+        
+        self.thankYouDatePicker.isHidden = false
+        self.thankYouDatePicker.alpha = 0
+        UIView.animate(withDuration: 0.25, animations: { () -> Void in
+            self.thankYouDatePicker.alpha = 1.0
+        }, completion: {(Bool) -> Void in
+            
+        })
+    }
+
+
+    func hideDatePickerCell() {
+        // フラグの更新
+        self._datePickerIsShowing = false
+        
+        //　datePickerを非表示する。
+        self.tableView.beginUpdates()
+        self.tableView.endUpdates()
+        
+        UIView.animate(withDuration: 0.25,
+                                   animations: {() -> Void in
+                                    self.thankYouDatePicker.alpha = 0
+        }, completion: {(Bool) -> Void in
+            self.thankYouDatePicker.isHidden = true
+        })
+    }
+
+    
+    func dspDatePicker() {
+        print("dspDatePicker()")
+        // フラグを見て、切り替える
+        if (self._datePickerIsShowing){
+            hideDatePickerCell()
+        } else {
+            showDatePickerCell()
+        }
+    }
+
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         
         
         // put today on dateLabel
@@ -102,6 +160,12 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
         let nowString = formatter.string(from: now as Date)
         dateLabel.text = nowString
         
+        // 使用するセルを登録
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "datePickerCell")
+        //　UITextFieldと、UIDatePickerを生成する。
+//        self._dataInput = UITextField()
+//        self._datePicker = UIDatePicker()
+
         
         
         thankYouTextView.delegate = self
@@ -111,6 +175,7 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
         thankYouTextView.becomeFirstResponder()
         
         thankYouDatePicker.addTarget(self, action: #selector(AddThankYouDataVC.datePickerValueChanged), for: UIControlEvents.valueChanged)
+        
         
 
         // Uncomment the following line to preserve selection between presentations
@@ -150,18 +215,38 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        var height: CGFloat =  self.tableView.rowHeight
+        
+        if(indexPath.section == 1 && indexPath.row == 1) {
+            print("sec1row1")
+            //　DatePicker行の場合は、DatePickerの表示状態に応じて高さを返す。
+            // 表示の場合は、表示で指定している高さを、非表示の場合は０を返す。
+            height =  self._datePickerIsShowing ? self._DATEPICKER_CELL_HEIGHT : CGFloat(0)
+        }
+        return height
+        //return UITableViewAutomaticDimension
     }
 
-    /*
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+       // let cell = tableView.dequeueReusableCell(withIdentifier: "datePickerCell", for: indexPath)
+        var cell = textViewCell
+        
+        if (indexPath.section == 1 && indexPath.row == 0) {
+            cell = dateCell
+        } else if (indexPath.section == 1 && indexPath.row == 1) {
+            cell = datePickerCell
+        }
+            return cell!
     }
-    */
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // セルを選択した時に日付があったらDatePickerの表示切り替えを行う
+        if(indexPath.section == 1 && indexPath.row == 0) {
+            print("sec1row0")
+            dspDatePicker()
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.

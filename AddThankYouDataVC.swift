@@ -245,6 +245,7 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
         if(indexPath.section == 1 && indexPath.row == 0) {
             print("sec1row0")
             dspDatePicker()
+            thankYouTextView.endEditing(true)
         }
     }
 

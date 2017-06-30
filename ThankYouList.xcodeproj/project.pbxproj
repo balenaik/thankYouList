@@ -13,6 +13,7 @@
 		A8831CC91E9CFE6B00F3CA0A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8831CC81E9CFE6B00F3CA0A /* ViewController.swift */; };
 		A8831CCC1E9CFE6B00F3CA0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8831CCA1E9CFE6B00F3CA0A /* Main.storyboard */; };
 		A8831CCE1E9CFE6B00F3CA0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */; };
+		A8F5FDD81EFDF40B00266CE5 /* EditThankYouDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F5FDD71EFDF40B00266CE5 /* EditThankYouDataVC.swift */; };
 		A8F649B71EEB96D100D6BA84 /* GlobalThankYouData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F649B61EEB96D100D6BA84 /* GlobalThankYouData.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		A8831CCB1E9CFE6B00F3CA0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8831CD21E9CFE6B00F3CA0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8F5FDD71EFDF40B00266CE5 /* EditThankYouDataVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditThankYouDataVC.swift; sourceTree = "<group>"; };
 		A8F649B61EEB96D100D6BA84 /* GlobalThankYouData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalThankYouData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				A85F02E11EC9BCC500654136 /* AddThankYouDataVC.swift */,
+				A8F5FDD71EFDF40B00266CE5 /* EditThankYouDataVC.swift */,
 				A8831CC61E9CFE6B00F3CA0A /* AppDelegate.swift */,
 				A8831CC81E9CFE6B00F3CA0A /* ViewController.swift */,
 				A8F649B61EEB96D100D6BA84 /* GlobalThankYouData.swift */,
@@ -145,6 +148,7 @@
 				A8F649B71EEB96D100D6BA84 /* GlobalThankYouData.swift in Sources */,
 				A8831CC91E9CFE6B00F3CA0A /* ViewController.swift in Sources */,
 				A85F02E21EC9BCC500654136 /* AddThankYouDataVC.swift in Sources */,
+				A8F5FDD81EFDF40B00266CE5 /* EditThankYouDataVC.swift in Sources */,
 				A85D9D011EA64AF900945E6E /* ThankYouData.swift in Sources */,
 				A8831CC71E9CFE6B00F3CA0A /* AppDelegate.swift in Sources */,
 			);

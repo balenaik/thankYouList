@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-
+    var delegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -76,11 +76,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let thankYouDataList: [ThankYouData] = thankYouDataSingleton.thankYouDataList
         // Sectionで利用する配列
         var sectionDate: [String] = thankYouDataSingleton.sectionDate
-        
+
         // Loop through the thankYouDataList to get the items for this section's date
         for item in thankYouDataList {
             let thankYouData = item as ThankYouData
-            
+
             // If the item's date equals the section's date then add it
             if thankYouData.thankYouDate == sectionDate[section] {
                 sectionItems.append(thankYouData)
@@ -164,6 +164,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
         print("thankYouDataList.count:", thankYouDataSingleton.thankYouDataList.count)
         self.tableView.reloadData()
+    }
+    
+    
+    // when a cell is tapped it goes the edit screen
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Input the indexPath in the indexPath in AppDelegate
+        self.delegate.indexPath = indexPath
+        // going to the edit page
+        let storyboard: UIStoryboard = self.storyboard!
+        let editThankYouDataVC = storyboard.instantiateViewController(withIdentifier: "editThankYouDataVC") as! ThankYouList.EditThankYouDataVC
+        let navi = UINavigationController(rootViewController: editThankYouDataVC)
+        self.present(navi, animated: true, completion: nil)
     }
     
     

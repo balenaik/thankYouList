@@ -215,20 +215,7 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         }
         let editThankYouData = sectionItems[self.delegate.indexPath!.row]
         
-        //        // Loop through the array till the data matches and get the number of element
-        //        for (index, item) in thankYouDataList.enumerated() {
-        //            let thankYouData = item as ThankYouData
-        //            // if thankYouDate from the item equals to the data in array, then get the index number.
-        //            if thankYouData.thankYouDate == sectionDate[indexPath.section] {
-        //                for sectionItem in sectionItems {
-        //                    if thankYouData.thankYouValue == sectionItem.thankYouValue {
-        //
-        //                    }
-        //                }
-        //            }
-        //        }
-        
-        
+
         
         // put the date on dateLabel
         dateLabel.text = editThankYouData.thankYouDate
@@ -248,7 +235,13 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         
         thankYouTextView.becomeFirstResponder()
         
+        // String to Date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        let editDate = dateFormatter.date(from: editThankYouData.thankYouDate!)
         
+        // Set initial date(edit date) on datePicker
+        thankYouDatePicker.setDate(editDate!, animated: true)
         thankYouDatePicker.addTarget(self, action: #selector(EditThankYouDataVC.datePickerValueChanged), for: UIControlEvents.valueChanged)
         
         

@@ -14,10 +14,12 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
     @IBOutlet weak var editThankYou: UINavigationItem!
     @IBOutlet weak var thankYouTextView: UITextView!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var deleteButton: UIButton!
     
     @IBOutlet weak var textViewCell: UITableViewCell!
     @IBOutlet weak var dateCell: UITableViewCell!
     @IBOutlet weak var datePickerCell: UITableViewCell!
+    @IBOutlet weak var deleteCell: UITableViewCell!
     
     var delegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -50,6 +52,9 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
             self.dismiss(animated: true, completion: nil)
             
         }
+    }
+    @IBAction func deleteThankYou(_ sender: Any) {
+        
     }
     
     
@@ -244,7 +249,10 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         thankYouDatePicker.setDate(editDate!, animated: true)
         thankYouDatePicker.addTarget(self, action: #selector(EditThankYouDataVC.datePickerValueChanged), for: UIControlEvents.valueChanged)
         
-        
+        // Set deleteButton
+        deleteButton.layer.cornerRadius = 10.0
+        deleteButton.layer.masksToBounds = true
+        deleteButton.isUserInteractionEnabled = true
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -277,7 +285,7 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         if (section == 1) {
-            return 2
+            return 3
         } else {
             return 1
         }
@@ -287,10 +295,11 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         var height: CGFloat =  self.tableView.rowHeight
         
         if(indexPath.section == 1 && indexPath.row == 1) {
-            print("sec1row1")
             //　DatePicker行の場合は、DatePickerの表示状態に応じて高さを返す。
             // 表示の場合は、表示で指定している高さを、非表示の場合は０を返す。
             height =  self._datePickerIsShowing ? self._DATEPICKER_CELL_HEIGHT : CGFloat(0)
+        } else if(indexPath.section == 1 && indexPath.row == 2) {
+            height = 75
         }
         return height
         //return UITableViewAutomaticDimension
@@ -300,11 +309,14 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // let cell = tableView.dequeueReusableCell(withIdentifier: "datePickerCell", for: indexPath)
         var cell = textViewCell
+        deleteCell.selectionStyle = UITableViewCellSelectionStyle.none
         
         if (indexPath.section == 1 && indexPath.row == 0) {
             cell = dateCell
         } else if (indexPath.section == 1 && indexPath.row == 1) {
             cell = datePickerCell
+        } else if (indexPath.section == 1 && indexPath.row == 2) {
+            cell = deleteCell
         }
         return cell!
     }

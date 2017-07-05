@@ -77,7 +77,7 @@
         <scene sceneID="Dit-Vk-moY">
             <objects>
                 <tableViewController storyboardIdentifier="addThankYouDataVC" useStoryboardIdentifierAsRestorationIdentifier="YES" clearsSelectionOnViewWillAppear="NO" id="cVM-zR-lKC" customClass="AddThankYouDataVC" customModule="ThankYouList" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" canCancelContentTouches="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="g2O-ay-Ndf">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" canCancelContentTouches="NO" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="g2O-ay-Ndf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -227,7 +227,7 @@
         <scene sceneID="04m-ob-sFY">
             <objects>
                 <tableViewController storyboardIdentifier="editThankYouDataVC" useStoryboardIdentifierAsRestorationIdentifier="YES" clearsSelectionOnViewWillAppear="NO" id="ixE-vf-lLo" customClass="EditThankYouDataVC" customModule="ThankYouList" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" canCancelContentTouches="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Y8Q-jc-fGG">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" canCancelContentTouches="NO" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Y8Q-jc-fGG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -298,6 +298,35 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="30" reuseIdentifier="deleteCell" rowHeight="163" id="WQG-TF-17w">
+                                        <rect key="frame" x="0.0" y="440" width="375" height="163"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="WQG-TF-17w" id="pry-gn-Nx1">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="163"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zc6-j2-QF6">
+                                                    <rect key="frame" x="0.0" y="66" width="375" height="35"/>
+                                                    <color key="backgroundColor" red="0.94901960784313721" green="0.96862745098039216" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="n9I-BA-45I"/>
+                                                        <constraint firstAttribute="width" constant="375" id="sUo-np-fIR"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <state key="normal" title="Delete">
+                                                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="deleteThankYou:" destination="ixE-vf-lLo" eventType="touchUpInside" id="MeV-Vx-dN2"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="zc6-j2-QF6" firstAttribute="top" secondItem="pry-gn-Nx1" secondAttribute="top" constant="35" id="HBQ-9k-NbL"/>
+                                                <constraint firstAttribute="bottom" secondItem="zc6-j2-QF6" secondAttribute="bottom" id="Q1K-QG-dKl"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -323,6 +352,8 @@
                         <outlet property="dateCell" destination="hCV-gm-jGU" id="lCD-Rh-UdJ"/>
                         <outlet property="dateLabel" destination="nen-Bc-Buk" id="ytC-cQ-VCb"/>
                         <outlet property="datePickerCell" destination="NbN-NJ-lS6" id="AOA-24-HDz"/>
+                        <outlet property="deleteButton" destination="zc6-j2-QF6" id="Nvm-DU-efO"/>
+                        <outlet property="deleteCell" destination="WQG-TF-17w" id="fzI-0S-YKq"/>
                         <outlet property="editThankYou" destination="ucU-cY-TvU" id="TjZ-8f-rOp"/>
                         <outlet property="textViewCell" destination="MhS-o2-98l" id="vx0-eh-KSW"/>
                         <outlet property="thankYouDatePicker" destination="fLj-69-5on" id="ye0-FX-38a"/>
@@ -331,7 +362,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8e3-EG-izw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2796" y="1608"/>
+            <point key="canvasLocation" x="2796" y="1607.9460269865069"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yjQ-Af-MJc">

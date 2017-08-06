@@ -14,13 +14,13 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
     @IBOutlet weak var editThankYou: UINavigationItem!
     @IBOutlet weak var thankYouTextView: UITextView!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var deleteButton: UIButton!
     
     @IBOutlet weak var textViewCell: UITableViewCell!
     @IBOutlet weak var dateCell: UITableViewCell!
     @IBOutlet weak var datePickerCell: UITableViewCell!
-    @IBOutlet weak var deleteCell: UITableViewCell!
     @IBOutlet weak var tableViewCell: UITableViewCell!
+    @IBOutlet weak var deleteCell: UITableViewCell!
+    
     
     var delegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -54,9 +54,8 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
             
         }
     }
-    @IBAction func deleteThankYou(_ sender: Any) {
-        
-    }
+
+    
     
     
     func editThankYou(editThankYouData: ThankYouData) -> Void{
@@ -70,6 +69,7 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
             thankYouDataSingleton.sectionDate.append(editThankYouData.thankYouDate!)
             print("sectiondate.append happens")
         }
+        // **************************
         
         // ThankYouを格納した配列
         let thankYouDataList: [ThankYouData] = thankYouDataSingleton.thankYouDataList
@@ -136,9 +136,75 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         userDefaults.set(thankYouDataSingleton.sectionDate, forKey: "sectionDate")
         userDefaults.synchronize()
         
+    }
+    
+    func deleteThankYou() -> Void {
+
+    
+        // Get the singleton
+        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
+        // ThankYouを格納した配列
+        let thankYouDataList: [ThankYouData] = thankYouDataSingleton.thankYouDataList
+        // Sectionで利用する配列
+        var sectionDate: [String] = thankYouDataSingleton.sectionDate
         
+        var sectionAmt: Int = 0
         
+        // Loop through the thankYouDataList to get the number of items for the ex-item's section date
+        for item in thankYouDataList {
+            let thankYouData = item as ThankYouData
+            // If the item's date equals the section's date then add it
+            if thankYouData.thankYouDate == sectionDate[self.delegate.indexPath!.section] {
+                sectionAmt = sectionAmt + 1
+            }
+        }
         
+        // if the ex-thankYouDate was the only one in the section, delete the section
+        if sectionAmt == 1 {
+            thankYouDataSingleton.sectionDate.remove(at: self.delegate.indexPath!.section)
+        }
+        
+        // Sort the sectionDate
+        thankYouDataSingleton.sectionDate.sort(by:>)
+        
+        // Get the index number in thankYouDataList
+        var listIndexNo: Int = 0
+        
+        // count
+        var rowCount: Int = 0
+        
+        // Loop through the array till the data matches and get the element at the selected row number
+        for (index, item) in thankYouDataList.enumerated() {
+            let thankYouData = item as ThankYouData
+            
+            // if thankYouDate from the item equals to the data in array, then get the index number.
+            if thankYouData.thankYouDate == sectionDate[self.delegate.indexPath!.section] {
+                rowCount = rowCount + 1
+            }
+            print("rowCount:", rowCount)
+            print("delegate.indexPath.row:", self.delegate.indexPath!.row)
+            
+            // if rowCount reachs indexPath.row, then exit the loop.
+            if rowCount == self.delegate.indexPath!.row + 1 {
+                print("rowCount reaches indexpath.row", self.delegate.indexPath!.row)
+                listIndexNo = index
+                print("indexNo:", index, " value:", thankYouDataSingleton.thankYouDataList[index].thankYouValue!)
+                
+                break
+            }
+        }
+        
+        // Delete the element first
+        thankYouDataSingleton.thankYouDataList.remove(at: listIndexNo)
+        
+        // ThankYouの保存処理
+        let userDefaults = UserDefaults.standard
+        // Data型にシリアライズする
+        let data = NSKeyedArchiver.archivedData(withRootObject: thankYouDataSingleton.thankYouDataList)
+        userDefaults.set(data, forKey: "thankYouDataList")
+        userDefaults.set(thankYouDataSingleton.sectionDate, forKey: "sectionDate")
+        userDefaults.synchronize()
+
     }
     
     
@@ -250,11 +316,6 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         thankYouDatePicker.setDate(editDate!, animated: true)
         thankYouDatePicker.addTarget(self, action: #selector(EditThankYouDataVC.datePickerValueChanged), for: UIControlEvents.valueChanged)
         
-        // Set deleteButton
-        deleteButton.layer.cornerRadius = 10.0
-        deleteButton.layer.masksToBounds = true
-        deleteButton.isUserInteractionEnabled = true
-        
         // tableviewの背景色指定
         self.view.backgroundColor = UIColor(red: 247/255.0, green: 247/255.0, blue: 247/255.0, alpha: 1.0)
         
@@ -292,13 +353,16 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 3
     }
 
+    
+    
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        if (section == 1) {
-            return 2
+
+        if (section == 2) {
+            return 1
         } else {
             return 2
         }
@@ -321,7 +385,7 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        var cell = tableViewCell
+        var cell = deleteCell
         
         if (indexPath.section == 1 && indexPath.row == 0) {
             cell = dateCell
@@ -330,15 +394,42 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         } else if (indexPath.section == 0 && indexPath.row == 0) {
             cell = textViewCell
             cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        } else if (indexPath.section == 0 && indexPath.row == 1) {
+            cell = tableViewCell
+            cell?.selectionStyle = UITableViewCellSelectionStyle.none
         }
         return cell!
     }
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // when a deleteCell is tapped, call delete function
+        if (indexPath.section == 2 && indexPath.row == 0) {
+            //　アラートコントローラーの実装
+            let alertController = UIAlertController(title: "Delete Thank you",message: "Are you sure you want to delete this thank you?", preferredStyle: UIAlertControllerStyle.alert)
+            
+            //  Deleteボタンの実装
+            let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive){ (action: UIAlertAction) in
+                // Delteがクリックされた時の処理
+                self.deleteThankYou()
+                // Go back to the previous screen
+                self.dismiss(animated: true, completion: nil)
+            }
+            //  Cancelボタンの実装
+            let cancelButton = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+            
+            //  ボタンに追加
+            alertController.addAction(deleteAction)
+            alertController.addAction(cancelButton)
+            
+            //  アラートの表示
+            present(alertController,animated: true,completion: nil)
+
+        }
+        
         // セルを選択した時に日付があったらDatePickerの表示切り替えを行う
         if(indexPath.section == 1 && indexPath.row == 0) {
-            print("sec1row0")
             dspDatePicker()
             thankYouTextView.endEditing(true)
         }

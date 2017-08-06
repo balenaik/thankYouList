@@ -20,6 +20,7 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
     @IBOutlet weak var dateCell: UITableViewCell!
     @IBOutlet weak var datePickerCell: UITableViewCell!
     @IBOutlet weak var deleteCell: UITableViewCell!
+    @IBOutlet weak var tableViewCell: UITableViewCell!
     
     var delegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -254,6 +255,18 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         deleteButton.layer.masksToBounds = true
         deleteButton.isUserInteractionEnabled = true
         
+        // tableviewの背景色指定
+        self.view.backgroundColor = UIColor(red: 247/255.0, green: 247/255.0, blue: 247/255.0, alpha: 1.0)
+        
+        // navigationbarの背景色指定
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 255/255.0, green: 248/255.0, blue: 232/255.0, alpha: 1.0)
+        
+        // navigationbarの文字色設定
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)]
+        
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -285,9 +298,9 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         if (section == 1) {
-            return 3
+            return 2
         } else {
-            return 1
+            return 2
         }
     }
     
@@ -298,8 +311,8 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
             //　DatePicker行の場合は、DatePickerの表示状態に応じて高さを返す。
             // 表示の場合は、表示で指定している高さを、非表示の場合は０を返す。
             height =  self._datePickerIsShowing ? self._DATEPICKER_CELL_HEIGHT : CGFloat(0)
-        } else if(indexPath.section == 1 && indexPath.row == 2) {
-            height = 75
+        }else if (indexPath.section == 0 && indexPath.row == 1) {
+            height = 20
         }
         return height
         //return UITableViewAutomaticDimension
@@ -307,16 +320,16 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // let cell = tableView.dequeueReusableCell(withIdentifier: "datePickerCell", for: indexPath)
-        var cell = textViewCell
-        deleteCell.selectionStyle = UITableViewCellSelectionStyle.none
+
+        var cell = tableViewCell
         
         if (indexPath.section == 1 && indexPath.row == 0) {
             cell = dateCell
         } else if (indexPath.section == 1 && indexPath.row == 1) {
             cell = datePickerCell
-        } else if (indexPath.section == 1 && indexPath.row == 2) {
-            cell = deleteCell
+        } else if (indexPath.section == 0 && indexPath.row == 0) {
+            cell = textViewCell
+            cell?.selectionStyle = UITableViewCellSelectionStyle.none
         }
         return cell!
     }
@@ -341,10 +354,10 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         // 余白を作る(UIViewをセクションのビューに指定（だからxとかy指定しても意味ない）
-        let view = UIView(frame: CGRect(x:0, y:0, width:20, height:15))
-        view.backgroundColor = UIColor(red: 252/255.0, green: 181/255.0, blue: 181/255.0, alpha: 1.0)
-        let label :UILabel = UILabel(frame: CGRect(x: 15, y: 7.5, width: tableView.frame.width, height: 15))
-        label.textColor = UIColor.white
+        let view = UIView(frame: CGRect(x:0, y:0, width:20, height: 15))
+        view.backgroundColor = UIColor(red: 247/255.0, green: 247/255.0, blue: 247/255.0, alpha: 1.0)
+        let label :UILabel = UILabel(frame: CGRect(x: 15, y: 33, width: tableView.frame.width, height: 15))
+        label.textColor = UIColor(red: 90/255.0, green: 90/255.0, blue: 90/255.0, alpha: 1.0)
         
         // Set the sectionName
         if section == 0 {
@@ -358,6 +371,12 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         return view
     }
     
+    /*
+     change the height of sections
+     */
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 55
+    }
     
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

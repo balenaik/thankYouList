@@ -14,9 +14,9 @@ https://itunes.apple.com/jp/app/thank-you-list-easy-diary/id1271631134?l=en&mt=8
 
 Screenshots
 -----------
-![thankYouList](https://github.com/balenaik/thankYouList/blob/master/img/screenshots/3.5-inch%20(iPhone4)-Screenshot1.png?raw=true =x200)
-![thankYouList](https://github.com/balenaik/thankYouList/blob/master/img/screenshots/3.5-inch%20(iPhone4)-Screenshot2.png?raw=true =x200)
-![thankYouList](https://github.com/balenaik/thankYouList/blob/master/img/screenshots/3.5-inch%20(iPhone4)-Screenshot3.png?raw=true =x200)
+<img src="https://github.com/balenaik/thankYouList/blob/master/img/screenshots/3.5-inch%20(iPhone4)-Screenshot1.png?raw=true" width="200px">
+<img src="https://github.com/balenaik/thankYouList/blob/master/img/screenshots/3.5-inch%20(iPhone4)-Screenshot2.png?raw=true" width="200px">
+<img src="https://github.com/balenaik/thankYouList/blob/master/img/screenshots/3.5-inch%20(iPhone4)-Screenshot3.png?raw=true" width="200px">
 
 
 

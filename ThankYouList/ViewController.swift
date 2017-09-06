@@ -16,6 +16,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableView: UITableView!
 
     
+    @IBAction func goToCalendar(_ sender: Any) {
+        // カレンダー画面に遷移
+        let storyboard: UIStoryboard = self.storyboard!
+        let calendarVC = storyboard.instantiateViewController(withIdentifier: "calendarVC") as! ThankYouList.CalendarVC
+        let navi = UINavigationController(rootViewController: calendarVC)
+        self.present(navi, animated: true, completion: nil)
+        
+    }
+    
     
     @IBAction func addButton(_ sender: Any) {
         
@@ -28,9 +37,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     }
     
-
-    
-
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -27,7 +27,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     @IBAction func addButton(_ sender: Any) {
-        
+        // Set today's date and pass it to the addThankYouDataVC
+        let now = NSDate()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd"
+        self.delegate.selectedDate = formatter.string(from: now as Date)
         // 入力画面に遷移
         let storyboard: UIStoryboard = self.storyboard!
         let addThankYouDataVC = storyboard.instantiateViewController(withIdentifier: "addThankYouDataVC") as! ThankYouList.AddThankYouDataVC
@@ -94,16 +98,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let thankYouDataList: [ThankYouData] = thankYouDataSingleton.thankYouDataList
         // Sectionで利用する配列
         var sectionDate: [String] = thankYouDataSingleton.sectionDate
+        // Set sectionItems
+        sectionItems = thankYouDataList.filter({$0.thankYouDate == sectionDate[section]})
 
-        // Loop through the thankYouDataList to get the items for this section's date
-        for item in thankYouDataList {
-            let thankYouData = item as ThankYouData
-
-            // If the item's date equals the section's date then add it
-            if thankYouData.thankYouDate == sectionDate[section] {
-                sectionItems.append(thankYouData)
-            }
-        }
         return sectionItems
     }
     
@@ -112,7 +109,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // テーブルの行数を返却する
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(self.getSectionItems(section: section).count)
         return self.getSectionItems(section: section).count
     }
     
@@ -127,6 +123,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         // セルのラベルにthankYouのタイトルをセット
         cell.textLabel?.text = myThankYouData.thankYouValue
+        // change the text size
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 16)
         return cell 
     }
     
@@ -136,12 +134,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
      */
     func numberOfSections(in tableView: UITableView) -> Int {
         // Get the singleton
-        print(GlobalThankYouData.sharedInstance)
         let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
-        print(thankYouDataSingleton)
         // Sectionで利用する配列
         let sectionDate: [String] = thankYouDataSingleton.sectionDate
-        print(sectionDate.count)
         return sectionDate.count
     }
     
@@ -188,7 +183,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // when a cell is tapped it goes the edit screen
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Input the indexPath in the indexPath in AppDelegate
-        self.delegate.indexPath = indexPath
+        print("didSelectRowAt in View Controller is called")
+        self.delegate.indexPathSection = indexPath.section
+        self.delegate.indexPathRow = indexPath.row
         // going to the edit page
         let storyboard: UIStoryboard = self.storyboard!
         let editThankYouDataVC = storyboard.instantiateViewController(withIdentifier: "editThankYouDataVC") as! ThankYouList.EditThankYouDataVC

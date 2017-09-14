@@ -13,6 +13,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var indexPath: IndexPath?
+    var indexPathSection: Int?
+    var indexPathRow: Int?
+    var selectedDate: String?
 
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

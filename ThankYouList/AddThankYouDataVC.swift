@@ -20,6 +20,8 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
     @IBOutlet weak var datePickerCell: UITableViewCell!
     @IBOutlet weak var tableViewCell: UITableViewCell!
     
+    var delegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     // datePickerの表示状態
     private var _datePickerIsShowing = false
     // datePicker表示時のセルの高さ
@@ -151,11 +153,11 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
         
         
         // put today on dateLabel
-        let now = NSDate()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd"
-        let nowString = formatter.string(from: now as Date)
-        dateLabel.text = nowString
+//        let now = NSDate()
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "yyyy/MM/dd"
+//        let nowString = formatter.string(from: now as Date)
+        dateLabel.text = self.delegate.selectedDate
         
         // 使用するセルを登録
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "datePickerCell")

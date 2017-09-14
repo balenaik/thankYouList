@@ -67,7 +67,6 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         // if sectionDate doesn't contain the thankYouDate, then add it
         if !thankYouDataSingleton.sectionDate.contains(editThankYouData.thankYouDate!) {
             thankYouDataSingleton.sectionDate.append(editThankYouData.thankYouDate!)
-            print("sectiondate.append happens")
         }
         // **************************
         
@@ -82,14 +81,14 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         for item in thankYouDataList {
             let thankYouData = item as ThankYouData
             // If the item's date equals the section's date then add it
-            if thankYouData.thankYouDate == sectionDate[self.delegate.indexPath!.section] {
+            if thankYouData.thankYouDate == sectionDate[self.delegate.indexPathSection!] {
                 sectionAmt = sectionAmt + 1
             }
         }
 
         // if the ex-thankYouDate was the only one in the section, delete the section
-        if sectionAmt == 1 && editThankYouData.thankYouDate != sectionDate[self.delegate.indexPath!.section] {
-            thankYouDataSingleton.sectionDate.remove(at: self.delegate.indexPath!.section)
+        if sectionAmt == 1 && editThankYouData.thankYouDate != sectionDate[self.delegate.indexPathSection!] {
+            thankYouDataSingleton.sectionDate.remove(at: self.delegate.indexPathSection!)
         }
         
         // Sort the sectionDate
@@ -106,17 +105,13 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
             let thankYouData = item as ThankYouData
 
             // if thankYouDate from the item equals to the data in array, then get the index number.
-            if thankYouData.thankYouDate == sectionDate[self.delegate.indexPath!.section] {
+            if thankYouData.thankYouDate! == sectionDate[self.delegate.indexPathSection!] {
                 rowCount = rowCount + 1
             }
-            print("rowCount:", rowCount)
-            print("delegate.indexPath.row:", self.delegate.indexPath!.row)
             
             // if rowCount reachs indexPath.row, then exit the loop.
-            if rowCount == self.delegate.indexPath!.row + 1 {
-                print("rowCount reaches indexpath.row", self.delegate.indexPath!.row)
+            if rowCount == self.delegate.indexPathRow! + 1 {
                 listIndexNo = index
-                print("indexNo:", index, " value:", thankYouDataSingleton.thankYouDataList[index].thankYouValue!)
                 
                 break
             }
@@ -154,14 +149,14 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         for item in thankYouDataList {
             let thankYouData = item as ThankYouData
             // If the item's date equals the section's date then add it
-            if thankYouData.thankYouDate == sectionDate[self.delegate.indexPath!.section] {
+            if thankYouData.thankYouDate == sectionDate[self.delegate.indexPathSection!] {
                 sectionAmt = sectionAmt + 1
             }
         }
         
         // if the ex-thankYouDate was the only one in the section, delete the section
         if sectionAmt == 1 {
-            thankYouDataSingleton.sectionDate.remove(at: self.delegate.indexPath!.section)
+            thankYouDataSingleton.sectionDate.remove(at: self.delegate.indexPathSection!)
         }
         
         // Sort the sectionDate
@@ -178,17 +173,14 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
             let thankYouData = item as ThankYouData
             
             // if thankYouDate from the item equals to the data in array, then get the index number.
-            if thankYouData.thankYouDate == sectionDate[self.delegate.indexPath!.section] {
+            if thankYouData.thankYouDate == sectionDate[self.delegate.indexPathSection!] {
                 rowCount = rowCount + 1
             }
-            print("rowCount:", rowCount)
-            print("delegate.indexPath.row:", self.delegate.indexPath!.row)
+
             
             // if rowCount reachs indexPath.row, then exit the loop.
-            if rowCount == self.delegate.indexPath!.row + 1 {
-                print("rowCount reaches indexpath.row", self.delegate.indexPath!.row)
+            if rowCount == self.delegate.indexPathRow! + 1 {
                 listIndexNo = index
-                print("indexNo:", index, " value:", thankYouDataSingleton.thankYouDataList[index].thankYouValue!)
                 
                 break
             }
@@ -272,6 +264,7 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         // Get the singleton
         let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
         
+        
         // ThankYouを格納した配列
         let thankYouDataList: [ThankYouData] = thankYouDataSingleton.thankYouDataList
         // Sectionで利用する配列
@@ -281,11 +274,11 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         for item in thankYouDataList {
             let thankYouData = item as ThankYouData
             // If the item's date equals the section's date then add it
-            if thankYouData.thankYouDate == sectionDate[self.delegate.indexPath!.section] {
+            if thankYouData.thankYouDate! == sectionDate[self.delegate.indexPathSection!] {
                 sectionItems.append(thankYouData)
             }
         }
-        let editThankYouData = sectionItems[self.delegate.indexPath!.row]
+        let editThankYouData = sectionItems[self.delegate.indexPathRow!]
         
 
         

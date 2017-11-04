@@ -172,7 +172,7 @@ class CalendarVC: UIViewController {
     func setupViewsOfCalendar(from visibleDates: DateSegmentInfo) {
         let date = visibleDates.monthDates.first!.date
         
-        self.formatter.dateFormat = "MMMM yyyy"
+        self.formatter.dateFormat = String(format: NSLocalizedString("monthYear", comment: ""), "MMMM", "yyyy")
         self.yearMonth.text = self.formatter.string(from: date)
         
     }

@@ -400,17 +400,17 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         // when a deleteCell is tapped, call delete function
         if (indexPath.section == 2 && indexPath.row == 0) {
             //　アラートコントローラーの実装
-            let alertController = UIAlertController(title: "Delete Thank you",message: "Are you sure you want to delete this thank you?", preferredStyle: UIAlertControllerStyle.alert)
+            let alertController = UIAlertController(title: NSLocalizedString("Delete Thank you", comment: ""),message: NSLocalizedString("Are you sure you want to delete this thank you?", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
             
             //  Deleteボタンの実装
-            let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive){ (action: UIAlertAction) in
+            let deleteAction = UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: UIAlertActionStyle.destructive){ (action: UIAlertAction) in
                 // Delteがクリックされた時の処理
                 self.deleteThankYou()
                 // Go back to the previous screen
                 self.dismiss(animated: true, completion: nil)
             }
             //  Cancelボタンの実装
-            let cancelButton = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+            let cancelButton = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
             
             //  ボタンに追加
             alertController.addAction(deleteAction)
@@ -445,9 +445,9 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         
         // Set the sectionName
         if section == 0 {
-            label.text = "Input Thank you"
+            label.text = "Thank you"
         } else if section == 1 {
-            label.text = "Date"
+            label.text = NSLocalizedString("Date", comment: "")
         }
         
         //指定したlabelをセクションビューのサブビューに指定

@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  ThankYouList
+
+  Created by Aika Yamada on 2017/11/04.
+  Copyright © 2017 Aika Yamada. All rights reserved.
+*/
+"monthYear" = "%1$@ %2$@";
+"Date" = "Date";
+"Delete Thank you" = "Delete Thank you";
+"Are you sure you want to delete this thank you?" = "Are you sure you want to delete this thank you?";
+"Delete" = "Delete";
+"Cancel" = "Cancel";

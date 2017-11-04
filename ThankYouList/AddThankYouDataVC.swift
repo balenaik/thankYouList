@@ -278,9 +278,9 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
         
         // Set the sectionName
         if section == 0 {
-            label.text = "Input Thank you"
+            label.text = "Thank you"
         } else if section == 1 {
-            label.text = "Date"
+            label.text = NSLocalizedString("Date", comment: "")
         } else {
             label.text = ""
         }

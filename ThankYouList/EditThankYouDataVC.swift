@@ -38,8 +38,7 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
     @IBAction func edit(_ sender: Any) {
         // when 'Done' button is tapped
         // if thankYouTextView is not empty
-        if (!thankYouTextView.isEqual("")) {
-            
+        if (!thankYouTextView.text.isEqual("") || !thankYouTextView.text.isEmpty) {
             // thankYouDataクラスに格納
             let myThankYouData = ThankYouData()
             myThankYouData.thankYouValue = thankYouTextView.text
@@ -297,6 +296,7 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         thankYouTextView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 10000
+        thankYouTextView.placeholder = NSLocalizedString("What are you thankful for?", comment: "")
         
         thankYouTextView.becomeFirstResponder()
         

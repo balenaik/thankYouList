@@ -37,8 +37,7 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
         
         // when 'Done' button is tapped
         // if thankYouTextView is not empty
-        if (!thankYouTextView.isEqual("")) {
-            
+        if (!thankYouTextView.text.isEqual("") || !thankYouTextView.text.isEmpty) {
             // thankYouDataクラスに格納
             let myThankYouData = ThankYouData()
             myThankYouData.thankYouValue = thankYouTextView.text
@@ -151,27 +150,15 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        
-        // put today on dateLabel
-//        let now = NSDate()
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "yyyy/MM/dd"
-//        let nowString = formatter.string(from: now as Date)
         dateLabel.text = self.delegate.selectedDate
         
         // 使用するセルを登録
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "datePickerCell")
-        //　UITextFieldと、UIDatePickerを生成する。
-//        self._dataInput = UITextField()
-//        self._datePicker = UIDatePicker()
 
-        
-        
         thankYouTextView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 10000
-        
-        thankYouTextView.becomeFirstResponder()
+        thankYouTextView.placeholder = NSLocalizedString("What are you thankful for?", comment: "")
         
         thankYouDatePicker.addTarget(self, action: #selector(AddThankYouDataVC.datePickerValueChanged), for: UIControlEvents.valueChanged)
         

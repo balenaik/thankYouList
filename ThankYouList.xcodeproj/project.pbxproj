@@ -18,6 +18,7 @@
 		A8831CCE1E9CFE6B00F3CA0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */; };
 		A8AC1BD01FAE00B600D1B25B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A8AC1BCE1FAE00B600D1B25B /* Localizable.strings */; };
 		A8AC1BD31FAEA4B000D1B25B /* UITextViewPlaceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC1BD21FAEA4AF00D1B25B /* UITextViewPlaceHolder.swift */; };
+		A8AC1BD71FD20E5500D1B25B /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC1BD61FD20E5500D1B25B /* MainTabBarController.swift */; };
 		A8BA38B91F5CC5F600817D5C /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8BA38B81F5CC5F600817D5C /* images.xcassets */; };
 		A8DB2FBA1F5D41540055E8A4 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DB2FB91F5D41540055E8A4 /* CalendarVC.swift */; };
 		A8F06BB91F55396F00A90170 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8F06BB81F55396F00A90170 /* Launch Screen.storyboard */; };
@@ -43,6 +44,7 @@
 		A8AC1BCF1FAE00B600D1B25B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A8AC1BD11FAE00DE00D1B25B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A8AC1BD21FAEA4AF00D1B25B /* UITextViewPlaceHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewPlaceHolder.swift; sourceTree = "<group>"; };
+		A8AC1BD61FD20E5500D1B25B /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		A8BA38B81F5CC5F600817D5C /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
 		A8DB2FB91F5D41540055E8A4 /* CalendarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
 		A8F06BB81F55396F00A90170 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				A8DB2FB91F5D41540055E8A4 /* CalendarVC.swift */,
 				A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */,
 				A8AC1BD21FAEA4AF00D1B25B /* UITextViewPlaceHolder.swift */,
+				A8AC1BD61FD20E5500D1B25B /* MainTabBarController.swift */,
 			);
 			path = ThankYouList;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			files = (
 				A8F649B71EEB96D100D6BA84 /* GlobalThankYouData.swift in Sources */,
 				A8831CC91E9CFE6B00F3CA0A /* ViewController.swift in Sources */,
+				A8AC1BD71FD20E5500D1B25B /* MainTabBarController.swift in Sources */,
 				A85F02E21EC9BCC500654136 /* AddThankYouDataVC.swift in Sources */,
 				A8F5FDD81EFDF40B00266CE5 /* EditThankYouDataVC.swift in Sources */,
 				A85D9D011EA64AF900945E6E /* ThankYouData.swift in Sources */,

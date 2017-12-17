@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="K80-1H-gzG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="K80-1H-gzG">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -58,18 +58,7 @@
                             <constraint firstAttribute="trailing" secondItem="pf8-ST-WrA" secondAttribute="trailing" id="sLC-wU-joi"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Thank You List ☺️✏️" id="1ae-VH-yQ9">
-                        <barButtonItem key="leftBarButtonItem" image="calendar" id="7nr-Yn-8PE">
-                            <connections>
-                                <action selector="goToCalendar:" destination="BYZ-38-t0r" id="Bg0-Mx-Cso"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="LCH-A1-006">
-                            <connections>
-                                <action selector="addButton:" destination="BYZ-38-t0r" id="yg3-gF-Ny9"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Thank You List ☺️✏️" id="1ae-VH-yQ9"/>
                     <connections>
                         <outlet property="tableView" destination="pf8-ST-WrA" id="AiK-bf-HGl"/>
                     </connections>
@@ -671,11 +660,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Thank You Calendar 🗓" id="cAz-xi-lSn">
-                        <barButtonItem key="leftBarButtonItem" image="list" id="EBW-RX-v4o">
-                            <connections>
-                                <action selector="backToList:" destination="g7x-ef-1HG" id="sMa-10-Ali"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZNP-xn-LR5">
                             <connections>
                                 <action selector="addButton:" destination="g7x-ef-1HG" id="SXs-w0-xkt"/>
@@ -733,9 +717,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="calendar" width="30" height="30"/>
         <image name="dot" width="500" height="500"/>
-        <image name="list" width="23" height="23"/>
         <image name="plus" width="500" height="500"/>
     </resources>
 </document>

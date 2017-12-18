@@ -659,13 +659,7 @@
                             <constraint firstItem="p2v-wT-N26" firstAttribute="top" secondItem="nTj-dJ-J8W" secondAttribute="bottom" id="vlW-cX-XPk"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Thank You Calendar 🗓" id="cAz-xi-lSn">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZNP-xn-LR5">
-                            <connections>
-                                <action selector="addButton:" destination="g7x-ef-1HG" id="SXs-w0-xkt"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Thank You Calendar 🗓" id="cAz-xi-lSn"/>
                     <connections>
                         <outlet property="calendarView" destination="5yq-Fl-vaM" id="HRm-IP-QyB"/>
                         <outlet property="tableView" destination="nTj-dJ-J8W" id="GXu-p6-KOT"/>

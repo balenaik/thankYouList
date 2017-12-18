@@ -35,18 +35,6 @@ class CalendarVC: UIViewController {
     var selectedDate: String!
     
     
-    
-    @IBAction func addButton(_ sender: Any) {
-        // 入力画面に遷移
-        let storyboard: UIStoryboard = self.storyboard!
-        // Set selected date and pass it to the addThankYouDataVC
-        self.delegate.selectedDate = selectedDate
-        let addThankYouDataVC = storyboard.instantiateViewController(withIdentifier: "addThankYouDataVC") as! ThankYouList.AddThankYouDataVC
-        let navi = UINavigationController(rootViewController: addThankYouDataVC)
-        self.present(navi, animated: true, completion: nil)
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -336,9 +324,8 @@ extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
     
     // reload again
     override func viewWillAppear(_ animated: Bool) {
-        if ((selectedDate) != nil) {
-            getSectionItems(date: formatter.date(from: selectedDate)!)
-        }
+        formatter.dateFormat = "yyyy/MM/dd"
+        getSectionItems(date: formatter.date(from: selectedDate)!)
         self.tableView.reloadData()
         self.calendarView.reloadData()
     }
@@ -347,7 +334,7 @@ extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
     // when a cell is tapped it goes the edit screen
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Look for the index number in sectionDate and set it to delegate
-        self.delegate.indexPathSection = thankYouDataSingleton.sectionDate.index(of: selectedDate)!
+        self.delegate.indexPathSection = thankYouDataSingleton.sectionDate.index(of: selectedDate!)!
         // Input the indexPath.row in AppDelegate
         self.delegate.indexPathRow = indexPath.row
         // going to the edit page

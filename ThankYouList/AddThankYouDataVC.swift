@@ -180,6 +180,11 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        thankYouTextView.becomeFirstResponder()
+    }
+    
+    
     func datePickerValueChanged (thankYouDatePicker: UIDatePicker) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
@@ -187,7 +192,6 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
         dateLabel.text = dateValue
         
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -34,10 +34,6 @@ class CalendarVC: UIViewController {
     var sectionItems = [ThankYouData]()
     var selectedDate: String!
     
-    @IBAction func backToList(_ sender: Any) {
-        // Return
-        self.dismiss(animated: true, completion: nil)
-    }
     
     
     @IBAction func addButton(_ sender: Any) {
@@ -340,7 +336,9 @@ extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
     
     // reload again
     override func viewWillAppear(_ animated: Bool) {
-        getSectionItems(date: formatter.date(from: selectedDate)!)
+        if ((selectedDate) != nil) {
+            getSectionItems(date: formatter.date(from: selectedDate)!)
+        }
         self.tableView.reloadData()
         self.calendarView.reloadData()
     }

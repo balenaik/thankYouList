@@ -29,6 +29,7 @@ class CalendarVC: UIViewController {
     let highGrayColor = UIColor(colorWithHexValue: 0xc8c8c8)
     let brownColor = UIColor(colorWithHexValue: 0x81726a)
     let pinkColor = UIColor(colorWithHexValue: 0xfcb5b5)
+    let textColor = UIColor(colorWithHexValue: 0x3a3a3a)
     
     var delegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var sectionItems = [ThankYouData]()
@@ -294,6 +295,7 @@ extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
             cell.textLabel?.text = myThankYouData.thankYouValue
             // change the text size
             cell.textLabel?.font = UIFont.systemFont(ofSize: 16)
+            cell.textLabel?.textColor = textColor
         }
         return cell
     }

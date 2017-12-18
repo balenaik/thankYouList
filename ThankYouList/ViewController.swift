@@ -12,6 +12,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var delegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     
+    let textColor = UIColor(colorWithHexValue: 0x3a3a3a)
     
     @IBOutlet weak var tableView: UITableView!
 
@@ -100,6 +101,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.textLabel?.text = myThankYouData.thankYouValue
         // change the text size
         cell.textLabel?.font = UIFont.systemFont(ofSize: 16)
+        cell.textLabel?.textColor = textColor
         return cell 
     }
     

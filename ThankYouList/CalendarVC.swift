@@ -84,8 +84,6 @@ class CalendarVC: UIViewController {
         
         // Set the opening date of tableView when the screen is showed first time
         getSectionItems(date: Date())
-        self.formatter.dateFormat = "yyyy/MM/dd"
-        selectedDate = self.formatter.string(from: Date())
         
     }
 
@@ -240,6 +238,7 @@ extension CalendarVC: JTAppleCalendarViewDelegate {
         self.formatter.dateFormat = "yyyy/MM/dd"
         selectedDate = self.formatter.string(from: cellState.date)
         selectedDateLabel.text = selectedDate
+        self.delegate.selectedDate = selectedDate
         self.tableView.reloadData()
     }
     

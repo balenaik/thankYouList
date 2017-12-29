@@ -42,14 +42,12 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
             let myThankYouData = ThankYouData()
             myThankYouData.thankYouValue = thankYouTextView.text
             myThankYouData.thankYouDate = self.dateLabel.text
-            
-            
-            
+    
             // addします
             addThankYou(thankYouData: myThankYouData)
             
         
-            
+
             // Go back to the previous screen
             self.dismiss(animated: true, completion: nil)
             

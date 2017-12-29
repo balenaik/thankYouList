@@ -182,8 +182,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let now = Date()
         let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.dateFormat = format
         return formatter.string(from: now as Date)
     }
 }
+
+
 

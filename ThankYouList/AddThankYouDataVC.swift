@@ -168,7 +168,7 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
         
         // navigationbarの文字色設定
         self.navigationController?.navigationBar.tintColor = UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)]
         
         
         // Uncomment the following line to preserve selection between presentations
@@ -183,7 +183,7 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
     }
     
     
-    func datePickerValueChanged (thankYouDatePicker: UIDatePicker) {
+    @objc func datePickerValueChanged (thankYouDatePicker: UIDatePicker) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
         let dateValue = dateFormatter.string(from: thankYouDatePicker.date)

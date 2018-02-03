@@ -54,7 +54,11 @@ extension JTAppleCalendarView {
     
     /// Returns all selected dates
     open var selectedDates: [Date] {
-        return Array(Set(theSelectedDates)).sorted()
+        return selectedDatesSet.sorted()
+    }
+    
+    var selectedDatesSet: Set<Date> {
+        return Set(selectedCellData.values.map { $0.date })
     }
     
     var monthInfo: [Month] {

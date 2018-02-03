@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A11C57A5BE9F93588E643EDD /* Pods_ThankYouList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98545AE4E31E9534BA282086 /* Pods_ThankYouList.framework */; };
+		A813A2162025CD3B002DCA65 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A813A2152025CD3B002DCA65 /* GoogleService-Info.plist */; };
 		A83D5F891F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */; };
 		A85D9D011EA64AF900945E6E /* ThankYouData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85D9D001EA64AF900945E6E /* ThankYouData.swift */; };
 		A85DCC081F5D2151004E1095 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85DCC071F5D2151004E1095 /* CustomCell.swift */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		62F74693E6163581805D1D48 /* Pods-ThankYouList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.release.xcconfig"; sourceTree = "<group>"; };
 		98545AE4E31E9534BA282086 /* Pods_ThankYouList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThankYouList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A813A2152025CD3B002DCA65 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+RuntimeAttribute.swift"; sourceTree = "<group>"; };
 		A85D9D001EA64AF900945E6E /* ThankYouData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThankYouData.swift; sourceTree = "<group>"; };
 		A85DCC071F5D2151004E1095 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 		A8831CC51E9CFE6B00F3CA0A /* ThankYouList */ = {
 			isa = PBXGroup;
 			children = (
+				A813A2152025CD3B002DCA65 /* GoogleService-Info.plist */,
 				A85F02E11EC9BCC500654136 /* AddThankYouDataVC.swift */,
 				A8831CC61E9CFE6B00F3CA0A /* AppDelegate.swift */,
 				A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */,
@@ -196,6 +199,7 @@
 				A8831CCE1E9CFE6B00F3CA0A /* Assets.xcassets in Resources */,
 				A8831CCC1E9CFE6B00F3CA0A /* Main.storyboard in Resources */,
 				A8BA38B91F5CC5F600817D5C /* images.xcassets in Resources */,
+				A813A2162025CD3B002DCA65 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,11 +231,17 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -402,7 +412,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.balenaik.ThankYouList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -416,7 +426,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.balenaik.ThankYouList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

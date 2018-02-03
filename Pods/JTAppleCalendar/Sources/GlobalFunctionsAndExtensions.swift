@@ -51,6 +51,7 @@ extension Calendar {
         // Setup the dateformatter to this instance's settings
         Calendar.formatter.timeZone = self.timeZone
         Calendar.formatter.locale = self.locale
+        Calendar.formatter.calendar = self
         
         let comp = self.dateComponents([.year, .month], from: date)
         

@@ -59,9 +59,9 @@ public enum ReadingOrientation {
 }
 
 /// Configures the behavior of the scrolling mode of the calendar
-public enum ScrollingMode {
-    /// stopAtEachCalendarFrameWidth - non-continuous scrolling that will stop at each frame width
-    case stopAtEachCalendarFrameWidth
+public enum ScrollingMode: Equatable {
+    /// stopAtEachCalendarFrame - non-continuous scrolling that will stop at each frame
+    case stopAtEachCalendarFrame
     /// stopAtEachSection - non-continuous scrolling that will stop at each section
     case stopAtEachSection
     /// stopAtEach - non-continuous scrolling that will stop at each custom interval
@@ -77,7 +77,20 @@ public enum ScrollingMode {
     
     func pagingIsEnabled() -> Bool {
         switch self {
-        case .stopAtEachCalendarFrameWidth: return true
+        case .stopAtEachCalendarFrame: return true
+        default: return false
+        }
+    }
+    
+    public static func ==(lhs: ScrollingMode, rhs: ScrollingMode) -> Bool {
+        switch (lhs, rhs) {
+        case (.none, .none),
+             (.stopAtEachCalendarFrame, .stopAtEachCalendarFrame),
+             (.stopAtEachSection, .stopAtEachSection): return true
+        case (let .stopAtEach(customInterval: v1), let .stopAtEach(customInterval: v2)): return v1 == v2
+        case (let .nonStopToSection(withResistance: v1), let .nonStopToSection(withResistance: v2)): return v1 == v2
+        case (let .nonStopToCell(withResistance: v1), let .nonStopToCell(withResistance: v2)): return v1 == v2
+        case (let .nonStopTo(customInterval: v1, withResistance: x1), let .nonStopTo(customInterval: v2, withResistance: x2)): return v1 == v2 && x1 == x2
         default: return false
         }
     }
@@ -103,9 +116,27 @@ public enum SelectionRangePosition: Int {
     case left = 1, middle, right, full, none
 }
 
+/// Signifies whether or not a selection was done programatically or by the user
+public enum SelectionType: String {
+    /// Selection type
+    case programatic, userInitiated
+}
+
 /// Days of the week. By setting you calandar's first day of week,
 /// you can change which day is the first for the week. Sunday is by default.
 public enum DaysOfWeek: Int {
     /// Days of the week.
     case sunday = 1, monday, tuesday, wednesday, thursday, friday, saturday
+}
+
+internal enum DelayedTaskType {
+    case scroll, general
+}
+
+internal enum SelectionAction {
+    case didSelect, didDeselect
+}
+
+internal enum ShouldSelectionAction {
+    case shouldSelect, shouldDeselect
 }

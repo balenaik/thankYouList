@@ -61,7 +61,7 @@ class CalendarVC: UIViewController {
         
         // setup the text color for navagationbar
         self.navigationController?.navigationBar.tintColor = navigationBarTextColor
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : navigationBarTextColor]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : navigationBarTextColor]
 
         // Set the opening month when the screen is showed
         calendarView.scrollToDate(Date(), animateScroll: false)
@@ -221,6 +221,11 @@ extension CalendarVC: JTAppleCalendarViewDataSource {
 }
 
 extension CalendarVC: JTAppleCalendarViewDelegate {
+    
+    func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
+        //
+    }
+    
     
     // Display the cell
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {

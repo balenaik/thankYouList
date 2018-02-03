@@ -32,7 +32,9 @@
 - [x] [Complete Documentation](http://cocoadocs.org/docsets/JTAppleCalendar)
 
 
-[Installation](Installation)
+[Installation](#installation)
+
+### Important Change in version 7.1.0 --> https://github.com/patchthecode/JTAppleCalendar/issues/553
 
 Tutorials
   

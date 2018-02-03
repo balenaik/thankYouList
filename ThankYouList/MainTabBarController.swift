@@ -35,7 +35,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         calendarVCNavView.tabBarItem.title = "Calendar"
         
         // Set colors
-        let selectedAttributes = [NSForegroundColorAttributeName: self.tabBarTextColor]
+        let selectedAttributes = [NSAttributedStringKey.foregroundColor: self.tabBarTextColor]
         UITabBarItem.appearance().setTitleTextAttributes(selectedAttributes, for: UIControlState.selected)
         UITabBar.appearance().tintColor = self.tabBarTextColor
         UITabBar.appearance().barTintColor = self.tabBarBgColor

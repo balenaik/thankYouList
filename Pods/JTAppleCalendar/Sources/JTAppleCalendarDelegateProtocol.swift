@@ -28,7 +28,7 @@ protocol JTAppleCalendarDelegateProtocol: class {
     var cachedConfiguration: ConfigurationParameters! {get set}
     var calendarDataSource: JTAppleCalendarViewDataSource? {get set}
     var cellSize: CGFloat {get set}
-    var initialScrollDate: Date? {get set}
+    var anchorDate: Date? {get set}
     var isCalendarLayoutLoaded: Bool {get}
     var minimumInteritemSpacing: CGFloat  {get set}
     var minimumLineSpacing: CGFloat {get set}
@@ -37,9 +37,9 @@ protocol JTAppleCalendarDelegateProtocol: class {
     var scrollDirection: UICollectionViewScrollDirection! {get set}
     var sectionInset: UIEdgeInsets {get set}
     var totalDays: Int {get}
+    var firstContentOffset: CGPoint {get}
+    
     // Functions
-
-    func firstContentOffset() -> CGPoint
     func pathsFromDates(_ dates: [Date]) -> [IndexPath]
     func sizeOfDecorationView(indexPath: IndexPath) -> CGRect
     func sizesForMonthSection() -> [AnyHashable:CGFloat]

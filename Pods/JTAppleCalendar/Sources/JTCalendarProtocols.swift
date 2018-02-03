@@ -33,10 +33,10 @@ public extension JTAppleCalendarViewDelegate {
         assert(false, "You have implemted a header size function, but forgot to implement the `headerViewForDateRange` function")
         return JTAppleCollectionReusableView()
     }
+    func calendarDidScroll(_ calendar: JTAppleCalendarView) {}
     func calendarSizeForMonths(_ calendar: JTAppleCalendarView?) -> MonthSize? { return nil }
     func sizeOfDecorationView(indexPath: IndexPath) -> CGRect { return .zero }
     func scrollDidEndDecelerating(for calendar: JTAppleCalendarView) {}
-    
 }
 
 /// The JTAppleCalendarViewDataSource protocol is adopted by an
@@ -125,6 +125,24 @@ public protocol JTAppleCalendarViewDelegate: class {
     /// Informs the delegate that the user just lifted their finger from swiping the calendar
     func scrollDidEndDecelerating(for calendar: JTAppleCalendarView)
     
+    /// Tells the delegate that a scroll occured
+    func calendarDidScroll(_ calendar: JTAppleCalendarView)
+    
+    /// Called to retrieve the size to be used for the month headers
     func calendarSizeForMonths(_ calendar: JTAppleCalendarView?) -> MonthSize?
+    
+    /// Implement the function to configure calendar cells. The code that will go in here is the same
+    /// that you will code for your cellForItem function. This function is only called to address
+    /// inconsistencies in the visual appearance as stated by Apple: https://developer.apple.com/documentation/uikit/uicollectionview/1771771-prefetchingenabled
+    /// a date-cell. This is the point of customization for your date cells
+    /// - Parameters:
+    ///     - calendar: The JTAppleCalendar view giving this information.
+    ///     - cell: The cell
+    ///     - date: date attached to the cell
+    ///     - cellState: The month the date-cell belongs to.
+    ///     - indexPath: use this value when dequeing cells
+    func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath)
+    
+    /// Called to retrieve the size to be used for decoration views
     func sizeOfDecorationView(indexPath: IndexPath) -> CGRect
 }

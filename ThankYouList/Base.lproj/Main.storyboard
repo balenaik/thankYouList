@@ -596,9 +596,6 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
                                                         <real key="value" value="0.20000000000000001"/>
                                                     </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="keyPath">
-                                                        <color key="value" red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <outlet property="dateLabel" destination="zWT-em-g0K" id="PPD-NG-HE7"/>

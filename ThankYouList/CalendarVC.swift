@@ -15,8 +15,8 @@ class CalendarVC: UIViewController {
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var yearMonth: UILabel!
     @IBOutlet var tableView: UITableView!
-    
-    
+    var selectedDateView: UIView!
+    var selectedDateLabel: UILabel!
     
     // Get the singleton
     let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
@@ -29,26 +29,11 @@ class CalendarVC: UIViewController {
     let highGrayColor = UIColor(colorWithHexValue: 0xc8c8c8)
     let brownColor = UIColor(colorWithHexValue: 0x81726a)
     let pinkColor = UIColor(colorWithHexValue: 0xfcb5b5)
+    let textColor = UIColor(colorWithHexValue: 0x3a3a3a)
     
     var delegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var sectionItems = [ThankYouData]()
     var selectedDate: String!
-    
-    @IBAction func backToList(_ sender: Any) {
-        // Return
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    
-    @IBAction func addButton(_ sender: Any) {
-        // 入力画面に遷移
-        let storyboard: UIStoryboard = self.storyboard!
-        // Set selected date and pass it to the addThankYouDataVC
-        self.delegate.selectedDate = selectedDate
-        let addThankYouDataVC = storyboard.instantiateViewController(withIdentifier: "addThankYouDataVC") as! ThankYouList.AddThankYouDataVC
-        let navi = UINavigationController(rootViewController: addThankYouDataVC)
-        self.present(navi, animated: true, completion: nil)
-    }
     
     
     override func viewDidLoad() {
@@ -59,6 +44,20 @@ class CalendarVC: UIViewController {
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        
+        self.formatter.dateFormat = "yyyy/MM/dd"
+        selectedDate = self.formatter.string(from: Date())
+        
+        // table header
+        selectedDateView = UIView(frame: CGRect(x:0, y:0, width:self.tableView.frame.width, height:30))
+        selectedDateView.backgroundColor = sectionBgColor
+        selectedDateLabel = UILabel(frame: CGRect(x: 15, y: 6.0, width: tableView.frame.width, height: 20))
+        selectedDateLabel.textColor = UIColor.white
+        selectedDateLabel.text = selectedDate
+        //指定したlabelをセクションビューのサブビューに指定
+        selectedDateView.addSubview(selectedDateLabel)
+        tableView.addSubview(selectedDateView)
+        tableView.contentInset.top = 30
         
         // setup the text color for navagationbar
         self.navigationController?.navigationBar.tintColor = navigationBarTextColor
@@ -85,8 +84,6 @@ class CalendarVC: UIViewController {
         
         // Set the opening date of tableView when the screen is showed first time
         getSectionItems(date: Date())
-        self.formatter.dateFormat = "yyyy/MM/dd"
-        selectedDate = self.formatter.string(from: Date())
         
     }
 
@@ -213,8 +210,8 @@ extension CalendarVC: JTAppleCalendarViewDataSource {
         formatter.timeZone = Calendar.current.timeZone
         formatter.locale = Calendar.current.locale
         
-        let startDate = formatter.date(from:"2015 01 01")!
-        let endDate = formatter.date(from:"2025 12 31")!
+        let startDate = formatter.date(from:"2016 01 01")!
+        let endDate = formatter.date(from:"2020 12 31")!
         
         let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate)
         return parameters
@@ -240,6 +237,8 @@ extension CalendarVC: JTAppleCalendarViewDelegate {
         getSectionItems(date: cellState.date)
         self.formatter.dateFormat = "yyyy/MM/dd"
         selectedDate = self.formatter.string(from: cellState.date)
+        selectedDateLabel.text = selectedDate
+        self.delegate.selectedDate = selectedDate
         self.tableView.reloadData()
     }
     
@@ -310,6 +309,7 @@ extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
             cell.textLabel?.text = myThankYouData.thankYouValue
             // change the text size
             cell.textLabel?.font = UIFont.systemFont(ofSize: 16)
+            cell.textLabel?.textColor = textColor
         }
         return cell
     }
@@ -326,7 +326,6 @@ extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
     
     // change the detail of section
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-
         // 余白を作る(UIViewをセクションのビューに指定（だからxとかy指定しても意味ない）
         let view = UIView(frame: CGRect(x:0, y:0, width:20, height:20))
         view.backgroundColor = sectionBgColor
@@ -338,8 +337,14 @@ extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
         return view
     }
     
+    func tableView(_ tableView: UITableView,
+                            heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
     // reload again
     override func viewWillAppear(_ animated: Bool) {
+        formatter.dateFormat = "yyyy/MM/dd"
         getSectionItems(date: formatter.date(from: selectedDate)!)
         self.tableView.reloadData()
         self.calendarView.reloadData()
@@ -349,7 +354,7 @@ extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
     // when a cell is tapped it goes the edit screen
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Look for the index number in sectionDate and set it to delegate
-        self.delegate.indexPathSection = thankYouDataSingleton.sectionDate.index(of: selectedDate)!
+        self.delegate.indexPathSection = thankYouDataSingleton.sectionDate.index(of: selectedDate!)!
         // Input the indexPath.row in AppDelegate
         self.delegate.indexPathRow = indexPath.row
         // going to the edit page
@@ -359,6 +364,16 @@ extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
         self.present(navi, animated: true, completion: nil)
     }
     
+    /*
+     スクロール時
+     */
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        // 下に引っ張ったときは、ヘッダー位置を計算して動かないようにする（★ここがポイント..）
+        //if scrollView.contentOffset.y < -30 {
+            self.selectedDateView.frame = CGRect(x: 0, y: scrollView.contentOffset.y, width: self.tableView.frame.width, height: 30)
+        //}
+    }
 }
 
 

@@ -58,18 +58,7 @@
                             <constraint firstAttribute="trailing" secondItem="pf8-ST-WrA" secondAttribute="trailing" id="sLC-wU-joi"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Thank You List ☺️✏️" id="1ae-VH-yQ9">
-                        <barButtonItem key="leftBarButtonItem" image="calendar" id="7nr-Yn-8PE">
-                            <connections>
-                                <action selector="goToCalendar:" destination="BYZ-38-t0r" id="Bg0-Mx-Cso"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="LCH-A1-006">
-                            <connections>
-                                <action selector="addButton:" destination="BYZ-38-t0r" id="yg3-gF-Ny9"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Thank You List ☺️✏️" id="1ae-VH-yQ9"/>
                     <connections>
                         <outlet property="tableView" destination="pf8-ST-WrA" id="AiK-bf-HGl"/>
                     </connections>
@@ -201,7 +190,7 @@
         <!--Navigation Controller-->
         <scene sceneID="kzR-vp-5iq">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="K80-1H-gzG" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="vcNav" automaticallyAdjustsScrollViewInsets="NO" id="K80-1H-gzG" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oCg-2f-OTD">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -219,7 +208,7 @@
         <!--Navigation Controller-->
         <scene sceneID="z6u-vg-Ufq">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iVd-tJ-VaP" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="addThankYouDataVCNav" automaticallyAdjustsScrollViewInsets="NO" id="iVd-tJ-VaP" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="j30-nx-6LR">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -667,18 +656,7 @@
                             <constraint firstItem="p2v-wT-N26" firstAttribute="top" secondItem="nTj-dJ-J8W" secondAttribute="bottom" id="vlW-cX-XPk"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Thank You Calendar 🗓" id="cAz-xi-lSn">
-                        <barButtonItem key="leftBarButtonItem" image="list" id="EBW-RX-v4o">
-                            <connections>
-                                <action selector="backToList:" destination="g7x-ef-1HG" id="sMa-10-Ali"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZNP-xn-LR5">
-                            <connections>
-                                <action selector="addButton:" destination="g7x-ef-1HG" id="SXs-w0-xkt"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Thank You Calendar 🗓" id="cAz-xi-lSn"/>
                     <connections>
                         <outlet property="calendarView" destination="5yq-Fl-vaM" id="HRm-IP-QyB"/>
                         <outlet property="tableView" destination="nTj-dJ-J8W" id="GXu-p6-KOT"/>
@@ -713,7 +691,7 @@
         <!--Navigation Controller-->
         <scene sceneID="7k0-EI-ATJ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="n3s-1D-tXE" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="calendarVCNav" automaticallyAdjustsScrollViewInsets="NO" id="n3s-1D-tXE" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4oC-lc-YU7">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -730,9 +708,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="calendar" width="30" height="30"/>
         <image name="dot" width="500" height="500"/>
-        <image name="list" width="23" height="23"/>
         <image name="plus" width="500" height="500"/>
     </resources>
 </document>

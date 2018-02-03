@@ -12,35 +12,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var delegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     
+    let textColor = UIColor(colorWithHexValue: 0x3a3a3a)
     
     @IBOutlet weak var tableView: UITableView!
 
-    
-    @IBAction func goToCalendar(_ sender: Any) {
-        // カレンダー画面に遷移
-        let storyboard: UIStoryboard = self.storyboard!
-        let calendarVC = storyboard.instantiateViewController(withIdentifier: "calendarVC") as! ThankYouList.CalendarVC
-        let navi = UINavigationController(rootViewController: calendarVC)
-        self.present(navi, animated: true, completion: nil)
-        
-    }
-    
-    
-    @IBAction func addButton(_ sender: Any) {
-        // Set today's date and pass it to the addThankYouDataVC
-        let now = NSDate()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd"
-        self.delegate.selectedDate = formatter.string(from: now as Date)
-        // 入力画面に遷移
-        let storyboard: UIStoryboard = self.storyboard!
-        let addThankYouDataVC = storyboard.instantiateViewController(withIdentifier: "addThankYouDataVC") as! ThankYouList.AddThankYouDataVC
-        let navi = UINavigationController(rootViewController: addThankYouDataVC)
-        self.present(navi, animated: true, completion: nil)
-        
 
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,6 +101,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.textLabel?.text = myThankYouData.thankYouValue
         // change the text size
         cell.textLabel?.font = UIFont.systemFont(ofSize: 16)
+        cell.textLabel?.textColor = textColor
         return cell 
     }
     
@@ -205,8 +182,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let now = Date()
         let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.dateFormat = format
         return formatter.string(from: now as Date)
     }
 }
+
+
 

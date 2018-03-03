@@ -7,17 +7,25 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var uid: String?
     var indexPath: IndexPath?
     var indexPathSection: Int?
     var indexPathRow: Int?
     var selectedDate: String?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        // Use Firebase library to configure APIs
+        FirebaseApp.configure()
+
+
+        
         let mainTabBarController: MainTabBarController = MainTabBarController()
         // UIWindowを生成.
         self.window = UIWindow(frame: UIScreen.main.bounds)

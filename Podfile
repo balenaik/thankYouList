@@ -7,5 +7,10 @@ target 'ThankYouList' do
 
   # Pods for ThankYouList
   pod 'JTAppleCalendar', '~> 7.0'
+  pod 'Firebase/Core'
   pod 'Firebase/Database'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'FirebaseUI'
+
 end

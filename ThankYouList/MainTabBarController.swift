@@ -1,9 +1,11 @@
 import UIKit
+import FirebaseAuth
 
 //UITabBarControllerを継承
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     var viewController: ViewController!
     var calendarVC: CalendarVC!
+    var uid: String?
     
     // Set colors
     let tabBarBgColor = UIColor(colorWithHexValue: 0xf2f7f2)
@@ -15,9 +17,9 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.delegate = self
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        
         let vcNavView:UINavigationController =
             self.storyboard.instantiateViewController(withIdentifier: "vcNav") as! UINavigationController
         let calendarVCNavView:UINavigationController =
@@ -39,8 +41,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         UITabBarItem.appearance().setTitleTextAttributes(selectedAttributes, for: UIControlState.selected)
         UITabBar.appearance().tintColor = self.tabBarTextColor
         UITabBar.appearance().barTintColor = self.tabBarBgColor
-        UITabBar.appearance().selectionIndicatorImage =
-            UIImage().createSelectionIndicator(color: self.tabBarTextColor, size: CGSize(width: tabBar.frame.width/3, height: tabBar.frame.height), lineWidth: 3.0)
+        UITabBar.appearance().selectionIndicatorImage = UIImage().createSelectionIndicator(color: self.tabBarTextColor, size: CGSize(width: tabBar.frame.width/3, height: tabBar.frame.height), lineWidth: 3.0)
         
         // タブで表示するViewControllerを配列に格納します。
         let myTabs = NSArray(objects: vcNavView, addThankYouDataVC, calendarVCNavView)
@@ -52,8 +53,23 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         formatter.dateFormat = "yyyy/MM/dd"
         appDelegate.selectedDate = formatter.string(from: now as Date)
         
+        // Authentication
+        Auth.auth().signInAnonymously() { (user, error) in
+            if let e = error {
+                print(e)
+                print("login error")
+                return
+            }
+            print("uid: \(user!.uid)")
+            let isAnonymous = user!.isAnonymous  // true
+            self.uid = user!.uid
+            self.createViewController(vcs: myTabs as! [UIViewController])
+        }
+    }
+    
+    func createViewController(vcs: [UIViewController]) {
         // 配列をTabにセットします。
-        self.setViewControllers(myTabs as? [UIViewController], animated: false)
+        self.setViewControllers(vcs, animated: false)
     }
     
     override func didReceiveMemoryWarning() {

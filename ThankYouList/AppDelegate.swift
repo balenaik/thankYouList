@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SlideMenuControllerSwift
 import Firebase
 import FirebaseAuth
 import FacebookCore
@@ -21,7 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var indexPathSection: Int?
     var indexPathRow: Int?
     var selectedDate: String?
-
+    
+    var storyboard: UIStoryboard {
+        return UIStoryboard(name: "Main", bundle: nil)
+    }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -29,12 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
-        
-
-        let loginVC: LoginVC = LoginVC()
         // UIWindowを生成.
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        
+        self.window = UIWindow(frame: UIScreen.main.bounds)        
         
         //TODO: test for login
         if Auth.auth().currentUser == nil {
@@ -42,7 +42,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = loginVC
         } else {
             let mainTabBarController: MainTabBarController = MainTabBarController()
-            self.window?.rootViewController = mainTabBarController
+            let leftMenuVC = self.storyboard.instantiateViewController(withIdentifier: "LeftMenuVC")
+            let rootViewController = ContainerVC(mainViewController: mainTabBarController, leftMenuViewController: leftMenuVC)
+            SlideMenuOptions.contentViewDrag = true
+            self.window?.rootViewController = rootViewController
         }
         
         // rootViewControllerにMainTabBarControllerを設定

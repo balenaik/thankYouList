@@ -18,6 +18,8 @@
 		A8831CC91E9CFE6B00F3CA0A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8831CC81E9CFE6B00F3CA0A /* ViewController.swift */; };
 		A8831CCC1E9CFE6B00F3CA0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8831CCA1E9CFE6B00F3CA0A /* Main.storyboard */; };
 		A8831CCE1E9CFE6B00F3CA0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */; };
+		A8A0FE5C205D59170048AB33 /* LeftMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0FE5B205D59170048AB33 /* LeftMenuVC.swift */; };
+		A8A0FE5E205D5CE50048AB33 /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0FE5D205D5CE50048AB33 /* ContainerVC.swift */; };
 		A8AC1BD01FAE00B600D1B25B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A8AC1BCE1FAE00B600D1B25B /* Localizable.strings */; };
 		A8AC1BD31FAEA4B000D1B25B /* UITextViewPlaceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC1BD21FAEA4AF00D1B25B /* UITextViewPlaceHolder.swift */; };
 		A8AC1BD71FD20E5500D1B25B /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC1BD61FD20E5500D1B25B /* MainTabBarController.swift */; };
@@ -45,6 +47,8 @@
 		A8831CCB1E9CFE6B00F3CA0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8831CD21E9CFE6B00F3CA0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8A0FE5B205D59170048AB33 /* LeftMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuVC.swift; sourceTree = "<group>"; };
+		A8A0FE5D205D5CE50048AB33 /* ContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
 		A8AC1BCD1FADE9DF00D1B25B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		A8AC1BCF1FAE00B600D1B25B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A8AC1BD11FAE00DE00D1B25B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -130,6 +134,8 @@
 				A8AC1BD21FAEA4AF00D1B25B /* UITextViewPlaceHolder.swift */,
 				A8AC1BD61FD20E5500D1B25B /* MainTabBarController.swift */,
 				A824150E205CE28C00172587 /* LoginVC.swift */,
+				A8A0FE5B205D59170048AB33 /* LeftMenuVC.swift */,
+				A8A0FE5D205D5CE50048AB33 /* ContainerVC.swift */,
 			);
 			path = ThankYouList;
 			sourceTree = "<group>";
@@ -251,6 +257,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
@@ -270,6 +277,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
@@ -315,12 +323,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8F649B71EEB96D100D6BA84 /* GlobalThankYouData.swift in Sources */,
+				A8A0FE5C205D59170048AB33 /* LeftMenuVC.swift in Sources */,
 				A8831CC91E9CFE6B00F3CA0A /* ViewController.swift in Sources */,
 				A824150F205CE28C00172587 /* LoginVC.swift in Sources */,
 				A8AC1BD71FD20E5500D1B25B /* MainTabBarController.swift in Sources */,
 				A85F02E21EC9BCC500654136 /* AddThankYouDataVC.swift in Sources */,
 				A8F5FDD81EFDF40B00266CE5 /* EditThankYouDataVC.swift in Sources */,
 				A85D9D011EA64AF900945E6E /* ThankYouData.swift in Sources */,
+				A8A0FE5E205D5CE50048AB33 /* ContainerVC.swift in Sources */,
 				A85DCC081F5D2151004E1095 /* CustomCell.swift in Sources */,
 				A8DB2FBA1F5D41540055E8A4 /* CalendarVC.swift in Sources */,
 				A8831CC71E9CFE6B00F3CA0A /* AppDelegate.swift in Sources */,

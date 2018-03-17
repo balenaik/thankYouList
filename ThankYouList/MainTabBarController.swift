@@ -6,6 +6,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     var viewController: ViewController!
     var calendarVC: CalendarVC!
     var uid: String?
+    var tabsArray: [UIViewController]?
     
     // Set colors
     let tabBarBgColor = UIColor(colorWithHexValue: 0xf2f7f2)
@@ -44,7 +45,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         UITabBar.appearance().selectionIndicatorImage = UIImage().createSelectionIndicator(color: self.tabBarTextColor, size: CGSize(width: tabBar.frame.width/3, height: tabBar.frame.height), lineWidth: 3.0)
         
         // タブで表示するViewControllerを配列に格納します。
-        let myTabs = NSArray(objects: vcNavView, addThankYouDataVC, calendarVCNavView)
+        tabsArray = NSArray(objects: vcNavView, addThankYouDataVC, calendarVCNavView) as? [UIViewController]
         
         
         // Set today's date and pass it to the addThankYouDataVC
@@ -53,19 +54,23 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         formatter.dateFormat = "yyyy/MM/dd"
         appDelegate.selectedDate = formatter.string(from: now as Date)
         
-        // Authentication
-        Auth.auth().signInAnonymously() { (user, error) in
-            if let e = error {
-                print(e)
-                print("login error")
-                return
-            }
-            print("uid: \(user!.uid)")
-            let isAnonymous = user!.isAnonymous  // true
-            self.uid = user!.uid
-            self.createViewController(vcs: myTabs as! [UIViewController])
-        }
+        self.createViewController(vcs: tabsArray!)
+        
+        
+//        // Authentication
+//        Auth.auth().signInAnonymously() { (user, error) in
+//            if let e = error {
+//                print(e)
+//                print("login error")
+//                return
+//            }
+//            print("uid: \(user!.uid)")
+//            let isAnonymous = user!.isAnonymous  // true
+//            self.uid = user!.uid
+
+//        }
     }
+    
     
     func createViewController(vcs: [UIViewController]) {
         // 配列をTabにセットします。

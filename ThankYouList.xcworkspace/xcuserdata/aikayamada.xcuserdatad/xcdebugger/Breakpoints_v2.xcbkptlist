@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ThankYouList/MainTabBarController.swift"
-            timestampString = "541761331.2066621"
+            filePath = "ThankYouList/AppDelegate.swift"
+            timestampString = "542981613.303517"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "loginButtonDidCompleteLogin(_:result:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

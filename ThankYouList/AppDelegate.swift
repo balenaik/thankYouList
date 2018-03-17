@@ -8,6 +8,9 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
+import FacebookCore
+import FacebookLogin
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,20 +21,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var indexPathSection: Int?
     var indexPathRow: Int?
     var selectedDate: String?
+
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         // Use Firebase library to configure APIs
         FirebaseApp.configure()
-
-
+        SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
-        let mainTabBarController: MainTabBarController = MainTabBarController()
+        
+
+        let loginVC: LoginVC = LoginVC()
         // UIWindowを生成.
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
+        
+        //TODO: test for login
+        if Auth.auth().currentUser == nil {
+            let loginVC: LoginVC = LoginVC()
+            self.window?.rootViewController = loginVC
+        } else {
+            let mainTabBarController: MainTabBarController = MainTabBarController()
+            self.window?.rootViewController = mainTabBarController
+        }
+        
         // rootViewControllerにMainTabBarControllerを設定
-        self.window?.rootViewController = mainTabBarController
+        //self.window?.rootViewController = mainTabBarController
         
         self.window?.makeKeyAndVisible()
         
@@ -59,6 +74,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    @available(iOS 9.0, *)
+    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
+        -> Bool {
+            return SDKApplicationDelegate.shared.application(application,
+                                                             open: url,
+                                                             sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+                                                             annotation: [:])
+    }
+}
+
+extension AppDelegate: LoginButtonDelegate {
+    func loginButtonDidCompleteLogin(_ loginButton: LoginButton, result: LoginResult) {
+        switch result {
+        case let LoginResult.failed(error):
+            // いい感じのエラー処理
+            break
+        case let LoginResult.success(grantedPermissions, declinedPermissions, token):
+            let credential = FacebookAuthProvider.credential(withAccessToken: token.authenticationToken)
+            // Firebaseにcredentialを渡してlogin
+            Auth.auth().signIn(with: credential) { (fireUser, fireError) in
+                if let error = fireError {
+                    // いい感じのエラー処理
+                    return
+                }
+                // ログイン用のViewControllerを閉じるなど
+                //if let loginVC = self.window?.rootViewController?.presentedViewController{
+                if let loginVC = self.window?.rootViewController! {
+                    loginVC.dismiss(animated: true, completion: nil)
+                    self.window?.rootViewController = MainTabBarController()
+                }
+            }
+        default:
+            break
+        }
+
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: LoginButton) {
+        //
+    }
+    
     
 }
 

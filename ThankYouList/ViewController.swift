@@ -7,12 +7,11 @@
 //
 
 import UIKit
-import Firebase
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var delegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-    var handle: AuthStateDidChangeListenerHandle?
+//    var handle: AuthStateDidChangeListenerHandle?
     let textColor = UIColor(colorWithHexValue: 0x3a3a3a)
     
     @IBOutlet weak var tableView: UITableView!
@@ -23,19 +22,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         
         // Add a new document with a generated ID
-        var ref: DocumentReference? = nil
-        let db: Firestore! = Firestore.firestore()
-        ref = db.collection("users").addDocument(data: [
-            "first": "Ada",
-            "last": "Lovelace",
-            "born": 1815
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("Document added with ID: \(ref!.documentID)")
-            }
-        }
+//        var ref: DocumentReference? = nil
+//        let db: Firestore! = Firestore.firestore()
+//        ref = db.collection("users").addDocument(data: [
+//            "first": "Ada",
+//            "last": "Lovelace",
+//            "born": 1815
+//        ]) { err in
+//            if let err = err {
+//                print("Error adding document: \(err)")
+//            } else {
+//                print("Document added with ID: \(ref!.documentID)")
+//            }
+//        }
         
         // change the height of cells depending on the text
         tableView.estimatedRowHeight = 40
@@ -79,7 +78,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        Auth.auth().removeStateDidChangeListener(handle!)
+//        Auth.auth().removeStateDidChangeListener(handle!)
     }
 
     
@@ -170,9 +169,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // reload again
     override func viewWillAppear(_ animated: Bool) {
-        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
-            // ...
-        }
+//        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+//            // ...
+//        }
         // Get the singleton
         let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
         print("thankYouDataList.count:", thankYouDataSingleton.thankYouDataList.count)

@@ -11,7 +11,6 @@ import UIKit
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var delegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-//    var handle: AuthStateDidChangeListenerHandle?
     let textColor = UIColor(colorWithHexValue: 0x3a3a3a)
     
     @IBOutlet weak var tableView: UITableView!
@@ -169,9 +168,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // reload again
     override func viewWillAppear(_ animated: Bool) {
-//        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
-//            // ...
-//        }
         // Get the singleton
         let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
         print("thankYouDataList.count:", thankYouDataSingleton.thankYouDataList.count)

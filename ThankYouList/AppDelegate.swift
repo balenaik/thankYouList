@@ -106,7 +106,11 @@ extension AppDelegate: LoginButtonDelegate {
                 //if let loginVC = self.window?.rootViewController?.presentedViewController{
                 if let loginVC = self.window?.rootViewController! {
                     loginVC.dismiss(animated: true, completion: nil)
-                    self.window?.rootViewController = MainTabBarController()
+                    let mainTabBarController: MainTabBarController = MainTabBarController()
+                    let leftMenuVC = self.storyboard.instantiateViewController(withIdentifier: "LeftMenuVC")
+                    let rootViewController = ContainerVC(mainViewController: mainTabBarController, leftMenuViewController: leftMenuVC)
+                    SlideMenuOptions.contentViewDrag = true
+                    self.window?.rootViewController = rootViewController
                 }
             }
         default:

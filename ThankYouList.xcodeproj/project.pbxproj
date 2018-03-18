@@ -20,6 +20,7 @@
 		A8831CCE1E9CFE6B00F3CA0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */; };
 		A8A0FE5C205D59170048AB33 /* LeftMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0FE5B205D59170048AB33 /* LeftMenuVC.swift */; };
 		A8A0FE5E205D5CE50048AB33 /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0FE5D205D5CE50048AB33 /* ContainerVC.swift */; };
+		A8A0FE61205E005D0048AB33 /* UIColor+SetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0FE60205E005D0048AB33 /* UIColor+SetColor.swift */; };
 		A8AC1BD01FAE00B600D1B25B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A8AC1BCE1FAE00B600D1B25B /* Localizable.strings */; };
 		A8AC1BD31FAEA4B000D1B25B /* UITextViewPlaceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC1BD21FAEA4AF00D1B25B /* UITextViewPlaceHolder.swift */; };
 		A8AC1BD71FD20E5500D1B25B /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC1BD61FD20E5500D1B25B /* MainTabBarController.swift */; };
@@ -49,6 +50,7 @@
 		A8831CD21E9CFE6B00F3CA0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8A0FE5B205D59170048AB33 /* LeftMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuVC.swift; sourceTree = "<group>"; };
 		A8A0FE5D205D5CE50048AB33 /* ContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
+		A8A0FE60205E005D0048AB33 /* UIColor+SetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+SetColor.swift"; sourceTree = "<group>"; };
 		A8AC1BCD1FADE9DF00D1B25B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		A8AC1BCF1FAE00B600D1B25B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A8AC1BD11FAE00DE00D1B25B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				A8BA38B81F5CC5F600817D5C /* images.xcassets */,
 				A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */,
 				A8AC1BD21FAEA4AF00D1B25B /* UITextViewPlaceHolder.swift */,
+				A8A0FE60205E005D0048AB33 /* UIColor+SetColor.swift */,
 			);
 			path = ThankYouList;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				A8A0FE5C205D59170048AB33 /* LeftMenuVC.swift in Sources */,
 				A8831CC91E9CFE6B00F3CA0A /* ViewController.swift in Sources */,
 				A824150F205CE28C00172587 /* LoginVC.swift in Sources */,
+				A8A0FE61205E005D0048AB33 /* UIColor+SetColor.swift in Sources */,
 				A8AC1BD71FD20E5500D1B25B /* MainTabBarController.swift in Sources */,
 				A85F02E21EC9BCC500654136 /* AddThankYouDataVC.swift in Sources */,
 				A8F5FDD81EFDF40B00266CE5 /* EditThankYouDataVC.swift in Sources */,

@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import Firebase
+import FBSDKLoginKit
 
 class LeftMenuVC: UIViewController {
     
@@ -25,6 +27,19 @@ extension LeftMenuVC: UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard Auth.auth().currentUser != nil else {
+            return
+        }        
+        do {
+            try Auth.auth().signOut()
+            FBSDKAccessToken.setCurrent(nil)
+            let loginVC: LoginVC = LoginVC()
+            self.present(loginVC, animated: true)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
     
 }
 

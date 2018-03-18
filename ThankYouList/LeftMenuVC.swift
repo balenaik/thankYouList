@@ -11,4 +11,23 @@ import UIKit
 
 class LeftMenuVC: UIViewController {
     
+    @IBOutlet weak var tableView: UITableView!
+    
+}
+
+extension LeftMenuVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "logoutCell", for: indexPath)
+        return cell
+    }
+    
+    
+}
+
+extension LeftMenuVC: UITableViewDelegate {
+    
 }

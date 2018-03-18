@@ -115,29 +115,37 @@
 		A8831CC51E9CFE6B00F3CA0A /* ThankYouList */ = {
 			isa = PBXGroup;
 			children = (
+				A8A0FE5F205DFCB40048AB33 /* Controllers */,
 				A824150B205CDF5800172587 /* ThankYouList.entitlements */,
 				A813A2152025CD3B002DCA65 /* GoogleService-Info.plist */,
-				A85F02E11EC9BCC500654136 /* AddThankYouDataVC.swift */,
 				A8831CC61E9CFE6B00F3CA0A /* AppDelegate.swift */,
 				A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */,
 				A85DCC071F5D2151004E1095 /* CustomCell.swift */,
-				A8F5FDD71EFDF40B00266CE5 /* EditThankYouDataVC.swift */,
 				A8F649B61EEB96D100D6BA84 /* GlobalThankYouData.swift */,
 				A8831CD21E9CFE6B00F3CA0A /* Info.plist */,
 				A8F06BB81F55396F00A90170 /* Launch Screen.storyboard */,
 				A8831CCA1E9CFE6B00F3CA0A /* Main.storyboard */,
 				A8AC1BCE1FAE00B600D1B25B /* Localizable.strings */,
-				A8831CC81E9CFE6B00F3CA0A /* ViewController.swift */,
 				A8BA38B81F5CC5F600817D5C /* images.xcassets */,
-				A8DB2FB91F5D41540055E8A4 /* CalendarVC.swift */,
 				A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */,
 				A8AC1BD21FAEA4AF00D1B25B /* UITextViewPlaceHolder.swift */,
-				A8AC1BD61FD20E5500D1B25B /* MainTabBarController.swift */,
-				A824150E205CE28C00172587 /* LoginVC.swift */,
-				A8A0FE5B205D59170048AB33 /* LeftMenuVC.swift */,
-				A8A0FE5D205D5CE50048AB33 /* ContainerVC.swift */,
 			);
 			path = ThankYouList;
+			sourceTree = "<group>";
+		};
+		A8A0FE5F205DFCB40048AB33 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A8A0FE5D205D5CE50048AB33 /* ContainerVC.swift */,
+				A824150E205CE28C00172587 /* LoginVC.swift */,
+				A8AC1BD61FD20E5500D1B25B /* MainTabBarController.swift */,
+				A8DB2FB91F5D41540055E8A4 /* CalendarVC.swift */,
+				A8A0FE5B205D59170048AB33 /* LeftMenuVC.swift */,
+				A8831CC81E9CFE6B00F3CA0A /* ViewController.swift */,
+				A8F5FDD71EFDF40B00266CE5 /* EditThankYouDataVC.swift */,
+				A85F02E11EC9BCC500654136 /* AddThankYouDataVC.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

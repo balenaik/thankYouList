@@ -14,5 +14,6 @@ target 'ThankYouList' do
   pod 'Firebase/Firestore'
   pod 'FacebookCore'
   pod 'FacebookLogin'
+  pod 'GoogleSignIn'
 
 end

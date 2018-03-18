@@ -8,17 +8,27 @@
 
 import UIKit
 import FBSDKLoginKit
+import GoogleSignIn
 
 class LoginVC: UIViewController {
 
     @IBOutlet weak var fbLoginButton: FBSDKLoginButton!
+    @IBOutlet weak var googleLoginView: GIDSignInButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         fbLoginButton.delegate = UIApplication.shared.delegate as! AppDelegate as! FBSDKLoginButtonDelegate
+        GIDSignIn.sharedInstance().uiDelegate = self
+//        GIDSignIn.sharedInstance().signIn()
+
     }
 
+}
+
+
+extension LoginVC: GIDSignInUIDelegate {
+    
 }
 
 

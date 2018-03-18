@@ -12,6 +12,7 @@ import Firebase
 import FirebaseAuth
 import FacebookCore
 import FBSDKLoginKit
+import GoogleSignIn
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -32,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use Firebase library to configure APIs
         FirebaseApp.configure()
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
         
         // UIWindowを生成.
         self.window = UIWindow(frame: UIScreen.main.bounds)        
@@ -46,10 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             SlideMenuOptions.contentViewDrag = true
             self.window?.rootViewController = rootViewController
         }
-        
-        // rootViewControllerにMainTabBarControllerを設定
-        //self.window?.rootViewController = mainTabBarController
-        
+
         self.window?.makeKeyAndVisible()
         
         return true
@@ -105,19 +105,58 @@ extension AppDelegate: FBSDKLoginButtonDelegate {
                 // いい感じのエラー処理
                 return
             }
-            // ログイン用のViewControllerを閉じるなど
-            //if let loginVC = self.window?.rootViewController?.presentedViewController{
             if let loginVC = self.window?.rootViewController! {
-                loginVC.dismiss(animated: true, completion: nil)
                 let mainTabBarController: MainTabBarController = MainTabBarController()
                 let leftMenuVC = self.storyboard.instantiateViewController(withIdentifier: "LeftMenuVC")
                 let rootViewController = SlideMenuController(mainViewController: mainTabBarController, leftMenuViewController: leftMenuVC)
                 SlideMenuOptions.contentViewDrag = true
                 self.window?.rootViewController = rootViewController
+                loginVC.dismiss(animated: true, completion: nil)
             }
+            if let loginVC = self.window?.rootViewController?.presentedViewController {
+                loginVC.dismiss(animated: true, completion: nil)
+            }
+        }
     }
-    }
+}
 
+extension AppDelegate: GIDSignInDelegate {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        // ...
+        if let error = error {
+            // ...
+            return
+        }
+        
+        guard let authentication = user.authentication else { return }
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                       accessToken: authentication.accessToken)
+        // Firebaseにcredentialを渡してlogin
+        Auth.auth().signIn(with: credential) { (fireUser, fireError) in
+            if let error = fireError {
+                // いい感じのエラー処理
+                return
+            }
+            //if let loginVC = self.window?.rootViewController?.presentedViewController{
+            if let loginVC = self.window?.rootViewController! {
+                let mainTabBarController: MainTabBarController = MainTabBarController()
+                let leftMenuVC = self.storyboard.instantiateViewController(withIdentifier: "LeftMenuVC")
+                let rootViewController = SlideMenuController(mainViewController: mainTabBarController, leftMenuViewController: leftMenuVC)
+                SlideMenuOptions.contentViewDrag = true
+                self.window?.rootViewController = rootViewController
+                loginVC.dismiss(animated: true, completion: nil)
+            }
+        }
+
+    }
+    
+//    @available(iOS 9.0, *)
+//    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
+//        -> Bool {
+//            return GIDSignIn.sharedInstance().handle(url,
+//                                                     sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+//                                                     annotation: [:])
+//    }
     
 }
 

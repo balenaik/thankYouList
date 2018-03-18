@@ -6,7 +6,9 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -762,8 +764,71 @@
             </objects>
             <point key="canvasLocation" x="140" y="1608"/>
         </scene>
+        <!--LoginVC-->
+        <scene sceneID="Ghp-bM-8cK">
+            <objects>
+                <viewController storyboardIdentifier="LoginVC" id="tGd-wd-oL2" customClass="LoginVC" customModule="ThankYouList" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Wno-Hm-0eb"/>
+                        <viewControllerLayoutGuide type="bottom" id="4Gw-mv-gM5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ygY-uz-oPp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xtv-pg-FuL" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="72" y="411" width="229" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="zLi-vP-jNb">
+                                <rect key="frame" x="-9" y="255" width="393" height="50.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="zLi-vP-jNb" secondAttribute="height" multiplier="335:43" id="qGM-iu-DBS"/>
+                                </constraints>
+                                <string key="text">Take a simple diary 
+&amp; be happier</string>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="21"/>
+                                <color key="textColor" red="0.50588235294117645" green="0.44705882352941173" blue="0.41568627450980389" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="character_launchscreen" translatesAutoresizingMaskIntoConstraints="NO" id="Jmw-qz-U3x">
+                                <rect key="frame" x="96" y="46" width="183" height="193"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="193" id="B0O-vi-4KT"/>
+                                    <constraint firstAttribute="width" constant="183" id="Th3-wW-1PV"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank You List" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="tGC-HK-OGb">
+                                <rect key="frame" x="20" y="201" width="334" height="43"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                                <color key="textColor" red="1" green="0.57647058819999997" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.97254901959999995" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="tGC-HK-OGb" firstAttribute="top" secondItem="Jmw-qz-U3x" secondAttribute="bottom" constant="-38" id="Yjg-Fj-aF8"/>
+                            <constraint firstAttribute="centerX" secondItem="tGC-HK-OGb" secondAttribute="centerX" id="eyH-kZ-BA1"/>
+                            <constraint firstItem="Jmw-qz-U3x" firstAttribute="centerX" secondItem="ygY-uz-oPp" secondAttribute="centerX" id="kVP-8p-cZO"/>
+                            <constraint firstItem="tGC-HK-OGb" firstAttribute="centerY" secondItem="ygY-uz-oPp" secondAttribute="bottom" multiplier="1/3" id="rhr-6w-YVd"/>
+                            <constraint firstItem="zLi-vP-jNb" firstAttribute="top" secondItem="tGC-HK-OGb" secondAttribute="bottom" constant="11" id="vLl-NN-d11"/>
+                            <constraint firstItem="zLi-vP-jNb" firstAttribute="centerX" secondItem="ygY-uz-oPp" secondAttribute="centerX" id="x35-cF-Uf8"/>
+                            <constraint firstItem="tGC-HK-OGb" firstAttribute="leading" secondItem="ygY-uz-oPp" secondAttribute="leading" constant="20" symbolic="YES" id="xTD-iK-FSj"/>
+                            <constraint firstItem="zLi-vP-jNb" firstAttribute="width" secondItem="zLi-vP-jNb" secondAttribute="height" multiplier="335:43" id="xti-Ts-YI4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="fbLoginButton" destination="Xtv-pg-FuL" id="7hE-Tv-49z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fuz-3C-SJp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140" y="-39.130434782608695"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="character_launchscreen" width="1024" height="1024"/>
         <image name="dot" width="500" height="500"/>
         <image name="plus" width="500" height="500"/>
     </resources>

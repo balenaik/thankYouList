@@ -34,8 +34,8 @@ extension LeftMenuVC: UITableViewDataSource {
         do {
             try Auth.auth().signOut()
             FBSDKAccessToken.setCurrent(nil)
-            let loginVC: LoginVC = LoginVC()
-            self.present(loginVC, animated: true)
+            let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC")
+            self.present(loginVC!, animated: true)
         } catch let error as NSError {
             print(error.localizedDescription)
         }

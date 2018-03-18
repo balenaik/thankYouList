@@ -11,7 +11,7 @@ import SlideMenuControllerSwift
 import Firebase
 import FirebaseAuth
 import FacebookCore
-import FacebookLogin
+import FBSDKLoginKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -36,14 +36,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // UIWindowを生成.
         self.window = UIWindow(frame: UIScreen.main.bounds)        
         
-        //TODO: test for login
         if Auth.auth().currentUser == nil {
-            let loginVC: LoginVC = LoginVC()
+            let loginVC = self.storyboard.instantiateViewController(withIdentifier: "LoginVC")
             self.window?.rootViewController = loginVC
         } else {
             let mainTabBarController: MainTabBarController = MainTabBarController()
             let leftMenuVC = self.storyboard.instantiateViewController(withIdentifier: "LeftMenuVC")
-            let rootViewController = ContainerVC(mainViewController: mainTabBarController, leftMenuViewController: leftMenuVC)
+            let rootViewController = SlideMenuController(mainViewController: mainTabBarController, leftMenuViewController: leftMenuVC)
             SlideMenuOptions.contentViewDrag = true
             self.window?.rootViewController = rootViewController
         }
@@ -88,41 +87,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-extension AppDelegate: LoginButtonDelegate {
-    func loginButtonDidCompleteLogin(_ loginButton: LoginButton, result: LoginResult) {
-        switch result {
-        case let LoginResult.failed(error):
-            // いい感じのエラー処理
-            break
-        case let LoginResult.success(grantedPermissions, declinedPermissions, token):
-            let credential = FacebookAuthProvider.credential(withAccessToken: token.authenticationToken)
-            // Firebaseにcredentialを渡してlogin
-            Auth.auth().signIn(with: credential) { (fireUser, fireError) in
-                if let error = fireError {
-                    // いい感じのエラー処理
-                    return
-                }
-                // ログイン用のViewControllerを閉じるなど
-                //if let loginVC = self.window?.rootViewController?.presentedViewController{
-                if let loginVC = self.window?.rootViewController! {
-                    loginVC.dismiss(animated: true, completion: nil)
-                    let mainTabBarController: MainTabBarController = MainTabBarController()
-                    let leftMenuVC = self.storyboard.instantiateViewController(withIdentifier: "LeftMenuVC")
-                    let rootViewController = ContainerVC(mainViewController: mainTabBarController, leftMenuViewController: leftMenuVC)
-                    SlideMenuOptions.contentViewDrag = true
-                    self.window?.rootViewController = rootViewController
-                }
-            }
-        default:
-            break
-        }
-
-    }
+extension AppDelegate: FBSDKLoginButtonDelegate {
     
-    func loginButtonDidLogOut(_ loginButton: LoginButton) {
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         //
     }
     
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        if (error != nil) {
+            // TODO: Error action
+            return
+        }
+        let credential = FacebookAuthProvider.credential(withAccessToken: result.token.tokenString)
+        // Firebaseにcredentialを渡してlogin
+        Auth.auth().signIn(with: credential) { (fireUser, fireError) in
+            if let error = fireError {
+                // いい感じのエラー処理
+                return
+            }
+            // ログイン用のViewControllerを閉じるなど
+            //if let loginVC = self.window?.rootViewController?.presentedViewController{
+            if let loginVC = self.window?.rootViewController! {
+                loginVC.dismiss(animated: true, completion: nil)
+                let mainTabBarController: MainTabBarController = MainTabBarController()
+                let leftMenuVC = self.storyboard.instantiateViewController(withIdentifier: "LeftMenuVC")
+                let rootViewController = SlideMenuController(mainViewController: mainTabBarController, leftMenuViewController: leftMenuVC)
+                SlideMenuOptions.contentViewDrag = true
+                self.window?.rootViewController = rootViewController
+            }
+    }
+    }
+
     
 }
 

@@ -7,18 +7,16 @@
 //
 
 import UIKit
-import FacebookLogin
+import FBSDKLoginKit
 
 class LoginVC: UIViewController {
 
+    @IBOutlet weak var fbLoginButton: FBSDKLoginButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let loginButton = LoginButton(readPermissions: [ .email ])
-        loginButton.delegate = UIApplication.shared.delegate as! AppDelegate
-        loginButton.center = view.center
-        view.addSubview(loginButton)
+
+        fbLoginButton.delegate = UIApplication.shared.delegate as! AppDelegate as! FBSDKLoginButtonDelegate
     }
 
 }

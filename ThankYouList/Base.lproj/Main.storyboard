@@ -776,9 +776,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xtv-pg-FuL" customClass="FBSDKLoginButton">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xtv-pg-FuL">
                                 <rect key="frame" x="164.5" y="402" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="customFBLoginButtonTapped:" destination="tGd-wd-oL2" eventType="touchUpInside" id="6dl-eB-Tme"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="zLi-vP-jNb">
                                 <rect key="frame" x="-9" y="299.5" width="393" height="50.5"/>
@@ -830,7 +833,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="fbLoginButton" destination="Xtv-pg-FuL" id="7hE-Tv-49z"/>
+                        <outlet property="customFBLoginButton" destination="Xtv-pg-FuL" id="NLH-Ux-mTO"/>
                         <outlet property="googleLoginView" destination="URj-L8-tb7" id="PTf-M9-zpP"/>
                     </connections>
                 </viewController>

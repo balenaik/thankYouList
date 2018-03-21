@@ -87,39 +87,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-extension AppDelegate: FBSDKLoginButtonDelegate {
-    
-    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-        //
-    }
-    
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-        if (error != nil) {
-            // TODO: Error action
-            return
-        }
-        let credential = FacebookAuthProvider.credential(withAccessToken: result.token.tokenString)
-        // Firebaseにcredentialを渡してlogin
-        Auth.auth().signIn(with: credential) { (fireUser, fireError) in
-            if let error = fireError {
-                // いい感じのエラー処理
-                return
-            }
-            if let loginVC = self.window?.rootViewController! {
-                let mainTabBarController: MainTabBarController = MainTabBarController()
-                let leftMenuVC = self.storyboard.instantiateViewController(withIdentifier: "LeftMenuVC")
-                let rootViewController = SlideMenuController(mainViewController: mainTabBarController, leftMenuViewController: leftMenuVC)
-                SlideMenuOptions.contentViewDrag = true
-                self.window?.rootViewController = rootViewController
-                loginVC.dismiss(animated: true, completion: nil)
-            }
-            if let loginVC = self.window?.rootViewController?.presentedViewController {
-                loginVC.dismiss(animated: true, completion: nil)
-            }
-        }
-    }
-}
-
 extension AppDelegate: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         // ...

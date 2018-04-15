@@ -776,15 +776,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xtv-pg-FuL">
-                                <rect key="frame" x="164.5" y="402" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xtv-pg-FuL">
+                                <rect key="frame" x="73" y="389" width="230" height="40"/>
+                                <color key="backgroundColor" red="0.23137254901960785" green="0.34901960784313724" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="230" id="eZ7-aj-C3I"/>
+                                    <constraint firstAttribute="height" constant="40" id="tfq-Xb-wsi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="-16" maxY="0.0"/>
+                                <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="16" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Sign in with Facebook" image="ic_facebook">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="customFBLoginButtonTapped:" destination="tGd-wd-oL2" eventType="touchUpInside" id="6dl-eB-Tme"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="zLi-vP-jNb">
-                                <rect key="frame" x="-9" y="299.5" width="393" height="50.5"/>
+                                <rect key="frame" x="-9" y="298.5" width="393" height="50.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="zLi-vP-jNb" secondAttribute="height" multiplier="335:43" id="qGM-iu-DBS"/>
                                 </constraints>
@@ -807,34 +823,48 @@
                                 <color key="textColor" red="1" green="0.57647058819999997" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="URj-L8-tb7" customClass="GIDSignInButton">
-                                <rect key="frame" x="72.5" y="434" width="230" height="48"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1it-Zw-ZPN">
+                                <rect key="frame" x="73" y="439" width="230" height="40"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="Zze-nU-g8w"/>
-                                    <constraint firstAttribute="width" constant="230" id="tOP-Oj-519"/>
+                                    <constraint firstAttribute="width" constant="230" id="IUF-Sq-7Wu"/>
+                                    <constraint firstAttribute="height" constant="40" id="k3b-cD-KK4"/>
                                 </constraints>
-                            </view>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="-16" maxY="0.0"/>
+                                <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="16" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Sign in with Google" image="ic_google">
+                                    <color key="titleColor" white="0.0" alpha="0.52000000000000002" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="customGoogleLoginButtonTapped:" destination="tGd-wd-oL2" eventType="touchUpInside" id="7lG-zw-Zg9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.97254901959999995" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="URj-L8-tb7" firstAttribute="centerX" secondItem="ygY-uz-oPp" secondAttribute="centerX" id="TlC-7M-a1B"/>
+                            <constraint firstItem="1it-Zw-ZPN" firstAttribute="centerX" secondItem="ygY-uz-oPp" secondAttribute="centerX" id="RyR-ks-tYi"/>
+                            <constraint firstItem="zLi-vP-jNb" firstAttribute="top" secondItem="tGC-HK-OGb" secondAttribute="bottom" constant="10" id="SGy-zq-Q27"/>
+                            <constraint firstItem="Xtv-pg-FuL" firstAttribute="top" secondItem="zLi-vP-jNb" secondAttribute="bottom" constant="40" id="Xze-Kr-GBt"/>
                             <constraint firstItem="tGC-HK-OGb" firstAttribute="top" secondItem="Jmw-qz-U3x" secondAttribute="bottom" constant="-38" id="Yjg-Fj-aF8"/>
                             <constraint firstAttribute="centerX" secondItem="tGC-HK-OGb" secondAttribute="centerX" id="eyH-kZ-BA1"/>
                             <constraint firstItem="Xtv-pg-FuL" firstAttribute="centerX" secondItem="ygY-uz-oPp" secondAttribute="centerX" id="kGL-dw-YIh"/>
                             <constraint firstItem="Jmw-qz-U3x" firstAttribute="centerX" secondItem="ygY-uz-oPp" secondAttribute="centerX" id="kVP-8p-cZO"/>
-                            <constraint firstItem="Xtv-pg-FuL" firstAttribute="centerY" secondItem="ygY-uz-oPp" secondAttribute="centerY" multiplier="5/4" id="md1-Aj-7hW"/>
                             <constraint firstItem="tGC-HK-OGb" firstAttribute="centerY" secondItem="ygY-uz-oPp" secondAttribute="bottom" multiplier="2/5" id="rhr-6w-YVd"/>
-                            <constraint firstItem="zLi-vP-jNb" firstAttribute="top" secondItem="tGC-HK-OGb" secondAttribute="bottom" constant="11" id="vLl-NN-d11"/>
+                            <constraint firstItem="1it-Zw-ZPN" firstAttribute="top" secondItem="Xtv-pg-FuL" secondAttribute="bottom" constant="10" id="suN-hF-ynf"/>
                             <constraint firstItem="zLi-vP-jNb" firstAttribute="centerX" secondItem="ygY-uz-oPp" secondAttribute="centerX" id="x35-cF-Uf8"/>
-                            <constraint firstItem="URj-L8-tb7" firstAttribute="top" secondItem="Xtv-pg-FuL" secondAttribute="bottom" constant="2" id="xJb-sK-Iry"/>
                             <constraint firstItem="tGC-HK-OGb" firstAttribute="leading" secondItem="ygY-uz-oPp" secondAttribute="leading" constant="20" symbolic="YES" id="xTD-iK-FSj"/>
                             <constraint firstItem="zLi-vP-jNb" firstAttribute="width" secondItem="zLi-vP-jNb" secondAttribute="height" multiplier="335:43" id="xti-Ts-YI4"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="customFBLoginButton" destination="Xtv-pg-FuL" id="NLH-Ux-mTO"/>
-                        <outlet property="googleLoginView" destination="URj-L8-tb7" id="PTf-M9-zpP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fuz-3C-SJp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -845,6 +875,8 @@
     <resources>
         <image name="character_launchscreen" width="1024" height="1024"/>
         <image name="dot" width="500" height="500"/>
+        <image name="ic_facebook" width="24" height="24"/>
+        <image name="ic_google" width="24" height="24"/>
         <image name="plus" width="500" height="500"/>
     </resources>
 </document>

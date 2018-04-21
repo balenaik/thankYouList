@@ -57,7 +57,7 @@
 		<key>Pods-ThankYouList.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false/>
+			<true/>
 		</dict>
 		<key>Protobuf.xcscheme</key>
 		<dict>

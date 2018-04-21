@@ -11,6 +11,7 @@ import SlideMenuControllerSwift
 import FirebaseAuth
 import FacebookCore
 import FacebookLogin
+import FBSDKCoreKit
 import GoogleSignIn
 
 class LoginVC: UIViewController {
@@ -35,9 +36,23 @@ class LoginVC: UIViewController {
             switch loginResult {
             case .success:
                 let accessToken = AccessToken.current
+                var name: String?
+                var email: String?
                 guard let accessTokenString: String = accessToken?.authenticationToken else { return }
                 let credential = FacebookAuthProvider.credential(withAccessToken: accessTokenString)
-                weakSelf.signIn(credential: credential)
+                let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"email,name"], tokenString: accessTokenString, version: nil, httpMethod: "GET")
+                req?.start(completionHandler: { (connection, result, error) in
+                    if error != nil {
+                        print("error \(String(describing: error))")
+                        return
+                    }
+                    guard let result = result else { return }
+                    guard let dic = result as? [String:String] else { return }
+                    name = dic["name"]
+                    email = dic["email"]
+                })
+                guard let loginName = name, let loginMail = email else { return }
+                weakSelf.signIn(credential: credential, userName: loginName, email: loginMail)
             default:
                 return
             }
@@ -52,10 +67,9 @@ class LoginVC: UIViewController {
     
     
     // MARK: - Private Methods
-    private func signIn(credential: AuthCredential) {
+    private func signIn(credential: AuthCredential, userName: String, email: String) {
         Auth.auth().signIn(with: credential) { (fireUser, fireError) in
             if let error = fireError {
-                // いい感じのエラー処理
                 return
             }
             let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -85,10 +99,10 @@ extension LoginVC: GIDSignInDelegate, GIDSignInUIDelegate {
         let authentication = user.authentication
         guard let auth = authentication else { return }
         let credential = GoogleAuthProvider.credential(withIDToken: auth.idToken,accessToken: auth.accessToken)
-        self.signIn(credential: credential)
+        self.signIn(credential: credential, userName: user.profile.name, email: user.profile.email)
     }
 }
-    
+
     
 
 

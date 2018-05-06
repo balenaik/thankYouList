@@ -39,16 +39,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // UIWindowを生成.
         self.window = UIWindow(frame: UIScreen.main.bounds)        
         
-        if Auth.auth().currentUser == nil {
+        guard let currentUser = Auth.auth().currentUser else {
             let loginVC = self.storyboard.instantiateViewController(withIdentifier: "LoginVC")
             self.window?.rootViewController = loginVC
-        } else {
-            let mainTabBarController: MainTabBarController = MainTabBarController()
-            let leftMenuVC = self.storyboard.instantiateViewController(withIdentifier: "LeftMenuVC")
-            let rootViewController = SlideMenuController(mainViewController: mainTabBarController, leftMenuViewController: leftMenuVC)
-            SlideMenuOptions.contentViewDrag = true
-            self.window?.rootViewController = rootViewController
+            self.window?.makeKeyAndVisible()
+            return true
         }
+
+        let mainTabBarController: MainTabBarController = MainTabBarController()
+        let leftMenuVC = self.storyboard.instantiateViewController(withIdentifier: "LeftMenuVC") as! LeftMenuVC
+        if let userName = currentUser.displayName, let email = currentUser.email {
+            leftMenuVC.userNameString = userName
+            leftMenuVC.emailString = email
+        }
+        let rootViewController = SlideMenuController(mainViewController: mainTabBarController, leftMenuViewController: leftMenuVC)
+        SlideMenuOptions.contentViewDrag = true
+        self.window?.rootViewController = rootViewController
 
         self.window?.makeKeyAndVisible()
         

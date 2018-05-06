@@ -50,9 +50,9 @@ class LoginVC: UIViewController {
                     guard let dic = result as? [String:String] else { return }
                     name = dic["name"]
                     email = dic["email"]
+                    guard let loginName = name, let loginMail = email else { return }
+                    weakSelf.signIn(credential: credential, userName: loginName, email: loginMail)
                 })
-                guard let loginName = name, let loginMail = email else { return }
-                weakSelf.signIn(credential: credential, userName: loginName, email: loginMail)
             default:
                 return
             }
@@ -70,13 +70,16 @@ class LoginVC: UIViewController {
     private func signIn(credential: AuthCredential, userName: String, email: String) {
         Auth.auth().signIn(with: credential) { (fireUser, fireError) in
             if let error = fireError {
+                print(error)
                 return
             }
             let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
             if let loginVC = appDelegate.window?.rootViewController! {
                 let mainTabBarController: MainTabBarController = MainTabBarController()
-                let leftMenuVC = self.storyboard?.instantiateViewController(withIdentifier: "LeftMenuVC")
-                let rootViewController = SlideMenuController(mainViewController: mainTabBarController, leftMenuViewController: leftMenuVC!)
+                let leftMenuVC = self.storyboard?.instantiateViewController(withIdentifier: "LeftMenuVC") as! LeftMenuVC
+                leftMenuVC.userNameString = userName
+                leftMenuVC.emailString = email
+                let rootViewController = SlideMenuController(mainViewController: mainTabBarController, leftMenuViewController: leftMenuVC)
                 SlideMenuOptions.contentViewDrag = true
                 appDelegate.window?.rootViewController = rootViewController
                 loginVC.dismiss(animated: true, completion: nil)

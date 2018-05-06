@@ -24,28 +24,82 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tM8-bz-oQ3">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tM8-bz-oQ3">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="0.98039215686274506" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="1" green="0.97254901960784312" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="logoutCell" id="Ffm-M3-7oS">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserInfoLeftMenuTableViewCell" rowHeight="100" id="mRW-cl-m1L" customClass="UserInfoLeftMenuTableViewCell" customModule="ThankYouList" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ffm-M3-7oS" id="Jgq-Sm-ZXC">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mRW-cl-m1L" id="vGW-WV-l7i">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Logout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRt-Hs-fNb">
-                                                    <rect key="frame" x="15" y="12" width="169" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_thankyouchan" translatesAutoresizingMaskIntoConstraints="NO" id="Xl7-cq-xEd">
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="99.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="cFm-lq-mpD"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDD-F1-IqZ">
+                                                    <rect key="frame" x="100" y="39.5" width="81.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="FDD-F1-IqZ" firstAttribute="centerY" secondItem="vGW-WV-l7i" secondAttribute="centerY" id="DNa-6V-lBU"/>
+                                                <constraint firstItem="Xl7-cq-xEd" firstAttribute="leading" secondItem="vGW-WV-l7i" secondAttribute="leading" id="OKg-CV-K8W"/>
+                                                <constraint firstItem="Xl7-cq-xEd" firstAttribute="top" secondItem="vGW-WV-l7i" secondAttribute="top" id="OcR-J0-WqF"/>
+                                                <constraint firstItem="FDD-F1-IqZ" firstAttribute="leading" secondItem="Xl7-cq-xEd" secondAttribute="trailing" id="dQp-cN-dlA"/>
+                                                <constraint firstAttribute="bottom" secondItem="Xl7-cq-xEd" secondAttribute="bottom" id="gAy-1d-eFk"/>
+                                                <constraint firstItem="Xl7-cq-xEd" firstAttribute="centerY" secondItem="vGW-WV-l7i" secondAttribute="centerY" id="ikz-iY-AMf"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="userName" destination="FDD-F1-IqZ" id="1qf-7G-SoD"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="menuCell" id="hgL-3q-GH7" customClass="LeftMenuTableViewCell" customModule="ThankYouList" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="128" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hgL-3q-GH7" id="paD-QQ-mnj">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJI-ar-kks">
+                                                    <rect key="frame" x="41" y="12" width="53.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_logout" translatesAutoresizingMaskIntoConstraints="NO" id="apN-e3-1Iv">
+                                                    <rect key="frame" x="15" y="14" width="16" height="16"/>
+                                                    <color key="tintColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="16" id="QhN-J2-Vwp"/>
+                                                        <constraint firstAttribute="height" constant="16" id="imo-Gb-0Ox"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="apN-e3-1Iv" firstAttribute="centerY" secondItem="paD-QQ-mnj" secondAttribute="centerY" id="991-c5-frr"/>
+                                                <constraint firstItem="jJI-ar-kks" firstAttribute="leading" secondItem="apN-e3-1Iv" secondAttribute="trailing" constant="10" id="Gtp-nu-JxG"/>
+                                                <constraint firstItem="apN-e3-1Iv" firstAttribute="leading" secondItem="paD-QQ-mnj" secondAttribute="leading" constant="15" id="sSp-VW-2zt"/>
+                                                <constraint firstItem="jJI-ar-kks" firstAttribute="centerY" secondItem="paD-QQ-mnj" secondAttribute="centerY" id="zzi-Ob-N4a"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="buttonImageView" destination="apN-e3-1Iv" id="ENt-U3-u9V"/>
+                                            <outlet property="menuTitle" destination="jJI-ar-kks" id="0Qh-EK-FQX"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <sections/>
                                 <connections>
                                     <outlet property="dataSource" destination="sQr-zs-7OF" id="S1K-nh-fE0"/>
                                     <outlet property="delegate" destination="sQr-zs-7OF" id="c50-Ey-jUW"/>
@@ -877,6 +931,8 @@
         <image name="dot" width="500" height="500"/>
         <image name="ic_facebook" width="24" height="24"/>
         <image name="ic_google" width="24" height="24"/>
+        <image name="ic_logout" width="16" height="16"/>
+        <image name="ic_thankyouchan" width="1024" height="1024"/>
         <image name="plus" width="500" height="500"/>
     </resources>
 </document>

@@ -14,7 +14,30 @@ import FBSDKLoginKit
 class LeftMenuVC: UIViewController {
     
     enum MenuCategories {
+        case addThankYou
+        case logout
         
+        func menuImageName() -> String {
+            switch self {
+            case .addThankYou:
+                return "add_button"
+            case .logout:
+                return "ic_logout"
+            default:
+                return ""
+            }
+        }
+        
+        func menuTitle() -> String {
+            switch self {
+            case .addThankYou:
+                return "Add Thank you"
+            case .logout:
+                return "logout"
+            default:
+                return ""
+            }
+        }
     }
     
     // MARK: - Properties
@@ -37,11 +60,14 @@ extension LeftMenuVC: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "UserInfoLeftMenuTableViewCell", for: indexPath) as! UserInfoLeftMenuTableViewCell
             cell.configureCell(userNameString: userNameString, emailString: emailString)
             return cell
-        } else if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath)
-            return cell
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath)
+        var menuCategory = MenuCategories.logout
+        if indexPath.row == 1 {
+            menuCategory = MenuCategories.addThankYou
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! LeftMenuTableViewCell
+        cell.setMenuImage(imageName: menuCategory.menuImageName())
+        cell.setMenuTitle(title: menuCategory.menuTitle())
         return cell
     }
     

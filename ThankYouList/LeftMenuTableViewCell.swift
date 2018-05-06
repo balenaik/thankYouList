@@ -27,4 +27,14 @@ class LeftMenuTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         buttonImageView.image = buttonImageView.image?.withRenderingMode(.alwaysTemplate)
     }
+    
+    
+    // MARK: - Internal Methods
+    func setMenuImage(imageName: String) {
+        buttonImageView.image = UIImage(named: imageName)
+    }
+    
+    func setMenuTitle(title: String) {
+        menuTitle.text = title
+    }
 }

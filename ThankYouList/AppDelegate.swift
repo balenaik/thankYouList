@@ -34,7 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = self
         
         // UIWindowを生成.
         self.window = UIWindow(frame: UIScreen.main.bounds)        
@@ -52,9 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             leftMenuVC.userNameString = userName
             leftMenuVC.emailString = email
         }
-        let rootViewController = SlideMenuController(mainViewController: mainTabBarController, leftMenuViewController: leftMenuVC)
-        SlideMenuOptions.contentViewDrag = true
-        self.window?.rootViewController = rootViewController
+        
+        createRootViewController(mainViewController: mainTabBarController, subViewController: leftMenuVC)
 
         self.window?.makeKeyAndVisible()
         
@@ -91,45 +89,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                              sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
                                                              annotation: [:])
     }
-}
-
-extension AppDelegate: GIDSignInDelegate {
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        // ...
-        if let error = error {
-            // ...
-            return
-        }
-        
-        guard let authentication = user.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                       accessToken: authentication.accessToken)
-        // Firebaseにcredentialを渡してlogin
-        Auth.auth().signIn(with: credential) { (fireUser, fireError) in
-            if let error = fireError {
-                // いい感じのエラー処理
-                return
-            }
-            //if let loginVC = self.window?.rootViewController?.presentedViewController{
-            if let loginVC = self.window?.rootViewController! {
-                let mainTabBarController: MainTabBarController = MainTabBarController()
-                let leftMenuVC = self.storyboard.instantiateViewController(withIdentifier: "LeftMenuVC")
-                let rootViewController = SlideMenuController(mainViewController: mainTabBarController, leftMenuViewController: leftMenuVC)
-                SlideMenuOptions.contentViewDrag = true
-                self.window?.rootViewController = rootViewController
-                loginVC.dismiss(animated: true, completion: nil)
-            }
-        }
-
+    
+    func createRootViewController(mainViewController: UIViewController, subViewController: UIViewController) {
+        let rootViewController = SlideMenuController(mainViewController: mainViewController, leftMenuViewController: subViewController)
+        SlideMenuOptions.contentViewDrag = true
+        SlideMenuOptions.shadowRadius = 4.0
+        SlideMenuOptions.shadowOffset = CGSize(width: 4, height: 0)
+        SlideMenuOptions.shadowOpacity = 0.2
+        SlideMenuOptions.contentViewOpacity = 0.3
+        self.window?.rootViewController = rootViewController
     }
-    
-//    @available(iOS 9.0, *)
-//    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
-//        -> Bool {
-//            return GIDSignIn.sharedInstance().handle(url,
-//                                                     sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
-//                                                     annotation: [:])
-//    }
-    
 }
 

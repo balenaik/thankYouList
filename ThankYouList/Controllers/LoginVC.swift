@@ -79,9 +79,8 @@ class LoginVC: UIViewController {
                 let leftMenuVC = self.storyboard?.instantiateViewController(withIdentifier: "LeftMenuVC") as! LeftMenuVC
                 leftMenuVC.userNameString = userName
                 leftMenuVC.emailString = email
-                let rootViewController = SlideMenuController(mainViewController: mainTabBarController, leftMenuViewController: leftMenuVC)
-                SlideMenuOptions.contentViewDrag = true
-                appDelegate.window?.rootViewController = rootViewController
+                appDelegate.createRootViewController(mainViewController: mainTabBarController, subViewController: leftMenuVC)
+
                 loginVC.dismiss(animated: true, completion: nil)
             }
             if let loginVC = appDelegate.window?.rootViewController?.presentedViewController {

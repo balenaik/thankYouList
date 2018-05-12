@@ -37,25 +37,23 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_thankyouchan" translatesAutoresizingMaskIntoConstraints="NO" id="Xl7-cq-xEd">
-                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="99.5"/>
+                                                    <rect key="frame" x="0.0" y="-457" width="100" height="1024"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="cFm-lq-mpD"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDD-F1-IqZ">
-                                                    <rect key="frame" x="100" y="39.5" width="81.5" height="21"/>
+                                                    <rect key="frame" x="100" y="44.5" width="81.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="FDD-F1-IqZ" firstAttribute="centerY" secondItem="vGW-WV-l7i" secondAttribute="centerY" id="DNa-6V-lBU"/>
+                                                <constraint firstItem="FDD-F1-IqZ" firstAttribute="centerY" secondItem="vGW-WV-l7i" secondAttribute="centerY" constant="5" id="DNa-6V-lBU"/>
                                                 <constraint firstItem="Xl7-cq-xEd" firstAttribute="leading" secondItem="vGW-WV-l7i" secondAttribute="leading" id="OKg-CV-K8W"/>
-                                                <constraint firstItem="Xl7-cq-xEd" firstAttribute="top" secondItem="vGW-WV-l7i" secondAttribute="top" id="OcR-J0-WqF"/>
                                                 <constraint firstItem="FDD-F1-IqZ" firstAttribute="leading" secondItem="Xl7-cq-xEd" secondAttribute="trailing" id="dQp-cN-dlA"/>
-                                                <constraint firstAttribute="bottom" secondItem="Xl7-cq-xEd" secondAttribute="bottom" id="gAy-1d-eFk"/>
-                                                <constraint firstItem="Xl7-cq-xEd" firstAttribute="centerY" secondItem="vGW-WV-l7i" secondAttribute="centerY" id="ikz-iY-AMf"/>
+                                                <constraint firstItem="Xl7-cq-xEd" firstAttribute="centerY" secondItem="vGW-WV-l7i" secondAttribute="centerY" constant="5" id="ikz-iY-AMf"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

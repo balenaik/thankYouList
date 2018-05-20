@@ -180,7 +180,13 @@
                             <constraint firstAttribute="trailing" secondItem="pf8-ST-WrA" secondAttribute="trailing" id="sLC-wU-joi"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Thank You List ☺️✏️" id="1ae-VH-yQ9"/>
+                    <navigationItem key="navigationItem" title="Thank You List ☺️✏️" id="1ae-VH-yQ9">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="menu" id="LrN-o4-E1C">
+                            <connections>
+                                <action selector="tappedMenuButton:" destination="BYZ-38-t0r" id="ets-3Q-MeM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="pf8-ST-WrA" id="AiK-bf-HGl"/>
                     </connections>
@@ -943,6 +949,7 @@
         <image name="ic_google" width="24" height="24"/>
         <image name="ic_logout" width="16" height="16"/>
         <image name="ic_thankyouchan" width="1024" height="1024"/>
+        <image name="menu" width="16" height="16"/>
         <image name="plus" width="500" height="500"/>
     </resources>
 </document>

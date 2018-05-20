@@ -10,13 +10,22 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    // MARK: - Properties
     var delegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     let textColor = UIColor(colorWithHexValue: 0x3a3a3a)
     
+    
+    // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
 
 
+    // MARK: - IBActions
+    @IBAction func tappedMenuButton(_ sender: Any) {
+        slideMenuController()?.openLeft()
+    }
     
+    
+    // MARK: - View LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,11 +60,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)]
         
         
-        // Get the singleton
         let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
         if thankYouDataSingleton.thankYouDataList.count != 0 { return }
-        
-        // 保存しているThankYouの読み込み処理
+
         let userDefaults = UserDefaults.standard
         if let storedThankYouDataList = userDefaults.object(forKey: "thankYouDataList") as? Data {
             
@@ -75,13 +82,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        // Get the singleton
+        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
+        print("thankYouDataList.count:", thankYouDataSingleton.thankYouDataList.count)
+        self.tableView.reloadData()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
 //        Auth.auth().removeStateDidChangeListener(handle!)
     }
 
     
     
-    // the function for getting section items
+    // MARK: - Internal Methods
     func getSectionItems(section: Int) -> [ThankYouData] {
         var sectionItems = [ThankYouData]()
         // Get the singleton
@@ -95,6 +109,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         sectionItems = thankYouDataList.filter({$0.thankYouDate == sectionDate[section]})
 
         return sectionItems
+    }
+    
+    func getToday(format:String = "yyyy/MM/dd") -> String {
+        let now = Date()
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = format
+        return formatter.string(from: now as Date)
     }
     
     
@@ -165,15 +187,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     
-    // reload again
-    override func viewWillAppear(_ animated: Bool) {
-        // Get the singleton
-        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
-        print("thankYouDataList.count:", thankYouDataSingleton.thankYouDataList.count)
-        self.tableView.reloadData()
-    }
-    
-    
     // when a cell is tapped it goes the edit screen
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Input the indexPath in the indexPath in AppDelegate
@@ -185,23 +198,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let editThankYouDataVC = storyboard.instantiateViewController(withIdentifier: "editThankYouDataVC") as! ThankYouList.EditThankYouDataVC
         let navi = UINavigationController(rootViewController: editThankYouDataVC)
         self.present(navi, animated: true, completion: nil)
-    }
-    
-    
-    
-    /**
-     　　本日を書式指定して文字列で取得
-     
-     - parameter format: 書式（オプション）。未指定時は"yyyy/MM/dd"
-     - returns: 本日の日付
-     */
-    func getToday(format:String = "yyyy/MM/dd") -> String {
-        
-        let now = Date()
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.dateFormat = format
-        return formatter.string(from: now as Date)
     }
 }
 

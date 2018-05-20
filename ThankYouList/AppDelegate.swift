@@ -47,9 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let mainTabBarController: MainTabBarController = MainTabBarController()
         let leftMenuVC = self.storyboard.instantiateViewController(withIdentifier: "LeftMenuVC") as! LeftMenuVC
-        if let userName = currentUser.displayName, let email = currentUser.email {
+        if let userName = currentUser.displayName {
             leftMenuVC.userNameString = userName
-            leftMenuVC.emailString = email
         }
         
         createRootViewController(mainViewController: mainTabBarController, subViewController: leftMenuVC)

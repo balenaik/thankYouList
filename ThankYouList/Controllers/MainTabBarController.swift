@@ -55,25 +55,10 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         appDelegate.selectedDate = formatter.string(from: now as Date)
         
         self.createViewController(vcs: tabsArray!)
-        
-        
-//        // Authentication
-//        Auth.auth().signInAnonymously() { (user, error) in
-//            if let e = error {
-//                print(e)
-//                print("login error")
-//                return
-//            }
-//            print("uid: \(user!.uid)")
-//            let isAnonymous = user!.isAnonymous  // true
-//            self.uid = user!.uid
-
-//        }
     }
     
     
     func createViewController(vcs: [UIViewController]) {
-        // 配列をTabにセットします。
         self.setViewControllers(vcs, animated: false)
     }
     

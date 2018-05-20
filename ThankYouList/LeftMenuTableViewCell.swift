@@ -29,6 +29,21 @@ class LeftMenuTableViewCell: UITableViewCell {
     }
     
     
+    // MARK: - Override Methods
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        UIView.animate(withDuration: 0.2) {
+            // Comment out because the animation part doesn't work
+//            super.setHighlighted(highlighted, animated: animated)
+            if highlighted {
+                self.alpha = 0.8
+                self.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
+            } else {
+                self.alpha = 1.0
+                self.backgroundColor = UIColor.clear
+            }
+        }
+    }
+    
     // MARK: - Internal Methods
     func setMenuImage(imageName: String) {
         buttonImageView.image = UIImage(named: imageName)

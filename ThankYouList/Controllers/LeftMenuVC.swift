@@ -48,6 +48,12 @@ class LeftMenuVC: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
     
+    // MARK: - View LifeCycles
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+
+    
 }
 
 extension LeftMenuVC: UITableViewDataSource {
@@ -72,6 +78,16 @@ extension LeftMenuVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            return
+        } else if indexPath.row == 1 {
+            self.slideMenuController()?.closeLeft()
+            let addThankYouDataVC = self.storyboard?.instantiateViewController(withIdentifier: "addThankYouDataVC") as! ThankYouList.AddThankYouDataVC
+            let navi = UINavigationController(rootViewController: addThankYouDataVC)
+            self.slideMenuController()?.mainViewController?.present(navi, animated: true, completion: nil)
+            tableView.deselectRow(at: indexPath, animated: true)
+            return
+        }
         guard Auth.auth().currentUser != nil else {
             return
         }        
@@ -85,13 +101,29 @@ extension LeftMenuVC: UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.setHighlighted(true, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.setHighlighted(false, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.setHighlighted(false, animated: true)
+    }
 }
 
 extension LeftMenuVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            return 100
+            return 130
         }
-        return 40
+        return 50
     }
 }
+
+

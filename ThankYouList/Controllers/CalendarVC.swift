@@ -13,63 +13,56 @@ class CalendarVC: UIViewController {
     
     // MARK: - Properties
     private let formatter = DateFormatter()
-    private var selectedDateView: UIView!
-    private var selectedDateLabel: UILabel!
+    private var appDelegate = UIApplication.shared.delegate as! AppDelegate
+    private var sectionItems = [ThankYouData]()
+    private var selectedDate: String = ""
     let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
+    
     
     
     // MARK: - IBOutlets
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var yearMonth: UILabel!
+    @IBOutlet weak var selectedDateView: UIView!
+    @IBOutlet weak var selectedDateLabel: UILabel!
     @IBOutlet var tableView: UITableView!
 
     
-    // Set colors
-    let navigationBarBgColor = UIColor(colorWithHexValue: 0xfff8e8)
-    let navigationBarTextColor = UIColor(colorWithHexValue: 0xfe939d)
-    let sectionBgColor = UIColor(colorWithHexValue: 0xfcb5b5)
-    let grayColor = UIColor(colorWithHexValue: 0x5a5a5a)
-    let highGrayColor = UIColor(colorWithHexValue: 0xc8c8c8)
-    let brownColor = UIColor(colorWithHexValue: 0x81726a)
-    let pinkColor = UIColor(colorWithHexValue: 0xfcb5b5)
-    let textColor = UIColor(colorWithHexValue: 0x3a3a3a)
-    
-    var delegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-    var sectionItems = [ThankYouData]()
-    var selectedDate: String!
-    
-    
+
+    // MARK: - IBActions
     @IBAction func tappedMenuButton(_ sender: Any) {
         slideMenuController()?.openLeft()
     }
     
     
+    
+    // MARK: - Initializers
+    required init?(coder aDecoder: NSCoder) {
+
+        selectedDateLabel = UILabel(frame: CGRect.zero)
+        super.init(coder: aDecoder)
+    }
+    
+    
+    
+    // MARK: - Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // setup the background color for navigationbar
-        self.navigationController?.navigationBar.barTintColor = navigationBarBgColor
+        self.navigationController?.navigationBar.barTintColor = TYLColor.navigationBarBgColor
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
         self.formatter.dateFormat = "yyyy/MM/dd"
         selectedDate = self.formatter.string(from: Date())
-        
-        // table header
-        selectedDateView = UIView(frame: CGRect(x:0, y:0, width:self.tableView.frame.width, height:30))
-        selectedDateView.backgroundColor = sectionBgColor
-        selectedDateLabel = UILabel(frame: CGRect(x: 15, y: 6.0, width: tableView.frame.width, height: 20))
-        selectedDateLabel.textColor = UIColor.white
+
         selectedDateLabel.text = selectedDate
-        //指定したlabelをセクションビューのサブビューに指定
-        selectedDateView.addSubview(selectedDateLabel)
-        tableView.addSubview(selectedDateView)
-        tableView.contentInset.top = 30
+
         
         // setup the text color for navagationbar
-        self.navigationController?.navigationBar.tintColor = navigationBarTextColor
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : navigationBarTextColor]
+        self.navigationController?.navigationBar.tintColor = TYLColor.navigationBarTextColor
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : TYLColor.navigationBarTextColor]
 
         // Set the opening month when the screen is showed
         calendarView.scrollToDate(Date(), animateScroll: false)
@@ -123,12 +116,12 @@ class CalendarVC: UIViewController {
         guard let validCell = view as? CustomCell else { return }
         
         if cellState.isSelected {
-            validCell.dateLabel.textColor = grayColor
+            validCell.dateLabel.textColor = TYLColor.TYLGrayColor
         } else {
             if cellState.dateBelongsTo == .thisMonth {
-                validCell.dateLabel.textColor = grayColor
+                validCell.dateLabel.textColor = TYLColor.TYLGrayColor
             } else {
-                validCell.dateLabel.textColor = highGrayColor
+                validCell.dateLabel.textColor = TYLColor.highGrayColor
             }
         }
 
@@ -140,7 +133,7 @@ class CalendarVC: UIViewController {
         let monthDateString = formatter.string(from: cellState.date)
         
         if todaysDateString == monthDateString {
-            validCell.dateLabel.textColor = pinkColor
+            validCell.dateLabel.textColor = TYLColor.pinkColor
         }
     }
     
@@ -252,7 +245,7 @@ extension CalendarVC: JTAppleCalendarViewDelegate {
         self.formatter.dateFormat = "yyyy/MM/dd"
         selectedDate = self.formatter.string(from: cellState.date)
         selectedDateLabel.text = selectedDate
-        self.delegate.selectedDate = selectedDate
+        appDelegate.selectedDate = selectedDate
         self.tableView.reloadData()
     }
     
@@ -310,7 +303,7 @@ extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
             cell.textLabel?.text = myThankYouData.thankYouValue
             // change the text size
             cell.textLabel?.font = UIFont.systemFont(ofSize: 16)
-            cell.textLabel?.textColor = textColor
+            cell.textLabel?.textColor = TYLColor.textColor
         }
         return cell
     }
@@ -329,7 +322,7 @@ extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         // 余白を作る(UIViewをセクションのビューに指定（だからxとかy指定しても意味ない）
         let view = UIView(frame: CGRect(x:0, y:0, width:20, height:20))
-        view.backgroundColor = sectionBgColor
+        view.backgroundColor = TYLColor.sectionBgColor
         let label :UILabel = UILabel(frame: CGRect(x: 15, y: 6.0, width: tableView.frame.width, height: 20))
         label.textColor = UIColor.white
         label.text = selectedDate
@@ -355,9 +348,9 @@ extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
     // when a cell is tapped it goes the edit screen
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Look for the index number in sectionDate and set it to delegate
-        self.delegate.indexPathSection = thankYouDataSingleton.sectionDate.index(of: selectedDate!)!
+        appDelegate.indexPathSection = thankYouDataSingleton.sectionDate.index(of: selectedDate)!
         // Input the indexPath.row in AppDelegate
-        self.delegate.indexPathRow = indexPath.row
+        appDelegate.indexPathRow = indexPath.row
         // going to the edit page
         let storyboard: UIStoryboard = self.storyboard!
         let editThankYouDataVC = storyboard.instantiateViewController(withIdentifier: "editThankYouDataVC") as! ThankYouList.EditThankYouDataVC

@@ -745,8 +745,29 @@
                                     <constraint firstAttribute="height" constant="400" id="BGc-vq-cBJ"/>
                                 </constraints>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UDj-GL-LAU">
+                                <rect key="frame" x="0.0" y="464" width="375" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Do-NF-XHI">
+                                        <rect key="frame" x="15" y="6" width="360" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="jgl-Se-do2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.9882352941176471" green="0.70980392156862748" blue="0.70980392156862748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="7Do-NF-XHI" secondAttribute="trailing" id="FSa-xJ-mOH"/>
+                                    <constraint firstItem="7Do-NF-XHI" firstAttribute="leading" secondItem="UDj-GL-LAU" secondAttribute="leading" constant="15" id="X8t-Cc-g41"/>
+                                    <constraint firstAttribute="height" constant="30" id="dvn-fh-bMo"/>
+                                    <constraint firstItem="7Do-NF-XHI" firstAttribute="top" secondItem="UDj-GL-LAU" secondAttribute="top" constant="6" id="fNC-Xx-iRs"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nTj-dJ-J8W">
-                                <rect key="frame" x="0.0" y="464" width="375" height="203"/>
+                                <rect key="frame" x="0.0" y="494" width="375" height="173"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="thankYouCalendarCell" textLabel="r5T-d1-6fv" style="IBUITableViewCellStyleDefault" id="nIp-ta-Gme">
@@ -775,13 +796,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="nTj-dJ-J8W" firstAttribute="top" secondItem="UDj-GL-LAU" secondAttribute="bottom" id="2Q6-gT-FpJ"/>
                             <constraint firstItem="bzi-1v-Ljx" firstAttribute="top" secondItem="1g2-9s-T3c" secondAttribute="bottom" id="4tt-GQ-Xmb"/>
+                            <constraint firstAttribute="trailing" secondItem="UDj-GL-LAU" secondAttribute="trailing" id="5cc-Nq-fWK"/>
                             <constraint firstAttribute="trailing" secondItem="bzi-1v-Ljx" secondAttribute="trailing" id="5tb-mF-3jg"/>
                             <constraint firstAttribute="trailing" secondItem="nTj-dJ-J8W" secondAttribute="trailing" id="6fn-HH-ixh"/>
                             <constraint firstItem="bzi-1v-Ljx" firstAttribute="leading" secondItem="nCp-Ua-Yrn" secondAttribute="leading" id="9xY-AG-1bZ"/>
-                            <constraint firstItem="nTj-dJ-J8W" firstAttribute="top" secondItem="bzi-1v-Ljx" secondAttribute="bottom" id="HDq-BR-059"/>
                             <constraint firstItem="nTj-dJ-J8W" firstAttribute="leading" secondItem="nCp-Ua-Yrn" secondAttribute="leading" id="QWM-uW-Jq1"/>
+                            <constraint firstItem="UDj-GL-LAU" firstAttribute="leading" secondItem="nCp-Ua-Yrn" secondAttribute="leading" id="ec3-UU-JZT"/>
                             <constraint firstItem="p2v-wT-N26" firstAttribute="top" secondItem="nTj-dJ-J8W" secondAttribute="bottom" id="vlW-cX-XPk"/>
+                            <constraint firstItem="UDj-GL-LAU" firstAttribute="top" secondItem="bzi-1v-Ljx" secondAttribute="bottom" id="z8i-Cp-beG"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Thank You Calendar 🗓" id="cAz-xi-lSn">
@@ -793,6 +817,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="calendarView" destination="5yq-Fl-vaM" id="HRm-IP-QyB"/>
+                        <outlet property="selectedDateLabel" destination="7Do-NF-XHI" id="gqN-1g-VaN"/>
+                        <outlet property="selectedDateView" destination="UDj-GL-LAU" id="jWL-gG-WIt"/>
                         <outlet property="tableView" destination="nTj-dJ-J8W" id="GXu-p6-KOT"/>
                         <outlet property="yearMonth" destination="9iX-rD-G2b" id="EMe-8Y-kjh"/>
                     </connections>

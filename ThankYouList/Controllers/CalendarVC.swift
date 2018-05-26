@@ -85,7 +85,7 @@ class CalendarVC: UIViewController {
         
         // Set the opening date of tableView when the screen is showed first time
         getSectionItems(date: Date())
-        
+        slideMenuController()?.addPriorityToMenuGesuture(calendarView)
     }
 
     func setupCalendarView() {

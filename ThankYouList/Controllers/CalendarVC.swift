@@ -10,16 +10,19 @@ import UIKit
 import JTAppleCalendar
 
 class CalendarVC: UIViewController {
-    let formatter = DateFormatter()
     
+    // MARK: - Properties
+    private let formatter = DateFormatter()
+    private var selectedDateView: UIView!
+    private var selectedDateLabel: UILabel!
+    let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
+    
+    
+    // MARK: - IBOutlets
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var yearMonth: UILabel!
     @IBOutlet var tableView: UITableView!
-    var selectedDateView: UIView!
-    var selectedDateLabel: UILabel!
-    
-    // Get the singleton
-    let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
+
     
     // Set colors
     let navigationBarBgColor = UIColor(colorWithHexValue: 0xfff8e8)
@@ -34,6 +37,11 @@ class CalendarVC: UIViewController {
     var delegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var sectionItems = [ThankYouData]()
     var selectedDate: String!
+    
+    
+    @IBAction func tappedMenuButton(_ sender: Any) {
+        slideMenuController()?.openLeft()
+    }
     
     
     override func viewDidLoad() {
@@ -204,6 +212,7 @@ class CalendarVC: UIViewController {
 
 }
 
+
 extension CalendarVC: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         formatter.dateFormat = "yyyy MM dd"
@@ -363,8 +372,13 @@ extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
         
         // 下に引っ張ったときは、ヘッダー位置を計算して動かないようにする（★ここがポイント..）
         //if scrollView.contentOffset.y < -30 {
-            self.selectedDateView.frame = CGRect(x: 0, y: scrollView.contentOffset.y, width: self.tableView.frame.width, height: 30)
-        //}
+//            self.selectedDateView.frame = CGRect(x: 0, y: scrollView.contentOffset.y, width: self.tableView.frame.width, height: 30)
+//        //}
+//        var point = scrollView.contentOffset
+//        if point.x < 50 {
+//            point.x = 50
+//        }
+//        scrollView.contentOffset = point
     }
 }
 

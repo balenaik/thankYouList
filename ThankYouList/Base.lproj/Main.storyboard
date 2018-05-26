@@ -784,7 +784,13 @@
                             <constraint firstItem="p2v-wT-N26" firstAttribute="top" secondItem="nTj-dJ-J8W" secondAttribute="bottom" id="vlW-cX-XPk"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Thank You Calendar 🗓" id="cAz-xi-lSn"/>
+                    <navigationItem key="navigationItem" title="Thank You Calendar 🗓" id="cAz-xi-lSn">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="menu" id="dGa-Ve-goM">
+                            <connections>
+                                <action selector="tappedMenuButton:" destination="g7x-ef-1HG" id="6gm-4w-4Gz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="calendarView" destination="5yq-Fl-vaM" id="HRm-IP-QyB"/>
                         <outlet property="tableView" destination="nTj-dJ-J8W" id="GXu-p6-KOT"/>

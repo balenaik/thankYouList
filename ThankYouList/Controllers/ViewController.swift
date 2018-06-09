@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController {
     
     // MARK: - Properties
-    var delegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-    let textColor = UIColor(colorWithHexValue: 0x3a3a3a)
+    private var delegate = UIApplication.shared.delegate as! AppDelegate
+    private var db = Firestore.firestore()
+    private var thankYouDataSingleton = GlobalThankYouData.sharedInstance
     
     
     // MARK: - IBOutlets
@@ -28,21 +31,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: - View LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Add a new document with a generated ID
-//        var ref: DocumentReference? = nil
-//        let db: Firestore! = Firestore.firestore()
-//        ref = db.collection("users").addDocument(data: [
-//            "first": "Ada",
-//            "last": "Lovelace",
-//            "born": 1815
-//        ]) { err in
-//            if let err = err {
-//                print("Error adding document: \(err)")
-//            } else {
-//                print("Document added with ID: \(ref!.documentID)")
-//            }
-//        }
+        loadThankYouData()
+        checkForUpdates()
         
         // change the height of cells depending on the text
         tableView.estimatedRowHeight = 40
@@ -59,17 +49,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.navigationController?.navigationBar.tintColor = UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)]
         
-        
-        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
         if thankYouDataSingleton.thankYouDataList.count != 0 { return }
 
         let userDefaults = UserDefaults.standard
         if let storedThankYouDataList = userDefaults.object(forKey: "thankYouDataList") as? Data {
             
-            if let unarchiveThankYouDataList = NSKeyedUnarchiver.unarchiveObject(
-                with: storedThankYouDataList) as? [ThankYouData] {
-                thankYouDataSingleton.thankYouDataList.append(contentsOf: unarchiveThankYouDataList)
-            }
+//            if let unarchiveThankYouDataList = NSKeyedUnarchiver.unarchiveObject(
+//                with: storedThankYouDataList) as? [ThankYouDataUD] {
+//                thankYouDataSingleton.thankYouDataList.append(contentsOf: unarchiveThankYouDataList)
+//            }
         }
         if let storedSectionDate = userDefaults.array(forKey: "sectionDate") as? [String] {
             thankYouDataSingleton.sectionDate.append(contentsOf: storedSectionDate)
@@ -95,52 +83,86 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     
     
-    // MARK: - Internal Methods
-    func getSectionItems(section: Int) -> [ThankYouData] {
+    // MARK: - Private Methods
+    private func getSectionItems(section: Int) -> [ThankYouData] {
         var sectionItems = [ThankYouData]()
-        // Get the singleton
-        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
-        
-        // ThankYouを格納した配列
+        let thankYouDataSingleton = GlobalThankYouData.sharedInstance
         let thankYouDataList: [ThankYouData] = thankYouDataSingleton.thankYouDataList
-        // Sectionで利用する配列
         var sectionDate: [String] = thankYouDataSingleton.sectionDate
-        // Set sectionItems
-        sectionItems = thankYouDataList.filter({$0.thankYouDate == sectionDate[section]})
+        sectionItems = thankYouDataList.filter({$0.date == sectionDate[section]})
 
         return sectionItems
     }
     
-    func getToday(format:String = "yyyy/MM/dd") -> String {
-        let now = Date()
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.dateFormat = format
-        return formatter.string(from: now as Date)
+    private func loadThankYouData() {
+        guard let userMail = Auth.auth().currentUser?.email else {
+            print("Not login? error")
+            return
+        }
+        db.collection("users").document(userMail).collection("posts").getDocuments { [weak self](querySnapshot, error) in
+            guard let weakSelf = self else { return }
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            guard let querySnapshot = querySnapshot else { return }
+            let thankYouDataList = querySnapshot.documents.flatMap({ThankYouData(dictionary: $0.data())})
+            for thankYouData in thankYouDataList {
+                if !weakSelf.thankYouDataSingleton.sectionDate.contains(thankYouData.date) {
+                    weakSelf.thankYouDataSingleton.sectionDate.append(thankYouData.date)
+                }
+            }
+            weakSelf.thankYouDataSingleton.thankYouDataList = thankYouDataList
+            DispatchQueue.main.async {
+                weakSelf.tableView.reloadData()
+            }
+        }
     }
     
+    private func checkForUpdates() {
+        guard let userMail = Auth.auth().currentUser?.email else {
+            print("Not login? error")
+            return
+        }
+        db.collection("users").document(userMail).collection("posts").whereField("timeStamp", isGreaterThan: Date()).addSnapshotListener { [weak self] (querySnapshot, error) in
+            guard let weakSelf = self else { return }
+            guard let snapShot = querySnapshot else { return }
+            // TODO: sectionDate
+            for diff in snapShot.documentChanges {
+                if diff.type == .added {
+                    let thankYouData = ThankYouData(dictionary: diff.document.data())
+                    guard let newThankYouData = thankYouData else { break }
+                    weakSelf.thankYouDataSingleton.thankYouDataList.append(newThankYouData)
+                }
+//                if diff.type == .removed {
+//                    let thankYouData = ThankYouData(dictionary: diff.document.data())
+//                    guard let removedThankYouData = thankYouData else { break }
+////                    weakSelf.thankYouDataSingleton.thankYouDataList
+//                }
+            }
+            DispatchQueue.main.async {
+                weakSelf.tableView.reloadData()
+            }
+        }
+    }
+}
     
+    
+// MARK: - Extensions
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
 
-    
-    // テーブルの行数を返却する
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.getSectionItems(section: section).count
+        return getSectionItems(section: section).count
     }
     
-    // テーブルの行ごとのセルを返却する
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // Storyboardで指定したthankyouCell識別子を利用して再利用可能なセルを取得する
         let cell = tableView.dequeueReusableCell(withIdentifier: "thankYouCell", for: indexPath)
-        // get the items in this section
         let sectionItems = self.getSectionItems(section: indexPath.section)
-        // 行番号にあったThankYouのタイトルを取得 & get the item for the row in this section
         let myThankYouData = sectionItems[indexPath.row]
-        
-        // セルのラベルにthankYouのタイトルをセット
-        cell.textLabel?.text = myThankYouData.thankYouValue
-        // change the text size
+
+        cell.textLabel?.text = myThankYouData.value
         cell.textLabel?.font = UIFont.systemFont(ofSize: 16)
-        cell.textLabel?.textColor = textColor
+        cell.textLabel?.textColor = TYLColor.textColor
         return cell 
     }
     

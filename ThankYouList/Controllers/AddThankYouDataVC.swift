@@ -7,79 +7,90 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
 
 class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
 
+    // MARK: - Properties
+    private var delegate = UIApplication.shared.delegate as! AppDelegate
+    private var _datePickerIsShowing = false
+    private let _DATEPICKER_CELL_HEIGHT: CGFloat = 210
+    private var db = Firestore.firestore()
+    
+    
+    
+    // MARK: - IBOutlets
     @IBOutlet weak var thankYouDatePicker: UIDatePicker!
     @IBOutlet weak var addThankYou: UINavigationItem!
     @IBOutlet weak var thankYouTextView: UITextView!
     @IBOutlet weak var dateLabel: UILabel!
-
     @IBOutlet weak var textViewCell: UITableViewCell!
     @IBOutlet weak var dateCell: UITableViewCell!
     @IBOutlet weak var datePickerCell: UITableViewCell!
     @IBOutlet weak var tableViewCell: UITableViewCell!
     
-    var delegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+
     
-    // datePickerの表示状態
-    private var _datePickerIsShowing = false
-    // datePicker表示時のセルの高さ
-    private let _DATEPICKER_CELL_HEIGHT: CGFloat = 210
-    
-    
+    // MARK: - IBActions
     @IBAction func goBack(_ sender: Any) {
-        // Return
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func add(_ sender: Any) {
-        
-        // when 'Done' button is tapped
-        // if thankYouTextView is not empty
-        if (!thankYouTextView.text.isEqual("") || !thankYouTextView.text.isEmpty) {
-            // thankYouDataクラスに格納
-            let myThankYouData = ThankYouData()
-            myThankYouData.thankYouValue = thankYouTextView.text
-            myThankYouData.thankYouDate = self.dateLabel.text
-    
-            // addします
-            addThankYou(thankYouData: myThankYouData)
-            
-        
-
-            // Go back to the previous screen
-            self.dismiss(animated: true, completion: nil)
-            
+        if thankYouTextView.text.isEqual("") || thankYouTextView.text.isEmpty {
+            return
         }
+        guard let dateLabelText = dateLabel.text else { return }
+        let myThankYouData = ThankYouData(value: thankYouTextView.text, date: dateLabelText, timeStamp: Date())
+//        myThankYouData.thankYouValue = thankYouTextView.text
+//        myThankYouData.thankYouDate = self.dateLabel.text
+
+        addThankYou(thankYouData: myThankYouData)
+        self.dismiss(animated: true, completion: nil)
     }
     
+    
+    // MARK: - Internal Methods
     func addThankYou(thankYouData: ThankYouData) -> Void{
+        
+        guard let userMail = Auth.auth().currentUser?.email else {
+            print("Not login? error")
+            return
+        }
+        var ref = db.collection("users").document(userMail).collection("posts").addDocument(data: thankYouData.dictionary) { error in
+            if let error = error {
+                print("Error adding document: \(error.localizedDescription)")
+                return
+            }
+            
+        }
+        
         
         // Get the singleton
         let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
         
         
         // if sectionDate doesn't contain the thankYouDate, then add it
-        if !thankYouDataSingleton.sectionDate.contains(thankYouData.thankYouDate!) {
-            thankYouDataSingleton.sectionDate.append(thankYouData.thankYouDate!)
-            print("sectiondate.append happens")
-        }
+//        if !thankYouDataSingleton.sectionDate.contains(thankYouData.thankYouDate!) {
+//            thankYouDataSingleton.sectionDate.append(thankYouData.thankYouDate!)
+//            print("sectiondate.append happens")
+//        }
         
         // Sort the sectionDate
-        thankYouDataSingleton.sectionDate.sort(by:>)
-        print(thankYouDataSingleton.sectionDate[0])
+//        thankYouDataSingleton.sectionDate.sort(by:>)
+//        print(thankYouDataSingleton.sectionDate[0])
         
         //Insert
-        thankYouDataSingleton.thankYouDataList.insert(thankYouData, at: 0)
+//        thankYouDataSingleton.thankYouDataList.insert(thankYouData, at: 0)
         
-        // ThankYouの保存処理
-        let userDefaults = UserDefaults.standard
-        // Data型にシリアライズする
-        let data = NSKeyedArchiver.archivedData(withRootObject: thankYouDataSingleton.thankYouDataList)
-        userDefaults.set(data, forKey: "thankYouDataList")
-        userDefaults.set(thankYouDataSingleton.sectionDate, forKey: "sectionDate")
-        userDefaults.synchronize()
+//        // ThankYouの保存処理
+//        let userDefaults = UserDefaults.standard
+//        // Data型にシリアライズする
+//        let data = NSKeyedArchiver.archivedData(withRootObject: thankYouDataSingleton.thankYouDataList)
+//        userDefaults.set(data, forKey: "thankYouDataList")
+//        userDefaults.set(thankYouDataSingleton.sectionDate, forKey: "sectionDate")
+//        userDefaults.synchronize()
         
 
         
@@ -171,6 +182,7 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)]
         
         
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -181,6 +193,13 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         thankYouTextView.becomeFirstResponder()
     }
+    
+    // It somehow doesn't work
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        if thankYouTextView.isFirstResponder {
+//            thankYouTextView.resignFirstResponder()
+//        }
+//    }
     
     
     @objc func datePickerValueChanged (thankYouDatePicker: UIDatePicker) {

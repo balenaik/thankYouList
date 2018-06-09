@@ -40,12 +40,12 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         // if thankYouTextView is not empty
         if (!thankYouTextView.text.isEqual("") || !thankYouTextView.text.isEmpty) {
             // thankYouDataクラスに格納
-            let myThankYouData = ThankYouData()
-            myThankYouData.thankYouValue = thankYouTextView.text
-            myThankYouData.thankYouDate = self.dateLabel.text
-            
-            // editします
-            editThankYou(editThankYouData: myThankYouData)
+//            let myThankYouData = ThankYouData()
+//            myThankYouData.thankYouValue = thankYouTextView.text
+//            myThankYouData.thankYouDate = self.dateLabel.text
+//            
+//            // editします
+//            editThankYou(editThankYouData: myThankYouData)
 
             
             // Go back to the previous screen
@@ -57,7 +57,7 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
     
     
     
-    func editThankYou(editThankYouData: ThankYouData) -> Void{
+    func editThankYou(editThankYouData: ThankYouDataUD) -> Void{
 
         // Get the singleton
         let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
@@ -70,7 +70,7 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         // **************************
         
         // ThankYouを格納した配列
-        let thankYouDataList: [ThankYouData] = thankYouDataSingleton.thankYouDataList
+        let thankYouDataList: [ThankYouDataUD] = thankYouDataSingleton.thankYouDataUDList
         // Sectionで利用する配列
         var sectionDate: [String] = thankYouDataSingleton.sectionDate
         
@@ -78,7 +78,7 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         
         // Loop through the thankYouDataList to get the number of items for the ex-item's section date
         for item in thankYouDataList {
-            let thankYouData = item as ThankYouData
+            let thankYouData = item as ThankYouDataUD
             // If the item's date equals the section's date then add it
             if thankYouData.thankYouDate == sectionDate[self.delegate.indexPathSection!] {
                 sectionAmt = sectionAmt + 1
@@ -101,7 +101,7 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
 
         // Loop through the array till the data matches and get the element at the selected row number
         for (index, item) in thankYouDataList.enumerated() {
-            let thankYouData = item as ThankYouData
+            let thankYouData = item as ThankYouDataUD
 
             // if thankYouDate from the item equals to the data in array, then get the index number.
             if thankYouData.thankYouDate! == sectionDate[self.delegate.indexPathSection!] {
@@ -120,7 +120,7 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         thankYouDataSingleton.thankYouDataList.remove(at: listIndexNo)
 
         // Edit thankYouData
-        thankYouDataSingleton.thankYouDataList.insert(editThankYouData, at: listIndexNo)
+        thankYouDataSingleton.thankYouDataUDList.insert(editThankYouData, at: listIndexNo)
         
         // ThankYouの保存処理
         let userDefaults = UserDefaults.standard
@@ -138,7 +138,7 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         // Get the singleton
         let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
         // ThankYouを格納した配列
-        let thankYouDataList: [ThankYouData] = thankYouDataSingleton.thankYouDataList
+        let thankYouDataList: [ThankYouDataUD] = thankYouDataSingleton.thankYouDataUDList
         // Sectionで利用する配列
         var sectionDate: [String] = thankYouDataSingleton.sectionDate
         
@@ -146,7 +146,7 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         
         // Loop through the thankYouDataList to get the number of items for the ex-item's section date
         for item in thankYouDataList {
-            let thankYouData = item as ThankYouData
+            let thankYouData = item as ThankYouDataUD
             // If the item's date equals the section's date then add it
             if thankYouData.thankYouDate == sectionDate[self.delegate.indexPathSection!] {
                 sectionAmt = sectionAmt + 1
@@ -169,7 +169,7 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         
         // Loop through the array till the data matches and get the element at the selected row number
         for (index, item) in thankYouDataList.enumerated() {
-            let thankYouData = item as ThankYouData
+            let thankYouData = item as ThankYouDataUD
             
             // if thankYouDate from the item equals to the data in array, then get the index number.
             if thankYouData.thankYouDate == sectionDate[self.delegate.indexPathSection!] {
@@ -258,20 +258,20 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         self.tableView.dataSource = self
         
         
-        var sectionItems = [ThankYouData]()
+        var sectionItems = [ThankYouDataUD]()
         // Get the information which element is the thankYouData in the array
         // Get the singleton
         let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
         
         
         // ThankYouを格納した配列
-        let thankYouDataList: [ThankYouData] = thankYouDataSingleton.thankYouDataList
+        let thankYouDataList: [ThankYouDataUD] = thankYouDataSingleton.thankYouDataUDList
         // Sectionで利用する配列
         var sectionDate: [String] = thankYouDataSingleton.sectionDate
         
         // Loop through the thankYouDataList to get the items for this section's date
         for item in thankYouDataList {
-            let thankYouData = item as ThankYouData
+            let thankYouData = item as ThankYouDataUD
             // If the item's date equals the section's date then add it
             if thankYouData.thankYouDate! == sectionDate[self.delegate.indexPathSection!] {
                 sectionItems.append(thankYouData)

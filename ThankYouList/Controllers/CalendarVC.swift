@@ -14,7 +14,7 @@ class CalendarVC: UIViewController {
     // MARK: - Properties
     private let formatter = DateFormatter()
     private var appDelegate = UIApplication.shared.delegate as! AppDelegate
-    private var sectionItems = [ThankYouData]()
+    private var sectionItems = [ThankYouDataUD]()
     private var selectedDate: String = ""
     let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
     
@@ -156,13 +156,13 @@ class CalendarVC: UIViewController {
         validCell.dotsAndPlusView.isHidden = true
         
         self.formatter.dateFormat = "yyyy/MM/dd"
-        if thankYouDataSingleton.thankYouDataList.filter({$0.thankYouDate == formatter.string(from: cellState.date)}).count == 1 {
+        if thankYouDataSingleton.thankYouDataUDList.filter({$0.thankYouDate == formatter.string(from: cellState.date)}).count == 1 {
             validCell.oneDotView.isHidden = false
-        } else if thankYouDataSingleton.thankYouDataList.filter({$0.thankYouDate == formatter.string(from: cellState.date)}).count == 2 {
+        } else if thankYouDataSingleton.thankYouDataUDList.filter({$0.thankYouDate == formatter.string(from: cellState.date)}).count == 2 {
             validCell.twoDotsView.isHidden = false
-        } else if thankYouDataSingleton.thankYouDataList.filter({$0.thankYouDate == formatter.string(from: cellState.date)}).count == 3 {
+        } else if thankYouDataSingleton.thankYouDataUDList.filter({$0.thankYouDate == formatter.string(from: cellState.date)}).count == 3 {
             validCell.threeDotsView.isHidden = false            
-        } else if thankYouDataSingleton.thankYouDataList.filter({$0.thankYouDate == formatter.string(from: cellState.date)}).count >= 4 {
+        } else if thankYouDataSingleton.thankYouDataUDList.filter({$0.thankYouDate == formatter.string(from: cellState.date)}).count >= 4 {
             validCell.dotsAndPlusView.isHidden = false
         }
     }
@@ -186,7 +186,7 @@ class CalendarVC: UIViewController {
         // Get the singleton
         let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
         // Array for thankYou
-        let thankYouDataList: [ThankYouData] = thankYouDataSingleton.thankYouDataList
+        let thankYouDataList: [ThankYouDataUD] = thankYouDataSingleton.thankYouDataUDList
         // Set sectionItems
         self.formatter.dateFormat = "yyyy/MM/dd"
         sectionItems = thankYouDataList.filter({$0.thankYouDate == self.formatter.string(from: date)})
@@ -271,8 +271,8 @@ extension CalendarVC {
         if let storedThankYouDataList = userDefaults.object(forKey: "thankYouDataList") as? Data {
             
             if let unarchiveThankYouDataList = NSKeyedUnarchiver.unarchiveObject(
-                with: storedThankYouDataList) as? [ThankYouData] {
-                thankYouDataSingleton.thankYouDataList.append(contentsOf: unarchiveThankYouDataList)
+                with: storedThankYouDataList) as? [ThankYouDataUD] {
+                thankYouDataSingleton.thankYouDataUDList.append(contentsOf: unarchiveThankYouDataList)
             }
         }
         if let storedSectionDate = userDefaults.array(forKey: "sectionDate") as? [String] {

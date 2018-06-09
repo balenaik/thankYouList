@@ -133,7 +133,6 @@ class ViewController: UIViewController {
         db.collection("users").document(userMail).collection("posts").addSnapshotListener { [weak self] (querySnapshot, error) in
             guard let weakSelf = self else { return }
             guard let snapShot = querySnapshot else { return }
-            // TODO: sectionDate
             for diff in snapShot.documentChanges {
                 if diff.type == .added {
                     let thankYouData = ThankYouData(dictionary: diff.document.data())
@@ -143,6 +142,10 @@ class ViewController: UIViewController {
                     if !thankYouDataIds.contains(newThankYouData.id) {
                          weakSelf.thankYouDataSingleton.thankYouDataList.append(newThankYouData)
                     }
+                    if !weakSelf.thankYouDataSingleton.sectionDate.contains(newThankYouData.date) {
+                        weakSelf.thankYouDataSingleton.sectionDate.append(newThankYouData.date)
+                    }
+                    weakSelf.thankYouDataSingleton.sectionDate.sort(by:>)
                 }
                 if diff.type == .removed {
                     let removedDataId = diff.document.documentID

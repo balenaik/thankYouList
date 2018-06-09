@@ -42,7 +42,7 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
             return
         }
         guard let dateLabelText = dateLabel.text else { return }
-        let myThankYouData = ThankYouData(value: thankYouTextView.text, date: dateLabelText, timeStamp: Date())
+        let myThankYouData = ThankYouData(id: "", value: thankYouTextView.text, date: dateLabelText, timeStamp: Date())
 //        myThankYouData.thankYouValue = thankYouTextView.text
 //        myThankYouData.thankYouDate = self.dateLabel.text
 

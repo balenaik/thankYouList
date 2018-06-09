@@ -13,6 +13,7 @@ protocol DocumentSeriarizable {
 }
 
 struct ThankYouData {
+    var id: String
     var value: String
     var date: String
     var timeStamp: Date
@@ -34,7 +35,7 @@ extension ThankYouData: DocumentSeriarizable {
             let timeStamp = dictionary["timeStamp"] as? Date else {
                 return nil
         }
-        self.init(value: value, date: date, timeStamp: timeStamp)
+        self.init(id: "", value: value, date: date, timeStamp: timeStamp)
     }
     
 }

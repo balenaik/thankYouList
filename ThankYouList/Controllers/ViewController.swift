@@ -99,6 +99,7 @@ class ViewController: UIViewController {
             print("Not login? error")
             return
         }
+        thankYouDataSingleton.sectionDate = []
         db.collection("users").document(userMail).collection("posts").getDocuments { [weak self](querySnapshot, error) in
             guard let weakSelf = self else { return }
             if let error = error {
@@ -106,7 +107,12 @@ class ViewController: UIViewController {
                 return
             }
             guard let querySnapshot = querySnapshot else { return }
-            let thankYouDataList = querySnapshot.documents.flatMap({ThankYouData(dictionary: $0.data())})
+            var thankYouDataList: [ThankYouData] = []
+            for document in querySnapshot.documents {
+                guard var thankYouData = ThankYouData(dictionary: document.data()) else { break }
+                thankYouData.id = document.documentID
+                thankYouDataList.append(thankYouData)
+            }
             for thankYouData in thankYouDataList {
                 if !weakSelf.thankYouDataSingleton.sectionDate.contains(thankYouData.date) {
                     weakSelf.thankYouDataSingleton.sectionDate.append(thankYouData.date)
@@ -124,21 +130,29 @@ class ViewController: UIViewController {
             print("Not login? error")
             return
         }
-        db.collection("users").document(userMail).collection("posts").whereField("timeStamp", isGreaterThan: Date()).addSnapshotListener { [weak self] (querySnapshot, error) in
+        db.collection("users").document(userMail).collection("posts").addSnapshotListener { [weak self] (querySnapshot, error) in
             guard let weakSelf = self else { return }
             guard let snapShot = querySnapshot else { return }
             // TODO: sectionDate
             for diff in snapShot.documentChanges {
                 if diff.type == .added {
                     let thankYouData = ThankYouData(dictionary: diff.document.data())
-                    guard let newThankYouData = thankYouData else { break }
-                    weakSelf.thankYouDataSingleton.thankYouDataList.append(newThankYouData)
+                    guard var newThankYouData = thankYouData else { break }
+                    newThankYouData.id = diff.document.documentID
+                    let thankYouDataIds: [String] = weakSelf.thankYouDataSingleton.thankYouDataList.map{$0.id}
+                    if !thankYouDataIds.contains(newThankYouData.id) {
+                         weakSelf.thankYouDataSingleton.thankYouDataList.append(newThankYouData)
+                    }
                 }
-//                if diff.type == .removed {
-//                    let thankYouData = ThankYouData(dictionary: diff.document.data())
-//                    guard let removedThankYouData = thankYouData else { break }
-////                    weakSelf.thankYouDataSingleton.thankYouDataList
-//                }
+                if diff.type == .removed {
+                    let removedDataId = diff.document.documentID
+                    for (index, thankYouDataList) in weakSelf.thankYouDataSingleton.thankYouDataList.enumerated() {
+                        if thankYouDataList.id == removedDataId {
+                            weakSelf.thankYouDataSingleton.thankYouDataList.remove(at: index)
+                            break
+                        }
+                    }
+                }
             }
             DispatchQueue.main.async {
                 weakSelf.tableView.reloadData()

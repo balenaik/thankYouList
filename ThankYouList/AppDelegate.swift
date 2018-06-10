@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         
         // UIWindowを生成.
-        self.window = UIWindow(frame: UIScreen.main.bounds)        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
         
         guard let currentUser = Auth.auth().currentUser else {
             let loginVC = self.storyboard.instantiateViewController(withIdentifier: "LoginVC")
@@ -48,6 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         }
 
+        moveUDDataToFirestoreIfNeeded()
         let mainTabBarController: MainTabBarController = MainTabBarController()
         let leftMenuVC = self.storyboard.instantiateViewController(withIdentifier: "LeftMenuVC") as! LeftMenuVC
         if let userName = currentUser.displayName {
@@ -100,6 +101,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SlideMenuOptions.shadowOpacity = 0.2
         SlideMenuOptions.contentViewOpacity = 0.3
         self.window?.rootViewController = rootViewController
+    }
+    
+    private func moveUDDataToFirestoreIfNeeded() {
+        let userDefaults = UserDefaults.standard
+        guard let storedThankYouDataUDList = userDefaults.object(forKey: "thankYouDataList") as? Data else { return }
+        guard let unarchiveThankYouDataUDList = NSKeyedUnarchiver.unarchiveObject(with: storedThankYouDataUDList) as? [ThankYouDataUD] else { return }
+        moveUDDataToFirestore(thankYouDataUDList: unarchiveThankYouDataUDList)
+    }
+    
+    private func moveUDDataToFirestore(thankYouDataUDList: [ThankYouDataUD]) {
+        guard let userMail = Auth.auth().currentUser?.email else {
+            print("Not login? error")
+            return
+        }
+        let db = Firestore.firestore()
+        for thankYouDataUD in thankYouDataUDList {
+            guard let thankYouValue = thankYouDataUD.thankYouValue, let thankYouDate = thankYouDataUD.thankYouDate else { return }
+            let thankYouData = ThankYouData(id: "", value: thankYouValue, date: thankYouDate, timeStamp: Date())
+            var ref = db.collection("users").document(userMail).collection("posts").addDocument(data: thankYouData.dictionary) { error in
+                if let error = error {
+                    print("Error adding document: \(error.localizedDescription)")
+                    return
+                }
+            }
+        }
+
     }
 }
 

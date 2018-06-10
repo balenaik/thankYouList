@@ -68,7 +68,7 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
         
         
         // Get the singleton
-        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
+//        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
         
         
         // if sectionDate doesn't contain the thankYouDate, then add it

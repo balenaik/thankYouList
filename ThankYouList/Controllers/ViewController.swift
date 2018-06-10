@@ -38,14 +38,9 @@ class ViewController: UIViewController {
         tableView.estimatedRowHeight = 40
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        
-        // tableviewの背景色指定
+
         self.view.backgroundColor = UIColor(red: 247/255.0, green: 247/255.0, blue: 247/255.0, alpha: 1.0)
-        
-        // navigationbarの背景色指定
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 255/255.0, green: 248/255.0, blue: 232/255.0, alpha: 1.0)
-        
-        // navigationbarの文字色設定
         self.navigationController?.navigationBar.tintColor = UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)]
         

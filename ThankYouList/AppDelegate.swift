@@ -125,6 +125,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 copiedUDDataList = unarchiveOldThankYouDataList
             }
         }
+        let allOldThankYouDataCount = copiedUDDataList.count + thankYouDataUDList.count
         var unCopiedUDDataList: [ThankYouDataUD] = []
         let db = Firestore.firestore()
         for thankYouDataUD in thankYouDataUDList {
@@ -134,18 +135,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if let error = error {
                     print("Error adding document: \(error.localizedDescription)")
                     unCopiedUDDataList.append(thankYouDataUD)
-                    return
+                } else {
+                    copiedUDDataList.append(thankYouDataUD)
                 }
-                copiedUDDataList.append(thankYouDataUD)
+                if copiedUDDataList.count + unCopiedUDDataList.count == allOldThankYouDataCount {
+                    let copiedData = NSKeyedArchiver.archivedData(withRootObject: copiedUDDataList)
+                    let unCopiedData = NSKeyedArchiver.archivedData(withRootObject: unCopiedUDDataList)
+                    userDefaults.set(copiedData, forKey: "oldThankYouDataList")
+                    userDefaults.set(unCopiedData, forKey: "thankYouDataList")
+                    userDefaults.synchronize()
+                    print("copiedData:\(copiedUDDataList)")
+                    print("unCopiedData:\(unCopiedUDDataList)")
+                }
             }
         }
-        let copiedData = NSKeyedArchiver.archivedData(withRootObject: copiedUDDataList)
-        let unCopiedData = NSKeyedArchiver.archivedData(withRootObject: unCopiedUDDataList)
-        userDefaults.set(copiedData, forKey: "oldThankYouDataList")
-        userDefaults.set(unCopiedData, forKey: "thankYouDataList")
-        userDefaults.synchronize()
-        print("copiedData:\(copiedUDDataList)")
-        print("unCopiedData:\(unCopiedUDDataList)")
     }
 }
 

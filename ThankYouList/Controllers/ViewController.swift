@@ -46,17 +46,17 @@ class ViewController: UIViewController {
         
         if thankYouDataSingleton.thankYouDataList.count != 0 { return }
 
-        let userDefaults = UserDefaults.standard
-        if let storedThankYouDataList = userDefaults.object(forKey: "thankYouDataList") as? Data {
-            
-//            if let unarchiveThankYouDataList = NSKeyedUnarchiver.unarchiveObject(
-//                with: storedThankYouDataList) as? [ThankYouDataUD] {
-//                thankYouDataSingleton.thankYouDataList.append(contentsOf: unarchiveThankYouDataList)
-//            }
-        }
-        if let storedSectionDate = userDefaults.array(forKey: "sectionDate") as? [String] {
-            thankYouDataSingleton.sectionDate.append(contentsOf: storedSectionDate)
-        }
+//        let userDefaults = UserDefaults.standard
+//        if let storedThankYouDataList = userDefaults.object(forKey: "thankYouDataList") as? Data {
+//            
+////            if let unarchiveThankYouDataList = NSKeyedUnarchiver.unarchiveObject(
+////                with: storedThankYouDataList) as? [ThankYouDataUD] {
+////                thankYouDataSingleton.thankYouDataList.append(contentsOf: unarchiveThankYouDataList)
+////            }
+//        }
+//        if let storedSectionDate = userDefaults.array(forKey: "sectionDate") as? [String] {
+//            thankYouDataSingleton.sectionDate.append(contentsOf: storedSectionDate)
+//        }
 
     }
 

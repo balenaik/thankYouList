@@ -41,12 +41,14 @@ extension ThankYouData: DocumentSeriarizable {
 }
 
 
-
-class ThankYouDataUD: NSObject {
+class ThankYouDataUD: NSObject, NSCoding {
     var thankYouValue: String?
     var thankYouDate: String?
     
-    required init(coder aDecoder: NSCoder) {
+    override init() {
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
         thankYouValue = aDecoder.decodeObject(forKey: "thankYouValue") as? String
         thankYouDate = aDecoder.decodeObject(forKey : "thankYouDate") as? String
     }

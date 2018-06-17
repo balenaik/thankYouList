@@ -106,6 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func moveUDDataToFirestoreIfNeeded() {
         let userDefaults = UserDefaults.standard
         guard let storedThankYouDataUDList = userDefaults.object(forKey: "thankYouDataList") as? Data else { return }
+        NSKeyedUnarchiver.setClass(ThankYouDataUD.self, forClassName: "ThankYouList.ThankYouData")
         guard let unarchiveThankYouDataUDList = NSKeyedUnarchiver.unarchiveObject(with: storedThankYouDataUDList) as? [ThankYouDataUD] else { return }
         moveUDDataToFirestore(thankYouDataUDList: unarchiveThankYouDataUDList)
     }

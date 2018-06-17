@@ -108,7 +108,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let storedThankYouDataUDList = userDefaults.object(forKey: "thankYouDataList") as? Data else { return }
         NSKeyedUnarchiver.setClass(ThankYouDataUD.self, forClassName: "ThankYouList.ThankYouData")
         guard let unarchiveThankYouDataUDList = NSKeyedUnarchiver.unarchiveObject(with: storedThankYouDataUDList) as? [ThankYouDataUD] else { return }
-        moveUDDataToFirestore(thankYouDataUDList: unarchiveThankYouDataUDList)
+        if unarchiveThankYouDataUDList.count != 0 {
+            moveUDDataToFirestore(thankYouDataUDList: unarchiveThankYouDataUDList)
+        }
     }
     
     private func moveUDDataToFirestore(thankYouDataUDList: [ThankYouDataUD]) {
@@ -116,18 +118,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Not login? error")
             return
         }
+        let userDefaults = UserDefaults.standard
+        var copiedUDDataList: [ThankYouDataUD] = []
+        if let oldThankYouDataList = userDefaults.object(forKey: "oldThankYouDataList") as? Data {
+            if let unarchiveOldThankYouDataList = NSKeyedUnarchiver.unarchiveObject(with: oldThankYouDataList) as? [ThankYouDataUD] {
+                copiedUDDataList = unarchiveOldThankYouDataList
+            }
+        }
+        var unCopiedUDDataList: [ThankYouDataUD] = []
         let db = Firestore.firestore()
         for thankYouDataUD in thankYouDataUDList {
             guard let thankYouValue = thankYouDataUD.thankYouValue, let thankYouDate = thankYouDataUD.thankYouDate else { return }
             let thankYouData = ThankYouData(id: "", value: thankYouValue, date: thankYouDate, timeStamp: Date())
-            var ref = db.collection("users").document(userMail).collection("posts").addDocument(data: thankYouData.dictionary) { error in
+            db.collection("users").document(userMail).collection("posts").addDocument(data: thankYouData.dictionary) { error in
                 if let error = error {
                     print("Error adding document: \(error.localizedDescription)")
+                    unCopiedUDDataList.append(thankYouDataUD)
                     return
                 }
+                copiedUDDataList.append(thankYouDataUD)
             }
         }
-
+        let copiedData = NSKeyedArchiver.archivedData(withRootObject: copiedUDDataList)
+        let unCopiedData = NSKeyedArchiver.archivedData(withRootObject: unCopiedUDDataList)
+        userDefaults.set(copiedData, forKey: "oldThankYouDataList")
+        userDefaults.set(unCopiedData, forKey: "thankYouDataList")
+        userDefaults.synchronize()
+        print("copiedData:\(copiedUDDataList)")
+        print("unCopiedData:\(unCopiedUDDataList)")
     }
 }
 

@@ -8,15 +8,18 @@
 
 import UIKit
 import JTAppleCalendar
+import FirebaseFirestore
+import FirebaseAuth
 
 class CalendarVC: UIViewController {
     
     // MARK: - Properties
     private let formatter = DateFormatter()
     private var appDelegate = UIApplication.shared.delegate as! AppDelegate
-    private var sectionItems = [ThankYouDataUD]()
+    private var sectionItems = [ThankYouData]()
     private var selectedDate: String = ""
-    let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
+    private let db = Firestore.firestore()
+    private let thankYouDataSingleton = GlobalThankYouData.sharedInstance
     
     
     
@@ -38,7 +41,6 @@ class CalendarVC: UIViewController {
     
     // MARK: - Initializers
     required init?(coder aDecoder: NSCoder) {
-
         selectedDateLabel = UILabel(frame: CGRect.zero)
         super.init(coder: aDecoder)
     }
@@ -48,34 +50,21 @@ class CalendarVC: UIViewController {
     // MARK: - Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.navigationController?.navigationBar.barTintColor = TYLColor.navigationBarBgColor
-        
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
         self.formatter.dateFormat = "yyyy/MM/dd"
         selectedDate = self.formatter.string(from: Date())
-
         selectedDateLabel.text = selectedDate
 
-        
-        // setup the text color for navagationbar
+        self.navigationController?.navigationBar.barTintColor = TYLColor.navigationBarBgColor
         self.navigationController?.navigationBar.tintColor = TYLColor.navigationBarTextColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : TYLColor.navigationBarTextColor]
-
-        // Set the opening month when the screen is showed
+        
         calendarView.scrollToDate(Date(), animateScroll: false)
-        
         setupCalendarView()
-        
-        DispatchQueue.main.async {
-            self.calendarView.reloadData()
-        }
-        
-        // Set the opening date on calendar when the screen is showed the first time
         calendarView.selectDates([Date()])
-        
+        checkForUpdates()
         
         /* tableView below */
         
@@ -86,9 +75,15 @@ class CalendarVC: UIViewController {
         // Set the opening date of tableView when the screen is showed first time
         getSectionItems(date: Date())
         slideMenuController()?.addPriorityToMenuGesuture(calendarView)
+        
+        DispatchQueue.main.async {
+            self.calendarView.reloadData()
+        }
     }
 
-    func setupCalendarView() {
+    
+    // MARK: - Private Methods
+    private func setupCalendarView() {
         // Setup calendar spacing
         calendarView.minimumLineSpacing = 0
         calendarView.minimumInteritemSpacing = 0
@@ -97,22 +92,18 @@ class CalendarVC: UIViewController {
         calendarView.visibleDates { (visibleDates) in
             self.setupViewsOfCalendar(from: visibleDates)
         }
-        
     }
     
-    /* Cell configuration functions */
-    func configureCell(cell: JTAppleCell?, cellState: CellState) {
+    private func configureCell(cell: JTAppleCell?, cellState: CellState) {
         guard let validCell = cell as? CustomCell else { return }
         formatter.dateFormat = "yyyy MM dd"
         
         handleCellSelected(view: validCell, cellState: cellState)
         handleCellTextColor(view: validCell, cellState: cellState)
         handleCellEvents(view: validCell, cellState: cellState)
-        
     }
     
-    
-    func handleCellTextColor(view: JTAppleCell?, cellState: CellState) {
+    private func handleCellTextColor(view: JTAppleCell?, cellState: CellState) {
         guard let validCell = view as? CustomCell else { return }
         
         if cellState.isSelected {
@@ -137,8 +128,7 @@ class CalendarVC: UIViewController {
         }
     }
     
-        
-    func handleCellSelected(view: JTAppleCell?, cellState: CellState) {
+    private func handleCellSelected(view: JTAppleCell?, cellState: CellState) {
         guard let validCell = view as? CustomCell else { return }
         if validCell.isSelected {
             validCell.selectedView.isHidden = false
@@ -147,7 +137,7 @@ class CalendarVC: UIViewController {
         }
     }
     
-    func handleCellEvents(view: JTAppleCell?, cellState: CellState) {
+    private func handleCellEvents(view: JTAppleCell?, cellState: CellState) {
         guard let validCell = view as? CustomCell else { return }
         
         validCell.oneDotView.isHidden = true
@@ -156,41 +146,76 @@ class CalendarVC: UIViewController {
         validCell.dotsAndPlusView.isHidden = true
         
         self.formatter.dateFormat = "yyyy/MM/dd"
-        if thankYouDataSingleton.thankYouDataUDList.filter({$0.thankYouDate == formatter.string(from: cellState.date)}).count == 1 {
+        if thankYouDataSingleton.thankYouDataList.filter({$0.date == formatter.string(from: cellState.date)}).count == 1 {
             validCell.oneDotView.isHidden = false
-        } else if thankYouDataSingleton.thankYouDataUDList.filter({$0.thankYouDate == formatter.string(from: cellState.date)}).count == 2 {
+        } else if thankYouDataSingleton.thankYouDataList.filter({$0.date == formatter.string(from: cellState.date)}).count == 2 {
             validCell.twoDotsView.isHidden = false
-        } else if thankYouDataSingleton.thankYouDataUDList.filter({$0.thankYouDate == formatter.string(from: cellState.date)}).count == 3 {
+        } else if thankYouDataSingleton.thankYouDataList.filter({$0.date == formatter.string(from: cellState.date)}).count == 3 {
             validCell.threeDotsView.isHidden = false            
-        } else if thankYouDataSingleton.thankYouDataUDList.filter({$0.thankYouDate == formatter.string(from: cellState.date)}).count >= 4 {
+        } else if thankYouDataSingleton.thankYouDataList.filter({$0.date == formatter.string(from: cellState.date)}).count >= 4 {
             validCell.dotsAndPlusView.isHidden = false
         }
     }
     
-    func setupViewsOfCalendar(from visibleDates: DateSegmentInfo) {
+    private func setupViewsOfCalendar(from visibleDates: DateSegmentInfo) {
         let date = visibleDates.monthDates.first!.date
-        
         self.formatter.dateFormat = String(format: NSLocalizedString("monthYear", comment: ""), "MMMM", "yyyy")
         self.yearMonth.text = self.formatter.string(from: date)
-        
     }
     
+    private func getSectionItems(date: Date) {
+        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
+        let thankYouDataList: [ThankYouData] = thankYouDataSingleton.thankYouDataList
+        self.formatter.dateFormat = "yyyy/MM/dd"
+        sectionItems = thankYouDataList.filter({$0.date == self.formatter.string(from: date)})
+    }
+    
+    private func checkForUpdates() {
+        guard let userMail = Auth.auth().currentUser?.email else {
+            print("Not login? error")
+            return
+        }
+        db.collection("users").document(userMail).collection("posts").addSnapshotListener { [weak self] (querySnapshot, error) in
+            guard let weakSelf = self else { return }
+            guard let snapShot = querySnapshot else { return }
+            for diff in snapShot.documentChanges {
+                if diff.type == .added {
+                    let thankYouData = ThankYouData(dictionary: diff.document.data())
+                    guard var newThankYouData = thankYouData else { break }
+                    newThankYouData.id = diff.document.documentID
+                    let thankYouDataIds: [String] = weakSelf.thankYouDataSingleton.thankYouDataList.map{$0.id}
+                    if !thankYouDataIds.contains(newThankYouData.id) {
+                        weakSelf.thankYouDataSingleton.thankYouDataList.append(newThankYouData)
+                    }
+                    if !weakSelf.thankYouDataSingleton.sectionDate.contains(newThankYouData.date) {
+                        weakSelf.thankYouDataSingleton.sectionDate.append(newThankYouData.date)
+                    }
+                    weakSelf.thankYouDataSingleton.sectionDate.sort(by:>)
+                }
+                if diff.type == .removed {
+                    let removedDataId = diff.document.documentID
+                    for (index, thankYouDataList) in weakSelf.thankYouDataSingleton.thankYouDataList.enumerated() {
+                        if thankYouDataList.id == removedDataId {
+                            weakSelf.thankYouDataSingleton.thankYouDataList.remove(at: index)
+                            break
+                        }
+                    }
+                }
+            }
+            DispatchQueue.main.async {
+                weakSelf.tableView.reloadData()
+                weakSelf.calendarView.reloadData()
+            }
+        }
+    }
+    
+    
+    // MARK: - Overrides
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    /* functions for tableView below */
-    // the function for getting section items
-    func getSectionItems(date: Date) {
-        // Get the singleton
-        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
-        // Array for thankYou
-        let thankYouDataList: [ThankYouDataUD] = thankYouDataSingleton.thankYouDataUDList
-        // Set sectionItems
-        self.formatter.dateFormat = "yyyy/MM/dd"
-        sectionItems = thankYouDataList.filter({$0.thankYouDate == self.formatter.string(from: date)})
-    }
     
 
     /*
@@ -206,6 +231,8 @@ class CalendarVC: UIViewController {
 }
 
 
+
+// MARK: - Extensions
 extension CalendarVC: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         formatter.dateFormat = "yyyy MM dd"
@@ -218,8 +245,6 @@ extension CalendarVC: JTAppleCalendarViewDataSource {
         let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate)
         return parameters
     }
-    
-
 }
 
 extension CalendarVC: JTAppleCalendarViewDelegate {
@@ -232,10 +257,8 @@ extension CalendarVC: JTAppleCalendarViewDelegate {
     // Display the cell
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "CustomCell", for: indexPath) as! CustomCell
-        
         cell.dateLabel.text = cellState.text
         configureCell(cell: cell, cellState: cellState)
-        
         return cell
     }
     
@@ -263,35 +286,15 @@ extension CalendarVC: JTAppleCalendarViewDelegate {
 }
 
 
-extension CalendarVC {
-    func getThankYou() {
-
-        // Load thankyou from UserDefaults
-//        let userDefaults = UserDefaults.standard
-//        if let storedThankYouDataList = userDefaults.object(forKey: "thankYouDataList") as? Data {
-//            
-//            if let unarchiveThankYouDataList = NSKeyedUnarchiver.unarchiveObject(
-//                with: storedThankYouDataList) as? [ThankYouDataUD] {
-//                thankYouDataSingleton.thankYouDataUDList.append(contentsOf: unarchiveThankYouDataList)
-//            }
-//        }
-//        if let storedSectionDate = userDefaults.array(forKey: "sectionDate") as? [String] {
-//            thankYouDataSingleton.sectionDate.append(contentsOf: storedSectionDate)
-//        }
-        
-    }
-}
-
-
-
 extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
-    
-    // returns the number of rows in section
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let date = formatter.date(from: selectedDate) {
+            getSectionItems(date: date)
+        }
         return self.sectionItems.count
     }
 
-    // return a cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Storyboardで指定したthankyouCell識別子を利用して再利用可能なセルを取得する
         let cell = tableView.dequeueReusableCell(withIdentifier: "thankYouCalendarCell", for: indexPath)
@@ -300,7 +303,7 @@ extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
             // 行番号にあったThankYouのタイトルを取得 & get the item for the row in this section
             let myThankYouData = sectionItems[indexPath.row]
             // セルのラベルにthankYouのタイトルをセット
-            cell.textLabel?.text = myThankYouData.thankYouValue
+            cell.textLabel?.text = myThankYouData.value
             // change the text size
             cell.textLabel?.font = UIFont.systemFont(ofSize: 16)
             cell.textLabel?.textColor = TYLColor.textColor
@@ -356,22 +359,6 @@ extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
         let editThankYouDataVC = storyboard.instantiateViewController(withIdentifier: "editThankYouDataVC") as! ThankYouList.EditThankYouDataVC
         let navi = UINavigationController(rootViewController: editThankYouDataVC)
         self.present(navi, animated: true, completion: nil)
-    }
-    
-    /*
-     スクロール時
-     */
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        // 下に引っ張ったときは、ヘッダー位置を計算して動かないようにする（★ここがポイント..）
-        //if scrollView.contentOffset.y < -30 {
-//            self.selectedDateView.frame = CGRect(x: 0, y: scrollView.contentOffset.y, width: self.tableView.frame.width, height: 30)
-//        //}
-//        var point = scrollView.contentOffset
-//        if point.x < 50 {
-//            point.x = 50
-//        }
-//        scrollView.contentOffset = point
     }
 }
 

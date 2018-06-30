@@ -81,6 +81,7 @@ class CalendarVC: UIViewController {
         }
     }
 
+
     
     // MARK: - Private Methods
     private func setupCalendarView() {
@@ -337,14 +338,6 @@ extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView,
                             heightForHeaderInSection section: Int) -> CGFloat {
         return 0
-    }
-    
-    // reload again
-    override func viewWillAppear(_ animated: Bool) {
-        formatter.dateFormat = "yyyy/MM/dd"
-        getSectionItems(date: formatter.date(from: selectedDate)!)
-        self.tableView.reloadData()
-        self.calendarView.reloadData()
     }
     
     

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "JTAppleCalendarView.collectionView(_:cellForItemAt:):UICollectionViewDelegates.swift">
+      </ContextState>
+      <ContextState
+         contextName = "CalendarVC.handleCellSelected(view:cellState:):CalendarVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "validCell.isSelected">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in JTAppleCalendarView.selectDates(_:triggerSelectionDelegate:keepSelectionIfMultiSelectionAllowed:):UserInteractionFunctions.swift">
+      </ContextState>
+      <ContextState
+         contextName = "JTAppleCalendarView.selectDates(_:triggerSelectionDelegate:keepSelectionIfMultiSelectionAllowed:):UserInteractionFunctions.swift">
+      </ContextState>
+      <ContextState
+         contextName = "JTAppleCalendarView.programaticallySelectItem(at:shouldTriggerSelectionDelegate:):UserInteractionFunctions.swift">
+      </ContextState>
+      <ContextState
+         contextName = "CalendarVC.calendar(_:cellForItemAt:cellState:indexPath:):CalendarVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in JTAppleCalendarView.reloadData(withanchor:completionHandler:):UserInteractionFunctions.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

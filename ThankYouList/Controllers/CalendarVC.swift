@@ -66,13 +66,9 @@ class CalendarVC: UIViewController {
         calendarView.selectDates([Date()])
         checkForUpdates()
         
-        /* tableView below */
-        
-        // change the height of cells depending on the text
         tableView.estimatedRowHeight = 40
         tableView.rowHeight = UITableViewAutomaticDimension
-        
-        // Set the opening date of tableView when the screen is showed first time
+
         getSectionItems(date: Date())
         slideMenuController()?.addPriorityToMenuGesuture(calendarView)
         
@@ -131,7 +127,7 @@ class CalendarVC: UIViewController {
     
     private func handleCellSelected(view: JTAppleCell?, cellState: CellState) {
         guard let validCell = view as? CustomCell else { return }
-        if validCell.isSelected {
+        if cellState.isSelected {
             validCell.selectedView.isHidden = false
         } else {
             validCell.selectedView.isHidden = true
@@ -320,19 +316,6 @@ extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
     // returns the title of sections
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return selectedDate
-    }
-    
-    // change the detail of section
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        // 余白を作る(UIViewをセクションのビューに指定（だからxとかy指定しても意味ない）
-        let view = UIView(frame: CGRect(x:0, y:0, width:20, height:20))
-        view.backgroundColor = TYLColor.sectionBgColor
-        let label :UILabel = UILabel(frame: CGRect(x: 15, y: 6.0, width: tableView.frame.width, height: 20))
-        label.textColor = UIColor.white
-        label.text = selectedDate
-        //指定したlabelをセクションビューのサブビューに指定
-        view.addSubview(label)
-        return view
     }
     
     func tableView(_ tableView: UITableView,

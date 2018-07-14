@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 import FBSDKLoginKit
+import GoogleSignIn
 
 class LeftMenuVC: UIViewController {
     
@@ -88,12 +89,14 @@ extension LeftMenuVC: UITableViewDataSource {
             tableView.deselectRow(at: indexPath, animated: true)
             return
         }
-        guard Auth.auth().currentUser != nil else {
+        if Auth.auth().currentUser == nil {
             return
         }        
         do {
             try Auth.auth().signOut()
             FBSDKAccessToken.setCurrent(nil)
+            GIDSignIn.sharedInstance().signOut()
+            GIDSignIn.sharedInstance().disconnect()
             let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC")
             self.present(loginVC!, animated: true)
         } catch let error as NSError {

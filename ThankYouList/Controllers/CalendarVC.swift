@@ -327,9 +327,6 @@ extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
     // when a cell is tapped it goes the edit screen
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Look for the index number in sectionDate and set it to delegate
-        appDelegate.indexPathSection = thankYouDataSingleton.sectionDate.index(of: selectedDate)!
-        // Input the indexPath.row in AppDelegate
-        appDelegate.indexPathRow = indexPath.row
         // going to the edit page
         let storyboard: UIStoryboard = self.storyboard!
         let editThankYouDataVC = storyboard.instantiateViewController(withIdentifier: "editThankYouDataVC") as! ThankYouList.EditThankYouDataVC

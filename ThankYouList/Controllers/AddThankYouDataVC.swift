@@ -15,7 +15,6 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
     // MARK: - Properties
     private var delegate = UIApplication.shared.delegate as! AppDelegate
     private var _datePickerIsShowing = false
-    private let _DATEPICKER_CELL_HEIGHT: CGFloat = 210
     private var db = Firestore.firestore()
     
     
@@ -43,22 +42,19 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
         }
         guard let dateLabelText = dateLabel.text else { return }
         let myThankYouData = ThankYouData(id: "", value: thankYouTextView.text, date: dateLabelText, timeStamp: Date())
-//        myThankYouData.thankYouValue = thankYouTextView.text
-//        myThankYouData.thankYouDate = self.dateLabel.text
-
         addThankYou(thankYouData: myThankYouData)
         self.dismiss(animated: true, completion: nil)
     }
     
     
     // MARK: - Internal Methods
-    func addThankYou(thankYouData: ThankYouData) -> Void{
+    func addThankYou(thankYouData: ThankYouData) {
         
         guard let userMail = Auth.auth().currentUser?.email else {
             print("Not login? error")
             return
         }
-        var ref = db.collection("users").document(userMail).collection("posts").addDocument(data: thankYouData.dictionary) { error in
+        db.collection("users").document(userMail).collection("posts").addDocument(data: thankYouData.dictionary) { error in
             if let error = error {
                 print("Error adding document: \(error.localizedDescription)")
                 return
@@ -156,17 +152,15 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "datePickerCell")
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 10000
         
         dateLabel.text = self.delegate.selectedDate
         
-        // 使用するセルを登録
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "datePickerCell")
-
         thankYouTextView.delegate = self
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 10000
         thankYouTextView.placeholder = NSLocalizedString("What are you thankful for?", comment: "")
         
         thankYouDatePicker.addTarget(self, action: #selector(AddThankYouDataVC.datePickerValueChanged), for: UIControlEvents.valueChanged)
@@ -236,7 +230,7 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
         if(indexPath.section == 1 && indexPath.row == 1) {
             //　DatePicker行の場合は、DatePickerの表示状態に応じて高さを返す。
             // 表示の場合は、表示で指定している高さを、非表示の場合は０を返す。
-            height =  self._datePickerIsShowing ? self._DATEPICKER_CELL_HEIGHT : CGFloat(0)
+            height =  self._datePickerIsShowing ? ConstStruct._DATEPICKER_CELL_HEIGHT : CGFloat(0)
         }else if (indexPath.section == 0 && indexPath.row == 1) {
             height = 20
         }

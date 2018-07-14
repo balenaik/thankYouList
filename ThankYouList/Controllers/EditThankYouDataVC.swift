@@ -7,194 +7,167 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
 
 class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
-
+    
+    // MARK: - Properties
+    private var delegate = UIApplication.shared.delegate
+    private var _datePickerIsShowing = false
+    private var editingThankYouData: ThankYouData?
+    private var db = Firestore.firestore()
+    
+    // MARK: - IBOutlets
     @IBOutlet weak var thankYouDatePicker: UIDatePicker!
     @IBOutlet weak var editThankYou: UINavigationItem!
     @IBOutlet weak var thankYouTextView: UITextView!
     @IBOutlet weak var dateLabel: UILabel!
-    
     @IBOutlet weak var textViewCell: UITableViewCell!
     @IBOutlet weak var dateCell: UITableViewCell!
     @IBOutlet weak var datePickerCell: UITableViewCell!
     @IBOutlet weak var tableViewCell: UITableViewCell!
     @IBOutlet weak var deleteCell: UITableViewCell!
+
     
     
-    var delegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
-    
-    // datePickerの表示状態
-    private var _datePickerIsShowing = false
-    // datePicker表示時のセルの高さ
-    private let _DATEPICKER_CELL_HEIGHT: CGFloat = 210
-    
-    
+    // MARK: - IBActions
     @IBAction func goBack(_ sender: Any) {
-        // Return
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func edit(_ sender: Any) {
-        // when 'Done' button is tapped
-        // if thankYouTextView is not empty
-        if (!thankYouTextView.text.isEqual("") || !thankYouTextView.text.isEmpty) {
-            // thankYouDataクラスに格納
-//            let myThankYouData = ThankYouData()
-//            myThankYouData.thankYouValue = thankYouTextView.text
-//            myThankYouData.thankYouDate = self.dateLabel.text
-//            
-//            // editします
-//            editThankYou(editThankYouData: myThankYouData)
-
-            
-            // Go back to the previous screen
+        if (thankYouTextView.text.isEqual("") || thankYouTextView.text.isEmpty) {
+            return
+        }
+        guard let dateLabelText = dateLabel.text else { return }
+        let editedThankYouData = ThankYouData(id: "", value: thankYouTextView.text, date: dateLabelText, timeStamp: Date())
+        editThankYou(editThankYouData: editedThankYouData)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    // MARK: - View LifeCycles
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        guard let editingThankYouData = editingThankYouData else {
             self.dismiss(animated: true, completion: nil)
-            
+            return
         }
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "datePickerCell")
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 10000
+        
+        dateLabel.text = editingThankYouData.date
+        
+        thankYouTextView.delegate = self
+        thankYouTextView.text = editingThankYouData.value
+        thankYouTextView.placeholder = NSLocalizedString("What are you thankful for?", comment: "")
+        thankYouTextView.becomeFirstResponder()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        if let editingDate = dateFormatter.date(from: editingThankYouData.date) {
+            thankYouDatePicker.setDate(editingDate, animated: true)
+        }
+        thankYouDatePicker.addTarget(self, action: #selector(EditThankYouDataVC.datePickerValueChanged), for: UIControlEvents.valueChanged)
+        
+        // tableviewの背景色指定
+        self.view.backgroundColor = UIColor(red: 247/255.0, green: 247/255.0, blue: 247/255.0, alpha: 1.0)
+        
+        // navigationbarの背景色指定
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 255/255.0, green: 248/255.0, blue: 232/255.0, alpha: 1.0)
+        
+        // navigationbarの文字色設定
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)]
     }
 
     
     
-    
-    func editThankYou(editThankYouData: ThankYouDataUD) -> Void{
-
-        // Get the singleton
-        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
-        
-        // ******SECTIONDATE********
-        // if sectionDate doesn't contain the thankYouDate, then add it
-        if !thankYouDataSingleton.sectionDate.contains(editThankYouData.thankYouDate!) {
-            thankYouDataSingleton.sectionDate.append(editThankYouData.thankYouDate!)
+    // MARK: - Private Methods
+    private func editThankYou(editThankYouData: ThankYouData) {
+        guard let editingThankYouData = editingThankYouData else { return }
+        guard let userMail = Auth.auth().currentUser?.email else {
+            print("Not login? error")
+            return
         }
-        // **************************
         
-        // ThankYouを格納した配列
-        let thankYouDataList: [ThankYouDataUD] = thankYouDataSingleton.thankYouDataUDList
-        // Sectionで利用する配列
-        var sectionDate: [String] = thankYouDataSingleton.sectionDate
-        
-        var sectionAmt: Int = 0
-        
-        // Loop through the thankYouDataList to get the number of items for the ex-item's section date
-        for item in thankYouDataList {
-            let thankYouData = item as ThankYouDataUD
-            // If the item's date equals the section's date then add it
-            if thankYouData.thankYouDate == sectionDate[self.delegate.indexPathSection!] {
-                sectionAmt = sectionAmt + 1
+        db.collection("users").document(userMail).collection("posts").document(editingThankYouData.id).updateData(editThankYouData.dictionary) { error in
+            if let error = error {
+                print("Error adding document: \(error.localizedDescription)")
+                return
             }
         }
-
-        // if the ex-thankYouDate was the only one in the section, delete the section
-        if sectionAmt == 1 && editThankYouData.thankYouDate != sectionDate[self.delegate.indexPathSection!] {
-            thankYouDataSingleton.sectionDate.remove(at: self.delegate.indexPathSection!)
-        }
-        
-        // Sort the sectionDate
-        thankYouDataSingleton.sectionDate.sort(by:>)
-        
-        // Get the index number in thankYouDataList
-        var listIndexNo: Int = 0
-        
-        // count
-        var rowCount: Int = 0
-
-        // Loop through the array till the data matches and get the element at the selected row number
-        for (index, item) in thankYouDataList.enumerated() {
-            let thankYouData = item as ThankYouDataUD
-
-            // if thankYouDate from the item equals to the data in array, then get the index number.
-            if thankYouData.thankYouDate! == sectionDate[self.delegate.indexPathSection!] {
-                rowCount = rowCount + 1
-            }
-            
-            // if rowCount reachs indexPath.row, then exit the loop.
-            if rowCount == self.delegate.indexPathRow! + 1 {
-                listIndexNo = index
-                
-                break
-            }
-        }
-
-        // Delete the element first
-        thankYouDataSingleton.thankYouDataList.remove(at: listIndexNo)
-
-        // Edit thankYouData
-        thankYouDataSingleton.thankYouDataUDList.insert(editThankYouData, at: listIndexNo)
-        
-        // ThankYouの保存処理
-        let userDefaults = UserDefaults.standard
-        // Data型にシリアライズする
-        let data = NSKeyedArchiver.archivedData(withRootObject: thankYouDataSingleton.thankYouDataList)
-        userDefaults.set(data, forKey: "thankYouDataList")
-        userDefaults.set(thankYouDataSingleton.sectionDate, forKey: "sectionDate")
-        userDefaults.synchronize()
-        
     }
     
-    func deleteThankYou() -> Void {
+    func deleteThankYou() {
 
-    
-        // Get the singleton
-        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
-        // ThankYouを格納した配列
-        let thankYouDataList: [ThankYouDataUD] = thankYouDataSingleton.thankYouDataUDList
-        // Sectionで利用する配列
-        var sectionDate: [String] = thankYouDataSingleton.sectionDate
-        
-        var sectionAmt: Int = 0
-        
-        // Loop through the thankYouDataList to get the number of items for the ex-item's section date
-        for item in thankYouDataList {
-            let thankYouData = item as ThankYouDataUD
-            // If the item's date equals the section's date then add it
-            if thankYouData.thankYouDate == sectionDate[self.delegate.indexPathSection!] {
-                sectionAmt = sectionAmt + 1
-            }
-        }
-        
-        // if the ex-thankYouDate was the only one in the section, delete the section
-        if sectionAmt == 1 {
-            thankYouDataSingleton.sectionDate.remove(at: self.delegate.indexPathSection!)
-        }
-        
-        // Sort the sectionDate
-        thankYouDataSingleton.sectionDate.sort(by:>)
-        
-        // Get the index number in thankYouDataList
-        var listIndexNo: Int = 0
-        
-        // count
-        var rowCount: Int = 0
-        
-        // Loop through the array till the data matches and get the element at the selected row number
-        for (index, item) in thankYouDataList.enumerated() {
-            let thankYouData = item as ThankYouDataUD
-            
-            // if thankYouDate from the item equals to the data in array, then get the index number.
-            if thankYouData.thankYouDate == sectionDate[self.delegate.indexPathSection!] {
-                rowCount = rowCount + 1
-            }
-
-            
-            // if rowCount reachs indexPath.row, then exit the loop.
-            if rowCount == self.delegate.indexPathRow! + 1 {
-                listIndexNo = index
-                
-                break
-            }
-        }
-        
-        // Delete the element first
-        thankYouDataSingleton.thankYouDataList.remove(at: listIndexNo)
-        
-        // ThankYouの保存処理
-        let userDefaults = UserDefaults.standard
-        // Data型にシリアライズする
-        let data = NSKeyedArchiver.archivedData(withRootObject: thankYouDataSingleton.thankYouDataList)
-        userDefaults.set(data, forKey: "thankYouDataList")
-        userDefaults.set(thankYouDataSingleton.sectionDate, forKey: "sectionDate")
-        userDefaults.synchronize()
+//
+//        // Get the singleton
+//        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
+//        // ThankYouを格納した配列
+//        let thankYouDataList: [ThankYouDataUD] = thankYouDataSingleton.thankYouDataUDList
+//        // Sectionで利用する配列
+//        var sectionDate: [String] = thankYouDataSingleton.sectionDate
+//
+//        var sectionAmt: Int = 0
+//
+//        // Loop through the thankYouDataList to get the number of items for the ex-item's section date
+//        for item in thankYouDataList {
+//            let thankYouData = item as ThankYouDataUD
+//            // If the item's date equals the section's date then add it
+//            if thankYouData.thankYouDate == sectionDate[self.delegate.indexPathSection!] {
+//                sectionAmt = sectionAmt + 1
+//            }
+//        }
+//
+//        // if the ex-thankYouDate was the only one in the section, delete the section
+//        if sectionAmt == 1 {
+//            thankYouDataSingleton.sectionDate.remove(at: self.delegate.indexPathSection!)
+//        }
+//
+//        // Sort the sectionDate
+//        thankYouDataSingleton.sectionDate.sort(by:>)
+//
+//        // Get the index number in thankYouDataList
+//        var listIndexNo: Int = 0
+//
+//        // count
+//        var rowCount: Int = 0
+//
+//        // Loop through the array till the data matches and get the element at the selected row number
+//        for (index, item) in thankYouDataList.enumerated() {
+//            let thankYouData = item as ThankYouDataUD
+//
+//            // if thankYouDate from the item equals to the data in array, then get the index number.
+//            if thankYouData.thankYouDate == sectionDate[self.delegate.indexPathSection!] {
+//                rowCount = rowCount + 1
+//            }
+//
+//
+//            // if rowCount reachs indexPath.row, then exit the loop.
+//            if rowCount == self.delegate.indexPathRow! + 1 {
+//                listIndexNo = index
+//
+//                break
+//            }
+//        }
+//
+//        // Delete the element first
+//        thankYouDataSingleton.thankYouDataList.remove(at: listIndexNo)
+//
+//        // ThankYouの保存処理
+//        let userDefaults = UserDefaults.standard
+//        // Data型にシリアライズする
+//        let data = NSKeyedArchiver.archivedData(withRootObject: thankYouDataSingleton.thankYouDataList)
+//        userDefaults.set(data, forKey: "thankYouDataList")
+//        userDefaults.set(thankYouDataSingleton.sectionDate, forKey: "sectionDate")
+//        userDefaults.synchronize()
 
     }
     
@@ -251,83 +224,7 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
     }
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        
-        
-        var sectionItems = [ThankYouDataUD]()
-        // Get the information which element is the thankYouData in the array
-        // Get the singleton
-        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
-        
-        
-        // ThankYouを格納した配列
-        let thankYouDataList: [ThankYouDataUD] = thankYouDataSingleton.thankYouDataUDList
-        // Sectionで利用する配列
-        var sectionDate: [String] = thankYouDataSingleton.sectionDate
-        
-        // Loop through the thankYouDataList to get the items for this section's date
-        for item in thankYouDataList {
-            let thankYouData = item as ThankYouDataUD
-            // If the item's date equals the section's date then add it
-            if thankYouData.thankYouDate! == sectionDate[self.delegate.indexPathSection!] {
-                sectionItems.append(thankYouData)
-            }
-        }
-        let editThankYouData = sectionItems[self.delegate.indexPathRow!]
-        
 
-        
-        // put the date on dateLabel
-        dateLabel.text = editThankYouData.thankYouDate
-        
-        // put the thankYouData on the textView
-        thankYouTextView.text = editThankYouData.thankYouValue
-        
-        // 使用するセルを登録
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "datePickerCell")
-
-        
-        
-        // Expanding TextView
-        thankYouTextView.delegate = self
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 10000
-        thankYouTextView.placeholder = NSLocalizedString("What are you thankful for?", comment: "")
-        
-        thankYouTextView.becomeFirstResponder()
-        
-        // String to Date
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy/MM/dd"
-        let editDate = dateFormatter.date(from: editThankYouData.thankYouDate!)
-        
-        // Set initial date(edit date) on datePicker
-        thankYouDatePicker.setDate(editDate!, animated: true)
-        thankYouDatePicker.addTarget(self, action: #selector(EditThankYouDataVC.datePickerValueChanged), for: UIControlEvents.valueChanged)
-        
-        // tableviewの背景色指定
-        self.view.backgroundColor = UIColor(red: 247/255.0, green: 247/255.0, blue: 247/255.0, alpha: 1.0)
-        
-        // navigationbarの背景色指定
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 255/255.0, green: 248/255.0, blue: 232/255.0, alpha: 1.0)
-        
-        // navigationbarの文字色設定
-        self.navigationController?.navigationBar.tintColor = UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)]
-        
-        
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-
-    }
 
     @objc func datePickerValueChanged (thankYouDatePicker: UIDatePicker) {
         let dateFormatter = DateFormatter()
@@ -367,7 +264,7 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         if(indexPath.section == 1 && indexPath.row == 1) {
             //　DatePicker行の場合は、DatePickerの表示状態に応じて高さを返す。
             // 表示の場合は、表示で指定している高さを、非表示の場合は０を返す。
-            height =  self._datePickerIsShowing ? self._DATEPICKER_CELL_HEIGHT : CGFloat(0)
+            height =  self._datePickerIsShowing ? ConstStruct._DATEPICKER_CELL_HEIGHT : CGFloat(0)
         }else if (indexPath.section == 0 && indexPath.row == 1) {
             height = 20
         }
@@ -517,4 +414,13 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
     }
     */
 
+}
+
+
+extension EditThankYouDataVC {
+    class func createViewController(thankYouData: ThankYouData?) -> EditThankYouDataVC {
+        let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "editThankYouDataVC") as! EditThankYouDataVC
+        vc.editingThankYouData = thankYouData
+        return vc
+    }
 }

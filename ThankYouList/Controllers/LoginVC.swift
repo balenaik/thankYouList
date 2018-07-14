@@ -31,7 +31,7 @@ class LoginVC: UIViewController {
     // MARK: - IB Actions
     @IBAction func customFBLoginButtonTapped(_ sender: Any) {
         let loginManager = LoginManager()
-        loginManager.logIn(readPermissions: [ ReadPermission.publicProfile ], viewController: self) { [weak self] loginResult in
+        loginManager.logIn(readPermissions: [ .publicProfile, .email ], viewController: self) { [weak self] loginResult in
             guard let weakSelf = self else { return }
             switch loginResult {
             case .success:

@@ -19,9 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var uid: String?
-    var indexPath: IndexPath?
-    var indexPathSection: Int?
-    var indexPathRow: Int?
+//    var indexPath: IndexPath?
+//    var indexPathSection: Int?
+//    var indexPathRow: Int?
     var selectedDate: String?
     
     var storyboard: UIStoryboard {

@@ -12,6 +12,7 @@
 		A813A2162025CD3B002DCA65 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A813A2152025CD3B002DCA65 /* GoogleService-Info.plist */; };
 		A824150F205CE28C00172587 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824150E205CE28C00172587 /* LoginVC.swift */; };
 		A83D5F891F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */; };
+		A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84CBEE120F198E400CBA0AB /* ConstStruct.swift */; };
 		A85D9D011EA64AF900945E6E /* ThankYouData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85D9D001EA64AF900945E6E /* ThankYouData.swift */; };
 		A85DCC081F5D2151004E1095 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85DCC071F5D2151004E1095 /* CustomCell.swift */; };
 		A85F02E21EC9BCC500654136 /* AddThankYouDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F02E11EC9BCC500654136 /* AddThankYouDataVC.swift */; };
@@ -42,6 +43,7 @@
 		A824150B205CDF5800172587 /* ThankYouList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThankYouList.entitlements; sourceTree = "<group>"; };
 		A824150E205CE28C00172587 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+RuntimeAttribute.swift"; sourceTree = "<group>"; };
+		A84CBEE120F198E400CBA0AB /* ConstStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstStruct.swift; sourceTree = "<group>"; };
 		A85D9D001EA64AF900945E6E /* ThankYouData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThankYouData.swift; sourceTree = "<group>"; };
 		A85DCC071F5D2151004E1095 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		A85F02E11EC9BCC500654136 /* AddThankYouDataVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddThankYouDataVC.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				A80210CC208CD0DB003ADEFD /* UserInfoLeftMenuTableViewCell.swift */,
 				A866BEE2209EA2BC0073A76D /* LeftMenuTableViewCell.swift */,
 				A866BEE420B931620073A76D /* TYLColor.swift */,
+				A84CBEE120F198E400CBA0AB /* ConstStruct.swift */,
 			);
 			path = ThankYouList;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				A85D9D011EA64AF900945E6E /* ThankYouData.swift in Sources */,
 				A866BEE3209EA2BC0073A76D /* LeftMenuTableViewCell.swift in Sources */,
 				A85DCC081F5D2151004E1095 /* CustomCell.swift in Sources */,
+				A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */,
 				A8DB2FBA1F5D41540055E8A4 /* CalendarVC.swift in Sources */,
 				A8831CC71E9CFE6B00F3CA0A /* AppDelegate.swift in Sources */,
 				A83D5F891F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift in Sources */,

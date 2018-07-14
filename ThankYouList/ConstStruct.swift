@@ -7,3 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
+struct ConstStruct {
+    static let _DATEPICKER_CELL_HEIGHT = CGFloat(210)
+}

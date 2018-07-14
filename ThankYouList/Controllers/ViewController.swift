@@ -201,9 +201,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         return sectionDate[section]
     }
     
-    /*
-     セクションの背景色を変更する
-    */
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         // Get the singleton
         let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
@@ -223,14 +220,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     // when a cell is tapped it goes the edit screen
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Input the indexPath in the indexPath in AppDelegate
-        print("didSelectRowAt in View Controller is called")
-        self.delegate.indexPathSection = indexPath.section
-        self.delegate.indexPathRow = indexPath.row
-        // going to the edit page
-        let storyboard: UIStoryboard = self.storyboard!
-        let editThankYouDataVC = storyboard.instantiateViewController(withIdentifier: "editThankYouDataVC") as! ThankYouList.EditThankYouDataVC
-        let navi = UINavigationController(rootViewController: editThankYouDataVC)
+        let vc = EditThankYouDataVC.createViewController(thankYouData: thankYouDataSingleton.thankYouDataList[indexPath.row])
+        let navi = UINavigationController(rootViewController: vc)
         self.present(navi, animated: true, completion: nil)
     }
 }

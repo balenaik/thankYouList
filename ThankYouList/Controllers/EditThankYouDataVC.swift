@@ -78,12 +78,8 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         
         // tableviewの背景色指定
         self.view.backgroundColor = UIColor(red: 247/255.0, green: 247/255.0, blue: 247/255.0, alpha: 1.0)
-        
-        // navigationbarの背景色指定
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 255/255.0, green: 248/255.0, blue: 232/255.0, alpha: 1.0)
-        
-        // navigationbarの文字色設定
-        self.navigationController?.navigationBar.tintColor = UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)
+        self.navigationController?.navigationBar.barTintColor = TYLColor.navigationBarBgColor
+        self.navigationController?.navigationBar.tintColor = TYLColor.navigationBarTextColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)]
     }
 
@@ -96,7 +92,6 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
             print("Not login? error")
             return
         }
-        
         db.collection("users").document(userMail).collection("posts").document(editingThankYouData.id).updateData(editThankYouData.dictionary) { error in
             if let error = error {
                 print("Error adding document: \(error.localizedDescription)")
@@ -105,8 +100,30 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         }
     }
     
-    func deleteThankYou() {
-
+    private func deleteThankYou() {
+        guard let editingThankYouData = editingThankYouData else { return }
+        guard let userMail = Auth.auth().currentUser?.email else {
+            print("Not login? error")
+            return
+        }
+        db.collection("users").document(userMail).collection("posts").document(editingThankYouData.id).delete(completion: { [weak self] error in
+            guard let weakSelf = self else { return }
+            if let error = error {
+                let alert = UIAlertController(title: nil, message: "Couldn't delete", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                weakSelf.present(alert, animated: true, completion: nil)
+            }
+            weakSelf.dismiss(animated: true, completion: nil)
+        })
+    }
+    
+        private func getSectionItemCount(thankYouDateString: String) -> Int {
+            var sectionItems = [ThankYouData]()
+            let thankYouDataSingleton = GlobalThankYouData.sharedInstance
+            let thankYouDataList: [ThankYouData] = thankYouDataSingleton.thankYouDataList
+            sectionItems = thankYouDataList.filter({$0.date == thankYouDateString})
+            return sectionItems.count
+        }
 //
 //        // Get the singleton
 //        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
@@ -161,15 +178,8 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
 //        // Delete the element first
 //        thankYouDataSingleton.thankYouDataList.remove(at: listIndexNo)
 //
-//        // ThankYouの保存処理
-//        let userDefaults = UserDefaults.standard
-//        // Data型にシリアライズする
-//        let data = NSKeyedArchiver.archivedData(withRootObject: thankYouDataSingleton.thankYouDataList)
-//        userDefaults.set(data, forKey: "thankYouDataList")
-//        userDefaults.set(thankYouDataSingleton.sectionDate, forKey: "sectionDate")
-//        userDefaults.synchronize()
 
-    }
+
     
     
     func textViewDidChange(_ textView: UITextView) {
@@ -303,8 +313,6 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
             let deleteAction = UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: UIAlertActionStyle.destructive){ (action: UIAlertAction) in
                 // Delteがクリックされた時の処理
                 self.deleteThankYou()
-                // Go back to the previous screen
-                self.dismiss(animated: true, completion: nil)
             }
             //  Cancelボタンの実装
             let cancelButton = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)

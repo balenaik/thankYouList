@@ -191,18 +191,43 @@ class CalendarVC: UIViewController {
                 }
                 if diff.type == .removed {
                     let removedDataId = diff.document.documentID
-                    for (index, thankYouDataList) in weakSelf.thankYouDataSingleton.thankYouDataList.enumerated() {
-                        if thankYouDataList.id == removedDataId {
+                    for (index, thankYouData) in weakSelf.thankYouDataSingleton.thankYouDataList.enumerated() {
+                        if thankYouData.id == removedDataId {
                             weakSelf.thankYouDataSingleton.thankYouDataList.remove(at: index)
+                            weakSelf.deleteSectionDateIfNeeded(sectionDate: thankYouData.date)
                             break
                         }
+                    }
+                }
+                if diff.type == .modified {
+                    let thankYouData = ThankYouData(dictionary: diff.document.data())
+                    guard var editedThankYouData = thankYouData else { break }
+                    editedThankYouData.id = diff.document.documentID
+                    for (index, thankYouData) in weakSelf.thankYouDataSingleton.thankYouDataList.enumerated() {
+                        if editedThankYouData.id == thankYouData.id {
+                            weakSelf.thankYouDataSingleton.thankYouDataList.remove(at: index)
+                            weakSelf.deleteSectionDateIfNeeded(sectionDate: thankYouData.date)
+                            break
+                        }
+                    }
+                    weakSelf.thankYouDataSingleton.thankYouDataList.append(editedThankYouData)
+                    if !weakSelf.thankYouDataSingleton.sectionDate.contains(editedThankYouData.date) {
+                        weakSelf.thankYouDataSingleton.sectionDate.append(editedThankYouData.date)
+                        weakSelf.thankYouDataSingleton.sectionDate.sort(by:>)
                     }
                 }
             }
             DispatchQueue.main.async {
                 weakSelf.tableView.reloadData()
-                weakSelf.calendarView.reloadData()
             }
+        }
+    }
+    
+    private func deleteSectionDateIfNeeded(sectionDate: String) {
+        let sectionItemsCount = thankYouDataSingleton.thankYouDataList.filter({$0.date == sectionDate}).count
+        if sectionItemsCount == 0 {
+            thankYouDataSingleton.sectionDate = thankYouDataSingleton.sectionDate.filter({$0 != sectionDate})
+            thankYouDataSingleton.sectionDate.sort(by:>)
         }
     }
     

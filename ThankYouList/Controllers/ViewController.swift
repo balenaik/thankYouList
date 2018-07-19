@@ -45,19 +45,6 @@ class ViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)]
         
         if thankYouDataSingleton.thankYouDataList.count != 0 { return }
-
-//        let userDefaults = UserDefaults.standard
-//        if let storedThankYouDataList = userDefaults.object(forKey: "thankYouDataList") as? Data {
-//            
-////            if let unarchiveThankYouDataList = NSKeyedUnarchiver.unarchiveObject(
-////                with: storedThankYouDataList) as? [ThankYouDataUD] {
-////                thankYouDataSingleton.thankYouDataList.append(contentsOf: unarchiveThankYouDataList)
-////            }
-//        }
-//        if let storedSectionDate = userDefaults.array(forKey: "sectionDate") as? [String] {
-//            thankYouDataSingleton.sectionDate.append(contentsOf: storedSectionDate)
-//        }
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -144,17 +131,43 @@ class ViewController: UIViewController {
                 }
                 if diff.type == .removed {
                     let removedDataId = diff.document.documentID
-                    for (index, thankYouDataList) in weakSelf.thankYouDataSingleton.thankYouDataList.enumerated() {
-                        if thankYouDataList.id == removedDataId {
+                    for (index, thankYouData) in weakSelf.thankYouDataSingleton.thankYouDataList.enumerated() {
+                        if thankYouData.id == removedDataId {
                             weakSelf.thankYouDataSingleton.thankYouDataList.remove(at: index)
+                            weakSelf.deleteSectionDateIfNeeded(sectionDate: thankYouData.date)
                             break
                         }
+                    }
+                }
+                if diff.type == .modified {
+                    let thankYouData = ThankYouData(dictionary: diff.document.data())
+                    guard var editedThankYouData = thankYouData else { break }
+                    editedThankYouData.id = diff.document.documentID
+                    for (index, thankYouData) in weakSelf.thankYouDataSingleton.thankYouDataList.enumerated() {
+                        if editedThankYouData.id == thankYouData.id {
+                            weakSelf.thankYouDataSingleton.thankYouDataList.remove(at: index)
+                            weakSelf.deleteSectionDateIfNeeded(sectionDate: thankYouData.date)
+                            break
+                        }
+                    }
+                    weakSelf.thankYouDataSingleton.thankYouDataList.append(editedThankYouData)
+                    if !weakSelf.thankYouDataSingleton.sectionDate.contains(editedThankYouData.date) {
+                        weakSelf.thankYouDataSingleton.sectionDate.append(editedThankYouData.date)
+                        weakSelf.thankYouDataSingleton.sectionDate.sort(by:>)
                     }
                 }
             }
             DispatchQueue.main.async {
                 weakSelf.tableView.reloadData()
             }
+        }
+    }
+    
+    private func deleteSectionDateIfNeeded(sectionDate: String) {
+        let sectionItemsCount = thankYouDataSingleton.thankYouDataList.filter({$0.date == sectionDate}).count
+        if sectionItemsCount == 0 {
+            thankYouDataSingleton.sectionDate = thankYouDataSingleton.sectionDate.filter({$0 != sectionDate})
+            thankYouDataSingleton.sectionDate.sort(by:>)
         }
     }
 }
@@ -169,7 +182,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "thankYouCell", for: indexPath)
-        let sectionItems = self.getSectionItems(section: indexPath.section)
+        let sectionItems = getSectionItems(section: indexPath.section)
         let myThankYouData = sectionItems[indexPath.row]
 
         cell.textLabel?.text = myThankYouData.value
@@ -178,10 +191,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         return cell 
     }
     
-    
-    /*
-     セクションの数を返す.
-     */
     func numberOfSections(in tableView: UITableView) -> Int {
         // Get the singleton
         let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
@@ -190,9 +199,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         return sectionDate.count
     }
     
-    /*
-     セクションのタイトルを返す.
-     */
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         // Get the singleton
         let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
@@ -220,7 +226,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     // when a cell is tapped it goes the edit screen
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = EditThankYouDataVC.createViewController(thankYouData: thankYouDataSingleton.thankYouDataList[indexPath.row])
+        let sectionItems = self.getSectionItems(section: indexPath.section)
+        let editingThankYouData = sectionItems[indexPath.row]
+        let vc = EditThankYouDataVC.createViewController(thankYouData: editingThankYouData)
         let navi = UINavigationController(rootViewController: vc)
         self.present(navi, animated: true, completion: nil)
     }

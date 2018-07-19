@@ -84,27 +84,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ThankYouList/Controllers/ViewController.swift"
-            timestampString = "553242466.272154"
+            timestampString = "553720514.814786"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
-            landmarkName = "tableView(_:numberOfRowsInSection:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ThankYouList/Controllers/ViewController.swift"
-            timestampString = "553242466.27335"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "getSectionItems(section:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -163,44 +147,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ThankYouList/Controllers/CalendarVC.swift"
-            timestampString = "552832933.604313"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "handleCellSelected(view:cellState:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/JTAppleCalendar/Sources/UICollectionViewDelegates.swift"
-            timestampString = "552630259.145399"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
-            landmarkName = "handleSelectionValueChanged(_:action:indexPath:selectionType:shouldTriggerSelectionDelegate:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "ThankYouList/Controllers/ViewController.swift"
-            timestampString = "553242466.274861"
+            timestampString = "553720514.83303"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
             landmarkName = "loadThankYouData()"
             landmarkType = "7">
          </BreakpointContent>

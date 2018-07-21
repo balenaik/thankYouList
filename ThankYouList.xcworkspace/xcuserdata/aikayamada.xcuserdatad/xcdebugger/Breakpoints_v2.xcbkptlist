@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ThankYouList/Controllers/LoginVC.swift"
-            timestampString = "553242466.251088"
+            timestampString = "553858054.951884"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "signIn(credential:userName:email:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -84,7 +84,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ThankYouList/Controllers/ViewController.swift"
-            timestampString = "553720514.814786"
+            timestampString = "553858054.98281"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "70"
@@ -100,7 +100,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ThankYouList/AppDelegate.swift"
-            timestampString = "552832933.601802"
+            timestampString = "553858054.984988"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "130"
@@ -116,7 +116,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ThankYouList/AppDelegate.swift"
-            timestampString = "552832933.602033"
+            timestampString = "553858054.9867229"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "146"
@@ -148,12 +148,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ThankYouList/Controllers/ViewController.swift"
-            timestampString = "553720514.83303"
+            timestampString = "553858054.988077"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "81"
             endingLineNumber = "81"
             landmarkName = "loadThankYouData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ThankYouList/Controllers/LoginVC.swift"
+            timestampString = "553858054.989802"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "signIn(credential:userName:email:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

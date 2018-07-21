@@ -50,11 +50,11 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
     // MARK: - Internal Methods
     func addThankYou(thankYouData: ThankYouData) {
         
-        guard let userMail = Auth.auth().currentUser?.email else {
+        guard let uid = Auth.auth().currentUser?.uid else {
             print("Not login? error")
             return
         }
-        db.collection("users").document(userMail).collection("posts").addDocument(data: thankYouData.dictionary) { error in
+        db.collection("users").document(uid).collection("thankYouList").addDocument(data: thankYouData.dictionary) { error in
             if let error = error {
                 print("Error adding document: \(error.localizedDescription)")
                 return

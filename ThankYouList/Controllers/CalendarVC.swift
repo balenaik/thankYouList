@@ -168,11 +168,11 @@ class CalendarVC: UIViewController {
     }
     
     private func checkForUpdates() {
-        guard let userMail = Auth.auth().currentUser?.email else {
+        guard let uid = Auth.auth().currentUser?.uid else {
             print("Not login? error")
             return
         }
-        db.collection("users").document(userMail).collection("posts").addSnapshotListener { [weak self] (querySnapshot, error) in
+        db.collection("users").document(uid).collection("thankYouList").addSnapshotListener { [weak self] (querySnapshot, error) in
             guard let weakSelf = self else { return }
             guard let snapShot = querySnapshot else { return }
             for diff in snapShot.documentChanges {

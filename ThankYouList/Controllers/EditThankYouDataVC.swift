@@ -88,11 +88,11 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
     // MARK: - Private Methods
     private func editThankYou(editThankYouData: ThankYouData) {
         guard let editingThankYouData = editingThankYouData else { return }
-        guard let userMail = Auth.auth().currentUser?.email else {
+        guard let uid = Auth.auth().currentUser?.uid else {
             print("Not login? error")
             return
         }
-        db.collection("users").document(userMail).collection("posts").document(editingThankYouData.id).updateData(editThankYouData.dictionary) { error in
+        db.collection("users").document(uid).collection("thankYouList").document(editingThankYouData.id).updateData(editThankYouData.dictionary) { error in
             if let error = error {
                 print("Error adding document: \(error.localizedDescription)")
                 return
@@ -102,11 +102,11 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
     
     private func deleteThankYou() {
         guard let editingThankYouData = editingThankYouData else { return }
-        guard let userMail = Auth.auth().currentUser?.email else {
+        guard let uid = Auth.auth().currentUser?.uid else {
             print("Not login? error")
             return
         }
-        db.collection("users").document(userMail).collection("posts").document(editingThankYouData.id).delete(completion: { [weak self] error in
+        db.collection("users").document(uid).collection("thankYouList").document(editingThankYouData.id).delete(completion: { [weak self] error in
             guard let weakSelf = self else { return }
             if let error = error {
                 let alert = UIAlertController(title: nil, message: "Couldn't delete", preferredStyle: .alert)

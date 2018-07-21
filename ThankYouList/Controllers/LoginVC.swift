@@ -35,11 +35,12 @@ class LoginVC: UIViewController {
             guard let weakSelf = self else { return }
             switch loginResult {
             case .success:
+                let accessTokenStringTest = FBSDKAccessToken.current().tokenString
                 let accessToken = AccessToken.current
                 var name: String?
                 var email: String?
                 guard let accessTokenString: String = accessToken?.authenticationToken else { return }
-                let credential = FacebookAuthProvider.credential(withAccessToken: accessTokenString)
+                let credential = FacebookAuthProvider.credential(withAccessToken: accessTokenStringTest!)
                 let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"email,name"], tokenString: accessTokenString, version: nil, httpMethod: "GET")
                 req?.start(completionHandler: { (connection, result, error) in
                     if error != nil {

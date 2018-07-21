@@ -114,7 +114,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func moveUDDataToFirestore(thankYouDataUDList: [ThankYouDataUD]) {
-        guard let userMail = Auth.auth().currentUser?.email else {
+        guard let uid = Auth.auth().currentUser?.uid else {
             print("Not login? error")
             return
         }
@@ -131,7 +131,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for thankYouDataUD in thankYouDataUDList {
             guard let thankYouValue = thankYouDataUD.thankYouValue, let thankYouDate = thankYouDataUD.thankYouDate else { return }
             let thankYouData = ThankYouData(id: "", value: thankYouValue, date: thankYouDate, timeStamp: Date())
-            db.collection("users").document(userMail).collection("posts").addDocument(data: thankYouData.dictionary) { error in
+            db.collection("users").document(uid).collection("thankYouList").addDocument(data: thankYouData.dictionary) { error in
                 if let error = error {
                     print("Error adding document: \(error.localizedDescription)")
                     unCopiedUDDataList.append(thankYouDataUD)

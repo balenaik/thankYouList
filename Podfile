@@ -15,5 +15,7 @@ target 'ThankYouList' do
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'GoogleSignIn'
+  pod 'RNCryptor', '~> 5.0'
+  pod 'CryptoSwift'
 
 end

@@ -15,12 +15,13 @@ protocol DocumentSeriarizable {
 struct ThankYouData {
     var id: String
     var value: String
+    var encryptedValue: String
     var date: String
     var timeStamp: Date
     
     var dictionary: [String : Any] {
         return [
-            "value": value,
+            "encryptedValue": encryptedValue,
             "date": date,
             "timeStamp": timeStamp
         ]
@@ -30,14 +31,13 @@ struct ThankYouData {
 
 extension ThankYouData: DocumentSeriarizable {
     init?(dictionary: [String : Any]) {
-        guard let value = dictionary["value"] as? String,
+        guard let encryptedValue = dictionary["encryptedValue"] as? String,
             let date = dictionary["date"] as? String,
             let timeStamp = dictionary["timeStamp"] as? Date else {
                 return nil
         }
-        self.init(id: "", value: value, date: date, timeStamp: timeStamp)
+        self.init(id: "", value: "", encryptedValue: encryptedValue, date: date, timeStamp: timeStamp)
     }
-    
 }
 
 

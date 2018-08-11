@@ -130,7 +130,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let db = Firestore.firestore()
         for thankYouDataUD in thankYouDataUDList {
             guard let thankYouValue = thankYouDataUD.thankYouValue, let thankYouDate = thankYouDataUD.thankYouDate else { return }
-            let thankYouData = ThankYouData(id: "", value: thankYouValue, date: thankYouDate, timeStamp: Date())
+            let uid16string = String(uid.prefix(16))
+            let encryptedValue = Crypto().encryptString(plainText: thankYouValue, key: uid16string)
+            let thankYouData = ThankYouData(id: "", value: "", encryptedValue: encryptedValue, date: thankYouDate, timeStamp: Date())
             db.collection("users").document(uid).collection("thankYouList").addDocument(data: thankYouData.dictionary) { error in
                 if let error = error {
                     print("Error adding document: \(error.localizedDescription)")

@@ -41,8 +41,14 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
             return
         }
         guard let dateLabelText = dateLabel.text else { return }
-        let editedThankYouData = ThankYouData(id: "", value: thankYouTextView.text, date: dateLabelText, timeStamp: Date())
-        editThankYou(editThankYouData: editedThankYouData)
+        guard let uid = Auth.auth().currentUser?.uid else {
+            print("Not login? error")
+            return
+        }
+        let uid16string = String(uid.prefix(16))
+        let encryptedValue = Crypto().encryptString(plainText: thankYouTextView.text, key: uid16string)
+        let editedThankYouData = ThankYouData(id: "", value: "", encryptedValue: encryptedValue, date: dateLabelText, timeStamp: Date())
+        editThankYou(editThankYouData: editedThankYouData, uid: uid)
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -86,12 +92,8 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
     
     
     // MARK: - Private Methods
-    private func editThankYou(editThankYouData: ThankYouData) {
+    private func editThankYou(editThankYouData: ThankYouData, uid: String) {
         guard let editingThankYouData = editingThankYouData else { return }
-        guard let uid = Auth.auth().currentUser?.uid else {
-            print("Not login? error")
-            return
-        }
         db.collection("users").document(uid).collection("thankYouList").document(editingThankYouData.id).updateData(editThankYouData.dictionary) { error in
             if let error = error {
                 print("Error adding document: \(error.localizedDescription)")

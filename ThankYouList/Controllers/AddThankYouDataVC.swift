@@ -41,19 +41,21 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
             return
         }
         guard let dateLabelText = dateLabel.text else { return }
-        let myThankYouData = ThankYouData(id: "", value: thankYouTextView.text, date: dateLabelText, timeStamp: Date())
-        addThankYou(thankYouData: myThankYouData)
+        guard let uid = Auth.auth().currentUser?.uid else {
+            print("Not login? error")
+            return
+        }
+        let uid16string = String(uid.prefix(16))
+        let encryptedValue = Crypto().encryptString(plainText: thankYouTextView.text, key: uid16string)
+        let myThankYouData = ThankYouData(id: "", value: "", encryptedValue: encryptedValue, date: dateLabelText, timeStamp: Date())
+        addThankYou(thankYouData: myThankYouData, uid: uid)
         self.dismiss(animated: true, completion: nil)
     }
     
     
     // MARK: - Internal Methods
-    func addThankYou(thankYouData: ThankYouData) {
+    func addThankYou(thankYouData: ThankYouData, uid: String) {
         
-        guard let uid = Auth.auth().currentUser?.uid else {
-            print("Not login? error")
-            return
-        }
         db.collection("users").document(uid).collection("thankYouList").addDocument(data: thankYouData.dictionary) { error in
             if let error = error {
                 print("Error adding document: \(error.localizedDescription)")
@@ -61,36 +63,6 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
             }
             
         }
-        
-        
-        // Get the singleton
-//        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
-        
-        
-        // if sectionDate doesn't contain the thankYouDate, then add it
-//        if !thankYouDataSingleton.sectionDate.contains(thankYouData.thankYouDate!) {
-//            thankYouDataSingleton.sectionDate.append(thankYouData.thankYouDate!)
-//            print("sectiondate.append happens")
-//        }
-        
-        // Sort the sectionDate
-//        thankYouDataSingleton.sectionDate.sort(by:>)
-//        print(thankYouDataSingleton.sectionDate[0])
-        
-        //Insert
-//        thankYouDataSingleton.thankYouDataList.insert(thankYouData, at: 0)
-        
-//        // ThankYouの保存処理
-//        let userDefaults = UserDefaults.standard
-//        // Data型にシリアライズする
-//        let data = NSKeyedArchiver.archivedData(withRootObject: thankYouDataSingleton.thankYouDataList)
-//        userDefaults.set(data, forKey: "thankYouDataList")
-//        userDefaults.set(thankYouDataSingleton.sectionDate, forKey: "sectionDate")
-//        userDefaults.synchronize()
-        
-
-        
-        
     }
     
     

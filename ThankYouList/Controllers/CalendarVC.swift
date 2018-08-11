@@ -172,6 +172,7 @@ class CalendarVC: UIViewController {
             print("Not login? error")
             return
         }
+        let uid16string = String(uid.prefix(16))
         db.collection("users").document(uid).collection("thankYouList").addSnapshotListener { [weak self] (querySnapshot, error) in
             guard let weakSelf = self else { return }
             guard let snapShot = querySnapshot else { return }
@@ -179,7 +180,9 @@ class CalendarVC: UIViewController {
                 if diff.type == .added {
                     let thankYouData = ThankYouData(dictionary: diff.document.data())
                     guard var newThankYouData = thankYouData else { break }
+                    let decryptedValue = Crypto().decryptString(encryptText: newThankYouData.encryptedValue, key: uid16string)
                     newThankYouData.id = diff.document.documentID
+                    newThankYouData.value = decryptedValue
                     let thankYouDataIds: [String] = weakSelf.thankYouDataSingleton.thankYouDataList.map{$0.id}
                     if !thankYouDataIds.contains(newThankYouData.id) {
                         weakSelf.thankYouDataSingleton.thankYouDataList.append(newThankYouData)
@@ -202,7 +205,9 @@ class CalendarVC: UIViewController {
                 if diff.type == .modified {
                     let thankYouData = ThankYouData(dictionary: diff.document.data())
                     guard var editedThankYouData = thankYouData else { break }
+                    let decryptedValue = Crypto().decryptString(encryptText: editedThankYouData.encryptedValue, key: uid16string)
                     editedThankYouData.id = diff.document.documentID
+                    editedThankYouData.value = decryptedValue
                     for (index, thankYouData) in weakSelf.thankYouDataSingleton.thankYouDataList.enumerated() {
                         if editedThankYouData.id == thankYouData.id {
                             weakSelf.thankYouDataSingleton.thankYouDataList.remove(at: index)
@@ -218,6 +223,10 @@ class CalendarVC: UIViewController {
                 }
             }
             DispatchQueue.main.async {
+                if let date = weakSelf.formatter.date(from: weakSelf.selectedDate) {
+                    weakSelf.getSectionItems(date: date)
+                }
+                weakSelf.calendarView.reloadData()
                 weakSelf.tableView.reloadData()
             }
         }
@@ -349,13 +358,10 @@ extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     
-    // when a cell is tapped it goes the edit screen
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Look for the index number in sectionDate and set it to delegate
-        // going to the edit page
-        let storyboard: UIStoryboard = self.storyboard!
-        let editThankYouDataVC = storyboard.instantiateViewController(withIdentifier: "editThankYouDataVC") as! ThankYouList.EditThankYouDataVC
-        let navi = UINavigationController(rootViewController: editThankYouDataVC)
+        let editingThankYouData = sectionItems[indexPath.row]
+        let vc = EditThankYouDataVC.createViewController(thankYouData: editingThankYouData)
+        let navi = UINavigationController(rootViewController: vc)
         self.present(navi, animated: true, completion: nil)
     }
 }

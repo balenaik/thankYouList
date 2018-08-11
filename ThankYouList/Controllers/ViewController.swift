@@ -81,6 +81,7 @@ class ViewController: UIViewController {
             print("Not login? error")
             return
         }
+        let uid16string = String(uid.prefix(16))
         thankYouDataSingleton.sectionDate = []
         db.collection("users").document(uid).collection("thankYouList").getDocuments { [weak self](querySnapshot, error) in
             guard let weakSelf = self else { return }
@@ -92,7 +93,9 @@ class ViewController: UIViewController {
             var thankYouDataList: [ThankYouData] = []
             for document in querySnapshot.documents {
                 guard var thankYouData = ThankYouData(dictionary: document.data()) else { break }
+                let decryptedValue = Crypto().decryptString(encryptText: thankYouData.encryptedValue, key: uid16string)
                 thankYouData.id = document.documentID
+                thankYouData.value = decryptedValue
                 thankYouDataList.append(thankYouData)
             }
             for thankYouData in thankYouDataList {
@@ -112,6 +115,7 @@ class ViewController: UIViewController {
             print("Not login? error")
             return
         }
+       let uid16string = String(uid.prefix(16))
         db.collection("users").document(uid).collection("thankYouList").addSnapshotListener { [weak self] (querySnapshot, error) in
             guard let weakSelf = self else { return }
             guard let snapShot = querySnapshot else { return }
@@ -119,7 +123,9 @@ class ViewController: UIViewController {
                 if diff.type == .added {
                     let thankYouData = ThankYouData(dictionary: diff.document.data())
                     guard var newThankYouData = thankYouData else { break }
+                    let decryptedValue = Crypto().decryptString(encryptText: newThankYouData.encryptedValue, key: uid16string)
                     newThankYouData.id = diff.document.documentID
+                    newThankYouData.value = decryptedValue
                     let thankYouDataIds: [String] = weakSelf.thankYouDataSingleton.thankYouDataList.map{$0.id}
                     if !thankYouDataIds.contains(newThankYouData.id) {
                          weakSelf.thankYouDataSingleton.thankYouDataList.append(newThankYouData)
@@ -142,7 +148,9 @@ class ViewController: UIViewController {
                 if diff.type == .modified {
                     let thankYouData = ThankYouData(dictionary: diff.document.data())
                     guard var editedThankYouData = thankYouData else { break }
+                    let decryptedValue = Crypto().decryptString(encryptText: editedThankYouData.encryptedValue, key: uid16string)
                     editedThankYouData.id = diff.document.documentID
+                    editedThankYouData.value = decryptedValue
                     for (index, thankYouData) in weakSelf.thankYouDataSingleton.thankYouDataList.enumerated() {
                         if editedThankYouData.id == thankYouData.id {
                             weakSelf.thankYouDataSingleton.thankYouDataList.remove(at: index)

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		6F745EA4C310C891EA96225E /* Pods_ThankYouList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D49C15FD4089235E28B5ED /* Pods_ThankYouList.framework */; };
 		A80210CD208CD0DB003ADEFD /* UserInfoLeftMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80210CC208CD0DB003ADEFD /* UserInfoLeftMenuTableViewCell.swift */; };
-		A813A2162025CD3B002DCA65 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A813A2152025CD3B002DCA65 /* GoogleService-Info.plist */; };
 		A824150F205CE28C00172587 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824150E205CE28C00172587 /* LoginVC.swift */; };
 		A83D5F891F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */; };
 		A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84CBEE120F198E400CBA0AB /* ConstStruct.swift */; };
@@ -44,7 +43,6 @@
 		14D49C15FD4089235E28B5ED /* Pods_ThankYouList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThankYouList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A015AC112826D3ABF5A416EC /* Pods-ThankYouList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.release.xcconfig"; sourceTree = "<group>"; };
 		A80210CC208CD0DB003ADEFD /* UserInfoLeftMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoLeftMenuTableViewCell.swift; sourceTree = "<group>"; };
-		A813A2152025CD3B002DCA65 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A824150B205CDF5800172587 /* ThankYouList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThankYouList.entitlements; sourceTree = "<group>"; };
 		A824150E205CE28C00172587 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		A82EB682210DA66D00CF1FDA /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
@@ -142,7 +140,6 @@
 				A85D9D001EA64AF900945E6E /* ThankYouData.swift */,
 				A8A0FE5F205DFCB40048AB33 /* Controllers */,
 				A824150B205CDF5800172587 /* ThankYouList.entitlements */,
-				A813A2152025CD3B002DCA65 /* GoogleService-Info.plist */,
 				A8831CC61E9CFE6B00F3CA0A /* AppDelegate.swift */,
 				A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */,
 				A8F649B61EEB96D100D6BA84 /* GlobalThankYouData.swift */,
@@ -261,7 +258,6 @@
 				A8831CCE1E9CFE6B00F3CA0A /* Assets.xcassets in Resources */,
 				A8831CCC1E9CFE6B00F3CA0A /* Main.storyboard in Resources */,
 				A8BA38B91F5CC5F600817D5C /* images.xcassets in Resources */,
-				A813A2162025CD3B002DCA65 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

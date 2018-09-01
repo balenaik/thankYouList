@@ -20,7 +20,9 @@ class ViewController: UIViewController {
     
     // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var emptyView: EmptyView!
+    
+    
 
     // MARK: - IBActions
     @IBAction func tappedMenuButton(_ sender: Any) {
@@ -37,25 +39,20 @@ class ViewController: UIViewController {
         // change the height of cells depending on the text
         tableView.estimatedRowHeight = 40
         tableView.rowHeight = UITableViewAutomaticDimension
-        
 
-        self.view.backgroundColor = UIColor(red: 247/255.0, green: 247/255.0, blue: 247/255.0, alpha: 1.0)
+        emptyView.isHidden = true
+        
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 255/255.0, green: 248/255.0, blue: 232/255.0, alpha: 1.0)
         self.navigationController?.navigationBar.tintColor = UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)]
-        
-        if thankYouDataSingleton.thankYouDataList.count != 0 { return }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // Get the singleton
-        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
-        print("thankYouDataList.count:", thankYouDataSingleton.thankYouDataList.count)
+        if thankYouDataSingleton.thankYouDataList.count == 0 {
+            emptyView.isHidden = false
+        } else {
+            emptyView.isHidden = true
+        }
         self.tableView.reloadData()
     }
     
@@ -63,6 +60,10 @@ class ViewController: UIViewController {
 //        Auth.auth().removeStateDidChangeListener(handle!)
     }
 
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
     
     // MARK: - Private Methods
@@ -105,6 +106,11 @@ class ViewController: UIViewController {
             }
             weakSelf.thankYouDataSingleton.thankYouDataList = thankYouDataList
             DispatchQueue.main.async {
+                if weakSelf.thankYouDataSingleton.thankYouDataList.count == 0 {
+                    weakSelf.emptyView.isHidden = false
+                } else {
+                    weakSelf.emptyView.isHidden = true
+                }
                 weakSelf.tableView.reloadData()
             }
         }
@@ -166,6 +172,11 @@ class ViewController: UIViewController {
                 }
             }
             DispatchQueue.main.async {
+                if weakSelf.thankYouDataSingleton.thankYouDataList.count == 0 {
+                    weakSelf.emptyView.isHidden = false
+                } else {
+                    weakSelf.emptyView.isHidden = true
+                }
                 weakSelf.tableView.reloadData()
             }
         }

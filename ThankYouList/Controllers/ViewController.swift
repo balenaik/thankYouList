@@ -40,7 +40,7 @@ class ViewController: UIViewController {
         tableView.estimatedRowHeight = 40
         tableView.rowHeight = UITableViewAutomaticDimension
 
-        emptyView.isHidden = true
+        emptyView.isHidden = false
         
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 255/255.0, green: 248/255.0, blue: 232/255.0, alpha: 1.0)
         self.navigationController?.navigationBar.tintColor = UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)
@@ -124,6 +124,10 @@ class ViewController: UIViewController {
        let uid16string = String(uid.prefix(16))
         db.collection("users").document(uid).collection("thankYouList").addSnapshotListener { [weak self] (querySnapshot, error) in
             guard let weakSelf = self else { return }
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
             guard let snapShot = querySnapshot else { return }
             for diff in snapShot.documentChanges {
                 if diff.type == .added {

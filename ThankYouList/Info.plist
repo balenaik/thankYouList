@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>fbauth2</string>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -33,7 +29,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.1082508630574-0cesculvpfs0ah2a0c0jd042heqa1asp</string>
+				<string>com.googleusercontent.apps.24612260137-lbsjv8saqau2aic5m01ej9nog0p5cro0</string>
 			</array>
 		</dict>
 	</array>
@@ -43,6 +39,10 @@
 	<string>1628110220618139</string>
 	<key>FacebookDisplayName</key>
 	<string>Thank You List</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbauth2</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

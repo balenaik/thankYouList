@@ -175,6 +175,10 @@ class CalendarVC: UIViewController {
         let uid16string = String(uid.prefix(16))
         db.collection("users").document(uid).collection("thankYouList").addSnapshotListener { [weak self] (querySnapshot, error) in
             guard let weakSelf = self else { return }
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
             guard let snapShot = querySnapshot else { return }
             for diff in snapShot.documentChanges {
                 if diff.type == .added {

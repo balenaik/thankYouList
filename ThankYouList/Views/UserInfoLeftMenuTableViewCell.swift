@@ -19,7 +19,6 @@ class UserInfoLeftMenuTableViewCell: UITableViewCell {
     
     // MARK: - IBOutlets
     @IBOutlet weak var userName: UILabel!
-//    @IBOutlet weak var email: UILabel!
     
     
     // MARK: - Initializers
@@ -31,7 +30,6 @@ class UserInfoLeftMenuTableViewCell: UITableViewCell {
     // MARK: - Internal Methods
     func configureCell(userNameString: String, emailString: String) {
         userName.text = userNameString
-//        email.text = emailString
         layoutIfNeeded()
     }
 }

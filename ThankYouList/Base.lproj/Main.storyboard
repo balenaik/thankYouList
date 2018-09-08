@@ -35,42 +35,62 @@
                                 <color key="backgroundColor" red="1" green="0.98039215686274506" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserInfoLeftMenuTableViewCell" rowHeight="100" id="mRW-cl-m1L" customClass="UserInfoLeftMenuTableViewCell" customModule="ThankYouList" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1" width="375" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserInfoLeftMenuTableViewCell" rowHeight="144" id="mRW-cl-m1L" customClass="UserInfoLeftMenuTableViewCell" customModule="ThankYouList" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="1" width="375" height="144"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mRW-cl-m1L" id="vGW-WV-l7i">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="144"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_thankyouchan" translatesAutoresizingMaskIntoConstraints="NO" id="Xl7-cq-xEd">
-                                                    <rect key="frame" x="0.0" y="-457" width="100" height="1024"/>
+                                                    <rect key="frame" x="0.0" y="-410.5" width="100" height="1024"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="cFm-lq-mpD"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDD-F1-IqZ">
-                                                    <rect key="frame" x="100" y="44.5" width="81.5" height="21"/>
+                                                    <rect key="frame" x="100" y="91.5" width="81.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2wy-jL-1AY">
-                                                    <rect key="frame" x="0.0" y="99" width="375" height="1"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fzm-tS-ktB" userLabel="marginView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                                    <color key="backgroundColor" red="1" green="0.98039215686274506" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="t2V-8u-wHa"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2wy-jL-1AY" userLabel="line - bottom">
+                                                    <rect key="frame" x="0.0" y="143" width="375" height="1"/>
                                                     <color key="backgroundColor" red="0.76078431372549016" green="0.76078431372549016" blue="0.76078431372549016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="fCe-V6-N02"/>
                                                     </constraints>
                                                 </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H2q-2Z-c9V" userLabel="line - head">
+                                                    <rect key="frame" x="0.0" y="44" width="375" height="2"/>
+                                                    <color key="backgroundColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="2" id="der-Mm-H1C"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="FDD-F1-IqZ" firstAttribute="centerY" secondItem="vGW-WV-l7i" secondAttribute="centerY" constant="5" id="DNa-6V-lBU"/>
+                                                <constraint firstItem="Fzm-tS-ktB" firstAttribute="top" secondItem="vGW-WV-l7i" secondAttribute="top" id="2YO-vw-Xz4"/>
+                                                <constraint firstItem="FDD-F1-IqZ" firstAttribute="centerY" secondItem="vGW-WV-l7i" secondAttribute="centerY" constant="29" id="DNa-6V-lBU"/>
+                                                <constraint firstItem="H2q-2Z-c9V" firstAttribute="leading" secondItem="vGW-WV-l7i" secondAttribute="leading" id="G5f-XO-fNp"/>
+                                                <constraint firstAttribute="trailing" secondItem="Fzm-tS-ktB" secondAttribute="trailing" id="LIA-Gq-B2C"/>
                                                 <constraint firstItem="Xl7-cq-xEd" firstAttribute="leading" secondItem="vGW-WV-l7i" secondAttribute="leading" id="OKg-CV-K8W"/>
                                                 <constraint firstAttribute="bottom" secondItem="2wy-jL-1AY" secondAttribute="bottom" id="QWz-dz-6fK"/>
                                                 <constraint firstItem="2wy-jL-1AY" firstAttribute="leading" secondItem="vGW-WV-l7i" secondAttribute="leading" id="XbZ-d9-Wrd"/>
+                                                <constraint firstItem="H2q-2Z-c9V" firstAttribute="top" secondItem="Fzm-tS-ktB" secondAttribute="bottom" id="aDB-6Z-eG5"/>
                                                 <constraint firstItem="FDD-F1-IqZ" firstAttribute="leading" secondItem="Xl7-cq-xEd" secondAttribute="trailing" id="dQp-cN-dlA"/>
-                                                <constraint firstItem="Xl7-cq-xEd" firstAttribute="centerY" secondItem="vGW-WV-l7i" secondAttribute="centerY" constant="5" id="ikz-iY-AMf"/>
+                                                <constraint firstItem="Xl7-cq-xEd" firstAttribute="centerY" secondItem="vGW-WV-l7i" secondAttribute="centerY" constant="29" id="ikz-iY-AMf"/>
+                                                <constraint firstItem="Fzm-tS-ktB" firstAttribute="leading" secondItem="vGW-WV-l7i" secondAttribute="leading" id="rJO-dv-X2m"/>
                                                 <constraint firstAttribute="trailing" secondItem="2wy-jL-1AY" secondAttribute="trailing" id="tem-bY-hkN"/>
+                                                <constraint firstAttribute="trailing" secondItem="H2q-2Z-c9V" secondAttribute="trailing" id="u9Z-J6-IbI"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.99607843137254903" green="0.99607843137254903" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -79,7 +99,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="menuCell" id="hgL-3q-GH7" customClass="LeftMenuTableViewCell" customModule="ThankYouList" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="101" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="145" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hgL-3q-GH7" id="paD-QQ-mnj">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

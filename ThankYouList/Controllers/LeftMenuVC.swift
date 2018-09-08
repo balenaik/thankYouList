@@ -123,7 +123,7 @@ extension LeftMenuVC: UITableViewDataSource {
 extension LeftMenuVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            return 130
+            return 174
         }
         return 50
     }

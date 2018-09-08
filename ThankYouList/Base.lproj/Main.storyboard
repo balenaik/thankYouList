@@ -934,7 +934,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xtv-pg-FuL">
-                                <rect key="frame" x="73" y="389" width="230" height="40"/>
+                                <rect key="frame" x="73" y="378.5" width="230" height="40"/>
                                 <color key="backgroundColor" red="0.23137254901960785" green="0.34901960784313724" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="230" id="eZ7-aj-C3I"/>
@@ -957,13 +957,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="zLi-vP-jNb">
-                                <rect key="frame" x="-9" y="298.5" width="393" height="50.5"/>
+                                <rect key="frame" x="32" y="298.5" width="311" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="zLi-vP-jNb" secondAttribute="height" multiplier="335:43" id="qGM-iu-DBS"/>
                                 </constraints>
                                 <string key="text">Take a simple diary 
 &amp; be happier</string>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="0.50588235294117645" green="0.44705882352941173" blue="0.41568627450980389" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -981,7 +981,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1it-Zw-ZPN">
-                                <rect key="frame" x="73" y="439" width="230" height="40"/>
+                                <rect key="frame" x="73" y="428.5" width="230" height="40"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="230" id="IUF-Sq-7Wu"/>

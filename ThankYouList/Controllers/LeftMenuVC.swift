@@ -32,9 +32,9 @@ class LeftMenuVC: UIViewController {
         func menuTitle() -> String {
             switch self {
             case .addThankYou:
-                return "Add Thank you"
+                return NSLocalizedString("Add Thank You", comment: "")
             case .logout:
-                return "logout"
+                return NSLocalizedString("Logout", comment: "")
             default:
                 return ""
             }

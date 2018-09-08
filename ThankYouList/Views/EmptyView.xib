@@ -25,11 +25,14 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4N-Mz-U2e" customClass="BalloonView" customModule="ThankYouList" customModuleProvider="target">
                     <rect key="frame" x="30" y="487" width="315" height="100"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Thank You From Here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9J-38-tpm">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Thank You From Here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9J-38-tpm" customClass="LocalizedLabel" customModule="ThankYouList" customModuleProvider="target">
                             <rect key="frame" x="52" y="31.5" width="212" height="20"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                             <color key="textColor" red="0.50588235294117645" green="0.44705882352941173" blue="0.41568627450980389" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="Add Thank You From Here"/>
+                            </userDefinedRuntimeAttributes>
                         </label>
                     </subviews>
                     <constraints>
@@ -56,11 +59,14 @@
                         <constraint firstAttribute="width" constant="173" id="WTf-rO-1oR"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is your Thank You List. Let's start adding the grateful thoughts!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHV-O9-kV5">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is your Thank You List. Let's start adding the grateful thoughts!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHV-O9-kV5" customClass="LocalizedLabel" customModule="ThankYouList" customModuleProvider="target">
                     <rect key="frame" x="46" y="275" width="283" height="38"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                     <color key="textColor" red="0.50588235294117645" green="0.44705882352941173" blue="0.41568627450980389" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="EmptyViewLabel"/>
+                    </userDefinedRuntimeAttributes>
                 </label>
             </subviews>
             <constraints>

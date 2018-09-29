@@ -16,3 +16,7 @@
 "Add Thank You From Here" = "Thank Youを作成する";
 "Add Thank You" = "Thank You を作成";
 "Logout" = "ログアウト";
+"Failed to add" = "作成できませんでした";
+"Failed to edit" = "編集できませんでした";
+"Failed to delete" = "削除できませんでした";
+

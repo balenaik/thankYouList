@@ -49,7 +49,6 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         let encryptedValue = Crypto().encryptString(plainText: thankYouTextView.text, key: uid16string)
         let editedThankYouData = ThankYouData(id: "", value: "", encryptedValue: encryptedValue, date: dateLabelText, timeStamp: Date())
         editThankYou(editThankYouData: editedThankYouData, uid: uid)
-        self.dismiss(animated: true, completion: nil)
     }
     
     
@@ -94,11 +93,16 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
     // MARK: - Private Methods
     private func editThankYou(editThankYouData: ThankYouData, uid: String) {
         guard let editingThankYouData = editingThankYouData else { return }
-        db.collection("users").document(uid).collection("thankYouList").document(editingThankYouData.id).updateData(editThankYouData.dictionary) { error in
+        db.collection("users").document(uid).collection("thankYouList").document(editingThankYouData.id).updateData(editThankYouData.dictionary) { [weak self] error in
+            guard let weakSelf = self else { return }
             if let error = error {
                 print("Error adding document: \(error.localizedDescription)")
+                let alert = UIAlertController(title: nil, message: NSLocalizedString("Failed to edit", comment: ""), preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                weakSelf.present(alert, animated: true, completion: nil)
                 return
             }
+            weakSelf.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -111,7 +115,7 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         db.collection("users").document(uid).collection("thankYouList").document(editingThankYouData.id).delete(completion: { [weak self] error in
             guard let weakSelf = self else { return }
             if let error = error {
-                let alert = UIAlertController(title: nil, message: "Couldn't delete", preferredStyle: .alert)
+                let alert = UIAlertController(title: nil, message: NSLocalizedString("Failed to delete", comment: ""), preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 weakSelf.present(alert, animated: true, completion: nil)
             }

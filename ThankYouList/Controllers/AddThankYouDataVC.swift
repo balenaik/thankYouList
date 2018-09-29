@@ -49,19 +49,22 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
         let encryptedValue = Crypto().encryptString(plainText: thankYouTextView.text, key: uid16string)
         let myThankYouData = ThankYouData(id: "", value: "", encryptedValue: encryptedValue, date: dateLabelText, timeStamp: Date())
         addThankYou(thankYouData: myThankYouData, uid: uid)
-        self.dismiss(animated: true, completion: nil)
     }
     
     
     // MARK: - Internal Methods
     func addThankYou(thankYouData: ThankYouData, uid: String) {
         
-        db.collection("users").document(uid).collection("thankYouList").addDocument(data: thankYouData.dictionary) { error in
+        db.collection("users").document(uid).collection("thankYouList").addDocument(data: thankYouData.dictionary) { [weak self] error in
+            guard let weakSelf = self else { return }
             if let error = error {
                 print("Error adding document: \(error.localizedDescription)")
+                let alert = UIAlertController(title: nil, message: NSLocalizedString("Failed to add", comment: ""), preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                weakSelf.present(alert, animated: true, completion: nil)
                 return
             }
-            
+            weakSelf.dismiss(animated: true, completion: nil)
         }
     }
     

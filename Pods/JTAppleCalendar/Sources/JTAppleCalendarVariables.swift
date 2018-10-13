@@ -87,9 +87,9 @@ extension JTAppleCalendarView {
     }
     
     var isCalendarLayoutLoaded: Bool { return calendarViewLayout.isCalendarLayoutLoaded }
-    var startDateCache: Date         { return cachedConfiguration.startDate }
-    var endDateCache: Date           { return cachedConfiguration.endDate }
-    var calendar: Calendar           { return cachedConfiguration.calendar }
+    var startDateCache: Date         { return _cachedConfiguration.startDate }
+    var endDateCache: Date           { return _cachedConfiguration.endDate }
+    var calendar: Calendar           { return _cachedConfiguration.calendar }
 
     
 

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 protocol DocumentSeriarizable {
     init?(dictionary: [String : Any])
@@ -17,13 +18,13 @@ struct ThankYouData {
     var value: String
     var encryptedValue: String
     var date: String
-    var timeStamp: Date
+    var createTime: Date
     
     var dictionary: [String : Any] {
         return [
             "encryptedValue": encryptedValue,
             "date": date,
-            "timeStamp": timeStamp
+            "createTime": createTime
         ]
     }
 }
@@ -33,10 +34,10 @@ extension ThankYouData: DocumentSeriarizable {
     init?(dictionary: [String : Any]) {
         guard let encryptedValue = dictionary["encryptedValue"] as? String,
             let date = dictionary["date"] as? String,
-            let timeStamp = dictionary["timeStamp"] as? Date else {
+            let createTime = dictionary["createTime"] as? Timestamp else {
                 return nil
         }
-        self.init(id: "", value: "", encryptedValue: encryptedValue, date: date, timeStamp: timeStamp)
+        self.init(id: "", value: "", encryptedValue: encryptedValue, date: date, createTime: createTime.dateValue())
     }
 }
 

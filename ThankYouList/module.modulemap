@@ -1,5 +1,5 @@
-
-module CommonCrypto {
-    header "/usr/include/CommonCrypto/CommonCrypto.h"
-    export *
-}
+//
+//module CommonCrypto {
+//    header "/usr/include/CommonCrypto/CommonCrypto.h"
+//    export *
+//}

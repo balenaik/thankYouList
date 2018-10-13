@@ -75,6 +75,7 @@ class LoginVC: UIViewController {
                 return
             }
             let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.moveUDDataToFirestoreIfNeeded()
             if let loginVC = appDelegate.window?.rootViewController! {
                 let mainTabBarController: MainTabBarController = MainTabBarController()
                 let leftMenuVC = self.storyboard?.instantiateViewController(withIdentifier: "LeftMenuVC") as! LeftMenuVC

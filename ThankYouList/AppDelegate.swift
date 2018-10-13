@@ -33,13 +33,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         
         // UIWindowを生成.
         self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+        // FireCloudの初期設定
+        let db = Firestore.firestore()
+        let settings = db.settings
+        settings.areTimestampsInSnapshotsEnabled = true
+        db.settings = settings
         
         guard let currentUser = Auth.auth().currentUser else {
             let loginVC = self.storyboard.instantiateViewController(withIdentifier: "LoginVC")
@@ -85,11 +91,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     @available(iOS 9.0, *)
-    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
+    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
         -> Bool {
             return SDKApplicationDelegate.shared.application(application,
                                                              open: url,
-                                                             sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+                                                             sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
                                                              annotation: [:])
     }
     
@@ -103,7 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = rootViewController
     }
     
-    private func moveUDDataToFirestoreIfNeeded() {
+    func moveUDDataToFirestoreIfNeeded() {
         let userDefaults = UserDefaults.standard
         guard let storedThankYouDataUDList = userDefaults.object(forKey: "thankYouDataList") as? Data else { return }
         NSKeyedUnarchiver.setClass(ThankYouDataUD.self, forClassName: "ThankYouList.ThankYouData")
@@ -132,7 +138,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             guard let thankYouValue = thankYouDataUD.thankYouValue, let thankYouDate = thankYouDataUD.thankYouDate else { return }
             let uid16string = String(uid.prefix(16))
             let encryptedValue = Crypto().encryptString(plainText: thankYouValue, key: uid16string)
-            let thankYouData = ThankYouData(id: "", value: "", encryptedValue: encryptedValue, date: thankYouDate, timeStamp: Date())
+            let thankYouData = ThankYouData(id: "", value: "", encryptedValue: encryptedValue, date: thankYouDate, createTime: Date())
             db.collection("users").document(uid).collection("thankYouList").addDocument(data: thankYouData.dictionary) { error in
                 if let error = error {
                     print("Error adding document: \(error.localizedDescription)")

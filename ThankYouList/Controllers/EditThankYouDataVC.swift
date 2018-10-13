@@ -47,7 +47,7 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         }
         let uid16string = String(uid.prefix(16))
         let encryptedValue = Crypto().encryptString(plainText: thankYouTextView.text, key: uid16string)
-        let editedThankYouData = ThankYouData(id: "", value: "", encryptedValue: encryptedValue, date: dateLabelText, timeStamp: Date())
+        let editedThankYouData = ThankYouData(id: "", value: "", encryptedValue: encryptedValue, date: dateLabelText, createTime: Date())
         editThankYou(editThankYouData: editedThankYouData, uid: uid)
     }
     
@@ -64,7 +64,7 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "datePickerCell")
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 10000
         
         dateLabel.text = editingThankYouData.date
@@ -79,13 +79,13 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         if let editingDate = dateFormatter.date(from: editingThankYouData.date) {
             thankYouDatePicker.setDate(editingDate, animated: true)
         }
-        thankYouDatePicker.addTarget(self, action: #selector(EditThankYouDataVC.datePickerValueChanged), for: UIControlEvents.valueChanged)
+        thankYouDatePicker.addTarget(self, action: #selector(EditThankYouDataVC.datePickerValueChanged), for: UIControl.Event.valueChanged)
         
         // tableviewの背景色指定
         self.view.backgroundColor = UIColor(red: 247/255.0, green: 247/255.0, blue: 247/255.0, alpha: 1.0)
         self.navigationController?.navigationBar.barTintColor = TYLColor.navigationBarBgColor
         self.navigationController?.navigationBar.tintColor = TYLColor.navigationBarTextColor
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)]
     }
 
     
@@ -299,10 +299,10 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
             cell = datePickerCell
         } else if (indexPath.section == 0 && indexPath.row == 0) {
             cell = textViewCell
-            cell?.selectionStyle = UITableViewCellSelectionStyle.none
+            cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         } else if (indexPath.section == 0 && indexPath.row == 1) {
             cell = tableViewCell
-            cell?.selectionStyle = UITableViewCellSelectionStyle.none
+            cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         }
         return cell!
     }
@@ -313,15 +313,15 @@ class EditThankYouDataVC: UITableViewController, UITextViewDelegate {
         // when a deleteCell is tapped, call delete function
         if (indexPath.section == 2 && indexPath.row == 0) {
             //　アラートコントローラーの実装
-            let alertController = UIAlertController(title: NSLocalizedString("Delete Thank you", comment: ""),message: NSLocalizedString("Are you sure you want to delete this thank you?", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+            let alertController = UIAlertController(title: NSLocalizedString("Delete Thank you", comment: ""),message: NSLocalizedString("Are you sure you want to delete this thank you?", comment: ""), preferredStyle: UIAlertController.Style.alert)
             
             //  Deleteボタンの実装
-            let deleteAction = UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: UIAlertActionStyle.destructive){ (action: UIAlertAction) in
+            let deleteAction = UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: UIAlertAction.Style.destructive){ (action: UIAlertAction) in
                 // Delteがクリックされた時の処理
                 self.deleteThankYou()
             }
             //  Cancelボタンの実装
-            let cancelButton = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
+            let cancelButton = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertAction.Style.cancel, handler: nil)
             
             //  ボタンに追加
             alertController.addAction(deleteAction)

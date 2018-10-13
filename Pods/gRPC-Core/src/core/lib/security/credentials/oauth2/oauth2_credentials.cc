@@ -16,6 +16,8 @@
  *
  */
 
+#include <grpc/support/port_platform.h>
+
 #include "src/core/lib/security/credentials/oauth2/oauth2_credentials.h"
 
 #include <string.h>
@@ -105,7 +107,7 @@ void grpc_auth_refresh_token_destruct(grpc_auth_refresh_token* refresh_token) {
 
 static void oauth2_token_fetcher_destruct(grpc_call_credentials* creds) {
   grpc_oauth2_token_fetcher_credentials* c =
-      (grpc_oauth2_token_fetcher_credentials*)creds;
+      reinterpret_cast<grpc_oauth2_token_fetcher_credentials*>(creds);
   GRPC_MDELEM_UNREF(c->access_token_md);
   gpr_mu_destroy(&c->mu);
   grpc_pollset_set_destroy(grpc_polling_entity_pollset_set(&c->pollent));
@@ -128,7 +130,8 @@ grpc_oauth2_token_fetcher_credentials_parse_server_response(
   }
 
   if (response->body_length > 0) {
-    null_terminated_body = (char*)gpr_malloc(response->body_length + 1);
+    null_terminated_body =
+        static_cast<char*>(gpr_malloc(response->body_length + 1));
     null_terminated_body[response->body_length] = '\0';
     memcpy(null_terminated_body, response->body, response->body_length);
   }
@@ -204,9 +207,9 @@ static void on_oauth2_token_fetcher_http_response(void* user_data,
                                                   grpc_error* error) {
   GRPC_LOG_IF_ERROR("oauth_fetch", GRPC_ERROR_REF(error));
   grpc_credentials_metadata_request* r =
-      (grpc_credentials_metadata_request*)user_data;
+      static_cast<grpc_credentials_metadata_request*>(user_data);
   grpc_oauth2_token_fetcher_credentials* c =
-      (grpc_oauth2_token_fetcher_credentials*)r->creds;
+      reinterpret_cast<grpc_oauth2_token_fetcher_credentials*>(r->creds);
   grpc_mdelem access_token_md = GRPC_MDNULL;
   grpc_millis token_lifetime;
   grpc_credentials_status status =
@@ -216,9 +219,11 @@ static void on_oauth2_token_fetcher_http_response(void* user_data,
   gpr_mu_lock(&c->mu);
   c->token_fetch_pending = false;
   c->access_token_md = GRPC_MDELEM_REF(access_token_md);
-  c->token_expiration = status == GRPC_CREDENTIALS_OK
-                            ? grpc_core::ExecCtx::Get()->Now() + token_lifetime
-                            : 0;
+  c->token_expiration =
+      status == GRPC_CREDENTIALS_OK
+          ? gpr_time_add(gpr_now(GPR_CLOCK_MONOTONIC),
+                         gpr_time_from_millis(token_lifetime, GPR_TIMESPAN))
+          : gpr_inf_past(GPR_CLOCK_MONOTONIC);
   grpc_oauth2_pending_get_request_metadata* pending_request =
       c->pending_requests;
   c->pending_requests = nullptr;
@@ -249,15 +254,17 @@ static bool oauth2_token_fetcher_get_request_metadata(
     grpc_auth_metadata_context context, grpc_credentials_mdelem_array* md_array,
     grpc_closure* on_request_metadata, grpc_error** error) {
   grpc_oauth2_token_fetcher_credentials* c =
-      (grpc_oauth2_token_fetcher_credentials*)creds;
+      reinterpret_cast<grpc_oauth2_token_fetcher_credentials*>(creds);
   // Check if we can use the cached token.
   grpc_millis refresh_threshold =
       GRPC_SECURE_TOKEN_REFRESH_THRESHOLD_SECS * GPR_MS_PER_SEC;
   grpc_mdelem cached_access_token_md = GRPC_MDNULL;
   gpr_mu_lock(&c->mu);
   if (!GRPC_MDISNULL(c->access_token_md) &&
-      (c->token_expiration - grpc_core::ExecCtx::Get()->Now() >
-       refresh_threshold)) {
+      gpr_time_cmp(
+          gpr_time_sub(c->token_expiration, gpr_now(GPR_CLOCK_MONOTONIC)),
+          gpr_time_from_seconds(GRPC_SECURE_TOKEN_REFRESH_THRESHOLD_SECS,
+                                GPR_TIMESPAN)) > 0) {
     cached_access_token_md = GRPC_MDELEM_REF(c->access_token_md);
   }
   if (!GRPC_MDISNULL(cached_access_token_md)) {
@@ -269,8 +276,8 @@ static bool oauth2_token_fetcher_get_request_metadata(
   // Couldn't get the token from the cache.
   // Add request to c->pending_requests and start a new fetch if needed.
   grpc_oauth2_pending_get_request_metadata* pending_request =
-      (grpc_oauth2_pending_get_request_metadata*)gpr_malloc(
-          sizeof(*pending_request));
+      static_cast<grpc_oauth2_pending_get_request_metadata*>(
+          gpr_malloc(sizeof(*pending_request)));
   pending_request->md_array = md_array;
   pending_request->on_request_metadata = on_request_metadata;
   pending_request->pollent = pollent;
@@ -298,7 +305,7 @@ static void oauth2_token_fetcher_cancel_get_request_metadata(
     grpc_call_credentials* creds, grpc_credentials_mdelem_array* md_array,
     grpc_error* error) {
   grpc_oauth2_token_fetcher_credentials* c =
-      (grpc_oauth2_token_fetcher_credentials*)creds;
+      reinterpret_cast<grpc_oauth2_token_fetcher_credentials*>(creds);
   gpr_mu_lock(&c->mu);
   grpc_oauth2_pending_get_request_metadata* prev = nullptr;
   grpc_oauth2_pending_get_request_metadata* pending_request =
@@ -330,7 +337,7 @@ static void init_oauth2_token_fetcher(grpc_oauth2_token_fetcher_credentials* c,
   c->base.type = GRPC_CALL_CREDENTIALS_TYPE_OAUTH2;
   gpr_ref_init(&c->base.refcount, 1);
   gpr_mu_init(&c->mu);
-  c->token_expiration = 0;
+  c->token_expiration = gpr_inf_past(GPR_CLOCK_MONOTONIC);
   c->fetch_func = fetch_func;
   c->pollent =
       grpc_polling_entity_create_from_pollset_set(grpc_pollset_set_create());
@@ -371,8 +378,8 @@ static void compute_engine_fetch_oauth2(
 grpc_call_credentials* grpc_google_compute_engine_credentials_create(
     void* reserved) {
   grpc_oauth2_token_fetcher_credentials* c =
-      (grpc_oauth2_token_fetcher_credentials*)gpr_malloc(
-          sizeof(grpc_oauth2_token_fetcher_credentials));
+      static_cast<grpc_oauth2_token_fetcher_credentials*>(
+          gpr_malloc(sizeof(grpc_oauth2_token_fetcher_credentials)));
   GRPC_API_TRACE("grpc_compute_engine_credentials_create(reserved=%p)", 1,
                  (reserved));
   GPR_ASSERT(reserved == nullptr);
@@ -387,7 +394,7 @@ grpc_call_credentials* grpc_google_compute_engine_credentials_create(
 
 static void refresh_token_destruct(grpc_call_credentials* creds) {
   grpc_google_refresh_token_credentials* c =
-      (grpc_google_refresh_token_credentials*)creds;
+      reinterpret_cast<grpc_google_refresh_token_credentials*>(creds);
   grpc_auth_refresh_token_destruct(&c->refresh_token);
   oauth2_token_fetcher_destruct(&c->base.base);
 }
@@ -401,7 +408,8 @@ static void refresh_token_fetch_oauth2(
     grpc_httpcli_context* httpcli_context, grpc_polling_entity* pollent,
     grpc_iomgr_cb_func response_cb, grpc_millis deadline) {
   grpc_google_refresh_token_credentials* c =
-      (grpc_google_refresh_token_credentials*)metadata_req->creds;
+      reinterpret_cast<grpc_google_refresh_token_credentials*>(
+          metadata_req->creds);
   grpc_http_header header = {(char*)"Content-Type",
                              (char*)"application/x-www-form-urlencoded"};
   grpc_httpcli_request request;
@@ -437,8 +445,8 @@ grpc_refresh_token_credentials_create_from_auth_refresh_token(
     gpr_log(GPR_ERROR, "Invalid input for refresh token credentials creation");
     return nullptr;
   }
-  c = (grpc_google_refresh_token_credentials*)gpr_zalloc(
-      sizeof(grpc_google_refresh_token_credentials));
+  c = static_cast<grpc_google_refresh_token_credentials*>(
+      gpr_zalloc(sizeof(grpc_google_refresh_token_credentials)));
   init_oauth2_token_fetcher(&c->base, refresh_token_fetch_oauth2);
   c->base.base.vtable = &refresh_token_vtable;
   c->refresh_token = refresh_token;
@@ -478,7 +486,8 @@ grpc_call_credentials* grpc_google_refresh_token_credentials_create(
 //
 
 static void access_token_destruct(grpc_call_credentials* creds) {
-  grpc_access_token_credentials* c = (grpc_access_token_credentials*)creds;
+  grpc_access_token_credentials* c =
+      reinterpret_cast<grpc_access_token_credentials*>(creds);
   GRPC_MDELEM_UNREF(c->access_token_md);
 }
 
@@ -486,7 +495,8 @@ static bool access_token_get_request_metadata(
     grpc_call_credentials* creds, grpc_polling_entity* pollent,
     grpc_auth_metadata_context context, grpc_credentials_mdelem_array* md_array,
     grpc_closure* on_request_metadata, grpc_error** error) {
-  grpc_access_token_credentials* c = (grpc_access_token_credentials*)creds;
+  grpc_access_token_credentials* c =
+      reinterpret_cast<grpc_access_token_credentials*>(creds);
   grpc_credentials_mdelem_array_add(md_array, c->access_token_md);
   return true;
 }
@@ -503,8 +513,9 @@ static grpc_call_credentials_vtable access_token_vtable = {
 
 grpc_call_credentials* grpc_access_token_credentials_create(
     const char* access_token, void* reserved) {
-  grpc_access_token_credentials* c = (grpc_access_token_credentials*)gpr_zalloc(
-      sizeof(grpc_access_token_credentials));
+  grpc_access_token_credentials* c =
+      static_cast<grpc_access_token_credentials*>(
+          gpr_zalloc(sizeof(grpc_access_token_credentials)));
   GRPC_API_TRACE(
       "grpc_access_token_credentials_create(access_token=<redacted>, "
       "reserved=%p)",

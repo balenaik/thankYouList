@@ -43,12 +43,14 @@ open class JTAppleCalendarView: UICollectionView {
                 calendarViewLayout.cellSize.height = cellSize
             }
             calendarViewLayout.invalidateLayout()
-            calendarViewLayout.itemSizeWasSet = cellSize == 0 ? false: true
         }
     }
     
     /// The scroll direction of the sections in JTAppleCalendar.
-    open var scrollDirection: UICollectionViewScrollDirection!
+    open var scrollDirection: UICollectionView.ScrollDirection!
+    
+    /// The configuration parameters setup by the developer in the confogureCalendar function
+    open var cachedConfiguration: ConfigurationParameters? { return _cachedConfiguration }
     
     /// Enables/Disables the stretching of date cells. When enabled cells will stretch to fit the width of a month in case of a <= 5 row month.
     open var allowsDateCellStretching = true
@@ -105,7 +107,7 @@ open class JTAppleCalendarView: UICollectionView {
     }
     
     // Configuration parameters from the dataSource
-    var cachedConfiguration: ConfigurationParameters!
+    var _cachedConfiguration: ConfigurationParameters!
     // Set the start of the month
     var startOfMonthCache: Date!
     // Set the end of month
@@ -115,7 +117,7 @@ open class JTAppleCalendarView: UICollectionView {
     
     var anchorDate: Date?
     
-    var firstContentOffset: CGPoint {
+    var requestedContentOffset: CGPoint {
         var retval: CGPoint = .zero
         guard let date = anchorDate else { return retval }
         
@@ -135,7 +137,7 @@ open class JTAppleCalendarView: UICollectionView {
         
         if calendarViewLayout.thereAreHeaders && scrollDirection == .vertical {
             let indexPath = IndexPath(item: 0, section: sectionIndexPath.section)
-            guard let attributes = calendarViewLayout.layoutAttributesForSupplementaryView(ofKind: UICollectionElementKindSectionHeader, at: indexPath) else { return retval }
+            guard let attributes = calendarViewLayout.layoutAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, at: indexPath) else { return retval }
             
             let maxYCalendarOffset = max(0, self.contentSize.height - self.frame.size.height)
             retval = CGPoint(x: attributes.frame.origin.x,y: min(maxYCalendarOffset, attributes.frame.origin.y))
@@ -154,7 +156,7 @@ open class JTAppleCalendarView: UICollectionView {
         return retval
     }
     
-    open var sectionInset: UIEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0)
+    open var sectionInset: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     open var minimumInteritemSpacing: CGFloat = 0
     open var minimumLineSpacing: CGFloat = 0
     
@@ -168,15 +170,19 @@ open class JTAppleCalendarView: UICollectionView {
         get { return theData.sectionToMonthMap }
         set { theData.sectionToMonthMap = monthMap }
     }
-    
+
+    var decelerationRateMatchingScrollingMode: CGFloat {
+        switch scrollingMode {
+        case .stopAtEachCalendarFrame: return UIScrollView.DecelerationRate.fast.rawValue
+        case .stopAtEach, .stopAtEachSection: return UIScrollView.DecelerationRate.fast.rawValue
+        case .nonStopToSection, .nonStopToCell, .nonStopTo, .none: return UIScrollView.DecelerationRate.normal.rawValue
+        }
+    }
+
     /// Configure the scrolling behavior
     open var scrollingMode: ScrollingMode = .stopAtEachCalendarFrame {
         didSet {
-            switch scrollingMode {
-            case .stopAtEachCalendarFrame: decelerationRate = UIScrollViewDecelerationRateFast
-            case .stopAtEach, .stopAtEachSection: decelerationRate = UIScrollViewDecelerationRateFast
-            case .nonStopToSection, .nonStopToCell, .nonStopTo, .none: decelerationRate = UIScrollViewDecelerationRateNormal
-            }
+            decelerationRate = UIScrollView.DecelerationRate(rawValue: decelerationRateMatchingScrollingMode)
             #if os(iOS)
                 switch scrollingMode {
                 case .stopAtEachCalendarFrame:

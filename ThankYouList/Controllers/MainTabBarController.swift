@@ -30,7 +30,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         //表示するtabItemを指定
         vcNavView.tabBarItem.image = UIImage(named: "list")?.resize(size: CGSize(width: 25, height: 25))
         addThankYouDataVC.tabBarItem.image = UIImage(named: "add_button")?.resize(size: CGSize(width: 35, height: 35))?.withRenderingMode(.alwaysOriginal)
-        addThankYouDataVC.tabBarItem.imageInsets = UIEdgeInsetsMake(5,0,-5,0)
+        addThankYouDataVC.tabBarItem.imageInsets = UIEdgeInsets(top: 5,left: 0,bottom: -5,right: 0)
         calendarVCNavView.tabBarItem.image = UIImage(named: "calendar")
         
         // Set titles to the tabbar
@@ -38,8 +38,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         calendarVCNavView.tabBarItem.title = "Calendar"
         
         // Set colors
-        let selectedAttributes = [NSAttributedStringKey.foregroundColor: self.tabBarTextColor]
-        UITabBarItem.appearance().setTitleTextAttributes(selectedAttributes, for: UIControlState.selected)
+        let selectedAttributes = [NSAttributedString.Key.foregroundColor: self.tabBarTextColor]
+        UITabBarItem.appearance().setTitleTextAttributes(selectedAttributes, for: UIControl.State.selected)
         UITabBar.appearance().tintColor = self.tabBarTextColor
         UITabBar.appearance().barTintColor = self.tabBarBgColor
         UITabBar.appearance().selectionIndicatorImage = UIImage().createSelectionIndicator(color: self.tabBarTextColor, size: CGSize(width: tabBar.frame.width/3, height: tabBar.frame.height), lineWidth: 3.0)

@@ -34,7 +34,7 @@ class Crypto {
 extension String {
     func aesEncrypt(_ key: String, iv: String) throws -> String {
         let data = self.data(using: String.Encoding.utf8)
-        let aes = try AES(key: key.bytes, blockMode: .ECB, padding: .pkcs5)
+        let aes = try AES(key: key.bytes, blockMode: ECB(), padding: .pkcs5)
         let encrypted = try! aes.encrypt(Array(data!))
         let encryptedData = Data(encrypted)
         print("encryption")
@@ -43,7 +43,7 @@ extension String {
     
     func aesDecrypt(_ key: String, iv: String) throws -> String {
         let data = Data(base64Encoded: self)!
-        let aes = try AES(key: key.bytes, blockMode: .ECB, padding: .pkcs5)
+        let aes = try AES(key: key.bytes, blockMode: ECB(), padding: .pkcs5)
         let decrypted = try! aes.decrypt([UInt8](data))
         let decryptedData = Data(decrypted)
         return String(bytes: decryptedData.bytes, encoding: .utf8) ?? "Could not decrypt"

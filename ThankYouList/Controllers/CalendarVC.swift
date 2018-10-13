@@ -59,7 +59,7 @@ class CalendarVC: UIViewController {
 
         self.navigationController?.navigationBar.barTintColor = TYLColor.navigationBarBgColor
         self.navigationController?.navigationBar.tintColor = TYLColor.navigationBarTextColor
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : TYLColor.navigationBarTextColor]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : TYLColor.navigationBarTextColor]
         
         calendarView.scrollToDate(Date(), animateScroll: false)
         setupCalendarView()
@@ -67,7 +67,7 @@ class CalendarVC: UIViewController {
         checkForUpdates()
         
         tableView.estimatedRowHeight = 40
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
 
         getSectionItems(date: Date())
         slideMenuController()?.addPriorityToMenuGesuture(calendarView)

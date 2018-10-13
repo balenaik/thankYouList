@@ -119,9 +119,9 @@ extension JTAppleCalendarView {
     }
     
     func indexPathOfdateCellCounterPath(_ date: Date, dateOwner: DateOwner) -> IndexPath? {
-        if (cachedConfiguration.generateInDates == .off ||
-            cachedConfiguration.generateInDates == .forFirstMonthOnly) &&
-            cachedConfiguration.generateOutDates == .off {
+        if (_cachedConfiguration.generateInDates == .off ||
+            _cachedConfiguration.generateInDates == .forFirstMonthOnly) &&
+            _cachedConfiguration.generateOutDates == .off {
             return nil
         }
         var retval: IndexPath?
@@ -176,8 +176,13 @@ extension JTAppleCalendarView {
                 var itemIndex = lastDayIndexPath.item + dayIndex
                 // Determine if the sections/item needs to be adjusted
                 
-                let extraSection = itemIndex / collectionView(self, numberOfItemsInSection: section)
-                let extraIndex = itemIndex % collectionView(self, numberOfItemsInSection: section)
+                let numberOfItemsInSection = collectionView(self, numberOfItemsInSection: section)
+                guard numberOfItemsInSection > 0 else {
+                    assert(false, "Number of sections in calendar = 0. Possible fixes (1) is your calendar visible size 0,0? (2) is your calendar already loaded/visible?")
+                    return nil
+                }
+                let extraSection = itemIndex / numberOfItemsInSection
+                let extraIndex = itemIndex % numberOfItemsInSection
                 section += extraSection
                 itemIndex = extraIndex
                 let reCalcRapth = IndexPath(item: itemIndex, section: section)
@@ -294,8 +299,8 @@ extension JTAppleCalendarView {
             let selectedDates = self.selectedDatesSet
             if !selectedDates.contains(date) || selectedDates.isEmpty  { return .none }
             
-            let dateBefore = self.cachedConfiguration.calendar.date(byAdding: .day, value: -1, to: date)!
-            let dateAfter = self.cachedConfiguration.calendar.date(byAdding: .day, value: 1, to: date)!
+            let dateBefore = self._cachedConfiguration.calendar.date(byAdding: .day, value: -1, to: date)!
+            let dateAfter = self._cachedConfiguration.calendar.date(byAdding: .day, value: 1, to: date)!
             
             let dateBeforeIsSelected = selectedDates.contains(dateBefore)
             let dateAfterIsSelected = selectedDates.contains(dateAfter)
@@ -354,7 +359,7 @@ extension JTAppleCalendarView {
         }
         if let monthDate = calendar.date(byAdding: .month, value: monthIndex, to: startDateCache) {
             let monthNumber = calendar.dateComponents([.month], from: monthDate)
-            let numberOfRowsForSection = monthData.numberOfRows(for: section, developerSetRows: cachedConfiguration.numberOfRows)
+            let numberOfRowsForSection = monthData.numberOfRows(for: section, developerSetRows: _cachedConfiguration.numberOfRows)
             return ((startDate, endDate), monthNumber.month!, numberOfRowsForSection)
         }
         return nil
@@ -429,5 +434,25 @@ extension JTAppleCalendarView {
         }
         guard let validDate = date else { return nil }
         return (validDate, dateOwner)
+    }
+    
+    func datesAtCurrentOffset(_ offset: CGPoint? = nil) -> DateSegmentInfo {
+        
+        let rect: CGRect?
+        if let offset = offset {
+            rect = CGRect(x: offset.x, y: offset.y, width: frame.width, height: frame.height)
+        } else {
+            rect = nil
+        }
+        
+        let emptySegment = DateSegmentInfo(indates: [], monthDates: [], outdates: [])
+        
+        if !isCalendarLayoutLoaded {
+            return emptySegment
+        }
+        
+        let cellAttributes = calendarViewLayout.elementsAtRect(excludeHeaders: true, from: rect)
+        let indexPaths: [IndexPath] = cellAttributes.map { $0.indexPath }.sorted()
+        return dateSegmentInfoFrom(visible: indexPaths)
     }
 }

@@ -25,7 +25,7 @@
 protocol JTAppleCalendarDelegateProtocol: class {
     // Variables
     var allowsDateCellStretching: Bool {get set}
-    var cachedConfiguration: ConfigurationParameters! {get set}
+    var _cachedConfiguration: ConfigurationParameters! {get set}
     var calendarDataSource: JTAppleCalendarViewDataSource? {get set}
     var cellSize: CGFloat {get set}
     var anchorDate: Date? {get set}
@@ -34,10 +34,10 @@ protocol JTAppleCalendarDelegateProtocol: class {
     var minimumLineSpacing: CGFloat {get set}
     var monthInfo: [Month] {get set}
     var monthMap: [Int: Int] {get set}
-    var scrollDirection: UICollectionViewScrollDirection! {get set}
+    var scrollDirection: UICollectionView.ScrollDirection! {get set}
     var sectionInset: UIEdgeInsets {get set}
     var totalDays: Int {get}
-    var firstContentOffset: CGPoint {get}
+    var requestedContentOffset: CGPoint {get}
     
     // Functions
     func pathsFromDates(_ dates: [Date]) -> [IndexPath]

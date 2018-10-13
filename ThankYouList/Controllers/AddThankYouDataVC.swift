@@ -47,7 +47,7 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
         }
         let uid16string = String(uid.prefix(16))
         let encryptedValue = Crypto().encryptString(plainText: thankYouTextView.text, key: uid16string)
-        let myThankYouData = ThankYouData(id: "", value: "", encryptedValue: encryptedValue, date: dateLabelText, timeStamp: Date())
+        let myThankYouData = ThankYouData(id: "", value: "", encryptedValue: encryptedValue, date: dateLabelText, createTime: Date())
         addThankYou(thankYouData: myThankYouData, uid: uid)
     }
     
@@ -130,7 +130,7 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "datePickerCell")
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 10000
         
         dateLabel.text = self.delegate.selectedDate
@@ -138,7 +138,7 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
         thankYouTextView.delegate = self
         thankYouTextView.placeholder = NSLocalizedString("What are you thankful for?", comment: "")
         
-        thankYouDatePicker.addTarget(self, action: #selector(AddThankYouDataVC.datePickerValueChanged), for: UIControlEvents.valueChanged)
+        thankYouDatePicker.addTarget(self, action: #selector(AddThankYouDataVC.datePickerValueChanged), for: UIControl.Event.valueChanged)
         
         // tableviewの背景色指定
         self.view.backgroundColor = UIColor(red: 247/255.0, green: 247/255.0, blue: 247/255.0, alpha: 1.0)
@@ -148,7 +148,7 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
         
         // navigationbarの文字色設定
         self.navigationController?.navigationBar.tintColor = UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)]
         
         
         
@@ -224,7 +224,7 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
             cell = datePickerCell
         } else if (indexPath.section == 0 && indexPath.row == 0) {
             cell = textViewCell
-            cell?.selectionStyle = UITableViewCellSelectionStyle.none
+            cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         }
         
             return cell!

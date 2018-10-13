@@ -16,9 +16,11 @@
  *
  */
 
+#include <grpc/support/port_platform.h>
+
 #include "src/core/lib/iomgr/port.h"
 
-#ifdef GRPC_POSIX_SOCKET
+#ifdef GRPC_POSIX_SOCKET_TCP_CLIENT
 
 #include "src/core/lib/iomgr/tcp_client_posix.h"
 
@@ -36,12 +38,14 @@
 #include "src/core/lib/gpr/string.h"
 #include "src/core/lib/iomgr/ev_posix.h"
 #include "src/core/lib/iomgr/iomgr_posix.h"
+#include "src/core/lib/iomgr/sockaddr.h"
 #include "src/core/lib/iomgr/sockaddr_utils.h"
 #include "src/core/lib/iomgr/socket_mutator.h"
 #include "src/core/lib/iomgr/socket_utils_posix.h"
 #include "src/core/lib/iomgr/tcp_posix.h"
 #include "src/core/lib/iomgr/timer.h"
 #include "src/core/lib/iomgr/unix_sockets_posix.h"
+#include "src/core/lib/slice/slice_internal.h"
 
 extern grpc_core::TraceFlag grpc_tcp_trace;
 
@@ -79,8 +83,8 @@ static grpc_error* prepare_socket(const grpc_resolved_address* addr, int fd,
     for (size_t i = 0; i < channel_args->num_args; i++) {
       if (0 == strcmp(channel_args->args[i].key, GRPC_ARG_SOCKET_MUTATOR)) {
         GPR_ASSERT(channel_args->args[i].type == GRPC_ARG_POINTER);
-        grpc_socket_mutator* mutator =
-            (grpc_socket_mutator*)channel_args->args[i].value.pointer.p;
+        grpc_socket_mutator* mutator = static_cast<grpc_socket_mutator*>(
+            channel_args->args[i].value.pointer.p);
         err = grpc_set_socket_with_mutator(fd, mutator);
         if (err != GRPC_ERROR_NONE) goto error;
       }
@@ -98,10 +102,10 @@ done:
 
 static void tc_on_alarm(void* acp, grpc_error* error) {
   int done;
-  async_connect* ac = (async_connect*)acp;
+  async_connect* ac = static_cast<async_connect*>(acp);
   if (grpc_tcp_trace.enabled()) {
     const char* str = grpc_error_string(error);
-    gpr_log(GPR_DEBUG, "CLIENT_CONNECT: %s: on_alarm: error=%s", ac->addr_str,
+    gpr_log(GPR_INFO, "CLIENT_CONNECT: %s: on_alarm: error=%s", ac->addr_str,
             str);
   }
   gpr_mu_lock(&ac->mu);
@@ -125,7 +129,7 @@ grpc_endpoint* grpc_tcp_client_create_from_fd(
 }
 
 static void on_writable(void* acp, grpc_error* error) {
-  async_connect* ac = (async_connect*)acp;
+  async_connect* ac = static_cast<async_connect*>(acp);
   int so_error = 0;
   socklen_t so_error_size;
   int err;
@@ -138,8 +142,8 @@ static void on_writable(void* acp, grpc_error* error) {
 
   if (grpc_tcp_trace.enabled()) {
     const char* str = grpc_error_string(error);
-    gpr_log(GPR_DEBUG, "CLIENT_CONNECT: %s: on_writable: error=%s",
-            ac->addr_str, str);
+    gpr_log(GPR_INFO, "CLIENT_CONNECT: %s: on_writable: error=%s", ac->addr_str,
+            str);
   }
 
   gpr_mu_lock(&ac->mu);
@@ -207,8 +211,7 @@ static void on_writable(void* acp, grpc_error* error) {
 finish:
   if (fd != nullptr) {
     grpc_pollset_set_del_fd(ac->interested_parties, fd);
-    grpc_fd_orphan(fd, nullptr, nullptr, false /* already_closed */,
-                   "tcp_client_orphan");
+    grpc_fd_orphan(fd, nullptr, nullptr, "tcp_client_orphan");
     fd = nullptr;
   }
   done = (--ac->refs == 0);
@@ -230,7 +233,7 @@ finish:
     error = grpc_error_set_str(error, GRPC_ERROR_STR_TARGET_ADDRESS,
                                addr_str_slice /* takes ownership */);
   } else {
-    grpc_slice_unref(addr_str_slice);
+    grpc_slice_unref_internal(addr_str_slice);
   }
   if (done) {
     // This is safe even outside the lock, because "done", the sentinel, is
@@ -276,7 +279,7 @@ grpc_error* grpc_tcp_client_prepare_fd(const grpc_channel_args* channel_args,
   }
   addr_str = grpc_sockaddr_to_uri(mapped_addr);
   gpr_asprintf(&name, "tcp-client:%s", addr_str);
-  *fdobj = grpc_fd_create(fd, name);
+  *fdobj = grpc_fd_create(fd, name, false);
   gpr_free(name);
   gpr_free(addr_str);
   return GRPC_ERROR_NONE;
@@ -290,8 +293,8 @@ void grpc_tcp_client_create_from_prepared_fd(
   int err;
   async_connect* ac;
   do {
-    GPR_ASSERT(addr->len < ~(socklen_t)0);
-    err = connect(fd, (const struct sockaddr*)addr->addr, (socklen_t)addr->len);
+    err = connect(fd, reinterpret_cast<const grpc_sockaddr*>(addr->addr),
+                  addr->len);
   } while (err < 0 && errno == EINTR);
   if (err >= 0) {
     char* addr_str = grpc_sockaddr_to_uri(addr);
@@ -301,15 +304,14 @@ void grpc_tcp_client_create_from_prepared_fd(
     return;
   }
   if (errno != EWOULDBLOCK && errno != EINPROGRESS) {
-    grpc_fd_orphan(fdobj, nullptr, nullptr, false /* already_closed */,
-                   "tcp_client_connect_error");
+    grpc_fd_orphan(fdobj, nullptr, nullptr, "tcp_client_connect_error");
     GRPC_CLOSURE_SCHED(closure, GRPC_OS_ERROR(errno, "connect"));
     return;
   }
 
   grpc_pollset_set_add_fd(interested_parties, fdobj);
 
-  ac = (async_connect*)gpr_malloc(sizeof(async_connect));
+  ac = static_cast<async_connect*>(gpr_malloc(sizeof(async_connect)));
   ac->closure = closure;
   ac->ep = ep;
   ac->fd = fdobj;
@@ -322,7 +324,7 @@ void grpc_tcp_client_create_from_prepared_fd(
   ac->channel_args = grpc_channel_args_copy(channel_args);
 
   if (grpc_tcp_trace.enabled()) {
-    gpr_log(GPR_DEBUG, "CLIENT_CONNECT: %s: asynchronously connecting fd %p",
+    gpr_log(GPR_INFO, "CLIENT_CONNECT: %s: asynchronously connecting fd %p",
             ac->addr_str, fdobj);
   }
 
@@ -333,11 +335,11 @@ void grpc_tcp_client_create_from_prepared_fd(
   gpr_mu_unlock(&ac->mu);
 }
 
-static void tcp_client_connect_impl(grpc_closure* closure, grpc_endpoint** ep,
-                                    grpc_pollset_set* interested_parties,
-                                    const grpc_channel_args* channel_args,
-                                    const grpc_resolved_address* addr,
-                                    grpc_millis deadline) {
+static void tcp_connect(grpc_closure* closure, grpc_endpoint** ep,
+                        grpc_pollset_set* interested_parties,
+                        const grpc_channel_args* channel_args,
+                        const grpc_resolved_address* addr,
+                        grpc_millis deadline) {
   grpc_resolved_address mapped_addr;
   grpc_fd* fdobj = nullptr;
   grpc_error* error;
@@ -352,20 +354,5 @@ static void tcp_client_connect_impl(grpc_closure* closure, grpc_endpoint** ep,
                                           ep);
 }
 
-// overridden by api_fuzzer.c
-void (*grpc_tcp_client_connect_impl)(
-    grpc_closure* closure, grpc_endpoint** ep,
-    grpc_pollset_set* interested_parties, const grpc_channel_args* channel_args,
-    const grpc_resolved_address* addr,
-    grpc_millis deadline) = tcp_client_connect_impl;
-
-void grpc_tcp_client_connect(grpc_closure* closure, grpc_endpoint** ep,
-                             grpc_pollset_set* interested_parties,
-                             const grpc_channel_args* channel_args,
-                             const grpc_resolved_address* addr,
-                             grpc_millis deadline) {
-  grpc_tcp_client_connect_impl(closure, ep, interested_parties, channel_args,
-                               addr, deadline);
-}
-
+grpc_tcp_client_vtable grpc_posix_tcp_client_vtable = {tcp_connect};
 #endif

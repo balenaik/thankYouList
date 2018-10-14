@@ -75,10 +75,10 @@
 "zWT-em-g0K.text" = "Label";
 
 /* Class = "UIButton"; text = "normalTitle"; ObjectID = "Xtv-pg-FuL"; */
-"Xtv-pg-FuL.normalTitle" = "Facebookでログイン";
+"Xtv-pg-FuL.normalTitle" = "Facebookで続行";
 
 /* Class = "UIButton"; text = "normalTitle"; ObjectID = "1it-Zw-ZPN"; */
-"1it-Zw-ZPN.normalTitle" = "Googleでログイン";
+"1it-Zw-ZPN.normalTitle" = "Googleで続行";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "zLi-vP-jNb"; */
 "zLi-vP-jNb.text" = "日々の「ありがとう」を書いて\n幸せな気持ちになろう";

@@ -15,6 +15,7 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
     // MARK: - Properties
     private var delegate = UIApplication.shared.delegate as! AppDelegate
     private var _datePickerIsShowing = false
+    private var isPosting = false
     private var db = Firestore.firestore()
     
     
@@ -37,6 +38,7 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
     }
     
     @IBAction func add(_ sender: Any) {
+        if isPosting { return }
         if thankYouTextView.text.isEqual("") || thankYouTextView.text.isEmpty {
             return
         }
@@ -54,9 +56,10 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
     
     // MARK: - Internal Methods
     func addThankYou(thankYouData: ThankYouData, uid: String) {
-        
+        isPosting = true
         db.collection("users").document(uid).collection("thankYouList").addDocument(data: thankYouData.dictionary) { [weak self] error in
             guard let weakSelf = self else { return }
+            weakSelf.isPosting = false
             if let error = error {
                 print("Error adding document: \(error.localizedDescription)")
                 let alert = UIAlertController(title: nil, message: NSLocalizedString("Failed to add", comment: ""), preferredStyle: .alert)

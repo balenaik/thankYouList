@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
+import JGProgressHUD
 
 class ViewController: UIViewController {
     
@@ -16,6 +17,7 @@ class ViewController: UIViewController {
     private var delegate = UIApplication.shared.delegate as! AppDelegate
     private var db = Firestore.firestore()
     private var thankYouDataSingleton = GlobalThankYouData.sharedInstance
+    private let loadingHud = JGProgressHUD(style: .extraLight)
     
     
     // MARK: - IBOutlets
@@ -33,6 +35,10 @@ class ViewController: UIViewController {
     // MARK: - View LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadingHud.textLabel.text = "Loading"
+        loadingHud.show(in: self.view)
+        
         loadThankYouData()
         checkForUpdates()
         
@@ -40,7 +46,7 @@ class ViewController: UIViewController {
         tableView.estimatedRowHeight = 40
         tableView.rowHeight = UITableView.automaticDimension
 
-        emptyView.isHidden = false
+        emptyView.isHidden = true
         
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 255/255.0, green: 248/255.0, blue: 232/255.0, alpha: 1.0)
         self.navigationController?.navigationBar.tintColor = UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)
@@ -48,11 +54,6 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if thankYouDataSingleton.thankYouDataList.count == 0 {
-            emptyView.isHidden = false
-        } else {
-            emptyView.isHidden = true
-        }
         self.tableView.reloadData()
     }
     
@@ -88,9 +89,13 @@ class ViewController: UIViewController {
             guard let weakSelf = self else { return }
             if let error = error {
                 print(error.localizedDescription)
+                weakSelf.loadingHud.dismiss(animated: true)
                 return
             }
-            guard let querySnapshot = querySnapshot else { return }
+            guard let querySnapshot = querySnapshot else {
+                weakSelf.loadingHud.dismiss(animated: true)
+                return
+            }
             var thankYouDataList: [ThankYouData] = []
             for document in querySnapshot.documents {
                 guard var thankYouData = ThankYouData(dictionary: document.data()) else { break }
@@ -111,6 +116,7 @@ class ViewController: UIViewController {
                 } else {
                     weakSelf.emptyView.isHidden = true
                 }
+                weakSelf.loadingHud.dismiss(animated: true)
                 weakSelf.tableView.reloadData()
             }
         }
@@ -126,9 +132,13 @@ class ViewController: UIViewController {
             guard let weakSelf = self else { return }
             if let error = error {
                 print(error.localizedDescription)
+                weakSelf.loadingHud.dismiss(animated: true)
                 return
             }
-            guard let snapShot = querySnapshot else { return }
+            guard let snapShot = querySnapshot else {
+                weakSelf.loadingHud.dismiss(animated: true)
+                return
+            }
             for diff in snapShot.documentChanges {
                 if diff.type == .added {
                     let thankYouData = ThankYouData(dictionary: diff.document.data())
@@ -181,6 +191,7 @@ class ViewController: UIViewController {
                 } else {
                     weakSelf.emptyView.isHidden = true
                 }
+                weakSelf.loadingHud.dismiss(animated: true)
                 weakSelf.tableView.reloadData()
             }
         }

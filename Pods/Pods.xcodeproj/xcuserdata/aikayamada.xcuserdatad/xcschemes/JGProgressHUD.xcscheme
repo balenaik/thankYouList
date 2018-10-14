@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "46309031BF2066869FC1E27776D9B072"
-               BlueprintName = "SlideMenuControllerSwift"
+               BlueprintIdentifier = "9C663D206F83BB9C98221B9905C62008"
+               BlueprintName = "JGProgressHUD"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "SlideMenuControllerSwift.framework">
+               BuildableName = "JGProgressHUD.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

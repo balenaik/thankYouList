@@ -20,6 +20,7 @@ class CalendarVC: UIViewController {
     private var selectedDate: String = ""
     private let db = Firestore.firestore()
     private let thankYouDataSingleton = GlobalThankYouData.sharedInstance
+    private let todaysDate = Date()
     
     
     
@@ -93,7 +94,6 @@ class CalendarVC: UIViewController {
     
     private func configureCell(cell: JTAppleCell?, cellState: CellState) {
         guard let validCell = cell as? CustomCell else { return }
-        formatter.dateFormat = "yyyy MM dd"
         
         handleCellSelected(view: validCell, cellState: cellState)
         handleCellTextColor(view: validCell, cellState: cellState)
@@ -114,7 +114,6 @@ class CalendarVC: UIViewController {
         }
 
         // Change the text color on today
-        let todaysDate = Date()
         formatter.dateFormat = "yyyy MM dd"
         
         let todaysDateString = formatter.string(from: todaysDate)
@@ -142,7 +141,7 @@ class CalendarVC: UIViewController {
         validCell.threeDotsView.isHidden = true
         validCell.dotsAndPlusView.isHidden = true
         
-        self.formatter.dateFormat = "yyyy/MM/dd"
+        formatter.dateFormat = "yyyy/MM/dd"
         if thankYouDataSingleton.thankYouDataList.filter({$0.date == formatter.string(from: cellState.date)}).count == 1 {
             validCell.oneDotView.isHidden = false
         } else if thankYouDataSingleton.thankYouDataList.filter({$0.date == formatter.string(from: cellState.date)}).count == 2 {
@@ -156,8 +155,9 @@ class CalendarVC: UIViewController {
     
     private func setupViewsOfCalendar(from visibleDates: DateSegmentInfo) {
         let date = visibleDates.monthDates.first!.date
-        self.formatter.dateFormat = String(format: NSLocalizedString("monthYear", comment: ""), "MMMM", "yyyy")
-        self.yearMonth.text = self.formatter.string(from: date)
+        let monthYearDF = DateFormatter()
+        monthYearDF.dateFormat = String(format: NSLocalizedString("monthYear", comment: ""), "MMMM", "yyyy")
+        self.yearMonth.text = monthYearDF.string(from: date)
     }
     
     private func getSectionItems(date: Date) {

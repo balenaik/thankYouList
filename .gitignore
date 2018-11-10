@@ -1,2 +1,5 @@
 GoogleService-Info.plist
 SecretData.swift
+.gitignore
+.firebaserc
+firebase.json

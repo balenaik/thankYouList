@@ -1,0 +1,45 @@
+.wrapper {
+    font-family: Open Sans;
+}
+
+.head {
+    padding: 3em;
+    border-bottom: 1px solid #ddd;
+    box-sizing: border-box;
+    padding-bottom: 2em;
+}
+
+.head h2 {
+    font-size: 2.0em;
+    line-height: 1
+}
+
+.content {
+    padding: 3em;
+    color: #4C4C4C;
+    line-height: 2.0em;
+}
+
+.content h3{
+    color: #000;
+}
+
+.content p {
+    padding-bottom: 3em;
+}
+
+.content div {
+    padding-bottom: 3em;
+}
+
+.content ol {
+    padding-bottom: 3em;
+}
+
+.content div p {
+    padding-bottom: 0;
+}
+
+.content div ol {
+    padding-bottom: 0;
+}

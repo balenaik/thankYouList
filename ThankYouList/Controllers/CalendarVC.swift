@@ -82,11 +82,9 @@ class CalendarVC: UIViewController {
     
     // MARK: - Private Methods
     private func setupCalendarView() {
-        // Setup calendar spacing
         calendarView.minimumLineSpacing = 0
         calendarView.minimumInteritemSpacing = 0
         
-        // Setup labels
         calendarView.visibleDates { (visibleDates) in
             self.setupViewsOfCalendar(from: visibleDates)
         }
@@ -113,7 +111,6 @@ class CalendarVC: UIViewController {
             }
         }
 
-        // Change the text color on today
         formatter.dateFormat = "yyyy MM dd"
         
         let todaysDateString = formatter.string(from: todaysDate)
@@ -250,19 +247,6 @@ class CalendarVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 
@@ -288,8 +272,6 @@ extension CalendarVC: JTAppleCalendarViewDelegate {
         //
     }
     
-    
-    // Display the cell
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "CustomCell", for: indexPath) as! CustomCell
         cell.dateLabel.text = cellState.text
@@ -309,14 +291,10 @@ extension CalendarVC: JTAppleCalendarViewDelegate {
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         configureCell(cell: cell, cellState: cellState)
-
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
         setupViewsOfCalendar(from: visibleDates)
-        
-        
-        
     }
 }
 
@@ -331,27 +309,20 @@ extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // Storyboardで指定したthankyouCell識別子を利用して再利用可能なセルを取得する
         let cell = tableView.dequeueReusableCell(withIdentifier: "thankYouCalendarCell", for: indexPath)
-        // Put the thankYou value if there is something in sectionDate
         if !sectionItems.isEmpty {
-            // 行番号にあったThankYouのタイトルを取得 & get the item for the row in this section
             let myThankYouData = sectionItems[indexPath.row]
-            // セルのラベルにthankYouのタイトルをセット
             cell.textLabel?.text = myThankYouData.value
-            // change the text size
             cell.textLabel?.font = UIFont.systemFont(ofSize: 16)
             cell.textLabel?.textColor = TYLColor.textColor
         }
         return cell
     }
     
-    // returns the number of sections
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    // returns the title of sections
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return selectedDate
     }

@@ -16,10 +16,10 @@ class CalendarVC: UIViewController {
     // MARK: - Properties
     private let formatter = DateFormatter()
     private var appDelegate = UIApplication.shared.delegate as! AppDelegate
+    private let thankYouDataSingleton = GlobalThankYouData.sharedInstance
     private var sectionItems = [ThankYouData]()
     private var selectedDate: String = ""
     private let db = Firestore.firestore()
-    private let thankYouDataSingleton = GlobalThankYouData.sharedInstance
     private let todaysDate = Date()
     
     
@@ -62,20 +62,21 @@ class CalendarVC: UIViewController {
         self.navigationController?.navigationBar.tintColor = TYLColor.navigationBarTextColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : TYLColor.navigationBarTextColor]
         
+        NotificationCenter.default.addObserver(self, selector: #selector(CalendarVC.updatedThankYouList(notification:)), name: Notification.Name(rawValue: NotificationConst.THANK_YOU_LIST_UPDATED), object: nil)
+        
         calendarView.scrollToDate(Date(), animateScroll: false)
         setupCalendarView()
         calendarView.selectDates([Date()])
-        checkForUpdates()
         
         tableView.estimatedRowHeight = 40
         tableView.rowHeight = UITableView.automaticDimension
 
         getSectionItems(date: Date())
         slideMenuController()?.addPriorityToMenuGesuture(calendarView)
-        
-        DispatchQueue.main.async {
-            self.calendarView.reloadData()
-        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
 
@@ -162,86 +163,32 @@ class CalendarVC: UIViewController {
     }
     
     private func getSectionItems(date: Date) {
-        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
-        let thankYouDataList: [ThankYouData] = thankYouDataSingleton.thankYouDataList
+        let thankYouDataList = thankYouDataSingleton.thankYouDataList
         self.formatter.dateFormat = "yyyy/MM/dd"
         sectionItems = thankYouDataList.filter({$0.date == self.formatter.string(from: date)})
     }
     
-    private func checkForUpdates() {
-        guard let uid = Auth.auth().currentUser?.uid else {
-            print("Not login? error")
-            return
-        }
-        let uid16string = String(uid.prefix(16))
-        db.collection("users").document(uid).collection("thankYouList").addSnapshotListener { [weak self] (querySnapshot, error) in
-            guard let weakSelf = self else { return }
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            guard let snapShot = querySnapshot else { return }
-            for diff in snapShot.documentChanges {
-                if diff.type == .added {
-                    let thankYouData = ThankYouData(dictionary: diff.document.data())
-                    guard var newThankYouData = thankYouData else { break }
-                    let decryptedValue = Crypto().decryptString(encryptText: newThankYouData.encryptedValue, key: uid16string)
-                    newThankYouData.id = diff.document.documentID
-                    newThankYouData.value = decryptedValue
-                    let thankYouDataIds: [String] = weakSelf.thankYouDataSingleton.thankYouDataList.map{$0.id}
-                    if !thankYouDataIds.contains(newThankYouData.id) {
-                        weakSelf.thankYouDataSingleton.thankYouDataList.append(newThankYouData)
-                    }
-                    if !weakSelf.thankYouDataSingleton.sectionDate.contains(newThankYouData.date) {
-                        weakSelf.thankYouDataSingleton.sectionDate.append(newThankYouData.date)
-                    }
-                    weakSelf.thankYouDataSingleton.sectionDate.sort(by:>)
-                }
-                if diff.type == .removed {
-                    let removedDataId = diff.document.documentID
-                    for (index, thankYouData) in weakSelf.thankYouDataSingleton.thankYouDataList.enumerated() {
-                        if thankYouData.id == removedDataId {
-                            weakSelf.thankYouDataSingleton.thankYouDataList.remove(at: index)
-                            weakSelf.deleteSectionDateIfNeeded(sectionDate: thankYouData.date)
-                            break
-                        }
-                    }
-                }
-                if diff.type == .modified {
-                    let thankYouData = ThankYouData(dictionary: diff.document.data())
-                    guard var editedThankYouData = thankYouData else { break }
-                    let decryptedValue = Crypto().decryptString(encryptText: editedThankYouData.encryptedValue, key: uid16string)
-                    editedThankYouData.id = diff.document.documentID
-                    editedThankYouData.value = decryptedValue
-                    for (index, thankYouData) in weakSelf.thankYouDataSingleton.thankYouDataList.enumerated() {
-                        if editedThankYouData.id == thankYouData.id {
-                            weakSelf.thankYouDataSingleton.thankYouDataList.remove(at: index)
-                            weakSelf.deleteSectionDateIfNeeded(sectionDate: thankYouData.date)
-                            break
-                        }
-                    }
-                    weakSelf.thankYouDataSingleton.thankYouDataList.append(editedThankYouData)
-                    if !weakSelf.thankYouDataSingleton.sectionDate.contains(editedThankYouData.date) {
-                        weakSelf.thankYouDataSingleton.sectionDate.append(editedThankYouData.date)
-                        weakSelf.thankYouDataSingleton.sectionDate.sort(by:>)
-                    }
-                }
-            }
-            DispatchQueue.main.async {
-                if let date = weakSelf.formatter.date(from: weakSelf.selectedDate) {
-                    weakSelf.getSectionItems(date: date)
-                }
-                weakSelf.calendarView.reloadData()
-                weakSelf.tableView.reloadData()
-            }
-        }
+    private func updateCurrentSectionItems() {
+        if sectionItems.count == 0 { return }
+        let dateString = sectionItems[0].date
+        let thankYouDataList = thankYouDataSingleton.thankYouDataList
+        sectionItems = thankYouDataList.filter({$0.date == dateString})
     }
+
     
     private func deleteSectionDateIfNeeded(sectionDate: String) {
         let sectionItemsCount = thankYouDataSingleton.thankYouDataList.filter({$0.date == sectionDate}).count
         if sectionItemsCount == 0 {
             thankYouDataSingleton.sectionDate = thankYouDataSingleton.sectionDate.filter({$0 != sectionDate})
             thankYouDataSingleton.sectionDate.sort(by:>)
+        }
+    }
+    
+    @objc func updatedThankYouList(notification: Notification) {
+        updateCurrentSectionItems()
+        DispatchQueue.main.async {
+            self.calendarView.reloadData()
+            self.tableView.reloadData()
         }
     }
     

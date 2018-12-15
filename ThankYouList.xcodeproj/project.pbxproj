@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A80210CD208CD0DB003ADEFD /* UserInfoLeftMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80210CC208CD0DB003ADEFD /* UserInfoLeftMenuTableViewCell.swift */; };
+		A820DE5421C5432500E7F3DF /* NotificationConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820DE5321C5432500E7F3DF /* NotificationConst.swift */; };
 		A824150F205CE28C00172587 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824150E205CE28C00172587 /* LoginVC.swift */; };
 		A83D5F891F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */; };
 		A841B337213A895F00E8AB5B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A841B336213A895E00E8AB5B /* GoogleService-Info.plist */; };
@@ -45,6 +46,7 @@
 		14D49C15FD4089235E28B5ED /* Pods_ThankYouList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThankYouList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A015AC112826D3ABF5A416EC /* Pods-ThankYouList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.release.xcconfig"; sourceTree = "<group>"; };
 		A80210CC208CD0DB003ADEFD /* UserInfoLeftMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoLeftMenuTableViewCell.swift; sourceTree = "<group>"; };
+		A820DE5321C5432500E7F3DF /* NotificationConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationConst.swift; sourceTree = "<group>"; };
 		A824150B205CDF5800172587 /* ThankYouList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThankYouList.entitlements; sourceTree = "<group>"; };
 		A824150E205CE28C00172587 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		A82EB682210DA66D00CF1FDA /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
@@ -105,6 +107,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A820DE5221C5430B00E7F3DF /* Const */ = {
+			isa = PBXGroup;
+			children = (
+				A820DE5321C5432500E7F3DF /* NotificationConst.swift */,
+			);
+			path = Const;
+			sourceTree = "<group>";
+		};
 		A881350A211FD37200BE8F48 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +150,7 @@
 		A8831CC51E9CFE6B00F3CA0A /* ThankYouList */ = {
 			isa = PBXGroup;
 			children = (
+				A820DE5221C5430B00E7F3DF /* Const */,
 				A841B336213A895E00E8AB5B /* GoogleService-Info.plist */,
 				A881350A211FD37200BE8F48 /* Views */,
 				A85D9D001EA64AF900945E6E /* ThankYouData.swift */,
@@ -376,6 +387,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A820DE5421C5432500E7F3DF /* NotificationConst.swift in Sources */,
 				A8F649B71EEB96D100D6BA84 /* GlobalThankYouData.swift in Sources */,
 				A841B339213ED3DE00E8AB5B /* LocalizedLabel.swift in Sources */,
 				A8A0FE5C205D59170048AB33 /* LeftMenuVC.swift in Sources */,

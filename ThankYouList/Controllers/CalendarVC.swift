@@ -139,13 +139,17 @@ class CalendarVC: UIViewController {
         validCell.dotsAndPlusView.isHidden = true
         
         formatter.dateFormat = "yyyy/MM/dd"
-        if thankYouDataSingleton.thankYouDataList.filter({$0.date == formatter.string(from: cellState.date)}).count == 1 {
+        let count = thankYouDataSingleton.thankYouDataList.filter({$0.date == formatter.string(from: cellState.date)}).count
+        switch count {
+        case 0:
+            break
+        case 1:
             validCell.oneDotView.isHidden = false
-        } else if thankYouDataSingleton.thankYouDataList.filter({$0.date == formatter.string(from: cellState.date)}).count == 2 {
+        case 2:
             validCell.twoDotsView.isHidden = false
-        } else if thankYouDataSingleton.thankYouDataList.filter({$0.date == formatter.string(from: cellState.date)}).count == 3 {
-            validCell.threeDotsView.isHidden = false            
-        } else if thankYouDataSingleton.thankYouDataList.filter({$0.date == formatter.string(from: cellState.date)}).count >= 4 {
+        case 3:
+            validCell.threeDotsView.isHidden = false
+        default:
             validCell.dotsAndPlusView.isHidden = false
         }
     }

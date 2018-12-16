@@ -234,10 +234,8 @@ class CalendarVC: UIViewController {
     }
     
     private func updateCurrentSectionItems() {
-        if sectionItems.count == 0 { return }
-        let dateString = sectionItems[0].date
-        let thankYouDataList = thankYouDataSingleton.thankYouDataList
-        sectionItems = thankYouDataList.filter({$0.date == dateString})
+        let selectedDate = calendarView.selectedDates[0]
+        getSectionItems(date: selectedDate)
     }
 
     
@@ -354,6 +352,7 @@ extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
         let vc = EditThankYouDataVC.createViewController(thankYouData: editingThankYouData)
         let navi = UINavigationController(rootViewController: vc)
         self.present(navi, animated: true, completion: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

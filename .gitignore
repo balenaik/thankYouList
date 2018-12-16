@@ -1,2 +1,6 @@
 GoogleService-Info.plist
 SecretData.swift
+img/screenshots
+.firebaserc
+.gitignore
+firebase.json

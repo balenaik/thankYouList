@@ -18,25 +18,87 @@ class CalendarVC: UIViewController {
     private var appDelegate = UIApplication.shared.delegate as! AppDelegate
     private let thankYouDataSingleton = GlobalThankYouData.sharedInstance
     private var sectionItems = [ThankYouData]()
-    private var selectedDate: String = ""
+    private var selectedDate = ""
+    private var listViewOriginalTopConstant = CGFloat(0)
+    private var listViewMostTopConstant = CGFloat(0)
     private let db = Firestore.firestore()
     private let todaysDate = Date()
     
     
     
     // MARK: - IBOutlets
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var calendarView: JTAppleCalendarView!
+    @IBOutlet weak var listView: UIView!
     @IBOutlet weak var yearMonth: UILabel!
     @IBOutlet weak var selectedDateView: UIView!
     @IBOutlet weak var selectedDateLabel: UILabel!
     @IBOutlet var tableView: UITableView!
 
+    @IBOutlet weak var listViewTopConstraint: NSLayoutConstraint! {
+        didSet {
+            if selectedDateView != nil {
+                if listViewTopConstraint.constant <= listViewMostTopConstant {
+                    selectedDateView.layer.cornerRadius = 0
+                } else {
+                    selectedDateView.layer.cornerRadius = 10
+                }
+            }
+        }
+    }
     
 
     // MARK: - IBActions
     @IBAction func tappedMenuButton(_ sender: Any) {
         slideMenuController()?.openLeft()
     }
+    
+
+    @IBAction func draggedListView(_ sender: UIPanGestureRecognizer) {
+        switch sender.state {
+        case .began:
+            listViewOriginalTopConstant = listViewTopConstraint.constant
+        case .changed:
+            /// if the listView is on the top of the contentView
+            if listViewTopConstraint.constant < -stackView.frame.height
+                || listViewTopConstraint.constant >= listViewMostTopConstant {
+                selectedDateView.layer.cornerRadius = 0
+                break
+            }
+            /// if the listView is at the bottom of the calendar
+            if listViewTopConstraint.constant > 1 {
+                break
+            }
+            listViewTopConstraint.constant =  listViewOriginalTopConstant + sender.translation(in: self.view).y
+            selectedDateView.layer.cornerRadius = 10
+            self.view.layoutIfNeeded()
+        case .ended:
+            if listViewTopConstraint.constant == 0 || listViewTopConstraint.constant == -stackView.frame.height {
+                break
+            }
+            let velocity = sender.velocity(in: self.view).y
+            var destination = CGFloat(0)
+            if ((velocity <= 10 && velocity >= -10)
+                && listViewTopConstraint.constant < -stackView.frame.height / 2)
+                || velocity < -10 {
+                destination = -stackView.frame.height
+            }
+            UIView.animate(withDuration: 0.3, animations: {
+                self.listViewTopConstraint.constant = destination
+                self.view.layoutIfNeeded()
+                }, completion: nil)
+            /// Adjust corner radius on selectedDateView depending on destination
+            if destination == -stackView.frame.height {
+                selectedDateView.layer.cornerRadius = 0
+            } else {
+                selectedDateView.layer.cornerRadius = 10
+            }
+        default:
+            break
+        }
+    }
+    
     
     
     
@@ -57,6 +119,8 @@ class CalendarVC: UIViewController {
         self.formatter.dateFormat = "yyyy/MM/dd"
         selectedDate = self.formatter.string(from: Date())
         selectedDateLabel.text = selectedDate
+        selectedDateView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        selectedDateView.dropShadow()
 
         self.navigationController?.navigationBar.barTintColor = TYLColor.navigationBarBgColor
         self.navigationController?.navigationBar.tintColor = TYLColor.navigationBarTextColor
@@ -73,6 +137,8 @@ class CalendarVC: UIViewController {
 
         getSectionItems(date: Date())
         slideMenuController()?.addPriorityToMenuGesuture(calendarView)
+        
+        listViewMostTopConstant = contentView.frame.height - stackView.frame.height - (navigationController?.navigationBar.frame.size.height)! - UIApplication.shared.statusBarFrame.size.height - tabBarController!.tabBar.frame.size.height
     }
     
     deinit {
@@ -93,7 +159,6 @@ class CalendarVC: UIViewController {
     
     private func configureCell(cell: JTAppleCell?, cellState: CellState) {
         guard let validCell = cell as? CustomCell else { return }
-        
         handleCellSelected(view: validCell, cellState: cellState)
         handleCellTextColor(view: validCell, cellState: cellState)
         handleCellEvents(view: validCell, cellState: cellState)

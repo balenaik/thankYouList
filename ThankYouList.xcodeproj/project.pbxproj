@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A80210CD208CD0DB003ADEFD /* UserInfoLeftMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80210CC208CD0DB003ADEFD /* UserInfoLeftMenuTableViewCell.swift */; };
 		A820DE5421C5432500E7F3DF /* NotificationConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820DE5321C5432500E7F3DF /* NotificationConst.swift */; };
+		A820DE5721C61EF100E7F3DF /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820DE5621C61EF000E7F3DF /* UIView+Shadow.swift */; };
 		A824150F205CE28C00172587 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824150E205CE28C00172587 /* LoginVC.swift */; };
 		A83D5F891F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */; };
 		A841B337213A895F00E8AB5B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A841B336213A895E00E8AB5B /* GoogleService-Info.plist */; };
@@ -47,6 +48,7 @@
 		A015AC112826D3ABF5A416EC /* Pods-ThankYouList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.release.xcconfig"; sourceTree = "<group>"; };
 		A80210CC208CD0DB003ADEFD /* UserInfoLeftMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoLeftMenuTableViewCell.swift; sourceTree = "<group>"; };
 		A820DE5321C5432500E7F3DF /* NotificationConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationConst.swift; sourceTree = "<group>"; };
+		A820DE5621C61EF000E7F3DF /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		A824150B205CDF5800172587 /* ThankYouList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThankYouList.entitlements; sourceTree = "<group>"; };
 		A824150E205CE28C00172587 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		A82EB682210DA66D00CF1FDA /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
@@ -115,6 +117,17 @@
 			path = Const;
 			sourceTree = "<group>";
 		};
+		A820DE5521C61E6F00E7F3DF /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A8A0FE60205E005D0048AB33 /* UIColor+SetColor.swift */,
+				A8AC1BD21FAEA4AF00D1B25B /* UITextViewPlaceHolder.swift */,
+				A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */,
+				A820DE5621C61EF000E7F3DF /* UIView+Shadow.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		A881350A211FD37200BE8F48 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,11 +163,12 @@
 		A8831CC51E9CFE6B00F3CA0A /* ThankYouList */ = {
 			isa = PBXGroup;
 			children = (
+				A820DE5521C61E6F00E7F3DF /* Extension */,
 				A820DE5221C5430B00E7F3DF /* Const */,
-				A841B336213A895E00E8AB5B /* GoogleService-Info.plist */,
 				A881350A211FD37200BE8F48 /* Views */,
-				A85D9D001EA64AF900945E6E /* ThankYouData.swift */,
 				A8A0FE5F205DFCB40048AB33 /* Controllers */,
+				A841B336213A895E00E8AB5B /* GoogleService-Info.plist */,
+				A85D9D001EA64AF900945E6E /* ThankYouData.swift */,
 				A824150B205CDF5800172587 /* ThankYouList.entitlements */,
 				A8831CC61E9CFE6B00F3CA0A /* AppDelegate.swift */,
 				A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */,
@@ -164,9 +178,6 @@
 				A8831CCA1E9CFE6B00F3CA0A /* Main.storyboard */,
 				A8AC1BCE1FAE00B600D1B25B /* Localizable.strings */,
 				A8BA38B81F5CC5F600817D5C /* images.xcassets */,
-				A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */,
-				A8AC1BD21FAEA4AF00D1B25B /* UITextViewPlaceHolder.swift */,
-				A8A0FE60205E005D0048AB33 /* UIColor+SetColor.swift */,
 				A866BEE420B931620073A76D /* TYLColor.swift */,
 				A84CBEE120F198E400CBA0AB /* ConstStruct.swift */,
 				A89AF9E62106905500FF6893 /* Crypto.swift */,
@@ -408,6 +419,7 @@
 				A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */,
 				A8DB2FBA1F5D41540055E8A4 /* CalendarVC.swift in Sources */,
 				A8831CC71E9CFE6B00F3CA0A /* AppDelegate.swift in Sources */,
+				A820DE5721C61EF100E7F3DF /* UIView+Shadow.swift in Sources */,
 				A83D5F891F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift in Sources */,
 				A8AC1BD31FAEA4B000D1B25B /* UITextViewPlaceHolder.swift in Sources */,
 				A80210CD208CD0DB003ADEFD /* UserInfoLeftMenuTableViewCell.swift in Sources */,
@@ -590,6 +602,7 @@
 					"$(SRCROOT)",
 				);
 				INFOPLIST_FILE = ThankYouList/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.balenaik.ThankYouList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -605,6 +618,7 @@
 				CODE_SIGN_ENTITLEMENTS = ThankYouList/ThankYouList.entitlements;
 				DEVELOPMENT_TEAM = 6JDKJKDJ28;
 				INFOPLIST_FILE = ThankYouList/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.balenaik.ThankYouList;
 				PRODUCT_NAME = "$(TARGET_NAME)";

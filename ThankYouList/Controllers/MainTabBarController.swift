@@ -25,12 +25,12 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
             self.storyboard.instantiateViewController(withIdentifier: "vcNav") as! UINavigationController
         let calendarVCNavView:UINavigationController =
             self.storyboard.instantiateViewController(withIdentifier: "calendarVCNav") as! UINavigationController
-        let addThankYouDataVC = self.storyboard.instantiateViewController(withIdentifier: "addThankYouDataVC") as! ThankYouList.AddThankYouDataVC
+        let addThankYouViewController = self.storyboard.instantiateViewController(withIdentifier: "AddThankYouViewController") as! ThankYouList.AddThankYouViewController
         
         //表示するtabItemを指定
         vcNavView.tabBarItem.image = UIImage(named: "list")?.resize(size: CGSize(width: 25, height: 25))
-        addThankYouDataVC.tabBarItem.image = UIImage(named: "add_button")?.resize(size: CGSize(width: 35, height: 35))?.withRenderingMode(.alwaysOriginal)
-        addThankYouDataVC.tabBarItem.imageInsets = UIEdgeInsets(top: 5,left: 0,bottom: -5,right: 0)
+        addThankYouViewController.tabBarItem.image = UIImage(named: "add_button")?.resize(size: CGSize(width: 35, height: 35))?.withRenderingMode(.alwaysOriginal)
+        addThankYouViewController.tabBarItem.imageInsets = UIEdgeInsets(top: 5,left: 0,bottom: -5,right: 0)
         calendarVCNavView.tabBarItem.image = UIImage(named: "calendar")
         
         // Set titles to the tabbar
@@ -45,7 +45,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         UITabBar.appearance().selectionIndicatorImage = UIImage().createSelectionIndicator(color: self.tabBarTextColor, size: CGSize(width: tabBar.frame.width/3, height: tabBar.frame.height), lineWidth: 3.0)
         
         // タブで表示するViewControllerを配列に格納します。
-        tabsArray = NSArray(objects: vcNavView, addThankYouDataVC, calendarVCNavView) as? [UIViewController]
+        tabsArray = NSArray(objects: vcNavView, addThankYouViewController, calendarVCNavView) as? [UIViewController]
         
         self.createViewController(vcs: tabsArray!)
     }
@@ -60,9 +60,9 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        if viewController is AddThankYouDataVC {
-            if let addThankYouDataVC = tabBarController.storyboard?.instantiateViewController(withIdentifier: "addThankYouDataVC") {
-                let navi = UINavigationController(rootViewController: addThankYouDataVC)
+        if viewController is AddThankYouViewController {
+            if let addThankYouViewController = tabBarController.storyboard?.instantiateViewController(withIdentifier: "AddThankYouViewController") {
+                let navi = UINavigationController(rootViewController: addThankYouViewController)
                 tabBarController.present(navi, animated: true, completion: nil)
                 return false
             }

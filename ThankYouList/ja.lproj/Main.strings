@@ -20,8 +20,8 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "Iwe-WC-40u"; */
 "Iwe-WC-40u.text" = "Label";
 
-/* Class = "UINavigationItem"; title = "Add thank you"; ObjectID = "Kp3-4T-tQN"; */
-"Kp3-4T-tQN.title" = "Thank Youを作成";
+/* Class = "UINavigationItem"; title = "Add thank you"; ObjectID = "QwE-V4-1bV"; */
+"QwE-V4-1bV.title" = "Thank Youを作成";
 
 /* Class = "UITableViewSection"; headerTitle = "Date"; ObjectID = "Ser-H8-Msc"; */
 "Ser-H8-Msc.headerTitle" = "日付";

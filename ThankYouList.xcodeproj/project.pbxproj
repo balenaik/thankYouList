@@ -15,6 +15,9 @@
 		A841B337213A895F00E8AB5B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A841B336213A895E00E8AB5B /* GoogleService-Info.plist */; };
 		A841B339213ED3DE00E8AB5B /* LocalizedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841B338213ED3DE00E8AB5B /* LocalizedLabel.swift */; };
 		A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84CBEE120F198E400CBA0AB /* ConstStruct.swift */; };
+		A84FDB5C21DBB8DF00593326 /* AddThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84FDB5B21DBB8DF00593326 /* AddThankYouViewController.swift */; };
+		A84FDB5E21DC365F00593326 /* SettingHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84FDB5D21DC365F00593326 /* SettingHeaderView.xib */; };
+		A84FDB6021DC37EA00593326 /* SettingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84FDB5F21DC37E900593326 /* SettingHeaderView.swift */; };
 		A85D9D011EA64AF900945E6E /* ThankYouData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85D9D001EA64AF900945E6E /* ThankYouData.swift */; };
 		A85DCC081F5D2151004E1095 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85DCC071F5D2151004E1095 /* CustomCell.swift */; };
 		A85F02E21EC9BCC500654136 /* AddThankYouDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F02E11EC9BCC500654136 /* AddThankYouDataVC.swift */; };
@@ -33,9 +36,10 @@
 		A8A0FE5C205D59170048AB33 /* LeftMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0FE5B205D59170048AB33 /* LeftMenuVC.swift */; };
 		A8A0FE61205E005D0048AB33 /* UIColor+SetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0FE60205E005D0048AB33 /* UIColor+SetColor.swift */; };
 		A8AC1BD01FAE00B600D1B25B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A8AC1BCE1FAE00B600D1B25B /* Localizable.strings */; };
-		A8AC1BD31FAEA4B000D1B25B /* UITextViewPlaceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC1BD21FAEA4AF00D1B25B /* UITextViewPlaceHolder.swift */; };
+		A8AC1BD31FAEA4B000D1B25B /* UITextView+PlaceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC1BD21FAEA4AF00D1B25B /* UITextView+PlaceHolder.swift */; };
 		A8AC1BD71FD20E5500D1B25B /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC1BD61FD20E5500D1B25B /* MainTabBarController.swift */; };
 		A8BA38B91F5CC5F600817D5C /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8BA38B81F5CC5F600817D5C /* images.xcassets */; };
+		A8D41E1C21E0E07B00A77B48 /* SettingDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */; };
 		A8DB2FBA1F5D41540055E8A4 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DB2FB91F5D41540055E8A4 /* CalendarVC.swift */; };
 		A8F06BB91F55396F00A90170 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8F06BB81F55396F00A90170 /* Launch Screen.storyboard */; };
 		A8F06BBB1F55415700A90170 /* img in Resources */ = {isa = PBXBuildFile; fileRef = A8F06BBA1F55415700A90170 /* img */; };
@@ -56,6 +60,9 @@
 		A841B336213A895E00E8AB5B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A841B338213ED3DE00E8AB5B /* LocalizedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedLabel.swift; sourceTree = "<group>"; };
 		A84CBEE120F198E400CBA0AB /* ConstStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstStruct.swift; sourceTree = "<group>"; };
+		A84FDB5B21DBB8DF00593326 /* AddThankYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThankYouViewController.swift; sourceTree = "<group>"; };
+		A84FDB5D21DC365F00593326 /* SettingHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingHeaderView.xib; sourceTree = "<group>"; };
+		A84FDB5F21DC37E900593326 /* SettingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHeaderView.swift; sourceTree = "<group>"; };
 		A85D9D001EA64AF900945E6E /* ThankYouData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThankYouData.swift; sourceTree = "<group>"; };
 		A85DCC071F5D2151004E1095 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		A85F02E11EC9BCC500654136 /* AddThankYouDataVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddThankYouDataVC.swift; sourceTree = "<group>"; };
@@ -77,9 +84,10 @@
 		A8AC1BCD1FADE9DF00D1B25B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		A8AC1BCF1FAE00B600D1B25B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A8AC1BD11FAE00DE00D1B25B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A8AC1BD21FAEA4AF00D1B25B /* UITextViewPlaceHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewPlaceHolder.swift; sourceTree = "<group>"; };
+		A8AC1BD21FAEA4AF00D1B25B /* UITextView+PlaceHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+PlaceHolder.swift"; sourceTree = "<group>"; };
 		A8AC1BD61FD20E5500D1B25B /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		A8BA38B81F5CC5F600817D5C /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
+		A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDateView.swift; sourceTree = "<group>"; };
 		A8DB2FB91F5D41540055E8A4 /* CalendarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
 		A8F06BB81F55396F00A90170 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		A8F06BBA1F55415700A90170 /* img */ = {isa = PBXFileReference; lastKnownFileType = folder; path = img; sourceTree = "<group>"; };
@@ -121,7 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				A8A0FE60205E005D0048AB33 /* UIColor+SetColor.swift */,
-				A8AC1BD21FAEA4AF00D1B25B /* UITextViewPlaceHolder.swift */,
+				A8AC1BD21FAEA4AF00D1B25B /* UITextView+PlaceHolder.swift */,
 				A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */,
 				A820DE5621C61EF000E7F3DF /* UIView+Shadow.swift */,
 			);
@@ -137,6 +145,9 @@
 				A881350B211FD40C00BE8F48 /* BalloonView.swift */,
 				A881350D2131432C00BE8F48 /* EmptyView.xib */,
 				A881350F2131435100BE8F48 /* EmptyView.swift */,
+				A84FDB5D21DC365F00593326 /* SettingHeaderView.xib */,
+				A84FDB5F21DC37E900593326 /* SettingHeaderView.swift */,
+				A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -198,6 +209,7 @@
 				A8831CC81E9CFE6B00F3CA0A /* ViewController.swift */,
 				A8F5FDD71EFDF40B00266CE5 /* EditThankYouDataVC.swift */,
 				A85F02E11EC9BCC500654136 /* AddThankYouDataVC.swift */,
+				A84FDB5B21DBB8DF00593326 /* AddThankYouViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -280,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A881350E2131432C00BE8F48 /* EmptyView.xib in Resources */,
+				A84FDB5E21DC365F00593326 /* SettingHeaderView.xib in Resources */,
 				A841B337213A895F00E8AB5B /* GoogleService-Info.plist in Resources */,
 				A8F06BBB1F55415700A90170 /* img in Resources */,
 				A8AC1BD01FAE00B600D1B25B /* Localizable.strings in Resources */,
@@ -401,14 +414,17 @@
 				A820DE5421C5432500E7F3DF /* NotificationConst.swift in Sources */,
 				A8F649B71EEB96D100D6BA84 /* GlobalThankYouData.swift in Sources */,
 				A841B339213ED3DE00E8AB5B /* LocalizedLabel.swift in Sources */,
+				A8D41E1C21E0E07B00A77B48 /* SettingDateView.swift in Sources */,
 				A8A0FE5C205D59170048AB33 /* LeftMenuVC.swift in Sources */,
 				A88135102131435100BE8F48 /* EmptyView.swift in Sources */,
 				A8831CC91E9CFE6B00F3CA0A /* ViewController.swift in Sources */,
 				A89CF876211C73AC00CA5518 /* SecretData.swift in Sources */,
 				A866BEE520B931620073A76D /* TYLColor.swift in Sources */,
+				A84FDB6021DC37EA00593326 /* SettingHeaderView.swift in Sources */,
 				A824150F205CE28C00172587 /* LoginVC.swift in Sources */,
 				A89AF9E72106905500FF6893 /* Crypto.swift in Sources */,
 				A881350C211FD40C00BE8F48 /* BalloonView.swift in Sources */,
+				A84FDB5C21DBB8DF00593326 /* AddThankYouViewController.swift in Sources */,
 				A8A0FE61205E005D0048AB33 /* UIColor+SetColor.swift in Sources */,
 				A8AC1BD71FD20E5500D1B25B /* MainTabBarController.swift in Sources */,
 				A85F02E21EC9BCC500654136 /* AddThankYouDataVC.swift in Sources */,
@@ -421,7 +437,7 @@
 				A8831CC71E9CFE6B00F3CA0A /* AppDelegate.swift in Sources */,
 				A820DE5721C61EF100E7F3DF /* UIView+Shadow.swift in Sources */,
 				A83D5F891F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift in Sources */,
-				A8AC1BD31FAEA4B000D1B25B /* UITextViewPlaceHolder.swift in Sources */,
+				A8AC1BD31FAEA4B000D1B25B /* UITextView+PlaceHolder.swift in Sources */,
 				A80210CD208CD0DB003ADEFD /* UserInfoLeftMenuTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

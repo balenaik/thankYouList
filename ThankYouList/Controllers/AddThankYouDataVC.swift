@@ -136,7 +136,6 @@ class AddThankYouDataVC: UITableViewController, UITextViewDelegate {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 10000
         
-        dateLabel.text = self.delegate.selectedDate
         
         thankYouTextView.delegate = self
         thankYouTextView.placeholder = NSLocalizedString("What are you thankful for?", comment: "")

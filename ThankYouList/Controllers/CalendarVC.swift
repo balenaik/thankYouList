@@ -296,10 +296,11 @@ extension CalendarVC: JTAppleCalendarViewDelegate {
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         configureCell(cell: cell, cellState: cellState)
         getSectionItems(date: cellState.date)
+        appDelegate.selectedDate = cellState.date
+        
         self.formatter.dateFormat = "yyyy/MM/dd"
         selectedDate = self.formatter.string(from: cellState.date)
         selectedDateLabel.text = selectedDate
-        appDelegate.selectedDate = selectedDate
         self.tableView.reloadData()
     }
     

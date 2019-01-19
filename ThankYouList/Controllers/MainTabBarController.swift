@@ -47,13 +47,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         // タブで表示するViewControllerを配列に格納します。
         tabsArray = NSArray(objects: vcNavView, addThankYouDataVC, calendarVCNavView) as? [UIViewController]
         
-        
-        // Set today's date and pass it to the addThankYouDataVC
-        let now = NSDate()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd"
-        appDelegate.selectedDate = formatter.string(from: now as Date)
-        
         self.createViewController(vcs: tabsArray!)
     }
     

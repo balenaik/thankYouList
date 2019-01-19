@@ -19,10 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var uid: String?
-//    var indexPath: IndexPath?
-//    var indexPathSection: Int?
-//    var indexPathRow: Int?
-    var selectedDate: String?
+    var selectedDate: Date?
     
     var storyboard: UIStoryboard {
         return UIStoryboard(name: "Main", bundle: nil)
@@ -63,6 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         createRootViewController(mainViewController: mainTabBarController, subViewController: leftMenuVC)
 
+        self.selectedDate = Date()
         self.window?.makeKeyAndVisible()
         
         return true

@@ -472,6 +472,11 @@
                                 <action selector="tappedCancelButton:" destination="21B-43-yCK" id="Yx2-37-2I6"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="P6Y-XE-chO">
+                            <connections>
+                                <action selector="tappedDoneButton:" destination="21B-43-yCK" id="ccJ-LU-mJc"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addThankYouTextView" destination="8JY-RW-4f9" id="hCB-bf-WVm"/>

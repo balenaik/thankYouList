@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
 
 class AddThankYouViewController: UIViewController {
     
@@ -17,6 +19,8 @@ class AddThankYouViewController: UIViewController {
     
     // MARK: - Properties
     private var delegate = UIApplication.shared.delegate as! AppDelegate
+    private var isPosting = false
+    private var db = Firestore.firestore()
     
     // MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
@@ -39,6 +43,7 @@ class AddThankYouViewController: UIViewController {
         addThankYouTextViewHeaderView.setHeaderTitle(addThankYouTextViewHeaderViewString)
         thankYouDatePickerHeaderView.setHeaderTitle(thankYouDatePickerHeaderViewString)
         addThankYouTextView.placeholder = NSLocalizedString("What are you thankful for?", comment: "")
+        addThankYouTextView.becomeFirstResponder()
         thankYouDateView.setDate(delegate.selectedDate ?? Date())
         
         self.navigationController?.navigationBar.barTintColor = TYLColor.navigationBarBgColor
@@ -66,6 +71,18 @@ class AddThankYouViewController: UIViewController {
 
 // MARK: - IBActions
 extension AddThankYouViewController {
+    @IBAction func tappedDoneButton(_ sender: Any) {
+        if isPosting || addThankYouTextView.text.isEqual("") || addThankYouTextView.text.isEmpty {
+            return
+        }
+        guard let dateString = thankYouDateView.getDateString(),
+            let uid = Auth.auth().currentUser?.uid else { return }
+        let uid16string = String(uid.prefix(16))
+        let encryptedValue = Crypto().encryptString(plainText: addThankYouTextView.text, key: uid16string)
+        let myThankYouData = ThankYouData(id: "", value: "", encryptedValue: encryptedValue, date: dateString, createTime: Date())
+        addThankYou(thankYouData: myThankYouData, uid: uid)
+    }
+    
     @IBAction func tappedCancelButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -119,6 +136,22 @@ extension AddThankYouViewController {
     private func hideKeyboard() {
         addThankYouTextView.resignFirstResponder()
     }
+    
+    private func addThankYou(thankYouData: ThankYouData, uid: String) {
+        isPosting = true
+        db.collection("users").document(uid).collection("thankYouList").addDocument(data: thankYouData.dictionary) { [weak self] error in
+            guard let weakSelf = self else { return }
+            weakSelf.isPosting = false
+            if let error = error {
+                print("Error adding document: \(error.localizedDescription)")
+                let alert = UIAlertController(title: nil, message: NSLocalizedString("Failed to add", comment: ""), preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                weakSelf.present(alert, animated: true, completion: nil)
+                return
+            }
+            weakSelf.dismiss(animated: true, completion: nil)
+        }
+    }
 }
 
 
@@ -127,11 +160,7 @@ extension AddThankYouViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         var height = textView.sizeThatFits(CGSize(width: textView.frame.size.width, height: CGFloat.greatestFiniteMagnitude)).height
         height = height < 80 ? 80 : height
-//        let diff = height - addThankYouTextViewHeightContraint.constant
-//        scrollView.contentSize.height += diff
         addThankYouTextViewHeightContraint.constant = height
-//        thankYou.sizeToFit()
-//        addThankYouTextView.layoutIfNeeded()
     }
 }
 

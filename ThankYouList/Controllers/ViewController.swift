@@ -192,9 +192,14 @@ class ViewController: UIViewController {
                     weakSelf.emptyView.isHidden = true
                 }
                 weakSelf.loadingHud.dismiss(animated: true)
+                weakSelf.postNotificationThankYouListUpdated()
                 weakSelf.tableView.reloadData()
             }
         }
+    }
+    
+    private func postNotificationThankYouListUpdated() {
+        NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: NotificationConst.THANK_YOU_LIST_UPDATED), object: nil, userInfo: nil))
     }
     
     private func deleteSectionDateIfNeeded(sectionDate: String) {

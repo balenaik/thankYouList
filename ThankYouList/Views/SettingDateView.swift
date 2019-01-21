@@ -49,14 +49,4 @@ extension SettingDateView {
         let dateValue = dateFormatter.string(from: date)
         dateLabel.text = dateValue
     }
-    
-    func changeBgColor(isHighlighted: Bool) {
-        UIView.animate(withDuration: 0.1, animations: {
-            if isHighlighted {
-                self.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
-            } else {
-                self.backgroundColor = UIColor.white
-            }
-        })
-    }
 }

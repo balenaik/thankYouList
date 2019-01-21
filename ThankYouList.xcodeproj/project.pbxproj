@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A80210CD208CD0DB003ADEFD /* UserInfoLeftMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80210CC208CD0DB003ADEFD /* UserInfoLeftMenuTableViewCell.swift */; };
+		A80EAE5621F44DD7006B02E8 /* EditThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80EAE5521F44DD7006B02E8 /* EditThankYouViewController.swift */; };
+		A80EAE5821F4C0B4006B02E8 /* UIView+Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80EAE5721F4C0B4006B02E8 /* UIView+Highlight.swift */; };
 		A820DE5421C5432500E7F3DF /* NotificationConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820DE5321C5432500E7F3DF /* NotificationConst.swift */; };
 		A820DE5721C61EF100E7F3DF /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820DE5621C61EF000E7F3DF /* UIView+Shadow.swift */; };
 		A824150F205CE28C00172587 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824150E205CE28C00172587 /* LoginVC.swift */; };
@@ -20,7 +22,6 @@
 		A84FDB6021DC37EA00593326 /* SettingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84FDB5F21DC37E900593326 /* SettingHeaderView.swift */; };
 		A85D9D011EA64AF900945E6E /* ThankYouData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85D9D001EA64AF900945E6E /* ThankYouData.swift */; };
 		A85DCC081F5D2151004E1095 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85DCC071F5D2151004E1095 /* CustomCell.swift */; };
-		A85F02E21EC9BCC500654136 /* AddThankYouDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F02E11EC9BCC500654136 /* AddThankYouDataVC.swift */; };
 		A864849B2160F5BF0049D90A /* Pods_ThankYouList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D49C15FD4089235E28B5ED /* Pods_ThankYouList.framework */; };
 		A866BEE3209EA2BC0073A76D /* LeftMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A866BEE2209EA2BC0073A76D /* LeftMenuTableViewCell.swift */; };
 		A866BEE520B931620073A76D /* TYLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A866BEE420B931620073A76D /* TYLColor.swift */; };
@@ -43,7 +44,6 @@
 		A8DB2FBA1F5D41540055E8A4 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DB2FB91F5D41540055E8A4 /* CalendarVC.swift */; };
 		A8F06BB91F55396F00A90170 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8F06BB81F55396F00A90170 /* Launch Screen.storyboard */; };
 		A8F06BBB1F55415700A90170 /* img in Resources */ = {isa = PBXBuildFile; fileRef = A8F06BBA1F55415700A90170 /* img */; };
-		A8F5FDD81EFDF40B00266CE5 /* EditThankYouDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F5FDD71EFDF40B00266CE5 /* EditThankYouDataVC.swift */; };
 		A8F649B71EEB96D100D6BA84 /* GlobalThankYouData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F649B61EEB96D100D6BA84 /* GlobalThankYouData.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +51,8 @@
 		14D49C15FD4089235E28B5ED /* Pods_ThankYouList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThankYouList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A015AC112826D3ABF5A416EC /* Pods-ThankYouList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.release.xcconfig"; sourceTree = "<group>"; };
 		A80210CC208CD0DB003ADEFD /* UserInfoLeftMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoLeftMenuTableViewCell.swift; sourceTree = "<group>"; };
+		A80EAE5521F44DD7006B02E8 /* EditThankYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditThankYouViewController.swift; sourceTree = "<group>"; };
+		A80EAE5721F4C0B4006B02E8 /* UIView+Highlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Highlight.swift"; sourceTree = "<group>"; };
 		A820DE5321C5432500E7F3DF /* NotificationConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationConst.swift; sourceTree = "<group>"; };
 		A820DE5621C61EF000E7F3DF /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		A824150B205CDF5800172587 /* ThankYouList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThankYouList.entitlements; sourceTree = "<group>"; };
@@ -65,7 +67,6 @@
 		A84FDB5F21DC37E900593326 /* SettingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHeaderView.swift; sourceTree = "<group>"; };
 		A85D9D001EA64AF900945E6E /* ThankYouData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThankYouData.swift; sourceTree = "<group>"; };
 		A85DCC071F5D2151004E1095 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
-		A85F02E11EC9BCC500654136 /* AddThankYouDataVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddThankYouDataVC.swift; sourceTree = "<group>"; };
 		A866BEE2209EA2BC0073A76D /* LeftMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuTableViewCell.swift; sourceTree = "<group>"; };
 		A866BEE420B931620073A76D /* TYLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYLColor.swift; sourceTree = "<group>"; };
 		A881350B211FD40C00BE8F48 /* BalloonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonView.swift; sourceTree = "<group>"; };
@@ -91,7 +92,6 @@
 		A8DB2FB91F5D41540055E8A4 /* CalendarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
 		A8F06BB81F55396F00A90170 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		A8F06BBA1F55415700A90170 /* img */ = {isa = PBXFileReference; lastKnownFileType = folder; path = img; sourceTree = "<group>"; };
-		A8F5FDD71EFDF40B00266CE5 /* EditThankYouDataVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditThankYouDataVC.swift; sourceTree = "<group>"; };
 		A8F649B61EEB96D100D6BA84 /* GlobalThankYouData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalThankYouData.swift; sourceTree = "<group>"; };
 		BA00FC82559EE1AEA8CE9577 /* Pods-ThankYouList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,6 +132,7 @@
 				A8AC1BD21FAEA4AF00D1B25B /* UITextView+PlaceHolder.swift */,
 				A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */,
 				A820DE5621C61EF000E7F3DF /* UIView+Shadow.swift */,
+				A80EAE5721F4C0B4006B02E8 /* UIView+Highlight.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -207,9 +208,8 @@
 				A8DB2FB91F5D41540055E8A4 /* CalendarVC.swift */,
 				A8A0FE5B205D59170048AB33 /* LeftMenuVC.swift */,
 				A8831CC81E9CFE6B00F3CA0A /* ViewController.swift */,
-				A8F5FDD71EFDF40B00266CE5 /* EditThankYouDataVC.swift */,
-				A85F02E11EC9BCC500654136 /* AddThankYouDataVC.swift */,
 				A84FDB5B21DBB8DF00593326 /* AddThankYouViewController.swift */,
+				A80EAE5521F44DD7006B02E8 /* EditThankYouViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -417,6 +417,7 @@
 				A8D41E1C21E0E07B00A77B48 /* SettingDateView.swift in Sources */,
 				A8A0FE5C205D59170048AB33 /* LeftMenuVC.swift in Sources */,
 				A88135102131435100BE8F48 /* EmptyView.swift in Sources */,
+				A80EAE5621F44DD7006B02E8 /* EditThankYouViewController.swift in Sources */,
 				A8831CC91E9CFE6B00F3CA0A /* ViewController.swift in Sources */,
 				A89CF876211C73AC00CA5518 /* SecretData.swift in Sources */,
 				A866BEE520B931620073A76D /* TYLColor.swift in Sources */,
@@ -427,11 +428,10 @@
 				A84FDB5C21DBB8DF00593326 /* AddThankYouViewController.swift in Sources */,
 				A8A0FE61205E005D0048AB33 /* UIColor+SetColor.swift in Sources */,
 				A8AC1BD71FD20E5500D1B25B /* MainTabBarController.swift in Sources */,
-				A85F02E21EC9BCC500654136 /* AddThankYouDataVC.swift in Sources */,
-				A8F5FDD81EFDF40B00266CE5 /* EditThankYouDataVC.swift in Sources */,
 				A85D9D011EA64AF900945E6E /* ThankYouData.swift in Sources */,
 				A866BEE3209EA2BC0073A76D /* LeftMenuTableViewCell.swift in Sources */,
 				A85DCC081F5D2151004E1095 /* CustomCell.swift in Sources */,
+				A80EAE5821F4C0B4006B02E8 /* UIView+Highlight.swift in Sources */,
 				A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */,
 				A8DB2FBA1F5D41540055E8A4 /* CalendarVC.swift in Sources */,
 				A8831CC71E9CFE6B00F3CA0A /* AppDelegate.swift in Sources */,

@@ -14,23 +14,11 @@
 /* Class = "UILabel"; text = "Title"; ObjectID = "HE5-IM-ccl"; */
 "HE5-IM-ccl.text" = "Title";
 
-/* Class = "UITableViewSection"; headerTitle = "Input thank you"; ObjectID = "IJ8-IG-qN7"; */
-"IJ8-IG-qN7.headerTitle" = "Thank you";
-
 /* Class = "UILabel"; text = "Label"; ObjectID = "Iwe-WC-40u"; */
 "Iwe-WC-40u.text" = "Label";
 
 /* Class = "UINavigationItem"; title = "Add thank you"; ObjectID = "QwE-V4-1bV"; */
 "QwE-V4-1bV.title" = "Thank Youを作成";
-
-/* Class = "UITableViewSection"; headerTitle = "Date"; ObjectID = "Ser-H8-Msc"; */
-"Ser-H8-Msc.headerTitle" = "日付";
-
-/* Class = "UIBarButtonItem"; title = "a"; ObjectID = "TNQ-tB-feX"; */
-"TNQ-tB-feX.title" = "a";
-
-/* Class = "UIBarButtonItem"; title = "a"; ObjectID = "YNO-Ak-qbe"; */
-"YNO-Ak-qbe.title" = "a";
 
 /* Class = "UILabel"; text = "Thu"; ObjectID = "ZBu-pV-ZwL"; */
 "ZBu-pV-ZwL.text" = "Thu";
@@ -44,14 +32,8 @@
 /* Class = "UILabel"; text = "Tue"; ObjectID = "eh5-XB-1bU"; */
 "eh5-XB-1bU.text" = "Tue";
 
-/* Class = "UITableViewSection"; headerTitle = "Delete"; ObjectID = "iMC-PM-nVC"; */
-"iMC-PM-nVC.headerTitle" = "Delete";
-
-/* Class = "UILabel"; text = "Delete"; ObjectID = "msH-qy-Ou7"; */
-"msH-qy-Ou7.text" = "削除";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "nen-Bc-Buk"; */
-"nen-Bc-Buk.text" = "Label";
+/* Class = "UILabel"; text = "Delete"; ObjectID = "OPe-Gf-dHL"; */
+"OPe-Gf-dHL.text" = "削除";
 
 /* Class = "UILabel"; text = "Mon"; ObjectID = "p8I-Ht-2Gj"; */
 "p8I-Ht-2Gj.text" = "Mon";
@@ -62,17 +44,8 @@
 /* Class = "UILabel"; text = "Sat"; ObjectID = "sta-Jv-TDw"; */
 "sta-Jv-TDw.text" = "Sat";
 
-/* Class = "UINavigationItem"; title = "Edit thank you"; ObjectID = "ucU-cY-TvU"; */
-"ucU-cY-TvU.title" = "Thank youを編集";
-
-/* Class = "UITableViewSection"; headerTitle = "Input thank you"; ObjectID = "vOH-M8-BxR"; */
-"vOH-M8-BxR.headerTitle" = "Input thank you";
-
-/* Class = "UITableViewSection"; headerTitle = "Date"; ObjectID = "w1O-YZ-9kC"; */
-"w1O-YZ-9kC.headerTitle" = "日付";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "zWT-em-g0K"; */
-"zWT-em-g0K.text" = "Label";
+/* Class = "UINavigationItem"; title = "Edit thank you"; ObjectID = "qrq-DP-bvE"; */
+"qrq-DP-bvE.title" = "Thank youを編集";
 
 /* Class = "UIButton"; text = "normalTitle"; ObjectID = "Xtv-pg-FuL"; */
 "Xtv-pg-FuL.normalTitle" = "Facebookで続行";

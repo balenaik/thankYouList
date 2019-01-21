@@ -1,8 +1,8 @@
 //
-//  AddThankYouViewController.swift
+//  EditThankYouViewController.swift
 //  ThankYouList
 //
-//  Created by Aika Yamada on 2019/01/02.
+//  Created by Aika Yamada on 2019/01/20.
 //  Copyright © 2019 Aika Yamada. All rights reserved.
 //
 
@@ -11,40 +11,59 @@ import UIKit
 import FirebaseFirestore
 import FirebaseAuth
 
-class AddThankYouViewController: UIViewController {
+class EditThankYouViewController: UIViewController {
     
     // MARK: - Constants
     private let addThankYouTextViewHeaderViewString = "Thank You"
     private let thankYouDatePickerHeaderViewString = NSLocalizedString("Date", comment: "")
+    private let deleteViewString = NSLocalizedString("Delete", comment: "")
     
     // MARK: - Properties
     private var delegate = UIApplication.shared.delegate as! AppDelegate
     private var isPosting = false
+    private var editingThankYouData: ThankYouData?
     private var db = Firestore.firestore()
     
     // MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var addThankYouTextViewHeaderView: SettingHeaderView!
-    @IBOutlet weak var addThankYouTextView: UITextView!
+    @IBOutlet weak var editThankYouTextView: UITextView!
     @IBOutlet weak var thankYouDatePickerHeaderView: SettingHeaderView!
     @IBOutlet weak var thankYouDateView: SettingDateView!
     @IBOutlet weak var datePickerView: UIView!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var deleteHeaderView: SettingHeaderView!
+    @IBOutlet weak var deleteView: UIView!
     
-    @IBOutlet weak var addThankYouTextViewHeightContraint: NSLayoutConstraint!
+    @IBOutlet weak var editThankYouTextViewHeightContraint: NSLayoutConstraint!
     
     // MARK: - View Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        guard let editingThankYouData = editingThankYouData else {
+            self.dismiss(animated: true, completion: nil)
+            return
+        }
+        
         datePicker.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
         
         addThankYouTextViewHeaderView.setHeaderTitle(addThankYouTextViewHeaderViewString)
         thankYouDatePickerHeaderView.setHeaderTitle(thankYouDatePickerHeaderViewString)
-        addThankYouTextView.placeholder = NSLocalizedString("What are you thankful for?", comment: "")
-        addThankYouTextView.becomeFirstResponder()
-        thankYouDateView.setDate(delegate.selectedDate ?? Date())
+        deleteHeaderView.hideHeaderTitle()
+        editThankYouTextView.text = editingThankYouData.value
+        editThankYouTextView.placeholder = NSLocalizedString("What are you thankful for?", comment: "")
+        adjustTextViewHeight(editThankYouTextView)
+        editThankYouTextView.becomeFirstResponder()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        if let editingDate = dateFormatter.date(from: editingThankYouData.date) {
+            datePicker.setDate(editingDate, animated: true)
+            thankYouDateView.setDate(editingDate)
+        }
+        
         
         self.navigationController?.navigationBar.barTintColor = TYLColor.navigationBarBgColor
         self.navigationController?.navigationBar.tintColor = TYLColor.navigationBarTextColor
@@ -57,8 +76,8 @@ class AddThankYouViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let nc = NotificationCenter.default
-        nc.addObserver(self, selector: #selector(AddThankYouViewController.keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        nc.addObserver(self, selector: #selector(AddThankYouViewController.keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        nc.addObserver(self, selector: #selector(EditThankYouViewController.keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        nc.addObserver(self, selector: #selector(EditThankYouViewController.keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -70,17 +89,17 @@ class AddThankYouViewController: UIViewController {
 }
 
 // MARK: - IBActions
-extension AddThankYouViewController {
+extension EditThankYouViewController {
     @IBAction func tappedDoneButton(_ sender: Any) {
-        if isPosting || addThankYouTextView.text.isEqual("") || addThankYouTextView.text.isEmpty {
+        if isPosting || editThankYouTextView.text.isEqual("") || editThankYouTextView.text.isEmpty {
             return
         }
         guard let dateString = thankYouDateView.getDateString(),
             let uid = Auth.auth().currentUser?.uid else { return }
         let uid16string = String(uid.prefix(16))
-        let encryptedValue = Crypto().encryptString(plainText: addThankYouTextView.text, key: uid16string)
+        let encryptedValue = Crypto().encryptString(plainText: editThankYouTextView.text, key: uid16string)
         let myThankYouData = ThankYouData(id: "", value: "", encryptedValue: encryptedValue, date: dateString, createTime: Date())
-        addThankYou(thankYouData: myThankYouData, uid: uid)
+        editThankYou(editThankYouData: myThankYouData, uid: uid)
     }
     
     @IBAction func tappedCancelButton(_ sender: Any) {
@@ -88,7 +107,7 @@ extension AddThankYouViewController {
     }
     
     @IBAction func tappedThankYouDateView(_ sender: UILongPressGestureRecognizer) {
-        addThankYouTextView.resignFirstResponder()
+        editThankYouTextView.resignFirstResponder()
         switch sender.state {
         case .began:
             thankYouDateView.changeBgColorOnSettingView(isHighlighted: true)
@@ -103,10 +122,23 @@ extension AddThankYouViewController {
             break
         }
     }
+    
+    @IBAction func tappedDeleteView(_ sender: UILongPressGestureRecognizer) {
+        editThankYouTextView.resignFirstResponder()
+        switch sender.state {
+        case .began:
+            deleteView.changeBgColorOnSettingView(isHighlighted: true)
+        case .ended:
+            deleteView.changeBgColorOnSettingView(isHighlighted: false)
+            deleteAction()
+        default:
+            break
+        }
+    }
 }
 
 // MARK: - Internal Methods
-extension AddThankYouViewController {
+extension EditThankYouViewController {
     @objc func datePickerValueChanged (datePicker: UIDatePicker) {
         thankYouDateView.setDate(datePicker.date)
     }
@@ -114,7 +146,7 @@ extension AddThankYouViewController {
 
 
 // MARK: - Private Methods
-extension AddThankYouViewController {
+extension EditThankYouViewController {
     @objc private func keyboardWillShow(notification: Notification) {
         let rect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let duration: TimeInterval = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as! Double
@@ -134,17 +166,18 @@ extension AddThankYouViewController {
     }
     
     private func hideKeyboard() {
-        addThankYouTextView.resignFirstResponder()
+        editThankYouTextView.resignFirstResponder()
     }
     
-    private func addThankYou(thankYouData: ThankYouData, uid: String) {
+    private func editThankYou(editThankYouData: ThankYouData, uid: String) {
+        guard let editingThankYouData = editingThankYouData else { return }
         isPosting = true
-        db.collection("users").document(uid).collection("thankYouList").addDocument(data: thankYouData.dictionary) { [weak self] error in
+        db.collection("users").document(uid).collection("thankYouList").document(editingThankYouData.id).updateData(editThankYouData.dictionary) { [weak self] error in
             guard let weakSelf = self else { return }
             weakSelf.isPosting = false
             if let error = error {
                 print("Error adding document: \(error.localizedDescription)")
-                let alert = UIAlertController(title: nil, message: NSLocalizedString("Failed to add", comment: ""), preferredStyle: .alert)
+                let alert = UIAlertController(title: nil, message: NSLocalizedString("Failed to edit", comment: ""), preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 weakSelf.present(alert, animated: true, completion: nil)
                 return
@@ -156,20 +189,58 @@ extension AddThankYouViewController {
     private func adjustTextViewHeight(_ textView: UITextView) {
         var height = textView.sizeThatFits(CGSize(width: textView.frame.size.width, height: CGFloat.greatestFiniteMagnitude)).height
         height = height < 80 ? 80 : height
-        addThankYouTextViewHeightContraint.constant = height
+        editThankYouTextViewHeightContraint.constant = height
+    }
+    
+    private func deleteAction() {
+        let alertController = UIAlertController(title: NSLocalizedString("Delete Thank you", comment: ""),message: NSLocalizedString("Are you sure you want to delete this thank you?", comment: ""), preferredStyle: UIAlertController.Style.alert)
+        let deleteAction = UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: UIAlertAction.Style.destructive){ (action: UIAlertAction) in
+            self.deleteThankYou()
+        }
+        let cancelButton = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertAction.Style.cancel, handler: nil)
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelButton)
+        present(alertController,animated: true,completion: nil)
+    }
+    
+    private func deleteThankYou() {
+        guard let editingThankYouData = editingThankYouData else { return }
+        guard let uid = Auth.auth().currentUser?.uid else {
+            print("Not login error")
+            return
+        }
+        db.collection("users").document(uid).collection("thankYouList").document(editingThankYouData.id).delete(completion: { [weak self] error in
+            guard let weakSelf = self else { return }
+            if let error = error {
+                debugPrint(error)
+                let alert = UIAlertController(title: nil, message: NSLocalizedString("Failed to delete", comment: ""), preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                weakSelf.present(alert, animated: true, completion: nil)
+            }
+            weakSelf.dismiss(animated: true, completion: nil)
+        })
     }
 }
 
 
 // MARK: - Extensions
-extension AddThankYouViewController: UITextViewDelegate {
+extension EditThankYouViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         adjustTextViewHeight(textView)
     }
 }
 
-extension AddThankYouViewController: UIScrollViewDelegate {
+extension EditThankYouViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        addThankYouTextView.resignFirstResponder()
+        editThankYouTextView.resignFirstResponder()
+    }
+}
+
+// MARK: - Create View Controller
+extension EditThankYouViewController {
+    class func createViewController(thankYouData: ThankYouData?) -> EditThankYouViewController {
+        let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditThankYouViewController") as! EditThankYouViewController
+        vc.editingThankYouData = thankYouData
+        return vc
     }
 }

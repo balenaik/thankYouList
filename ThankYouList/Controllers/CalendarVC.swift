@@ -350,7 +350,7 @@ extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let editingThankYouData = sectionItems[indexPath.row]
-        let vc = EditThankYouDataVC.createViewController(thankYouData: editingThankYouData)
+        let vc = EditThankYouViewController.createViewController(thankYouData: editingThankYouData)
         let navi = UINavigationController(rootViewController: vc)
         self.present(navi, animated: true, completion: nil)
         tableView.deselectRow(at: indexPath, animated: true)

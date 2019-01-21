@@ -27,4 +27,8 @@ class SettingHeaderView: UIView {
     func setHeaderTitle(_ title: String) {
         headerTitle.text = title
     }
+    
+    func hideHeaderTitle() {
+        headerTitle.isHidden = true
+    }
 }

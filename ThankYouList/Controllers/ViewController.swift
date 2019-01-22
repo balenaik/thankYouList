@@ -48,9 +48,11 @@ class ViewController: UIViewController {
 
         emptyView.isHidden = true
         
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 255/255.0, green: 248/255.0, blue: 232/255.0, alpha: 1.0)
-        self.navigationController?.navigationBar.tintColor = UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor(red: 254/255.0, green: 147/255.0, blue: 157/255.0, alpha: 1.0)]
+        self.navigationController?.navigationBar.barTintColor = TYLColor.navigationBarBgColor
+        self.navigationController?.navigationBar.tintColor = TYLColor.navigationBarTextColor
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor : TYLColor.navigationBarTextColor
+        ]
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -267,7 +269,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sectionItems = self.getSectionItems(section: indexPath.section)
         let editingThankYouData = sectionItems[indexPath.row]
-        let vc = EditThankYouDataVC.createViewController(thankYouData: editingThankYouData)
+        let vc = EditThankYouViewController.createViewController(thankYouData: editingThankYouData)
         let navi = UINavigationController(rootViewController: vc)
         self.present(navi, animated: true, completion: nil)
     }

@@ -237,15 +237,6 @@ class CalendarVC: UIViewController {
         let selectedDate = calendarView.selectedDates[0]
         getSectionItems(date: selectedDate)
     }
-
-    
-    private func deleteSectionDateIfNeeded(sectionDate: String) {
-        let sectionItemsCount = thankYouDataSingleton.thankYouDataList.filter({$0.date == sectionDate}).count
-        if sectionItemsCount == 0 {
-            thankYouDataSingleton.sectionDate = thankYouDataSingleton.sectionDate.filter({$0 != sectionDate})
-            thankYouDataSingleton.sectionDate.sort(by:>)
-        }
-    }
     
     @objc func updatedThankYouList(notification: Notification) {
         updateCurrentSectionItems()

@@ -13,7 +13,6 @@ class GlobalThankYouData {
     // Create a singleton
     var thankYouDataUDList = [ThankYouDataUD]()
     var thankYouDataList = [ThankYouData]()
-    var sectionDate = [String]()
     
     // Get instance
     static var sharedInstance = GlobalThankYouData()

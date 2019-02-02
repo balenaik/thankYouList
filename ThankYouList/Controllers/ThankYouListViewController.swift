@@ -13,10 +13,19 @@ import JGProgressHUD
 
 class ThankYouListViewController: UIViewController {
     
+    // MARK: - Struct
+    struct Section {
+        /// yyyy/MM (String)
+        var sectionDateString: String
+        var displayDateString: String
+        var thankYouList: [ThankYouData]
+    }
+    
     // MARK: - Properties
     private var delegate = UIApplication.shared.delegate as! AppDelegate
     private var db = Firestore.firestore()
     private var thankYouDataSingleton = GlobalThankYouData.sharedInstance
+    private var sections = [Section]()
     private let loadingHud = JGProgressHUD(style: .extraLight)
     
     
@@ -39,10 +48,10 @@ class ThankYouListViewController: UIViewController {
         loadingHud.textLabel.text = "Loading"
         loadingHud.show(in: self.view)
         
+        sections = []
         loadThankYouData()
         checkForUpdates()
         
-        // change the height of cells depending on the text
         tableView.estimatedRowHeight = 40
         tableView.rowHeight = UITableView.automaticDimension
 
@@ -68,23 +77,12 @@ class ThankYouListViewController: UIViewController {
 
 // MARK: - Private Methods
 extension ThankYouListViewController {
-    private func getSectionItems(section: Int) -> [ThankYouData] {
-        var sectionItems = [ThankYouData]()
-        let thankYouDataSingleton = GlobalThankYouData.sharedInstance
-        let thankYouDataList: [ThankYouData] = thankYouDataSingleton.thankYouDataList
-        var sectionDate: [String] = thankYouDataSingleton.sectionDate
-        sectionItems = thankYouDataList.filter({$0.date == sectionDate[section]})
-
-        return sectionItems
-    }
-    
     private func loadThankYouData() {
         guard let uid = Auth.auth().currentUser?.uid else {
             print("Not login? error")
             return
         }
         let uid16string = String(uid.prefix(16))
-        thankYouDataSingleton.sectionDate = []
         db.collection("users").document(uid).collection("thankYouList").getDocuments { [weak self](querySnapshot, error) in
             guard let weakSelf = self else { return }
             if let error = error {
@@ -105,9 +103,7 @@ extension ThankYouListViewController {
                 thankYouDataList.append(thankYouData)
             }
             for thankYouData in thankYouDataList {
-                if !weakSelf.thankYouDataSingleton.sectionDate.contains(thankYouData.date) {
-                    weakSelf.thankYouDataSingleton.sectionDate.append(thankYouData.date)
-                }
+                weakSelf.addThankYouDataToSection(thankYouData: thankYouData)
             }
             weakSelf.thankYouDataSingleton.thankYouDataList = thankYouDataList
             DispatchQueue.main.async {
@@ -150,17 +146,14 @@ extension ThankYouListViewController {
                     if !thankYouDataIds.contains(newThankYouData.id) {
                          weakSelf.thankYouDataSingleton.thankYouDataList.append(newThankYouData)
                     }
-                    if !weakSelf.thankYouDataSingleton.sectionDate.contains(newThankYouData.date) {
-                        weakSelf.thankYouDataSingleton.sectionDate.append(newThankYouData.date)
-                    }
-                    weakSelf.thankYouDataSingleton.sectionDate.sort(by:>)
+                    weakSelf.addThankYouDataToSection(thankYouData: newThankYouData)
                 }
                 if diff.type == .removed {
                     let removedDataId = diff.document.documentID
                     for (index, thankYouData) in weakSelf.thankYouDataSingleton.thankYouDataList.enumerated() {
                         if thankYouData.id == removedDataId {
                             weakSelf.thankYouDataSingleton.thankYouDataList.remove(at: index)
-                            weakSelf.deleteSectionDateIfNeeded(sectionDate: thankYouData.date)
+                            weakSelf.deleteThankYouDataFromSection(thankYouData: thankYouData)
                             break
                         }
                     }
@@ -174,15 +167,12 @@ extension ThankYouListViewController {
                     for (index, thankYouData) in weakSelf.thankYouDataSingleton.thankYouDataList.enumerated() {
                         if editedThankYouData.id == thankYouData.id {
                             weakSelf.thankYouDataSingleton.thankYouDataList.remove(at: index)
-                            weakSelf.deleteSectionDateIfNeeded(sectionDate: thankYouData.date)
+                            weakSelf.deleteThankYouDataFromSection(thankYouData: thankYouData)
                             break
                         }
                     }
                     weakSelf.thankYouDataSingleton.thankYouDataList.append(editedThankYouData)
-                    if !weakSelf.thankYouDataSingleton.sectionDate.contains(editedThankYouData.date) {
-                        weakSelf.thankYouDataSingleton.sectionDate.append(editedThankYouData.date)
-                        weakSelf.thankYouDataSingleton.sectionDate.sort(by:>)
-                    }
+                    weakSelf.addThankYouDataToSection(thankYouData: editedThankYouData)
                 }
             }
             DispatchQueue.main.async {
@@ -202,11 +192,32 @@ extension ThankYouListViewController {
         NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: NotificationConst.THANK_YOU_LIST_UPDATED), object: nil, userInfo: nil))
     }
     
-    private func deleteSectionDateIfNeeded(sectionDate: String) {
-        let sectionItemsCount = thankYouDataSingleton.thankYouDataList.filter({$0.date == sectionDate}).count
-        if sectionItemsCount == 0 {
-            thankYouDataSingleton.sectionDate = thankYouDataSingleton.sectionDate.filter({$0 != sectionDate})
-            thankYouDataSingleton.sectionDate.sort(by:>)
+    private func addThankYouDataToSection(thankYouData: ThankYouData) {
+        /// Crop only year and month (yyyy/MM) from thank you date
+        let dateYearMonthString = String(thankYouData.date.prefix(7))
+        let sectionIndex = sections.index(where: {$0.sectionDateString == dateYearMonthString})
+        if let index = sectionIndex {
+            sections[index].thankYouList.append(thankYouData)
+        } else {
+            guard let dateYearMonth = dateYearMonthString.toYearMonthDate() else { return }
+            let newSection = Section(sectionDateString: dateYearMonthString,
+                                     displayDateString: dateYearMonth.toYearMonthString(),
+                                     thankYouList: [thankYouData])
+            sections.append(newSection)
+            sections.sort(by: {$0.displayDateString > $1.displayDateString})
+        }
+    }
+    
+    private func deleteThankYouDataFromSection(thankYouData: ThankYouData) {
+        /// Crop only year and month (yyyy/MM) from thank you date
+        let dateYearMonthString = String(thankYouData.date.prefix(7))
+        /// If there is no section or thank you id matching, do nothing
+        guard let sectionIndex = sections.index(where: {$0.sectionDateString == dateYearMonthString}),
+            let thankYouIndex = sections[sectionIndex].thankYouList
+                .index(where: {$0.id == thankYouData.id}) else { return }
+        sections[sectionIndex].thankYouList.remove(at: thankYouIndex)
+        if sections[sectionIndex].thankYouList.count == 0 {
+            sections.remove(at: sectionIndex)
         }
     }
 }
@@ -216,57 +227,36 @@ extension ThankYouListViewController {
 extension ThankYouListViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return getSectionItems(section: section).count
+        return sections[section].thankYouList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "thankYouCell", for: indexPath)
-        let sectionItems = getSectionItems(section: indexPath.section)
-        let myThankYouData = sectionItems[indexPath.row]
-
-        cell.textLabel?.text = myThankYouData.value
+        let thankYouData = sections[indexPath.section].thankYouList[indexPath.row]
+        cell.textLabel?.text = thankYouData.value
         cell.textLabel?.font = UIFont.systemFont(ofSize: 16)
         cell.textLabel?.textColor = TYLColor.textColor
         return cell 
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        // Get the singleton
-        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
-        // Sectionで利用する配列
-        let sectionDate: [String] = thankYouDataSingleton.sectionDate
-        return sectionDate.count
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        // Get the singleton
-        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
-        // Sectionで利用する配列
-        var sectionDate: [String] = thankYouDataSingleton.sectionDate
-        return sectionDate[section]
+        return sections.count
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        // Get the singleton
-        let thankYouDataSingleton: GlobalThankYouData = GlobalThankYouData.sharedInstance
-        // Sectionで利用する配列
-        var sectionDate: [String] = thankYouDataSingleton.sectionDate
         // 余白を作る(UIViewをセクションのビューに指定（だからxとかy指定しても意味ない）
         let view = UIView(frame: CGRect(x:0, y:0, width:20, height:20))
         view.backgroundColor = UIColor(red: 252/255.0, green: 181/255.0, blue: 181/255.0, alpha: 1.0)
         let label :UILabel = UILabel(frame: CGRect(x: 15, y: 7.5, width: tableView.frame.width, height: 20))
         label.textColor = UIColor.white
-        label.text = sectionDate[section]
-        //指定したlabelをセクションビューのサブビューに指定
+        label.text = sections[section].displayDateString
         view.addSubview(label)
         return view
     }
     
-    
     // when a cell is tapped it goes the edit screen
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let sectionItems = self.getSectionItems(section: indexPath.section)
-        let editingThankYouData = sectionItems[indexPath.row]
+        let editingThankYouData = sections[indexPath.section].thankYouList[indexPath.row]
         let vc = EditThankYouViewController.createViewController(thankYouData: editingThankYouData)
         let navi = UINavigationController(rootViewController: vc)
         self.present(navi, animated: true, completion: nil)

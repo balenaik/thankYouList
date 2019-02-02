@@ -29,7 +29,7 @@
 		A881350E2131432C00BE8F48 /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A881350D2131432C00BE8F48 /* EmptyView.xib */; };
 		A88135102131435100BE8F48 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A881350F2131435100BE8F48 /* EmptyView.swift */; };
 		A8831CC71E9CFE6B00F3CA0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8831CC61E9CFE6B00F3CA0A /* AppDelegate.swift */; };
-		A8831CC91E9CFE6B00F3CA0A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8831CC81E9CFE6B00F3CA0A /* ViewController.swift */; };
+		A8831CC91E9CFE6B00F3CA0A /* ThankYouListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8831CC81E9CFE6B00F3CA0A /* ThankYouListViewController.swift */; };
 		A8831CCC1E9CFE6B00F3CA0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8831CCA1E9CFE6B00F3CA0A /* Main.storyboard */; };
 		A8831CCE1E9CFE6B00F3CA0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */; };
 		A89AF9E72106905500FF6893 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AF9E62106905500FF6893 /* Crypto.swift */; };
@@ -74,7 +74,7 @@
 		A881350F2131435100BE8F48 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		A8831CC31E9CFE6B00F3CA0A /* ThankYouList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThankYouList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8831CC61E9CFE6B00F3CA0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A8831CC81E9CFE6B00F3CA0A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A8831CC81E9CFE6B00F3CA0A /* ThankYouListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouListViewController.swift; sourceTree = "<group>"; };
 		A8831CCB1E9CFE6B00F3CA0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8831CD21E9CFE6B00F3CA0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -120,6 +120,7 @@
 		A820DE5221C5430B00E7F3DF /* Const */ = {
 			isa = PBXGroup;
 			children = (
+				A84CBEE120F198E400CBA0AB /* ConstStruct.swift */,
 				A820DE5321C5432500E7F3DF /* NotificationConst.swift */,
 			);
 			path = Const;
@@ -175,23 +176,22 @@
 		A8831CC51E9CFE6B00F3CA0A /* ThankYouList */ = {
 			isa = PBXGroup;
 			children = (
+				A8831CC61E9CFE6B00F3CA0A /* AppDelegate.swift */,
+				A8B6EE8F2201E49C00908D51 /* Configurations */,
 				A820DE5521C61E6F00E7F3DF /* Extension */,
 				A820DE5221C5430B00E7F3DF /* Const */,
 				A881350A211FD37200BE8F48 /* Views */,
 				A8A0FE5F205DFCB40048AB33 /* Controllers */,
-				A841B336213A895E00E8AB5B /* GoogleService-Info.plist */,
 				A85D9D001EA64AF900945E6E /* ThankYouData.swift */,
-				A824150B205CDF5800172587 /* ThankYouList.entitlements */,
-				A8831CC61E9CFE6B00F3CA0A /* AppDelegate.swift */,
-				A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */,
 				A8F649B61EEB96D100D6BA84 /* GlobalThankYouData.swift */,
+				A824150B205CDF5800172587 /* ThankYouList.entitlements */,
+				A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */,
 				A8831CD21E9CFE6B00F3CA0A /* Info.plist */,
 				A8F06BB81F55396F00A90170 /* Launch Screen.storyboard */,
 				A8831CCA1E9CFE6B00F3CA0A /* Main.storyboard */,
 				A8AC1BCE1FAE00B600D1B25B /* Localizable.strings */,
 				A8BA38B81F5CC5F600817D5C /* images.xcassets */,
 				A866BEE420B931620073A76D /* TYLColor.swift */,
-				A84CBEE120F198E400CBA0AB /* ConstStruct.swift */,
 				A89AF9E62106905500FF6893 /* Crypto.swift */,
 				A82EB682210DA66D00CF1FDA /* module.modulemap */,
 				A89CF875211C73AC00CA5518 /* SecretData.swift */,
@@ -207,11 +207,19 @@
 				A8AC1BD61FD20E5500D1B25B /* MainTabBarController.swift */,
 				A8DB2FB91F5D41540055E8A4 /* CalendarVC.swift */,
 				A8A0FE5B205D59170048AB33 /* LeftMenuVC.swift */,
-				A8831CC81E9CFE6B00F3CA0A /* ViewController.swift */,
+				A8831CC81E9CFE6B00F3CA0A /* ThankYouListViewController.swift */,
 				A84FDB5B21DBB8DF00593326 /* AddThankYouViewController.swift */,
 				A80EAE5521F44DD7006B02E8 /* EditThankYouViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A8B6EE8F2201E49C00908D51 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				A841B336213A895E00E8AB5B /* GoogleService-Info.plist */,
+			);
+			path = Configurations;
 			sourceTree = "<group>";
 		};
 		D9B61224EE9861DF0D778DEA /* Frameworks */ = {
@@ -418,7 +426,7 @@
 				A8A0FE5C205D59170048AB33 /* LeftMenuVC.swift in Sources */,
 				A88135102131435100BE8F48 /* EmptyView.swift in Sources */,
 				A80EAE5621F44DD7006B02E8 /* EditThankYouViewController.swift in Sources */,
-				A8831CC91E9CFE6B00F3CA0A /* ViewController.swift in Sources */,
+				A8831CC91E9CFE6B00F3CA0A /* ThankYouListViewController.swift in Sources */,
 				A89CF876211C73AC00CA5518 /* SecretData.swift in Sources */,
 				A866BEE520B931620073A76D /* TYLColor.swift in Sources */,
 				A84FDB6021DC37EA00593326 /* SettingHeaderView.swift in Sources */,

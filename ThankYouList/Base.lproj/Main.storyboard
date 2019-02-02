@@ -152,7 +152,7 @@
         <!--Thank You List ☺️✏️-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="viewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="ThankYouList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ThankYouListViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ThankYouListViewController" customModule="ThankYouList" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -382,7 +382,7 @@
         <!--Navigation Controller-->
         <scene sceneID="kzR-vp-5iq">
             <objects>
-                <navigationController storyboardIdentifier="vcNav" automaticallyAdjustsScrollViewInsets="NO" id="K80-1H-gzG" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ThankYouListViewControllerNav" automaticallyAdjustsScrollViewInsets="NO" id="K80-1H-gzG" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oCg-2f-OTD">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -808,7 +808,7 @@
         <!--Navigation Controller-->
         <scene sceneID="7k0-EI-ATJ">
             <objects>
-                <navigationController storyboardIdentifier="calendarVCNav" automaticallyAdjustsScrollViewInsets="NO" id="n3s-1D-tXE" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CalendarViewControllerNav" automaticallyAdjustsScrollViewInsets="NO" id="n3s-1D-tXE" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4oC-lc-YU7">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

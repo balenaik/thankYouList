@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ThankYouListViewController.swift
 //  ThankYouList
 //
 //  Created by Aika Yamada on 4/11/17.
@@ -11,7 +11,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import JGProgressHUD
 
-class ViewController: UIViewController {
+class ThankYouListViewController: UIViewController {
     
     // MARK: - Properties
     private var delegate = UIApplication.shared.delegate as! AppDelegate
@@ -58,18 +58,16 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-//        Auth.auth().removeStateDidChangeListener(handle!)
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
     
-    
-    // MARK: - Private Methods
+
+// MARK: - Private Methods
+extension ThankYouListViewController {
     private func getSectionItems(section: Int) -> [ThankYouData] {
         var sectionItems = [ThankYouData]()
         let thankYouDataSingleton = GlobalThankYouData.sharedInstance
@@ -214,8 +212,8 @@ class ViewController: UIViewController {
 }
     
     
-// MARK: - Extensions
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
+// MARK: - UITableViewDataSource & UITableViewDelegate
+extension ThankYouListViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return getSectionItems(section: section).count

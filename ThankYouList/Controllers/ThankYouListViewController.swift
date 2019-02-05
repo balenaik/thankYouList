@@ -48,12 +48,15 @@ class ThankYouListViewController: UIViewController {
         loadingHud.textLabel.text = "Loading"
         loadingHud.show(in: self.view)
         
+        thankYouDataSingleton.thankYouDataList = []
         sections = []
-        loadThankYouData()
-        checkForUpdates()
+        loadAndCheckForUpdates()
         
         tableView.estimatedRowHeight = 40
         tableView.rowHeight = UITableView.automaticDimension
+        tableView?.register(UINib(nibName: ThankYouListSectionHeaderView.cellIdentifier(),
+                                  bundle: nil),
+                            forHeaderFooterViewReuseIdentifier: ThankYouListSectionHeaderView.cellIdentifier())
 
         emptyView.isHidden = true
         
@@ -77,48 +80,7 @@ class ThankYouListViewController: UIViewController {
 
 // MARK: - Private Methods
 extension ThankYouListViewController {
-    private func loadThankYouData() {
-        guard let uid = Auth.auth().currentUser?.uid else {
-            print("Not login? error")
-            return
-        }
-        let uid16string = String(uid.prefix(16))
-        db.collection("users").document(uid).collection("thankYouList").getDocuments { [weak self](querySnapshot, error) in
-            guard let weakSelf = self else { return }
-            if let error = error {
-                print(error.localizedDescription)
-                weakSelf.loadingHud.dismiss(animated: true)
-                return
-            }
-            guard let querySnapshot = querySnapshot else {
-                weakSelf.loadingHud.dismiss(animated: true)
-                return
-            }
-            var thankYouDataList: [ThankYouData] = []
-            for document in querySnapshot.documents {
-                guard var thankYouData = ThankYouData(dictionary: document.data()) else { break }
-                let decryptedValue = Crypto().decryptString(encryptText: thankYouData.encryptedValue, key: uid16string)
-                thankYouData.id = document.documentID
-                thankYouData.value = decryptedValue
-                thankYouDataList.append(thankYouData)
-            }
-            for thankYouData in thankYouDataList {
-                weakSelf.addThankYouDataToSection(thankYouData: thankYouData)
-            }
-            weakSelf.thankYouDataSingleton.thankYouDataList = thankYouDataList
-            DispatchQueue.main.async {
-                if weakSelf.thankYouDataSingleton.thankYouDataList.count == 0 {
-                    weakSelf.emptyView.isHidden = false
-                } else {
-                    weakSelf.emptyView.isHidden = true
-                }
-                weakSelf.loadingHud.dismiss(animated: true)
-                weakSelf.tableView.reloadData()
-            }
-        }
-    }
-    
-    private func checkForUpdates() {
+    private func loadAndCheckForUpdates() {
         guard let uid = Auth.auth().currentUser?.uid else {
             print("Not login? error")
             return
@@ -144,9 +106,9 @@ extension ThankYouListViewController {
                     newThankYouData.value = decryptedValue
                     let thankYouDataIds: [String] = weakSelf.thankYouDataSingleton.thankYouDataList.map{$0.id}
                     if !thankYouDataIds.contains(newThankYouData.id) {
-                         weakSelf.thankYouDataSingleton.thankYouDataList.append(newThankYouData)
+                        weakSelf.thankYouDataSingleton.thankYouDataList.append(newThankYouData)
+                        weakSelf.addThankYouDataToSection(thankYouData: newThankYouData)
                     }
-                    weakSelf.addThankYouDataToSection(thankYouData: newThankYouData)
                 }
                 if diff.type == .removed {
                     let removedDataId = diff.document.documentID
@@ -198,6 +160,7 @@ extension ThankYouListViewController {
         let sectionIndex = sections.index(where: {$0.sectionDateString == dateYearMonthString})
         if let index = sectionIndex {
             sections[index].thankYouList.append(thankYouData)
+            sections[index].thankYouList.sort(by: {$0.date > $1.date})
         } else {
             guard let dateYearMonth = dateYearMonthString.toYearMonthDate() else { return }
             let newSection = Section(sectionDateString: dateYearMonthString,
@@ -211,7 +174,6 @@ extension ThankYouListViewController {
     private func deleteThankYouDataFromSection(thankYouData: ThankYouData) {
         /// Crop only year and month (yyyy/MM) from thank you date
         let dateYearMonthString = String(thankYouData.date.prefix(7))
-        /// If there is no section or thank you id matching, do nothing
         guard let sectionIndex = sections.index(where: {$0.sectionDateString == dateYearMonthString}),
             let thankYouIndex = sections[sectionIndex].thankYouList
                 .index(where: {$0.id == thankYouData.id}) else { return }
@@ -244,14 +206,13 @@ extension ThankYouListViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        // 余白を作る(UIViewをセクションのビューに指定（だからxとかy指定しても意味ない）
-        let view = UIView(frame: CGRect(x:0, y:0, width:20, height:20))
-        view.backgroundColor = UIColor(red: 252/255.0, green: 181/255.0, blue: 181/255.0, alpha: 1.0)
-        let label :UILabel = UILabel(frame: CGRect(x: 15, y: 7.5, width: tableView.frame.width, height: 20))
-        label.textColor = UIColor.white
-        label.text = sections[section].displayDateString
-        view.addSubview(label)
-        return view
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ThankYouListSectionHeaderView.cellIdentifier()) as! ThankYouListSectionHeaderView
+        header.bind(sectionString: sections[section].displayDateString)
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return ThankYouListSectionHeaderView.cellHeight
     }
     
     // when a cell is tapped it goes the edit screen

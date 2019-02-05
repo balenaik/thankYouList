@@ -1,0 +1,35 @@
+//
+//  ThankYouListSectionHeaderView.swift
+//  ThankYouList
+//
+//  Created by Aika Yamada on 2019/02/02.
+//  Copyright © 2019 Aika Yamada. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+class ThankYouListSectionHeaderView: UITableViewHeaderFooterView {
+    // MARK: -  Properties
+    static let cellHeight = CGFloat(50)
+    
+    // MARK: - IBOutlets
+    @IBOutlet weak var sectionLabel: UILabel!
+    
+    // MARK: - Initializers
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+}
+
+// MARK: - Internal Methods
+extension ThankYouListSectionHeaderView {
+
+    @objc class func cellIdentifier() -> String {
+        return String(describing: self)
+    }
+    
+    func bind(sectionString: String) {
+        sectionLabel.text = sectionString
+    }
+}

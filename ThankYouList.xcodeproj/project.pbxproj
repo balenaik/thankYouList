@@ -10,6 +10,8 @@
 		A80210CD208CD0DB003ADEFD /* UserInfoLeftMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80210CC208CD0DB003ADEFD /* UserInfoLeftMenuTableViewCell.swift */; };
 		A80EAE5621F44DD7006B02E8 /* EditThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80EAE5521F44DD7006B02E8 /* EditThankYouViewController.swift */; };
 		A80EAE5821F4C0B4006B02E8 /* UIView+Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80EAE5721F4C0B4006B02E8 /* UIView+Highlight.swift */; };
+		A80EAE5A21FD5F87006B02E8 /* ThankYouCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80EAE5921FD5F87006B02E8 /* ThankYouCell.swift */; };
+		A80EAE5C21FD5FA6006B02E8 /* ThankYouCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A80EAE5B21FD5FA6006B02E8 /* ThankYouCell.xib */; };
 		A820DE5421C5432500E7F3DF /* NotificationConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820DE5321C5432500E7F3DF /* NotificationConst.swift */; };
 		A820DE5721C61EF100E7F3DF /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820DE5621C61EF000E7F3DF /* UIView+Shadow.swift */; };
 		A824150F205CE28C00172587 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824150E205CE28C00172587 /* LoginVC.swift */; };
@@ -57,6 +59,8 @@
 		A80210CC208CD0DB003ADEFD /* UserInfoLeftMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoLeftMenuTableViewCell.swift; sourceTree = "<group>"; };
 		A80EAE5521F44DD7006B02E8 /* EditThankYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditThankYouViewController.swift; sourceTree = "<group>"; };
 		A80EAE5721F4C0B4006B02E8 /* UIView+Highlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Highlight.swift"; sourceTree = "<group>"; };
+		A80EAE5921FD5F87006B02E8 /* ThankYouCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouCell.swift; sourceTree = "<group>"; };
+		A80EAE5B21FD5FA6006B02E8 /* ThankYouCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThankYouCell.xib; sourceTree = "<group>"; };
 		A820DE5321C5432500E7F3DF /* NotificationConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationConst.swift; sourceTree = "<group>"; };
 		A820DE5621C61EF000E7F3DF /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		A824150B205CDF5800172587 /* ThankYouList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThankYouList.entitlements; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 				A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */,
 				A84FDB5D21DC365F00593326 /* SettingHeaderView.xib */,
 				A84FDB5F21DC37E900593326 /* SettingHeaderView.swift */,
+				A80EAE5B21FD5FA6006B02E8 /* ThankYouCell.xib */,
+				A80EAE5921FD5F87006B02E8 /* ThankYouCell.swift */,
 				A8B6EE922205900D00908D51 /* ThankYouListSectionHeaderView.xib */,
 				A8B6EE942205902100908D51 /* ThankYouListSectionHeaderView.swift */,
 			);
@@ -315,6 +321,7 @@
 				A84FDB5E21DC365F00593326 /* SettingHeaderView.xib in Resources */,
 				A841B337213A895F00E8AB5B /* GoogleService-Info.plist in Resources */,
 				A8F06BBB1F55415700A90170 /* img in Resources */,
+				A80EAE5C21FD5FA6006B02E8 /* ThankYouCell.xib in Resources */,
 				A8AC1BD01FAE00B600D1B25B /* Localizable.strings in Resources */,
 				A8F06BB91F55396F00A90170 /* Launch Screen.storyboard in Resources */,
 				A8831CCE1E9CFE6B00F3CA0A /* Assets.xcassets in Resources */,
@@ -456,6 +463,7 @@
 				A85DCC081F5D2151004E1095 /* CustomCell.swift in Sources */,
 				A8B6EE952205902100908D51 /* ThankYouListSectionHeaderView.swift in Sources */,
 				A80EAE5821F4C0B4006B02E8 /* UIView+Highlight.swift in Sources */,
+				A80EAE5A21FD5F87006B02E8 /* ThankYouCell.swift in Sources */,
 				A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */,
 				A8DB2FBA1F5D41540055E8A4 /* CalendarVC.swift in Sources */,
 				A8831CC71E9CFE6B00F3CA0A /* AppDelegate.swift in Sources */,

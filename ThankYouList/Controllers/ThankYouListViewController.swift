@@ -54,6 +54,9 @@ class ThankYouListViewController: UIViewController {
         
         tableView.estimatedRowHeight = 40
         tableView.rowHeight = UITableView.automaticDimension
+        tableView?.register(UINib(nibName: ThankYouCell.cellIdentifier(),
+                                  bundle: nil),
+                            forCellReuseIdentifier: ThankYouCell.cellIdentifier())
         tableView?.register(UINib(nibName: ThankYouListSectionHeaderView.cellIdentifier(),
                                   bundle: nil),
                             forHeaderFooterViewReuseIdentifier: ThankYouListSectionHeaderView.cellIdentifier())
@@ -167,7 +170,7 @@ extension ThankYouListViewController {
                                      displayDateString: dateYearMonth.toYearMonthString(),
                                      thankYouList: [thankYouData])
             sections.append(newSection)
-            sections.sort(by: {$0.displayDateString > $1.displayDateString})
+            sections.sort(by: {$0.sectionDateString > $1.sectionDateString})
         }
     }
     
@@ -193,11 +196,9 @@ extension ThankYouListViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "thankYouCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: ThankYouCell.cellIdentifier(), for: indexPath) as! ThankYouCell
         let thankYouData = sections[indexPath.section].thankYouList[indexPath.row]
-        cell.textLabel?.text = thankYouData.value
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 16)
-        cell.textLabel?.textColor = TYLColor.textColor
+        cell.bind(thankYouData: thankYouData)
         return cell 
     }
     

@@ -17,16 +17,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="ThankYouListSectionHeaderView" text="December 2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VvJ-pW-3fD">
-                    <rect key="frame" x="16" y="14.5" width="125" height="21"/>
+                    <rect key="frame" x="16" y="19.5" width="125" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.69411764705882351" green="0.69803921568627447" blue="0.71372549019607845" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="VvJ-pW-3fD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="qWL-rD-Lg1"/>
-                <constraint firstItem="VvJ-pW-3fD" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="yOr-sl-9pK"/>
+                <constraint firstItem="VvJ-pW-3fD" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="5" id="yOr-sl-9pK"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

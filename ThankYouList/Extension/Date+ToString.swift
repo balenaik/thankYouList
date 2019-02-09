@@ -30,4 +30,23 @@ extension Date {
         formatter.setLocalizedDateFormatFromTemplate("yMMMM")
         return formatter.string(from: self)
     }
+    
+    /// Returns day
+    /// - 02
+    /// - 20
+    func toDayString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd"
+        formatter.locale = Locale(identifier: "en")
+        return formatter.string(from: self)
+    }
+    
+    /// Returns 3 letters of month in English
+    /// - Jan
+    func toMonthEnglish3lettersString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM"
+        formatter.locale = Locale(identifier: "en")
+        return formatter.string(from: self)
+    }
 }

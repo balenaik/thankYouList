@@ -13,6 +13,8 @@ class ThankYouCell: UITableViewCell {
     
     var thankYouData: ThankYouData?
     @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var dayLabel: UILabel!
+    @IBOutlet weak var monthLabel: UILabel!
     
     @objc class func cellIdentifier() -> String {
         return String(describing: self)
@@ -22,5 +24,7 @@ class ThankYouCell: UITableViewCell {
         self.backgroundColor = UIColor.clear
         self.thankYouData = thankYouData
         contentLabel.text = thankYouData.value
+        dayLabel.text = thankYouData.date.toDayString()
+        monthLabel.text = thankYouData.date.toMonthEnglish3lettersString()
     }
 }

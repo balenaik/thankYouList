@@ -20,13 +20,30 @@
                     <rect key="frame" x="16" y="8" width="343" height="145"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MlI-JU-Znh">
-                            <rect key="frame" x="0.0" y="8" width="343" height="129"/>
+                            <rect key="frame" x="0.0" y="12" width="343" height="121"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ven-7p-XN9">
-                                    <rect key="frame" x="0.0" y="0.0" width="100" height="129"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="121"/>
                                     <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="5Ta-za-qDJ">
+                                            <rect key="frame" x="35" y="38.5" width="30" height="44"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="azP-dP-VsJ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="23"/>
+                                                    <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="23"/>
+                                                    <color key="textColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jan" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQM-7B-4Or">
+                                                    <rect key="frame" x="0.0" y="28" width="30" height="16"/>
+                                                    <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="16"/>
+                                                    <color key="textColor" red="0.2274509804" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jkx-fb-FNq" userLabel="separator">
-                                            <rect key="frame" x="99.5" y="-8" width="0.5" height="145"/>
+                                            <rect key="frame" x="99.5" y="-12" width="0.5" height="145"/>
                                             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="0.5" id="7rd-RZ-hUQ"/>
@@ -35,21 +52,23 @@
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="Jkx-fb-FNq" firstAttribute="top" secondItem="ven-7p-XN9" secondAttribute="top" constant="-8" id="5Qk-Zl-TxF"/>
+                                        <constraint firstItem="Jkx-fb-FNq" firstAttribute="top" secondItem="ven-7p-XN9" secondAttribute="top" constant="-12" id="5Qk-Zl-TxF"/>
                                         <constraint firstAttribute="trailing" secondItem="Jkx-fb-FNq" secondAttribute="trailing" id="IYL-Tc-8Qi"/>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="115" id="JpU-RT-Xfl"/>
-                                        <constraint firstAttribute="bottom" secondItem="Jkx-fb-FNq" secondAttribute="bottom" constant="-8" id="ncX-eo-d7O"/>
+                                        <constraint firstItem="5Ta-za-qDJ" firstAttribute="centerX" secondItem="ven-7p-XN9" secondAttribute="centerX" id="MZk-tE-4V8"/>
+                                        <constraint firstAttribute="bottom" secondItem="Jkx-fb-FNq" secondAttribute="bottom" constant="-12" id="ncX-eo-d7O"/>
                                         <constraint firstAttribute="width" constant="100" id="oB9-fF-8yY"/>
+                                        <constraint firstItem="5Ta-za-qDJ" firstAttribute="centerY" secondItem="ven-7p-XN9" secondAttribute="centerY" id="xZU-Bi-SY6"/>
                                     </constraints>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="azP-dP-VsJ">
-                                    <rect key="frame" x="108" y="0.0" width="219" height="129"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <color key="textColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank You!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r9d-2o-fe2">
+                                    <rect key="frame" x="108" y="0.0" width="219" height="121"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="textColor" red="0.2274509804" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Psj-32-Mhr">
-                                    <rect key="frame" x="335" y="0.0" width="8" height="129"/>
+                                    <rect key="frame" x="335" y="0.0" width="8" height="121"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="8" id="lKU-2g-yjS"/>
@@ -62,8 +81,8 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="MlI-JU-Znh" secondAttribute="trailing" id="IiD-dC-UMe"/>
-                        <constraint firstItem="MlI-JU-Znh" firstAttribute="top" secondItem="O8B-4y-en5" secondAttribute="top" constant="8" id="LUH-SL-y5j"/>
-                        <constraint firstAttribute="bottom" secondItem="MlI-JU-Znh" secondAttribute="bottom" constant="8" id="Ok1-JY-v4M"/>
+                        <constraint firstItem="MlI-JU-Znh" firstAttribute="top" secondItem="O8B-4y-en5" secondAttribute="top" constant="12" id="LUH-SL-y5j"/>
+                        <constraint firstAttribute="bottom" secondItem="MlI-JU-Znh" secondAttribute="bottom" constant="12" id="Ok1-JY-v4M"/>
                         <constraint firstItem="MlI-JU-Znh" firstAttribute="leading" secondItem="O8B-4y-en5" secondAttribute="leading" id="vAf-U4-27e"/>
                     </constraints>
                 </view>
@@ -78,7 +97,9 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="contentLabel" destination="azP-dP-VsJ" id="fQx-9U-8Gu"/>
+                <outlet property="contentLabel" destination="r9d-2o-fe2" id="ZiZ-Jl-BQ1"/>
+                <outlet property="dayLabel" destination="azP-dP-VsJ" id="kRZ-C9-K1e"/>
+                <outlet property="monthLabel" destination="IQM-7B-4Or" id="FfQ-LY-i0t"/>
             </connections>
             <point key="canvasLocation" x="138.40000000000001" y="146.17691154422789"/>
         </view>

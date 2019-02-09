@@ -27,6 +27,7 @@ class ThankYouListViewController: UIViewController {
     private var thankYouDataSingleton = GlobalThankYouData.sharedInstance
     private var sections = [Section]()
     private let loadingHud = JGProgressHUD(style: .extraLight)
+    private var estimatedRowHeights = [String : CGFloat]()
     
     
     // MARK: - IBOutlets
@@ -216,7 +217,20 @@ extension ThankYouListViewController: UITableViewDataSource, UITableViewDelegate
         return ThankYouListSectionHeaderView.cellHeight
     }
     
-    // when a cell is tapped it goes the edit screen
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        let thankYouId =  sections[indexPath.section].thankYouList[indexPath.row].id
+        if let height = estimatedRowHeights[thankYouId] {
+            return height
+        }
+        return tableView.estimatedRowHeight
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.contentView.updateConstraints()
+        let thankYouId =  sections[indexPath.section].thankYouList[indexPath.row].id
+        estimatedRowHeights[thankYouId] = cell.frame.size.height
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let editingThankYouData = sections[indexPath.section].thankYouList[indexPath.row]
         let vc = EditThankYouViewController.createViewController(thankYouData: editingThankYouData)

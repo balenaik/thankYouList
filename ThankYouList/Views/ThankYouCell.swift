@@ -12,6 +12,7 @@ import UIKit
 class ThankYouCell: UITableViewCell {
     
     var thankYouData: ThankYouData?
+    @IBOutlet weak var thankYouView: UIView!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var monthLabel: UILabel!
@@ -22,6 +23,7 @@ class ThankYouCell: UITableViewCell {
     
     func bind(thankYouData: ThankYouData) {
         self.backgroundColor = UIColor.clear
+        thankYouView.layer.shadowColor = UIColor.lightGray.cgColor
         self.thankYouData = thankYouData
         contentLabel.text = thankYouData.value
         dayLabel.text = thankYouData.date.toDayString()

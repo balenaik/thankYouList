@@ -85,6 +85,14 @@
                         <constraint firstAttribute="bottom" secondItem="MlI-JU-Znh" secondAttribute="bottom" constant="12" id="Ok1-JY-v4M"/>
                         <constraint firstItem="MlI-JU-Znh" firstAttribute="leading" secondItem="O8B-4y-en5" secondAttribute="leading" id="vAf-U4-27e"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                            <real key="value" value="0.29999999999999999"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                            <size key="value" width="5" height="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -100,6 +108,7 @@
                 <outlet property="contentLabel" destination="r9d-2o-fe2" id="ZiZ-Jl-BQ1"/>
                 <outlet property="dayLabel" destination="azP-dP-VsJ" id="kRZ-C9-K1e"/>
                 <outlet property="monthLabel" destination="IQM-7B-4Or" id="FfQ-LY-i0t"/>
+                <outlet property="thankYouView" destination="O8B-4y-en5" id="kqq-xS-7iG"/>
             </connections>
             <point key="canvasLocation" x="138.40000000000001" y="146.17691154422789"/>
         </view>

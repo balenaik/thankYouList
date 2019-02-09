@@ -129,6 +129,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A808C612220E349A004162E4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A85D9D001EA64AF900945E6E /* ThankYouData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		A820DE5221C5430B00E7F3DF /* Const */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,7 +208,7 @@
 				A820DE5221C5430B00E7F3DF /* Const */,
 				A881350A211FD37200BE8F48 /* Views */,
 				A8A0FE5F205DFCB40048AB33 /* Controllers */,
-				A85D9D001EA64AF900945E6E /* ThankYouData.swift */,
+				A808C612220E349A004162E4 /* Models */,
 				A8F649B61EEB96D100D6BA84 /* GlobalThankYouData.swift */,
 				A824150B205CDF5800172587 /* ThankYouList.entitlements */,
 				A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */,

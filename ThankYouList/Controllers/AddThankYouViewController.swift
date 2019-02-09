@@ -75,11 +75,11 @@ extension AddThankYouViewController {
         if isPosting || addThankYouTextView.text.isEqual("") || addThankYouTextView.text.isEmpty {
             return
         }
-        guard let dateString = thankYouDateView.getDateString(),
+        guard let date = thankYouDateView.getDate(),
             let uid = Auth.auth().currentUser?.uid else { return }
         let uid16string = String(uid.prefix(16))
         let encryptedValue = Crypto().encryptString(plainText: addThankYouTextView.text, key: uid16string)
-        let myThankYouData = ThankYouData(id: "", value: "", encryptedValue: encryptedValue, date: dateString, createTime: Date())
+        let myThankYouData = ThankYouData(id: "", value: "", encryptedValue: encryptedValue, date: date, createTime: Date())
         addThankYou(thankYouData: myThankYouData, uid: uid)
     }
     

@@ -9,6 +9,19 @@
 import Foundation
 
 extension Date {
+    
+    private static let thankYouDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        return dateFormatter
+    }()
+    
+    /// Returns year/month/date
+    /// -  2020/01/02
+    func toThankYouDateString() -> String {
+        return Date.thankYouDateFormatter.string(from: self)
+    }
+    
     /// Returns year and month
     /// - January 2020 (English)
     /// - 2020年1月 (Japanese)

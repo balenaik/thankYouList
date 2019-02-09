@@ -159,7 +159,7 @@ extension ThankYouListViewController {
     
     private func addThankYouDataToSection(thankYouData: ThankYouData) {
         /// Crop only year and month (yyyy/MM) from thank you date
-        let dateYearMonthString = String(thankYouData.date.prefix(7))
+        let dateYearMonthString = String(thankYouData.date.toThankYouDateString().prefix(7))
         let sectionIndex = sections.index(where: {$0.sectionDateString == dateYearMonthString})
         if let index = sectionIndex {
             sections[index].thankYouList.append(thankYouData)
@@ -176,7 +176,7 @@ extension ThankYouListViewController {
     
     private func deleteThankYouDataFromSection(thankYouData: ThankYouData) {
         /// Crop only year and month (yyyy/MM) from thank you date
-        let dateYearMonthString = String(thankYouData.date.prefix(7))
+        let dateYearMonthString = String(thankYouData.date.toThankYouDateString().prefix(7))
         guard let sectionIndex = sections.index(where: {$0.sectionDateString == dateYearMonthString}),
             let thankYouIndex = sections[sectionIndex].thankYouList
                 .index(where: {$0.id == thankYouData.id}) else { return }

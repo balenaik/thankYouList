@@ -16,13 +16,11 @@ class SettingDateView: UIView {
     
     // MARK: - Properties
     private let dateLabel = UILabel()
-    private let dateFormatter = DateFormatter()
     
     // MARK: - Initializers
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        dateFormatter.dateFormat = "yyyy/MM/dd"
         dateLabel.textAlignment = .right
         dateLabel.baselineAdjustment = .alignCenters
         
@@ -41,12 +39,11 @@ class SettingDateView: UIView {
 
 // MARK: - Internal Methods
 extension SettingDateView {
-    func getDateString() -> String? {
-        return dateLabel.text
+    func getDate() -> Date? {
+        return dateLabel.text?.toThankYouDate()
     }
     
     func setDate(_ date: Date) {
-        let dateValue = dateFormatter.string(from: date)
-        dateLabel.text = dateValue
+        dateLabel.text = date.toThankYouDateString()
     }
 }

@@ -14,7 +14,6 @@ import FirebaseAuth
 class CalendarVC: UIViewController {
     
     // MARK: - Properties
-    private let formatter = DateFormatter()
     private var appDelegate = UIApplication.shared.delegate as! AppDelegate
     private let thankYouDataSingleton = GlobalThankYouData.sharedInstance
     private var sectionItems = [ThankYouData]()
@@ -116,8 +115,7 @@ class CalendarVC: UIViewController {
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
-        self.formatter.dateFormat = "yyyy/MM/dd"
-        selectedDate = self.formatter.string(from: Date())
+        selectedDate = Date().toThankYouDateString()
         selectedDateLabel.text = selectedDate
         selectedDateView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         selectedDateView.dropShadow()
@@ -177,10 +175,8 @@ class CalendarVC: UIViewController {
             }
         }
 
-        formatter.dateFormat = "yyyy MM dd"
-        
-        let todaysDateString = formatter.string(from: todaysDate)
-        let monthDateString = formatter.string(from: cellState.date)
+        let todaysDateString = todaysDate.toThankYouDateString()
+        let monthDateString = cellState.date.toThankYouDateString()
         
         if todaysDateString == monthDateString {
             validCell.dateLabel.textColor = TYLColor.pinkColor
@@ -204,8 +200,7 @@ class CalendarVC: UIViewController {
         validCell.threeDotsView.isHidden = true
         validCell.dotsAndPlusView.isHidden = true
         
-        formatter.dateFormat = "yyyy/MM/dd"
-        let count = thankYouDataSingleton.thankYouDataList.filter({$0.date == formatter.string(from: cellState.date)}).count
+        let count = thankYouDataSingleton.thankYouDataList.filter({$0.date == cellState.date}).count
         switch count {
         case 0:
             break
@@ -229,8 +224,7 @@ class CalendarVC: UIViewController {
     
     private func getSectionItems(date: Date) {
         let thankYouDataList = thankYouDataSingleton.thankYouDataList
-        self.formatter.dateFormat = "yyyy/MM/dd"
-        sectionItems = thankYouDataList.filter({$0.date == self.formatter.string(from: date)})
+        sectionItems = thankYouDataList.filter({$0.date == date})
     }
     
     private func updateCurrentSectionItems() {
@@ -259,6 +253,7 @@ class CalendarVC: UIViewController {
 // MARK: - Extensions
 extension CalendarVC: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy MM dd"
         formatter.timeZone = Calendar.current.timeZone
         formatter.locale = Calendar.current.locale
@@ -289,8 +284,7 @@ extension CalendarVC: JTAppleCalendarViewDelegate {
         getSectionItems(date: cellState.date)
         appDelegate.selectedDate = cellState.date
         
-        self.formatter.dateFormat = "yyyy/MM/dd"
-        selectedDate = self.formatter.string(from: cellState.date)
+        selectedDate = cellState.date.toThankYouDateString()
         selectedDateLabel.text = selectedDate
         self.tableView.reloadData()
     }
@@ -308,7 +302,7 @@ extension CalendarVC: JTAppleCalendarViewDelegate {
 extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let date = formatter.date(from: selectedDate) {
+        if let date = selectedDate.toThankYouDate() {
             getSectionItems(date: date)
         }
         return self.sectionItems.count

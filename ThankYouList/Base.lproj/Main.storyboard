@@ -671,7 +671,7 @@
                             <constraint firstItem="bzi-1v-Ljx" firstAttribute="top" secondItem="1g2-9s-T3c" secondAttribute="bottom" id="4tt-GQ-Xmb"/>
                             <constraint firstAttribute="trailing" secondItem="bzi-1v-Ljx" secondAttribute="trailing" id="5tb-mF-3jg"/>
                             <constraint firstItem="bzi-1v-Ljx" firstAttribute="leading" secondItem="nCp-Ua-Yrn" secondAttribute="leading" id="9xY-AG-1bZ"/>
-                            <constraint firstItem="p2v-wT-N26" firstAttribute="top" secondItem="kV7-Gd-RvL" secondAttribute="bottom" id="BJd-P3-ZWS"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="kV7-Gd-RvL" secondAttribute="bottomMargin" constant="10" id="BJd-P3-ZWS"/>
                             <constraint firstAttribute="trailing" secondItem="kV7-Gd-RvL" secondAttribute="trailing" id="sng-b7-Hqc"/>
                         </constraints>
                     </view>

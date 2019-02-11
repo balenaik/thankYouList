@@ -33,6 +33,7 @@ class SmallListView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         let view = Bundle.main.loadNibNamed("SmallListView", owner: self, options: nil)?.first as! UIView
+        view.frame = self.bounds
         self.addSubview(view)
         self.view = view
     }

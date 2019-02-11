@@ -12,8 +12,21 @@ class SmallListView: UIView {
     
     // MARK: - Properties
     var view: UIView!
+    var isFullScreen = false {
+        didSet {
+            if isFullScreen {
+                tableView.isScrollEnabled = true
+                setNeedsLayout()
+                
+            } else {
+                tableView.isScrollEnabled = false
+                setNeedsLayout()
+            }
+        }
+    }
     
     // MARK: - IBOutlets
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Initializers
@@ -26,8 +39,10 @@ class SmallListView: UIView {
     
     // MARK: - View Lifecycles
     override func layoutSubviews() {
-        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        view.layer.cornerRadius = 10
+        headerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        let cornerRadius: CGFloat = isFullScreen ? 0 : 10
+        headerView.layer.cornerRadius = cornerRadius
+        view.layer.cornerRadius = cornerRadius
         view.dropShadow()
         super.layoutSubviews()
     }

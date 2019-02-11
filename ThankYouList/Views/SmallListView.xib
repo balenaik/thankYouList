@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SmallListView" customModule="ThankYouList" customModuleProvider="target">
             <connections>
+                <outlet property="headerView" destination="XJ4-oy-Itj" id="zfH-rJ-dFW"/>
                 <outlet property="tableView" destination="cGW-bW-VNl" id="0ck-IR-guI"/>
             </connections>
         </placeholder>
@@ -43,13 +44,8 @@
                         <constraint firstItem="avR-FS-dVQ" firstAttribute="centerX" secondItem="XJ4-oy-Itj" secondAttribute="centerX" id="HZB-nq-mqt"/>
                         <constraint firstItem="avR-FS-dVQ" firstAttribute="top" secondItem="XJ4-oy-Itj" secondAttribute="top" constant="3" id="rui-xz-tcA"/>
                     </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="10"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cGW-bW-VNl">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cGW-bW-VNl">
                     <rect key="frame" x="0.0" y="7" width="375" height="293"/>
                     <color key="backgroundColor" red="0.94117647058823528" green="0.94901960784313721" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <color key="sectionIndexBackgroundColor" red="0.94117647059999998" green="0.94901960780000005" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

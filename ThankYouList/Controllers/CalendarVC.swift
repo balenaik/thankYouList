@@ -35,13 +35,13 @@ class CalendarVC: UIViewController {
 
     @IBOutlet weak var listViewTopConstraint: NSLayoutConstraint! {
         didSet {
-//            if selectedDateView != nil {
-//                if listViewTopConstraint.constant <= listViewMostTopConstant {
-//                    selectedDateView.layer.cornerRadius = 0
-//                } else {
-//                    selectedDateView.layer.cornerRadius = 10
-//                }
-//            }
+            if smallListView != nil {
+                if listViewTopConstraint.constant <= listViewMostTopConstant {
+                    smallListView.isFullScreen = true
+                } else {
+                    smallListView.isFullScreen = false
+                }
+            }
         }
     }
     
@@ -60,7 +60,7 @@ class CalendarVC: UIViewController {
             /// if the listView is on the top of the contentView
             if listViewTopConstraint.constant < -stackView.frame.height
                 || listViewTopConstraint.constant >= listViewMostTopConstant {
-//                selectedDateView.layer.cornerRadius = 0
+                smallListView.isFullScreen = true
                 break
             }
             /// if the listView is at the bottom of the calendar
@@ -68,7 +68,7 @@ class CalendarVC: UIViewController {
                 break
             }
             listViewTopConstraint.constant =  listViewOriginalTopConstant + sender.translation(in: self.view).y
-//            selectedDateView.layer.cornerRadius = 10
+            smallListView.isFullScreen = false
             self.view.layoutIfNeeded()
         case .ended:
             if listViewTopConstraint.constant == 0 || listViewTopConstraint.constant == -stackView.frame.height {
@@ -87,9 +87,9 @@ class CalendarVC: UIViewController {
                 }, completion: nil)
             /// Adjust corner radius on selectedDateView depending on destination
             if destination == -stackView.frame.height {
-//                selectedDateView.layer.cornerRadius = 0
+                smallListView.isFullScreen = true
             } else {
-//                selectedDateView.layer.cornerRadius = 10
+                smallListView.isFullScreen = false
             }
         default:
             break

@@ -58,9 +58,9 @@ class ThankYouListViewController: UIViewController {
         tableView?.register(UINib(nibName: ThankYouCell.cellIdentifier(),
                                   bundle: nil),
                             forCellReuseIdentifier: ThankYouCell.cellIdentifier())
-        tableView?.register(UINib(nibName: ThankYouListSectionHeaderView.cellIdentifier(),
+        tableView?.register(UINib(nibName: ListSectionHeaderView.cellIdentifier(),
                                   bundle: nil),
-                            forHeaderFooterViewReuseIdentifier: ThankYouListSectionHeaderView.cellIdentifier())
+                            forHeaderFooterViewReuseIdentifier: ListSectionHeaderView.cellIdentifier())
 
         emptyView.isHidden = true
         
@@ -208,13 +208,13 @@ extension ThankYouListViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ThankYouListSectionHeaderView.cellIdentifier()) as! ThankYouListSectionHeaderView
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListSectionHeaderView.cellIdentifier()) as! ListSectionHeaderView
         header.bind(sectionString: sections[section].displayDateString)
         return header
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return ThankYouListSectionHeaderView.cellHeight
+        return ListSectionHeaderView.cellHeight
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {

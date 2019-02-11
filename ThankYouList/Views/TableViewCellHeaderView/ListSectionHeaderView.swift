@@ -1,5 +1,5 @@
 //
-//  ThankYouListSectionHeaderView.swift
+//  ListSectionHeaderView.swift
 //  ThankYouList
 //
 //  Created by Aika Yamada on 2019/02/02.
@@ -9,12 +9,13 @@
 import Foundation
 import UIKit
 
-class ThankYouListSectionHeaderView: UITableViewHeaderFooterView {
+class ListSectionHeaderView: UITableViewHeaderFooterView {
     // MARK: -  Properties
     static let cellHeight = CGFloat(50)
     
     // MARK: - IBOutlets
     @IBOutlet weak var sectionLabel: UILabel!
+    @IBOutlet weak var bottomLine: UIView!
     
     // MARK: - Initializers
     required init?(coder aDecoder: NSCoder) {
@@ -23,7 +24,7 @@ class ThankYouListSectionHeaderView: UITableViewHeaderFooterView {
 }
 
 // MARK: - Internal Methods
-extension ThankYouListSectionHeaderView {
+extension ListSectionHeaderView {
 
     @objc class func cellIdentifier() -> String {
         return String(describing: self)
@@ -31,5 +32,9 @@ extension ThankYouListSectionHeaderView {
     
     func bind(sectionString: String) {
         sectionLabel.text = sectionString
+    }
+    
+    func showBottomLine() {
+        bottomLine.isHidden = false
     }
 }

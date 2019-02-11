@@ -31,6 +31,15 @@ extension Date {
         return formatter.string(from: self)
     }
     
+    /// Returns year and month and day
+    /// - January 1, 2020 (English)
+    /// - 2020年1月1日 (Japanese)
+    func toYearMonthDayString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        return formatter.string(from: self)
+    }
+    
     /// Returns day
     /// - 02
     /// - 20

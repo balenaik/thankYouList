@@ -72,4 +72,12 @@ extension SmallListView {
     func reloadTableView() {
         tableView.reloadData()
     }
+    
+    func setTableViewScrollingSetting(isEnabled: Bool) {
+        tableView.isScrollEnabled = isEnabled
+    }
+
+    func getTableViewContentOffset() -> CGPoint {
+        return tableView.contentOffset
+    }
 }

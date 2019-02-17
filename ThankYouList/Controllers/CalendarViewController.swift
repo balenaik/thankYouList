@@ -21,6 +21,7 @@ class CalendarViewController: UIViewController {
     private var selectedDate = ""
     private var listViewOriginalTopConstant = CGFloat(0)
     private var listViewMostTopConstant = CGFloat(0)
+    private var isDraggingListView = false
     private let db = Firestore.firestore()
     
     
@@ -44,60 +45,7 @@ class CalendarViewController: UIViewController {
             }
         }
     }
-    
-
-    // MARK: - IBActions
-    @IBAction func tappedMenuButton(_ sender: Any) {
-        slideMenuController()?.openLeft()
-    }
-    
-
-    @IBAction func draggedListView(_ sender: UIPanGestureRecognizer) {
-        switch sender.state {
-        case .began:
-            listViewOriginalTopConstant = listViewTopConstraint.constant
-        case .changed:
-            /// if the listView is on the top of the contentView
-            if listViewTopConstraint.constant < -stackView.frame.height
-                || listViewTopConstraint.constant >= listViewMostTopConstant {
-                smallListView.isFullScreen = true
-                break
-            }
-            /// if the listView is at the bottom of the calendar
-            if listViewTopConstraint.constant > 1 {
-                break
-            }
-            listViewTopConstraint.constant =  listViewOriginalTopConstant + sender.translation(in: self.view).y
-            smallListView.isFullScreen = false
-            self.view.layoutIfNeeded()
-        case .ended:
-            if listViewTopConstraint.constant == 0 || listViewTopConstraint.constant == -stackView.frame.height {
-                break
-            }
-            let velocity = sender.velocity(in: self.view).y
-            var destination = CGFloat(0)
-            if ((velocity <= 10 && velocity >= -10)
-                && listViewTopConstraint.constant < -stackView.frame.height / 2)
-                || velocity < -10 {
-                destination = -stackView.frame.height
-            }
-            UIView.animate(withDuration: 0.3, animations: {
-                self.listViewTopConstraint.constant = destination
-                self.view.layoutIfNeeded()
-                }, completion: nil)
-            /// Adjust corner radius on selectedDateView depending on destination
-            if destination == -stackView.frame.height {
-                smallListView.isFullScreen = true
-            } else {
-                smallListView.isFullScreen = false
-            }
-        default:
-            break
-        }
-    }
-    
-    
-    
+   
     
     // MARK: - Initializers
     required init?(coder aDecoder: NSCoder) {
@@ -125,16 +73,36 @@ class CalendarViewController: UIViewController {
         getListFromDate(Date())
         slideMenuController()?.addPriorityToMenuGesuture(calendarView)
         
-        listViewMostTopConstant = contentView.frame.height - stackView.frame.height - (navigationController?.navigationBar.frame.size.height)! - UIApplication.shared.statusBarFrame.size.height - tabBarController!.tabBar.frame.size.height
+        listViewMostTopConstant = -stackView.frame.height
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
+}
 
-
+// MARK: - IBActions
+extension CalendarViewController {
+    @IBAction func tappedMenuButton(_ sender: Any) {
+        slideMenuController()?.openLeft()
+    }
     
-    // MARK: - Private Methods
+    @IBAction func draggedListView(_ sender: UIPanGestureRecognizer) {
+        switch sender.state {
+        case .began:
+            beginDraggingListView()
+        case .changed:
+            whileDraggingListView(translationPointY: sender.translation(in: self.view).y)
+        case .ended:
+            endDraggingListView(velocityY: sender.velocity(in: self.view).y)
+        default:
+            break
+        }
+    }
+}
+
+// MARK: - Private Methods
+extension CalendarViewController {
     private func setupCalendarView() {
         calendarView.minimumLineSpacing = 0
         calendarView.minimumInteritemSpacing = 0
@@ -230,17 +198,55 @@ class CalendarViewController: UIViewController {
         }
     }
     
+    private func beginDraggingListView() {
+        isDraggingListView = true
+        listViewOriginalTopConstant = listViewTopConstraint.constant
+    }
     
-    // MARK: - Overrides
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    private func whileDraggingListView(translationPointY: CGFloat) {
+        if !isDraggingListView { return }
+        /// if the listView is on the top of the contentView
+        if listViewTopConstraint.constant < -stackView.frame.height
+            || listViewTopConstraint.constant < listViewMostTopConstant {
+            smallListView.isFullScreen = true
+            return
+        }
+        /// if the listView is at the bottom of the calendar
+        if listViewTopConstraint.constant > 1 {
+            return
+        }
+        listViewTopConstraint.constant =  listViewOriginalTopConstant + translationPointY
+        smallListView.isFullScreen = false
+        self.view.layoutIfNeeded()
+    }
+
+    private func endDraggingListView(velocityY: CGFloat) {
+        isDraggingListView = false
+        if listViewTopConstraint.constant == 0 || listViewTopConstraint.constant == -stackView.frame.height {
+            return
+         }
+        var destination = CGFloat(0)
+        if ((velocityY <= 10 && velocityY >= -10)
+            && listViewTopConstraint.constant < -stackView.frame.height / 2)
+            || velocityY < -10 {
+            destination = -stackView.frame.height
+        }
+        UIView.animate(withDuration: 0.3, animations: {
+            self.listViewTopConstraint.constant = destination
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+        /// Adjust corner radius on selectedDateView depending on destination
+        if destination == -stackView.frame.height {
+            smallListView.isFullScreen = true
+        } else {
+            smallListView.isFullScreen = false
+        }
     }
 }
 
 
 
-// MARK: - Extensions
+// MARK: - JTAppleCalendarViewDataSource
 extension CalendarViewController: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         let formatter = DateFormatter()
@@ -287,7 +293,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
     }
 }
 
-
+// MARK: - UITableViewDataSource, UITableViewDelegate
 extension CalendarViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.selectedList.count
@@ -330,6 +336,35 @@ extension CalendarViewController: UITableViewDataSource, UITableViewDelegate {
         self.present(navi, animated: true, completion: nil)
         tableView.deselectRow(at: indexPath, animated: true)
     }
-}
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        if smallListView.isFullScreen
+            && scrollView.contentOffset.y <= 0
+            && scrollView.panGestureRecognizer.velocity(in: self.view).y > 0 {
+            beginDraggingListView()
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if smallListView.isFullScreen
+            && scrollView.contentOffset.y <= 0
+            && scrollView.panGestureRecognizer.velocity(in: self.view).y > 0 {
+            if !isDraggingListView {
+                beginDraggingListView()
+                return
+            }
+            smallListView.setTableViewScrollingSetting(isEnabled: false)
+            whileDraggingListView(translationPointY: scrollView.panGestureRecognizer.translation(in: self.view).y)
+        } else {
+            isDraggingListView = false
+            smallListView.setTableViewScrollingSetting(isEnabled: true)
+        }
+    }
 
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if isDraggingListView {
+            endDraggingListView(velocityY: scrollView.panGestureRecognizer.velocity(in: self.view).y)
+        }
+    }
+}
 

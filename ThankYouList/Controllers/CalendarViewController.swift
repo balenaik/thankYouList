@@ -304,16 +304,9 @@ extension CalendarViewController: UITableViewDataSource, UITableViewDelegate {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListSectionHeaderView.cellIdentifier()) as! ListSectionHeaderView
-        let displayDateString = selectedDate.toThankYouDate()?.toYearMonthDayString()
-        header.bind(sectionString: displayDateString ?? "")
-        header.showBottomLine()
-        return header
-    }
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return ListSectionHeaderView.cellHeight
+        // Somehow when return 0 with grouped tableview, it creates extra space on header...
+        return 0.1
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {

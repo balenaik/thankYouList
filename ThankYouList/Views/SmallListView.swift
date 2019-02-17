@@ -27,6 +27,7 @@ class SmallListView: UIView {
     
     // MARK: - IBOutlets
     @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Initializers
@@ -62,9 +63,10 @@ extension SmallListView {
         tableView.register(UINib(nibName: ThankYouCell.cellIdentifier(),
                                   bundle: nil),
                             forCellReuseIdentifier: ThankYouCell.cellIdentifier())
-        tableView.register(UINib(nibName: ListSectionHeaderView.cellIdentifier(),
-                                  bundle: nil),
-                            forHeaderFooterViewReuseIdentifier: ListSectionHeaderView.cellIdentifier())
+    }
+    
+    func setDateLabel(dateString: String) {
+        dateLabel.text = dateString
     }
     
     func reloadTableView() {

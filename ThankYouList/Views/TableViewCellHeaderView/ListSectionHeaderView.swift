@@ -15,7 +15,6 @@ class ListSectionHeaderView: UITableViewHeaderFooterView {
     
     // MARK: - IBOutlets
     @IBOutlet weak var sectionLabel: UILabel!
-    @IBOutlet weak var bottomLine: UIView!
     
     // MARK: - Initializers
     required init?(coder aDecoder: NSCoder) {
@@ -32,9 +31,5 @@ extension ListSectionHeaderView {
     
     func bind(sectionString: String) {
         sectionLabel.text = sectionString
-    }
-    
-    func showBottomLine() {
-        bottomLine.isHidden = false
     }
 }

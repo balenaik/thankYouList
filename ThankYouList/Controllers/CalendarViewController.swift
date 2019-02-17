@@ -1,5 +1,5 @@
 //
-//  CalendarVC.swift
+//  CalendarViewController.swift
 //  ThankYouList
 //
 //  Created by Aika Yamada on 2017/09/04.
@@ -11,7 +11,7 @@ import JTAppleCalendar
 import FirebaseFirestore
 import FirebaseAuth
 
-class CalendarVC: UIViewController {
+class CalendarViewController: UIViewController {
     
     // MARK: - Properties
     private var appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -114,7 +114,7 @@ class CalendarVC: UIViewController {
         self.navigationController?.navigationBar.tintColor = TYLColor.navigationBarTextColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : TYLColor.navigationBarTextColor]
         
-        NotificationCenter.default.addObserver(self, selector: #selector(CalendarVC.updatedThankYouList(notification:)), name: Notification.Name(rawValue: NotificationConst.THANK_YOU_LIST_UPDATED), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CalendarViewController.updatedThankYouList(notification:)), name: Notification.Name(rawValue: NotificationConst.THANK_YOU_LIST_UPDATED), object: nil)
         
         calendarView.scrollToDate(Date(), animateScroll: false)
         setupCalendarView()
@@ -241,7 +241,7 @@ class CalendarVC: UIViewController {
 
 
 // MARK: - Extensions
-extension CalendarVC: JTAppleCalendarViewDataSource {
+extension CalendarViewController: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy MM dd"
@@ -256,7 +256,7 @@ extension CalendarVC: JTAppleCalendarViewDataSource {
     }
 }
 
-extension CalendarVC: JTAppleCalendarViewDelegate {
+extension CalendarViewController: JTAppleCalendarViewDelegate {
     
     func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
         //
@@ -288,7 +288,7 @@ extension CalendarVC: JTAppleCalendarViewDelegate {
 }
 
 
-extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
+extension CalendarViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.selectedList.count
     }

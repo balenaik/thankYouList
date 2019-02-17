@@ -4,7 +4,7 @@ import FirebaseAuth
 //UITabBarControllerを継承
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     var viewController: ThankYouListViewController!
-    var calendarVC: CalendarVC!
+    var calendarVC: CalendarViewController!
     var uid: String?
     var tabsArray: [UIViewController]?
     

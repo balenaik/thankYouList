@@ -34,17 +34,7 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var smallListView: SmallListView!
     @IBOutlet weak var yearMonth: UILabel!
 
-    @IBOutlet weak var listViewTopConstraint: NSLayoutConstraint! {
-        didSet {
-            if smallListView != nil {
-                if listViewTopConstraint.constant <= listViewMostTopConstant {
-                    smallListView.isFullScreen = true
-                } else {
-                    smallListView.isFullScreen = false
-                }
-            }
-        }
-    }
+    @IBOutlet weak var listViewTopConstraint: NSLayoutConstraint!
    
     
     // MARK: - Initializers
@@ -212,16 +202,19 @@ extension CalendarViewController {
         }
         /// if the listView is at the bottom of the calendar
         if listViewTopConstraint.constant > 1 {
+            smallListView.isFullScreen = false
             return
         }
         let translatedConstraint = (listViewOriginalTopConstant + translationPointY) < listViewMostTopConstant ? listViewMostTopConstant : (listViewOriginalTopConstant + translationPointY)
         listViewTopConstraint.constant =  translatedConstraint
+        smallListView.isFullScreen = translatedConstraint == listViewMostTopConstant ? true : false
         self.view.layoutIfNeeded()
     }
 
     private func endDraggingListView(velocityY: CGFloat) {
         isDraggingListView = false
-        if listViewTopConstraint.constant == 0 || listViewTopConstraint.constant == -stackView.frame.height {
+        if listViewTopConstraint.constant == 0 || listViewTopConstraint.constant == listViewMostTopConstant {
+            smallListView.isFullScreen = listViewTopConstraint.constant == listViewMostTopConstant ? true : false
             return
          }
         var destination = CGFloat(0)
@@ -239,6 +232,7 @@ extension CalendarViewController {
             smallListView.isFullScreen = true
         } else {
             smallListView.isFullScreen = false
+            smallListView.setTableViewScrollingSetting(isEnabled: false)
         }
     }
 }
@@ -352,14 +346,18 @@ extension CalendarViewController: UITableViewDataSource, UITableViewDelegate {
             beginDraggingListView()
         }
         if isDraggingListView {
-            scrollView.contentOffset.y = 0
-            scrollView.showsVerticalScrollIndicator = false
-            whileDraggingListView(translationPointY: scrollView.panGestureRecognizer.translation(in: self.view).y)
-        } else {
-            isDraggingListView = false
-            smallListView.setTableViewScrollingSetting(isEnabled: true)
-            scrollView.showsVerticalScrollIndicator = true
+            if smallListView.isFullScreen
+                && scrollView.panGestureRecognizer.velocity(in: self.view).y < 0 {
+            } else {
+                scrollView.contentOffset.y = 0
+                scrollView.showsVerticalScrollIndicator = false
+                whileDraggingListView(translationPointY: scrollView.panGestureRecognizer.translation(in: self.view).y)
+                return
+            }
         }
+        isDraggingListView = false
+        smallListView.setTableViewScrollingSetting(isEnabled: true)
+        scrollView.showsVerticalScrollIndicator = true
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {

@@ -17,10 +17,6 @@ class SmallListView: UIView {
             if isFullScreen {
                 tableView.isScrollEnabled = true
                 setNeedsLayout()
-                
-            } else {
-                tableView.isScrollEnabled = false
-                setNeedsLayout()
             }
         }
     }

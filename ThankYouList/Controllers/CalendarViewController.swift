@@ -206,8 +206,7 @@ extension CalendarViewController {
     private func whileDraggingListView(translationPointY: CGFloat) {
         if !isDraggingListView { return }
         /// if the listView is on the top of the contentView
-        if listViewTopConstraint.constant < -stackView.frame.height
-            || listViewTopConstraint.constant < listViewMostTopConstant {
+        if listViewTopConstraint.constant < listViewMostTopConstant {
             smallListView.isFullScreen = true
             return
         }
@@ -215,8 +214,8 @@ extension CalendarViewController {
         if listViewTopConstraint.constant > 1 {
             return
         }
-        listViewTopConstraint.constant =  listViewOriginalTopConstant + translationPointY
-        smallListView.isFullScreen = false
+        let translatedConstraint = (listViewOriginalTopConstant + translationPointY) < listViewMostTopConstant ? listViewMostTopConstant : (listViewOriginalTopConstant + translationPointY)
+        listViewTopConstraint.constant =  translatedConstraint
         self.view.layoutIfNeeded()
     }
 
@@ -346,18 +345,20 @@ extension CalendarViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if smallListView.isFullScreen
+        if !isDraggingListView
+            && smallListView.isFullScreen
             && scrollView.contentOffset.y <= 0
             && scrollView.panGestureRecognizer.velocity(in: self.view).y > 0 {
-            if !isDraggingListView {
-                beginDraggingListView()
-                return
-            }
-            smallListView.setTableViewScrollingSetting(isEnabled: false)
+            beginDraggingListView()
+        }
+        if isDraggingListView {
+            scrollView.contentOffset.y = 0
+            scrollView.showsVerticalScrollIndicator = false
             whileDraggingListView(translationPointY: scrollView.panGestureRecognizer.translation(in: self.view).y)
         } else {
             isDraggingListView = false
             smallListView.setTableViewScrollingSetting(isEnabled: true)
+            scrollView.showsVerticalScrollIndicator = true
         }
     }
 

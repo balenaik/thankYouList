@@ -255,8 +255,8 @@ extension CalendarViewController: JTAppleCalendarViewDataSource {
     }
 }
 
+// MARK: - JTAppleCalendarViewDelegate
 extension CalendarViewController: JTAppleCalendarViewDelegate {
-    
     func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
         //
     }
@@ -272,8 +272,9 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         configureCell(cell: cell, cellState: cellState)
         getListFromDate(cellState.date)
         appDelegate.selectedDate = cellState.date
-        
         selectedDate = cellState.date.toThankYouDateString()
+        let displayDateString = selectedDate.toThankYouDate()?.toYearMonthDayString()
+        smallListView.setDateLabel(dateString: displayDateString ?? "")
         smallListView.reloadTableView()
     }
     

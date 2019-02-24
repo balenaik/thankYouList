@@ -4,3 +4,7 @@ SecretData.swift
 .firebaserc
 firebase.json
 img/screenshots
+Breakpoints_v2.xcbkptlist
+
+#Cocoapods
+Pods/*

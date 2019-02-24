@@ -300,6 +300,7 @@ extension CalendarViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: ThankYouCell.cellIdentifier(), for: indexPath) as! ThankYouCell
         let thankYouData = selectedList[indexPath.row]
         cell.bind(thankYouData: thankYouData)
+        cell.selectionStyle = .none
         return cell
     }
     

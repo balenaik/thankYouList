@@ -50,7 +50,7 @@
                                             </constraints>
                                         </view>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="Jkx-fb-FNq" firstAttribute="top" secondItem="ven-7p-XN9" secondAttribute="top" constant="-12" id="5Qk-Zl-TxF"/>
                                         <constraint firstAttribute="trailing" secondItem="Jkx-fb-FNq" secondAttribute="trailing" id="IYL-Tc-8Qi"/>
@@ -69,7 +69,7 @@
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Psj-32-Mhr">
                                     <rect key="frame" x="342" y="0.0" width="1" height="121"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="1" id="lKU-2g-yjS"/>
                                     </constraints>

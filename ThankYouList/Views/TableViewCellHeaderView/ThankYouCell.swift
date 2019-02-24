@@ -29,4 +29,12 @@ class ThankYouCell: UITableViewCell {
         dayLabel.text = thankYouData.date.toDayString()
         monthLabel.text = thankYouData.date.toMonthEnglish3lettersString()
     }
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        super.setSelected(highlighted, animated: animated)
+        UIView.animate(withDuration: 0.1) {
+            self.thankYouView.backgroundColor = highlighted
+                ? UIColor.lightGray.withAlphaComponent(0.1) : UIColor.white
+        }
+    }
 }

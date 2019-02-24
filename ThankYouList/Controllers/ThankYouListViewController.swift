@@ -200,6 +200,7 @@ extension ThankYouListViewController: UITableViewDataSource, UITableViewDelegate
         let cell = tableView.dequeueReusableCell(withIdentifier: ThankYouCell.cellIdentifier(), for: indexPath) as! ThankYouCell
         let thankYouData = sections[indexPath.section].thankYouList[indexPath.row]
         cell.bind(thankYouData: thankYouData)
+        cell.selectionStyle = .none
         return cell 
     }
     

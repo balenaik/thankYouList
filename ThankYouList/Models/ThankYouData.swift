@@ -17,13 +17,13 @@ struct ThankYouData {
     var id: String
     var value: String
     var encryptedValue: String
-    var date: String
+    var date: Date
     var createTime: Date
     
     var dictionary: [String : Any] {
         return [
             "encryptedValue": encryptedValue,
-            "date": date,
+            "date": date.toThankYouDateString(),
             "createTime": createTime
         ]
     }
@@ -33,7 +33,8 @@ struct ThankYouData {
 extension ThankYouData: DocumentSeriarizable {
     init?(dictionary: [String : Any]) {
         guard let encryptedValue = dictionary["encryptedValue"] as? String,
-            let date = dictionary["date"] as? String,
+            let dateString = dictionary["date"] as? String,
+            let date = dateString.toThankYouDate(),
             let createTime = dictionary["createTime"] as? Timestamp else {
                 return nil
         }

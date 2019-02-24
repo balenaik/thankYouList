@@ -226,9 +226,12 @@ extension CalendarViewController {
         UIView.animate(withDuration: 0.3, animations: {
             self.listViewTopConstraint.constant = destination
             self.view.layoutIfNeeded()
+            if destination != self.listViewMostTopConstant {
+                self.smallListView.setTableViewOffsetZero()
+            }
         }, completion: nil)
         /// Adjust corner radius on selectedDateView depending on destination
-        if destination == -stackView.frame.height {
+        if destination == listViewMostTopConstant {
             smallListView.isFullScreen = true
         } else {
             smallListView.isFullScreen = false

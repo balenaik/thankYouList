@@ -76,4 +76,8 @@ extension SmallListView {
     func getTableViewContentOffset() -> CGPoint {
         return tableView.contentOffset
     }
+    
+    func setTableViewOffsetZero() {
+        tableView.contentOffset = CGPoint(x: 0, y: 0)
+    }
 }

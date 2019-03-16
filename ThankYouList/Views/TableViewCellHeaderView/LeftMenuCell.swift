@@ -44,6 +44,10 @@ class LeftMenuCell: UITableViewCell {
         }
     }
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        // Do nothing
+    }
+    
     // MARK: - Internal Methods
     func setMenuImage(imageName: String) {
         buttonImageView.image = UIImage(named: imageName)

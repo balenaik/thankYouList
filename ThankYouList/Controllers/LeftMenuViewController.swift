@@ -14,18 +14,19 @@ import GoogleSignIn
 
 class LeftMenuViewController: UIViewController {
     
-    enum MenuCategories {
+    enum MenuCategory: CaseIterable {
         case addThankYou
+        case setting
         case logout
         
         func menuImageName() -> String {
             switch self {
             case .addThankYou:
                 return "add_button"
+            case .setting:
+                return "setting"
             case .logout:
                 return "ic_logout"
-            default:
-                return ""
             }
         }
         
@@ -33,10 +34,10 @@ class LeftMenuViewController: UIViewController {
             switch self {
             case .addThankYou:
                 return NSLocalizedString("Add Thank You", comment: "")
+            case .setting:
+                return "Settings"
             case .logout:
                 return NSLocalizedString("Logout", comment: "")
-            default:
-                return ""
             }
         }
     }
@@ -48,50 +49,26 @@ class LeftMenuViewController: UIViewController {
     
     // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var userNameLabel: UILabel!
     
     // MARK: - View LifeCycles
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        userNameLabel.text = userNameString
     }
-
-    
 }
 
-extension LeftMenuViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+// MARK: - Private Methods
+extension LeftMenuViewController {
+    private func showAddThankYouViewController() {
+        self.slideMenuController()?.closeLeft()
+        let addThankYouDataVC = self.storyboard?.instantiateViewController(withIdentifier: "AddThankYouViewController") as! ThankYouList.AddThankYouViewController
+        let navi = UINavigationController(rootViewController: addThankYouDataVC)
+        self.slideMenuController()?.mainViewController?.present(navi, animated: true, completion: nil)
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "UserInfoLeftMenuTableViewCell", for: indexPath) as! UserInfoLeftMenuTableViewCell
-            cell.configureCell(userNameString: userNameString, emailString: emailString)
-            return cell
-        }
-        var menuCategory = MenuCategories.logout
-        if indexPath.row == 1 {
-            menuCategory = MenuCategories.addThankYou
-        }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! LeftMenuCell
-        cell.setMenuImage(imageName: menuCategory.menuImageName())
-        cell.setMenuTitle(title: menuCategory.menuTitle())
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            return
-        } else if indexPath.row == 1 {
-            self.slideMenuController()?.closeLeft()
-            let addThankYouDataVC = self.storyboard?.instantiateViewController(withIdentifier: "AddThankYouViewController") as! ThankYouList.AddThankYouViewController
-            let navi = UINavigationController(rootViewController: addThankYouDataVC)
-            self.slideMenuController()?.mainViewController?.present(navi, animated: true, completion: nil)
-            tableView.deselectRow(at: indexPath, animated: true)
-            return
-        }
-        if Auth.auth().currentUser == nil {
-            return
-        }        
+    private func logout() {
+        if Auth.auth().currentUser == nil { return }
         do {
             try Auth.auth().signOut()
             FBSDKAccessToken.setCurrent(nil)
@@ -102,6 +79,34 @@ extension LeftMenuViewController: UITableViewDataSource {
         } catch let error as NSError {
             print(error.localizedDescription)
         }
+    }
+}
+
+extension LeftMenuViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return MenuCategory.allCases.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let menuCategory = MenuCategory.allCases[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! LeftMenuCell
+        cell.setMenuImage(imageName: menuCategory.menuImageName())
+        cell.setMenuTitle(title: menuCategory.menuTitle())
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let menuCategory = MenuCategory.allCases[indexPath.row]
+        switch menuCategory {
+        case .addThankYou:
+            showAddThankYouViewController()
+        case .setting:
+            break
+        case .logout:
+            logout()
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
@@ -122,10 +127,7 @@ extension LeftMenuViewController: UITableViewDataSource {
 
 extension LeftMenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
-            return 174
-        }
-        return 50
+        return 44
     }
 }
 

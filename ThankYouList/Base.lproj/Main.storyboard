@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Left MenuVC-->
+        <!--Left Menu View Controller-->
         <scene sceneID="Wjp-wa-l62">
             <objects>
-                <viewController storyboardIdentifier="LeftMenuVC" automaticallyAdjustsScrollViewInsets="NO" id="sQr-zs-7OF" customClass="LeftMenuVC" customModule="ThankYouList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LeftMenuViewController" automaticallyAdjustsScrollViewInsets="NO" id="sQr-zs-7OF" customClass="LeftMenuViewController" customModule="ThankYouList" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZuZ-rc-Nze"/>
                         <viewControllerLayoutGuide type="bottom" id="zrq-JN-o0B"/>
@@ -89,8 +89,8 @@
                                             <outlet property="userName" destination="FDD-F1-IqZ" id="1qf-7G-SoD"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="menuCell" id="hgL-3q-GH7" customClass="LeftMenuTableViewCell" customModule="ThankYouList" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="145" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="menuCell" id="hgL-3q-GH7" customClass="LeftMenuCell" customModule="ThankYouList" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hgL-3q-GH7" id="paD-QQ-mnj">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

@@ -1,5 +1,5 @@
 //
-//  LeftMenuTableViewCell.swift
+//  LeftMenuCell.swift
 //  ThankYouList
 //
 //  Created by Aika Yamada on 2018/05/06.
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-class LeftMenuTableViewCell: UITableViewCell {
+class LeftMenuCell: UITableViewCell {
     
     // MARK: - IBOutlets
     @IBOutlet weak var menuTitle: UILabel!

@@ -1,5 +1,5 @@
 //
-//  LeftMenuVC.swift
+//  LeftMenuViewController.swift
 //  ThankYouList
 //
 //  Created by Aika Yamada on 2018/03/17.
@@ -12,7 +12,7 @@ import Firebase
 import FBSDKLoginKit
 import GoogleSignIn
 
-class LeftMenuVC: UIViewController {
+class LeftMenuViewController: UIViewController {
     
     enum MenuCategories {
         case addThankYou
@@ -57,7 +57,7 @@ class LeftMenuVC: UIViewController {
     
 }
 
-extension LeftMenuVC: UITableViewDataSource {
+extension LeftMenuViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
@@ -72,7 +72,7 @@ extension LeftMenuVC: UITableViewDataSource {
         if indexPath.row == 1 {
             menuCategory = MenuCategories.addThankYou
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! LeftMenuTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! LeftMenuCell
         cell.setMenuImage(imageName: menuCategory.menuImageName())
         cell.setMenuTitle(title: menuCategory.menuTitle())
         return cell
@@ -120,7 +120,7 @@ extension LeftMenuVC: UITableViewDataSource {
     }
 }
 
-extension LeftMenuVC: UITableViewDelegate {
+extension LeftMenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
             return 174

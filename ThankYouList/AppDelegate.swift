@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         moveUDDataToFirestoreIfNeeded()
         let mainTabBarController: MainTabBarController = MainTabBarController()
-        let leftMenuVC = self.storyboard.instantiateViewController(withIdentifier: "LeftMenuVC") as! LeftMenuVC
+        let leftMenuVC = self.storyboard.instantiateViewController(withIdentifier: "LeftMenuViewController") as! LeftMenuViewController
         if let userName = currentUser.displayName {
             leftMenuVC.userNameString = userName
         }

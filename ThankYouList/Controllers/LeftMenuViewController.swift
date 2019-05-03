@@ -14,6 +14,33 @@ import GoogleSignIn
 
 class LeftMenuViewController: UIViewController {
     
+    enum SectionCategory: CaseIterable {
+        case allThankYou
+        case taggedThankYou
+        case menu
+        
+        func menuImageName() -> String? {
+            switch self {
+            case .allThankYou:
+                return "dots"
+            case .taggedThankYou:
+                return "dot"
+            case .menu:
+                return nil
+            }
+        }
+        
+        func menuTitle() -> String? {
+            // TODO: Localize
+            switch self {
+            case .allThankYou:
+                return "All Thank You"
+            default:
+                return nil
+            }
+        }
+    }
+    
     enum MenuCategory: CaseIterable {
         case addThankYou
         case setting
@@ -55,6 +82,8 @@ class LeftMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         userNameLabel.text = userNameString
+        tableView?.register(LeftMenuSectionHeaderView.build(),
+                            forHeaderFooterViewReuseIdentifier: LeftMenuSectionHeaderView.cellIdentifier)
     }
 }
 
@@ -64,6 +93,13 @@ extension LeftMenuViewController {
         self.slideMenuController()?.closeLeft()
         let addThankYouDataVC = self.storyboard?.instantiateViewController(withIdentifier: "AddThankYouViewController") as! ThankYouList.AddThankYouViewController
         let navi = UINavigationController(rootViewController: addThankYouDataVC)
+        self.slideMenuController()?.mainViewController?.present(navi, animated: true, completion: nil)
+    }
+    
+    private func showSettingsViewController() {
+        self.slideMenuController()?.closeLeft()
+        let settingsViewController = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
+        let navi = UINavigationController(rootViewController: settingsViewController)
         self.slideMenuController()?.mainViewController?.present(navi, animated: true, completion: nil)
     }
     
@@ -83,30 +119,60 @@ extension LeftMenuViewController {
 }
 
 extension LeftMenuViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return SectionCategory.allCases.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return MenuCategory.allCases.count
+        switch SectionCategory.allCases[section] {
+        case .allThankYou:
+            return 1
+        case .taggedThankYou:
+            return 0
+        case .menu:
+            return MenuCategory.allCases.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let menuCategory = MenuCategory.allCases[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! LeftMenuCell
-        cell.setMenuImage(imageName: menuCategory.menuImageName())
-        cell.setMenuTitle(title: menuCategory.menuTitle())
-        return cell
+        let sectionCategory = SectionCategory.allCases[indexPath.section]
+        switch sectionCategory {
+        case .allThankYou:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! LeftMenuCell
+            cell.setMenuImage(imageName: sectionCategory.menuImageName() ?? "")
+            cell.setMenuTitle(title: sectionCategory.menuTitle() ?? "")
+            return cell
+        case .taggedThankYou:
+            break
+        case .menu:
+            let menuCategory = MenuCategory.allCases[indexPath.row]
+            let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! LeftMenuCell
+            cell.setMenuImage(imageName: menuCategory.menuImageName())
+            cell.setMenuTitle(title: menuCategory.menuTitle())
+            return cell
+        }
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let menuCategory = MenuCategory.allCases[indexPath.row]
-        switch menuCategory {
-        case .addThankYou:
-            showAddThankYouViewController()
-        case .setting:
+        let sectionCategory = SectionCategory.allCases[indexPath.section]
+        switch sectionCategory {
+        case .allThankYou:
             break
-        case .logout:
-            logout()
-        }
-        
+        case .taggedThankYou:
+            break
+        case .menu:
+            let menuCategory = MenuCategory.allCases[indexPath.row]
+            switch menuCategory {
+            case .addThankYou:
+                showAddThankYouViewController()
+            case .setting:
+                showSettingsViewController()
+            case .logout:
+                logout()
+            }
+        }        
     }
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
@@ -122,6 +188,18 @@ extension LeftMenuViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.setHighlighted(false, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier:  LeftMenuSectionHeaderView.cellIdentifier) as! LeftMenuSectionHeaderView
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 || section == 1 {
+            return 0
+        }
+        return LeftMenuSectionHeaderView.cellHeight
     }
 }
 

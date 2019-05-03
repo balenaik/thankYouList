@@ -29,6 +29,8 @@
 		A866BEE3209EA2BC0073A76D /* LeftMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A866BEE2209EA2BC0073A76D /* LeftMenuCell.swift */; };
 		A866BEE520B931620073A76D /* TYLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A866BEE420B931620073A76D /* TYLColor.swift */; };
 		A880B98122353C64007D3C75 /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A880B98022353C64007D3C75 /* UIView+IBInspectable.swift */; };
+		A880B984223CD63B007D3C75 /* LeftMenuSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A880B983223CD63B007D3C75 /* LeftMenuSectionHeaderView.xib */; };
+		A880B986223CD649007D3C75 /* LeftMenuSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A880B985223CD649007D3C75 /* LeftMenuSectionHeaderView.swift */; };
 		A880B9882243649A007D3C75 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A880B9872243649A007D3C75 /* SettingsViewController.swift */; };
 		A880B98A2245ABAE007D3C75 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A880B9892245ABAE007D3C75 /* SettingCell.swift */; };
 		A880B98C2259617C007D3C75 /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A880B98B2259617C007D3C75 /* SettingModel.swift */; };
@@ -85,6 +87,8 @@
 		A866BEE2209EA2BC0073A76D /* LeftMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuCell.swift; sourceTree = "<group>"; };
 		A866BEE420B931620073A76D /* TYLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYLColor.swift; sourceTree = "<group>"; };
 		A880B98022353C64007D3C75 /* UIView+IBInspectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+IBInspectable.swift"; sourceTree = "<group>"; };
+		A880B983223CD63B007D3C75 /* LeftMenuSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeftMenuSectionHeaderView.xib; sourceTree = "<group>"; };
+		A880B985223CD649007D3C75 /* LeftMenuSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuSectionHeaderView.swift; sourceTree = "<group>"; };
 		A880B9872243649A007D3C75 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A880B9892245ABAE007D3C75 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		A880B98B2259617C007D3C75 /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
@@ -162,6 +166,8 @@
 				A85DCC071F5D2151004E1095 /* CustomCell.swift */,
 				A80EAE5B21FD5FA6006B02E8 /* ThankYouCell.xib */,
 				A80EAE5921FD5F87006B02E8 /* ThankYouCell.swift */,
+				A880B983223CD63B007D3C75 /* LeftMenuSectionHeaderView.xib */,
+				A880B985223CD649007D3C75 /* LeftMenuSectionHeaderView.swift */,
 				A880B9892245ABAE007D3C75 /* SettingCell.swift */,
 			);
 			path = TableViewCellHeaderView;
@@ -375,6 +381,7 @@
 				A80EAE5C21FD5FA6006B02E8 /* ThankYouCell.xib in Resources */,
 				A8AC1BD01FAE00B600D1B25B /* Localizable.strings in Resources */,
 				A8F06BB91F55396F00A90170 /* Launch Screen.storyboard in Resources */,
+				A880B984223CD63B007D3C75 /* LeftMenuSectionHeaderView.xib in Resources */,
 				A8831CCE1E9CFE6B00F3CA0A /* Assets.xcassets in Resources */,
 				A8831CCC1E9CFE6B00F3CA0A /* Main.storyboard in Resources */,
 				A8B6EE932205900D00908D51 /* ListSectionHeaderView.xib in Resources */,
@@ -504,6 +511,7 @@
 				A84FDB6021DC37EA00593326 /* SettingHeaderView.swift in Sources */,
 				A8B6EE8E2201E41D00908D51 /* String+ToDate.swift in Sources */,
 				A824150F205CE28C00172587 /* LoginVC.swift in Sources */,
+				A880B986223CD649007D3C75 /* LeftMenuSectionHeaderView.swift in Sources */,
 				A89AF9E72106905500FF6893 /* Crypto.swift in Sources */,
 				A881350C211FD40C00BE8F48 /* BalloonView.swift in Sources */,
 				A84FDB5C21DBB8DF00593326 /* AddThankYouViewController.swift in Sources */,

@@ -1054,7 +1054,7 @@
     </scenes>
     <resources>
         <image name="character_launchscreen" width="1024" height="1024"/>
-        <image name="dot" width="500" height="500"/>
+        <image name="dot" width="384" height="384"/>
         <image name="ic_facebook" width="24" height="24"/>
         <image name="ic_google" width="24" height="24"/>
         <image name="ic_logout" width="25.600000381469727" height="25.600000381469727"/>

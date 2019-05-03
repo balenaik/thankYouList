@@ -11,7 +11,6 @@ import SlideMenuControllerSwift
 import Firebase
 import FirebaseAuth
 import FacebookCore
-//import FBSDKLoginKit
 import GoogleSignIn
 
 @UIApplicationMain

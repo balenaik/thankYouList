@@ -45,8 +45,8 @@ extension SettingsViewController {
 // MARK: - Private Methods
 extension SettingsViewController {
     private func showTagSettingViewController() {
-//        let tagsSettingViewController = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "TagsSettingViewController") as!  TagsSettingViewController
-//        self.navigationController?.pushViewController(tagsSettingViewController, animated:  true)
+        let tagsSettingViewController = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "TagsSettingViewController") as!  TagsSettingViewController
+        self.navigationController?.pushViewController(tagsSettingViewController, animated:  true)
     }
 }
 

@@ -18,7 +18,8 @@ class TagSettingCell: UITableViewCell {
         return String(describing: self)
     }
 
-    func bind(title: String) {
-        nameLabel.text = title
+    func bind(tag: TagModel) {
+        nameLabel.text = tag.name
+        dotView.tintColor = tag.color
     }
 }

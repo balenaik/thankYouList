@@ -52,7 +52,7 @@ extension TagsSettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingCell.cellIdentifier, for: indexPath) as! TagSettingCell
         let tag = tags[indexPath.row]
-        cell.bind(title: tag.name)
+        cell.bind(tag: tag)
         return cell
     }
 

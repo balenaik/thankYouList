@@ -90,7 +90,9 @@ extension ThankYouListViewController {
             return
         }
        let uid16string = String(uid.prefix(16))
-        db.collection("users").document(uid).collection("thankYouList").addSnapshotListener { [weak self] (querySnapshot, error) in
+        db.collection(FirebaseConst.COLLECTION_NAME_USERS)
+            .document(uid).collection(FirebaseConst.COLLECTION_NAME_THANK_YOU_LIST)
+            .addSnapshotListener { [weak self] (querySnapshot, error) in
             guard let weakSelf = self else { return }
             if let error = error {
                 print(error.localizedDescription)

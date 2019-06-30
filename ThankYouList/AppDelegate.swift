@@ -136,7 +136,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let uid16string = String(uid.prefix(16))
             let encryptedValue = Crypto().encryptString(plainText: thankYouValue, key: uid16string)
             let thankYouData = ThankYouData(id: "", value: "", encryptedValue: encryptedValue, date: thankYouDate, createTime: Date())
-            db.collection("users").document(uid).collection("thankYouList").addDocument(data: thankYouData.dictionary) { error in
+            db.collection(FirebaseConst.COLLECTION_NAME_USERS)
+                .document(uid)
+                .collection(FirebaseConst.COLLECTION_NAME_THANK_YOU_LIST)
+                .addDocument(data: thankYouData.dictionary) { error in
                 if let error = error {
                     print("Error adding document: \(error.localizedDescription)")
                     unCopiedUDDataList.append(thankYouDataUD)

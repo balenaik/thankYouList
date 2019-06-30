@@ -167,7 +167,11 @@ extension EditThankYouViewController {
     private func editThankYou(editThankYouData: ThankYouData, uid: String) {
         guard let editingThankYouData = editingThankYouData else { return }
         isPosting = true
-        db.collection("users").document(uid).collection("thankYouList").document(editingThankYouData.id).updateData(editThankYouData.dictionary) { [weak self] error in
+        db.collection(FirebaseConst.COLLECTION_NAME_USERS)
+            .document(uid)
+            .collection(FirebaseConst.COLLECTION_NAME_THANK_YOU_LIST)
+            .document(editingThankYouData.id)
+            .updateData(editThankYouData.dictionary) { [weak self] error in
             guard let weakSelf = self else { return }
             weakSelf.isPosting = false
             if let error = error {
@@ -204,7 +208,11 @@ extension EditThankYouViewController {
             print("Not login error")
             return
         }
-        db.collection("users").document(uid).collection("thankYouList").document(editingThankYouData.id).delete(completion: { [weak self] error in
+        db.collection(FirebaseConst.COLLECTION_NAME_USERS)
+            .document(uid)
+            .collection(FirebaseConst.COLLECTION_NAME_THANK_YOU_LIST)
+            .document(editingThankYouData.id)
+            .delete(completion: { [weak self] error in
             guard let weakSelf = self else { return }
             if let error = error {
                 debugPrint(error)

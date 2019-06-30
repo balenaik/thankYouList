@@ -139,7 +139,10 @@ extension AddThankYouViewController {
     
     private func addThankYou(thankYouData: ThankYouData, uid: String) {
         isPosting = true
-        db.collection("users").document(uid).collection("thankYouList").addDocument(data: thankYouData.dictionary) { [weak self] error in
+        db.collection(FirebaseConst.COLLECTION_NAME_USERS)
+            .document(uid)
+            .collection(FirebaseConst.COLLECTION_NAME_THANK_YOU_LIST)
+            .addDocument(data: thankYouData.dictionary) { [weak self] error in
             guard let weakSelf = self else { return }
             weakSelf.isPosting = false
             if let error = error {

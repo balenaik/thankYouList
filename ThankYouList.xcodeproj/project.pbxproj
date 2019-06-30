@@ -13,6 +13,7 @@
 		A80EAE5821F4C0B4006B02E8 /* UIView+Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80EAE5721F4C0B4006B02E8 /* UIView+Highlight.swift */; };
 		A80EAE5A21FD5F87006B02E8 /* ThankYouCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80EAE5921FD5F87006B02E8 /* ThankYouCell.swift */; };
 		A80EAE5C21FD5FA6006B02E8 /* ThankYouCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A80EAE5B21FD5FA6006B02E8 /* ThankYouCell.xib */; };
+		A812EC3922C8B3D300B75C10 /* FirebaseConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A812EC3822C8B3D300B75C10 /* FirebaseConst.swift */; };
 		A81677732267351800C1F8A4 /* TagSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81677722267351800C1F8A4 /* TagSettingCell.swift */; };
 		A8167775226ED6A200C1F8A4 /* TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8167774226ED6A200C1F8A4 /* TagModel.swift */; };
 		A8167777227BFFBA00C1F8A4 /* EditTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8167776227BFFBA00C1F8A4 /* EditTagViewController.swift */; };
@@ -75,6 +76,7 @@
 		A80EAE5721F4C0B4006B02E8 /* UIView+Highlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Highlight.swift"; sourceTree = "<group>"; };
 		A80EAE5921FD5F87006B02E8 /* ThankYouCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouCell.swift; sourceTree = "<group>"; };
 		A80EAE5B21FD5FA6006B02E8 /* ThankYouCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThankYouCell.xib; sourceTree = "<group>"; };
+		A812EC3822C8B3D300B75C10 /* FirebaseConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConst.swift; sourceTree = "<group>"; };
 		A81677722267351800C1F8A4 /* TagSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSettingCell.swift; sourceTree = "<group>"; };
 		A8167774226ED6A200C1F8A4 /* TagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagModel.swift; sourceTree = "<group>"; };
 		A8167776227BFFBA00C1F8A4 /* EditTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTagViewController.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			children = (
 				A84CBEE120F198E400CBA0AB /* ConstStruct.swift */,
 				A820DE5321C5432500E7F3DF /* NotificationConst.swift */,
+				A812EC3822C8B3D300B75C10 /* FirebaseConst.swift */,
 			);
 			path = Const;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				A84FDB6021DC37EA00593326 /* SettingHeaderView.swift in Sources */,
 				A8B6EE8E2201E41D00908D51 /* String+ToDate.swift in Sources */,
 				A824150F205CE28C00172587 /* LoginVC.swift in Sources */,
+				A812EC3922C8B3D300B75C10 /* FirebaseConst.swift in Sources */,
 				A880B986223CD649007D3C75 /* LeftMenuSectionHeaderView.swift in Sources */,
 				A880B98E2267283F007D3C75 /* TagsSettingViewController.swift in Sources */,
 				A89AF9E72106905500FF6893 /* Crypto.swift in Sources */,

@@ -4,8 +4,13 @@ SecretData.swift
 
 .firebaserc
 firebase.json
-img/screenshots
-Breakpoints_v2.xcbkptlist
+
+# Xcode project files except for the project file
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/*
+*.xcworkspace/*
+!*.xcworkspace/contents.xcworkspacedata
 
 # Images
 img/*

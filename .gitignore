@@ -1,10 +1,11 @@
+# Secret Data
 GoogleService-Info.plist
 SecretData.swift
-.gitignore
+
 .firebaserc
 firebase.json
 img/screenshots
 Breakpoints_v2.xcbkptlist
 
-#Cocoapods
+# Cocoapods
 Pods/*

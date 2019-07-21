@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  ThankYouList
+
+  Created by Aika Yamada on 2017/11/04.
+  Copyright © 2017 Aika Yamada. All rights reserved.
+*/
+"monthYear" = "%2$@年 %1$@";
+"Date" = "日付";
+"Delete Thank you" = "Thank youを削除";
+"Are you sure you want to delete this thank you?" = "本当にこのThank youを削除してよろしいですか?";
+"Delete" = "削除";
+"Cancel" = "キャンセル";
+"What are you thankful for?" = "ありがとうの気持ちを書こう";
+"EmptyViewLabel" = "ここにThank Youが表示されます。\nさっそく作成しましょう！";
+"Add Thank You From Here" = "Thank Youを作成する";
+"Add Thank You" = "Thank You を作成";
+"Logout" = "ログアウト";
+"Failed to add" = "作成できませんでした";
+"Failed to edit" = "編集できませんでした";
+"Failed to delete" = "削除できませんでした";
+

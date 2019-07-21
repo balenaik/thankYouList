@@ -21,10 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var uid: String?
     var selectedDate: Date?
     
-    var storyboard: UIStoryboard {
-        return UIStoryboard(name: "Main", bundle: nil)
-    }
-    
     override init() {
         super.init()
         FirebaseApp.configure()
@@ -45,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         db.settings = settings
         
         guard let currentUser = Auth.auth().currentUser else {
-            let loginVC = self.storyboard.instantiateViewController(withIdentifier: "LoginVC")
+            let loginVC = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()!
             self.window?.rootViewController = loginVC
             self.window?.makeKeyAndVisible()
             return true
@@ -53,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         moveUDDataToFirestoreIfNeeded()
         let mainTabBarController: MainTabBarController = MainTabBarController()
-        let leftMenuVC = self.storyboard.instantiateViewController(withIdentifier: "LeftMenuVC") as! LeftMenuVC
+        let leftMenuVC = UIStoryboard(name: "LeftMenu", bundle: nil).instantiateInitialViewController() as! LeftMenuVC
         if let userName = currentUser.displayName {
             leftMenuVC.userNameString = userName
         }

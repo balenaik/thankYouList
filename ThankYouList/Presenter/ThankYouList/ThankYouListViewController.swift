@@ -33,6 +33,7 @@ class ThankYouListViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyView: EmptyView!
+    @IBOutlet weak var scrollIndicator: ListScrollIndicator!
     
     
 
@@ -189,8 +190,8 @@ extension ThankYouListViewController {
 }
     
     
-// MARK: - UITableViewDataSource & UITableViewDelegate
-extension ThankYouListViewController: UITableViewDataSource, UITableViewDelegate {
+// MARK: - UITableViewDataSource
+extension ThankYouListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sections[section].thankYouList.count
@@ -208,16 +209,26 @@ extension ThankYouListViewController: UITableViewDataSource, UITableViewDelegate
         return sections.count
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let editingThankYouData = sections[indexPath.section].thankYouList[indexPath.row]
+        let vc = EditThankYouViewController.createViewController(thankYouData: editingThankYouData)
+        let navi = UINavigationController(rootViewController: vc)
+        self.present(navi, animated: true, completion: nil)
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension ThankYouListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListSectionHeaderView.cellIdentifier()) as! ListSectionHeaderView
         header.bind(sectionString: sections[section].displayDateString)
         return header
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return ListSectionHeaderView.cellHeight
     }
-    
+
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let thankYouId =  sections[indexPath.section].thankYouList[indexPath.row].id
         if let height = estimatedRowHeights[thankYouId] {
@@ -225,18 +236,15 @@ extension ThankYouListViewController: UITableViewDataSource, UITableViewDelegate
         }
         return tableView.estimatedRowHeight
     }
-    
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.contentView.updateConstraints()
         let thankYouId =  sections[indexPath.section].thankYouList[indexPath.row].id
         estimatedRowHeights[thankYouId] = cell.frame.size.height
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let editingThankYouData = sections[indexPath.section].thankYouList[indexPath.row]
-        let vc = EditThankYouViewController.createViewController(thankYouData: editingThankYouData)
-        let navi = UINavigationController(rootViewController: vc)
-        self.present(navi, animated: true, completion: nil)
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollIndicator.updateMovableIcon(scrollView: scrollView)
     }
 }
 

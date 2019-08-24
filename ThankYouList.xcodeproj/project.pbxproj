@@ -20,6 +20,9 @@
 		A8114B0222E458C70024975A /* EditThankYou.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8114B0122E458C70024975A /* EditThankYou.storyboard */; };
 		A8114B0522E459F10024975A /* LeftMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8114B0422E459F10024975A /* LeftMenu.storyboard */; };
 		A8114B0822E45BB90024975A /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8114B0722E45BB90024975A /* Login.storyboard */; };
+		A8114B0B23017DB70024975A /* ListScrollIndicatorMovableIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8114B0A23017DB70024975A /* ListScrollIndicatorMovableIcon.swift */; };
+		A8114B0D23017DCC0024975A /* ListScrollIndicatorMovableIcon.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8114B0C23017DCC0024975A /* ListScrollIndicatorMovableIcon.xib */; };
+		A8114B10230180EF0024975A /* ListScrollIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8114B0F230180EF0024975A /* ListScrollIndicator.swift */; };
 		A820DE5421C5432500E7F3DF /* NotificationConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820DE5321C5432500E7F3DF /* NotificationConst.swift */; };
 		A820DE5721C61EF100E7F3DF /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820DE5621C61EF000E7F3DF /* UIView+Shadow.swift */; };
 		A824150F205CE28C00172587 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824150E205CE28C00172587 /* LoginVC.swift */; };
@@ -53,6 +56,8 @@
 		A8B6EE932205900D00908D51 /* ListSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8B6EE922205900D00908D51 /* ListSectionHeaderView.xib */; };
 		A8B6EE952205902100908D51 /* ListSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6EE942205902100908D51 /* ListSectionHeaderView.swift */; };
 		A8BA38B91F5CC5F600817D5C /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8BA38B81F5CC5F600817D5C /* images.xcassets */; };
+		A8C90AE02302ECA3008C6A4A /* ListScrollIndicatorDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C90ADF2302ECA3008C6A4A /* ListScrollIndicatorDateView.swift */; };
+		A8C90AE22302ECCA008C6A4A /* ListScrollIndicatorDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8C90AE12302ECCA008C6A4A /* ListScrollIndicatorDateView.xib */; };
 		A8D41E1C21E0E07B00A77B48 /* SettingDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */; };
 		A8DB2FBA1F5D41540055E8A4 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DB2FB91F5D41540055E8A4 /* CalendarViewController.swift */; };
 		A8F06BB91F55396F00A90170 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8F06BB81F55396F00A90170 /* Launch Screen.storyboard */; };
@@ -75,6 +80,9 @@
 		A8114B0122E458C70024975A /* EditThankYou.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditThankYou.storyboard; sourceTree = "<group>"; };
 		A8114B0422E459F10024975A /* LeftMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LeftMenu.storyboard; sourceTree = "<group>"; };
 		A8114B0722E45BB90024975A /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		A8114B0A23017DB70024975A /* ListScrollIndicatorMovableIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListScrollIndicatorMovableIcon.swift; sourceTree = "<group>"; };
+		A8114B0C23017DCC0024975A /* ListScrollIndicatorMovableIcon.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListScrollIndicatorMovableIcon.xib; sourceTree = "<group>"; };
+		A8114B0F230180EF0024975A /* ListScrollIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListScrollIndicator.swift; sourceTree = "<group>"; };
 		A820DE5321C5432500E7F3DF /* NotificationConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationConst.swift; sourceTree = "<group>"; };
 		A820DE5621C61EF000E7F3DF /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		A824150B205CDF5800172587 /* ThankYouList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThankYouList.entitlements; sourceTree = "<group>"; };
@@ -111,6 +119,8 @@
 		A8B6EE922205900D00908D51 /* ListSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListSectionHeaderView.xib; sourceTree = "<group>"; };
 		A8B6EE942205902100908D51 /* ListSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSectionHeaderView.swift; sourceTree = "<group>"; };
 		A8BA38B81F5CC5F600817D5C /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
+		A8C90ADF2302ECA3008C6A4A /* ListScrollIndicatorDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListScrollIndicatorDateView.swift; sourceTree = "<group>"; };
+		A8C90AE12302ECCA008C6A4A /* ListScrollIndicatorDateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListScrollIndicatorDateView.xib; sourceTree = "<group>"; };
 		A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDateView.swift; sourceTree = "<group>"; };
 		A8DB2FB91F5D41540055E8A4 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		A8F06BB81F55396F00A90170 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -172,6 +182,7 @@
 		A8114AF722E4355B0024975A /* ThankYouList */ = {
 			isa = PBXGroup;
 			children = (
+				A8114B0E23017F6A0024975A /* ScrollIndicator */,
 				A881350B211FD40C00BE8F48 /* BalloonView.swift */,
 				A881350D2131432C00BE8F48 /* EmptyView.xib */,
 				A881350F2131435100BE8F48 /* EmptyView.swift */,
@@ -244,6 +255,18 @@
 				A8AC1BD61FD20E5500D1B25B /* MainTabBarController.swift */,
 			);
 			path = MainTabBar;
+			sourceTree = "<group>";
+		};
+		A8114B0E23017F6A0024975A /* ScrollIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				A8114B0A23017DB70024975A /* ListScrollIndicatorMovableIcon.swift */,
+				A8114B0C23017DCC0024975A /* ListScrollIndicatorMovableIcon.xib */,
+				A8C90ADF2302ECA3008C6A4A /* ListScrollIndicatorDateView.swift */,
+				A8C90AE12302ECCA008C6A4A /* ListScrollIndicatorDateView.xib */,
+				A8114B0F230180EF0024975A /* ListScrollIndicator.swift */,
+			);
+			path = ScrollIndicator;
 			sourceTree = "<group>";
 		};
 		A820DE5221C5430B00E7F3DF /* Const */ = {
@@ -401,6 +424,7 @@
 				A84FDB5E21DC365F00593326 /* SettingHeaderView.xib in Resources */,
 				A808C618220FAD06004162E4 /* SmallListView.xib in Resources */,
 				A80EAE5C21FD5FA6006B02E8 /* ThankYouCell.xib in Resources */,
+				A8C90AE22302ECCA008C6A4A /* ListScrollIndicatorDateView.xib in Resources */,
 				A8AC1BD01FAE00B600D1B25B /* Localizable.strings in Resources */,
 				A8F06BB91F55396F00A90170 /* Launch Screen.storyboard in Resources */,
 				A8114AFF22E448690024975A /* AddThankYou.storyboard in Resources */,
@@ -408,6 +432,7 @@
 				A8831CCE1E9CFE6B00F3CA0A /* Assets.xcassets in Resources */,
 				A8114B0522E459F10024975A /* LeftMenu.storyboard in Resources */,
 				A8114B0222E458C70024975A /* EditThankYou.storyboard in Resources */,
+				A8114B0D23017DCC0024975A /* ListScrollIndicatorMovableIcon.xib in Resources */,
 				A8114AF922E435960024975A /* ThankYouList.storyboard in Resources */,
 				A8114AFC22E446BD0024975A /* ThankYouCalendar.storyboard in Resources */,
 				A8B6EE932205900D00908D51 /* ListSectionHeaderView.xib in Resources */,
@@ -536,6 +561,7 @@
 				A84FDB6021DC37EA00593326 /* SettingHeaderView.swift in Sources */,
 				A8B6EE8E2201E41D00908D51 /* String+ToDate.swift in Sources */,
 				A824150F205CE28C00172587 /* LoginVC.swift in Sources */,
+				A8114B10230180EF0024975A /* ListScrollIndicator.swift in Sources */,
 				A89AF9E72106905500FF6893 /* Crypto.swift in Sources */,
 				A881350C211FD40C00BE8F48 /* BalloonView.swift in Sources */,
 				A84FDB5C21DBB8DF00593326 /* AddThankYouViewController.swift in Sources */,
@@ -546,12 +572,14 @@
 				A808C616220FACF6004162E4 /* SmallListView.swift in Sources */,
 				A8B6EE9122055CE900908D51 /* Date+ToString.swift in Sources */,
 				A85DCC081F5D2151004E1095 /* CustomCell.swift in Sources */,
+				A8114B0B23017DB70024975A /* ListScrollIndicatorMovableIcon.swift in Sources */,
 				A8B6EE952205902100908D51 /* ListSectionHeaderView.swift in Sources */,
 				A80EAE5821F4C0B4006B02E8 /* UIView+Highlight.swift in Sources */,
 				A80EAE5A21FD5F87006B02E8 /* ThankYouCell.swift in Sources */,
 				A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */,
 				A8DB2FBA1F5D41540055E8A4 /* CalendarViewController.swift in Sources */,
 				A8831CC71E9CFE6B00F3CA0A /* AppDelegate.swift in Sources */,
+				A8C90AE02302ECA3008C6A4A /* ListScrollIndicatorDateView.swift in Sources */,
 				A820DE5721C61EF100E7F3DF /* UIView+Shadow.swift in Sources */,
 				A83D5F891F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift in Sources */,
 				A8AC1BD31FAEA4B000D1B25B /* UITextView+PlaceHolder.swift in Sources */,

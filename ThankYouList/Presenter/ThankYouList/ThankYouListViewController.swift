@@ -32,8 +32,8 @@ class ThankYouListViewController: UIViewController {
     
     // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var emptyView: EmptyView!
     @IBOutlet weak var scrollIndicator: ListScrollIndicator!
+    @IBOutlet weak var emptyView: EmptyView!
     
     
 
@@ -64,6 +64,8 @@ class ThankYouListViewController: UIViewController {
                             forHeaderFooterViewReuseIdentifier: ListSectionHeaderView.cellIdentifier())
 
         emptyView.isHidden = true
+        let attributes = ListScrollIndicatorAttributes(scrollView: tableView)
+        scrollIndicator.setup(attributes: attributes, delegate: self)
         
         self.navigationController?.navigationBar.barTintColor = TYLColor.navigationBarBgColor
         self.navigationController?.navigationBar.tintColor = TYLColor.navigationBarTextColor
@@ -74,11 +76,6 @@ class ThankYouListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
     
@@ -244,9 +241,11 @@ extension ThankYouListViewController: UITableViewDelegate {
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        scrollIndicator.updateMovableIcon(scrollView: scrollView)
+        scrollIndicator?.updateMovableIcon(scrollView: scrollView)
     }
 }
 
+extension ThankYouListViewController: ListScrollIndicatorDelegate {
+}
 
 

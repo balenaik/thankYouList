@@ -17,7 +17,7 @@ struct ListScrollIndicatorAttributes {
 
 class ListScrollIndicator: UIView {
     private let movableIcon: ListScrollIndicatorMovableIcon
-    private let dateView: ListScrollIndicatorDateView
+    private let titleView: ListScrollIndicatorTitleView
     private var movableIconTopAnchor: NSLayoutConstraint?
 
     private var attributes: ListScrollIndicatorAttributes?
@@ -33,12 +33,12 @@ class ListScrollIndicator: UIView {
     required init?(coder aDecoder: NSCoder) {
         let movableIcon = ListScrollIndicatorMovableIcon.instanceFromNib()
         self.movableIcon = movableIcon
-        let dateView = ListScrollIndicatorDateView.instanceFromNib()
-        self.dateView = dateView
+        let titleView = ListScrollIndicatorTitleView.instanceFromNib()
+        self.titleView = titleView
         super.init(coder: aDecoder)
 
         self.addSubview(movableIcon)
-        self.addSubview(dateView)
+        self.addSubview(titleView)
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(dragMovableIcon(_:)))
         movableIcon.addGestureRecognizer(panGesture)
         movableIcon.translatesAutoresizingMaskIntoConstraints = false
@@ -48,10 +48,10 @@ class ListScrollIndicator: UIView {
         movableIcon.heightAnchor.constraint(equalToConstant: 50).isActive = true
         movableIcon.widthAnchor.constraint(equalToConstant: 50).isActive = true
 
-        dateView.translatesAutoresizingMaskIntoConstraints = false
-        dateView.centerYAnchor.constraint(equalTo: movableIcon.centerYAnchor).isActive = true
-        dateView.trailingAnchor.constraint(equalTo: movableIcon.leadingAnchor, constant: -20).isActive = true
-        dateView.backgroundColor = UIColor.green
+        titleView.translatesAutoresizingMaskIntoConstraints = false
+        titleView.centerYAnchor.constraint(equalTo: movableIcon.centerYAnchor).isActive = true
+        titleView.trailingAnchor.constraint(equalTo: movableIcon.leadingAnchor, constant: -20).isActive = true
+        titleView.backgroundColor = UIColor.green
     }
 }
 
@@ -65,6 +65,10 @@ extension ListScrollIndicator {
     func updateMovableIcon(scrollView: UIScrollView) {
         let contentSizeHeight = scrollView.contentSize.height == 0 ? 1 : scrollView.contentSize.height
         movableIconTopAnchor?.constant = scrollView.contentOffset.y / contentSizeHeight * self.frame.size.height
+    }
+
+    func bind(title: String) {
+        titleView.bind(title: title)
     }
 }
 

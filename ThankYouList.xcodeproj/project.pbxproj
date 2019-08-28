@@ -56,8 +56,8 @@
 		A8B6EE932205900D00908D51 /* ListSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8B6EE922205900D00908D51 /* ListSectionHeaderView.xib */; };
 		A8B6EE952205902100908D51 /* ListSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6EE942205902100908D51 /* ListSectionHeaderView.swift */; };
 		A8BA38B91F5CC5F600817D5C /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8BA38B81F5CC5F600817D5C /* images.xcassets */; };
-		A8C90AE02302ECA3008C6A4A /* ListScrollIndicatorDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C90ADF2302ECA3008C6A4A /* ListScrollIndicatorDateView.swift */; };
-		A8C90AE22302ECCA008C6A4A /* ListScrollIndicatorDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8C90AE12302ECCA008C6A4A /* ListScrollIndicatorDateView.xib */; };
+		A8C90AE02302ECA3008C6A4A /* ListScrollIndicatorTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C90ADF2302ECA3008C6A4A /* ListScrollIndicatorTitleView.swift */; };
+		A8C90AE22302ECCA008C6A4A /* ListScrollIndicatorTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8C90AE12302ECCA008C6A4A /* ListScrollIndicatorTitleView.xib */; };
 		A8D41E1C21E0E07B00A77B48 /* SettingDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */; };
 		A8DB2FBA1F5D41540055E8A4 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DB2FB91F5D41540055E8A4 /* CalendarViewController.swift */; };
 		A8F06BB91F55396F00A90170 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8F06BB81F55396F00A90170 /* Launch Screen.storyboard */; };
@@ -119,8 +119,8 @@
 		A8B6EE922205900D00908D51 /* ListSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListSectionHeaderView.xib; sourceTree = "<group>"; };
 		A8B6EE942205902100908D51 /* ListSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSectionHeaderView.swift; sourceTree = "<group>"; };
 		A8BA38B81F5CC5F600817D5C /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
-		A8C90ADF2302ECA3008C6A4A /* ListScrollIndicatorDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListScrollIndicatorDateView.swift; sourceTree = "<group>"; };
-		A8C90AE12302ECCA008C6A4A /* ListScrollIndicatorDateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListScrollIndicatorDateView.xib; sourceTree = "<group>"; };
+		A8C90ADF2302ECA3008C6A4A /* ListScrollIndicatorTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListScrollIndicatorTitleView.swift; sourceTree = "<group>"; };
+		A8C90AE12302ECCA008C6A4A /* ListScrollIndicatorTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListScrollIndicatorTitleView.xib; sourceTree = "<group>"; };
 		A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDateView.swift; sourceTree = "<group>"; };
 		A8DB2FB91F5D41540055E8A4 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		A8F06BB81F55396F00A90170 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -262,8 +262,8 @@
 			children = (
 				A8114B0A23017DB70024975A /* ListScrollIndicatorMovableIcon.swift */,
 				A8114B0C23017DCC0024975A /* ListScrollIndicatorMovableIcon.xib */,
-				A8C90ADF2302ECA3008C6A4A /* ListScrollIndicatorDateView.swift */,
-				A8C90AE12302ECCA008C6A4A /* ListScrollIndicatorDateView.xib */,
+				A8C90ADF2302ECA3008C6A4A /* ListScrollIndicatorTitleView.swift */,
+				A8C90AE12302ECCA008C6A4A /* ListScrollIndicatorTitleView.xib */,
 				A8114B0F230180EF0024975A /* ListScrollIndicator.swift */,
 			);
 			path = ScrollIndicator;
@@ -424,7 +424,7 @@
 				A84FDB5E21DC365F00593326 /* SettingHeaderView.xib in Resources */,
 				A808C618220FAD06004162E4 /* SmallListView.xib in Resources */,
 				A80EAE5C21FD5FA6006B02E8 /* ThankYouCell.xib in Resources */,
-				A8C90AE22302ECCA008C6A4A /* ListScrollIndicatorDateView.xib in Resources */,
+				A8C90AE22302ECCA008C6A4A /* ListScrollIndicatorTitleView.xib in Resources */,
 				A8AC1BD01FAE00B600D1B25B /* Localizable.strings in Resources */,
 				A8F06BB91F55396F00A90170 /* Launch Screen.storyboard in Resources */,
 				A8114AFF22E448690024975A /* AddThankYou.storyboard in Resources */,
@@ -579,7 +579,7 @@
 				A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */,
 				A8DB2FBA1F5D41540055E8A4 /* CalendarViewController.swift in Sources */,
 				A8831CC71E9CFE6B00F3CA0A /* AppDelegate.swift in Sources */,
-				A8C90AE02302ECA3008C6A4A /* ListScrollIndicatorDateView.swift in Sources */,
+				A8C90AE02302ECA3008C6A4A /* ListScrollIndicatorTitleView.swift in Sources */,
 				A820DE5721C61EF100E7F3DF /* UIView+Shadow.swift in Sources */,
 				A83D5F891F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift in Sources */,
 				A8AC1BD31FAEA4B000D1B25B /* UITextView+PlaceHolder.swift in Sources */,
@@ -721,7 +721,9 @@
 			baseConfigurationReference = BA00FC82559EE1AEA8CE9577 /* Pods-ThankYouList.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = ThankYouList/ThankYouList.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ThankYouList/Resources/ThankYouList.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6JDKJKDJ28;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -757,6 +759,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.balenaik.ThankYouList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
@@ -766,13 +769,16 @@
 			baseConfigurationReference = A015AC112826D3ABF5A416EC /* Pods-ThankYouList.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = ThankYouList/ThankYouList.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ThankYouList/Resources/ThankYouList.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6JDKJKDJ28;
 				INFOPLIST_FILE = ThankYouList/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.balenaik.ThankYouList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;

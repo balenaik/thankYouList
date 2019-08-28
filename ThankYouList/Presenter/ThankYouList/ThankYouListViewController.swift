@@ -198,6 +198,7 @@ extension ThankYouListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: ThankYouCell.cellIdentifier(), for: indexPath) as! ThankYouCell
         let thankYouData = sections[indexPath.section].thankYouList[indexPath.row]
         cell.bind(thankYouData: thankYouData)
+        scrollIndicator.bind(title: sections[indexPath.section].displayDateString)
         cell.selectionStyle = .none
         return cell 
     }

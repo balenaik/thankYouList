@@ -97,7 +97,7 @@ extension LeftMenuVC: UITableViewDataSource {
             FBSDKAccessToken.setCurrent(nil)
             GIDSignIn.sharedInstance().signOut()
             GIDSignIn.sharedInstance().disconnect()
-            let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC")
+            let loginVC = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()
             self.present(loginVC!, animated: true)
         } catch let error as NSError {
             print(error.localizedDescription)

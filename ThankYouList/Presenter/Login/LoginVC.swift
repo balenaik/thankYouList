@@ -78,7 +78,7 @@ class LoginVC: UIViewController {
             appDelegate.moveUDDataToFirestoreIfNeeded()
             if let loginVC = appDelegate.window?.rootViewController! {
                 let mainTabBarController: MainTabBarController = MainTabBarController()
-                let leftMenuVC = self.storyboard?.instantiateViewController(withIdentifier: "LeftMenuVC") as! LeftMenuVC
+                let leftMenuVC = UIStoryboard(name: "LeftMenu", bundle: nil).instantiateInitialViewController() as! LeftMenuVC
                 leftMenuVC.userNameString = userName
                 leftMenuVC.emailString = email
                 appDelegate.createRootViewController(mainViewController: mainTabBarController, subViewController: leftMenuVC)

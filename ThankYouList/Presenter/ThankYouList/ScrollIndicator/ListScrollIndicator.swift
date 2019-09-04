@@ -8,6 +8,9 @@
 
 import UIKit
 
+private let iconHeight = CGFloat(50)
+private let iconWidth = CGFloat(50)
+
 protocol ListScrollIndicatorDelegate: class {
 }
 
@@ -41,8 +44,8 @@ class ListScrollIndicator: UIView {
         movableIconTopAnchor = movableIcon.topAnchor.constraint(equalTo: self.topAnchor, constant: 0)
         movableIconTopAnchor?.isActive = true
         movableIcon.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        movableIcon.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        movableIcon.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        movableIcon.heightAnchor.constraint(equalToConstant: iconHeight).isActive = true
+        movableIcon.widthAnchor.constraint(equalToConstant: iconWidth).isActive = true
 
         titleView.translatesAutoresizingMaskIntoConstraints = false
         titleView.centerYAnchor.constraint(equalTo: movableIcon.centerYAnchor).isActive = true
@@ -59,7 +62,8 @@ extension ListScrollIndicator {
 
     func updateMovableIcon(scrollView: UIScrollView) {
         let contentSizeHeight = scrollView.contentSize.height == 0 ? 1 : scrollView.contentSize.height
-        movableIconTopAnchor?.constant = scrollView.contentOffset.y / contentSizeHeight * self.frame.size.height
+        let indicatorHeight = self.frame.size.height - iconHeight / 2 // adjusting icon's top anchor constraint
+        movableIconTopAnchor?.constant = scrollView.contentOffset.y / contentSizeHeight * indicatorHeight
     }
 
     func bind(title: String) {
@@ -78,10 +82,16 @@ extension ListScrollIndicator {
             guard let originalOffsetY = originalOffsetY else { return }
             let movedY = sender.translation(in: self).y
             let contentSizeHeight = scrollView.contentSize.height == 0 ? 1 : scrollView.contentSize.height
-            let indicatorHeight = self.frame.size.height
-            let newY = (movedY / indicatorHeight) * contentSizeHeight
+            let indicatorHeight = self.frame.size.height - iconHeight / 2 // adjusting icon's top anchor constraint
+            let maxY = contentSizeHeight - scrollView.frame.size.height
+            var newY = originalOffsetY + ((movedY / indicatorHeight) * contentSizeHeight)
+            if newY < 0 {
+                newY = 0
+            } else if newY > maxY {
+                newY = maxY
+            }
             scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x,
-                                                y: originalOffsetY + newY),
+                                                y: newY),
                                         animated: false)
         case .ended:
             originalOffsetY = nil

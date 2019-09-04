@@ -19,11 +19,7 @@ class ListScrollIndicator: UIView {
     private let movableIcon: ListScrollIndicatorMovableIcon
     private let titleView: ListScrollIndicatorTitleView
     private var movableIconTopAnchor: NSLayoutConstraint?
-
-    private var attributes: ListScrollIndicatorAttributes?
-    private var scrollView: UIScrollView? {
-        return attributes?.scrollView
-    }
+    private var scrollView: UIScrollView?
 
     /// Set scrollView offset y when movableIcon start being dragged and nil when ended
     private var originalOffsetY: CGFloat?
@@ -57,9 +53,8 @@ class ListScrollIndicator: UIView {
 
 // MARK: - public
 extension ListScrollIndicator {
-    func setup(attributes: ListScrollIndicatorAttributes, delegate: ListScrollIndicatorDelegate?) {
-        self.attributes = attributes
-        self.delegate = delegate
+    func setup(scrollView: UIScrollView) {
+        self.scrollView = scrollView
     }
 
     func updateMovableIcon(scrollView: UIScrollView) {

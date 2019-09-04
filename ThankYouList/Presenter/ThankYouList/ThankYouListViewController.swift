@@ -64,9 +64,8 @@ class ThankYouListViewController: UIViewController {
                             forHeaderFooterViewReuseIdentifier: ListSectionHeaderView.cellIdentifier())
 
         emptyView.isHidden = true
-        let attributes = ListScrollIndicatorAttributes(scrollView: tableView)
-        scrollIndicator.setup(attributes: attributes, delegate: self)
-        
+        scrollIndicator.setup(scrollView: tableView)
+
         self.navigationController?.navigationBar.barTintColor = TYLColor.navigationBarBgColor
         self.navigationController?.navigationBar.tintColor = TYLColor.navigationBarTextColor
         self.navigationController?.navigationBar.titleTextAttributes = [

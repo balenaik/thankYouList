@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,32 +20,32 @@
                     <rect key="frame" x="15" y="0.0" width="58" height="58"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vxw-y0-ppb" customClass="ListScrollIndicatorMovableIconTriangle" customModule="ThankYouList" customModuleProvider="target">
-                            <rect key="frame" x="19" y="36.5" width="20" height="15"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <rect key="frame" x="21.5" y="37" width="15" height="10"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="20" id="Woi-Wr-pSw"/>
-                                <constraint firstAttribute="height" constant="15" id="d3q-R8-Jt0"/>
+                                <constraint firstAttribute="width" constant="15" id="Woi-Wr-pSw"/>
+                                <constraint firstAttribute="height" constant="10" id="d3q-R8-Jt0"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="075-hG-GW1" customClass="ListScrollIndicatorMovableIconTriangle" customModule="ThankYouList" customModuleProvider="target">
-                            <rect key="frame" x="19" y="6.5" width="20" height="15"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <rect key="frame" x="21.5" y="11" width="15" height="10"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="15" id="abP-LB-MRR"/>
-                                <constraint firstAttribute="width" constant="20" id="tXf-8K-Wta"/>
+                                <constraint firstAttribute="height" constant="10" id="abP-LB-MRR"/>
+                                <constraint firstAttribute="width" constant="15" id="tXf-8K-Wta"/>
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                    <color key="backgroundColor" white="0.70325881487702668" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="075-hG-GW1" firstAttribute="centerX" secondItem="Z6D-hX-WYQ" secondAttribute="centerX" id="1bS-Si-bgf"/>
-                        <constraint firstItem="Vxw-y0-ppb" firstAttribute="centerY" secondItem="Z6D-hX-WYQ" secondAttribute="centerY" constant="15" id="OUI-dz-K6Y"/>
+                        <constraint firstItem="Vxw-y0-ppb" firstAttribute="centerY" secondItem="Z6D-hX-WYQ" secondAttribute="centerY" constant="13" id="OUI-dz-K6Y"/>
                         <constraint firstItem="Vxw-y0-ppb" firstAttribute="centerX" secondItem="Z6D-hX-WYQ" secondAttribute="centerX" id="PT6-IX-Sra"/>
-                        <constraint firstItem="075-hG-GW1" firstAttribute="centerY" secondItem="Z6D-hX-WYQ" secondAttribute="centerY" constant="-15" id="XPc-rd-Rfr"/>
+                        <constraint firstItem="075-hG-GW1" firstAttribute="centerY" secondItem="Z6D-hX-WYQ" secondAttribute="centerY" constant="-13" id="XPc-rd-Rfr"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" name="linkColor" catalog="System" colorSpace="catalog"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Z6D-hX-WYQ" secondAttribute="bottom" id="D94-2D-skH"/>
                 <constraint firstItem="Z6D-hX-WYQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="FZG-gJ-Srv"/>

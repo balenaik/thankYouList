@@ -8,11 +8,14 @@
 
 import UIKit
 
+private let cornerRadius = CGFloat(5)
+
 class ListScrollIndicatorTitleView: UIView {
     @IBOutlet weak var titleLabel: UILabel!
 
     class func instanceFromNib() -> ListScrollIndicatorTitleView {
         let view = Bundle.main.loadNibNamed("ListScrollIndicatorTitleView", owner: self, options: nil)?.first as! ListScrollIndicatorTitleView
+        view.layer.cornerRadius = cornerRadius
         return view
     }
 

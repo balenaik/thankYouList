@@ -40,6 +40,13 @@ class ListScrollIndicator: UIView {
         self.addSubview(titleView)
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(dragMovableIcon(_:)))
         movableIcon.addGestureRecognizer(panGesture)
+
+        self.backgroundColor = UIColor.clear
+
+        setupConstraints()
+    }
+
+    private func setupConstraints() {
         movableIcon.translatesAutoresizingMaskIntoConstraints = false
         movableIconTopAnchor = movableIcon.topAnchor.constraint(equalTo: self.topAnchor, constant: 0)
         movableIconTopAnchor?.isActive = true

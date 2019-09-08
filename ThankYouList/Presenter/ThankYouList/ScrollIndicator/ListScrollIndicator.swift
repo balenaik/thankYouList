@@ -12,6 +12,7 @@ private let iconHeight = CGFloat(50)
 private let iconWidth = CGFloat(50)
 
 protocol ListScrollIndicatorDelegate: class {
+
 }
 
 struct ListScrollIndicatorAttributes {
@@ -42,6 +43,7 @@ class ListScrollIndicator: UIView {
         movableIcon.addGestureRecognizer(panGesture)
 
         self.backgroundColor = UIColor.clear
+        titleView.isHidden = true
 
         setupConstraints()
     }
@@ -63,16 +65,34 @@ class ListScrollIndicator: UIView {
 
 // MARK: - public
 extension ListScrollIndicator {
+    /// Call on viewDidLoad() method
+    /// - parameter scrollView: ScrollView to be set this indicator
     func setup(scrollView: UIScrollView) {
         self.scrollView = scrollView
+        scrollView.showsVerticalScrollIndicator = false
     }
 
-    func updateMovableIcon(scrollView: UIScrollView) {
-        let contentSizeHeight = scrollView.contentSize.height == 0 ? 1 : scrollView.contentSize.height
+    /// Call when scrollView contents has set
+    func updatedContent() {
+        updateMovableIconHiddenStatus()
+    }
+
+    /// Call on scrollViewDidScroll() method
+    func scrollViewDidScroll() {
+        updateMovableIconHiddenStatus()
+        guard let scrollView = scrollView, movableIcon.isHidden == false else { return }
+        let contentSizeHeight = scrollView.contentSize.height
         let indicatorHeight = self.frame.size.height - iconHeight / 2 // adjusting icon's top anchor constraint
         movableIconTopAnchor?.constant = scrollView.contentOffset.y / contentSizeHeight * indicatorHeight
+        titleView.isHidden = false
     }
 
+    /// Call on scrollViewDidEndDecelerating() method
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        titleView.isHidden = true
+    }
+
+    /// Call on whenever you want to set a title (e.g. cellForRowAt(), viewForHeaderInSection() etc.)
     func bind(title: String) {
         titleView.bind(title: title)
     }
@@ -80,6 +100,13 @@ extension ListScrollIndicator {
 
 // MARK: - private
 extension ListScrollIndicator {
+    func updateMovableIconHiddenStatus() {
+        guard let scrollView = scrollView else { return }
+        // If the scrollView is not scrollable, movableIcon set hidden
+        movableIcon.isHidden = scrollView.contentSize.height <= scrollView.frame.size.height ?
+            true : false
+    }
+
     @objc private func dragMovableIcon(_ sender: UIPanGestureRecognizer) {
         guard let scrollView = scrollView else { return }
         switch sender.state {
@@ -102,6 +129,7 @@ extension ListScrollIndicator {
                                         animated: false)
         case .ended:
             originalOffsetY = nil
+            titleView.isHidden = true
         default: break
         }
     }

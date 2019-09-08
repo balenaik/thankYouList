@@ -147,6 +147,7 @@ extension ThankYouListViewController {
                 weakSelf.loadingHud.dismiss(animated: true)
                 weakSelf.postNotificationThankYouListUpdated()
                 weakSelf.tableView.reloadData()
+                weakSelf.scrollIndicator.updatedContent()
             }
         }
     }
@@ -241,7 +242,11 @@ extension ThankYouListViewController: UITableViewDelegate {
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        scrollIndicator?.updateMovableIcon(scrollView: scrollView)
+        scrollIndicator?.scrollViewDidScroll()
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        scrollIndicator.scrollViewDidEndDecelerating(scrollView)
     }
 }
 

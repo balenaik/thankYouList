@@ -245,6 +245,10 @@ extension ThankYouListViewController: UITableViewDelegate {
         scrollIndicator?.scrollViewDidScroll()
     }
 
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        scrollIndicator.scrollViewDidEndDragging(scrollView, willDecelerate: decelerate)
+    }
+
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         scrollIndicator.scrollViewDidEndDecelerating(scrollView)
     }

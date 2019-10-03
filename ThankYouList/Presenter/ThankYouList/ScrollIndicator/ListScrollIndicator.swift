@@ -85,6 +85,14 @@ extension ListScrollIndicator {
         updateTitleViewHiddenStatus(isHidden: false)
     }
 
+    /// Call on scrollViewDidEndDragging method
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        // When declareted, scrollViewDidEndDecelarating will be called.
+        if !decelerate {
+            updateTitleViewHiddenStatus(isHidden: true)
+        }
+    }
+
     /// Call on scrollViewDidEndDecelerating() method
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         updateTitleViewHiddenStatus(isHidden: true)

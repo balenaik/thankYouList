@@ -66,7 +66,7 @@ class ThankYouListViewController: UIViewController {
         emptyView.isHidden = true
         scrollIndicator.setup(scrollView: tableView)
 
-        self.navigationController?.navigationBar.barTintColor = TYLColor.navigationBarBgColor
+        self.navigationController?.navigationBar.barTintColor = UIColor.navigationBarBg
         self.navigationController?.navigationBar.tintColor = TYLColor.navigationBarTextColor
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor : TYLColor.navigationBarTextColor

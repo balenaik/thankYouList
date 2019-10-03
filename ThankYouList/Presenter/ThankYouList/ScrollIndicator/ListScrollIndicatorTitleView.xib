@@ -18,12 +18,12 @@
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sep 2019" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZOs-7z-FOl">
                     <rect key="frame" x="8" y="4" width="64" height="24"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" name="sectionTitleGray"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" name="Color"/>
+            <color key="backgroundColor" name="scrollIndicatorTitleBg"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="ZOs-7z-FOl" secondAttribute="trailing" constant="8" id="9I6-Fi-pk6"/>
                 <constraint firstItem="ZOs-7z-FOl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="I7M-cM-KCe"/>
@@ -37,8 +37,11 @@
         </view>
     </objects>
     <resources>
-        <namedColor name="Color">
-            <color red="0.99599999189376831" green="0.57599997520446777" blue="0.61599999666213989" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="scrollIndicatorTitleBg">
+            <color red="1" green="0.98799997568130493" blue="0.73799997568130493" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sectionTitleGray">
+            <color red="0.46666666666666667" green="0.46666666666666667" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

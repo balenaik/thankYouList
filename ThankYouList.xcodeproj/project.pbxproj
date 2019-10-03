@@ -14,6 +14,8 @@
 		A80EAE5821F4C0B4006B02E8 /* UIView+Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80EAE5721F4C0B4006B02E8 /* UIView+Highlight.swift */; };
 		A80EAE5A21FD5F87006B02E8 /* ThankYouCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80EAE5921FD5F87006B02E8 /* ThankYouCell.swift */; };
 		A80EAE5C21FD5FA6006B02E8 /* ThankYouCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A80EAE5B21FD5FA6006B02E8 /* ThankYouCell.xib */; };
+		A810D8DA23461F99008F2E74 /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A810D8D923461F99008F2E74 /* UIColor+Theme.swift */; };
+		A810D8DC2346211E008F2E74 /* ColorAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A810D8DB2346211E008F2E74 /* ColorAssets.xcassets */; };
 		A8114AF922E435960024975A /* ThankYouList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8114AF822E435960024975A /* ThankYouList.storyboard */; };
 		A8114AFC22E446BD0024975A /* ThankYouCalendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8114AFB22E446BD0024975A /* ThankYouCalendar.storyboard */; };
 		A8114AFF22E448690024975A /* AddThankYou.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8114AFE22E448690024975A /* AddThankYou.storyboard */; };
@@ -74,6 +76,8 @@
 		A80EAE5721F4C0B4006B02E8 /* UIView+Highlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Highlight.swift"; sourceTree = "<group>"; };
 		A80EAE5921FD5F87006B02E8 /* ThankYouCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouCell.swift; sourceTree = "<group>"; };
 		A80EAE5B21FD5FA6006B02E8 /* ThankYouCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThankYouCell.xib; sourceTree = "<group>"; };
+		A810D8D923461F99008F2E74 /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
+		A810D8DB2346211E008F2E74 /* ColorAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorAssets.xcassets; sourceTree = "<group>"; };
 		A8114AF822E435960024975A /* ThankYouList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ThankYouList.storyboard; sourceTree = "<group>"; };
 		A8114AFB22E446BD0024975A /* ThankYouCalendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ThankYouCalendar.storyboard; sourceTree = "<group>"; };
 		A8114AFE22E448690024975A /* AddThankYou.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddThankYou.storyboard; sourceTree = "<group>"; };
@@ -282,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				A8A0FE60205E005D0048AB33 /* UIColor+SetColor.swift */,
+				A810D8D923461F99008F2E74 /* UIColor+Theme.swift */,
 				A8AC1BD21FAEA4AF00D1B25B /* UITextView+PlaceHolder.swift */,
 				A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */,
 				A820DE5621C61EF000E7F3DF /* UIView+Shadow.swift */,
@@ -333,6 +338,7 @@
 			children = (
 				A8BA38B81F5CC5F600817D5C /* images.xcassets */,
 				A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */,
+				A810D8DB2346211E008F2E74 /* ColorAssets.xcassets */,
 				A824150B205CDF5800172587 /* ThankYouList.entitlements */,
 				A8AFE4CE22DB81960045C707 /* GoogleService-Info.plist */,
 				A8F06BB81F55396F00A90170 /* Launch Screen.storyboard */,
@@ -400,6 +406,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 				ja,
@@ -429,6 +436,7 @@
 				A8F06BB91F55396F00A90170 /* Launch Screen.storyboard in Resources */,
 				A8114AFF22E448690024975A /* AddThankYou.storyboard in Resources */,
 				A8114B0822E45BB90024975A /* Login.storyboard in Resources */,
+				A810D8DC2346211E008F2E74 /* ColorAssets.xcassets in Resources */,
 				A8831CCE1E9CFE6B00F3CA0A /* Assets.xcassets in Resources */,
 				A8114B0522E459F10024975A /* LeftMenu.storyboard in Resources */,
 				A8114B0222E458C70024975A /* EditThankYou.storyboard in Resources */,
@@ -548,6 +556,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A810D8DA23461F99008F2E74 /* UIColor+Theme.swift in Sources */,
 				A820DE5421C5432500E7F3DF /* NotificationConst.swift in Sources */,
 				A8F649B71EEB96D100D6BA84 /* GlobalThankYouData.swift in Sources */,
 				A841B339213ED3DE00E8AB5B /* LocalizedLabel.swift in Sources */,

@@ -48,7 +48,7 @@ class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationController?.navigationBar.barTintColor = TYLColor.navigationBarBgColor
+        self.navigationController?.navigationBar.barTintColor = UIColor.navigationBarBg
         self.navigationController?.navigationBar.tintColor = TYLColor.navigationBarTextColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : TYLColor.navigationBarTextColor]
         
@@ -118,7 +118,7 @@ extension CalendarViewController {
             if cellState.dateBelongsTo == .thisMonth {
                 validCell.dateLabel.textColor = TYLColor.TYLGrayColor
             } else {
-                validCell.dateLabel.textColor = TYLColor.highGrayColor
+                validCell.dateLabel.textColor = UIColor.highGray
             }
         }
 

@@ -46,7 +46,7 @@ class AddThankYouViewController: UIViewController {
         addThankYouTextView.becomeFirstResponder()
         thankYouDateView.setDate(delegate.selectedDate ?? Date())
         
-        self.navigationController?.navigationBar.barTintColor = TYLColor.navigationBarBgColor
+        self.navigationController?.navigationBar.barTintColor = UIColor.navigationBarBg
         self.navigationController?.navigationBar.tintColor = TYLColor.navigationBarTextColor
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor : TYLColor.navigationBarTextColor

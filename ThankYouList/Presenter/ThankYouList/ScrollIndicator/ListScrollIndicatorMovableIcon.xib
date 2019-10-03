@@ -21,28 +21,28 @@
                     <rect key="frame" x="15" y="0.0" width="58" height="58"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vxw-y0-ppb" customClass="ListScrollIndicatorMovableIconTriangle" customModule="ThankYouList" customModuleProvider="target">
-                            <rect key="frame" x="21.5" y="37" width="15" height="10"/>
+                            <rect key="frame" x="22" y="34.5" width="14" height="7"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="15" id="Woi-Wr-pSw"/>
-                                <constraint firstAttribute="height" constant="10" id="d3q-R8-Jt0"/>
+                                <constraint firstAttribute="width" constant="14" id="Woi-Wr-pSw"/>
+                                <constraint firstAttribute="height" constant="7" id="d3q-R8-Jt0"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="075-hG-GW1" customClass="ListScrollIndicatorMovableIconTriangle" customModule="ThankYouList" customModuleProvider="target">
-                            <rect key="frame" x="21.5" y="11" width="15" height="10"/>
+                            <rect key="frame" x="22" y="16.5" width="14" height="7"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="10" id="abP-LB-MRR"/>
-                                <constraint firstAttribute="width" constant="15" id="tXf-8K-Wta"/>
+                                <constraint firstAttribute="height" constant="7" id="abP-LB-MRR"/>
+                                <constraint firstAttribute="width" constant="14" id="tXf-8K-Wta"/>
                             </constraints>
                         </view>
                     </subviews>
                     <color key="backgroundColor" name="highGray"/>
                     <constraints>
                         <constraint firstItem="075-hG-GW1" firstAttribute="centerX" secondItem="Z6D-hX-WYQ" secondAttribute="centerX" id="1bS-Si-bgf"/>
-                        <constraint firstItem="Vxw-y0-ppb" firstAttribute="centerY" secondItem="Z6D-hX-WYQ" secondAttribute="centerY" constant="13" id="OUI-dz-K6Y"/>
+                        <constraint firstItem="Vxw-y0-ppb" firstAttribute="centerY" secondItem="Z6D-hX-WYQ" secondAttribute="centerY" constant="9" id="OUI-dz-K6Y"/>
                         <constraint firstItem="Vxw-y0-ppb" firstAttribute="centerX" secondItem="Z6D-hX-WYQ" secondAttribute="centerX" id="PT6-IX-Sra"/>
-                        <constraint firstItem="075-hG-GW1" firstAttribute="centerY" secondItem="Z6D-hX-WYQ" secondAttribute="centerY" constant="-13" id="XPc-rd-Rfr"/>
+                        <constraint firstItem="075-hG-GW1" firstAttribute="centerY" secondItem="Z6D-hX-WYQ" secondAttribute="centerY" constant="-9" id="XPc-rd-Rfr"/>
                     </constraints>
                 </view>
             </subviews>

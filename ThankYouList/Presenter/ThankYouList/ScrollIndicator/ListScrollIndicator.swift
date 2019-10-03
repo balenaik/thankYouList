@@ -8,12 +8,8 @@
 
 import UIKit
 
-private let iconHeight = CGFloat(50)
-private let iconWidth = CGFloat(50)
-
-protocol ListScrollIndicatorDelegate: class {
-
-}
+private let iconHeight = CGFloat(40)
+private let iconWidth = CGFloat(40)
 
 struct ListScrollIndicatorAttributes {
     var scrollView: UIScrollView
@@ -27,8 +23,6 @@ class ListScrollIndicator: UIView {
 
     /// Set scrollView offset y when movableIcon start being dragged and nil when ended
     private var originalOffsetY: CGFloat?
-
-    weak var delegate: ListScrollIndicatorDelegate?
 
     required init?(coder aDecoder: NSCoder) {
         let movableIcon = ListScrollIndicatorMovableIcon.instanceFromNib()

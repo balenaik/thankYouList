@@ -250,7 +250,4 @@ extension ThankYouListViewController: UITableViewDelegate {
     }
 }
 
-extension ThankYouListViewController: ListScrollIndicatorDelegate {
-}
-
 

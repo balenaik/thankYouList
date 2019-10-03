@@ -11,6 +11,10 @@ import UIKit
 private let iconHeight = CGFloat(40)
 private let iconWidth = CGFloat(40)
 
+private let titleViewSetHiddenDuration = 0.4
+private let titleViewSetHiddenDelay = 0.4
+private let titleViewUnsetHiddenDuration = 0.2
+
 struct ListScrollIndicatorAttributes {
     var scrollView: UIScrollView
 }
@@ -78,12 +82,12 @@ extension ListScrollIndicator {
         let contentSizeHeight = scrollView.contentSize.height
         let indicatorHeight = self.frame.size.height - iconHeight / 2 // adjusting icon's top anchor constraint
         movableIconTopAnchor?.constant = scrollView.contentOffset.y / contentSizeHeight * indicatorHeight
-        titleView.isHidden = false
+        updateTitleViewHiddenStatus(isHidden: false)
     }
 
     /// Call on scrollViewDidEndDecelerating() method
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        titleView.isHidden = true
+        updateTitleViewHiddenStatus(isHidden: true)
     }
 
     /// Call on whenever you want to set a title (e.g. cellForRowAt(), viewForHeaderInSection() etc.)
@@ -94,13 +98,6 @@ extension ListScrollIndicator {
 
 // MARK: - private
 extension ListScrollIndicator {
-    func updateMovableIconHiddenStatus() {
-        guard let scrollView = scrollView else { return }
-        // If the scrollView is not scrollable, movableIcon set hidden
-        movableIcon.isHidden = scrollView.contentSize.height <= scrollView.frame.size.height ?
-            true : false
-    }
-
     @objc private func dragMovableIcon(_ sender: UIPanGestureRecognizer) {
         guard let scrollView = scrollView else { return }
         switch sender.state {
@@ -123,8 +120,31 @@ extension ListScrollIndicator {
                                         animated: false)
         case .ended:
             originalOffsetY = nil
-            titleView.isHidden = true
+            updateTitleViewHiddenStatus(isHidden: true)
         default: break
+        }
+    }
+
+    private func updateMovableIconHiddenStatus() {
+        guard let scrollView = scrollView else { return }
+        // If the scrollView is not scrollable, movableIcon set hidden
+        movableIcon.isHidden = scrollView.contentSize.height <= scrollView.frame.size.height ?
+            true : false
+    }
+
+    private func updateTitleViewHiddenStatus(isHidden: Bool) {
+        if isHidden {
+            UIView.animate(withDuration: titleViewSetHiddenDuration, delay: titleViewSetHiddenDelay, animations: {
+                self.titleView.alpha = 0
+            }, completion:  {
+                (value: Bool) in
+                self.titleView.isHidden = true
+            })
+        } else {
+            titleView.isHidden = false
+            UIView.animate(withDuration: titleViewUnsetHiddenDuration, animations: {
+                self.titleView.alpha = 1
+            }, completion:  nil)
         }
     }
 }

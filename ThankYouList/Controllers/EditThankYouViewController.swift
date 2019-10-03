@@ -57,13 +57,8 @@ class EditThankYouViewController: UIViewController {
         adjustTextViewHeight(editThankYouTextView)
         editThankYouTextView.becomeFirstResponder()
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy/MM/dd"
-        if let editingDate = dateFormatter.date(from: editingThankYouData.date) {
-            datePicker.setDate(editingDate, animated: true)
-            thankYouDateView.setDate(editingDate)
-        }
-        
+        datePicker.setDate(editingThankYouData.date, animated: true)
+        thankYouDateView.setDate(editingThankYouData.date)
         
         self.navigationController?.navigationBar.barTintColor = TYLColor.navigationBarBgColor
         self.navigationController?.navigationBar.tintColor = TYLColor.navigationBarTextColor
@@ -94,11 +89,11 @@ extension EditThankYouViewController {
         if isPosting || editThankYouTextView.text.isEqual("") || editThankYouTextView.text.isEmpty {
             return
         }
-        guard let dateString = thankYouDateView.getDateString(),
+        guard let date = thankYouDateView.getDate(),
             let uid = Auth.auth().currentUser?.uid else { return }
         let uid16string = String(uid.prefix(16))
         let encryptedValue = Crypto().encryptString(plainText: editThankYouTextView.text, key: uid16string)
-        let myThankYouData = ThankYouData(id: "", value: "", encryptedValue: encryptedValue, date: dateString, createTime: Date())
+        let myThankYouData = ThankYouData(id: "", value: "", encryptedValue: encryptedValue, date: date, createTime: Date())
         editThankYou(editThankYouData: myThankYouData, uid: uid)
     }
     

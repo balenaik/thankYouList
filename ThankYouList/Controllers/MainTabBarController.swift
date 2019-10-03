@@ -3,8 +3,8 @@ import FirebaseAuth
 
 //UITabBarControllerを継承
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
-    var viewController: ViewController!
-    var calendarVC: CalendarVC!
+    var viewController: ThankYouListViewController!
+    var calendarVC: CalendarViewController!
     var uid: String?
     var tabsArray: [UIViewController]?
     
@@ -22,9 +22,9 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         self.delegate = self
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let vcNavView:UINavigationController =
-            self.storyboard.instantiateViewController(withIdentifier: "vcNav") as! UINavigationController
+            self.storyboard.instantiateViewController(withIdentifier: "ThankYouListViewControllerNav") as! UINavigationController
         let calendarVCNavView:UINavigationController =
-            self.storyboard.instantiateViewController(withIdentifier: "calendarVCNav") as! UINavigationController
+            self.storyboard.instantiateViewController(withIdentifier: "CalendarViewControllerNav") as! UINavigationController
         let addThankYouViewController = self.storyboard.instantiateViewController(withIdentifier: "AddThankYouViewController") as! ThankYouList.AddThankYouViewController
         
         //表示するtabItemを指定

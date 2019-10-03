@@ -133,7 +133,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var unCopiedUDDataList: [ThankYouDataUD] = []
         let db = Firestore.firestore()
         for thankYouDataUD in thankYouDataUDList {
-            guard let thankYouValue = thankYouDataUD.thankYouValue, let thankYouDate = thankYouDataUD.thankYouDate else { return }
+            guard let thankYouValue = thankYouDataUD.thankYouValue, let thankYouDate = thankYouDataUD.thankYouDate?.toThankYouDate() else { return }
             let uid16string = String(uid.prefix(16))
             let encryptedValue = Crypto().encryptString(plainText: thankYouValue, key: uid16string)
             let thankYouData = ThankYouData(id: "", value: "", encryptedValue: encryptedValue, date: thankYouDate, createTime: Date())

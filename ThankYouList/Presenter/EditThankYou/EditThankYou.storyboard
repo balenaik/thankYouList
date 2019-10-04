@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ouv-2k-wYm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ouv-2k-wYm">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,7 +31,7 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wD0-Bn-KCb" customClass="SettingHeaderView" customModule="ThankYouList" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
-                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                <color key="backgroundColor" name="tableViewBg"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="55" id="nkp-oR-4CM"/>
                                                 </constraints>
@@ -61,7 +62,7 @@
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ckG-39-JPf" customClass="SettingHeaderView" customModule="ThankYouList" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="135" width="414" height="55"/>
-                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                <color key="backgroundColor" name="tableViewBg"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="55" id="VUR-KM-0Df"/>
                                                 </constraints>
@@ -100,7 +101,7 @@
                                             </view>
                                             <view contentMode="scaleToFill" verticalHuggingPriority="253" verticalCompressionResistancePriority="753" translatesAutoresizingMaskIntoConstraints="NO" id="6u6-kv-fdE" customClass="SettingHeaderView" customModule="ThankYouList" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="234" width="414" height="50"/>
-                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                <color key="backgroundColor" name="tableViewBg"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="nO8-Ee-nem"/>
                                                 </constraints>
@@ -132,7 +133,7 @@
                                             </view>
                                             <view contentMode="scaleToFill" verticalHuggingPriority="253" verticalCompressionResistancePriority="753" translatesAutoresizingMaskIntoConstraints="NO" id="cXG-0M-DYw">
                                                 <rect key="frame" x="0.0" y="456" width="414" height="50"/>
-                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                <color key="backgroundColor" name="tableViewBg"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="IP4-d7-XC9"/>
                                                 </constraints>
@@ -154,7 +155,7 @@
                                 </connections>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" name="tableViewBg"/>
                         <constraints>
                             <constraint firstItem="0Y0-nw-O2r" firstAttribute="bottom" secondItem="YiS-n2-BgG" secondAttribute="top" id="N3p-a0-rMO"/>
                             <constraint firstItem="0Y0-nw-O2r" firstAttribute="leading" secondItem="QVd-XU-JMA" secondAttribute="leading" id="ccF-fO-j1Y"/>
@@ -205,4 +206,9 @@
             <point key="canvasLocation" x="2796" y="-39"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="tableViewBg">
+            <color red="0.94117647058823528" green="0.94901960784313721" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

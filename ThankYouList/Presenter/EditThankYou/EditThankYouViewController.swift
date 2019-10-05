@@ -59,7 +59,8 @@ class EditThankYouViewController: UIViewController {
         
         datePicker.setDate(editingThankYouData.date, animated: true)
         thankYouDateView.setDate(editingThankYouData.date)
-        
+
+        self.navigationItem.title = "Edit Thank You".localized
         self.navigationController?.navigationBar.barTintColor = UIColor.navigationBarBg
         self.navigationController?.navigationBar.tintColor = TYLColor.navigationBarTextColor
         self.navigationController?.navigationBar.titleTextAttributes = [

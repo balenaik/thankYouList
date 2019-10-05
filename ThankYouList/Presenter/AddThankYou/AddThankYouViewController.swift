@@ -45,7 +45,8 @@ class AddThankYouViewController: UIViewController {
         addThankYouTextView.placeholder = NSLocalizedString("What are you thankful for?", comment: "")
         addThankYouTextView.becomeFirstResponder()
         thankYouDateView.setDate(delegate.selectedDate ?? Date())
-        
+
+        self.navigationItem.title = "Add Thank You".localized
         self.navigationController?.navigationBar.barTintColor = UIColor.navigationBarBg
         self.navigationController?.navigationBar.tintColor = TYLColor.navigationBarTextColor
         self.navigationController?.navigationBar.titleTextAttributes = [

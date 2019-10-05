@@ -14,9 +14,12 @@
 "What are you thankful for?" = "ありがとうの気持ちを書こう";
 "EmptyViewLabel" = "ここにThank Youが表示されます。\nさっそく作成しましょう！";
 "Add Thank You From Here" = "Thank Youを作成する";
-"Add Thank You" = "Thank You を作成";
+"Add Thank You" = "Thank Youを作成";
+"Edit Thank You" = "Thank Youを編集";
 "Logout" = "ログアウト";
 "Failed to add" = "作成できませんでした";
 "Failed to edit" = "編集できませんでした";
 "Failed to delete" = "削除できませんでした";
-
+"Continue with Facebook" = "Facebookで続行";
+"Continue with Google" = "Googleで続行";
+"Take a simple diary & be happier" = "日々の「ありがとう」を書いて\n幸せな気持ちになろう";

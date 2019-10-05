@@ -16,6 +16,8 @@
 		A80EAE5C21FD5FA6006B02E8 /* ThankYouCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A80EAE5B21FD5FA6006B02E8 /* ThankYouCell.xib */; };
 		A810D8DA23461F99008F2E74 /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A810D8D923461F99008F2E74 /* UIColor+Theme.swift */; };
 		A810D8DC2346211E008F2E74 /* ColorAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A810D8DB2346211E008F2E74 /* ColorAssets.xcassets */; };
+		A810D8E423483125008F2E74 /* String+Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A810D8E323483125008F2E74 /* String+Localizable.swift */; };
+		A810D8E62348365B008F2E74 /* LocalizableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A810D8E52348365B008F2E74 /* LocalizableExtensions.swift */; };
 		A8114AF922E435960024975A /* ThankYouList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8114AF822E435960024975A /* ThankYouList.storyboard */; };
 		A8114AFC22E446BD0024975A /* ThankYouCalendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8114AFB22E446BD0024975A /* ThankYouCalendar.storyboard */; };
 		A8114AFF22E448690024975A /* AddThankYou.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8114AFE22E448690024975A /* AddThankYou.storyboard */; };
@@ -78,6 +80,8 @@
 		A80EAE5B21FD5FA6006B02E8 /* ThankYouCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThankYouCell.xib; sourceTree = "<group>"; };
 		A810D8D923461F99008F2E74 /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
 		A810D8DB2346211E008F2E74 /* ColorAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorAssets.xcassets; sourceTree = "<group>"; };
+		A810D8E323483125008F2E74 /* String+Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localizable.swift"; sourceTree = "<group>"; };
+		A810D8E52348365B008F2E74 /* LocalizableExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableExtensions.swift; sourceTree = "<group>"; };
 		A8114AF822E435960024975A /* ThankYouList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ThankYouList.storyboard; sourceTree = "<group>"; };
 		A8114AFB22E446BD0024975A /* ThankYouCalendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ThankYouCalendar.storyboard; sourceTree = "<group>"; };
 		A8114AFE22E448690024975A /* AddThankYou.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddThankYou.storyboard; sourceTree = "<group>"; };
@@ -292,7 +296,9 @@
 				A820DE5621C61EF000E7F3DF /* UIView+Shadow.swift */,
 				A80EAE5721F4C0B4006B02E8 /* UIView+Highlight.swift */,
 				A8B6EE8D2201E41D00908D51 /* String+ToDate.swift */,
+				A810D8E323483125008F2E74 /* String+Localizable.swift */,
 				A8B6EE9022055CE900908D51 /* Date+ToString.swift */,
+				A810D8E52348365B008F2E74 /* LocalizableExtensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -559,6 +565,7 @@
 				A810D8DA23461F99008F2E74 /* UIColor+Theme.swift in Sources */,
 				A820DE5421C5432500E7F3DF /* NotificationConst.swift in Sources */,
 				A8F649B71EEB96D100D6BA84 /* GlobalThankYouData.swift in Sources */,
+				A810D8E423483125008F2E74 /* String+Localizable.swift in Sources */,
 				A841B339213ED3DE00E8AB5B /* LocalizedLabel.swift in Sources */,
 				A8D41E1C21E0E07B00A77B48 /* SettingDateView.swift in Sources */,
 				A8A0FE5C205D59170048AB33 /* LeftMenuVC.swift in Sources */,
@@ -587,6 +594,7 @@
 				A80EAE5A21FD5F87006B02E8 /* ThankYouCell.swift in Sources */,
 				A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */,
 				A8DB2FBA1F5D41540055E8A4 /* CalendarViewController.swift in Sources */,
+				A810D8E62348365B008F2E74 /* LocalizableExtensions.swift in Sources */,
 				A8831CC71E9CFE6B00F3CA0A /* AppDelegate.swift in Sources */,
 				A8C90AE02302ECA3008C6A4A /* ListScrollIndicatorTitleView.swift in Sources */,
 				A820DE5721C61EF100E7F3DF /* UIView+Shadow.swift in Sources */,

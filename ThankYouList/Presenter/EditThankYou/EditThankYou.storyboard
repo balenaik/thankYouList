@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ouv-2k-wYm">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Edit thank you-->
+        <scene sceneID="Eoz-hl-4hm">
+            <objects>
+                <viewController storyboardIdentifier="EditThankYouViewController" id="Ouv-2k-wYm" customClass="EditThankYouViewController" customModule="ThankYouList" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LLb-dJ-evr"/>
+                        <viewControllerLayoutGuide type="bottom" id="YiS-n2-BgG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QVd-XU-JMA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Y0-nw-O2r">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="RtV-mG-Cdb">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="506"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wD0-Bn-KCb" customClass="SettingHeaderView" customModule="ThankYouList" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
+                                                <color key="backgroundColor" name="tableViewBg"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="55" id="nkp-oR-4CM"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ztJ-Rs-jOp">
+                                                <rect key="frame" x="0.0" y="55" width="414" height="80"/>
+                                                <subviews>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="248" verticalCompressionResistancePriority="748" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Hb5-kC-1nF">
+                                                        <rect key="frame" x="8" y="0.0" width="398" height="80"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="80" id="cl7-eM-QF4"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="Ouv-2k-wYm" id="u1s-0h-ZcB"/>
+                                                        </connections>
+                                                    </textView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="Hb5-kC-1nF" secondAttribute="trailing" constant="8" id="1BN-ek-m63"/>
+                                                    <constraint firstItem="Hb5-kC-1nF" firstAttribute="top" secondItem="ztJ-Rs-jOp" secondAttribute="top" id="Igh-NU-9Of"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Hb5-kC-1nF" secondAttribute="bottom" id="Lp6-lL-n6n"/>
+                                                    <constraint firstItem="Hb5-kC-1nF" firstAttribute="leading" secondItem="ztJ-Rs-jOp" secondAttribute="leading" constant="8" id="s1G-U3-4Jx"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ckG-39-JPf" customClass="SettingHeaderView" customModule="ThankYouList" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="135" width="414" height="55"/>
+                                                <color key="backgroundColor" name="tableViewBg"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="55" id="VUR-KM-0Df"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IcU-6c-WW5" customClass="SettingDateView" customModule="ThankYouList" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="190" width="414" height="44"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="UER-cJ-bTg"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="YRz-6Y-mn3" appends="YES" id="XMW-pa-QIr"/>
+                                                </connections>
+                                            </view>
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aU4-nj-YEc">
+                                                <rect key="frame" x="0.0" y="234" width="414" height="216"/>
+                                                <subviews>
+                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="hxA-vp-wbO">
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="216"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <date key="date" timeIntervalSinceReferenceDate="568472688.761374">
+                                                            <!--2019-01-06 1:04:48 PM +0000-->
+                                                        </date>
+                                                    </datePicker>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="216" id="B1y-ic-YaV"/>
+                                                    <constraint firstAttribute="bottom" secondItem="hxA-vp-wbO" secondAttribute="bottom" id="a0p-dh-cm9"/>
+                                                    <constraint firstItem="hxA-vp-wbO" firstAttribute="centerY" secondItem="aU4-nj-YEc" secondAttribute="centerY" id="eAi-KQ-KxU"/>
+                                                    <constraint firstAttribute="trailing" secondItem="hxA-vp-wbO" secondAttribute="trailing" id="eKs-IG-ueN"/>
+                                                    <constraint firstItem="hxA-vp-wbO" firstAttribute="top" secondItem="aU4-nj-YEc" secondAttribute="top" id="flj-oI-b40"/>
+                                                    <constraint firstItem="hxA-vp-wbO" firstAttribute="leading" secondItem="aU4-nj-YEc" secondAttribute="leading" id="yXr-7L-XfN"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" verticalHuggingPriority="253" verticalCompressionResistancePriority="753" translatesAutoresizingMaskIntoConstraints="NO" id="6u6-kv-fdE" customClass="SettingHeaderView" customModule="ThankYouList" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="234" width="414" height="50"/>
+                                                <color key="backgroundColor" name="tableViewBg"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="nO8-Ee-nem"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdD-tk-n2k">
+                                                <rect key="frame" x="0.0" y="284" width="414" height="44"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dO-Lm-9FN">
+                                                        <rect key="frame" x="182.5" y="12" width="49.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" red="0.77647058820000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="localizableKey" value="Delete"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="YRK-Vb-hz2"/>
+                                                    <constraint firstItem="5dO-Lm-9FN" firstAttribute="centerX" secondItem="rdD-tk-n2k" secondAttribute="centerX" id="kJg-HV-c6w"/>
+                                                    <constraint firstItem="5dO-Lm-9FN" firstAttribute="centerY" secondItem="rdD-tk-n2k" secondAttribute="centerY" id="scr-gw-eNO"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="tDw-Ry-cTc" appends="YES" id="0X6-IY-aXM"/>
+                                                </connections>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGq-Y1-YKY">
+                                                <rect key="frame" x="0.0" y="328" width="414" height="128"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" verticalHuggingPriority="253" verticalCompressionResistancePriority="753" translatesAutoresizingMaskIntoConstraints="NO" id="cXG-0M-DYw">
+                                                <rect key="frame" x="0.0" y="456" width="414" height="50"/>
+                                                <color key="backgroundColor" name="tableViewBg"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="IP4-d7-XC9"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="RtV-mG-Cdb" secondAttribute="bottom" id="1FY-ZY-ZdC"/>
+                                    <constraint firstItem="RtV-mG-Cdb" firstAttribute="leading" secondItem="0Y0-nw-O2r" secondAttribute="leading" id="C5b-DO-9FO"/>
+                                    <constraint firstAttribute="trailing" secondItem="RtV-mG-Cdb" secondAttribute="trailing" id="JPx-ac-1kf"/>
+                                    <constraint firstItem="RtV-mG-Cdb" firstAttribute="centerX" secondItem="0Y0-nw-O2r" secondAttribute="centerX" id="K4c-KY-734"/>
+                                    <constraint firstItem="RtV-mG-Cdb" firstAttribute="top" secondItem="0Y0-nw-O2r" secondAttribute="top" id="U3p-iU-Zeg"/>
+                                    <constraint firstItem="RtV-mG-Cdb" firstAttribute="width" secondItem="0Y0-nw-O2r" secondAttribute="width" id="com-s8-eRf"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="Ouv-2k-wYm" id="tYW-NF-cKm"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" name="tableViewBg"/>
+                        <constraints>
+                            <constraint firstItem="0Y0-nw-O2r" firstAttribute="bottom" secondItem="YiS-n2-BgG" secondAttribute="top" id="N3p-a0-rMO"/>
+                            <constraint firstItem="0Y0-nw-O2r" firstAttribute="leading" secondItem="QVd-XU-JMA" secondAttribute="leading" id="ccF-fO-j1Y"/>
+                            <constraint firstItem="0Y0-nw-O2r" firstAttribute="top" secondItem="LLb-dJ-evr" secondAttribute="bottom" id="lnA-mJ-gG2"/>
+                            <constraint firstItem="0Y0-nw-O2r" firstAttribute="trailing" secondItem="QVd-XU-JMA" secondAttribute="trailing" id="wRA-OS-3Ul"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bpQ-OI-M4B"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit thank you" id="Ob5-Pv-1X3">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="PWh-5l-zRx">
+                            <connections>
+                                <action selector="tappedCancelButton:" destination="Ouv-2k-wYm" id="QrI-Ra-vkK"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="gBN-gY-DsU">
+                            <connections>
+                                <action selector="tappedDoneButton:" destination="Ouv-2k-wYm" id="xTx-dW-Rl6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="addThankYouTextViewHeaderView" destination="wD0-Bn-KCb" id="J2o-9X-hiK"/>
+                        <outlet property="datePicker" destination="hxA-vp-wbO" id="Kvf-Os-GDx"/>
+                        <outlet property="datePickerView" destination="aU4-nj-YEc" id="fWf-8Q-Hrq"/>
+                        <outlet property="deleteHeaderView" destination="6u6-kv-fdE" id="gG4-bu-UxP"/>
+                        <outlet property="deleteView" destination="rdD-tk-n2k" id="CYu-sN-a5A"/>
+                        <outlet property="editThankYouTextView" destination="Hb5-kC-1nF" id="VZZ-8P-JeD"/>
+                        <outlet property="editThankYouTextViewHeightContraint" destination="cl7-eM-QF4" id="S7j-5z-tac"/>
+                        <outlet property="scrollView" destination="0Y0-nw-O2r" id="0pJ-QU-pvJ"/>
+                        <outlet property="stackView" destination="RtV-mG-Cdb" id="Et5-W6-V8l"/>
+                        <outlet property="thankYouDatePickerHeaderView" destination="ckG-39-JPf" id="s40-uX-xzg"/>
+                        <outlet property="thankYouDateView" destination="IcU-6c-WW5" id="8bR-DK-i0t"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PJ4-FJ-SGq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.0" id="YRz-6Y-mn3">
+                    <connections>
+                        <action selector="tappedThankYouDateView:" destination="Ouv-2k-wYm" id="A8O-lK-w3W"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.0" id="tDw-Ry-cTc">
+                    <connections>
+                        <action selector="tappedDeleteView:" destination="Ouv-2k-wYm" id="TUR-Vm-1jN"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2796" y="-39"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="tableViewBg">
+            <color red="0.94117647058823528" green="0.94901960784313721" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

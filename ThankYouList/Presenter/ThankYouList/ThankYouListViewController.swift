@@ -28,21 +28,11 @@ class ThankYouListViewController: UIViewController {
     private var sections = [Section]()
     private let loadingHud = JGProgressHUD(style: .extraLight)
     private var estimatedRowHeights = [String : CGFloat]()
-    
-    
-    // MARK: - IBOutlets
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var scrollIndicator: ListScrollIndicator!
     @IBOutlet weak var emptyView: EmptyView!
-    
-    
 
-    // MARK: - IBActions
-    @IBAction func tappedMenuButton(_ sender: Any) {
-    }
-    
-    
-    // MARK: - View LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -52,7 +42,14 @@ class ThankYouListViewController: UIViewController {
         self.tableView.reloadData()
     }
 }
-    
+
+// MARK: - IBActions
+extension ThankYouListViewController {
+    @IBAction func tapUserIcon(_ sender: Any) {
+        guard let myPageViewController = MyPageViewController.createViewController() else { return }
+        present(myPageViewController, animated: true, completion: nil)
+    }
+}
 
 // MARK: - Private Methods
 private extension ThankYouListViewController {

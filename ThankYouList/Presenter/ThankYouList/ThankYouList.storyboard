@@ -59,7 +59,11 @@
                         <viewLayoutGuide key="safeArea" id="s0L-7X-hNI"/>
                     </view>
                     <navigationItem key="navigationItem" id="3yM-HQ-dPH">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="icUserFill" id="aTc-Yy-m9S"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="icUserFill" id="aTc-Yy-m9S">
+                            <connections>
+                                <action selector="tapUserIcon:" destination="tYx-4c-akF" id="PRq-Ax-w8x"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>

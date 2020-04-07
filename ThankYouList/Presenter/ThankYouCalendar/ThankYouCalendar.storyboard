@@ -314,7 +314,7 @@
                     <navigationItem key="navigationItem" id="xkW-t1-bKd">
                         <barButtonItem key="rightBarButtonItem" image="icUserFill" id="bkB-jK-IfK">
                             <connections>
-                                <action selector="tappedMenuButton:" destination="BHa-r9-xW4" id="6Po-5I-Mcs"/>
+                                <action selector="tapUserIcon:" destination="BHa-r9-xW4" id="gKK-AU-w2h"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

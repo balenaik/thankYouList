@@ -57,7 +57,9 @@ class CalendarViewController: UIViewController {
 
 // MARK: - IBActions
 extension CalendarViewController {
-    @IBAction func tappedMenuButton(_ sender: Any) {
+    @IBAction func tapUserIcon(_ sender: Any) {
+        guard let myPageViewController = MyPageViewController.createViewController() else { return }
+        present(myPageViewController, animated: true, completion: nil)
     }
     
     @IBAction func draggedListView(_ sender: UIPanGestureRecognizer) {

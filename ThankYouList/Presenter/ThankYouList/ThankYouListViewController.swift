@@ -45,14 +45,28 @@ class ThankYouListViewController: UIViewController {
     // MARK: - View LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+    }
+}
+    
+
+// MARK: - Private Methods
+private extension ThankYouListViewController {
+    func setupView() {
+        navigationItem.title = R.string.localizable.list_navigationbar_title()
+        tabBarItem.title = R.string.localizable.calendar_tabbar_title()
+
         loadingHud.textLabel.text = "Loading"
         loadingHud.show(in: self.view)
-        
+
         thankYouDataSingleton.thankYouDataList = []
         sections = []
         loadAndCheckForUpdates()
-        
+
         tableView.estimatedRowHeight = 40
         tableView.rowHeight = UITableView.automaticDimension
         tableView?.register(UINib(nibName: ThankYouCell.cellIdentifier(),
@@ -71,15 +85,7 @@ class ThankYouListViewController: UIViewController {
             NSAttributedString.Key.foregroundColor : TYLColor.navigationBarTextColor
         ]
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.tableView.reloadData()
-    }
-}
-    
 
-// MARK: - Private Methods
-extension ThankYouListViewController {
     private func loadAndCheckForUpdates() {
         guard let uid = Auth.auth().currentUser?.uid else {
             print("Not login? error")

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SlideMenuControllerSwift
 import FirebaseAuth
 import FacebookCore
 import FacebookLogin

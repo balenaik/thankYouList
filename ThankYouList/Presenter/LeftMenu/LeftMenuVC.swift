@@ -82,10 +82,8 @@ extension LeftMenuVC: UITableViewDataSource {
         if indexPath.row == 0 {
             return
         } else if indexPath.row == 1 {
-            self.slideMenuController()?.closeLeft()
             let addThankYouDataVC = UIStoryboard(name: "AddThankYou", bundle: nil).instantiateInitialViewController()!
             let navi = UINavigationController(rootViewController: addThankYouDataVC)
-            self.slideMenuController()?.mainViewController?.present(navi, animated: true, completion: nil)
             tableView.deselectRow(at: indexPath, animated: true)
             return
         }

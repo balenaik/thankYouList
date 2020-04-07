@@ -7,16 +7,23 @@ target 'ThankYouList' do
 
   # Pods for ThankYouList
   pod 'JTAppleCalendar', '~> 7.0'
-  pod 'SlideMenuControllerSwift'
+
+  # Firebase
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+
+  # Auth
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'GoogleSignIn'
+
+  # Crypto
   pod 'RNCryptor', '~> 5.0'
   pod 'CryptoSwift'
+
+  # HUD
   pod 'JGProgressHUD'
 
 end

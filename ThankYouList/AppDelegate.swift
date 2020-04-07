@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SlideMenuControllerSwift
 import Firebase
 import FirebaseAuth
 import FacebookCore
@@ -94,13 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func createRootViewController(mainViewController: UIViewController, subViewController: UIViewController) {
-        let rootViewController = SlideMenuController(mainViewController: mainViewController, leftMenuViewController: subViewController)
-        SlideMenuOptions.contentViewDrag = true
-        SlideMenuOptions.shadowRadius = 4.0
-        SlideMenuOptions.shadowOffset = CGSize(width: 4, height: 0)
-        SlideMenuOptions.shadowOpacity = 0.2
-        SlideMenuOptions.contentViewOpacity = 0.3
-        self.window?.rootViewController = rootViewController
+        self.window?.rootViewController = mainViewController
     }
     
     func moveUDDataToFirestoreIfNeeded() {

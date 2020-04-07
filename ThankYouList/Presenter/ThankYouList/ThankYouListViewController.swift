@@ -39,7 +39,6 @@ class ThankYouListViewController: UIViewController {
 
     // MARK: - IBActions
     @IBAction func tappedMenuButton(_ sender: Any) {
-        slideMenuController()?.openLeft()
     }
     
     

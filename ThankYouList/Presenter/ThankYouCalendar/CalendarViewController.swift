@@ -61,7 +61,6 @@ class CalendarViewController: UIViewController {
         smallListView.setupTableView(self)
 
         getListFromDate(Date())
-        slideMenuController()?.addPriorityToMenuGesuture(calendarView)
         
         listViewMostTopConstant = -stackView.frame.height
     }
@@ -74,7 +73,6 @@ class CalendarViewController: UIViewController {
 // MARK: - IBActions
 extension CalendarViewController {
     @IBAction func tappedMenuButton(_ sender: Any) {
-        slideMenuController()?.openLeft()
     }
     
     @IBAction func draggedListView(_ sender: UIPanGestureRecognizer) {

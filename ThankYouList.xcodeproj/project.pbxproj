@@ -463,7 +463,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ThankYouList/Pods-ThankYouList-resources.sh",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -472,7 +472,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ThankYouList/Pods-ThankYouList-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4A818A52C71909CB7AAB9067 /* [CP] Check Pods Manifest.lock */ = {
@@ -499,7 +499,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ThankYouList/Pods-ThankYouList-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
@@ -515,7 +515,6 @@
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/RNCryptor/RNCryptor.framework",
-				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
@@ -541,7 +540,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCryptor.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
@@ -552,7 +550,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ThankYouList/Pods-ThankYouList-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

@@ -19,6 +19,9 @@ target 'ThankYouList' do
   pod 'FacebookLogin'
   pod 'GoogleSignIn'
 
+  # R.swift
+  pod 'R.swift', '5.0.3'
+
   # Crypto
   pod 'RNCryptor', '~> 5.0'
   pod 'CryptoSwift'

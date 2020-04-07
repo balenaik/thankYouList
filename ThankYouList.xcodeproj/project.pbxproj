@@ -60,6 +60,7 @@
 		A8B6EE932205900D00908D51 /* ListSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8B6EE922205900D00908D51 /* ListSectionHeaderView.xib */; };
 		A8B6EE952205902100908D51 /* ListSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6EE942205902100908D51 /* ListSectionHeaderView.swift */; };
 		A8BA38B91F5CC5F600817D5C /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8BA38B81F5CC5F600817D5C /* images.xcassets */; };
+		A8C59B76243CC86100FF79EA /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C59B75243CC86100FF79EA /* R.generated.swift */; };
 		A8C90AE02302ECA3008C6A4A /* ListScrollIndicatorTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C90ADF2302ECA3008C6A4A /* ListScrollIndicatorTitleView.swift */; };
 		A8C90AE22302ECCA008C6A4A /* ListScrollIndicatorTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8C90AE12302ECCA008C6A4A /* ListScrollIndicatorTitleView.xib */; };
 		A8D41E1C21E0E07B00A77B48 /* SettingDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */; };
@@ -127,6 +128,7 @@
 		A8B6EE922205900D00908D51 /* ListSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListSectionHeaderView.xib; sourceTree = "<group>"; };
 		A8B6EE942205902100908D51 /* ListSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSectionHeaderView.swift; sourceTree = "<group>"; };
 		A8BA38B81F5CC5F600817D5C /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
+		A8C59B75243CC86100FF79EA /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		A8C90ADF2302ECA3008C6A4A /* ListScrollIndicatorTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListScrollIndicatorTitleView.swift; sourceTree = "<group>"; };
 		A8C90AE12302ECCA008C6A4A /* ListScrollIndicatorTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListScrollIndicatorTitleView.xib; sourceTree = "<group>"; };
 		A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDateView.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 		A8831CC51E9CFE6B00F3CA0A /* ThankYouList */ = {
 			isa = PBXGroup;
 			children = (
+				A8C59B75243CC86100FF79EA /* R.generated.swift */,
 				A8831CC61E9CFE6B00F3CA0A /* AppDelegate.swift */,
 				A8B6EE8F2201E49C00908D51 /* Resources */,
 				A820DE5521C61E6F00E7F3DF /* Extension */,
@@ -370,6 +373,7 @@
 			buildConfigurationList = A8831CD51E9CFE6B00F3CA0A /* Build configuration list for PBXNativeTarget "ThankYouList" */;
 			buildPhases = (
 				4A818A52C71909CB7AAB9067 /* [CP] Check Pods Manifest.lock */,
+				A8C59B74243CC7AD00FF79EA /* Generate R.generated */,
 				A8831CBF1E9CFE6B00F3CA0A /* Sources */,
 				A8831CC01E9CFE6B00F3CA0A /* Frameworks */,
 				A8831CC11E9CFE6B00F3CA0A /* Resources */,
@@ -493,6 +497,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A8C59B74243CC7AD00FF79EA /* Generate R.generated */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			name = "Generate R.generated";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
 		D46E638CB34C7D224BCD3B6F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -514,6 +538,7 @@
 				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/RNCryptor/RNCryptor.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
@@ -539,6 +564,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCryptor.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
@@ -587,6 +613,7 @@
 				A8B6EE9122055CE900908D51 /* Date+ToString.swift in Sources */,
 				A85DCC081F5D2151004E1095 /* CustomCell.swift in Sources */,
 				A8114B0B23017DB70024975A /* ListScrollIndicatorMovableIcon.swift in Sources */,
+				A8C59B76243CC86100FF79EA /* R.generated.swift in Sources */,
 				A8B6EE952205902100908D51 /* ListSectionHeaderView.swift in Sources */,
 				A80EAE5821F4C0B4006B02E8 /* UIView+Highlight.swift in Sources */,
 				A80EAE5A21FD5F87006B02E8 /* ThankYouCell.swift in Sources */,

@@ -161,6 +161,9 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Protobuf (3.6.1)
+  - R.swift (5.0.3):
+    - R.swift.Library (~> 5.0.0)
+  - R.swift.Library (5.0.1)
   - RNCryptor (5.0.3)
 
 DEPENDENCIES:
@@ -174,6 +177,7 @@ DEPENDENCIES:
   - GoogleSignIn
   - JGProgressHUD
   - JTAppleCalendar (~> 7.0)
+  - R.swift (= 5.0.3)
   - RNCryptor (~> 5.0)
 
 SPEC REPOS:
@@ -210,6 +214,9 @@ SPEC REPOS:
     - nanopb
     - Protobuf
     - RNCryptor
+  trunk:
+    - R.swift
+    - R.swift.Library
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
@@ -243,8 +250,10 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
+  R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
+  R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   RNCryptor: c93d19029dcf7ff160aca0f24d6c9e7b0d82f664
 
-PODFILE CHECKSUM: 78a8606e724d5a8c4eec60a25194eb5fec75bee3
+PODFILE CHECKSUM: 3df265156cd0e56f6c4cfc65fba3d908d2cbe42a
 
 COCOAPODS: 1.8.3

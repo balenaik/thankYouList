@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bO3-ed-oMm">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--LoginVC-->
+        <scene sceneID="WzW-iW-bJR">
+            <objects>
+                <viewController storyboardIdentifier="LoginVC" id="bO3-ed-oMm" customClass="LoginVC" customModule="ThankYouList" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="t4M-0u-4mz"/>
+                        <viewControllerLayoutGuide type="bottom" id="ngy-3v-5Me"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MKM-Hd-lzz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0B-5F-8RG">
+                                <rect key="frame" x="92" y="470" width="230" height="40"/>
+                                <color key="backgroundColor" red="0.23137254900000001" green="0.34901960780000002" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="LnN-VU-2Hf"/>
+                                    <constraint firstAttribute="width" constant="230" id="kx9-Ec-J2f"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="-16" maxY="0.0"/>
+                                <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="16" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Continue with Facebook" image="ic_facebook">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizableKey" value="Continue with Facebook"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="customFBLoginButtonTapped:" destination="bO3-ed-oMm" eventType="touchUpInside" id="e2b-G8-EDi"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="Ggc-Ty-PIo">
+                                <rect key="frame" x="51" y="390" width="312" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Ggc-Ty-PIo" secondAttribute="height" multiplier="335:43" id="eDM-vZ-Slu"/>
+                                </constraints>
+                                <string key="text">Take a simple diary 
+&amp; be happier</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.50588235290000005" green="0.44705882349999998" blue="0.41568627450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizableKey" value="Take a simple diary &amp; be happier"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="character_launchscreen" translatesAutoresizingMaskIntoConstraints="NO" id="QUK-dn-XeN">
+                                <rect key="frame" x="115.5" y="182" width="183" height="193"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="183" id="78i-yX-6vH"/>
+                                    <constraint firstAttribute="height" constant="193" id="kIf-6V-b2e"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank You List" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="bbT-js-7GH">
+                                <rect key="frame" x="20" y="337" width="374" height="43"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                                <color key="textColor" red="1" green="0.57647058819999997" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EFS-vD-KQR">
+                                <rect key="frame" x="92" y="520" width="230" height="40"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="V5Y-C1-Ak2"/>
+                                    <constraint firstAttribute="width" constant="230" id="mdz-nA-acP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="-16" maxY="0.0"/>
+                                <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="16" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Continue with Google" image="ic_google">
+                                    <color key="titleColor" white="0.0" alpha="0.52000000000000002" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizableKey" value="Continue with Google"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="customGoogleLoginButtonTapped:" destination="bO3-ed-oMm" eventType="touchUpInside" id="c3l-zZ-CZB"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.97254901959999995" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="bbT-js-7GH" secondAttribute="centerX" id="6dc-mP-tgt"/>
+                            <constraint firstItem="Ggc-Ty-PIo" firstAttribute="centerX" secondItem="MKM-Hd-lzz" secondAttribute="centerX" id="DRJ-pn-5LX"/>
+                            <constraint firstItem="EFS-vD-KQR" firstAttribute="centerX" secondItem="MKM-Hd-lzz" secondAttribute="centerX" id="Dkw-ez-eAJ"/>
+                            <constraint firstItem="L0B-5F-8RG" firstAttribute="centerX" secondItem="MKM-Hd-lzz" secondAttribute="centerX" id="RlD-hJ-FMQ"/>
+                            <constraint firstItem="bbT-js-7GH" firstAttribute="centerY" secondItem="MKM-Hd-lzz" secondAttribute="bottom" multiplier="2/5" id="TRI-sS-hxg"/>
+                            <constraint firstItem="QUK-dn-XeN" firstAttribute="centerX" secondItem="MKM-Hd-lzz" secondAttribute="centerX" id="cfV-MV-a4P"/>
+                            <constraint firstItem="bbT-js-7GH" firstAttribute="leading" secondItem="MKM-Hd-lzz" secondAttribute="leading" constant="20" symbolic="YES" id="grn-Mh-RGO"/>
+                            <constraint firstItem="Ggc-Ty-PIo" firstAttribute="top" secondItem="bbT-js-7GH" secondAttribute="bottom" constant="10" id="k9q-lA-jXF"/>
+                            <constraint firstItem="L0B-5F-8RG" firstAttribute="top" secondItem="Ggc-Ty-PIo" secondAttribute="bottom" constant="40" id="kUt-82-9Y1"/>
+                            <constraint firstItem="Ggc-Ty-PIo" firstAttribute="width" secondItem="Ggc-Ty-PIo" secondAttribute="height" multiplier="335:43" id="lJH-Rz-Lr9"/>
+                            <constraint firstItem="EFS-vD-KQR" firstAttribute="top" secondItem="L0B-5F-8RG" secondAttribute="bottom" constant="10" id="mxb-hu-pGp"/>
+                            <constraint firstItem="bbT-js-7GH" firstAttribute="top" secondItem="QUK-dn-XeN" secondAttribute="bottom" constant="-38" id="oAu-b7-BPe"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="RBM-op-SaG"/>
+                    </view>
+                    <connections>
+                        <outlet property="customFBLoginButton" destination="L0B-5F-8RG" id="cgH-FW-XGK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z3l-hg-FWS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140" y="-39.130434782608695"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="character_launchscreen" width="1024" height="1024"/>
+        <image name="ic_facebook" width="24" height="24"/>
+        <image name="ic_google" width="24" height="24"/>
+    </resources>
+</document>

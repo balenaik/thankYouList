@@ -83,8 +83,8 @@ extension CalendarViewController {
         tabBarItem.title = R.string.localizable.calendar_tabbar_title()
 
         self.navigationController?.navigationBar.barTintColor = UIColor.navigationBarBg
-        self.navigationController?.navigationBar.tintColor = TYLColor.navigationBarTextColor
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : TYLColor.navigationBarTextColor]
+        self.navigationController?.navigationBar.tintColor = UIColor.navigationBarText
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.navigationBarText]
 
         NotificationCenter.default.addObserver(self, selector: #selector(CalendarViewController.updatedThankYouList(notification:)), name: Notification.Name(rawValue: NotificationConst.THANK_YOU_LIST_UPDATED), object: nil)
 

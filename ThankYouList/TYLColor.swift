@@ -12,7 +12,6 @@ import UIKit
 final class TYLColor: UIColor {
     
     // MARK: - Properties
-    static let navigationBarTextColor = UIColor(colorWithHexValue: 0xfe939d)
     static let sectionBgColor = UIColor(colorWithHexValue: 0xfcb5b5)
     static let TYLGrayColor = UIColor(colorWithHexValue: 0x5a5a5a)
     static let TYLBrownColor = UIColor(colorWithHexValue: 0x81726a)

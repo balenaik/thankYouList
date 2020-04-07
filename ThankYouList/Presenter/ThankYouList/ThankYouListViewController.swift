@@ -22,7 +22,6 @@ class ThankYouListViewController: UIViewController {
     }
     
     // MARK: - Properties
-    private var delegate = UIApplication.shared.delegate as! AppDelegate
     private var db = Firestore.firestore()
     private var thankYouDataSingleton = GlobalThankYouData.sharedInstance
     private var sections = [Section]()
@@ -77,9 +76,9 @@ private extension ThankYouListViewController {
         scrollIndicator.setup(scrollView: tableView)
 
         self.navigationController?.navigationBar.barTintColor = UIColor.navigationBarBg
-        self.navigationController?.navigationBar.tintColor = TYLColor.navigationBarTextColor
+        self.navigationController?.navigationBar.tintColor = UIColor.navigationBarText
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor : TYLColor.navigationBarTextColor
+            NSAttributedString.Key.foregroundColor : UIColor.navigationBarText
         ]
     }
 

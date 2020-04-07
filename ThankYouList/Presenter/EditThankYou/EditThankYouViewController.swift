@@ -62,9 +62,9 @@ class EditThankYouViewController: UIViewController {
 
         self.navigationItem.title = "Edit Thank You".localized
         self.navigationController?.navigationBar.barTintColor = UIColor.navigationBarBg
-        self.navigationController?.navigationBar.tintColor = TYLColor.navigationBarTextColor
+        self.navigationController?.navigationBar.tintColor = UIColor.navigationBarText
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor : TYLColor.navigationBarTextColor
+            NSAttributedString.Key.foregroundColor : UIColor.navigationBarText
         ]
         
     }

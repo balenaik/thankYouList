@@ -33,26 +33,11 @@ class AddThankYouViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     
     @IBOutlet weak var addThankYouTextViewHeightContraint: NSLayoutConstraint!
-    
-    // MARK: - View Lifecycles
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        datePicker.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
-        
-        addThankYouTextViewHeaderView.setHeaderTitle(addThankYouTextViewHeaderViewString)
-        thankYouDatePickerHeaderView.setHeaderTitle(thankYouDatePickerHeaderViewString)
-        addThankYouTextView.placeholder = NSLocalizedString("What are you thankful for?", comment: "")
-        addThankYouTextView.becomeFirstResponder()
-        thankYouDateView.setDate(delegate.selectedDate ?? Date())
-
-        self.navigationItem.title = "Add Thank You".localized
-        self.navigationController?.navigationBar.barTintColor = UIColor.navigationBarBg
-        self.navigationController?.navigationBar.tintColor = UIColor.navigationBarText
-        self.navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor : UIColor.navigationBarText
-        ]
-        
+        setupView()
+        setupNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -115,7 +100,19 @@ extension AddThankYouViewController {
 
 
 // MARK: - Private Methods
-extension AddThankYouViewController {
+private extension AddThankYouViewController {
+    func setupView() {
+        datePicker.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
+
+        addThankYouTextViewHeaderView.setHeaderTitle(addThankYouTextViewHeaderViewString)
+        thankYouDatePickerHeaderView.setHeaderTitle(thankYouDatePickerHeaderViewString)
+        addThankYouTextView.placeholder = NSLocalizedString("What are you thankful for?", comment: "")
+        addThankYouTextView.becomeFirstResponder()
+        thankYouDateView.setDate(delegate.selectedDate ?? Date())
+
+        self.navigationItem.title = "Add Thank You".localized
+    }
+
     @objc private func keyboardWillShow(notification: Notification) {
         let rect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let duration: TimeInterval = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as! Double

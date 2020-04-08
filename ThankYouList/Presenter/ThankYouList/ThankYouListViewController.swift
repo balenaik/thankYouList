@@ -35,6 +35,7 @@ class ThankYouListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        setupNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,12 +75,6 @@ private extension ThankYouListViewController {
 
         emptyView.isHidden = true
         scrollIndicator.setup(scrollView: tableView)
-
-        self.navigationController?.navigationBar.barTintColor = UIColor.navigationBarBg
-        self.navigationController?.navigationBar.tintColor = UIColor.navigationBarText
-        self.navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor : UIColor.navigationBarText
-        ]
     }
 
     private func loadAndCheckForUpdates() {

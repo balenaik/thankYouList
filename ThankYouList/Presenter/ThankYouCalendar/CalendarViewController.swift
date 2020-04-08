@@ -48,6 +48,7 @@ class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        setupNavigationBar()
     }
     
     deinit {
@@ -81,10 +82,6 @@ extension CalendarViewController {
     func setupView() {
         navigationItem.title = R.string.localizable.calendar_navigationbar_title()
         tabBarItem.title = R.string.localizable.calendar_tabbar_title()
-
-        self.navigationController?.navigationBar.barTintColor = UIColor.navigationBarBg
-        self.navigationController?.navigationBar.tintColor = UIColor.navigationBarText
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.navigationBarText]
 
         NotificationCenter.default.addObserver(self, selector: #selector(CalendarViewController.updatedThankYouList(notification:)), name: Notification.Name(rawValue: NotificationConst.THANK_YOU_LIST_UPDATED), object: nil)
 

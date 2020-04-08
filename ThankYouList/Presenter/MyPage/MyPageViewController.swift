@@ -15,4 +15,9 @@ class MyPageViewController: UIViewController {
         let navigationController = UINavigationController(rootViewController: viewController)
         return navigationController
     }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupNavigationBar()
+    }
 }

@@ -92,7 +92,8 @@ extension LeftMenuVC: UITableViewDataSource {
         }        
         do {
             try Auth.auth().signOut()
-            FBSDKAccessToken.setCurrent(nil)
+            AccessToken.current = nil
+//            FBSDKAccessToken.setCurrent(nil)
             GIDSignIn.sharedInstance().signOut()
             GIDSignIn.sharedInstance().disconnect()
             let loginVC = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()

@@ -1,10 +1,4 @@
 PODS:
-  - Bolts (1.9.0):
-    - Bolts/AppLinks (= 1.9.0)
-    - Bolts/Tasks (= 1.9.0)
-  - Bolts/AppLinks (1.9.0):
-    - Bolts/Tasks
-  - Bolts/Tasks (1.9.0)
   - BoringSSL (10.0.6):
     - BoringSSL/Implementation (= 10.0.6)
     - BoringSSL/Interface (= 10.0.6)
@@ -12,18 +6,29 @@ PODS:
     - BoringSSL/Interface (= 10.0.6)
   - BoringSSL/Interface (10.0.6)
   - CryptoSwift (0.12.0)
-  - FacebookCore (0.4.0):
-    - Bolts (~> 1.9)
-    - FBSDKCoreKit (~> 4.36)
-  - FacebookLogin (0.4.0):
-    - Bolts (~> 1.9)
-    - FacebookCore (~> 0.4)
-    - FBSDKCoreKit (~> 4.36)
-    - FBSDKLoginKit (~> 4.36)
-  - FBSDKCoreKit (4.37.0):
-    - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.37.0):
-    - FBSDKCoreKit
+  - FacebookSDK (6.3.0):
+    - FacebookSDK/CoreKit (= 6.3.0)
+    - FacebookSDK/MarketingKit (= 6.3.0)
+  - FacebookSDK/CoreKit (6.3.0):
+    - FBSDKCoreKit (~> 6.3.0)
+  - FacebookSDK/LoginKit (6.3.0):
+    - FacebookSDK/CoreKit
+    - FBSDKLoginKit (~> 6.3.0)
+  - FacebookSDK/MarketingKit (6.3.0):
+    - FacebookSDK/CoreKit
+    - FBSDKMarketingKit (~> 6.3.0)
+  - FBSDKCoreKit (6.3.0):
+    - FBSDKCoreKit/Basics (= 6.3.0)
+    - FBSDKCoreKit/Core (= 6.3.0)
+  - FBSDKCoreKit/Basics (6.3.0)
+  - FBSDKCoreKit/Core (6.3.0):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (6.3.0):
+    - FBSDKLoginKit/Login (= 6.3.0)
+  - FBSDKLoginKit/Login (6.3.0):
+    - FBSDKCoreKit (~> 6.3.0)
+  - FBSDKMarketingKit (6.3.0):
+    - FBSDKCoreKit (~> 6.3.0)
   - Firebase/Auth (5.9.0):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.0.4)
@@ -168,8 +173,8 @@ PODS:
 
 DEPENDENCIES:
   - CryptoSwift
-  - FacebookCore
-  - FacebookLogin
+  - FacebookSDK
+  - FacebookSDK/LoginKit
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -182,13 +187,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - Bolts
     - BoringSSL
     - CryptoSwift
-    - FacebookCore
-    - FacebookLogin
-    - FBSDKCoreKit
-    - FBSDKLoginKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -215,17 +215,20 @@ SPEC REPOS:
     - Protobuf
     - RNCryptor
   trunk:
+    - FacebookSDK
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - FBSDKMarketingKit
     - R.swift
     - R.swift.Library
 
 SPEC CHECKSUMS:
-  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
   CryptoSwift: 1c07ca50843dd48bc54e6ea53d7a4dba3b645716
-  FacebookCore: 770e57cfe250a4de4458b682191c0ff062dee247
-  FacebookLogin: eb0f2251aca835a94d70a5f7e580edc46d1e1603
-  FBSDKCoreKit: fe5f3474499a81963e11e3f3a5c753d0a95ca2b4
-  FBSDKLoginKit: 2f7249686d1e30ce8a5ef5400eedf50b3e3df332
+  FacebookSDK: 80a39152434ce9e58a6769a5704fbdfe78c49d02
+  FBSDKCoreKit: 5d55c8f3007c9c49b793617b9102e46355fc7e17
+  FBSDKLoginKit: d46aa04d9bb9990a4deb6441736fae24a8c94496
+  FBSDKMarketingKit: 314395af261fb66828215f771c8447b00f01727b
   Firebase: 383fa29aca93e371cab776b48a5c66544d3c2003
   FirebaseAnalytics: 831f1f127f4a75698e9875a87bf7e2668730d953
   FirebaseAuth: 504b198ceb3472dca5c65bb95544ea44cfc9439e
@@ -254,6 +257,6 @@ SPEC CHECKSUMS:
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   RNCryptor: c93d19029dcf7ff160aca0f24d6c9e7b0d82f664
 
-PODFILE CHECKSUM: 3df265156cd0e56f6c4cfc65fba3d908d2cbe42a
+PODFILE CHECKSUM: bfb398d1170c255585737dc187e1ceec31a2f8d0
 
 COCOAPODS: 1.8.3

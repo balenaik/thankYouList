@@ -8,9 +8,7 @@
 
 import UIKit
 import Firebase
-import FirebaseAuth
-import FacebookCore
-//import FBSDKLoginKit
+import FBSDKCoreKit
 import GoogleSignIn
 
 @UIApplicationMain
@@ -27,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         
         // UIWindowを生成.
@@ -86,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     @available(iOS 9.0, *)
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
         -> Bool {
-            return SDKApplicationDelegate.shared.application(application,
+            return ApplicationDelegate.shared.application(application,
                                                              open: url,
                                                              sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
                                                              annotation: [:])

@@ -8,9 +8,8 @@
 
 import UIKit
 import FirebaseAuth
-import FacebookCore
-import FacebookLogin
 import FBSDKCoreKit
+import FBSDKLoginKit
 import GoogleSignIn
 
 class LoginVC: UIViewController {
@@ -30,32 +29,30 @@ class LoginVC: UIViewController {
     // MARK: - IB Actions
     @IBAction func customFBLoginButtonTapped(_ sender: Any) {
         let loginManager = LoginManager()
-        loginManager.logIn(readPermissions: [ .publicProfile, .email ], viewController: self) { [weak self] loginResult in
+        loginManager.logIn(permissions: ["publicProfile", "email"], from: self) { [weak self] loginResult, _ in
             guard let weakSelf = self else { return }
-            switch loginResult {
-            case .success:
-                let accessTokenStringTest = FBSDKAccessToken.current().tokenString
-                let accessToken = AccessToken.current
-                var name: String?
-                var email: String?
-                guard let accessTokenString: String = accessToken?.authenticationToken else { return }
-                let credential = FacebookAuthProvider.credential(withAccessToken: accessTokenStringTest!)
-                let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"email,name"], tokenString: accessTokenString, version: nil, httpMethod: "GET")
-                req?.start(completionHandler: { (connection, result, error) in
-                    if error != nil {
-                        print("error \(String(describing: error))")
-                        return
-                    }
-                    guard let result = result else { return }
-                    guard let dic = result as? [String:String] else { return }
-                    name = dic["name"]
-                    email = dic["email"]
-                    guard let loginName = name, let loginMail = email else { return }
-                    weakSelf.signIn(credential: credential, userName: loginName, email: loginMail)
-                })
-            default:
-                return
-            }
+            let accessTokenStringTest = AccessToken.current?.tokenString
+            var name: String?
+            var email: String?
+            guard let accessTokenString: String = AccessToken.current?.tokenString else { return }
+            let credential = FacebookAuthProvider.credential(withAccessToken: accessTokenStringTest!)
+            let req = GraphRequest(graphPath: "me",
+                                   parameters: ["fields":"email,name"],
+                                   tokenString: accessTokenString,
+                                   version: nil,
+                                   httpMethod: .get)
+            req.start(completionHandler: { (connection, result, error) in
+                if error != nil {
+                    print("error \(String(describing: error))")
+                    return
+                }
+                guard let result = result else { return }
+                guard let dic = result as? [String:String] else { return }
+                name = dic["name"]
+                email = dic["email"]
+                guard let loginName = name, let loginMail = email else { return }
+                weakSelf.signIn(credential: credential, userName: loginName, email: loginMail)
+            })
         }
     }
     

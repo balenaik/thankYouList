@@ -8,11 +8,14 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class MyPageViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     private var tableItems = [[TableItem]]()
+
+    private var profile: Profile?
 
     static func createViewController() -> UIViewController? {
         guard let viewController = R.storyboard.myPage().instantiateInitialViewController() else { return nil }
@@ -23,16 +26,30 @@ class MyPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
+        setupView()
         setupTableItems()
+        loadMyProfile()
     }
 }
 
 // MARK: - private
 private extension MyPageViewController {
+    func setupView() {
+        tableView.register(R.nib.myPageProfileCell)
+    }
+
     func setupTableItems() {
         let myInfoSection = [TableItem(item: .myInformation, style: .profieInfo)]
         let logoutSection = [TableItem(item: .logout, style: .text)]
         tableItems.append(contentsOf: [myInfoSection, logoutSection])
+    }
+
+    func loadMyProfile() {
+        guard let user = Auth.auth().currentUser else { return }
+        let profile = Profile(name: user.displayName ?? "",
+                              emailAddress: user.email ?? "",
+                              imageUrl: user.photoURL)
+        self.profile = profile
     }
 }
 
@@ -58,7 +75,11 @@ extension MyPageViewController: UITableViewDataSource {
             cell.textLabel?.text = item.item.titleText
             return cell
         case .profieInfo:
-            return UITableViewCell()
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.myPageProfileCell, for: indexPath)!
+            if let profile = profile {
+                cell.bind(profile: profile)
+            }
+            return cell
         }
     }
 }

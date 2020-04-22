@@ -70,6 +70,7 @@
 		A8C90AE02302ECA3008C6A4A /* ListScrollIndicatorTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C90ADF2302ECA3008C6A4A /* ListScrollIndicatorTitleView.swift */; };
 		A8C90AE22302ECCA008C6A4A /* ListScrollIndicatorTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8C90AE12302ECCA008C6A4A /* ListScrollIndicatorTitleView.xib */; };
 		A8D41E1C21E0E07B00A77B48 /* SettingDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */; };
+		A8D5DFE82450A4FD00F30205 /* UIImageView+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D5DFE72450A4FD00F30205 /* UIImageView+URL.swift */; };
 		A8DB2FBA1F5D41540055E8A4 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DB2FB91F5D41540055E8A4 /* CalendarViewController.swift */; };
 		A8F06BB91F55396F00A90170 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8F06BB81F55396F00A90170 /* Launch Screen.storyboard */; };
 		A8F649B71EEB96D100D6BA84 /* GlobalThankYouData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F649B61EEB96D100D6BA84 /* GlobalThankYouData.swift */; };
@@ -144,6 +145,7 @@
 		A8C90ADF2302ECA3008C6A4A /* ListScrollIndicatorTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListScrollIndicatorTitleView.swift; sourceTree = "<group>"; };
 		A8C90AE12302ECCA008C6A4A /* ListScrollIndicatorTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListScrollIndicatorTitleView.xib; sourceTree = "<group>"; };
 		A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDateView.swift; sourceTree = "<group>"; };
+		A8D5DFE72450A4FD00F30205 /* UIImageView+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+URL.swift"; sourceTree = "<group>"; };
 		A8DB2FB91F5D41540055E8A4 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		A8F06BB81F55396F00A90170 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		A8F649B61EEB96D100D6BA84 /* GlobalThankYouData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalThankYouData.swift; sourceTree = "<group>"; };
@@ -302,7 +304,7 @@
 			path = Const;
 			sourceTree = "<group>";
 		};
-		A820DE5521C61E6F00E7F3DF /* Extension */ = {
+		A820DE5521C61E6F00E7F3DF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				A8A0FE60205E005D0048AB33 /* UIColor+SetColor.swift */,
@@ -316,8 +318,9 @@
 				A8B6EE9022055CE900908D51 /* Date+ToString.swift */,
 				A810D8E52348365B008F2E74 /* LocalizableExtensions.swift */,
 				A8C59B7C243CD72300FF79EA /* UIViewController+Setup.swift */,
+				A8D5DFE72450A4FD00F30205 /* UIImageView+URL.swift */,
 			);
-			path = Extension;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		A8831CBA1E9CFE6B00F3CA0A = {
@@ -344,7 +347,7 @@
 				A8C59B75243CC86100FF79EA /* R.generated.swift */,
 				A8831CC61E9CFE6B00F3CA0A /* AppDelegate.swift */,
 				A8B6EE8F2201E49C00908D51 /* Resources */,
-				A820DE5521C61E6F00E7F3DF /* Extension */,
+				A820DE5521C61E6F00E7F3DF /* Extensions */,
 				A820DE5221C5430B00E7F3DF /* Const */,
 				A8114AF622E435140024975A /* Presenter */,
 				A808C612220E349A004162E4 /* Models */,
@@ -539,7 +542,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/R.generated.swift",
+				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -565,6 +568,7 @@
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/RNCryptor/RNCryptor.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
@@ -588,6 +592,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCryptor.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
@@ -613,6 +618,7 @@
 				A8C59B7D243CD72300FF79EA /* UIViewController+Setup.swift in Sources */,
 				A8A06863244F444400839D14 /* MyPageProfileCell.swift in Sources */,
 				A8F649B71EEB96D100D6BA84 /* GlobalThankYouData.swift in Sources */,
+				A8D5DFE82450A4FD00F30205 /* UIImageView+URL.swift in Sources */,
 				A810D8E423483125008F2E74 /* String+Localizable.swift in Sources */,
 				A841B339213ED3DE00E8AB5B /* LocalizedLabel.swift in Sources */,
 				A8D41E1C21E0E07B00A77B48 /* SettingDateView.swift in Sources */,

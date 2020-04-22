@@ -170,6 +170,9 @@ PODS:
     - R.swift.Library (~> 5.0.0)
   - R.swift.Library (5.0.1)
   - RNCryptor (5.0.3)
+  - SDWebImage (5.3.1):
+    - SDWebImage/Core (= 5.3.1)
+  - SDWebImage/Core (5.3.1)
 
 DEPENDENCIES:
   - CryptoSwift
@@ -184,6 +187,7 @@ DEPENDENCIES:
   - JTAppleCalendar (~> 7.0)
   - R.swift (= 5.0.3)
   - RNCryptor (~> 5.0)
+  - SDWebImage (~> 5.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -221,6 +225,7 @@ SPEC REPOS:
     - FBSDKMarketingKit
     - R.swift
     - R.swift.Library
+    - SDWebImage
 
 SPEC CHECKSUMS:
   BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
@@ -256,7 +261,8 @@ SPEC CHECKSUMS:
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   RNCryptor: c93d19029dcf7ff160aca0f24d6c9e7b0d82f664
+  SDWebImage: 7137d57385fb632129838c1e6ab9528a22c666cc
 
-PODFILE CHECKSUM: bfb398d1170c255585737dc187e1ceec31a2f8d0
+PODFILE CHECKSUM: 7db7b6157991be6ca4d6e76c3e1aecd7ede5aeec
 
 COCOAPODS: 1.8.3

@@ -29,4 +29,7 @@ target 'ThankYouList' do
   # HUD
   pod 'JGProgressHUD'
 
+  # SDWebImage
+  pod 'SDWebImage', '~> 5.0'
+
 end

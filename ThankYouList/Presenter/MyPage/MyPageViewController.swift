@@ -85,32 +85,6 @@ extension MyPageViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-}
-
-// MARK: - TableItem
-extension MyPageViewController {
-    struct TableItem {
-        let item: TableItemType
-        let style: TableItemStyle
-    }
-
-    enum TableItemType: Int {
-        case myInformation
-        case logout
-
-        var titleText: String? {
-            switch self {
-            case .myInformation:
-                return nil
-            case .logout:
-                return R.string.localizable.mypage_logout()
-            }
         }
-    }
-
-    enum TableItemStyle {
-        case profieInfo
-        case text
     }
 }

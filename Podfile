@@ -15,8 +15,8 @@ target 'ThankYouList' do
   pod 'Firebase/Firestore'
 
   # Auth
-  pod 'FacebookSDK'
-  pod 'FacebookSDK/LoginKit'
+  pod 'FBSDKCoreKit', '~> 6.5.0'
+  pod 'FBSDKLoginKit', '~> 6.5.0'
   pod 'GoogleSignIn'
 
   # R.swift

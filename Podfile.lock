@@ -6,29 +6,16 @@ PODS:
     - BoringSSL/Interface (= 10.0.6)
   - BoringSSL/Interface (10.0.6)
   - CryptoSwift (0.12.0)
-  - FacebookSDK (6.3.0):
-    - FacebookSDK/CoreKit (= 6.3.0)
-    - FacebookSDK/MarketingKit (= 6.3.0)
-  - FacebookSDK/CoreKit (6.3.0):
-    - FBSDKCoreKit (~> 6.3.0)
-  - FacebookSDK/LoginKit (6.3.0):
-    - FacebookSDK/CoreKit
-    - FBSDKLoginKit (~> 6.3.0)
-  - FacebookSDK/MarketingKit (6.3.0):
-    - FacebookSDK/CoreKit
-    - FBSDKMarketingKit (~> 6.3.0)
-  - FBSDKCoreKit (6.3.0):
-    - FBSDKCoreKit/Basics (= 6.3.0)
-    - FBSDKCoreKit/Core (= 6.3.0)
-  - FBSDKCoreKit/Basics (6.3.0)
-  - FBSDKCoreKit/Core (6.3.0):
+  - FBSDKCoreKit (6.5.0):
+    - FBSDKCoreKit/Basics (= 6.5.0)
+    - FBSDKCoreKit/Core (= 6.5.0)
+  - FBSDKCoreKit/Basics (6.5.0)
+  - FBSDKCoreKit/Core (6.5.0):
     - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (6.3.0):
-    - FBSDKLoginKit/Login (= 6.3.0)
-  - FBSDKLoginKit/Login (6.3.0):
-    - FBSDKCoreKit (~> 6.3.0)
-  - FBSDKMarketingKit (6.3.0):
-    - FBSDKCoreKit (~> 6.3.0)
+  - FBSDKLoginKit (6.5.0):
+    - FBSDKLoginKit/Login (= 6.5.0)
+  - FBSDKLoginKit/Login (6.5.0):
+    - FBSDKCoreKit (~> 6.5.0)
   - Firebase/Auth (5.9.0):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.0.4)
@@ -176,8 +163,8 @@ PODS:
 
 DEPENDENCIES:
   - CryptoSwift
-  - FacebookSDK
-  - FacebookSDK/LoginKit
+  - FBSDKCoreKit (~> 6.5.0)
+  - FBSDKLoginKit (~> 6.5.0)
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -219,10 +206,8 @@ SPEC REPOS:
     - Protobuf
     - RNCryptor
   trunk:
-    - FacebookSDK
     - FBSDKCoreKit
     - FBSDKLoginKit
-    - FBSDKMarketingKit
     - R.swift
     - R.swift.Library
     - SDWebImage
@@ -230,10 +215,8 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
   CryptoSwift: 1c07ca50843dd48bc54e6ea53d7a4dba3b645716
-  FacebookSDK: 80a39152434ce9e58a6769a5704fbdfe78c49d02
-  FBSDKCoreKit: 5d55c8f3007c9c49b793617b9102e46355fc7e17
-  FBSDKLoginKit: d46aa04d9bb9990a4deb6441736fae24a8c94496
-  FBSDKMarketingKit: 314395af261fb66828215f771c8447b00f01727b
+  FBSDKCoreKit: bc8ba4b97454bc722823e72584547770b8b48030
+  FBSDKLoginKit: 2ab9aac8c26749efbc3c9d09896bb910f5b1311b
   Firebase: 383fa29aca93e371cab776b48a5c66544d3c2003
   FirebaseAnalytics: 831f1f127f4a75698e9875a87bf7e2668730d953
   FirebaseAuth: 504b198ceb3472dca5c65bb95544ea44cfc9439e
@@ -263,6 +246,6 @@ SPEC CHECKSUMS:
   RNCryptor: c93d19029dcf7ff160aca0f24d6c9e7b0d82f664
   SDWebImage: 7137d57385fb632129838c1e6ab9528a22c666cc
 
-PODFILE CHECKSUM: 7db7b6157991be6ca4d6e76c3e1aecd7ede5aeec
+PODFILE CHECKSUM: 9d0bfa38d23a264eafe04b4edbed456ea1c6b0e4
 
 COCOAPODS: 1.8.3

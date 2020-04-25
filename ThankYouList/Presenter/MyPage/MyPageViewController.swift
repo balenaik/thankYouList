@@ -51,6 +51,24 @@ private extension MyPageViewController {
                               imageUrl: user.photoURL)
         self.profile = profile
     }
+
+    func logout() {
+        do {
+            try Auth.auth().signOut()
+            self.showLoginViewController()
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
+}
+
+// MARK: - Transition
+private extension MyPageViewController {
+    func showLoginViewController() {
+        if let loginViewController = LoginViewController.createViewController() {
+            self.present(loginViewController, animated: true)
+        }
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -85,6 +103,12 @@ extension MyPageViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let item = tableItems[indexPath.section][indexPath.row]
+        switch item.item {
+        case .logout:
+            logout()
+        default:
+            break
         }
     }
 }

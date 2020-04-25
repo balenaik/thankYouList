@@ -14,17 +14,17 @@ import GoogleSignIn
 
 class LoginViewController: UIViewController {
 
-    // MARK: - IB Outlets
     @IBOutlet weak var customFBLoginButton: UIButton!
-    
-    
-    // MARK: - View Life Cycles
+
+    static func createViewController() -> UIViewController? {
+        guard let viewController = R.storyboard.login().instantiateInitialViewController() else { return nil }
+        return viewController
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         GIDSignIn.sharedInstance().uiDelegate = self
-
     }
-    
     
     // MARK: - IB Actions
     @IBAction func customFBLoginButtonTapped(_ sender: Any) {

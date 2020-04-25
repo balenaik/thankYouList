@@ -38,9 +38,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         db.settings = settings
         
         guard let currentUser = Auth.auth().currentUser else {
-            let loginVC = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()!
-            self.window?.rootViewController = loginVC
-            self.window?.makeKeyAndVisible()
+            if let loginViewController = R.storyboard.login().instantiateInitialViewController() {
+                self.window?.rootViewController = loginViewController
+                self.window?.makeKeyAndVisible()
+            }
             return true
         }
 

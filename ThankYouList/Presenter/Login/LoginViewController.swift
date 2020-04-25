@@ -1,5 +1,5 @@
 //
-//  LoginVC.swift
+//  LoginViewController.swift
 //  ThankYouList
 //
 //  Created by Aika Yamada on 2018/03/17.
@@ -12,7 +12,7 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import GoogleSignIn
 
-class LoginVC: UIViewController {
+class LoginViewController: UIViewController {
 
     // MARK: - IB Outlets
     @IBOutlet weak var customFBLoginButton: UIButton!
@@ -29,7 +29,7 @@ class LoginVC: UIViewController {
     // MARK: - IB Actions
     @IBAction func customFBLoginButtonTapped(_ sender: Any) {
         let loginManager = LoginManager()
-        loginManager.logIn(permissions: ["publicProfile", "email"], from: self) { [weak self] loginResult, _ in
+        loginManager.logIn(permissions: ["email"], from: self) { [weak self] loginResult, _ in
             guard let weakSelf = self else { return }
             let accessTokenStringTest = AccessToken.current?.tokenString
             var name: String?
@@ -90,7 +90,7 @@ class LoginVC: UIViewController {
 }
 
 // MARK: - Extensions
-extension LoginVC: GIDSignInDelegate, GIDSignInUIDelegate {
+extension LoginViewController: GIDSignInDelegate, GIDSignInUIDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
             print(error.localizedDescription)

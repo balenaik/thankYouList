@@ -29,7 +29,7 @@
 		A8114B10230180EF0024975A /* ListScrollIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8114B0F230180EF0024975A /* ListScrollIndicator.swift */; };
 		A820DE5421C5432500E7F3DF /* NotificationConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820DE5321C5432500E7F3DF /* NotificationConst.swift */; };
 		A820DE5721C61EF100E7F3DF /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820DE5621C61EF000E7F3DF /* UIView+Shadow.swift */; };
-		A824150F205CE28C00172587 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824150E205CE28C00172587 /* LoginVC.swift */; };
+		A824150F205CE28C00172587 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824150E205CE28C00172587 /* LoginViewController.swift */; };
 		A83D5F891F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */; };
 		A841B339213ED3DE00E8AB5B /* LocalizedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841B338213ED3DE00E8AB5B /* LocalizedLabel.swift */; };
 		A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84CBEE120F198E400CBA0AB /* ConstStruct.swift */; };
@@ -103,7 +103,7 @@
 		A820DE5321C5432500E7F3DF /* NotificationConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationConst.swift; sourceTree = "<group>"; };
 		A820DE5621C61EF000E7F3DF /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		A824150B205CDF5800172587 /* ThankYouList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThankYouList.entitlements; sourceTree = "<group>"; };
-		A824150E205CE28C00172587 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		A824150E205CE28C00172587 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+RuntimeAttribute.swift"; sourceTree = "<group>"; };
 		A841B338213ED3DE00E8AB5B /* LocalizedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedLabel.swift; sourceTree = "<group>"; };
 		A84CBEE120F198E400CBA0AB /* ConstStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstStruct.swift; sourceTree = "<group>"; };
@@ -271,7 +271,7 @@
 		A8114B0622E45BAA0024975A /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				A824150E205CE28C00172587 /* LoginVC.swift */,
+				A824150E205CE28C00172587 /* LoginViewController.swift */,
 				A8114B0722E45BB90024975A /* Login.storyboard */,
 			);
 			path = Login;
@@ -633,7 +633,7 @@
 				A866BEE520B931620073A76D /* TYLColor.swift in Sources */,
 				A84FDB6021DC37EA00593326 /* SettingHeaderView.swift in Sources */,
 				A8B6EE8E2201E41D00908D51 /* String+ToDate.swift in Sources */,
-				A824150F205CE28C00172587 /* LoginVC.swift in Sources */,
+				A824150F205CE28C00172587 /* LoginViewController.swift in Sources */,
 				A8114B10230180EF0024975A /* ListScrollIndicator.swift in Sources */,
 				A89AF9E72106905500FF6893 /* Crypto.swift in Sources */,
 				A881350C211FD40C00BE8F48 /* BalloonView.swift in Sources */,

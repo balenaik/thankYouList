@@ -20,6 +20,7 @@ class MyPageViewController: UIViewController {
     static func createViewController() -> UIViewController? {
         guard let viewController = R.storyboard.myPage().instantiateInitialViewController() else { return nil }
         let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.modalPresentationStyle = .pageSheet
         return navigationController
     }
 
@@ -29,6 +30,13 @@ class MyPageViewController: UIViewController {
         setupView()
         setupTableItems()
         loadMyProfile()
+    }
+}
+
+// MARK: - IBActions
+extension MyPageViewController {
+    @IBAction func tapClose(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
 }
 

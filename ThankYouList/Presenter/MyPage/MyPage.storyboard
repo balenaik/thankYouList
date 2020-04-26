@@ -46,7 +46,11 @@
                         <viewLayoutGuide key="safeArea" id="Jkp-N8-8Wm"/>
                     </view>
                     <navigationItem key="navigationItem" id="j4Q-6b-AdV">
-                        <barButtonItem key="leftBarButtonItem" image="icCancel" id="iik-xr-Wxb"/>
+                        <barButtonItem key="leftBarButtonItem" image="icCancel" id="iik-xr-Wxb">
+                            <connections>
+                                <action selector="tapClose:" destination="4wp-4j-dO9" id="DUw-fV-KJk"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>

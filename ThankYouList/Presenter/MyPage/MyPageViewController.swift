@@ -74,6 +74,7 @@ private extension MyPageViewController {
 private extension MyPageViewController {
     func showLoginViewController() {
         if let loginViewController = LoginViewController.createViewController() {
+            loginViewController.modalPresentationStyle = .fullScreen
             self.present(loginViewController, animated: true)
         }
     }

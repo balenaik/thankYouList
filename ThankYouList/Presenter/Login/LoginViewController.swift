@@ -25,8 +25,10 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         GIDSignIn.sharedInstance().uiDelegate = self
     }
+}
     
-    // MARK: - IB Actions
+// MARK: - IB Actions
+extension LoginViewController {
     @IBAction func customFBLoginButtonTapped(_ sender: Any) {
         let loginManager = LoginManager()
         loginManager.logIn(permissions: ["email"], from: self) { [weak self] loginResult, _ in
@@ -61,11 +63,12 @@ class LoginViewController: UIViewController {
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().signIn()
     }
-    
-    
-    // MARK: - Private Methods
+}
+
+// MARK: - Private Methods
+private extension LoginViewController {
     private func signIn(credential: AuthCredential, userName: String, email: String) {
-        Auth.auth().signIn(with: credential) { (fireUser, fireError) in
+        Auth.auth().signInAndRetrieveData(with: credential) { (fireUser, fireError) in
             if let error = fireError {
                 print(error)
                 return
@@ -89,7 +92,7 @@ class LoginViewController: UIViewController {
     
 }
 
-// MARK: - Extensions
+// MARK: - GIDSignInDelegate, GIDSignInUIDelegate
 extension LoginViewController: GIDSignInDelegate, GIDSignInUIDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {

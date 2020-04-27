@@ -43,6 +43,7 @@ extension MyPageViewController {
 // MARK: - private
 private extension MyPageViewController {
     func setupView() {
+        title = R.string.localizable.mypage_title()
         tableView.register(R.nib.myPageProfileCell)
     }
 

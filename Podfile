@@ -15,9 +15,12 @@ target 'ThankYouList' do
   pod 'Firebase/Firestore'
 
   # Auth
-  pod 'FacebookCore'
-  pod 'FacebookLogin'
+  pod 'FBSDKCoreKit', '~> 6.5.0'
+  pod 'FBSDKLoginKit', '~> 6.5.0'
   pod 'GoogleSignIn'
+
+  # R.swift
+  pod 'R.swift', '5.0.3'
 
   # Crypto
   pod 'RNCryptor', '~> 5.0'
@@ -25,5 +28,8 @@ target 'ThankYouList' do
 
   # HUD
   pod 'JGProgressHUD'
+
+  # SDWebImage
+  pod 'SDWebImage', '~> 5.0'
 
 end

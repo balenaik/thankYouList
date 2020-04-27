@@ -1,10 +1,4 @@
 PODS:
-  - Bolts (1.9.0):
-    - Bolts/AppLinks (= 1.9.0)
-    - Bolts/Tasks (= 1.9.0)
-  - Bolts/AppLinks (1.9.0):
-    - Bolts/Tasks
-  - Bolts/Tasks (1.9.0)
   - BoringSSL (10.0.6):
     - BoringSSL/Implementation (= 10.0.6)
     - BoringSSL/Interface (= 10.0.6)
@@ -12,18 +6,16 @@ PODS:
     - BoringSSL/Interface (= 10.0.6)
   - BoringSSL/Interface (10.0.6)
   - CryptoSwift (0.12.0)
-  - FacebookCore (0.4.0):
-    - Bolts (~> 1.9)
-    - FBSDKCoreKit (~> 4.36)
-  - FacebookLogin (0.4.0):
-    - Bolts (~> 1.9)
-    - FacebookCore (~> 0.4)
-    - FBSDKCoreKit (~> 4.36)
-    - FBSDKLoginKit (~> 4.36)
-  - FBSDKCoreKit (4.37.0):
-    - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.37.0):
-    - FBSDKCoreKit
+  - FBSDKCoreKit (6.5.0):
+    - FBSDKCoreKit/Basics (= 6.5.0)
+    - FBSDKCoreKit/Core (= 6.5.0)
+  - FBSDKCoreKit/Basics (6.5.0)
+  - FBSDKCoreKit/Core (6.5.0):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (6.5.0):
+    - FBSDKLoginKit/Login (= 6.5.0)
+  - FBSDKLoginKit/Login (6.5.0):
+    - FBSDKCoreKit (~> 6.5.0)
   - Firebase/Auth (5.9.0):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.0.4)
@@ -161,12 +153,18 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Protobuf (3.6.1)
+  - R.swift (5.0.3):
+    - R.swift.Library (~> 5.0.0)
+  - R.swift.Library (5.0.1)
   - RNCryptor (5.0.3)
+  - SDWebImage (5.3.1):
+    - SDWebImage/Core (= 5.3.1)
+  - SDWebImage/Core (5.3.1)
 
 DEPENDENCIES:
   - CryptoSwift
-  - FacebookCore
-  - FacebookLogin
+  - FBSDKCoreKit (~> 6.5.0)
+  - FBSDKLoginKit (~> 6.5.0)
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -174,17 +172,14 @@ DEPENDENCIES:
   - GoogleSignIn
   - JGProgressHUD
   - JTAppleCalendar (~> 7.0)
+  - R.swift (= 5.0.3)
   - RNCryptor (~> 5.0)
+  - SDWebImage (~> 5.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - Bolts
     - BoringSSL
     - CryptoSwift
-    - FacebookCore
-    - FacebookLogin
-    - FBSDKCoreKit
-    - FBSDKLoginKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -210,15 +205,18 @@ SPEC REPOS:
     - nanopb
     - Protobuf
     - RNCryptor
+  trunk:
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - R.swift
+    - R.swift.Library
+    - SDWebImage
 
 SPEC CHECKSUMS:
-  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
   CryptoSwift: 1c07ca50843dd48bc54e6ea53d7a4dba3b645716
-  FacebookCore: 770e57cfe250a4de4458b682191c0ff062dee247
-  FacebookLogin: eb0f2251aca835a94d70a5f7e580edc46d1e1603
-  FBSDKCoreKit: fe5f3474499a81963e11e3f3a5c753d0a95ca2b4
-  FBSDKLoginKit: 2f7249686d1e30ce8a5ef5400eedf50b3e3df332
+  FBSDKCoreKit: bc8ba4b97454bc722823e72584547770b8b48030
+  FBSDKLoginKit: 2ab9aac8c26749efbc3c9d09896bb910f5b1311b
   Firebase: 383fa29aca93e371cab776b48a5c66544d3c2003
   FirebaseAnalytics: 831f1f127f4a75698e9875a87bf7e2668730d953
   FirebaseAuth: 504b198ceb3472dca5c65bb95544ea44cfc9439e
@@ -243,8 +241,11 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
+  R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
+  R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   RNCryptor: c93d19029dcf7ff160aca0f24d6c9e7b0d82f664
+  SDWebImage: 7137d57385fb632129838c1e6ab9528a22c666cc
 
-PODFILE CHECKSUM: 78a8606e724d5a8c4eec60a25194eb5fec75bee3
+PODFILE CHECKSUM: 9d0bfa38d23a264eafe04b4edbed456ea1c6b0e4
 
 COCOAPODS: 1.8.3

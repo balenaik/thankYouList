@@ -11,6 +11,9 @@ import UIKit
 import FirebaseFirestore
 import FirebaseAuth
 
+private let textViewSideMargin = CGFloat(4)
+private let textViewTopMargin = CGFloat(8)
+
 class AddThankYouViewController: UIViewController {
     
     // MARK: - Constants
@@ -26,33 +29,18 @@ class AddThankYouViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var addThankYouTextViewHeaderView: SettingHeaderView!
-    @IBOutlet weak var addThankYouTextView: UITextView!
+    @IBOutlet weak var addThankYouTextView: PlaceHolderTextView!
     @IBOutlet weak var thankYouDatePickerHeaderView: SettingHeaderView!
     @IBOutlet weak var thankYouDateView: SettingDateView!
     @IBOutlet weak var datePickerView: UIView!
     @IBOutlet weak var datePicker: UIDatePicker!
     
     @IBOutlet weak var addThankYouTextViewHeightContraint: NSLayoutConstraint!
-    
-    // MARK: - View Lifecycles
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        datePicker.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
-        
-        addThankYouTextViewHeaderView.setHeaderTitle(addThankYouTextViewHeaderViewString)
-        thankYouDatePickerHeaderView.setHeaderTitle(thankYouDatePickerHeaderViewString)
-        addThankYouTextView.placeholder = NSLocalizedString("What are you thankful for?", comment: "")
-        addThankYouTextView.becomeFirstResponder()
-        thankYouDateView.setDate(delegate.selectedDate ?? Date())
-
-        self.navigationItem.title = "Add Thank You".localized
-        self.navigationController?.navigationBar.barTintColor = UIColor.navigationBarBg
-        self.navigationController?.navigationBar.tintColor = TYLColor.navigationBarTextColor
-        self.navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor : TYLColor.navigationBarTextColor
-        ]
-        
+        setupView()
+        setupNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -115,7 +103,20 @@ extension AddThankYouViewController {
 
 
 // MARK: - Private Methods
-extension AddThankYouViewController {
+private extension AddThankYouViewController {
+    func setupView() {
+        datePicker.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
+
+        addThankYouTextViewHeaderView.setHeaderTitle(addThankYouTextViewHeaderViewString)
+        thankYouDatePickerHeaderView.setHeaderTitle(thankYouDatePickerHeaderViewString)
+        addThankYouTextView.placeHolder = NSLocalizedString("What are you thankful for?", comment: "")
+        addThankYouTextView.setInset(sideMargin: textViewSideMargin, topMargin: textViewTopMargin)
+        addThankYouTextView.becomeFirstResponder()
+        thankYouDateView.setDate(delegate.selectedDate ?? Date())
+
+        self.navigationItem.title = "Add Thank You".localized
+    }
+
     @objc private func keyboardWillShow(notification: Notification) {
         let rect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let duration: TimeInterval = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as! Double

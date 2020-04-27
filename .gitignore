@@ -17,3 +17,6 @@ img/*
 
 # Cocoapods
 Pods/*
+
+# R.swift
+R.generated.swift

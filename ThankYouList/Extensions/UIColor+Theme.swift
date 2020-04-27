@@ -25,4 +25,8 @@ extension UIColor {
     class var navigationBarBg: UIColor {
         return UIColor(colorWithHexValue: 0xfff8e8)
     }
+
+    class var navigationBarText: UIColor {
+        return UIColor(colorWithHexValue: 0xfe939d)
+    }
 }

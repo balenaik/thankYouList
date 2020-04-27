@@ -37,22 +37,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         settings.areTimestampsInSnapshotsEnabled = true
         db.settings = settings
         
-        guard let currentUser = Auth.auth().currentUser else {
+        guard Auth.auth().currentUser != nil else {
             if let loginViewController = R.storyboard.login().instantiateInitialViewController() {
                 self.window?.rootViewController = loginViewController
                 self.window?.makeKeyAndVisible()
             }
             return true
         }
-
         moveUDDataToFirestoreIfNeeded()
         let mainTabBarController: MainTabBarController = MainTabBarController()
-        let leftMenuVC = UIStoryboard(name: "LeftMenu", bundle: nil).instantiateInitialViewController() as! LeftMenuVC
-        if let userName = currentUser.displayName {
-            leftMenuVC.userNameString = userName
-        }
-        
-        createRootViewController(mainViewController: mainTabBarController, subViewController: leftMenuVC)
+        createRootViewController(mainViewController: mainTabBarController)
 
         self.selectedDate = Date()
         self.window?.makeKeyAndVisible()
@@ -91,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                              annotation: [:])
     }
     
-    func createRootViewController(mainViewController: UIViewController, subViewController: UIViewController) {
+    func createRootViewController(mainViewController: UIViewController) {
         self.window?.rootViewController = mainViewController
     }
     

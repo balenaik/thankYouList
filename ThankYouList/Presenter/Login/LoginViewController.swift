@@ -33,28 +33,11 @@ extension LoginViewController {
         let loginManager = LoginManager()
         loginManager.logIn(permissions: ["email"], from: self) { [weak self] loginResult, _ in
             guard let weakSelf = self else { return }
-            let accessTokenStringTest = AccessToken.current?.tokenString
-            var name: String?
-            var email: String?
-            guard let accessTokenString: String = AccessToken.current?.tokenString else { return }
-            let credential = FacebookAuthProvider.credential(withAccessToken: accessTokenStringTest!)
-            let req = GraphRequest(graphPath: "me",
-                                   parameters: ["fields":"email,name"],
-                                   tokenString: accessTokenString,
-                                   version: nil,
-                                   httpMethod: .get)
-            req.start(completionHandler: { (connection, result, error) in
-                if error != nil {
-                    print("error \(String(describing: error))")
-                    return
-                }
-                guard let result = result else { return }
-                guard let dic = result as? [String:String] else { return }
-                name = dic["name"]
-                email = dic["email"]
-                guard let loginName = name, let loginMail = email else { return }
-                weakSelf.signIn(credential: credential, userName: loginName, email: loginMail)
-            })
+            guard let accessTokenString = AccessToken.current?.tokenString else {
+                return
+            }
+            let credential = FacebookAuthProvider.credential(withAccessToken: accessTokenString)
+            weakSelf.signIn(credential: credential)
         }
     }
     
@@ -67,7 +50,7 @@ extension LoginViewController {
 
 // MARK: - Private Methods
 private extension LoginViewController {
-    private func signIn(credential: AuthCredential, userName: String, email: String) {
+    private func signIn(credential: AuthCredential) {
         Auth.auth().signInAndRetrieveData(with: credential) { (fireUser, fireError) in
             if let error = fireError {
                 print(error)
@@ -75,17 +58,13 @@ private extension LoginViewController {
             }
             let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.moveUDDataToFirestoreIfNeeded()
-            if let loginVC = appDelegate.window?.rootViewController! {
+            if let loginViewController = appDelegate.window?.rootViewController {
                 let mainTabBarController: MainTabBarController = MainTabBarController()
-                let leftMenuVC = UIStoryboard(name: "LeftMenu", bundle: nil).instantiateInitialViewController() as! LeftMenuVC
-                leftMenuVC.userNameString = userName
-                leftMenuVC.emailString = email
-                appDelegate.createRootViewController(mainViewController: mainTabBarController, subViewController: leftMenuVC)
-
-                loginVC.dismiss(animated: true, completion: nil)
+                appDelegate.createRootViewController(mainViewController: mainTabBarController)
+                loginViewController.dismiss(animated: true, completion: nil)
             }
-            if let loginVC = appDelegate.window?.rootViewController?.presentedViewController {
-                loginVC.dismiss(animated: true, completion: nil)
+            if let loginViewController = appDelegate.window?.rootViewController?.presentedViewController {
+                loginViewController.dismiss(animated: true, completion: nil)
             }
         }
     }
@@ -99,10 +78,9 @@ extension LoginViewController: GIDSignInDelegate, GIDSignInUIDelegate {
             print(error.localizedDescription)
             return
         }
-        let authentication = user.authentication
-        guard let auth = authentication else { return }
+        guard let auth = user.authentication else { return }
         let credential = GoogleAuthProvider.credential(withIDToken: auth.idToken,accessToken: auth.accessToken)
-        self.signIn(credential: credential, userName: user.profile.name, email: user.profile.email)
+        self.signIn(credential: credential)
     }
 }
 

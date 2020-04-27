@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A80210CD208CD0DB003ADEFD /* UserInfoLeftMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80210CC208CD0DB003ADEFD /* UserInfoLeftMenuTableViewCell.swift */; };
 		A808C616220FACF6004162E4 /* SmallListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A808C615220FACF6004162E4 /* SmallListView.swift */; };
 		A808C618220FAD06004162E4 /* SmallListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A808C617220FAD06004162E4 /* SmallListView.xib */; };
 		A80EAE5621F44DD7006B02E8 /* EditThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80EAE5521F44DD7006B02E8 /* EditThankYouViewController.swift */; };
@@ -22,7 +21,6 @@
 		A8114AFC22E446BD0024975A /* ThankYouCalendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8114AFB22E446BD0024975A /* ThankYouCalendar.storyboard */; };
 		A8114AFF22E448690024975A /* AddThankYou.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8114AFE22E448690024975A /* AddThankYou.storyboard */; };
 		A8114B0222E458C70024975A /* EditThankYou.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8114B0122E458C70024975A /* EditThankYou.storyboard */; };
-		A8114B0522E459F10024975A /* LeftMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8114B0422E459F10024975A /* LeftMenu.storyboard */; };
 		A8114B0822E45BB90024975A /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8114B0722E45BB90024975A /* Login.storyboard */; };
 		A8114B0B23017DB70024975A /* ListScrollIndicatorMovableIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8114B0A23017DB70024975A /* ListScrollIndicatorMovableIcon.swift */; };
 		A8114B0D23017DCC0024975A /* ListScrollIndicatorMovableIcon.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8114B0C23017DCC0024975A /* ListScrollIndicatorMovableIcon.xib */; };
@@ -39,7 +37,6 @@
 		A85D9D011EA64AF900945E6E /* ThankYouData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85D9D001EA64AF900945E6E /* ThankYouData.swift */; };
 		A85DCC081F5D2151004E1095 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85DCC071F5D2151004E1095 /* CustomCell.swift */; };
 		A864849B2160F5BF0049D90A /* Pods_ThankYouList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D49C15FD4089235E28B5ED /* Pods_ThankYouList.framework */; };
-		A866BEE3209EA2BC0073A76D /* LeftMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A866BEE2209EA2BC0073A76D /* LeftMenuTableViewCell.swift */; };
 		A866BEE520B931620073A76D /* TYLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A866BEE420B931620073A76D /* TYLColor.swift */; };
 		A86F419C24547DE6005D929A /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86F419B24547DE6005D929A /* UIView+IBInspectable.swift */; };
 		A86F419E24548797005D929A /* MyPageTableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86F419D24548797005D929A /* MyPageTableItem.swift */; };
@@ -54,7 +51,6 @@
 		A8A06863244F444400839D14 /* MyPageProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A06861244F444300839D14 /* MyPageProfileCell.swift */; };
 		A8A06864244F444400839D14 /* MyPageProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8A06862244F444300839D14 /* MyPageProfileCell.xib */; };
 		A8A068662450A15900839D14 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A068652450A15900839D14 /* Profile.swift */; };
-		A8A0FE5C205D59170048AB33 /* LeftMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0FE5B205D59170048AB33 /* LeftMenuVC.swift */; };
 		A8A0FE61205E005D0048AB33 /* UIColor+SetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0FE60205E005D0048AB33 /* UIColor+SetColor.swift */; };
 		A8AC1BD01FAE00B600D1B25B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A8AC1BCE1FAE00B600D1B25B /* Localizable.strings */; };
 		A8AC1BD31FAEA4B000D1B25B /* UITextView+PlaceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC1BD21FAEA4AF00D1B25B /* UITextView+PlaceHolder.swift */; };
@@ -81,7 +77,6 @@
 /* Begin PBXFileReference section */
 		14D49C15FD4089235E28B5ED /* Pods_ThankYouList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThankYouList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A015AC112826D3ABF5A416EC /* Pods-ThankYouList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.release.xcconfig"; sourceTree = "<group>"; };
-		A80210CC208CD0DB003ADEFD /* UserInfoLeftMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoLeftMenuTableViewCell.swift; sourceTree = "<group>"; };
 		A808C615220FACF6004162E4 /* SmallListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallListView.swift; sourceTree = "<group>"; };
 		A808C617220FAD06004162E4 /* SmallListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallListView.xib; sourceTree = "<group>"; };
 		A80EAE5521F44DD7006B02E8 /* EditThankYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditThankYouViewController.swift; sourceTree = "<group>"; };
@@ -96,7 +91,6 @@
 		A8114AFB22E446BD0024975A /* ThankYouCalendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ThankYouCalendar.storyboard; sourceTree = "<group>"; };
 		A8114AFE22E448690024975A /* AddThankYou.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddThankYou.storyboard; sourceTree = "<group>"; };
 		A8114B0122E458C70024975A /* EditThankYou.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditThankYou.storyboard; sourceTree = "<group>"; };
-		A8114B0422E459F10024975A /* LeftMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LeftMenu.storyboard; sourceTree = "<group>"; };
 		A8114B0722E45BB90024975A /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		A8114B0A23017DB70024975A /* ListScrollIndicatorMovableIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListScrollIndicatorMovableIcon.swift; sourceTree = "<group>"; };
 		A8114B0C23017DCC0024975A /* ListScrollIndicatorMovableIcon.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListScrollIndicatorMovableIcon.xib; sourceTree = "<group>"; };
@@ -113,7 +107,6 @@
 		A84FDB5F21DC37E900593326 /* SettingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHeaderView.swift; sourceTree = "<group>"; };
 		A85D9D001EA64AF900945E6E /* ThankYouData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThankYouData.swift; sourceTree = "<group>"; };
 		A85DCC071F5D2151004E1095 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
-		A866BEE2209EA2BC0073A76D /* LeftMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuTableViewCell.swift; sourceTree = "<group>"; };
 		A866BEE420B931620073A76D /* TYLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYLColor.swift; sourceTree = "<group>"; };
 		A86F419B24547DE6005D929A /* UIView+IBInspectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+IBInspectable.swift"; sourceTree = "<group>"; };
 		A86F419D24548797005D929A /* MyPageTableItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableItem.swift; sourceTree = "<group>"; };
@@ -130,7 +123,6 @@
 		A8A06861244F444300839D14 /* MyPageProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageProfileCell.swift; sourceTree = "<group>"; };
 		A8A06862244F444300839D14 /* MyPageProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPageProfileCell.xib; sourceTree = "<group>"; };
 		A8A068652450A15900839D14 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
-		A8A0FE5B205D59170048AB33 /* LeftMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuVC.swift; sourceTree = "<group>"; };
 		A8A0FE60205E005D0048AB33 /* UIColor+SetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+SetColor.swift"; sourceTree = "<group>"; };
 		A8AC1BCF1FAE00B600D1B25B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A8AC1BD11FAE00DE00D1B25B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -200,7 +192,6 @@
 				A8114B0922E45DC10024975A /* MainTabBar */,
 				A8114B0622E45BAA0024975A /* Login */,
 				A8C59B77243CD30700FF79EA /* MyPage */,
-				A8114B0322E459DE0024975A /* LeftMenu */,
 				A8114B0022E458AD0024975A /* EditThankYou */,
 				A8114AFD22E4484C0024975A /* AddThankYou */,
 				A8114AFA22E4468B0024975A /* ThankYouCalendar */,
@@ -257,17 +248,6 @@
 				A8114B0122E458C70024975A /* EditThankYou.storyboard */,
 			);
 			path = EditThankYou;
-			sourceTree = "<group>";
-		};
-		A8114B0322E459DE0024975A /* LeftMenu */ = {
-			isa = PBXGroup;
-			children = (
-				A866BEE2209EA2BC0073A76D /* LeftMenuTableViewCell.swift */,
-				A80210CC208CD0DB003ADEFD /* UserInfoLeftMenuTableViewCell.swift */,
-				A8A0FE5B205D59170048AB33 /* LeftMenuVC.swift */,
-				A8114B0422E459F10024975A /* LeftMenu.storyboard */,
-			);
-			path = LeftMenu;
 			sourceTree = "<group>";
 		};
 		A8114B0622E45BAA0024975A /* Login */ = {
@@ -485,7 +465,6 @@
 				A8C59B79243CD32200FF79EA /* MyPage.storyboard in Resources */,
 				A8A06864244F444400839D14 /* MyPageProfileCell.xib in Resources */,
 				A8831CCE1E9CFE6B00F3CA0A /* Assets.xcassets in Resources */,
-				A8114B0522E459F10024975A /* LeftMenu.storyboard in Resources */,
 				A8114B0222E458C70024975A /* EditThankYou.storyboard in Resources */,
 				A8114B0D23017DCC0024975A /* ListScrollIndicatorMovableIcon.xib in Resources */,
 				A8114AF922E435960024975A /* ThankYouList.storyboard in Resources */,
@@ -628,7 +607,6 @@
 				A810D8E423483125008F2E74 /* String+Localizable.swift in Sources */,
 				A841B339213ED3DE00E8AB5B /* LocalizedLabel.swift in Sources */,
 				A8D41E1C21E0E07B00A77B48 /* SettingDateView.swift in Sources */,
-				A8A0FE5C205D59170048AB33 /* LeftMenuVC.swift in Sources */,
 				A88135102131435100BE8F48 /* EmptyView.swift in Sources */,
 				A80EAE5621F44DD7006B02E8 /* EditThankYouViewController.swift in Sources */,
 				A8831CC91E9CFE6B00F3CA0A /* ThankYouListViewController.swift in Sources */,
@@ -644,7 +622,6 @@
 				A8A0FE61205E005D0048AB33 /* UIColor+SetColor.swift in Sources */,
 				A8AC1BD71FD20E5500D1B25B /* MainTabBarController.swift in Sources */,
 				A85D9D011EA64AF900945E6E /* ThankYouData.swift in Sources */,
-				A866BEE3209EA2BC0073A76D /* LeftMenuTableViewCell.swift in Sources */,
 				A808C616220FACF6004162E4 /* SmallListView.swift in Sources */,
 				A8B6EE9122055CE900908D51 /* Date+ToString.swift in Sources */,
 				A85DCC081F5D2151004E1095 /* CustomCell.swift in Sources */,
@@ -665,7 +642,6 @@
 				A83D5F891F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift in Sources */,
 				A8A068662450A15900839D14 /* Profile.swift in Sources */,
 				A8AC1BD31FAEA4B000D1B25B /* UITextView+PlaceHolder.swift in Sources */,
-				A80210CD208CD0DB003ADEFD /* UserInfoLeftMenuTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

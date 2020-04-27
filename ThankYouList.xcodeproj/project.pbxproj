@@ -40,6 +40,7 @@
 		A866BEE520B931620073A76D /* TYLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A866BEE420B931620073A76D /* TYLColor.swift */; };
 		A86F419C24547DE6005D929A /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86F419B24547DE6005D929A /* UIView+IBInspectable.swift */; };
 		A86F419E24548797005D929A /* MyPageTableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86F419D24548797005D929A /* MyPageTableItem.swift */; };
+		A86F41A124570B0B005D929A /* PlaceHolderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86F41A024570B0B005D929A /* PlaceHolderTextView.swift */; };
 		A881350C211FD40C00BE8F48 /* BalloonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A881350B211FD40C00BE8F48 /* BalloonView.swift */; };
 		A881350E2131432C00BE8F48 /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A881350D2131432C00BE8F48 /* EmptyView.xib */; };
 		A88135102131435100BE8F48 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A881350F2131435100BE8F48 /* EmptyView.swift */; };
@@ -53,7 +54,6 @@
 		A8A068662450A15900839D14 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A068652450A15900839D14 /* Profile.swift */; };
 		A8A0FE61205E005D0048AB33 /* UIColor+SetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0FE60205E005D0048AB33 /* UIColor+SetColor.swift */; };
 		A8AC1BD01FAE00B600D1B25B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A8AC1BCE1FAE00B600D1B25B /* Localizable.strings */; };
-		A8AC1BD31FAEA4B000D1B25B /* UITextView+PlaceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC1BD21FAEA4AF00D1B25B /* UITextView+PlaceHolder.swift */; };
 		A8AC1BD71FD20E5500D1B25B /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC1BD61FD20E5500D1B25B /* MainTabBarController.swift */; };
 		A8AFE4CF22DB81960045C707 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8AFE4CE22DB81960045C707 /* GoogleService-Info.plist */; };
 		A8B6EE8E2201E41D00908D51 /* String+ToDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6EE8D2201E41D00908D51 /* String+ToDate.swift */; };
@@ -110,6 +110,7 @@
 		A866BEE420B931620073A76D /* TYLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYLColor.swift; sourceTree = "<group>"; };
 		A86F419B24547DE6005D929A /* UIView+IBInspectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+IBInspectable.swift"; sourceTree = "<group>"; };
 		A86F419D24548797005D929A /* MyPageTableItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableItem.swift; sourceTree = "<group>"; };
+		A86F41A024570B0B005D929A /* PlaceHolderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderTextView.swift; sourceTree = "<group>"; };
 		A881350B211FD40C00BE8F48 /* BalloonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonView.swift; sourceTree = "<group>"; };
 		A881350D2131432C00BE8F48 /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
 		A881350F2131435100BE8F48 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
@@ -126,7 +127,6 @@
 		A8A0FE60205E005D0048AB33 /* UIColor+SetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+SetColor.swift"; sourceTree = "<group>"; };
 		A8AC1BCF1FAE00B600D1B25B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A8AC1BD11FAE00DE00D1B25B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A8AC1BD21FAEA4AF00D1B25B /* UITextView+PlaceHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+PlaceHolder.swift"; sourceTree = "<group>"; };
 		A8AC1BD61FD20E5500D1B25B /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		A8AFE4CE22DB81960045C707 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A8B6EE8D2201E41D00908D51 /* String+ToDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ToDate.swift"; sourceTree = "<group>"; };
@@ -189,6 +189,7 @@
 		A8114AF622E435140024975A /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				A86F419F24570987005D929A /* Common */,
 				A8114B0922E45DC10024975A /* MainTabBar */,
 				A8114B0622E45BAA0024975A /* Login */,
 				A8C59B77243CD30700FF79EA /* MyPage */,
@@ -293,7 +294,6 @@
 			children = (
 				A8A0FE60205E005D0048AB33 /* UIColor+SetColor.swift */,
 				A810D8D923461F99008F2E74 /* UIColor+Theme.swift */,
-				A8AC1BD21FAEA4AF00D1B25B /* UITextView+PlaceHolder.swift */,
 				A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */,
 				A820DE5621C61EF000E7F3DF /* UIView+Shadow.swift */,
 				A80EAE5721F4C0B4006B02E8 /* UIView+Highlight.swift */,
@@ -306,6 +306,14 @@
 				A8D5DFE72450A4FD00F30205 /* UIImageView+URL.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A86F419F24570987005D929A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A86F41A024570B0B005D929A /* PlaceHolderTextView.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		A8831CBA1E9CFE6B00F3CA0A = {
@@ -632,6 +640,7 @@
 				A80EAE5821F4C0B4006B02E8 /* UIView+Highlight.swift in Sources */,
 				A80EAE5A21FD5F87006B02E8 /* ThankYouCell.swift in Sources */,
 				A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */,
+				A86F41A124570B0B005D929A /* PlaceHolderTextView.swift in Sources */,
 				A8DB2FBA1F5D41540055E8A4 /* CalendarViewController.swift in Sources */,
 				A810D8E62348365B008F2E74 /* LocalizableExtensions.swift in Sources */,
 				A8C59B7B243CD35D00FF79EA /* MyPageViewController.swift in Sources */,
@@ -641,7 +650,6 @@
 				A820DE5721C61EF100E7F3DF /* UIView+Shadow.swift in Sources */,
 				A83D5F891F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift in Sources */,
 				A8A068662450A15900839D14 /* Profile.swift in Sources */,
-				A8AC1BD31FAEA4B000D1B25B /* UITextView+PlaceHolder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

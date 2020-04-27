@@ -11,6 +11,9 @@ import UIKit
 import FirebaseFirestore
 import FirebaseAuth
 
+private let textViewSideMargin = CGFloat(4)
+private let textViewTopMargin = CGFloat(8)
+
 class EditThankYouViewController: UIViewController {
     
     // MARK: - Constants
@@ -28,7 +31,7 @@ class EditThankYouViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var addThankYouTextViewHeaderView: SettingHeaderView!
-    @IBOutlet weak var editThankYouTextView: UITextView!
+    @IBOutlet weak var editThankYouTextView: PlaceHolderTextView!
     @IBOutlet weak var thankYouDatePickerHeaderView: SettingHeaderView!
     @IBOutlet weak var thankYouDateView: SettingDateView!
     @IBOutlet weak var datePickerView: UIView!
@@ -133,8 +136,8 @@ private extension EditThankYouViewController {
         addThankYouTextViewHeaderView.setHeaderTitle(addThankYouTextViewHeaderViewString)
         thankYouDatePickerHeaderView.setHeaderTitle(thankYouDatePickerHeaderViewString)
         deleteHeaderView.hideHeaderTitle()
-
-        editThankYouTextView.placeholder = NSLocalizedString("What are you thankful for?", comment: "")
+        editThankYouTextView.placeHolder = NSLocalizedString("What are you thankful for?", comment: "")
+        editThankYouTextView.setInset(sideMargin: textViewSideMargin, topMargin: textViewTopMargin)
         adjustTextViewHeight(editThankYouTextView)
         editThankYouTextView.becomeFirstResponder()
 

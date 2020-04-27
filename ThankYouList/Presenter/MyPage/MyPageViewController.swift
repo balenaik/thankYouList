@@ -56,7 +56,7 @@ private extension MyPageViewController {
         guard let user = Auth.auth().currentUser else { return }
         let profile = Profile(name: user.displayName ?? "",
                               emailAddress: user.email ?? "",
-                              imageUrl: user.photoURL)
+                              imageUrl: user.providerData.first?.photoURL) // To get photoURL with Google Authentication since user.photoURL has 404 data
         self.profile = profile
     }
 

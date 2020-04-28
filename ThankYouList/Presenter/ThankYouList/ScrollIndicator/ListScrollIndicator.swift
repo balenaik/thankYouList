@@ -57,7 +57,6 @@ class ListScrollIndicator: UIView {
         titleView.translatesAutoresizingMaskIntoConstraints = false
         titleView.centerYAnchor.constraint(equalTo: movableIcon.centerYAnchor).isActive = true
         titleView.trailingAnchor.constraint(equalTo: movableIcon.leadingAnchor, constant: -20).isActive = true
-        titleView.backgroundColor = UIColor.green
     }
 }
 

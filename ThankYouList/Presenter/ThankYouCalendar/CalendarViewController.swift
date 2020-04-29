@@ -10,6 +10,7 @@ import UIKit
 import JTAppleCalendar
 import FirebaseFirestore
 import FirebaseAuth
+import Firebase
 
 class CalendarViewController: UIViewController {
     
@@ -90,6 +91,7 @@ extension CalendarViewController {
         calendarView.selectDates([Date()])
 
         smallListView.setupTableView(self)
+        smallListView.delegate = self
 
         getListFromDate(Date())
 
@@ -375,3 +377,11 @@ extension CalendarViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+// MARK: - SmallListViewDelegate
+extension CalendarViewController: SmallListViewDelegate {
+    func smallListViewBecomeFullScreen(_ view: SmallListView) {
+        guard let user = Auth.auth().currentUser,
+            let selectedDate = calendarView.selectedDates.getSafely(at: 0) else { return }
+        Analytics.logEvent(eventName: AnalyticsEventConst.calendarSmallListViewFullScreen, userId: user.uid, targetDate: selectedDate)
+    }
+}

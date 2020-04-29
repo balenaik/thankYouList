@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
+import Firebase
 
 private let textViewSideMargin = CGFloat(4)
 private let textViewTopMargin = CGFloat(8)
@@ -179,6 +180,7 @@ private extension EditThankYouViewController {
                 weakSelf.present(alert, animated: true, completion: nil)
                 return
             }
+            Analytics.logEvent(eventName: AnalyticsEventConst.editThankYou, userId: uid, targetDate: editThankYouData.date)
             weakSelf.dismiss(animated: true, completion: nil)
         }
     }
@@ -214,6 +216,7 @@ private extension EditThankYouViewController {
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 weakSelf.present(alert, animated: true, completion: nil)
             }
+            Analytics.logEvent(eventName: AnalyticsEventConst.deleteThankYou, userId: uid, targetDate: editingThankYouData.date)
             weakSelf.dismiss(animated: true, completion: nil)
         })
     }

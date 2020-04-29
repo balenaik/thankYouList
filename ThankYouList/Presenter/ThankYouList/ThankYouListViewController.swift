@@ -10,6 +10,7 @@ import UIKit
 import FirebaseFirestore
 import FirebaseAuth
 import JGProgressHUD
+import Firebase
 
 class ThankYouListViewController: UIViewController {
     
@@ -75,6 +76,7 @@ private extension ThankYouListViewController {
 
         emptyView.isHidden = true
         scrollIndicator.setup(scrollView: tableView)
+        scrollIndicator.delegate = self
     }
 
     private func loadAndCheckForUpdates() {
@@ -250,4 +252,10 @@ extension ThankYouListViewController: UITableViewDelegate {
     }
 }
 
-
+// MARK: - ListScrollIndicatorDelegate
+extension ThankYouListViewController: ListScrollIndicatorDelegate {
+    func listScrollIndicatorDidBeginDraggingMovableIcon(_ indicator: ListScrollIndicator) {
+        guard let user = Auth.auth().currentUser else { return }
+        Analytics.logEvent(eventName: AnalyticsEventConst.startDraggingListScrollIndicatorMovableIcon, userId: user.uid)
+    }
+}

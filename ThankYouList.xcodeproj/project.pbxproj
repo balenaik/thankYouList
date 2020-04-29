@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A808C616220FACF6004162E4 /* SmallListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A808C615220FACF6004162E4 /* SmallListView.swift */; };
 		A808C618220FAD06004162E4 /* SmallListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A808C617220FAD06004162E4 /* SmallListView.xib */; };
+		A80BBB97245889A600CB032B /* AnalyticsConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80BBB96245889A600CB032B /* AnalyticsConst.swift */; };
+		A80BBB992459182B00CB032B /* Analytics+Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80BBB982459182B00CB032B /* Analytics+Log.swift */; };
 		A80EAE5621F44DD7006B02E8 /* EditThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80EAE5521F44DD7006B02E8 /* EditThankYouViewController.swift */; };
 		A80EAE5821F4C0B4006B02E8 /* UIView+Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80EAE5721F4C0B4006B02E8 /* UIView+Highlight.swift */; };
 		A80EAE5A21FD5F87006B02E8 /* ThankYouCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80EAE5921FD5F87006B02E8 /* ThankYouCell.swift */; };
@@ -47,6 +49,7 @@
 		A8831CC71E9CFE6B00F3CA0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8831CC61E9CFE6B00F3CA0A /* AppDelegate.swift */; };
 		A8831CC91E9CFE6B00F3CA0A /* ThankYouListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8831CC81E9CFE6B00F3CA0A /* ThankYouListViewController.swift */; };
 		A8831CCE1E9CFE6B00F3CA0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */; };
+		A8959E8F245952260080C05A /* Array+Nullable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8959E8E245952260080C05A /* Array+Nullable.swift */; };
 		A89AF9E72106905500FF6893 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AF9E62106905500FF6893 /* Crypto.swift */; };
 		A89CF876211C73AC00CA5518 /* SecretData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89CF875211C73AC00CA5518 /* SecretData.swift */; };
 		A8A06863244F444400839D14 /* MyPageProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A06861244F444300839D14 /* MyPageProfileCell.swift */; };
@@ -79,6 +82,8 @@
 		A015AC112826D3ABF5A416EC /* Pods-ThankYouList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.release.xcconfig"; sourceTree = "<group>"; };
 		A808C615220FACF6004162E4 /* SmallListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallListView.swift; sourceTree = "<group>"; };
 		A808C617220FAD06004162E4 /* SmallListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallListView.xib; sourceTree = "<group>"; };
+		A80BBB96245889A600CB032B /* AnalyticsConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsConst.swift; sourceTree = "<group>"; };
+		A80BBB982459182B00CB032B /* Analytics+Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Analytics+Log.swift"; sourceTree = "<group>"; };
 		A80EAE5521F44DD7006B02E8 /* EditThankYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditThankYouViewController.swift; sourceTree = "<group>"; };
 		A80EAE5721F4C0B4006B02E8 /* UIView+Highlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Highlight.swift"; sourceTree = "<group>"; };
 		A80EAE5921FD5F87006B02E8 /* ThankYouCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouCell.swift; sourceTree = "<group>"; };
@@ -119,6 +124,7 @@
 		A8831CC81E9CFE6B00F3CA0A /* ThankYouListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouListViewController.swift; sourceTree = "<group>"; };
 		A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8831CD21E9CFE6B00F3CA0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8959E8E245952260080C05A /* Array+Nullable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Nullable.swift"; sourceTree = "<group>"; };
 		A89AF9E62106905500FF6893 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		A89CF875211C73AC00CA5518 /* SecretData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretData.swift; sourceTree = "<group>"; };
 		A8A06861244F444300839D14 /* MyPageProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageProfileCell.swift; sourceTree = "<group>"; };
@@ -283,6 +289,7 @@
 		A820DE5221C5430B00E7F3DF /* Const */ = {
 			isa = PBXGroup;
 			children = (
+				A80BBB96245889A600CB032B /* AnalyticsConst.swift */,
 				A84CBEE120F198E400CBA0AB /* ConstStruct.swift */,
 				A820DE5321C5432500E7F3DF /* NotificationConst.swift */,
 			);
@@ -304,6 +311,8 @@
 				A810D8E52348365B008F2E74 /* LocalizableExtensions.swift */,
 				A8C59B7C243CD72300FF79EA /* UIViewController+Setup.swift */,
 				A8D5DFE72450A4FD00F30205 /* UIImageView+URL.swift */,
+				A80BBB982459182B00CB032B /* Analytics+Log.swift */,
+				A8959E8E245952260080C05A /* Array+Nullable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -627,6 +636,7 @@
 				A89AF9E72106905500FF6893 /* Crypto.swift in Sources */,
 				A881350C211FD40C00BE8F48 /* BalloonView.swift in Sources */,
 				A84FDB5C21DBB8DF00593326 /* AddThankYouViewController.swift in Sources */,
+				A80BBB97245889A600CB032B /* AnalyticsConst.swift in Sources */,
 				A8A0FE61205E005D0048AB33 /* UIColor+SetColor.swift in Sources */,
 				A8AC1BD71FD20E5500D1B25B /* MainTabBarController.swift in Sources */,
 				A85D9D011EA64AF900945E6E /* ThankYouData.swift in Sources */,
@@ -641,6 +651,8 @@
 				A80EAE5A21FD5F87006B02E8 /* ThankYouCell.swift in Sources */,
 				A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */,
 				A86F41A124570B0B005D929A /* PlaceHolderTextView.swift in Sources */,
+				A8959E8F245952260080C05A /* Array+Nullable.swift in Sources */,
+				A80BBB992459182B00CB032B /* Analytics+Log.swift in Sources */,
 				A8DB2FBA1F5D41540055E8A4 /* CalendarViewController.swift in Sources */,
 				A810D8E62348365B008F2E74 /* LocalizableExtensions.swift in Sources */,
 				A8C59B7B243CD35D00FF79EA /* MyPageViewController.swift in Sources */,

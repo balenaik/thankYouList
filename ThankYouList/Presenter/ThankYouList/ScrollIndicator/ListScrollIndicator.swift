@@ -15,11 +15,17 @@ private let titleViewSetHiddenDuration = 0.4
 private let titleViewSetHiddenDelay = 0.4
 private let titleViewUnsetHiddenDuration = 0.2
 
+protocol ListScrollIndicatorDelegate: class {
+    func listScrollIndicatorDidBeginDraggingMovableIcon(_ indicator: ListScrollIndicator)
+}
+
 struct ListScrollIndicatorAttributes {
     var scrollView: UIScrollView
 }
 
 class ListScrollIndicator: UIView {
+    weak var delegate: ListScrollIndicatorDelegate?
+
     private let movableIcon: ListScrollIndicatorMovableIcon
     private let titleView: ListScrollIndicatorTitleView
     private var movableIconTopAnchor: NSLayoutConstraint?
@@ -57,7 +63,6 @@ class ListScrollIndicator: UIView {
         titleView.translatesAutoresizingMaskIntoConstraints = false
         titleView.centerYAnchor.constraint(equalTo: movableIcon.centerYAnchor).isActive = true
         titleView.trailingAnchor.constraint(equalTo: movableIcon.leadingAnchor, constant: -20).isActive = true
-        titleView.backgroundColor = UIColor.green
     }
 }
 
@@ -110,6 +115,7 @@ extension ListScrollIndicator {
         guard let scrollView = scrollView else { return }
         switch sender.state {
         case .began:
+            delegate?.listScrollIndicatorDidBeginDraggingMovableIcon(self)
             originalOffsetY = scrollView.contentOffset.y
         case .changed:
             guard let originalOffsetY = originalOffsetY else { return }

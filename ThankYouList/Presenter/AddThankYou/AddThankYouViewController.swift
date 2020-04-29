@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
+import Firebase
 
 private let textViewSideMargin = CGFloat(4)
 private let textViewTopMargin = CGFloat(8)
@@ -151,6 +152,7 @@ private extension AddThankYouViewController {
                 weakSelf.present(alert, animated: true, completion: nil)
                 return
             }
+            Analytics.logEvent(eventName: AnalyticsEventConst.addThankYou, userId: uid, targetDate: thankYouData.date)
             weakSelf.dismiss(animated: true, completion: nil)
         }
     }

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A808C616220FACF6004162E4 /* SmallListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A808C615220FACF6004162E4 /* SmallListView.swift */; };
 		A808C618220FAD06004162E4 /* SmallListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A808C617220FAD06004162E4 /* SmallListView.xib */; };
+		A80BBB97245889A600CB032B /* AnalyticsConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80BBB96245889A600CB032B /* AnalyticsConst.swift */; };
+		A80BBB992459182B00CB032B /* Analytics+Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80BBB982459182B00CB032B /* Analytics+Log.swift */; };
 		A80EAE5621F44DD7006B02E8 /* EditThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80EAE5521F44DD7006B02E8 /* EditThankYouViewController.swift */; };
 		A80EAE5821F4C0B4006B02E8 /* UIView+Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80EAE5721F4C0B4006B02E8 /* UIView+Highlight.swift */; };
 		A80EAE5A21FD5F87006B02E8 /* ThankYouCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80EAE5921FD5F87006B02E8 /* ThankYouCell.swift */; };
@@ -79,6 +81,8 @@
 		A015AC112826D3ABF5A416EC /* Pods-ThankYouList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.release.xcconfig"; sourceTree = "<group>"; };
 		A808C615220FACF6004162E4 /* SmallListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallListView.swift; sourceTree = "<group>"; };
 		A808C617220FAD06004162E4 /* SmallListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallListView.xib; sourceTree = "<group>"; };
+		A80BBB96245889A600CB032B /* AnalyticsConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsConst.swift; sourceTree = "<group>"; };
+		A80BBB982459182B00CB032B /* Analytics+Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Analytics+Log.swift"; sourceTree = "<group>"; };
 		A80EAE5521F44DD7006B02E8 /* EditThankYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditThankYouViewController.swift; sourceTree = "<group>"; };
 		A80EAE5721F4C0B4006B02E8 /* UIView+Highlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Highlight.swift"; sourceTree = "<group>"; };
 		A80EAE5921FD5F87006B02E8 /* ThankYouCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouCell.swift; sourceTree = "<group>"; };
@@ -283,6 +287,7 @@
 		A820DE5221C5430B00E7F3DF /* Const */ = {
 			isa = PBXGroup;
 			children = (
+				A80BBB96245889A600CB032B /* AnalyticsConst.swift */,
 				A84CBEE120F198E400CBA0AB /* ConstStruct.swift */,
 				A820DE5321C5432500E7F3DF /* NotificationConst.swift */,
 			);
@@ -304,6 +309,7 @@
 				A810D8E52348365B008F2E74 /* LocalizableExtensions.swift */,
 				A8C59B7C243CD72300FF79EA /* UIViewController+Setup.swift */,
 				A8D5DFE72450A4FD00F30205 /* UIImageView+URL.swift */,
+				A80BBB982459182B00CB032B /* Analytics+Log.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -627,6 +633,7 @@
 				A89AF9E72106905500FF6893 /* Crypto.swift in Sources */,
 				A881350C211FD40C00BE8F48 /* BalloonView.swift in Sources */,
 				A84FDB5C21DBB8DF00593326 /* AddThankYouViewController.swift in Sources */,
+				A80BBB97245889A600CB032B /* AnalyticsConst.swift in Sources */,
 				A8A0FE61205E005D0048AB33 /* UIColor+SetColor.swift in Sources */,
 				A8AC1BD71FD20E5500D1B25B /* MainTabBarController.swift in Sources */,
 				A85D9D011EA64AF900945E6E /* ThankYouData.swift in Sources */,
@@ -641,6 +648,7 @@
 				A80EAE5A21FD5F87006B02E8 /* ThankYouCell.swift in Sources */,
 				A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */,
 				A86F41A124570B0B005D929A /* PlaceHolderTextView.swift in Sources */,
+				A80BBB992459182B00CB032B /* Analytics+Log.swift in Sources */,
 				A8DB2FBA1F5D41540055E8A4 /* CalendarViewController.swift in Sources */,
 				A810D8E62348365B008F2E74 /* LocalizableExtensions.swift in Sources */,
 				A8C59B7B243CD35D00FF79EA /* MyPageViewController.swift in Sources */,

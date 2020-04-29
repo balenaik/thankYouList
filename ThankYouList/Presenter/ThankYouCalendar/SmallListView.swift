@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol SmallListViewDelegate: class {
+    func smallListViewBecomeFullScreen(_ view: SmallListView)
+}
+
 class SmallListView: UIView {
     
     // MARK: - Properties
@@ -15,11 +19,14 @@ class SmallListView: UIView {
     var isFullScreen = false {
         didSet {
             if isFullScreen {
+                delegate?.smallListViewBecomeFullScreen(self)
                 tableView.isScrollEnabled = true
                 setNeedsLayout()
             }
         }
     }
+
+    weak var delegate: SmallListViewDelegate?
     
     // MARK: - IBOutlets
     @IBOutlet weak var headerView: UIView!

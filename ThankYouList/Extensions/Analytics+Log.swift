@@ -10,16 +10,11 @@ import Foundation
 import Firebase
 
 extension Analytics {
-    static func logThankYouEvent(eventName: String, userId: String, targetDate: Date) {
-        Analytics.logEvent(eventName, parameters: [
-            AnalyticsParameterConst.userId: userId,
-            AnalyticsParameterConst.targetDate: targetDate.toThankYouDateString()
-        ])
-    }
-
-    static func logUserActionEvent(eventName: String, userId: String) {
-        Analytics.logEvent(eventName, parameters: [
-            AnalyticsParameterConst.userId: userId
-        ])
+    static func logEvent(eventName: String, userId: String, targetDate: Date? = nil) {
+        var parameters = [AnalyticsParameterConst.userId: userId]
+        if let targetDate = targetDate {
+            parameters[AnalyticsParameterConst.targetDate] = targetDate.toThankYouDateString()
+        }
+        Analytics.logEvent(eventName, parameters: parameters)
     }
 }

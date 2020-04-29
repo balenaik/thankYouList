@@ -12,8 +12,8 @@ enum AnalyticsEventConst {
     static let addThankYou = "add_thankyou"
     static let editThankYou = "edit_thankyou"
     static let deleteThankYou = "delete_thankyou"
-    static let tapUserIcon = "tap_usericon"
-    static let dragListScrollIndicatorMovableIcon = "drag_list_scroll_indicator_movable_icon"
+    static let showMyPage = "show_mypage"
+    static let startDraggingListScrollIndicatorMovableIcon = "start_dragging_scroll_indicator"
     static let calendarSmallListViewFullScreen = "calendar_small_list_view_full_screen"
 }
 

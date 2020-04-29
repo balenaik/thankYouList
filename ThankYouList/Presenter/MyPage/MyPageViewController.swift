@@ -30,6 +30,7 @@ class MyPageViewController: UIViewController {
         setupView()
         setupTableItems()
         loadMyProfile()
+        logEvent()
     }
 }
 
@@ -59,6 +60,11 @@ private extension MyPageViewController {
                               emailAddress: user.email ?? "",
                               imageUrl: user.providerData.first?.photoURL) // To get photoURL with Google Authentication since user.photoURL has 404 data
         self.profile = profile
+    }
+
+    func logEvent() {
+        guard let user = Auth.auth().currentUser else { return }
+        Analytics.logEvent(eventName: AnalyticsEventConst.showMyPage, userId: user.uid)
     }
 
     func logout() {

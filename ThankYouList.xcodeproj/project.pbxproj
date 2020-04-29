@@ -49,6 +49,7 @@
 		A8831CC71E9CFE6B00F3CA0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8831CC61E9CFE6B00F3CA0A /* AppDelegate.swift */; };
 		A8831CC91E9CFE6B00F3CA0A /* ThankYouListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8831CC81E9CFE6B00F3CA0A /* ThankYouListViewController.swift */; };
 		A8831CCE1E9CFE6B00F3CA0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */; };
+		A8959E8F245952260080C05A /* Array+Nullable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8959E8E245952260080C05A /* Array+Nullable.swift */; };
 		A89AF9E72106905500FF6893 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AF9E62106905500FF6893 /* Crypto.swift */; };
 		A89CF876211C73AC00CA5518 /* SecretData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89CF875211C73AC00CA5518 /* SecretData.swift */; };
 		A8A06863244F444400839D14 /* MyPageProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A06861244F444300839D14 /* MyPageProfileCell.swift */; };
@@ -123,6 +124,7 @@
 		A8831CC81E9CFE6B00F3CA0A /* ThankYouListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouListViewController.swift; sourceTree = "<group>"; };
 		A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8831CD21E9CFE6B00F3CA0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8959E8E245952260080C05A /* Array+Nullable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Nullable.swift"; sourceTree = "<group>"; };
 		A89AF9E62106905500FF6893 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		A89CF875211C73AC00CA5518 /* SecretData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretData.swift; sourceTree = "<group>"; };
 		A8A06861244F444300839D14 /* MyPageProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageProfileCell.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 				A8C59B7C243CD72300FF79EA /* UIViewController+Setup.swift */,
 				A8D5DFE72450A4FD00F30205 /* UIImageView+URL.swift */,
 				A80BBB982459182B00CB032B /* Analytics+Log.swift */,
+				A8959E8E245952260080C05A /* Array+Nullable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -648,6 +651,7 @@
 				A80EAE5A21FD5F87006B02E8 /* ThankYouCell.swift in Sources */,
 				A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */,
 				A86F41A124570B0B005D929A /* PlaceHolderTextView.swift in Sources */,
+				A8959E8F245952260080C05A /* Array+Nullable.swift in Sources */,
 				A80BBB992459182B00CB032B /* Analytics+Log.swift in Sources */,
 				A8DB2FBA1F5D41540055E8A4 /* CalendarViewController.swift in Sources */,
 				A810D8E62348365B008F2E74 /* LocalizableExtensions.swift in Sources */,

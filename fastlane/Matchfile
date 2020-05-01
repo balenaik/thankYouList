@@ -1,0 +1,5 @@
+git_url("https://github.com/balenaik/thankyoulist_provisioning.git")
+
+app_identifier([
+	"com.balenaik.ThankYouList"
+])

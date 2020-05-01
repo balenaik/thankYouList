@@ -20,11 +20,6 @@ class LoginViewController: UIViewController {
         guard let viewController = R.storyboard.login().instantiateInitialViewController() else { return nil }
         return viewController
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        GIDSignIn.sharedInstance().uiDelegate = self
-    }
 }
     
 // MARK: - IB Actions
@@ -43,7 +38,7 @@ extension LoginViewController {
     
     @IBAction func customGoogleLoginButtonTapped(_ sender: Any) {
         GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance()?.presentingViewController = self
         GIDSignIn.sharedInstance().signIn()
     }
 }
@@ -51,7 +46,7 @@ extension LoginViewController {
 // MARK: - Private Methods
 private extension LoginViewController {
     private func signIn(credential: AuthCredential) {
-        Auth.auth().signInAndRetrieveData(with: credential) { (fireUser, fireError) in
+        Auth.auth().signIn(with: credential) { (fireUser, fireError) in
             if let error = fireError {
                 print(error)
                 return
@@ -72,7 +67,7 @@ private extension LoginViewController {
 }
 
 // MARK: - GIDSignInDelegate, GIDSignInUIDelegate
-extension LoginViewController: GIDSignInDelegate, GIDSignInUIDelegate {
+extension LoginViewController: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
             print(error.localizedDescription)

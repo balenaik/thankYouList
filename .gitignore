@@ -17,3 +17,18 @@ img/*
 
 # Cocoapods
 Pods/*
+
+# R.swift
+R.generated.swift
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+fastlane/gym_output
+fastlane/metadata
+
+# Build App(Fastlane)
+*.app.dSYM.zip
+*.ipa

@@ -10,6 +10,7 @@ import UIKit
 import FirebaseFirestore
 import FirebaseAuth
 import JGProgressHUD
+import Firebase
 
 class ThankYouListViewController: UIViewController {
     
@@ -22,38 +23,48 @@ class ThankYouListViewController: UIViewController {
     }
     
     // MARK: - Properties
-    private var delegate = UIApplication.shared.delegate as! AppDelegate
     private var db = Firestore.firestore()
     private var thankYouDataSingleton = GlobalThankYouData.sharedInstance
     private var sections = [Section]()
     private let loadingHud = JGProgressHUD(style: .extraLight)
     private var estimatedRowHeights = [String : CGFloat]()
-    
-    
-    // MARK: - IBOutlets
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var scrollIndicator: ListScrollIndicator!
     @IBOutlet weak var emptyView: EmptyView!
-    
-    
 
-    // MARK: - IBActions
-    @IBAction func tappedMenuButton(_ sender: Any) {
-        slideMenuController()?.openLeft()
-    }
-    
-    
-    // MARK: - View LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupView()
+        setupNavigationBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+    }
+}
+
+// MARK: - IBActions
+extension ThankYouListViewController {
+    @IBAction func tapUserIcon(_ sender: Any) {
+        guard let myPageViewController = MyPageViewController.createViewController() else { return }
+        present(myPageViewController, animated: true, completion: nil)
+    }
+}
+
+// MARK: - Private Methods
+private extension ThankYouListViewController {
+    func setupView() {
+        navigationItem.title = R.string.localizable.list_navigationbar_title()
+        tabBarItem.title = R.string.localizable.calendar_tabbar_title()
+
         loadingHud.textLabel.text = "Loading"
         loadingHud.show(in: self.view)
-        
+
         thankYouDataSingleton.thankYouDataList = []
         sections = []
         loadAndCheckForUpdates()
-        
+
         tableView.estimatedRowHeight = 40
         tableView.rowHeight = UITableView.automaticDimension
         tableView?.register(UINib(nibName: ThankYouCell.cellIdentifier(),
@@ -65,22 +76,9 @@ class ThankYouListViewController: UIViewController {
 
         emptyView.isHidden = true
         scrollIndicator.setup(scrollView: tableView)
-
-        self.navigationController?.navigationBar.barTintColor = UIColor.navigationBarBg
-        self.navigationController?.navigationBar.tintColor = TYLColor.navigationBarTextColor
-        self.navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor : TYLColor.navigationBarTextColor
-        ]
+        scrollIndicator.delegate = self
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.tableView.reloadData()
-    }
-}
-    
 
-// MARK: - Private Methods
-extension ThankYouListViewController {
     private func loadAndCheckForUpdates() {
         guard let uid = Auth.auth().currentUser?.uid else {
             print("Not login? error")
@@ -254,4 +252,10 @@ extension ThankYouListViewController: UITableViewDelegate {
     }
 }
 
-
+// MARK: - ListScrollIndicatorDelegate
+extension ThankYouListViewController: ListScrollIndicatorDelegate {
+    func listScrollIndicatorDidBeginDraggingMovableIcon(_ indicator: ListScrollIndicator) {
+        guard let user = Auth.auth().currentUser else { return }
+        Analytics.logEvent(eventName: AnalyticsEventConst.startDraggingListScrollIndicatorMovableIcon, userId: user.uid)
+    }
+}

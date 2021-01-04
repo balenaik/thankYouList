@@ -10,6 +10,7 @@ import UIKit
 import JTAppleCalendar
 import FirebaseFirestore
 import FirebaseAuth
+import Firebase
 
 class CalendarViewController: UIViewController {
     
@@ -47,23 +48,8 @@ class CalendarViewController: UIViewController {
     // MARK: - Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.navigationController?.navigationBar.barTintColor = UIColor.navigationBarBg
-        self.navigationController?.navigationBar.tintColor = TYLColor.navigationBarTextColor
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : TYLColor.navigationBarTextColor]
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(CalendarViewController.updatedThankYouList(notification:)), name: Notification.Name(rawValue: NotificationConst.THANK_YOU_LIST_UPDATED), object: nil)
-        
-        calendarView.scrollToDate(Date(), animateScroll: false)
-        setupCalendarView()
-        calendarView.selectDates([Date()])
-        
-        smallListView.setupTableView(self)
-
-        getListFromDate(Date())
-        slideMenuController()?.addPriorityToMenuGesuture(calendarView)
-        
-        listViewMostTopConstant = -stackView.frame.height
+        setupView()
+        setupNavigationBar()
     }
     
     deinit {
@@ -73,8 +59,9 @@ class CalendarViewController: UIViewController {
 
 // MARK: - IBActions
 extension CalendarViewController {
-    @IBAction func tappedMenuButton(_ sender: Any) {
-        slideMenuController()?.openLeft()
+    @IBAction func tapUserIcon(_ sender: Any) {
+        guard let myPageViewController = MyPageViewController.createViewController() else { return }
+        present(myPageViewController, animated: true, completion: nil)
     }
     
     @IBAction func draggedListView(_ sender: UIPanGestureRecognizer) {
@@ -93,6 +80,24 @@ extension CalendarViewController {
 
 // MARK: - Private Methods
 extension CalendarViewController {
+    func setupView() {
+        navigationItem.title = R.string.localizable.calendar_navigationbar_title()
+        tabBarItem.title = R.string.localizable.calendar_tabbar_title()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(CalendarViewController.updatedThankYouList(notification:)), name: Notification.Name(rawValue: NotificationConst.THANK_YOU_LIST_UPDATED), object: nil)
+
+        calendarView.scrollToDate(Date(), animateScroll: false)
+        setupCalendarView()
+        calendarView.selectDates([Date()])
+
+        smallListView.setupTableView(self)
+        smallListView.delegate = self
+
+        getListFromDate(Date())
+
+        listViewMostTopConstant = -stackView.frame.height
+    }
+
     private func setupCalendarView() {
         calendarView.minimumLineSpacing = 0
         calendarView.minimumInteritemSpacing = 0
@@ -372,3 +377,11 @@ extension CalendarViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+// MARK: - SmallListViewDelegate
+extension CalendarViewController: SmallListViewDelegate {
+    func smallListViewBecomeFullScreen(_ view: SmallListView) {
+        guard let user = Auth.auth().currentUser,
+            let selectedDate = calendarView.selectedDates.getSafely(at: 0) else { return }
+        Analytics.logEvent(eventName: AnalyticsEventConst.calendarSmallListViewFullScreen, userId: user.uid, targetDate: selectedDate)
+    }
+}

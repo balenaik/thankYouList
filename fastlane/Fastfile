@@ -1,0 +1,70 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Get Certificates and Provisioning Profiles"
+  lane :certificates do
+    match(
+      type: "development",
+      readonly: true,
+    )
+    match(
+      type: "appstore",
+      readonly: true,
+    )
+  end
+
+  desc "Update Certificates and Provisioning Profiles"
+  lane :update_certificates do
+    match(
+      type: "development",
+      force_for_new_devices: true
+    )
+    match(
+      type: "appstore",
+      force_for_new_devices: true
+    )
+  end
+
+  desc "AppStore Build"
+  lane :build_appstore do |options|
+    configuration = options[:configuration].to_s
+    scheme = options[:scheme].to_s
+    certificates
+    gym(
+      workspace: "ThankYouList.xcworkspace",
+      configuration: configuration,
+      scheme: scheme,
+      clean: true,
+      export_method: "app-store",
+    )
+  end
+
+  desc "Build Production(AppStore)"
+  lane :build_appStore_production do
+    build_appstore(
+      configuration: "Release",
+      scheme: "ThankYouList"
+    )
+  end 
+
+  desc "Upload Production on Appstore"
+  lane :upload_appstore_production do
+    build_appStore_production
+    upload_to_app_store
+  end
+end

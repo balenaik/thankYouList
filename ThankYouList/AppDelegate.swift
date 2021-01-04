@@ -7,11 +7,8 @@
 //
 
 import UIKit
-import SlideMenuControllerSwift
 import Firebase
-import FirebaseAuth
-import FacebookCore
-//import FBSDKLoginKit
+import FBSDKCoreKit
 import GoogleSignIn
 
 @UIApplicationMain
@@ -28,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         
         // UIWindowを生成.
@@ -40,21 +37,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         settings.areTimestampsInSnapshotsEnabled = true
         db.settings = settings
         
-        guard let currentUser = Auth.auth().currentUser else {
-            let loginVC = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()!
-            self.window?.rootViewController = loginVC
-            self.window?.makeKeyAndVisible()
+        guard Auth.auth().currentUser != nil else {
+            if let loginViewController = R.storyboard.login().instantiateInitialViewController() {
+                self.window?.rootViewController = loginViewController
+                self.window?.makeKeyAndVisible()
+            }
             return true
         }
-
         moveUDDataToFirestoreIfNeeded()
         let mainTabBarController: MainTabBarController = MainTabBarController()
-        let leftMenuVC = UIStoryboard(name: "LeftMenu", bundle: nil).instantiateInitialViewController() as! LeftMenuVC
-        if let userName = currentUser.displayName {
-            leftMenuVC.userNameString = userName
-        }
-        
-        createRootViewController(mainViewController: mainTabBarController, subViewController: leftMenuVC)
+        createRootViewController(mainViewController: mainTabBarController)
 
         self.selectedDate = Date()
         self.window?.makeKeyAndVisible()
@@ -87,20 +79,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     @available(iOS 9.0, *)
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
         -> Bool {
-            return SDKApplicationDelegate.shared.application(application,
+            return ApplicationDelegate.shared.application(application,
                                                              open: url,
                                                              sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
                                                              annotation: [:])
     }
     
-    func createRootViewController(mainViewController: UIViewController, subViewController: UIViewController) {
-        let rootViewController = SlideMenuController(mainViewController: mainViewController, leftMenuViewController: subViewController)
-        SlideMenuOptions.contentViewDrag = true
-        SlideMenuOptions.shadowRadius = 4.0
-        SlideMenuOptions.shadowOffset = CGSize(width: 4, height: 0)
-        SlideMenuOptions.shadowOpacity = 0.2
-        SlideMenuOptions.contentViewOpacity = 0.3
-        self.window?.rootViewController = rootViewController
+    func createRootViewController(mainViewController: UIViewController) {
+        self.window?.rootViewController = mainViewController
     }
     
     func moveUDDataToFirestoreIfNeeded() {

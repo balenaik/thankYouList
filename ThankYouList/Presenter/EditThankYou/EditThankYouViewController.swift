@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
+import Firebase
+
+private let textViewSideMargin = CGFloat(4)
+private let textViewTopMargin = CGFloat(8)
 
 class EditThankYouViewController: UIViewController {
     
@@ -28,7 +32,7 @@ class EditThankYouViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var addThankYouTextViewHeaderView: SettingHeaderView!
-    @IBOutlet weak var editThankYouTextView: UITextView!
+    @IBOutlet weak var editThankYouTextView: PlaceHolderTextView!
     @IBOutlet weak var thankYouDatePickerHeaderView: SettingHeaderView!
     @IBOutlet weak var thankYouDateView: SettingDateView!
     @IBOutlet weak var datePickerView: UIView!
@@ -41,32 +45,16 @@ class EditThankYouViewController: UIViewController {
     // MARK: - View Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+        setupNavigationBar()
         
         guard let editingThankYouData = editingThankYouData else {
             self.dismiss(animated: true, completion: nil)
             return
         }
-        
-        datePicker.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
-        
-        addThankYouTextViewHeaderView.setHeaderTitle(addThankYouTextViewHeaderViewString)
-        thankYouDatePickerHeaderView.setHeaderTitle(thankYouDatePickerHeaderViewString)
-        deleteHeaderView.hideHeaderTitle()
         editThankYouTextView.text = editingThankYouData.value
-        editThankYouTextView.placeholder = NSLocalizedString("What are you thankful for?", comment: "")
-        adjustTextViewHeight(editThankYouTextView)
-        editThankYouTextView.becomeFirstResponder()
-        
         datePicker.setDate(editingThankYouData.date, animated: true)
         thankYouDateView.setDate(editingThankYouData.date)
-
-        self.navigationItem.title = "Edit Thank You".localized
-        self.navigationController?.navigationBar.barTintColor = UIColor.navigationBarBg
-        self.navigationController?.navigationBar.tintColor = TYLColor.navigationBarTextColor
-        self.navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor : TYLColor.navigationBarTextColor
-        ]
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -142,7 +130,21 @@ extension EditThankYouViewController {
 
 
 // MARK: - Private Methods
-extension EditThankYouViewController {
+private extension EditThankYouViewController {
+    func setupView() {
+        datePicker.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
+
+        addThankYouTextViewHeaderView.setHeaderTitle(addThankYouTextViewHeaderViewString)
+        thankYouDatePickerHeaderView.setHeaderTitle(thankYouDatePickerHeaderViewString)
+        deleteHeaderView.hideHeaderTitle()
+        editThankYouTextView.placeHolder = NSLocalizedString("What are you thankful for?", comment: "")
+        editThankYouTextView.setInset(sideMargin: textViewSideMargin, topMargin: textViewTopMargin)
+        adjustTextViewHeight(editThankYouTextView)
+        editThankYouTextView.becomeFirstResponder()
+
+        self.navigationItem.title = "Edit Thank You".localized
+    }
+    
     @objc private func keyboardWillShow(notification: Notification) {
         let rect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let duration: TimeInterval = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as! Double
@@ -178,6 +180,7 @@ extension EditThankYouViewController {
                 weakSelf.present(alert, animated: true, completion: nil)
                 return
             }
+            Analytics.logEvent(eventName: AnalyticsEventConst.editThankYou, userId: uid, targetDate: editThankYouData.date)
             weakSelf.dismiss(animated: true, completion: nil)
         }
     }
@@ -213,6 +216,7 @@ extension EditThankYouViewController {
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 weakSelf.present(alert, animated: true, completion: nil)
             }
+            Analytics.logEvent(eventName: AnalyticsEventConst.deleteThankYou, userId: uid, targetDate: editingThankYouData.date)
             weakSelf.dismiss(animated: true, completion: nil)
         })
     }

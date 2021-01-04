@@ -52,7 +52,7 @@
                                     <constraints>
                                         <constraint firstItem="Jkx-fb-FNq" firstAttribute="top" secondItem="ven-7p-XN9" secondAttribute="top" constant="-12" id="5Qk-Zl-TxF"/>
                                         <constraint firstAttribute="trailing" secondItem="Jkx-fb-FNq" secondAttribute="trailing" id="IYL-Tc-8Qi"/>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="115" id="JpU-RT-Xfl"/>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="115" id="JpU-RT-Xfl"/>
                                         <constraint firstItem="5Ta-za-qDJ" firstAttribute="centerX" secondItem="ven-7p-XN9" secondAttribute="centerX" id="MZk-tE-4V8"/>
                                         <constraint firstAttribute="bottom" secondItem="Jkx-fb-FNq" secondAttribute="bottom" constant="-12" id="ncX-eo-d7O"/>
                                         <constraint firstAttribute="width" constant="96" id="oB9-fF-8yY"/>

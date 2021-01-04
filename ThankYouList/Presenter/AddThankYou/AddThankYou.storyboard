@@ -162,11 +162,6 @@
             <point key="canvasLocation" x="2796" y="793"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="qF4-i1-sPZ">
-            <size key="intrinsicContentSize" width="10" height="36.5"/>
-        </designable>
-    </designables>
     <resources>
         <namedColor name="tableViewBg">
             <color red="0.94117647058823528" green="0.94901960784313721" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

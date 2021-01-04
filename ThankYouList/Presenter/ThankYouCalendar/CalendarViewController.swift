@@ -12,6 +12,10 @@ import FirebaseFirestore
 import FirebaseAuth
 import Firebase
 
+private let calendarDateFormat = "yyyy/MM/dd"
+private let calendarStartDate = "2016/01/01"
+private let calendarEndDate = "2025/12/31"
+
 class CalendarViewController: UIViewController {
     
     // MARK: - Properties
@@ -251,12 +255,12 @@ extension CalendarViewController {
 extension CalendarViewController: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy MM dd"
+        formatter.dateFormat = calendarDateFormat
         formatter.timeZone = Calendar.current.timeZone
         formatter.locale = Calendar.current.locale
         
-        let startDate = formatter.date(from:"2016 01 01")!
-        let endDate = formatter.date(from:"2020 12 31")!
+        let startDate = formatter.date(from: calendarStartDate) ?? Date()
+        let endDate = formatter.date(from: calendarEndDate) ?? Date()
         
         let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate)
         return parameters

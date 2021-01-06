@@ -15,6 +15,7 @@ import GoogleSignIn
 private let loginButtonBorderWidth = CGFloat(0.5)
 private let loginButtonBorderColor = UIColor.black.cgColor
 private let loginButtonCornerRadius = CGFloat(10)
+private let loginButtonHighlightedColor = UIColor.gray.withAlphaComponent(0.1)
 
 private let loginButtonImageLeftInset = CGFloat(20)
 
@@ -48,6 +49,10 @@ class LoginViewController: UIViewController {
         appleLoginButton.layer.cornerRadius = loginButtonCornerRadius
         appleLoginButton.layer.borderWidth = loginButtonBorderWidth
         appleLoginButton.layer.borderColor = loginButtonBorderColor
+
+        facebookLoginButton.setBackgroundColor(color: loginButtonHighlightedColor, for: .highlighted)
+        googleLoginButton.setBackgroundColor(color: loginButtonHighlightedColor, for: .highlighted)
+        appleLoginButton.setBackgroundColor(color: loginButtonHighlightedColor, for: .highlighted)
 
         facebookLoginButton.adjustLoginInset()
         googleLoginButton.adjustLoginInset()

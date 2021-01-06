@@ -14,11 +14,20 @@ import GoogleSignIn
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet weak var customFBLoginButton: UIButton!
-
+    @IBOutlet weak var facebookLoginButton: UIButton!
+    @IBOutlet weak var googleLoginButton: UIButton!
+    @IBOutlet weak var appleLoginButton: UIButton!
+    
     static func createViewController() -> UIViewController? {
         guard let viewController = R.storyboard.login().instantiateInitialViewController() else { return nil }
         return viewController
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        facebookLoginButton.setTitle(R.string.localizable.login_continue_with_facebook(), for: .normal)
+        googleLoginButton.setTitle(R.string.localizable.login_continue_with_google(), for: .normal)
+        appleLoginButton.setTitle(R.string.localizable.login_continue_with_apple(), for: .normal)
     }
 }
     

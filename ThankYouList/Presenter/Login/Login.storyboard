@@ -62,7 +62,7 @@
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="customFBLoginButtonTapped:" destination="bO3-ed-oMm" eventType="touchUpInside" id="e2b-G8-EDi"/>
+                                    <action selector="facebookLoginButtonTapped:" destination="bO3-ed-oMm" eventType="touchUpInside" id="e2b-G8-EDi"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EFS-vD-KQR">
@@ -79,7 +79,7 @@
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="customGoogleLoginButtonTapped:" destination="bO3-ed-oMm" eventType="touchUpInside" id="c3l-zZ-CZB"/>
+                                    <action selector="googleLoginButtonTapped:" destination="bO3-ed-oMm" eventType="touchUpInside" id="c3l-zZ-CZB"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCF-UV-jRw">
@@ -96,7 +96,7 @@
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="customGoogleLoginButtonTapped:" destination="bO3-ed-oMm" eventType="touchUpInside" id="yX1-Gl-5zH"/>
+                                    <action selector="googleLoginButtonTapped:" destination="bO3-ed-oMm" eventType="touchUpInside" id="yX1-Gl-5zH"/>
                                 </connections>
                             </button>
                         </subviews>

@@ -62,7 +62,7 @@ class LoginViewController: UIViewController {
     
 // MARK: - IB Actions
 extension LoginViewController {
-    @IBAction func customFBLoginButtonTapped(_ sender: Any) {
+    @IBAction func facebookLoginButtonTapped(_ sender: Any) {
         let loginManager = LoginManager()
         loginManager.logIn(permissions: ["email"], from: self) { [weak self] loginResult, _ in
             guard let weakSelf = self else { return }
@@ -74,7 +74,7 @@ extension LoginViewController {
         }
     }
     
-    @IBAction func customGoogleLoginButtonTapped(_ sender: Any) {
+    @IBAction func googleLoginButtonTapped(_ sender: Any) {
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = self
         GIDSignIn.sharedInstance().signIn()

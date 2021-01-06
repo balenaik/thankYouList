@@ -12,6 +12,12 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import GoogleSignIn
 
+private let loginButtonBorderWidth = CGFloat(0.5)
+private let loginButtonBorderColor = UIColor.black.cgColor
+private let loginButtonCornerRadius = CGFloat(10)
+
+private let loginButtonImageLeftInset = CGFloat(20)
+
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var facebookLoginButton: UIButton!
@@ -25,9 +31,27 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+    }
+
+    private func setupView() {
         facebookLoginButton.setTitle(R.string.localizable.login_continue_with_facebook(), for: .normal)
         googleLoginButton.setTitle(R.string.localizable.login_continue_with_google(), for: .normal)
         appleLoginButton.setTitle(R.string.localizable.login_continue_with_apple(), for: .normal)
+        
+        facebookLoginButton.layer.cornerRadius = loginButtonCornerRadius
+        facebookLoginButton.layer.borderWidth = loginButtonBorderWidth
+        facebookLoginButton.layer.borderColor = loginButtonBorderColor
+        googleLoginButton.layer.cornerRadius = loginButtonCornerRadius
+        googleLoginButton.layer.borderWidth = loginButtonBorderWidth
+        googleLoginButton.layer.borderColor = loginButtonBorderColor
+        appleLoginButton.layer.cornerRadius = loginButtonCornerRadius
+        appleLoginButton.layer.borderWidth = loginButtonBorderWidth
+        appleLoginButton.layer.borderColor = loginButtonBorderColor
+
+        facebookLoginButton.adjustLoginInset()
+        googleLoginButton.adjustLoginInset()
+        appleLoginButton.adjustLoginInset()
     }
 }
     
@@ -88,7 +112,23 @@ extension LoginViewController: GIDSignInDelegate {
     }
 }
 
-    
+// MARK: - UIButton extension
+fileprivate extension UIButton {
+    func adjustLoginInset() {
+        let originalImageEdgeInsets = self.imageEdgeInsets
+        let originalTitleEdgeInsets = self.titleEdgeInsets
+        let buttonWidth = self.frame.width
+        let imageWidth = self.imageView?.frame.width ?? 0
+        let textWidth = self.titleLabel?.frame.width ?? 0
 
-
-
+        self.contentEdgeInsets = UIEdgeInsets.zero
+        self.imageEdgeInsets = UIEdgeInsets(top: originalImageEdgeInsets.top,
+                                            left: loginButtonImageLeftInset,
+                                            bottom: originalImageEdgeInsets.bottom,
+                                            right: buttonWidth - textWidth - imageWidth)
+        self.titleEdgeInsets = UIEdgeInsets(top: originalTitleEdgeInsets.top,
+                                            left: -imageWidth / 2,
+                                            bottom: originalTitleEdgeInsets.bottom,
+                                            right: 0)
+    }
+}

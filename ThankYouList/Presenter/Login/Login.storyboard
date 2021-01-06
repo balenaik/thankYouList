@@ -48,74 +48,53 @@
                                 <color key="textColor" red="1" green="0.57647058819999997" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0B-5F-8RG">
-                                <rect key="frame" x="92" y="471" width="230" height="48"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0B-5F-8RG">
+                                <rect key="frame" x="40" y="471" width="334" height="48"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="LnN-VU-2Hf"/>
-                                    <constraint firstAttribute="width" constant="230" id="kx9-Ec-J2f"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="-16" maxY="0.0"/>
-                                <inset key="titleEdgeInsets" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="titleEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Continue with Facebook" image="ic_facebook">
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="localizableKey" value="Continue with Facebook"/>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="customFBLoginButtonTapped:" destination="bO3-ed-oMm" eventType="touchUpInside" id="e2b-G8-EDi"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EFS-vD-KQR">
-                                <rect key="frame" x="92" y="529" width="230" height="48"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EFS-vD-KQR">
+                                <rect key="frame" x="40" y="529" width="334" height="48"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="V5Y-C1-Ak2"/>
-                                    <constraint firstAttribute="width" constant="230" id="mdz-nA-acP"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="-16" maxY="0.0"/>
-                                <inset key="titleEdgeInsets" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="titleEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Continue with Google" image="ic_google">
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="localizableKey" value="Continue with Google"/>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="customGoogleLoginButtonTapped:" destination="bO3-ed-oMm" eventType="touchUpInside" id="c3l-zZ-CZB"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCF-UV-jRw">
-                                <rect key="frame" x="92" y="587" width="230" height="48"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCF-UV-jRw">
+                                <rect key="frame" x="40" y="587" width="334" height="48"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="230" id="6a0-9s-L9g"/>
                                     <constraint firstAttribute="height" constant="48" id="LZZ-b9-91N"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="-16" maxY="0.0"/>
-                                <inset key="titleEdgeInsets" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="titleEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="4" minY="-3" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Continue with Apple" image="ic_apple">
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="localizableKey" value="Continue with Google"/>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="customGoogleLoginButtonTapped:" destination="bO3-ed-oMm" eventType="touchUpInside" id="yX1-Gl-5zH"/>
                                 </connections>
@@ -125,9 +104,13 @@
                         <color key="backgroundColor" red="1" green="0.97254901959999995" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="bbT-js-7GH" secondAttribute="centerX" id="6dc-mP-tgt"/>
+                            <constraint firstItem="RBM-op-SaG" firstAttribute="trailing" secondItem="L0B-5F-8RG" secondAttribute="trailing" constant="40" id="BPu-PK-OUT"/>
                             <constraint firstItem="Ggc-Ty-PIo" firstAttribute="centerX" secondItem="MKM-Hd-lzz" secondAttribute="centerX" id="DRJ-pn-5LX"/>
                             <constraint firstItem="EFS-vD-KQR" firstAttribute="centerX" secondItem="MKM-Hd-lzz" secondAttribute="centerX" id="Dkw-ez-eAJ"/>
                             <constraint firstItem="qCF-UV-jRw" firstAttribute="top" secondItem="EFS-vD-KQR" secondAttribute="bottom" constant="10" id="His-vn-vVv"/>
+                            <constraint firstItem="RBM-op-SaG" firstAttribute="trailing" secondItem="EFS-vD-KQR" secondAttribute="trailing" constant="40" id="IWC-ZC-Xf3"/>
+                            <constraint firstItem="RBM-op-SaG" firstAttribute="trailing" secondItem="qCF-UV-jRw" secondAttribute="trailing" constant="40" id="PVj-bL-3vy"/>
+                            <constraint firstItem="qCF-UV-jRw" firstAttribute="leading" secondItem="RBM-op-SaG" secondAttribute="leading" constant="40" id="PkG-GF-Nwn"/>
                             <constraint firstItem="L0B-5F-8RG" firstAttribute="centerX" secondItem="MKM-Hd-lzz" secondAttribute="centerX" id="RlD-hJ-FMQ"/>
                             <constraint firstItem="bbT-js-7GH" firstAttribute="centerY" secondItem="MKM-Hd-lzz" secondAttribute="bottom" multiplier="2/5" id="TRI-sS-hxg"/>
                             <constraint firstItem="qCF-UV-jRw" firstAttribute="centerX" secondItem="MKM-Hd-lzz" secondAttribute="centerX" id="c27-Oj-ndP"/>
@@ -138,6 +121,8 @@
                             <constraint firstItem="Ggc-Ty-PIo" firstAttribute="width" secondItem="Ggc-Ty-PIo" secondAttribute="height" multiplier="335:43" id="lJH-Rz-Lr9"/>
                             <constraint firstItem="EFS-vD-KQR" firstAttribute="top" secondItem="L0B-5F-8RG" secondAttribute="bottom" constant="10" id="mxb-hu-pGp"/>
                             <constraint firstItem="bbT-js-7GH" firstAttribute="top" secondItem="QUK-dn-XeN" secondAttribute="bottom" constant="-38" id="oAu-b7-BPe"/>
+                            <constraint firstItem="EFS-vD-KQR" firstAttribute="leading" secondItem="RBM-op-SaG" secondAttribute="leading" constant="40" id="pqI-c8-5wi"/>
+                            <constraint firstItem="L0B-5F-8RG" firstAttribute="leading" secondItem="RBM-op-SaG" secondAttribute="leading" constant="40" id="vCK-Z0-dta"/>
                         </constraints>
                     </view>
                     <connections>

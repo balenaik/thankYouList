@@ -8,10 +8,10 @@
 
 import UIKit
 
-@IBDesignable class PlaceHolderTextView: UITextView {
+class PlaceHolderTextView: UITextView {
 
     private lazy var placeHolderLabel = UILabel(frame: CGRect.zero)
-    @IBInspectable var placeHolder: String = "" {
+    var placeHolder: String = "" {
         didSet {
             placeHolderLabel.text = self.placeHolder
             placeHolderLabel.sizeToFit()

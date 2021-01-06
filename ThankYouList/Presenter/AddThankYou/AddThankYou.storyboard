@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OvG-cr-k3e">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OvG-cr-k3e">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -79,7 +79,7 @@
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="peS-qS-99K">
                                                 <rect key="frame" x="0.0" y="234" width="414" height="216"/>
                                                 <subviews>
-                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="2kA-dC-cUo">
+                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="2kA-dC-cUo">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="216"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </datePicker>
@@ -102,7 +102,7 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -118,6 +118,7 @@
                                 </connections>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="1JE-Ue-mKO"/>
                         <color key="backgroundColor" name="tableViewBg"/>
                         <constraints>
                             <constraint firstItem="RE2-cg-Ad8" firstAttribute="leading" secondItem="xNP-L4-FQx" secondAttribute="leading" id="IZO-Ea-8dE"/>
@@ -125,7 +126,6 @@
                             <constraint firstItem="RE2-cg-Ad8" firstAttribute="top" secondItem="jS2-WS-ONR" secondAttribute="bottom" id="peE-Aa-cw2"/>
                             <constraint firstItem="RE2-cg-Ad8" firstAttribute="bottom" secondItem="7bd-TQ-aCE" secondAttribute="top" id="tl4-0N-bin"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="1JE-Ue-mKO"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add thank you" id="o4f-uy-tjx">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="eyd-Yz-MGI">
@@ -166,5 +166,8 @@
         <namedColor name="tableViewBg">
             <color red="0.94117647058823528" green="0.94901960784313721" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

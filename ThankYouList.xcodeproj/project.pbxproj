@@ -813,7 +813,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Aika Yamada (3N9YMP34Z6)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 6JDKJKDJ28;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -864,7 +864,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution: Aika Yamada (6JDKJKDJ28)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 6JDKJKDJ28;
 				INFOPLIST_FILE = ThankYouList/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

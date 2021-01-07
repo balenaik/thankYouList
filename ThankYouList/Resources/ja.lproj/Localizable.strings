@@ -34,3 +34,6 @@
 "mypage_logout" = "ログアウト";
 
 "ok" = "OK";
+
+"error" = "エラー";
+"error_authenticate" = "認証に失敗しました。";

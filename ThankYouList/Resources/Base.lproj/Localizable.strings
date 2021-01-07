@@ -37,3 +37,6 @@
 "mypage_logout" = "Logout";
 
 "ok" = "OK";
+
+"error" = "Error";
+"error_authenticate" = "Authentication failed";

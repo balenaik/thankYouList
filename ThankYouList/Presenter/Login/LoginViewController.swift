@@ -20,11 +20,15 @@ private let loginButtonHighlightedColor = UIColor.gray.withAlphaComponent(0.1)
 
 private let loginButtonImageLeftInset = CGFloat(20)
 
+private let appleProviderId = "apple.com"
+
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var facebookLoginButton: UIButton!
     @IBOutlet weak var googleLoginButton: UIButton!
     @IBOutlet weak var appleLoginButton: UIButton!
+
+    private var currentNonce: String?
     
     static func createViewController() -> UIViewController? {
         guard let viewController = R.storyboard.login().instantiateInitialViewController() else { return nil }
@@ -60,7 +64,7 @@ class LoginViewController: UIViewController {
         appleLoginButton.adjustLoginInset()
     }
 }
-    
+
 // MARK: - IB Actions
 extension LoginViewController {
     @IBAction func tapFacebookLoginButton(_ sender: Any) {
@@ -82,6 +86,7 @@ extension LoginViewController {
     }
 
     @IBAction func tapAppleLoginButton(_ sender: Any) {
+        currentNonce = randomNonceString()
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
         request.requestedScopes = [.fullName, .email]
@@ -113,7 +118,38 @@ private extension LoginViewController {
             }
         }
     }
-    
+
+    private func randomNonceString(length: Int = 32) -> String {
+        precondition(length > 0)
+        let charset: Array<Character> =
+            Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        var result = ""
+        var remainingLength = length
+
+        while remainingLength > 0 {
+            let randoms: [UInt8] = (0 ..< 16).map { _ in
+                var random: UInt8 = 0
+                let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
+                if errorCode != errSecSuccess {
+                    fatalError("Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)")
+                }
+                return random
+            }
+
+            randoms.forEach { random in
+                if remainingLength == 0 {
+                    return
+                }
+
+                if random < charset.count {
+                    result.append(charset[Int(random)])
+                    remainingLength -= 1
+                }
+            }
+        }
+
+        return result
+    }
 }
 
 // MARK: - GIDSignInDelegate, GIDSignInUIDelegate
@@ -121,6 +157,8 @@ extension LoginViewController: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
             print(error.localizedDescription)
+            showErrorAlert(title: R.string.localizable.error(),
+                           message: R.string.localizable.error_authenticate())
             return
         }
         guard let auth = user.authentication else { return }
@@ -131,6 +169,27 @@ extension LoginViewController: GIDSignInDelegate {
 
 // MARK: - ASAuthorizationControllerDelegate
 extension LoginViewController: ASAuthorizationControllerDelegate {
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            guard let nonce = currentNonce,
+                  let appleIDToken = appleIDCredential.identityToken,
+                  let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
+                showErrorAlert(title: R.string.localizable.error(),
+                               message: R.string.localizable.error_authenticate())
+                return
+            }
+            // Initialize a Firebase credential.
+            let credential = OAuthProvider.credential(withProviderID: appleProviderId,
+                                                      idToken: idTokenString,
+                                                      rawNonce: nonce)
+            signIn(credential: credential)
+        }
+    }
+
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        showErrorAlert(title: R.string.localizable.error(),
+                       message: R.string.localizable.error_authenticate())
+    }
 }
 
 // MARK: - ASAuthorizationControllerPresentationContextProviding

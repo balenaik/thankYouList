@@ -58,6 +58,7 @@
 		A8A0FE61205E005D0048AB33 /* UIColor+SetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0FE60205E005D0048AB33 /* UIColor+SetColor.swift */; };
 		A8A85A9925A60DF500182B99 /* UIButton+BackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A85A9825A60DF400182B99 /* UIButton+BackgroundColor.swift */; };
 		A8A85AC025A60E8500182B99 /* UIImage+FromUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A85ABF25A60E8500182B99 /* UIImage+FromUIColor.swift */; };
+		A8A85AED25A7473D00182B99 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A85AEC25A7473D00182B99 /* UIViewController+Alert.swift */; };
 		A8AC1BD01FAE00B600D1B25B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A8AC1BCE1FAE00B600D1B25B /* Localizable.strings */; };
 		A8AC1BD71FD20E5500D1B25B /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC1BD61FD20E5500D1B25B /* MainTabBarController.swift */; };
 		A8AFE4CF22DB81960045C707 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8AFE4CE22DB81960045C707 /* GoogleService-Info.plist */; };
@@ -135,6 +136,7 @@
 		A8A0FE60205E005D0048AB33 /* UIColor+SetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+SetColor.swift"; sourceTree = "<group>"; };
 		A8A85A9825A60DF400182B99 /* UIButton+BackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+BackgroundColor.swift"; sourceTree = "<group>"; };
 		A8A85ABF25A60E8500182B99 /* UIImage+FromUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+FromUIColor.swift"; sourceTree = "<group>"; };
+		A8A85AEC25A7473D00182B99 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		A8AC1BCF1FAE00B600D1B25B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A8AC1BD11FAE00DE00D1B25B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A8AC1BD61FD20E5500D1B25B /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 				A8B6EE9022055CE900908D51 /* Date+ToString.swift */,
 				A810D8E52348365B008F2E74 /* LocalizableExtensions.swift */,
 				A8C59B7C243CD72300FF79EA /* UIViewController+Setup.swift */,
+				A8A85AEC25A7473D00182B99 /* UIViewController+Alert.swift */,
 				A8D5DFE72450A4FD00F30205 /* UIImageView+URL.swift */,
 				A80BBB982459182B00CB032B /* Analytics+Log.swift */,
 				A8959E8E245952260080C05A /* Array+Nullable.swift */,
@@ -622,6 +625,7 @@
 				A8C59B7D243CD72300FF79EA /* UIViewController+Setup.swift in Sources */,
 				A8A06863244F444400839D14 /* MyPageProfileCell.swift in Sources */,
 				A8F649B71EEB96D100D6BA84 /* GlobalThankYouData.swift in Sources */,
+				A8A85AED25A7473D00182B99 /* UIViewController+Alert.swift in Sources */,
 				A8D5DFE82450A4FD00F30205 /* UIImageView+URL.swift in Sources */,
 				A810D8E423483125008F2E74 /* String+Localizable.swift in Sources */,
 				A841B339213ED3DE00E8AB5B /* LocalizedLabel.swift in Sources */,

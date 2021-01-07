@@ -11,6 +11,7 @@ import FirebaseAuth
 import FBSDKCoreKit
 import FBSDKLoginKit
 import GoogleSignIn
+import AuthenticationServices
 
 private let loginButtonBorderWidth = CGFloat(0.5)
 private let loginButtonBorderColor = UIColor.black.cgColor
@@ -81,6 +82,14 @@ extension LoginViewController {
     }
 
     @IBAction func tapAppleLoginButton(_ sender: Any) {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
     }
 }
 
@@ -117,6 +126,17 @@ extension LoginViewController: GIDSignInDelegate {
         guard let auth = user.authentication else { return }
         let credential = GoogleAuthProvider.credential(withIDToken: auth.idToken,accessToken: auth.accessToken)
         self.signIn(credential: credential)
+    }
+}
+
+// MARK: - ASAuthorizationControllerDelegate
+extension LoginViewController: ASAuthorizationControllerDelegate {
+}
+
+// MARK: - ASAuthorizationControllerPresentationContextProviding
+extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
     }
 }
 

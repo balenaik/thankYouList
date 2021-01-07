@@ -100,11 +100,17 @@ extension LoginViewController {
 
 // MARK: - Private Methods
 private extension LoginViewController {
-    private func signIn(credential: AuthCredential) {
+    private func signIn(credential: AuthCredential, name: String? = nil, email: String? = nil) {
         Auth.auth().signIn(with: credential) { (fireUser, fireError) in
             if let error = fireError {
                 print(error)
                 return
+            }
+            if let name = name {
+                self.updateUserProfile(name: name)
+            }
+            if let email = email {
+                self.updateUserEmail(email: email)
             }
             let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.moveUDDataToFirestoreIfNeeded()
@@ -117,6 +123,16 @@ private extension LoginViewController {
                 loginViewController.dismiss(animated: true, completion: nil)
             }
         }
+    }
+
+    private func updateUserProfile(name: String) {
+        let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+        changeRequest?.displayName = name
+        changeRequest?.commitChanges()
+    }
+
+    private func updateUserEmail(email: String) {
+        Auth.auth().currentUser?.updateEmail(to: email, completion: nil)
     }
 
     private func randomNonceString(length: Int = 32) -> String {
@@ -182,7 +198,18 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             let credential = OAuthProvider.credential(withProviderID: appleProviderId,
                                                       idToken: idTokenString,
                                                       rawNonce: nonce)
-            signIn(credential: credential)
+            var name: String?
+            if let fullName = appleIDCredential.fullName {
+                if let givenName = fullName.givenName {
+                    name = givenName
+                }
+                if let familyName = fullName.familyName {
+                    name = name ?? "" + (" " + familyName)
+                }
+            }
+            name = (name?.isEmpty ?? true) ? nil : name
+            let email = appleIDCredential.email
+            self.signIn(credential: credential, name: name, email: email)
         }
     }
 

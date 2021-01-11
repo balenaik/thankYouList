@@ -56,6 +56,9 @@
 		A8A06864244F444400839D14 /* MyPageProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8A06862244F444300839D14 /* MyPageProfileCell.xib */; };
 		A8A068662450A15900839D14 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A068652450A15900839D14 /* Profile.swift */; };
 		A8A0FE61205E005D0048AB33 /* UIColor+SetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0FE60205E005D0048AB33 /* UIColor+SetColor.swift */; };
+		A8A85A9925A60DF500182B99 /* UIButton+BackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A85A9825A60DF400182B99 /* UIButton+BackgroundColor.swift */; };
+		A8A85AC025A60E8500182B99 /* UIImage+FromUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A85ABF25A60E8500182B99 /* UIImage+FromUIColor.swift */; };
+		A8A85AED25A7473D00182B99 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A85AEC25A7473D00182B99 /* UIViewController+Alert.swift */; };
 		A8AC1BD01FAE00B600D1B25B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A8AC1BCE1FAE00B600D1B25B /* Localizable.strings */; };
 		A8AC1BD71FD20E5500D1B25B /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC1BD61FD20E5500D1B25B /* MainTabBarController.swift */; };
 		A8AFE4CF22DB81960045C707 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8AFE4CE22DB81960045C707 /* GoogleService-Info.plist */; };
@@ -131,6 +134,9 @@
 		A8A06862244F444300839D14 /* MyPageProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPageProfileCell.xib; sourceTree = "<group>"; };
 		A8A068652450A15900839D14 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		A8A0FE60205E005D0048AB33 /* UIColor+SetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+SetColor.swift"; sourceTree = "<group>"; };
+		A8A85A9825A60DF400182B99 /* UIButton+BackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+BackgroundColor.swift"; sourceTree = "<group>"; };
+		A8A85ABF25A60E8500182B99 /* UIImage+FromUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+FromUIColor.swift"; sourceTree = "<group>"; };
+		A8A85AEC25A7473D00182B99 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		A8AC1BCF1FAE00B600D1B25B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A8AC1BD11FAE00DE00D1B25B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A8AC1BD61FD20E5500D1B25B /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -310,9 +316,12 @@
 				A8B6EE9022055CE900908D51 /* Date+ToString.swift */,
 				A810D8E52348365B008F2E74 /* LocalizableExtensions.swift */,
 				A8C59B7C243CD72300FF79EA /* UIViewController+Setup.swift */,
+				A8A85AEC25A7473D00182B99 /* UIViewController+Alert.swift */,
 				A8D5DFE72450A4FD00F30205 /* UIImageView+URL.swift */,
 				A80BBB982459182B00CB032B /* Analytics+Log.swift */,
 				A8959E8E245952260080C05A /* Array+Nullable.swift */,
+				A8A85A9825A60DF400182B99 /* UIButton+BackgroundColor.swift */,
+				A8A85ABF25A60E8500182B99 /* UIImage+FromUIColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -616,6 +625,7 @@
 				A8C59B7D243CD72300FF79EA /* UIViewController+Setup.swift in Sources */,
 				A8A06863244F444400839D14 /* MyPageProfileCell.swift in Sources */,
 				A8F649B71EEB96D100D6BA84 /* GlobalThankYouData.swift in Sources */,
+				A8A85AED25A7473D00182B99 /* UIViewController+Alert.swift in Sources */,
 				A8D5DFE82450A4FD00F30205 /* UIImageView+URL.swift in Sources */,
 				A810D8E423483125008F2E74 /* String+Localizable.swift in Sources */,
 				A841B339213ED3DE00E8AB5B /* LocalizedLabel.swift in Sources */,
@@ -640,11 +650,13 @@
 				A8B6EE9122055CE900908D51 /* Date+ToString.swift in Sources */,
 				A85DCC081F5D2151004E1095 /* CustomCell.swift in Sources */,
 				A8114B0B23017DB70024975A /* ListScrollIndicatorMovableIcon.swift in Sources */,
+				A8A85A9925A60DF500182B99 /* UIButton+BackgroundColor.swift in Sources */,
 				A8C59B76243CC86100FF79EA /* R.generated.swift in Sources */,
 				A86F419E24548797005D929A /* MyPageTableItem.swift in Sources */,
 				A8B6EE952205902100908D51 /* ListSectionHeaderView.swift in Sources */,
 				A80EAE5821F4C0B4006B02E8 /* UIView+Highlight.swift in Sources */,
 				A80EAE5A21FD5F87006B02E8 /* ThankYouCell.swift in Sources */,
+				A8A85AC025A60E8500182B99 /* UIImage+FromUIColor.swift in Sources */,
 				A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */,
 				A86F41A124570B0B005D929A /* PlaceHolderTextView.swift in Sources */,
 				A8959E8F245952260080C05A /* Array+Nullable.swift in Sources */,
@@ -727,7 +739,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -782,7 +794,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				"SWIFT_INCLUDE_PATHS[arch=*]" = "${SRCROOT}";
@@ -801,7 +813,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Aika Yamada (3N9YMP34Z6)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 6JDKJKDJ28;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -833,7 +845,7 @@
 					"$(SRCROOT)",
 				);
 				INFOPLIST_FILE = ThankYouList/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.4.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.balenaik.ThankYouList;
@@ -850,17 +862,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ThankYouList/Resources/ThankYouList.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Aika Yamada (3N9YMP34Z6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution: Aika Yamada (6JDKJKDJ28)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 6JDKJKDJ28;
 				INFOPLIST_FILE = ThankYouList/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.4.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.balenaik.ThankYouList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.balenaik.ThankYouList";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.balenaik.ThankYouList";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

@@ -5,6 +5,10 @@
   Created by Aika Yamada on 2017/11/04.
   Copyright © 2017 Aika Yamada. All rights reserved.
 */
+"login_continue_with_facebook" = "Continue with Facebook";
+"login_continue_with_google" = "Continue with Google";
+"login_continue_with_apple" = "Continue with Apple";
+
 "monthYear" = "%1$@ %2$@";
 "Date" = "Date";
 "Delete Thank you" = "Delete Thank you";
@@ -20,8 +24,7 @@
 "Failed to add" = "Failed to add";
 "Failed to edit" = "Failed to edit";
 "Failed to delete" = "Failed to delete";
-"Continue with Facebook" = "Continue with Facebook";
-"Continue with Google" = "Continue with Google";
+
 "Take a simple diary & be happier" = "Take a simple diary\n& be happier";
 
 "list_navigationbar_title" = "Thank You List";
@@ -32,3 +35,8 @@
 
 "mypage_title" = "Account";
 "mypage_logout" = "Logout";
+
+"ok" = "OK";
+
+"error" = "Error";
+"error_authenticate" = "Authentication failed";

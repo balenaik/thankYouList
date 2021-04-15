@@ -47,14 +47,7 @@ class EditThankYouViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupNavigationBar()
-        
-        guard let editingThankYouData = editingThankYouData else {
-            self.dismiss(animated: true, completion: nil)
-            return
-        }
-        editThankYouTextView.text = editingThankYouData.value
-        datePicker.setDate(editingThankYouData.date, animated: true)
-        thankYouDateView.setDate(editingThankYouData.date)
+        setupEditThankYouData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -139,10 +132,20 @@ private extension EditThankYouViewController {
         deleteHeaderView.hideHeaderTitle()
         editThankYouTextView.placeHolder = NSLocalizedString("What are you thankful for?", comment: "")
         editThankYouTextView.setInset(sideMargin: textViewSideMargin, topMargin: textViewTopMargin)
-        adjustTextViewHeight(editThankYouTextView)
         editThankYouTextView.becomeFirstResponder()
 
         self.navigationItem.title = "Edit Thank You".localized
+    }
+
+    func setupEditThankYouData() {
+        guard let editingThankYouData = editingThankYouData else {
+            dismiss(animated: true, completion: nil)
+            return
+        }
+        editThankYouTextView.text = editingThankYouData.value
+        datePicker.setDate(editingThankYouData.date, animated: true)
+        thankYouDateView.setDate(editingThankYouData.date)
+        adjustTextViewHeight(editThankYouTextView)
     }
     
     @objc private func keyboardWillShow(notification: Notification) {

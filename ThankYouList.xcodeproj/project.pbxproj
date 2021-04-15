@@ -245,9 +245,6 @@
 		A8114AFD22E4484C0024975A /* AddThankYou */ = {
 			isa = PBXGroup;
 			children = (
-				A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */,
-				A84FDB5D21DC365F00593326 /* SettingHeaderView.xib */,
-				A84FDB5F21DC37E900593326 /* SettingHeaderView.swift */,
 				A84FDB5B21DBB8DF00593326 /* AddThankYouViewController.swift */,
 				A8114AFE22E448690024975A /* AddThankYou.storyboard */,
 			);
@@ -330,6 +327,9 @@
 			isa = PBXGroup;
 			children = (
 				A86F41A024570B0B005D929A /* PlaceHolderTextView.swift */,
+				A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */,
+				A84FDB5D21DC365F00593326 /* SettingHeaderView.xib */,
+				A84FDB5F21DC37E900593326 /* SettingHeaderView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";

@@ -14,6 +14,7 @@ import Firebase
 
 private let textViewSideMargin = CGFloat(4)
 private let textViewTopMargin = CGFloat(8)
+private let textViewMinHeight = CGFloat(80)
 
 class AddThankYouViewController: UIViewController {
     
@@ -157,9 +158,11 @@ private extension AddThankYouViewController {
         }
     }
     
-    private func adjustTextViewHeight(_ textView: UITextView) {
-        var height = textView.sizeThatFits(CGSize(width: textView.frame.size.width, height: CGFloat.greatestFiniteMagnitude)).height
-        height = height < 80 ? 80 : height
+    func adjustTextViewHeight() {
+        var height = addThankYouTextView.sizeThatFits(
+            CGSize(width: addThankYouTextView.frame.size.width,
+                   height: CGFloat.greatestFiniteMagnitude)).height
+        height = height < textViewMinHeight ? textViewMinHeight : height
         addThankYouTextViewHeightContraint.constant = height
     }
 }
@@ -168,7 +171,7 @@ private extension AddThankYouViewController {
 // MARK: - Extensions
 extension AddThankYouViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        adjustTextViewHeight(textView)
+        adjustTextViewHeight()
     }
 }
 

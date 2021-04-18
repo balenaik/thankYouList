@@ -12,6 +12,10 @@ import FirebaseFirestore
 import FirebaseAuth
 import Firebase
 
+private let calendarDateFormat = "yyyy/MM/dd"
+private let calendarStartDate = "2016/01/01"
+private let calendarEndDate = "2025/12/31"
+
 class CalendarViewController: UIViewController {
     
     // MARK: - Properties
@@ -181,7 +185,7 @@ extension CalendarViewController {
     }
     
     private func updateCurrentSectionItems() {
-        let selectedDate = calendarView.selectedDates[0]
+        guard let selectedDate = calendarView.selectedDates.getSafely(at: 0) else { return }
         getListFromDate(selectedDate)
     }
     
@@ -251,12 +255,12 @@ extension CalendarViewController {
 extension CalendarViewController: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy MM dd"
+        formatter.dateFormat = calendarDateFormat
         formatter.timeZone = Calendar.current.timeZone
         formatter.locale = Calendar.current.locale
         
-        let startDate = formatter.date(from:"2016 01 01")!
-        let endDate = formatter.date(from:"2020 12 31")!
+        let startDate = formatter.date(from: calendarStartDate) ?? Date()
+        let endDate = formatter.date(from: calendarEndDate) ?? Date()
         
         let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate)
         return parameters
@@ -303,8 +307,9 @@ extension CalendarViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ThankYouCell.cellIdentifier(), for: indexPath) as! ThankYouCell
-        let thankYouData = selectedList[indexPath.row]
-        cell.bind(thankYouData: thankYouData)
+        if let thankYouData = selectedList.getSafely(at: indexPath.row) {
+            cell.bind(thankYouData: thankYouData)
+        }
         cell.selectionStyle = .none
         return cell
     }
@@ -319,8 +324,8 @@ extension CalendarViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        let thankYouId =  selectedList[indexPath.row].id
-        if let height = estimatedRowHeights[thankYouId] {
+        if let thankYouId =  selectedList.getSafely(at: indexPath.row)?.id,
+           let height = estimatedRowHeights[thankYouId] {
             return height
         }
         return tableView.estimatedRowHeight
@@ -328,12 +333,13 @@ extension CalendarViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.contentView.updateConstraints()
-        let thankYouId =  selectedList[indexPath.row].id
-        estimatedRowHeights[thankYouId] = cell.frame.size.height
+        if let thankYouId =  selectedList.getSafely(at: indexPath.row)?.id {
+            estimatedRowHeights[thankYouId] = cell.frame.size.height
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let editingThankYouData = selectedList[indexPath.row]
+        guard let editingThankYouData = selectedList.getSafely(at: indexPath.row) else { return }
         let vc = EditThankYouViewController.createViewController(thankYouData: editingThankYouData)
         let navi = UINavigationController(rootViewController: vc)
         self.present(navi, animated: true, completion: nil)

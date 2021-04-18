@@ -5,6 +5,10 @@
   Created by Aika Yamada on 2017/11/04.
   Copyright © 2017 Aika Yamada. All rights reserved.
 */
+"login_continue_with_facebook" = "Facebookで続行";
+"login_continue_with_google" = "Googleで続行";
+"login_continue_with_apple" = "Appleで続行";
+
 "monthYear" = "%2$@年 %1$@";
 "Date" = "日付";
 "Delete Thank you" = "Thank youを削除";
@@ -20,8 +24,6 @@
 "Failed to add" = "作成できませんでした";
 "Failed to edit" = "編集できませんでした";
 "Failed to delete" = "削除できませんでした";
-"Continue with Facebook" = "Facebookで続行";
-"Continue with Google" = "Googleで続行";
 "Take a simple diary & be happier" = "日々の「ありがとう」を書いて\n幸せな気持ちになろう";
 
 "list_navigationbar_title" = "Thank You List";
@@ -30,3 +32,8 @@
 
 "mypage_title" = "アカウント";
 "mypage_logout" = "ログアウト";
+
+"ok" = "OK";
+
+"error" = "エラー";
+"error_authenticate" = "認証に失敗しました。";

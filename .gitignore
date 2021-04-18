@@ -15,6 +15,10 @@ firebase.json
 # Images
 img/*
 
+# Bundler
+.bundle
+vendor/bundle
+
 # Cocoapods
 Pods/*
 

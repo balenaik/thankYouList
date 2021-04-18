@@ -13,7 +13,7 @@ import FirebaseAuth
 import Firebase
 
 private let textViewSideMargin = CGFloat(4)
-private let textViewTopMargin = CGFloat(8)
+private let textViewTopBottomMargin = CGFloat(8)
 private let textViewMinHeight = CGFloat(80)
 
 class AddThankYouViewController: UIViewController {
@@ -112,7 +112,7 @@ private extension AddThankYouViewController {
         addThankYouTextViewHeaderView.setHeaderTitle(addThankYouTextViewHeaderViewString)
         thankYouDatePickerHeaderView.setHeaderTitle(thankYouDatePickerHeaderViewString)
         addThankYouTextView.placeHolder = NSLocalizedString("What are you thankful for?", comment: "")
-        addThankYouTextView.setInset(sideMargin: textViewSideMargin, topMargin: textViewTopMargin)
+        addThankYouTextView.setInset(sideMargin: textViewSideMargin, topMargin: textViewTopBottomMargin, bottomMargin: textViewTopBottomMargin)
         addThankYouTextView.becomeFirstResponder()
         thankYouDateView.setDate(delegate.selectedDate ?? Date())
 

@@ -13,7 +13,7 @@ import FirebaseAuth
 import Firebase
 
 private let textViewSideMargin = CGFloat(4)
-private let textViewTopMargin = CGFloat(8)
+private let textViewTopBottomMargin = CGFloat(8)
 private let textViewMinHeight = CGFloat(80)
 
 class EditThankYouViewController: UIViewController {
@@ -132,7 +132,7 @@ private extension EditThankYouViewController {
         thankYouDatePickerHeaderView.setHeaderTitle(thankYouDatePickerHeaderViewString)
         deleteHeaderView.hideHeaderTitle()
         editThankYouTextView.placeHolder = NSLocalizedString("What are you thankful for?", comment: "")
-        editThankYouTextView.setInset(sideMargin: textViewSideMargin, topMargin: textViewTopMargin)
+        editThankYouTextView.setInset(sideMargin: textViewSideMargin, topMargin: textViewTopBottomMargin, bottomMargin: textViewTopBottomMargin)
         editThankYouTextView.becomeFirstResponder()
 
         self.navigationItem.title = "Edit Thank You".localized

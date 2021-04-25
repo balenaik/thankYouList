@@ -245,9 +245,6 @@
 		A8114AFD22E4484C0024975A /* AddThankYou */ = {
 			isa = PBXGroup;
 			children = (
-				A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */,
-				A84FDB5D21DC365F00593326 /* SettingHeaderView.xib */,
-				A84FDB5F21DC37E900593326 /* SettingHeaderView.swift */,
 				A84FDB5B21DBB8DF00593326 /* AddThankYouViewController.swift */,
 				A8114AFE22E448690024975A /* AddThankYou.storyboard */,
 			);
@@ -330,6 +327,9 @@
 			isa = PBXGroup;
 			children = (
 				A86F41A024570B0B005D929A /* PlaceHolderTextView.swift */,
+				A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */,
+				A84FDB5D21DC365F00593326 /* SettingHeaderView.xib */,
+				A84FDB5F21DC37E900593326 /* SettingHeaderView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -813,7 +813,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Aika Yamada (3N9YMP34Z6)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6JDKJKDJ28;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -847,7 +847,7 @@
 				INFOPLIST_FILE = ThankYouList/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.4.7;
+				MARKETING_VERSION = 1.4.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.balenaik.ThankYouList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.balenaik.ThankYouList";
@@ -864,12 +864,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution: Aika Yamada (6JDKJKDJ28)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6JDKJKDJ28;
 				INFOPLIST_FILE = ThankYouList/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.4.7;
+				MARKETING_VERSION = 1.4.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.balenaik.ThankYouList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.balenaik.ThankYouList";

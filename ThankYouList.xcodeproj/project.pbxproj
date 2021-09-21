@@ -16,7 +16,7 @@
 		A80EAE5A21FD5F87006B02E8 /* ThankYouCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80EAE5921FD5F87006B02E8 /* ThankYouCell.swift */; };
 		A80EAE5C21FD5FA6006B02E8 /* ThankYouCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A80EAE5B21FD5FA6006B02E8 /* ThankYouCell.xib */; };
 		A810D8DA23461F99008F2E74 /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A810D8D923461F99008F2E74 /* UIColor+Theme.swift */; };
-		A810D8DC2346211E008F2E74 /* ColorAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A810D8DB2346211E008F2E74 /* ColorAssets.xcassets */; };
+		A810D8DC2346211E008F2E74 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A810D8DB2346211E008F2E74 /* Colors.xcassets */; };
 		A810D8E423483125008F2E74 /* String+Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A810D8E323483125008F2E74 /* String+Localizable.swift */; };
 		A810D8E62348365B008F2E74 /* LocalizableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A810D8E52348365B008F2E74 /* LocalizableExtensions.swift */; };
 		A8114AF922E435960024975A /* ThankYouList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8114AF822E435960024975A /* ThankYouList.storyboard */; };
@@ -92,7 +92,7 @@
 		A80EAE5921FD5F87006B02E8 /* ThankYouCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouCell.swift; sourceTree = "<group>"; };
 		A80EAE5B21FD5FA6006B02E8 /* ThankYouCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThankYouCell.xib; sourceTree = "<group>"; };
 		A810D8D923461F99008F2E74 /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
-		A810D8DB2346211E008F2E74 /* ColorAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorAssets.xcassets; sourceTree = "<group>"; };
+		A810D8DB2346211E008F2E74 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		A810D8E323483125008F2E74 /* String+Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localizable.swift"; sourceTree = "<group>"; };
 		A810D8E52348365B008F2E74 /* LocalizableExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableExtensions.swift; sourceTree = "<group>"; };
 		A8114AF822E435960024975A /* ThankYouList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ThankYouList.storyboard; sourceTree = "<group>"; };
@@ -376,7 +376,7 @@
 			children = (
 				A8BA38B81F5CC5F600817D5C /* images.xcassets */,
 				A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */,
-				A810D8DB2346211E008F2E74 /* ColorAssets.xcassets */,
+				A810D8DB2346211E008F2E74 /* Colors.xcassets */,
 				A824150B205CDF5800172587 /* ThankYouList.entitlements */,
 				A8AFE4CE22DB81960045C707 /* GoogleService-Info.plist */,
 				A8F06BB81F55396F00A90170 /* Launch Screen.storyboard */,
@@ -487,7 +487,7 @@
 				A8F06BB91F55396F00A90170 /* Launch Screen.storyboard in Resources */,
 				A8114AFF22E448690024975A /* AddThankYou.storyboard in Resources */,
 				A8114B0822E45BB90024975A /* Login.storyboard in Resources */,
-				A810D8DC2346211E008F2E74 /* ColorAssets.xcassets in Resources */,
+				A810D8DC2346211E008F2E74 /* Colors.xcassets in Resources */,
 				A8C59B79243CD32200FF79EA /* MyPage.storyboard in Resources */,
 				A8A06864244F444400839D14 /* MyPageProfileCell.xib in Resources */,
 				A8831CCE1E9CFE6B00F3CA0A /* Assets.xcassets in Resources */,

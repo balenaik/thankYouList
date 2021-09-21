@@ -13,7 +13,8 @@ import FirebaseAuth
 import Firebase
 
 private let textViewSideMargin = CGFloat(4)
-private let textViewTopMargin = CGFloat(8)
+private let textViewTopBottomMargin = CGFloat(8)
+private let textViewMinHeight = CGFloat(80)
 
 class EditThankYouViewController: UIViewController {
     
@@ -47,14 +48,7 @@ class EditThankYouViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupNavigationBar()
-        
-        guard let editingThankYouData = editingThankYouData else {
-            self.dismiss(animated: true, completion: nil)
-            return
-        }
-        editThankYouTextView.text = editingThankYouData.value
-        datePicker.setDate(editingThankYouData.date, animated: true)
-        thankYouDateView.setDate(editingThankYouData.date)
+        setupEditThankYouData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -138,11 +132,21 @@ private extension EditThankYouViewController {
         thankYouDatePickerHeaderView.setHeaderTitle(thankYouDatePickerHeaderViewString)
         deleteHeaderView.hideHeaderTitle()
         editThankYouTextView.placeHolder = NSLocalizedString("What are you thankful for?", comment: "")
-        editThankYouTextView.setInset(sideMargin: textViewSideMargin, topMargin: textViewTopMargin)
-        adjustTextViewHeight(editThankYouTextView)
+        editThankYouTextView.setInset(sideMargin: textViewSideMargin, topMargin: textViewTopBottomMargin, bottomMargin: textViewTopBottomMargin)
         editThankYouTextView.becomeFirstResponder()
 
         self.navigationItem.title = "Edit Thank You".localized
+    }
+
+    func setupEditThankYouData() {
+        guard let editingThankYouData = editingThankYouData else {
+            dismiss(animated: true, completion: nil)
+            return
+        }
+        editThankYouTextView.text = editingThankYouData.value
+        datePicker.setDate(editingThankYouData.date, animated: true)
+        thankYouDateView.setDate(editingThankYouData.date)
+        adjustTextViewHeight()
     }
     
     @objc private func keyboardWillShow(notification: Notification) {
@@ -185,9 +189,11 @@ private extension EditThankYouViewController {
         }
     }
     
-    private func adjustTextViewHeight(_ textView: UITextView) {
-        var height = textView.sizeThatFits(CGSize(width: textView.frame.size.width, height: CGFloat.greatestFiniteMagnitude)).height
-        height = height < 80 ? 80 : height
+    private func adjustTextViewHeight() {
+        var height = editThankYouTextView.sizeThatFits(
+            CGSize(width: editThankYouTextView.frame.size.width,
+                   height: CGFloat.greatestFiniteMagnitude)).height
+        height = height < textViewMinHeight ? textViewMinHeight : height
         editThankYouTextViewHeightContraint.constant = height
     }
     
@@ -226,7 +232,7 @@ private extension EditThankYouViewController {
 // MARK: - Extensions
 extension EditThankYouViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        adjustTextViewHeight(textView)
+        adjustTextViewHeight()
     }
 }
 

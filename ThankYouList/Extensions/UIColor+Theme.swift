@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 
 extension UIColor {
+    class var materialGrey: UIColor {
+        return UIColor(colorWithHexValue: 0x9e9e9e)
+    }
+
     class var sectionTitleGray: UIColor {
         return UIColor(white: 119.0 / 255.0, alpha: 1.0)
     }

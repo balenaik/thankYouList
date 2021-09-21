@@ -13,20 +13,13 @@ import FBSDKLoginKit
 import GoogleSignIn
 import AuthenticationServices
 
-private let loginButtonBorderWidth = CGFloat(0.5)
-private let loginButtonBorderColor = UIColor.black.cgColor
-private let loginButtonCornerRadius = CGFloat(24)
-private let loginButtonHighlightedColor = UIColor.gray.withAlphaComponent(0.1)
-
-private let loginButtonImageLeftInset = CGFloat(20)
-
 private let appleProviderId = "apple.com"
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet weak var facebookLoginButton: UIButton!
-    @IBOutlet weak var googleLoginButton: UIButton!
-    @IBOutlet weak var appleLoginButton: UIButton!
+    @IBOutlet weak var facebookLoginButton: LoginContinueButton!
+    @IBOutlet weak var googleLoginButton: LoginContinueButton!
+    @IBOutlet weak var appleLoginButton: LoginContinueButton!
 
     private var currentNonce: String?
     
@@ -44,24 +37,6 @@ class LoginViewController: UIViewController {
         facebookLoginButton.setTitle(R.string.localizable.login_continue_with_facebook(), for: .normal)
         googleLoginButton.setTitle(R.string.localizable.login_continue_with_google(), for: .normal)
         appleLoginButton.setTitle(R.string.localizable.login_continue_with_apple(), for: .normal)
-        
-        facebookLoginButton.layer.cornerRadius = loginButtonCornerRadius
-        facebookLoginButton.layer.borderWidth = loginButtonBorderWidth
-        facebookLoginButton.layer.borderColor = loginButtonBorderColor
-        googleLoginButton.layer.cornerRadius = loginButtonCornerRadius
-        googleLoginButton.layer.borderWidth = loginButtonBorderWidth
-        googleLoginButton.layer.borderColor = loginButtonBorderColor
-        appleLoginButton.layer.cornerRadius = loginButtonCornerRadius
-        appleLoginButton.layer.borderWidth = loginButtonBorderWidth
-        appleLoginButton.layer.borderColor = loginButtonBorderColor
-
-        facebookLoginButton.setBackgroundColor(color: loginButtonHighlightedColor, for: .highlighted)
-        googleLoginButton.setBackgroundColor(color: loginButtonHighlightedColor, for: .highlighted)
-        appleLoginButton.setBackgroundColor(color: loginButtonHighlightedColor, for: .highlighted)
-
-        facebookLoginButton.adjustLoginInset()
-        googleLoginButton.adjustLoginInset()
-        appleLoginButton.adjustLoginInset()
     }
 }
 
@@ -223,25 +198,5 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
 extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
-    }
-}
-
-// MARK: - UIButton extension
-fileprivate extension UIButton {
-    func adjustLoginInset() {
-        let originalImageEdgeInsets = self.imageEdgeInsets
-        let originalTitleEdgeInsets = self.titleEdgeInsets
-        let buttonWidth = self.frame.width
-        let imageWidth = self.imageView?.frame.width ?? 0
-        let textWidth = self.titleLabel?.frame.width ?? 0
-
-        self.imageEdgeInsets = UIEdgeInsets(top: originalImageEdgeInsets.top,
-                                            left: loginButtonImageLeftInset,
-                                            bottom: originalImageEdgeInsets.bottom,
-                                            right: buttonWidth - textWidth - imageWidth)
-        self.titleEdgeInsets = UIEdgeInsets(top: originalTitleEdgeInsets.top,
-                                            left: -imageWidth / 2,
-                                            bottom: originalTitleEdgeInsets.bottom,
-                                            right: 0)
     }
 }

@@ -15,7 +15,7 @@ import AuthenticationServices
 
 private let loginButtonBorderWidth = CGFloat(0.5)
 private let loginButtonBorderColor = UIColor.black.cgColor
-private let loginButtonCornerRadius = CGFloat(10)
+private let loginButtonCornerRadius = CGFloat(24)
 private let loginButtonHighlightedColor = UIColor.gray.withAlphaComponent(0.1)
 
 private let loginButtonImageLeftInset = CGFloat(20)
@@ -235,7 +235,6 @@ fileprivate extension UIButton {
         let imageWidth = self.imageView?.frame.width ?? 0
         let textWidth = self.titleLabel?.frame.width ?? 0
 
-        self.contentEdgeInsets = UIEdgeInsets.zero
         self.imageEdgeInsets = UIEdgeInsets(top: originalImageEdgeInsets.top,
                                             left: loginButtonImageLeftInset,
                                             bottom: originalImageEdgeInsets.bottom,

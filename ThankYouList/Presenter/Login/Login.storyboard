@@ -24,7 +24,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lhP-97-AFw">
                                 <rect key="frame" x="24" y="234.5" width="366" height="427"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageLogin" translatesAutoresizingMaskIntoConstraints="NO" id="hPC-Cz-qhF">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageThankYouChan" translatesAutoresizingMaskIntoConstraints="NO" id="hPC-Cz-qhF">
                                         <rect key="frame" x="0.0" y="0.0" width="366" height="100"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CsU-j8-d7u" userLabel="Spacer">
@@ -148,7 +148,7 @@
         <image name="ic_apple" width="24" height="24"/>
         <image name="ic_facebook" width="24" height="24"/>
         <image name="ic_google" width="24" height="24"/>
-        <image name="imageLogin" width="123" height="100.38173675537109"/>
+        <image name="imageThankYouChan" width="123" height="100.38173675537109"/>
         <namedColor name="accent">
             <color red="0.50588235294117645" green="0.44705882352941179" blue="0.41568627450980394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

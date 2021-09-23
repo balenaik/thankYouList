@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tYx-4c-akF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tYx-4c-akF">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -42,6 +42,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="s0L-7X-hNI"/>
                         <color key="backgroundColor" red="0.94901960780000005" green="0.96862745100000003" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="adP-X3-het" firstAttribute="top" secondItem="s0L-7X-hNI" secondAttribute="top" id="00B-vL-Qoc"/>
@@ -56,10 +57,9 @@
                             <constraint firstAttribute="trailing" secondItem="J3S-5e-ePR" secondAttribute="trailing" id="sQf-32-rcj"/>
                             <constraint firstItem="J3S-5e-ePR" firstAttribute="leading" secondItem="yk0-yc-lwD" secondAttribute="leading" id="ufX-CX-DGz"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="s0L-7X-hNI"/>
                     </view>
                     <navigationItem key="navigationItem" id="3yM-HQ-dPH">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="icUserFill" id="aTc-Yy-m9S">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="icAccountCircle24" id="aTc-Yy-m9S">
                             <connections>
                                 <action selector="tapUserIcon:" destination="tYx-4c-akF" id="PRq-Ax-w8x"/>
                             </connections>
@@ -78,7 +78,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icUserFill" width="21" height="21"/>
+        <image name="icAccountCircle24" width="23.999998092651367" height="23.999998092651367"/>
         <namedColor name="tableViewBg">
             <color red="0.94117647058823528" green="0.94901960784313721" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

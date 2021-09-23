@@ -14,6 +14,10 @@ extension UIColor {
         return UIColor(colorWithHexValue: 0x9e9e9e)
     }
 
+    class var text: UIColor {
+        return UIColor.black.withAlphaComponent(0.87)
+    }
+
     class var sectionTitleGray: UIColor {
         return UIColor(white: 119.0 / 255.0, alpha: 1.0)
     }
@@ -24,13 +28,5 @@ extension UIColor {
 
     class var highlightYellow: UIColor {
         return UIColor(colorWithHexValue: 0xfffc99)
-    }
-
-    class var navigationBarBg: UIColor {
-        return UIColor(colorWithHexValue: 0xfff8e8)
-    }
-
-    class var navigationBarText: UIColor {
-        return UIColor(colorWithHexValue: 0xfe939d)
     }
 }

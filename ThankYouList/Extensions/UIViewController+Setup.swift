@@ -11,10 +11,10 @@ import UIKit
 
 extension UIViewController {
     func setupNavigationBar() {
-        self.navigationController?.navigationBar.barTintColor = UIColor.navigationBarBg
-        self.navigationController?.navigationBar.tintColor = UIColor.navigationBarText
+        self.navigationController?.navigationBar.barTintColor = .white
+        self.navigationController?.navigationBar.tintColor = .text
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor : UIColor.navigationBarText
+            NSAttributedString.Key.foregroundColor : UIColor.text
         ]
     }
 }

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BHa-r9-xW4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BHa-r9-xW4">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Ib Calendar Data Source-->
+        <!--Calendar View Controller-->
         <scene sceneID="vN2-7B-xpe">
             <objects>
                 <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="BHa-r9-xW4" customClass="CalendarViewController" customModule="ThankYouList" customModuleProvider="target" sceneMemberID="viewController">
@@ -299,6 +299,7 @@
                                 </connections>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="l6P-v5-NK4"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="6ew-AQ-oPn" firstAttribute="leading" secondItem="umM-Fv-Sw8" secondAttribute="leading" id="7YC-eB-0zY"/>
@@ -309,10 +310,9 @@
                             <constraint firstItem="6ew-AQ-oPn" firstAttribute="top" secondItem="yYE-DK-q6G" secondAttribute="bottom" id="pql-kk-aof"/>
                             <constraint firstAttribute="trailing" secondItem="6ew-AQ-oPn" secondAttribute="trailing" id="ybm-6f-pwd"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="l6P-v5-NK4"/>
                     </view>
                     <navigationItem key="navigationItem" id="xkW-t1-bKd">
-                        <barButtonItem key="rightBarButtonItem" image="icUserFill" id="bkB-jK-IfK">
+                        <barButtonItem key="rightBarButtonItem" image="icAccountCircle24" id="bkB-jK-IfK">
                             <connections>
                                 <action selector="tapUserIcon:" destination="BHa-r9-xW4" id="gKK-AU-w2h"/>
                             </connections>
@@ -340,7 +340,7 @@
     </scenes>
     <resources>
         <image name="dot" width="500" height="500"/>
-        <image name="icUserFill" width="21" height="21"/>
+        <image name="icAccountCircle24" width="23.999998092651367" height="23.999998092651367"/>
         <image name="plus" width="500" height="500"/>
         <namedColor name="highlightYellow">
             <color red="1" green="0.9882352941176471" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -50,6 +50,7 @@
 		A8831CC91E9CFE6B00F3CA0A /* ThankYouListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8831CC81E9CFE6B00F3CA0A /* ThankYouListViewController.swift */; };
 		A8831CCE1E9CFE6B00F3CA0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */; };
 		A8851E9C26FA752B008B2D7A /* LoginContinueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8851E9B26FA752B008B2D7A /* LoginContinueButton.swift */; };
+		A8851EA326FC1522008B2D7A /* imageLaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = A8851EA226FC1522008B2D7A /* imageLaunchScreen.png */; };
 		A8959E8F245952260080C05A /* Array+Nullable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8959E8E245952260080C05A /* Array+Nullable.swift */; };
 		A89AF9E72106905500FF6893 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AF9E62106905500FF6893 /* Crypto.swift */; };
 		A89CF876211C73AC00CA5518 /* SecretData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89CF875211C73AC00CA5518 /* SecretData.swift */; };
@@ -129,6 +130,7 @@
 		A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8831CD21E9CFE6B00F3CA0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8851E9B26FA752B008B2D7A /* LoginContinueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginContinueButton.swift; sourceTree = "<group>"; };
+		A8851EA226FC1522008B2D7A /* imageLaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imageLaunchScreen.png; sourceTree = "<group>"; };
 		A8959E8E245952260080C05A /* Array+Nullable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Nullable.swift"; sourceTree = "<group>"; };
 		A89AF9E62106905500FF6893 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		A89CF875211C73AC00CA5518 /* SecretData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretData.swift; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 			isa = PBXGroup;
 			children = (
 				A8BA38B81F5CC5F600817D5C /* images.xcassets */,
+				A8851EA226FC1522008B2D7A /* imageLaunchScreen.png */,
 				A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */,
 				A810D8DB2346211E008F2E74 /* Colors.xcassets */,
 				A824150B205CDF5800172587 /* ThankYouList.entitlements */,
@@ -482,6 +485,7 @@
 			files = (
 				A8AFE4CF22DB81960045C707 /* GoogleService-Info.plist in Resources */,
 				A881350E2131432C00BE8F48 /* EmptyView.xib in Resources */,
+				A8851EA326FC1522008B2D7A /* imageLaunchScreen.png in Resources */,
 				A84FDB5E21DC365F00593326 /* SettingHeaderView.xib in Resources */,
 				A808C618220FAD06004162E4 /* SmallListView.xib in Resources */,
 				A80EAE5C21FD5FA6006B02E8 /* ThankYouCell.xib in Resources */,

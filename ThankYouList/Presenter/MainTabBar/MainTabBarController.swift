@@ -1,12 +1,7 @@
 import UIKit
 import FirebaseAuth
 
-//UITabBarControllerを継承
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
-    var viewController: ThankYouListViewController!
-    var calendarVC: CalendarViewController!
-    var uid: String?
-    var tabsArray: [UIViewController]?
     
     // Set colors
     let tabBarBgColor = UIColor(colorWithHexValue: 0xf2f7f2)

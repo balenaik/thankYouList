@@ -89,8 +89,8 @@ private extension LoginViewController {
             }
             let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.moveUDDataToFirestoreIfNeeded()
-            if let loginViewController = appDelegate.window?.rootViewController {
-                let mainTabBarController: MainTabBarController = MainTabBarController()
+            if let loginViewController = appDelegate.window?.rootViewController,
+               let mainTabBarController: MainTabBarController = MainTabBarController.createViewController() {
                 appDelegate.createRootViewController(mainViewController: mainTabBarController)
                 loginViewController.dismiss(animated: true, completion: nil)
             }

@@ -45,8 +45,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         }
         moveUDDataToFirestoreIfNeeded()
-        let mainTabBarController: MainTabBarController = MainTabBarController()
-        createRootViewController(mainViewController: mainTabBarController)
+        if let mainTabBarController = MainTabBarController.createViewController() {
+            createRootViewController(mainViewController: mainTabBarController)
+        }
 
         self.selectedDate = Date()
         self.window?.makeKeyAndVisible()

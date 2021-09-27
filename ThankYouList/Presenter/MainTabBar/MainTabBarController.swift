@@ -33,12 +33,9 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         UITabBarItem.appearance().setTitleTextAttributes(selectedAttributes, for: UIControl.State.selected)
         UITabBar.appearance().tintColor = self.tabBarTextColor
         UITabBar.appearance().barTintColor = self.tabBarBgColor
-        UITabBar.appearance().selectionIndicatorImage = UIImage().createSelectionIndicator(color: self.tabBarTextColor, size: CGSize(width: tabBar.frame.width/3, height: tabBar.frame.height), lineWidth: 3.0)
         
-        // タブで表示するViewControllerを配列に格納します。
-        tabsArray = NSArray(objects: thankYouListNavigation, addThankYouViewController, thankYouCalendarNavigation) as? [UIViewController]
-        
-        self.createViewController(vcs: tabsArray!)
+        let tabs = [thankYouListNavigation, thankYouCalendarNavigation]
+        createViewController(vcs: tabs)
     }
     
     
@@ -86,5 +83,14 @@ extension UIImage {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image!
+    }
+}
+
+extension MainTabBarController {
+    static func createViewController() -> MainTabBarController? {
+        guard let viewController = R.storyboard.mainTabBar().instantiateInitialViewController() as? MainTabBarController else {
+            return nil
+        }
+        return viewController
     }
 }

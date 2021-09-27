@@ -52,6 +52,7 @@
 		A8851E9C26FA752B008B2D7A /* LoginContinueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8851E9B26FA752B008B2D7A /* LoginContinueButton.swift */; };
 		A8851EA326FC1522008B2D7A /* imageLaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = A8851EA226FC1522008B2D7A /* imageLaunchScreen.png */; };
 		A8851ECC27014FE1008B2D7A /* CenterRoundedTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8851ECB27014FE1008B2D7A /* CenterRoundedTabBar.swift */; };
+		A8851ECF2701560F008B2D7A /* MainTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8851ECE2701560F008B2D7A /* MainTabBar.storyboard */; };
 		A8959E8F245952260080C05A /* Array+Nullable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8959E8E245952260080C05A /* Array+Nullable.swift */; };
 		A89AF9E72106905500FF6893 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AF9E62106905500FF6893 /* Crypto.swift */; };
 		A89CF876211C73AC00CA5518 /* SecretData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89CF875211C73AC00CA5518 /* SecretData.swift */; };
@@ -133,6 +134,7 @@
 		A8851E9B26FA752B008B2D7A /* LoginContinueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginContinueButton.swift; sourceTree = "<group>"; };
 		A8851EA226FC1522008B2D7A /* imageLaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imageLaunchScreen.png; sourceTree = "<group>"; };
 		A8851ECB27014FE1008B2D7A /* CenterRoundedTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterRoundedTabBar.swift; sourceTree = "<group>"; };
+		A8851ECE2701560F008B2D7A /* MainTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainTabBar.storyboard; sourceTree = "<group>"; };
 		A8959E8E245952260080C05A /* Array+Nullable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Nullable.swift"; sourceTree = "<group>"; };
 		A89AF9E62106905500FF6893 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		A89CF875211C73AC00CA5518 /* SecretData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretData.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				A8AC1BD61FD20E5500D1B25B /* MainTabBarController.swift */,
+				A8851ECE2701560F008B2D7A /* MainTabBar.storyboard */,
 				A8851ECB27014FE1008B2D7A /* CenterRoundedTabBar.swift */,
 			);
 			path = MainTabBar;
@@ -499,6 +502,7 @@
 				A8114B0822E45BB90024975A /* Login.storyboard in Resources */,
 				A810D8DC2346211E008F2E74 /* Colors.xcassets in Resources */,
 				A8C59B79243CD32200FF79EA /* MyPage.storyboard in Resources */,
+				A8851ECF2701560F008B2D7A /* MainTabBar.storyboard in Resources */,
 				A8A06864244F444400839D14 /* MyPageProfileCell.xib in Resources */,
 				A8831CCE1E9CFE6B00F3CA0A /* Assets.xcassets in Resources */,
 				A8114B0222E458C70024975A /* EditThankYou.storyboard in Resources */,

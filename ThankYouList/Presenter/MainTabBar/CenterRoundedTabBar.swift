@@ -15,6 +15,8 @@ private let centerButtonMargin = CGFloat(4)
 
 private let centerCornerRadius = CGFloat(9)
 
+private let itemTitlePositionOffset = CGFloat(20)
+
 class CenterRoundedTabBar: UITabBar {
 
     private var shapeLayer: CALayer?
@@ -27,6 +29,11 @@ class CenterRoundedTabBar: UITabBar {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupCenterButton()
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        adjustItemTitlePosition()
     }
 
     override func draw(_ rect: CGRect) {
@@ -60,6 +67,17 @@ private extension CenterRoundedTabBar {
             centerButton.widthAnchor.constraint(equalToConstant: centerButtonSize),
             centerButton.heightAnchor.constraint(equalToConstant: centerButtonSize)
         ])
+    }
+
+    func adjustItemTitlePosition() {
+        // Supports only when item count is 2
+        guard items?.count == 2 else { return }
+        if let item1 = items?.getSafely(at: 0) {
+            item1.titlePositionAdjustment = UIOffset(horizontal: -itemTitlePositionOffset, vertical: 0)
+        }
+        if let item2 = items?.getSafely(at: 1) {
+            item2.titlePositionAdjustment = UIOffset(horizontal: itemTitlePositionOffset, vertical: 0)
+        }
     }
 
     func setupShape() {

@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="50" sectionHeaderHeight="18" estimatedSectionHeaderHeight="40" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="J3S-5e-ePR">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" name="tableViewBg"/>
                                 <color key="sectionIndexBackgroundColor" red="0.95301049950000005" green="0.95684367420000005" blue="0.95686382059999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
@@ -51,7 +51,7 @@
                             <constraint firstItem="ezU-hS-Ipk" firstAttribute="leading" secondItem="yk0-yc-lwD" secondAttribute="leading" id="HoQ-Jb-ZWL"/>
                             <constraint firstAttribute="trailing" secondItem="ezU-hS-Ipk" secondAttribute="trailing" id="Ljl-hQ-hth"/>
                             <constraint firstItem="adP-X3-het" firstAttribute="trailing" secondItem="s0L-7X-hNI" secondAttribute="trailing" id="Mtk-zP-q7H"/>
-                            <constraint firstItem="s0L-7X-hNI" firstAttribute="bottom" secondItem="J3S-5e-ePR" secondAttribute="bottom" id="OIx-FW-cwM"/>
+                            <constraint firstAttribute="bottom" secondItem="J3S-5e-ePR" secondAttribute="bottom" id="OIx-FW-cwM"/>
                             <constraint firstItem="ezU-hS-Ipk" firstAttribute="top" secondItem="s0L-7X-hNI" secondAttribute="top" id="ibD-40-lY0"/>
                             <constraint firstItem="J3S-5e-ePR" firstAttribute="top" secondItem="s0L-7X-hNI" secondAttribute="top" id="rol-cS-hYo"/>
                             <constraint firstAttribute="trailing" secondItem="J3S-5e-ePR" secondAttribute="trailing" id="sQf-32-rcj"/>

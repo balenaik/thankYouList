@@ -23,12 +23,12 @@ class CenterRoundedTabBar: UITabBar {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupCenterButton()
+        setup()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupCenterButton()
+        setup()
     }
 
     override func layoutSubviews() {
@@ -52,6 +52,11 @@ class CenterRoundedTabBar: UITabBar {
 }
 
 private extension CenterRoundedTabBar {
+    func setup() {
+        setupCenterButton()
+        setupTransparentBackground()
+    }
+
     func setupCenterButton() {
         let centerButton = UIButton()
         centerButton.isUserInteractionEnabled = true
@@ -67,6 +72,12 @@ private extension CenterRoundedTabBar {
             centerButton.widthAnchor.constraint(equalToConstant: centerButtonSize),
             centerButton.heightAnchor.constraint(equalToConstant: centerButtonSize)
         ])
+    }
+
+    func setupTransparentBackground() {
+        backgroundImage = UIImage()
+        shadowImage = UIImage()
+        backgroundColor = .clear
     }
 
     func adjustItemTitlePosition() {

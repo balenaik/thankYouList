@@ -9,9 +9,16 @@
 import UIKit
 
 private let tabBarBorderWidth = CGFloat(1)
+private let tabBarBorderColor = UIColor.black.withAlphaComponent(0.1)
+private let tabBarBackgroundColor = UIColor.white
 
 private let centerButtonSize = CGFloat(50)
-private let centerButtonMargin = CGFloat(4)
+private let centerButtonMargin = CGFloat(8)
+private let centerButtonColor = UIColor.primary
+private let centerButtonShadowOffset = CGSize(width: 0, height: 1)
+private let centerButtonShadowColor = UIColor.black
+private let centerButtonShadowOpacity = Float(0.2)
+private let centerButtonShadowRadius = CGFloat(1)
 
 private let centerCornerRadius = CGFloat(9)
 
@@ -55,13 +62,19 @@ private extension CenterRoundedTabBar {
     func setup() {
         setupCenterButton()
         setupTransparentBackground()
+
+        tintColor = .primary900
     }
 
     func setupCenterButton() {
         let centerButton = UIButton()
         centerButton.isUserInteractionEnabled = true
-        centerButton.backgroundColor = .cyan
+        centerButton.backgroundColor = centerButtonColor
         centerButton.layer.cornerRadius = centerButtonSize / 2
+        centerButton.layer.shadowOffset = centerButtonShadowOffset
+        centerButton.layer.shadowColor = centerButtonShadowColor.cgColor
+        centerButton.layer.shadowOpacity = centerButtonShadowOpacity
+        centerButton.layer.shadowRadius = centerButtonShadowRadius
         centerButton.addTarget(self, action: #selector(centerButtonAction(_:)), for: .touchUpInside)
         addSubview(centerButton)
         
@@ -95,6 +108,8 @@ private extension CenterRoundedTabBar {
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = createPath()
         shapeLayer.lineWidth = tabBarBorderWidth
+        shapeLayer.fillColor = tabBarBackgroundColor.cgColor
+        shapeLayer.strokeColor = tabBarBorderColor.cgColor
 
         if let oldShapeLayer = self.shapeLayer {
             self.layer.replaceSublayer(oldShapeLayer, with: shapeLayer)

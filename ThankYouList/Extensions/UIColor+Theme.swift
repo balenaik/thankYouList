@@ -6,10 +6,17 @@
 //  Copyright © 2019 Aika Yamada. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 extension UIColor {
+    class var primary: UIColor {
+        return UIColor(colorWithHexValue: 0xfcb5b5)
+    }
+
+    class var primary900: UIColor {
+        return UIColor(colorWithHexValue: 0xfa8d8d)
+    }
+
     class var materialGrey: UIColor {
         return UIColor(colorWithHexValue: 0x9e9e9e)
     }

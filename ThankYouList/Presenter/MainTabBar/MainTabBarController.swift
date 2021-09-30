@@ -31,9 +31,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         // Set colors
         let selectedAttributes = [NSAttributedString.Key.foregroundColor: self.tabBarTextColor]
         UITabBarItem.appearance().setTitleTextAttributes(selectedAttributes, for: UIControl.State.selected)
-        UITabBar.appearance().tintColor = self.tabBarTextColor
-        UITabBar.appearance().barTintColor = self.tabBarBgColor
-        
+
         let tabs = [thankYouListNavigation, thankYouCalendarNavigation]
         createViewController(vcs: tabs)
     }

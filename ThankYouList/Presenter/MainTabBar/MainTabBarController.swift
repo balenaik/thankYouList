@@ -17,14 +17,9 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         let thankYouCalendarViewController = UIStoryboard(name: "ThankYouCalendar", bundle: nil).instantiateInitialViewController()!
         let thankYouCalendarNavigation = UINavigationController(rootViewController: thankYouCalendarViewController)
         let addThankYouViewController = UIStoryboard(name: "AddThankYou", bundle: nil).instantiateInitialViewController()!
-        
-        //表示するtabItemを指定
-        thankYouListNavigation.tabBarItem.image = UIImage(named: "list")?.resize(size: CGSize(width: 25, height: 25))
-        addThankYouViewController.tabBarItem.image = UIImage(named: "add_button")?.resize(size: CGSize(width: 35, height: 35))?.withRenderingMode(.alwaysOriginal)
-        addThankYouViewController.tabBarItem.imageInsets = UIEdgeInsets(top: 5,left: 0,bottom: -5,right: 0)
-        thankYouCalendarNavigation.tabBarItem.image = UIImage(named: "calendar")
-        
-        // Set titles to the tabbar
+
+        thankYouListNavigation.tabBarItem.image = R.image.icFormatListBulleted24()
+        thankYouCalendarNavigation.tabBarItem.image = R.image.icCalendarToday24()
         thankYouListNavigation.tabBarItem.title = "List"
         thankYouCalendarNavigation.tabBarItem.title = "Calendar"
         

@@ -69,12 +69,15 @@ private extension CenterRoundedTabBar {
     func setupCenterButton() {
         let centerButton = UIButton()
         centerButton.isUserInteractionEnabled = true
+        centerButton.setImage(R.image.icAdd36(), for: .normal)
+        centerButton.tintColor = .white
         centerButton.backgroundColor = centerButtonColor
         centerButton.layer.cornerRadius = centerButtonSize / 2
         centerButton.layer.shadowOffset = centerButtonShadowOffset
         centerButton.layer.shadowColor = centerButtonShadowColor.cgColor
         centerButton.layer.shadowOpacity = centerButtonShadowOpacity
         centerButton.layer.shadowRadius = centerButtonShadowRadius
+        centerButton.adjustsImageWhenHighlighted = false
         centerButton.addTarget(self, action: #selector(centerButtonAction(_:)), for: .touchUpInside)
         addSubview(centerButton)
         

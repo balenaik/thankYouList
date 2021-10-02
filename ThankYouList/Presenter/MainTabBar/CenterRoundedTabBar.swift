@@ -67,7 +67,8 @@ private extension CenterRoundedTabBar {
     }
 
     func setupCenterButton() {
-        let centerButton = UIButton()
+        let centerButton = TapAnimationButton()
+        centerButton.delegate = self
         centerButton.isUserInteractionEnabled = true
         centerButton.setImage(R.image.icAdd36(), for: .normal)
         centerButton.tintColor = .white
@@ -78,7 +79,7 @@ private extension CenterRoundedTabBar {
         centerButton.layer.shadowOpacity = centerButtonShadowOpacity
         centerButton.layer.shadowRadius = centerButtonShadowRadius
         centerButton.adjustsImageWhenHighlighted = false
-        centerButton.addTarget(self, action: #selector(centerButtonAction(_:)), for: .touchUpInside)
+
         addSubview(centerButton)
         
         centerButton.translatesAutoresizingMaskIntoConstraints = false
@@ -145,12 +146,13 @@ private extension CenterRoundedTabBar {
         path.close()
         return path.cgPath
     }
-
-    @objc func centerButtonAction(_ sender: UIButton) {
-        print("centerbuttonTapped")
-    }
 }
 
 private extension CGFloat {
     var degreesToRadians: CGFloat { return self * .pi / 180 }
+}
+
+extension CenterRoundedTabBar: TapAnimationButtonDelegate {
+    func tapAnimationButtonDidTapButton() {
+    }
 }

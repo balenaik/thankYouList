@@ -3,10 +3,6 @@ import FirebaseAuth
 
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
-    // Set colors
-    let tabBarBgColor = UIColor(colorWithHexValue: 0xf2f7f2)
-    let tabBarTextColor = UIColor(colorWithHexValue: 0xfe939d)
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -16,28 +12,18 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         let thankYouListNavigation = UINavigationController(rootViewController: thankYouListViewController)
         let thankYouCalendarViewController = UIStoryboard(name: "ThankYouCalendar", bundle: nil).instantiateInitialViewController()!
         let thankYouCalendarNavigation = UINavigationController(rootViewController: thankYouCalendarViewController)
-        let addThankYouViewController = UIStoryboard(name: "AddThankYou", bundle: nil).instantiateInitialViewController()!
 
         thankYouListNavigation.tabBarItem.image = R.image.icFormatListBulleted24()
         thankYouCalendarNavigation.tabBarItem.image = R.image.icCalendarToday24()
         thankYouListNavigation.tabBarItem.title = "List"
         thankYouCalendarNavigation.tabBarItem.title = "Calendar"
-        
-        // Set colors
-        let selectedAttributes = [NSAttributedString.Key.foregroundColor: self.tabBarTextColor]
-        UITabBarItem.appearance().setTitleTextAttributes(selectedAttributes, for: UIControl.State.selected)
 
         let tabs = [thankYouListNavigation, thankYouCalendarNavigation]
         createViewController(vcs: tabs)
     }
     
-    
     func createViewController(vcs: [UIViewController]) {
         self.setViewControllers(vcs, animated: false)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
@@ -52,33 +38,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
 }
 
-
-extension UIImage {
-    func resize(size _size: CGSize) -> UIImage? {
-        let widthRatio = _size.width / size.width
-        let heightRatio = _size.height / size.height
-        let ratio = widthRatio < heightRatio ? widthRatio : heightRatio
-        
-        let resizedSize = CGSize(width: size.width * ratio, height: size.height * ratio)
-        
-        UIGraphicsBeginImageContextWithOptions(resizedSize, false, 0.0) // 変更
-        draw(in: CGRect(origin: .zero, size: resizedSize))
-        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return resizedImage
-    }
-    
-    func createSelectionIndicator(color: UIColor, size: CGSize, lineWidth: CGFloat) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        color.setFill()
-        UIRectFill(CGRect(origin: CGPoint(x: 0,y :size.height - lineWidth), size: CGSize(width: size.width, height: lineWidth)))
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image!
-    }
-}
-
+// MARK: - Public
 extension MainTabBarController {
     static func createViewController() -> MainTabBarController? {
         guard let viewController = R.storyboard.mainTabBar().instantiateInitialViewController() as? MainTabBarController else {

@@ -391,3 +391,12 @@ extension CalendarViewController: SmallListViewDelegate {
         Analytics.logEvent(eventName: AnalyticsEventConst.calendarSmallListViewFullScreen, userId: user.uid, targetDate: selectedDate)
     }
 }
+
+// MARK: - Public
+extension CalendarViewController {
+    static func createViewController() -> UIViewController? {
+        guard let viewController = R.storyboard.thankYouCalendar().instantiateInitialViewController() else { return nil }
+        let navigationController = UINavigationController(rootViewController: viewController)
+        return navigationController
+    }
+}

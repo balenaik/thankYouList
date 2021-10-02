@@ -9,6 +9,9 @@
 "login_continue_with_google" = "Continue with Google";
 "login_continue_with_apple" = "Continue with Apple";
 
+"main_tabbar_item_list" = "List";
+"main_tabbar_item_calendar" = "Calendar";
+
 "monthYear" = "%1$@ %2$@";
 "Date" = "Date";
 "Delete Thank you" = "Delete Thank you";

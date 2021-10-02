@@ -1,40 +1,21 @@
 import UIKit
 import FirebaseAuth
 
-class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
+class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.delegate = self
-        let thankYouListViewController =
-            UIStoryboard(name: "ThankYouList", bundle: nil).instantiateInitialViewController()!
-        let thankYouListNavigation = UINavigationController(rootViewController: thankYouListViewController)
-        let thankYouCalendarViewController = UIStoryboard(name: "ThankYouCalendar", bundle: nil).instantiateInitialViewController()!
-        let thankYouCalendarNavigation = UINavigationController(rootViewController: thankYouCalendarViewController)
 
-        thankYouListNavigation.tabBarItem.image = R.image.icFormatListBulleted24()
-        thankYouCalendarNavigation.tabBarItem.image = R.image.icCalendarToday24()
-        thankYouListNavigation.tabBarItem.title = "List"
-        thankYouCalendarNavigation.tabBarItem.title = "Calendar"
+        let thankYouListViewController = ThankYouListViewController.createViewController()
+        let calendarViewController = CalendarViewController.createViewController()
 
-        let tabs = [thankYouListNavigation, thankYouCalendarNavigation]
-        createViewController(vcs: tabs)
-    }
-    
-    func createViewController(vcs: [UIViewController]) {
-        self.setViewControllers(vcs, animated: false)
-    }
-    
-    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        if viewController is AddThankYouViewController {
-            // Need to create ViewController every time
-            let addThankYouViewController = UIStoryboard(name: "AddThankYou", bundle: nil).instantiateInitialViewController()!
-            let navigationController = UINavigationController(rootViewController: addThankYouViewController)
-            tabBarController.present(navigationController, animated: true, completion: nil)
-            return false
-        }
-        return true
+        thankYouListViewController?.tabBarItem.image = R.image.icFormatListBulleted24()
+        calendarViewController?.tabBarItem.image = R.image.icCalendarToday24()
+        thankYouListViewController?.tabBarItem.title = R.string.localizable.main_tabbar_item_list()
+        calendarViewController?.tabBarItem.title = R.string.localizable.main_tabbar_item_calendar()
+
+        let tabs = [thankYouListViewController, calendarViewController].compactMap { $0 }
+        setViewControllers(tabs, animated: false)
     }
 }
 

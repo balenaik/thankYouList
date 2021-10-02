@@ -9,6 +9,9 @@
 "login_continue_with_google" = "Googleで続行";
 "login_continue_with_apple" = "Appleで続行";
 
+"main_tabbar_item_list" = "List";
+"main_tabbar_item_calendar" = "Calendar";
+
 "monthYear" = "%2$@年 %1$@";
 "Date" = "日付";
 "Delete Thank you" = "Thank youを削除";

@@ -259,3 +259,12 @@ extension ThankYouListViewController: ListScrollIndicatorDelegate {
         Analytics.logEvent(eventName: AnalyticsEventConst.startDraggingListScrollIndicatorMovableIcon, userId: user.uid)
     }
 }
+
+// MARK: - Public
+extension ThankYouListViewController {
+    static func createViewController() -> UIViewController? {
+        guard let viewController = R.storyboard.thankYouList().instantiateInitialViewController() else { return nil }
+        let navigationController = UINavigationController(rootViewController: viewController)
+        return navigationController
+    }
+}

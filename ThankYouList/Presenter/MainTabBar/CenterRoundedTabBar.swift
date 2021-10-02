@@ -58,12 +58,14 @@ class CenterRoundedTabBar: UITabBar {
     }
 }
 
+// MARK: - Private
 private extension CenterRoundedTabBar {
     func setup() {
         setupCenterButton()
         setupTransparentBackground()
 
         tintColor = .primary900
+        unselectedItemTintColor = UIColor.black.withAlphaComponent(0.6)
     }
 
     func setupCenterButton() {

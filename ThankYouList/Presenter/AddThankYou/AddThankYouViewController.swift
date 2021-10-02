@@ -180,3 +180,13 @@ extension AddThankYouViewController: UIScrollViewDelegate {
         addThankYouTextView.resignFirstResponder()
     }
 }
+
+// MARK: - Public
+extension AddThankYouViewController {
+    static func createViewController() -> UIViewController? {
+        guard let viewController = R.storyboard.addThankYou().instantiateInitialViewController() else { return nil }
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.modalPresentationStyle = .fullScreen
+        return navigationController
+    }
+}

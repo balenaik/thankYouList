@@ -2,9 +2,13 @@ import UIKit
 import FirebaseAuth
 
 class MainTabBarController: UITabBarController {
-    
+
+    @IBOutlet private weak var centerRoundedTabBar: CenterRoundedTabBar!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        centerRoundedTabBar.customDelegate = self
 
         let thankYouListViewController = ThankYouListViewController.createViewController()
         let calendarViewController = CalendarViewController.createViewController()
@@ -26,5 +30,13 @@ extension MainTabBarController {
             return nil
         }
         return viewController
+    }
+}
+
+// MARK: - CenterRoundedTabBarDelegate
+extension MainTabBarController: CenterRoundedTabBarDelegate {
+    func centerRoundedTabBarDidTapCenterButton() {
+        guard let viewController = AddThankYouViewController.createViewController() else { return }
+        present(viewController, animated: true, completion: nil)
     }
 }

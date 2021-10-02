@@ -24,9 +24,15 @@ private let centerCornerRadius = CGFloat(9)
 
 private let itemTitlePositionOffset = CGFloat(20)
 
+protocol CenterRoundedTabBarDelegate: class {
+    func centerRoundedTabBarDidTapCenterButton()
+}
+
 class CenterRoundedTabBar: UITabBar {
 
     private var shapeLayer: CALayer?
+
+    weak var customDelegate: CenterRoundedTabBarDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -156,5 +162,6 @@ private extension CGFloat {
 
 extension CenterRoundedTabBar: TapAnimationButtonDelegate {
     func tapAnimationButtonDidTapButton() {
+        customDelegate?.centerRoundedTabBarDidTapCenterButton()
     }
 }

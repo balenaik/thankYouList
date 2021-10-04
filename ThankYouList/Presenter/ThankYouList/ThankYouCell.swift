@@ -6,8 +6,11 @@
 //  Copyright © 2019 Aika Yamada. All rights reserved.
 //
 
-import Foundation
 import UIKit
+
+private let thankYouViewShadowColor = UIColor.black.withAlphaComponent(0.26)
+private let thankYouViewShadowOpacity = Float(0.3)
+private let thankYouViewShadowOffset = CGSize(width: 0, height: 5)
 
 class ThankYouCell: UITableViewCell {
     
@@ -16,14 +19,20 @@ class ThankYouCell: UITableViewCell {
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var monthLabel: UILabel!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.backgroundColor = UIColor.clear
+        thankYouView.layer.shadowColor = thankYouViewShadowColor.cgColor
+        thankYouView.layer.shadowOpacity = thankYouViewShadowOpacity
+        thankYouView.layer.shadowOffset = thankYouViewShadowOffset
+    }
     
     @objc class func cellIdentifier() -> String {
         return String(describing: self)
     }
     
     func bind(thankYouData: ThankYouData) {
-        self.backgroundColor = UIColor.clear
-        thankYouView.layer.shadowColor = UIColor.lightGray.cgColor
         self.thankYouData = thankYouData
         contentLabel.text = thankYouData.value
         dayLabel.text = thankYouData.date.toDayString()

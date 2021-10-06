@@ -31,6 +31,7 @@
 		A820DE5721C61EF100E7F3DF /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820DE5621C61EF000E7F3DF /* UIView+Shadow.swift */; };
 		A824150F205CE28C00172587 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824150E205CE28C00172587 /* LoginViewController.swift */; };
 		A82BBF4F27071321007E8CD9 /* TapAnimationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82BBF4E27071321007E8CD9 /* TapAnimationButton.swift */; };
+		A82BBF78270C4FC4007E8CD9 /* UIFont+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82BBF77270C4FC4007E8CD9 /* UIFont+Theme.swift */; };
 		A83D5F891F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */; };
 		A841B339213ED3DE00E8AB5B /* LocalizedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841B338213ED3DE00E8AB5B /* LocalizedLabel.swift */; };
 		A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84CBEE120F198E400CBA0AB /* ConstStruct.swift */; };
@@ -113,6 +114,7 @@
 		A824150B205CDF5800172587 /* ThankYouList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThankYouList.entitlements; sourceTree = "<group>"; };
 		A824150E205CE28C00172587 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A82BBF4E27071321007E8CD9 /* TapAnimationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapAnimationButton.swift; sourceTree = "<group>"; };
+		A82BBF77270C4FC4007E8CD9 /* UIFont+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Theme.swift"; sourceTree = "<group>"; };
 		A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+RuntimeAttribute.swift"; sourceTree = "<group>"; };
 		A841B338213ED3DE00E8AB5B /* LocalizedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedLabel.swift; sourceTree = "<group>"; };
 		A84CBEE120F198E400CBA0AB /* ConstStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstStruct.swift; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 				A8959E8E245952260080C05A /* Array+Nullable.swift */,
 				A8A85A9825A60DF400182B99 /* UIButton+BackgroundColor.swift */,
 				A8A85ABF25A60E8500182B99 /* UIImage+FromUIColor.swift */,
+				A82BBF77270C4FC4007E8CD9 /* UIFont+Theme.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -663,6 +666,7 @@
 				A8A0FE61205E005D0048AB33 /* UIColor+SetColor.swift in Sources */,
 				A8851ECC27014FE1008B2D7A /* CenterRoundedTabBar.swift in Sources */,
 				A8AC1BD71FD20E5500D1B25B /* MainTabBarController.swift in Sources */,
+				A82BBF78270C4FC4007E8CD9 /* UIFont+Theme.swift in Sources */,
 				A85D9D011EA64AF900945E6E /* ThankYouData.swift in Sources */,
 				A808C616220FACF6004162E4 /* SmallListView.swift in Sources */,
 				A82BBF4F27071321007E8CD9 /* TapAnimationButton.swift in Sources */,

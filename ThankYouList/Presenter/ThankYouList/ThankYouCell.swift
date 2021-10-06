@@ -8,21 +8,23 @@
 
 import UIKit
 
+private let thankYouViewCornerRadius = CGFloat(8)
 private let thankYouViewShadowColor = UIColor.black.withAlphaComponent(0.26)
 private let thankYouViewShadowOpacity = Float(0.3)
 private let thankYouViewShadowOffset = CGSize(width: 0, height: 5)
 
 class ThankYouCell: UITableViewCell {
     
-    var thankYouData: ThankYouData?
-    @IBOutlet weak var thankYouView: UIView!
-    @IBOutlet weak var contentLabel: UILabel!
-    @IBOutlet weak var dayLabel: UILabel!
-    @IBOutlet weak var monthLabel: UILabel!
+    private var thankYouData: ThankYouData?
+    @IBOutlet private weak var thankYouView: UIView!
+    @IBOutlet private weak var contentLabel: UILabel!
+    @IBOutlet private weak var dayLabel: UILabel!
+    @IBOutlet private weak var monthLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = UIColor.clear
+        thankYouView.layer.cornerRadius = thankYouViewCornerRadius
         thankYouView.layer.shadowColor = thankYouViewShadowColor.cgColor
         thankYouView.layer.shadowOpacity = thankYouViewShadowOpacity
         thankYouView.layer.shadowOffset = thankYouViewShadowOffset

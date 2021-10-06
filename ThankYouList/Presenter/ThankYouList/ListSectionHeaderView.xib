@@ -20,25 +20,27 @@
                     <viewLayoutGuide key="safeArea" id="TW5-3k-UjC"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="ThankYouListSectionHeaderView" text="December 2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VvJ-pW-3fD">
-                    <rect key="frame" x="16" y="19.5" width="125" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <rect key="frame" x="24" y="18.5" width="327" height="23.5"/>
+                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
                     <color key="textColor" name="text"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <constraints>
                 <constraint firstItem="Fe4-qi-K3y" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="711-Qa-kFt"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="VvJ-pW-3fD" secondAttribute="trailing" constant="24" id="A8w-MH-vdf"/>
                 <constraint firstItem="Fe4-qi-K3y" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="XRQ-MD-e3U"/>
                 <constraint firstAttribute="bottom" secondItem="Fe4-qi-K3y" secondAttribute="bottom" id="nAP-Qz-Dq9"/>
-                <constraint firstItem="VvJ-pW-3fD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="qWL-rD-Lg1"/>
+                <constraint firstItem="VvJ-pW-3fD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="qWL-rD-Lg1"/>
                 <constraint firstItem="Fe4-qi-K3y" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="qdt-8E-YdX"/>
                 <constraint firstItem="VvJ-pW-3fD" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="5" id="yOr-sl-9pK"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="sectionLabel" destination="VvJ-pW-3fD" id="qXd-rC-Lhn"/>
             </connections>
+            <point key="canvasLocation" x="76" y="36"/>
         </view>
     </objects>
     <resources>

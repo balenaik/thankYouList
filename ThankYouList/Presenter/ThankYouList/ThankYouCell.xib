@@ -16,26 +16,26 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O8B-4y-en5">
-                    <rect key="frame" x="16" y="52" width="343" height="101"/>
+                    <rect key="frame" x="24" y="52" width="327" height="101"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="MlI-JU-Znh">
-                            <rect key="frame" x="0.0" y="12" width="343" height="77"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="MlI-JU-Znh">
+                            <rect key="frame" x="0.0" y="12" width="327" height="77"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ven-7p-XN9">
                                     <rect key="frame" x="0.0" y="0.0" width="96" height="77"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="5Ta-za-qDJ">
-                                            <rect key="frame" x="33" y="17.5" width="30" height="42"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5Ta-za-qDJ">
+                                            <rect key="frame" x="35" y="13" width="26" height="51"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="azP-dP-VsJ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="23"/>
-                                                    <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="23"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="26" height="31.5"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="23"/>
                                                     <color key="textColor" name="text"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jan" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQM-7B-4Or">
-                                                    <rect key="frame" x="0.0" y="28" width="30" height="14"/>
-                                                    <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="14"/>
+                                                    <rect key="frame" x="0.0" y="31.5" width="26" height="19.5"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                                     <color key="textColor" name="text"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -61,13 +61,13 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank You!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r9d-2o-fe2">
-                                    <rect key="frame" x="108" y="0.0" width="222" height="77"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <rect key="frame" x="116" y="0.0" width="190" height="77"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                     <color key="textColor" name="text"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Psj-32-Mhr">
-                                    <rect key="frame" x="342" y="0.0" width="1" height="77"/>
+                                    <rect key="frame" x="326" y="0.0" width="1" height="77"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="1" id="lKU-2g-yjS"/>
@@ -89,8 +89,8 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="O8B-4y-en5" secondAttribute="trailing" constant="16" id="UFO-th-gNQ"/>
-                <constraint firstItem="O8B-4y-en5" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="dNI-GT-LbM"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="O8B-4y-en5" secondAttribute="trailing" constant="24" id="UFO-th-gNQ"/>
+                <constraint firstItem="O8B-4y-en5" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="dNI-GT-LbM"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="O8B-4y-en5" secondAttribute="bottom" constant="8" id="j7U-yr-ryG"/>
                 <constraint firstItem="O8B-4y-en5" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="wVT-Jj-zsc"/>
             </constraints>

@@ -76,12 +76,24 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </stackView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2cY-pS-mpz">
+                            <rect key="frame" x="0.0" y="0.0" width="327" height="101"/>
+                            <connections>
+                                <action selector="thankYouViewButtonTouchDown:" destination="iN0-l3-epB" eventType="touchDown" id="eQb-ud-US8"/>
+                                <action selector="thankYouViewButtonTouchDragInside:" destination="iN0-l3-epB" eventType="touchDragInside" id="NVY-YS-cSa"/>
+                                <action selector="thankYouViewButtonTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="j71-H8-Xb1"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="2cY-pS-mpz" secondAttribute="trailing" id="1vY-CS-tEu"/>
+                        <constraint firstItem="2cY-pS-mpz" firstAttribute="top" secondItem="O8B-4y-en5" secondAttribute="top" id="98c-hh-9DH"/>
                         <constraint firstAttribute="trailing" secondItem="MlI-JU-Znh" secondAttribute="trailing" id="IiD-dC-UMe"/>
                         <constraint firstItem="MlI-JU-Znh" firstAttribute="top" secondItem="O8B-4y-en5" secondAttribute="top" constant="12" id="LUH-SL-y5j"/>
                         <constraint firstAttribute="bottom" secondItem="MlI-JU-Znh" secondAttribute="bottom" constant="12" id="Ok1-JY-v4M"/>
+                        <constraint firstAttribute="bottom" secondItem="2cY-pS-mpz" secondAttribute="bottom" id="XDM-Ry-DI0"/>
+                        <constraint firstItem="2cY-pS-mpz" firstAttribute="leading" secondItem="O8B-4y-en5" secondAttribute="leading" id="t1S-g1-qjt"/>
                         <constraint firstItem="MlI-JU-Znh" firstAttribute="leading" secondItem="O8B-4y-en5" secondAttribute="leading" id="vAf-U4-27e"/>
                     </constraints>
                 </view>
@@ -100,6 +112,7 @@
                 <outlet property="dayLabel" destination="azP-dP-VsJ" id="kRZ-C9-K1e"/>
                 <outlet property="monthLabel" destination="IQM-7B-4Or" id="FfQ-LY-i0t"/>
                 <outlet property="thankYouView" destination="O8B-4y-en5" id="kqq-xS-7iG"/>
+                <outlet property="thankYouViewButton" destination="2cY-pS-mpz" id="LPh-bP-eHx"/>
             </connections>
             <point key="canvasLocation" x="138.40000000000001" y="146.17691154422789"/>
         </view>

@@ -13,10 +13,14 @@ private let thankYouViewShadowColor = UIColor.black.withAlphaComponent(0.26)
 private let thankYouViewShadowOpacity = Float(0.3)
 private let thankYouViewShadowOffset = CGSize(width: 0, height: 5)
 
+private var buttonAnimationDuration = 0.2
+private var scaleDownRatio = CGFloat(0.97)
+
 class ThankYouCell: UITableViewCell {
     
     private var thankYouData: ThankYouData?
     @IBOutlet private weak var thankYouView: UIView!
+    @IBOutlet private weak var thankYouViewButton: UIButton!
     @IBOutlet private weak var contentLabel: UILabel!
     @IBOutlet private weak var dayLabel: UILabel!
     @IBOutlet private weak var monthLabel: UILabel!
@@ -40,12 +44,31 @@ class ThankYouCell: UITableViewCell {
         dayLabel.text = thankYouData.date.toDayString()
         monthLabel.text = thankYouData.date.toMonthEnglish3lettersString()
     }
-    
-    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        super.setSelected(highlighted, animated: animated)
-        UIView.animate(withDuration: 0.1) {
-            self.thankYouView.backgroundColor = highlighted
-                ? UIColor.lightGray.withAlphaComponent(0.1) : UIColor.white
+}
+
+// MARK: - Button Animation
+private extension ThankYouCell {
+    @IBAction func thankYouViewButtonTouchUpInside(_ sender: Any) {
+        restoreOriginalScaleAnimation()
+    }
+
+    @IBAction func thankYouViewButtonTouchDown(_ sender: Any) {
+        scaleDownAnimation()
+    }
+
+    @IBAction func thankYouViewButtonTouchDragInside(_ sender: Any) {
+        restoreOriginalScaleAnimation()
+    }
+
+    func scaleDownAnimation() {
+        UIView.animate(withDuration: buttonAnimationDuration) {
+            self.thankYouView.transform = CGAffineTransform(scaleX: scaleDownRatio, y: scaleDownRatio)
+        }
+    }
+
+    func restoreOriginalScaleAnimation() {
+        UIView.animate(withDuration: buttonAnimationDuration) {
+            self.thankYouView.transform = CGAffineTransform.identity
         }
     }
 }

@@ -197,6 +197,7 @@ extension ThankYouListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: ThankYouCell.cellIdentifier(), for: indexPath) as! ThankYouCell
         let thankYouData = sections[indexPath.section].thankYouList[indexPath.row]
         cell.bind(thankYouData: thankYouData)
+        cell.delegate = self
         scrollIndicator.bind(title: sections[indexPath.section].displayDateString)
         cell.selectionStyle = .none
         return cell 
@@ -258,6 +259,12 @@ extension ThankYouListViewController: ListScrollIndicatorDelegate {
     func listScrollIndicatorDidBeginDraggingMovableIcon(_ indicator: ListScrollIndicator) {
         guard let user = Auth.auth().currentUser else { return }
         Analytics.logEvent(eventName: AnalyticsEventConst.startDraggingListScrollIndicatorMovableIcon, userId: user.uid)
+    }
+}
+
+// MARK: - ThankYouCellDelegate
+extension ThankYouListViewController: ThankYouCellDelegate {
+    func thankYouCellDidTapThankYouView() {
     }
 }
 

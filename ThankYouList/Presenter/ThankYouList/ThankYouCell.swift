@@ -16,6 +16,10 @@ private let thankYouViewShadowOffset = CGSize(width: 0, height: 5)
 private var buttonAnimationDuration = 0.2
 private var scaleDownRatio = CGFloat(0.97)
 
+protocol ThankYouCellDelegate: class {
+    func thankYouCellDidTapThankYouView()
+}
+
 class ThankYouCell: UITableViewCell {
     
     private var thankYouData: ThankYouData?
@@ -24,6 +28,8 @@ class ThankYouCell: UITableViewCell {
     @IBOutlet private weak var contentLabel: UILabel!
     @IBOutlet private weak var dayLabel: UILabel!
     @IBOutlet private weak var monthLabel: UILabel!
+
+    weak var delegate: ThankYouCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,6 +56,7 @@ class ThankYouCell: UITableViewCell {
 private extension ThankYouCell {
     @IBAction func thankYouViewButtonTouchUpInside(_ sender: Any) {
         restoreOriginalScaleAnimation()
+        delegate?.thankYouCellDidTapThankYouView()
     }
 
     @IBAction func thankYouViewButtonTouchDown(_ sender: Any) {

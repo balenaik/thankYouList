@@ -22,6 +22,10 @@ extension UIColor {
     }
 
     class var text: UIColor {
+        return UIColor.black87
+    }
+
+    class var black87: UIColor {
         return UIColor.black.withAlphaComponent(0.87)
     }
 

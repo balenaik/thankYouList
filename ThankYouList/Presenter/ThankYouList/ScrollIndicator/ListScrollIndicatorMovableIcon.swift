@@ -8,7 +8,7 @@
 
 import UIKit
 
-private let triangleColor = UIColor.sectionTitleGray
+private let triangleColor = UIColor.black87
 
 class ListScrollIndicatorMovableIcon: UIView {
     

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,12 +16,12 @@
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sep 2019" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZOs-7z-FOl">
                     <rect key="frame" x="8" y="4" width="64" height="24"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" name="sectionTitleGray"/>
+                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                    <color key="textColor" name="black54"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" name="scrollIndicatorTitleBg"/>
+            <color key="backgroundColor" name="primaryLight"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="ZOs-7z-FOl" secondAttribute="trailing" constant="8" id="9I6-Fi-pk6"/>
                 <constraint firstItem="ZOs-7z-FOl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="I7M-cM-KCe"/>
@@ -34,14 +32,15 @@
             <connections>
                 <outlet property="titleLabel" destination="ZOs-7z-FOl" id="rFl-c3-Im9"/>
             </connections>
+            <point key="canvasLocation" x="-106" y="36"/>
         </view>
     </objects>
     <resources>
-        <namedColor name="scrollIndicatorTitleBg">
-            <color red="1" green="0.98799997568130493" blue="0.73799997568130493" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="black54">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.54000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="sectionTitleGray">
-            <color red="0.46666666666666667" green="0.46666666666666667" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="primaryLight">
+            <color red="1" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

@@ -34,7 +34,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" name="highGray"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="075-hG-GW1" firstAttribute="centerX" secondItem="Z6D-hX-WYQ" secondAttribute="centerX" id="1bS-Si-bgf"/>
                         <constraint firstItem="Vxw-y0-ppb" firstAttribute="centerY" secondItem="Z6D-hX-WYQ" secondAttribute="centerY" constant="7" id="OUI-dz-K6Y"/>
@@ -59,9 +59,4 @@
             <point key="canvasLocation" x="137.68115942028987" y="95.758928571428569"/>
         </view>
     </objects>
-    <resources>
-        <namedColor name="highGray">
-            <color red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

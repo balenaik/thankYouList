@@ -21,7 +21,7 @@ class ListScrollIndicatorMovableIcon: UIView {
     @IBOutlet private weak var lowerTriangleView: ListScrollIndicatorMovableIconTriangle!
     
     class func instanceFromNib() -> ListScrollIndicatorMovableIcon {
-        let view = Bundle.main.loadNibNamed("ListScrollIndicatorMovableIcon", owner: self, options: nil)?.first as! ListScrollIndicatorMovableIcon
+        let view = R.nib.listScrollIndicatorMovableIcon.firstView(owner: nil)!
         return view
     }
 

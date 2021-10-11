@@ -16,9 +16,9 @@ private let circleViewShadowOpacity = Float(0.2)
 private let circleViewShadowRadius = CGFloat(2)
 
 class ListScrollIndicatorMovableIcon: UIView {
-    
-    @IBOutlet weak var upperTriangleView: ListScrollIndicatorMovableIconTriangle!
-    @IBOutlet weak var lowerTriangleView: ListScrollIndicatorMovableIconTriangle!
+
+    @IBOutlet private weak var upperTriangleView: ListScrollIndicatorMovableIconTriangle!
+    @IBOutlet private weak var lowerTriangleView: ListScrollIndicatorMovableIconTriangle!
     
     class func instanceFromNib() -> ListScrollIndicatorMovableIcon {
         let view = Bundle.main.loadNibNamed("ListScrollIndicatorMovableIcon", owner: self, options: nil)?.first as! ListScrollIndicatorMovableIcon

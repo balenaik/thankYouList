@@ -28,6 +28,7 @@ target 'ThankYouList' do
 
   # HUD
   pod 'JGProgressHUD'
+  pod 'SkeletonView', '1.25.1'
 
   # SDWebImage
   pod 'SDWebImage', '~> 5.0'

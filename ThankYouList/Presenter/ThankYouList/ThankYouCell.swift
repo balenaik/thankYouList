@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 private let thankYouViewCornerRadius = CGFloat(8)
 private let thankYouViewShadowColor = UIColor.black.withAlphaComponent(0.26)
@@ -28,6 +29,7 @@ class ThankYouCell: UITableViewCell {
     @IBOutlet private weak var contentLabel: UILabel!
     @IBOutlet private weak var dayLabel: UILabel!
     @IBOutlet private weak var monthLabel: UILabel!
+    @IBOutlet private weak var dayMonthStackView: UIStackView!
 
     weak var delegate: ThankYouCellDelegate?
 
@@ -38,6 +40,14 @@ class ThankYouCell: UITableViewCell {
         thankYouView.layer.shadowColor = thankYouViewShadowColor.cgColor
         thankYouView.layer.shadowOpacity = thankYouViewShadowOpacity
         thankYouView.layer.shadowOffset = thankYouViewShadowOffset
+        contentLabel.isSkeletonable = true
+        dayMonthStackView.isSkeletonable = true
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        contentLabel.hideSkeleton()
+        dayMonthStackView.hideSkeleton()
     }
     
     @objc class func cellIdentifier() -> String {
@@ -49,6 +59,11 @@ class ThankYouCell: UITableViewCell {
         contentLabel.text = thankYouData.value
         dayLabel.text = thankYouData.date.toDayString()
         monthLabel.text = thankYouData.date.toMonthEnglish3lettersString()
+    }
+
+    func showLoadingSkeleton() {
+        contentLabel.showSkeleton(transition: .crossDissolve(ViewConst.skeletonViewFadeTime))
+        dayMonthStackView.showSkeleton(transition: .crossDissolve(ViewConst.skeletonViewFadeTime))
     }
 }
 

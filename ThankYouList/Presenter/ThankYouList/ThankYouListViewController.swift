@@ -85,14 +85,14 @@ private extension ThankYouListViewController {
         }
        let uid16string = String(uid.prefix(16))
         db.collection("users").document(uid).collection("thankYouList").addSnapshotListener { [weak self] (querySnapshot, error) in
-            guard let weakSelf = self else { return }
+            guard let self = self else { return }
             if let error = error {
                 print(error.localizedDescription)
-                weakSelf.loadingHud.dismiss(animated: true)
+                self.loadingHud.dismiss(animated: true)
                 return
             }
             guard let snapShot = querySnapshot else {
-                weakSelf.loadingHud.dismiss(animated: true)
+                self.loadingHud.dismiss(animated: true)
                 return
             }
             for diff in snapShot.documentChanges {
@@ -102,18 +102,18 @@ private extension ThankYouListViewController {
                     let decryptedValue = Crypto().decryptString(encryptText: newThankYouData.encryptedValue, key: uid16string)
                     newThankYouData.id = diff.document.documentID
                     newThankYouData.value = decryptedValue
-                    let thankYouDataIds: [String] = weakSelf.thankYouDataSingleton.thankYouDataList.map{$0.id}
+                    let thankYouDataIds: [String] = self.thankYouDataSingleton.thankYouDataList.map{$0.id}
                     if !thankYouDataIds.contains(newThankYouData.id) {
-                        weakSelf.thankYouDataSingleton.thankYouDataList.append(newThankYouData)
-                        weakSelf.addThankYouDataToSection(thankYouData: newThankYouData)
+                        self.thankYouDataSingleton.thankYouDataList.append(newThankYouData)
+                        self.addThankYouDataToSection(thankYouData: newThankYouData)
                     }
                 }
                 if diff.type == .removed {
                     let removedDataId = diff.document.documentID
-                    for (index, thankYouData) in weakSelf.thankYouDataSingleton.thankYouDataList.enumerated() {
+                    for (index, thankYouData) in self.thankYouDataSingleton.thankYouDataList.enumerated() {
                         if thankYouData.id == removedDataId {
-                            weakSelf.thankYouDataSingleton.thankYouDataList.remove(at: index)
-                            weakSelf.deleteThankYouDataFromSection(thankYouData: thankYouData)
+                            self.thankYouDataSingleton.thankYouDataList.remove(at: index)
+                            self.deleteThankYouDataFromSection(thankYouData: thankYouData)
                             break
                         }
                     }
@@ -124,27 +124,27 @@ private extension ThankYouListViewController {
                     let decryptedValue = Crypto().decryptString(encryptText: editedThankYouData.encryptedValue, key: uid16string)
                     editedThankYouData.id = diff.document.documentID
                     editedThankYouData.value = decryptedValue
-                    for (index, thankYouData) in weakSelf.thankYouDataSingleton.thankYouDataList.enumerated() {
+                    for (index, thankYouData) in self.thankYouDataSingleton.thankYouDataList.enumerated() {
                         if editedThankYouData.id == thankYouData.id {
-                            weakSelf.thankYouDataSingleton.thankYouDataList.remove(at: index)
-                            weakSelf.deleteThankYouDataFromSection(thankYouData: thankYouData)
+                            self.thankYouDataSingleton.thankYouDataList.remove(at: index)
+                            self.deleteThankYouDataFromSection(thankYouData: thankYouData)
                             break
                         }
                     }
-                    weakSelf.thankYouDataSingleton.thankYouDataList.append(editedThankYouData)
-                    weakSelf.addThankYouDataToSection(thankYouData: editedThankYouData)
+                    self.thankYouDataSingleton.thankYouDataList.append(editedThankYouData)
+                    self.addThankYouDataToSection(thankYouData: editedThankYouData)
                 }
             }
             DispatchQueue.main.async {
-                if weakSelf.thankYouDataSingleton.thankYouDataList.count == 0 {
-                    weakSelf.emptyView.isHidden = false
+                if self.thankYouDataSingleton.thankYouDataList.count == 0 {
+                    self.emptyView.isHidden = false
                 } else {
-                    weakSelf.emptyView.isHidden = true
+                    self.emptyView.isHidden = true
                 }
-                weakSelf.loadingHud.dismiss(animated: true)
-                weakSelf.postNotificationThankYouListUpdated()
-                weakSelf.tableView.reloadData()
-                weakSelf.scrollIndicator.updatedContent()
+                self.loadingHud.dismiss(animated: true)
+                self.postNotificationThankYouListUpdated()
+                self.tableView.reloadData()
+                self.scrollIndicator.updatedContent()
             }
         }
     }

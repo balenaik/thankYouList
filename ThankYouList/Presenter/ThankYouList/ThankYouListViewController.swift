@@ -68,9 +68,7 @@ private extension ThankYouListViewController {
 
         tableView.estimatedRowHeight = 40
         tableView.rowHeight = UITableView.automaticDimension
-        tableView?.register(UINib(nibName: ThankYouCell.cellIdentifier(),
-                                  bundle: nil),
-                            forCellReuseIdentifier: ThankYouCell.cellIdentifier())
+        tableView.register(R.nib.thankYouCell)
         tableView?.register(UINib(nibName: ListSectionHeaderView.cellIdentifier(),
                                   bundle: nil),
                             forHeaderFooterViewReuseIdentifier: ListSectionHeaderView.cellIdentifier())
@@ -194,7 +192,7 @@ extension ThankYouListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ThankYouCell.cellIdentifier(), for: indexPath) as! ThankYouCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.thankYouCell, for: indexPath)!
         let thankYouData = sections[indexPath.section].thankYouList[indexPath.row]
         cell.bind(thankYouData: thankYouData)
         cell.delegate = self

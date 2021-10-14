@@ -63,9 +63,7 @@ extension SmallListView {
             tableView.delegate = delegate
         }
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.register(UINib(nibName: ThankYouCell.cellIdentifier(),
-                                  bundle: nil),
-                            forCellReuseIdentifier: ThankYouCell.cellIdentifier())
+        tableView.register(R.nib.thankYouCell)
     }
     
     func setDateLabel(dateString: String) {

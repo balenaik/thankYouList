@@ -50,10 +50,6 @@ class ThankYouCell: UITableViewCell {
         dayMonthStackView.hideSkeleton()
     }
     
-    @objc class func cellIdentifier() -> String {
-        return String(describing: self)
-    }
-    
     func bind(thankYouData: ThankYouData) {
         self.thankYouData = thankYouData
         contentLabel.text = thankYouData.value

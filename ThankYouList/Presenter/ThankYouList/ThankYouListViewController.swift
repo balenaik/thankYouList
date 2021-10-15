@@ -187,7 +187,6 @@ extension ThankYouListViewController: UITableViewDataSource {
         cell.bind(thankYouData: thankYouData)
         cell.delegate = self
         scrollIndicator.bind(title: sections[indexPath.section].displayDateString)
-        cell.selectionStyle = .none
         return cell 
     }
     

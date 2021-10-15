@@ -83,6 +83,11 @@
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2cY-pS-mpz">
                                 <rect key="frame" x="0.0" y="0.0" width="327" height="145"/>
+                                <connections>
+                                    <action selector="thankYouViewButtonTouchDown:" destination="LOh-8u-1jt" eventType="touchDown" id="igi-ig-B93"/>
+                                    <action selector="thankYouViewButtonTouchDragInside:" destination="LOh-8u-1jt" eventType="touchDragInside" id="bd7-cw-b5r"/>
+                                    <action selector="thankYouViewButtonTouchUpInside:" destination="LOh-8u-1jt" eventType="touchUpInside" id="Zvu-zv-s5L"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

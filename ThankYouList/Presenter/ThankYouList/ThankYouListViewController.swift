@@ -9,7 +9,6 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
-import JGProgressHUD
 import Firebase
 
 class ThankYouListViewController: UIViewController {
@@ -26,7 +25,6 @@ class ThankYouListViewController: UIViewController {
     private var db = Firestore.firestore()
     private var thankYouDataSingleton = GlobalThankYouData.sharedInstance
     private var sections = [Section]()
-    private let loadingHud = JGProgressHUD(style: .extraLight)
     private var estimatedRowHeights = [String : CGFloat]()
 
     @IBOutlet weak var tableView: UITableView!
@@ -59,9 +57,6 @@ private extension ThankYouListViewController {
         navigationItem.title = R.string.localizable.list_navigationbar_title()
         tabBarItem.title = R.string.localizable.calendar_tabbar_title()
 
-        loadingHud.textLabel.text = "Loading"
-        loadingHud.show(in: self.view)
-
         thankYouDataSingleton.thankYouDataList = []
         sections = []
         loadAndCheckForUpdates()
@@ -88,11 +83,9 @@ private extension ThankYouListViewController {
             guard let self = self else { return }
             if let error = error {
                 print(error.localizedDescription)
-                self.loadingHud.dismiss(animated: true)
                 return
             }
             guard let snapShot = querySnapshot else {
-                self.loadingHud.dismiss(animated: true)
                 return
             }
             for diff in snapShot.documentChanges {
@@ -141,7 +134,6 @@ private extension ThankYouListViewController {
                 } else {
                     self.emptyView.isHidden = true
                 }
-                self.loadingHud.dismiss(animated: true)
                 self.postNotificationThankYouListUpdated()
                 self.tableView.reloadData()
                 self.scrollIndicator.updatedContent()

@@ -301,7 +301,6 @@ PODS:
   - GTMSessionFetcher/Core (1.3.1)
   - GTMSessionFetcher/Full (1.3.1):
     - GTMSessionFetcher/Core (= 1.3.1)
-  - JGProgressHUD (2.1)
   - JTAppleCalendar (7.1.8)
   - leveldb-library (1.22)
   - nanopb (0.3.9011):
@@ -328,7 +327,6 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Firestore
   - GoogleSignIn
-  - JGProgressHUD
   - JTAppleCalendar (~> 7.0)
   - R.swift (= 5.0.3)
   - RNCryptor (~> 5.0)
@@ -362,7 +360,6 @@ SPEC REPOS:
     - gRPC-Core
     - GTMAppAuth
     - GTMSessionFetcher
-    - JGProgressHUD
     - JTAppleCalendar
     - leveldb-library
     - nanopb
@@ -399,7 +396,6 @@ SPEC CHECKSUMS:
   gRPC-Core: c9aef9a261a1247e881b18059b84d597293c9947
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
-  JGProgressHUD: aa403e9a5b45cae98903c4600cccdd98c0c3ec90
   JTAppleCalendar: b7fb40852f5f319fe55c8ec3861f1de0edc99cc8
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
@@ -410,6 +406,6 @@ SPEC CHECKSUMS:
   SDWebImage: 97351f6582ceca541ea294ba66a1fcb342a331c2
   SkeletonView: 77079530e1348a72f48b79ae30dcb966c1b18b6a
 
-PODFILE CHECKSUM: fcf2cb42ce10fc095695a81a92414095f5fae8bd
+PODFILE CHECKSUM: 241a38e1769bf69bc737b970ae25b44061082405
 
 COCOAPODS: 1.10.2

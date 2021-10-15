@@ -26,8 +26,7 @@ target 'ThankYouList' do
   pod 'RNCryptor', '~> 5.0'
   pod 'CryptoSwift'
 
-  # HUD
-  pod 'JGProgressHUD'
+  # SkeletonView
   pod 'SkeletonView', '1.25.1'
 
   # SDWebImage

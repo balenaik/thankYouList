@@ -12,24 +12,22 @@ import FirebaseAuth
 import Firebase
 
 class ThankYouListViewController: UIViewController {
-    
-    // MARK: - Struct
+
     struct Section {
         /// yyyy/MM (String)
         var sectionDateString: String
         var displayDateString: String
         var thankYouList: [ThankYouData]
     }
-    
-    // MARK: - Properties
+
     private var db = Firestore.firestore()
     private var thankYouDataSingleton = GlobalThankYouData.sharedInstance
     private var sections = [Section]()
     private var estimatedRowHeights = [String : CGFloat]()
 
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var scrollIndicator: ListScrollIndicator!
-    @IBOutlet weak var emptyView: EmptyView!
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var scrollIndicator: ListScrollIndicator!
+    @IBOutlet private weak var emptyView: EmptyView!
 
     override func viewDidLoad() {
         super.viewDidLoad()

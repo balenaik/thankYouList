@@ -10,6 +10,9 @@ import UIKit
 import FirebaseFirestore
 import FirebaseAuth
 import Firebase
+import SkeletonView
+
+private let skeletonedThankYouCellCount = 3
 
 class ThankYouListViewController: UIViewController {
 
@@ -24,6 +27,7 @@ class ThankYouListViewController: UIViewController {
     private var thankYouDataSingleton = GlobalThankYouData.sharedInstance
     private var sections = [Section]()
     private var estimatedRowHeights = [String : CGFloat]()
+    private var hasLoadedThankYouList = false
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var scrollIndicator: ListScrollIndicator!
@@ -81,9 +85,11 @@ private extension ThankYouListViewController {
             guard let self = self else { return }
             if let error = error {
                 print(error.localizedDescription)
+                self.hasLoadedThankYouList = true
                 return
             }
             guard let snapShot = querySnapshot else {
+                self.hasLoadedThankYouList = true
                 return
             }
             for diff in snapShot.documentChanges {
@@ -132,6 +138,7 @@ private extension ThankYouListViewController {
                 } else {
                     self.emptyView.isHidden = true
                 }
+                self.hasLoadedThankYouList = true
                 self.postNotificationThankYouListUpdated()
                 self.tableView.reloadData()
                 self.scrollIndicator.updatedContent()
@@ -178,27 +185,29 @@ private extension ThankYouListViewController {
 extension ThankYouListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].thankYouList.count
+        guard hasLoadedThankYouList else {
+            return skeletonedThankYouCellCount
+        }
+        return sections.getSafely(at: section)?.thankYouList.count ?? 0
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.thankYouCell, for: indexPath)!
-        let thankYouData = sections[indexPath.section].thankYouList[indexPath.row]
-        cell.bind(thankYouData: thankYouData)
+        guard hasLoadedThankYouList else {
+            cell.showLoadingSkeleton()
+            return cell
+        }
+        if let section = sections.getSafely(at: indexPath.section),
+           let thankYouData = section.thankYouList.getSafely(at: indexPath.row) {
+            scrollIndicator.bind(title: section.displayDateString)
+            cell.bind(thankYouData: thankYouData)
+        }
         cell.delegate = self
-        scrollIndicator.bind(title: sections[indexPath.section].displayDateString)
-        return cell 
+        return cell
     }
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let editingThankYouData = sections[indexPath.section].thankYouList[indexPath.row]
-        let vc = EditThankYouViewController.createViewController(thankYouData: editingThankYouData)
-        let navi = UINavigationController(rootViewController: vc)
-        self.present(navi, animated: true, completion: nil)
+        return hasLoadedThankYouList ? sections.count : 1
     }
 }
 
@@ -206,7 +215,13 @@ extension ThankYouListViewController: UITableViewDataSource {
 extension ThankYouListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListSectionHeaderView.cellIdentifier()) as! ListSectionHeaderView
-        header.bind(sectionString: sections[section].displayDateString)
+        guard hasLoadedThankYouList else {
+            header.showLoadingSkeleton()
+            return header
+        }
+        if let sct = sections.getSafely(at: section) {
+            header.bind(sectionString: sct.displayDateString)
+        }
         return header
     }
 
@@ -215,17 +230,22 @@ extension ThankYouListViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        let thankYouId =  sections[indexPath.section].thankYouList[indexPath.row].id
-        if let height = estimatedRowHeights[thankYouId] {
-            return height
+        guard hasLoadedThankYouList else {
+            return tableView.estimatedRowHeight
         }
-        return tableView.estimatedRowHeight
+        guard let thankYouId = sections.getSafely(at: indexPath.section)?.thankYouList.getSafely(at: indexPath.row)?.id,
+              let height = estimatedRowHeights[thankYouId] else {
+            return tableView.estimatedRowHeight
+        }
+        return height
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.contentView.updateConstraints()
-        let thankYouId =  sections[indexPath.section].thankYouList[indexPath.row].id
-        estimatedRowHeights[thankYouId] = cell.frame.size.height
+        guard hasLoadedThankYouList else { return }
+        cell.contentView.updateConstraintsIfNeeded()
+        if let thankYouId =  sections.getSafely(at: indexPath.section)?.thankYouList.getSafely(at: indexPath.row)?.id {
+            estimatedRowHeights[thankYouId] = cell.frame.size.height
+        }
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

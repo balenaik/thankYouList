@@ -11,6 +11,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import Firebase
 import SkeletonView
+import FloatingPanel
 
 private let skeletonedThankYouCellCount = 3
 
@@ -272,6 +273,7 @@ extension ThankYouListViewController: ListScrollIndicatorDelegate {
 // MARK: - ThankYouCellDelegate
 extension ThankYouListViewController: ThankYouCellDelegate {
     func thankYouCellDidTapThankYouView() {
+        present(BottomHalfSheetMenuViewController.createViewController(), animated: true, completion: nil)
     }
 }
 

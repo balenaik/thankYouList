@@ -38,6 +38,8 @@
 		A84FDB5C21DBB8DF00593326 /* AddThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84FDB5B21DBB8DF00593326 /* AddThankYouViewController.swift */; };
 		A84FDB5E21DC365F00593326 /* SettingHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84FDB5D21DC365F00593326 /* SettingHeaderView.xib */; };
 		A84FDB6021DC37EA00593326 /* SettingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84FDB5F21DC37E900593326 /* SettingHeaderView.swift */; };
+		A851944C272BFACE003631EE /* BottomHalfSheetMenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851944B272BFACE003631EE /* BottomHalfSheetMenuItemView.swift */; };
+		A8519450272D466A003631EE /* BottomHalfSheetMenuItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A851944F272D466A003631EE /* BottomHalfSheetMenuItemView.xib */; };
 		A85D9D011EA64AF900945E6E /* ThankYouData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85D9D001EA64AF900945E6E /* ThankYouData.swift */; };
 		A85DCC081F5D2151004E1095 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85DCC071F5D2151004E1095 /* CustomCell.swift */; };
 		A864849B2160F5BF0049D90A /* Pods_ThankYouList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D49C15FD4089235E28B5ED /* Pods_ThankYouList.framework */; };
@@ -123,6 +125,8 @@
 		A84FDB5B21DBB8DF00593326 /* AddThankYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThankYouViewController.swift; sourceTree = "<group>"; };
 		A84FDB5D21DC365F00593326 /* SettingHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingHeaderView.xib; sourceTree = "<group>"; };
 		A84FDB5F21DC37E900593326 /* SettingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHeaderView.swift; sourceTree = "<group>"; };
+		A851944B272BFACE003631EE /* BottomHalfSheetMenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomHalfSheetMenuItemView.swift; sourceTree = "<group>"; };
+		A851944F272D466A003631EE /* BottomHalfSheetMenuItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomHalfSheetMenuItemView.xib; sourceTree = "<group>"; };
 		A85D9D001EA64AF900945E6E /* ThankYouData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThankYouData.swift; sourceTree = "<group>"; };
 		A85DCC071F5D2151004E1095 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		A866BEE420B931620073A76D /* TYLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYLColor.swift; sourceTree = "<group>"; };
@@ -353,6 +357,8 @@
 				A84FDB5D21DC365F00593326 /* SettingHeaderView.xib */,
 				A84FDB5F21DC37E900593326 /* SettingHeaderView.swift */,
 				A8DABC23271ACE4E0086B2E8 /* BottomHalfSheetMenuViewController.swift */,
+				A851944B272BFACE003631EE /* BottomHalfSheetMenuItemView.swift */,
+				A851944F272D466A003631EE /* BottomHalfSheetMenuItemView.xib */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -516,6 +522,7 @@
 				A8C59B79243CD32200FF79EA /* MyPage.storyboard in Resources */,
 				A8851ECF2701560F008B2D7A /* MainTabBar.storyboard in Resources */,
 				A8A06864244F444400839D14 /* MyPageProfileCell.xib in Resources */,
+				A8519450272D466A003631EE /* BottomHalfSheetMenuItemView.xib in Resources */,
 				A8831CCE1E9CFE6B00F3CA0A /* Assets.xcassets in Resources */,
 				A8114B0222E458C70024975A /* EditThankYou.storyboard in Resources */,
 				A8114B0D23017DCC0024975A /* ListScrollIndicatorMovableIcon.xib in Resources */,
@@ -579,7 +586,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/R.generated.swift",
+				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -687,6 +694,7 @@
 				A86F419E24548797005D929A /* MyPageTableItem.swift in Sources */,
 				A8B6EE952205902100908D51 /* ListSectionHeaderView.swift in Sources */,
 				A80EAE5821F4C0B4006B02E8 /* UIView+Highlight.swift in Sources */,
+				A851944C272BFACE003631EE /* BottomHalfSheetMenuItemView.swift in Sources */,
 				A80EAE5A21FD5F87006B02E8 /* ThankYouCell.swift in Sources */,
 				A8A85AC025A60E8500182B99 /* UIImage+FromUIColor.swift in Sources */,
 				A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */,

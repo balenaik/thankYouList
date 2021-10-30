@@ -106,8 +106,3 @@ extension BottomHalfSheetMenuViewController {
         return floatingPanelController
     }
 }
-
-// MARK: - BottomHalfSheetMenuButton
-private class BottomHalfSheetMenuButton: UIButton {
-
-}

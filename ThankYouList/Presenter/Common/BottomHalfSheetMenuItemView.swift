@@ -14,7 +14,7 @@ struct BottomHalfSheetMenuItem {
     let rawValue: Int?
 }
 
-class BottomHalfSheetMenuItemView: UIView {
+class BottomHalfSheetMenuItemView: UIControl {
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     
@@ -23,6 +23,12 @@ class BottomHalfSheetMenuItemView: UIView {
     class func instanceFromNib() -> BottomHalfSheetMenuItemView {
         let view = R.nib.bottomHalfSheetMenuItemView.firstView(owner: nil)!
         return view
+    }
+
+    override var isHighlighted: Bool {
+        didSet {
+            backgroundColor = isHighlighted ? .highlight : .white
+        }
     }
 
     func bind(item: BottomHalfSheetMenuItem) {

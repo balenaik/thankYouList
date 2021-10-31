@@ -21,6 +21,10 @@ extension UIColor {
         return UIColor(colorWithHexValue: 0x9e9e9e)
     }
 
+    class var highlight: UIColor {
+        return UIColor(colorWithHexValue: 0xe1e1e1)
+    }
+
     class var text: UIColor {
         return UIColor.black87
     }
@@ -29,15 +33,7 @@ extension UIColor {
         return UIColor.black.withAlphaComponent(0.87)
     }
 
-    class var sectionTitleGray: UIColor {
-        return UIColor(white: 119.0 / 255.0, alpha: 1.0)
-    }
-
     class var highGray: UIColor {
         return UIColor(colorWithHexValue: 0xc8c8c8)
-    }
-
-    class var highlightYellow: UIColor {
-        return UIColor(colorWithHexValue: 0xfffc99)
     }
 }

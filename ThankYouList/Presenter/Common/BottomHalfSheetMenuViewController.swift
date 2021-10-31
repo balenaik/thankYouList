@@ -15,6 +15,8 @@ private let backgroundViewAlpha = CGFloat(0.5)
 
 private let removalInteractionVelocityThreshold = CGFloat(2)
 
+private let halfSheetCornerRadius = CGFloat(12)
+
 class BottomHalfSheetMenuViewController: UIViewController {
 
     private lazy var stackView: UIStackView = {
@@ -98,6 +100,10 @@ extension BottomHalfSheetMenuViewController {
         let behavior = BottomHalfSheetMenuBehavior()
         behavior.removalInteractionVelocityThreshold = removalInteractionVelocityThreshold
         floatingPanelController.behavior = behavior
+
+        let appearance = SurfaceAppearance()
+        appearance.cornerRadius = halfSheetCornerRadius
+        floatingPanelController.surfaceView.appearance = appearance
 
         floatingPanelController.backdropView.dismissalTapGestureRecognizer.isEnabled = true
         floatingPanelController.isRemovalInteractionEnabled = true

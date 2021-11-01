@@ -12,11 +12,13 @@
 "main_tabbar_item_list" = "List";
 "main_tabbar_item_calendar" = "Calendar";
 
+"Edit" = "Edit";
+"Delete" = "Delete";
+
 "monthYear" = "%1$@ %2$@";
 "Date" = "Date";
 "Delete Thank you" = "Delete Thank you";
 "Are you sure you want to delete this thank you?" = "Are you sure you want to delete this thank you?";
-"Delete" = "Delete";
 "Cancel" = "Cancel";
 "What are you thankful for?" = "What are you thankful for?";
 "EmptyViewLabel" = "This is your Thank You List.\nLet's start adding the grateful thoughts!";

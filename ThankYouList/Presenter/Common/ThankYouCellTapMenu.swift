@@ -14,7 +14,7 @@ enum ThankYouCellTapMenu: Int, CaseIterable {
 
     var title: String {
         switch self {
-        case .edit: return R.string.localizable.editThankYou()
+        case .edit: return R.string.localizable.edit()
         case .delete: return R.string.localizable.delete()
         }
     }

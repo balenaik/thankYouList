@@ -46,6 +46,14 @@ private extension BottomHalfSheetMenuViewController {
             stackView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
         ])
     }
+
+    func setupMenu(menu: [BottomHalfSheetMenuItem]) {
+        menu.forEach { menuItem in
+            let button = BottomHalfSheetMenuItemView.instanceFromNib()
+            button.bind(item: menuItem)
+            stackView.addArrangedSubview(button)
+        }
+    }
 }
 
 // MARK: - FloatingPanel Properties
@@ -91,9 +99,10 @@ private extension BottomHalfSheetMenuViewController {
 
 // MARK: - Public
 extension BottomHalfSheetMenuViewController {
-    static func createViewController() -> UIViewController {
+    static func createViewController(menu: [BottomHalfSheetMenuItem]) -> UIViewController {
         let floatingPanelController = FloatingPanelController()
         let bottomHalfSheetMenuViewController = BottomHalfSheetMenuViewController()
+        bottomHalfSheetMenuViewController.setupMenu(menu: menu)
 
         floatingPanelController.layout = BottomHalfSheetMenuLayout(layoutGuide: bottomHalfSheetMenuViewController.layoutGuide)
 

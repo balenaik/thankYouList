@@ -273,7 +273,8 @@ extension ThankYouListViewController: ListScrollIndicatorDelegate {
 // MARK: - ThankYouCellDelegate
 extension ThankYouListViewController: ThankYouCellDelegate {
     func thankYouCellDidTapThankYouView() {
-        present(BottomHalfSheetMenuViewController.createViewController(), animated: true, completion: nil)
+        let menu = ThankYouCellTapMenu.allCases.map { $0.bottomHalfSheetMenuItem }
+        present(BottomHalfSheetMenuViewController.createViewController(menu: menu), animated: true, completion: nil)
     }
 }
 

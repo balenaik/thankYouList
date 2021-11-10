@@ -9,7 +9,7 @@
 import UIKit
 import FloatingPanel
 
-private let stackViewTopMargin = CGFloat(20)
+private let scrollViewTopMargin = CGFloat(16)
 
 private let backgroundViewAlpha = CGFloat(0.5)
 
@@ -22,6 +22,8 @@ protocol BottomHalfSheetMenuViewControllerDelegate: class {
 }
 
 class BottomHalfSheetMenuViewController: UIViewController {
+
+    private let scrollView = UIScrollView()
 
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -36,20 +38,33 @@ class BottomHalfSheetMenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupScrollView()
         setupStackView()
     }
 }
 
 // MARK: - Private
 private extension BottomHalfSheetMenuViewController {
+    func setupScrollView() {
+        view.addSubview(scrollView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            scrollView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: scrollViewTopMargin),
+            scrollView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
+        ])
+    }
+
     func setupStackView() {
-        view.addSubview(stackView)
+        scrollView.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: stackViewTopMargin),
-            stackView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
-            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            stackView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
+            stackView.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor),
+            stackView.leftAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.leftAnchor),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.bottomAnchor),
+            stackView.rightAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.rightAnchor)
         ])
     }
 
@@ -125,9 +140,11 @@ extension BottomHalfSheetMenuViewController {
         floatingPanelController.surfaceView.appearance = appearance
 
         floatingPanelController.backdropView.dismissalTapGestureRecognizer.isEnabled = true
+        floatingPanelController.panGestureRecognizer.cancelsTouchesInView = false
         floatingPanelController.isRemovalInteractionEnabled = true
 
         floatingPanelController.set(contentViewController: bottomHalfSheetMenuViewController)
+        floatingPanelController.track(scrollView: bottomHalfSheetMenuViewController.scrollView)
         return floatingPanelController
     }
 }

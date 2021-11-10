@@ -17,6 +17,10 @@ private let removalInteractionVelocityThreshold = CGFloat(2)
 
 private let halfSheetCornerRadius = CGFloat(12)
 
+protocol BottomHalfSheetMenuViewControllerDelegate: class {
+    func bottomHalfSheetMenuViewControllerDidTapItem(item: BottomHalfSheetMenuItem)
+}
+
 class BottomHalfSheetMenuViewController: UIViewController {
 
     private lazy var stackView: UIStackView = {
@@ -27,6 +31,8 @@ class BottomHalfSheetMenuViewController: UIViewController {
         stackView.spacing = 0
         return stackView
     }()
+
+    weak var delegate: BottomHalfSheetMenuViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +57,7 @@ private extension BottomHalfSheetMenuViewController {
         menu.forEach { menuItem in
             let button = BottomHalfSheetMenuItemView.instanceFromNib()
             button.bind(item: menuItem)
+            button.delegate = self
             stackView.addArrangedSubview(button)
         }
     }
@@ -99,9 +106,12 @@ private extension BottomHalfSheetMenuViewController {
 
 // MARK: - Public
 extension BottomHalfSheetMenuViewController {
-    static func createViewController(menu: [BottomHalfSheetMenuItem]) -> UIViewController {
+    static func createViewController(
+        menu: [BottomHalfSheetMenuItem],
+        bottomSheetDelegate: BottomHalfSheetMenuViewControllerDelegate?) -> UIViewController {
         let floatingPanelController = FloatingPanelController()
         let bottomHalfSheetMenuViewController = BottomHalfSheetMenuViewController()
+        bottomHalfSheetMenuViewController.delegate = bottomSheetDelegate
         bottomHalfSheetMenuViewController.setupMenu(menu: menu)
 
         floatingPanelController.layout = BottomHalfSheetMenuLayout(layoutGuide: bottomHalfSheetMenuViewController.layoutGuide)
@@ -119,5 +129,12 @@ extension BottomHalfSheetMenuViewController {
 
         floatingPanelController.set(contentViewController: bottomHalfSheetMenuViewController)
         return floatingPanelController
+    }
+}
+
+// MARK: - BottomHalfSheetMenuItemViewDelegate
+extension BottomHalfSheetMenuViewController: BottomHalfSheetMenuItemViewDelegate {
+    func bottomHalfSheetMenuItemViewDidTap(item: BottomHalfSheetMenuItem) {
+        delegate?.bottomHalfSheetMenuViewControllerDidTapItem(item: item)
     }
 }

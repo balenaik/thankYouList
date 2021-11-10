@@ -274,7 +274,11 @@ extension ThankYouListViewController: ListScrollIndicatorDelegate {
 extension ThankYouListViewController: ThankYouCellDelegate {
     func thankYouCellDidTapThankYouView() {
         let menu = ThankYouCellTapMenu.allCases.map { $0.bottomHalfSheetMenuItem }
-        present(BottomHalfSheetMenuViewController.createViewController(menu: menu), animated: true, completion: nil)
+        let bottomSheet = BottomHalfSheetMenuViewController.createViewController(
+            menu: menu,
+            bottomSheetDelegate: self
+        )
+        present(bottomSheet, animated: true, completion: nil)
     }
 }
 
@@ -284,5 +288,11 @@ extension ThankYouListViewController {
         guard let viewController = R.storyboard.thankYouList().instantiateInitialViewController() else { return nil }
         let navigationController = UINavigationController(rootViewController: viewController)
         return navigationController
+    }
+}
+
+// MARK: - BottomHalfSheetMenuViewControllerDelegate
+extension ThankYouListViewController: BottomHalfSheetMenuViewControllerDelegate {
+    func bottomHalfSheetMenuViewControllerDidTapItem(item: BottomHalfSheetMenuItem) {
     }
 }

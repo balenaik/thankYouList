@@ -14,15 +14,26 @@ struct BottomHalfSheetMenuItem {
     let rawValue: Int?
 }
 
+protocol BottomHalfSheetMenuItemViewDelegate: class {
+    func bottomHalfSheetMenuItemViewDidTap(item: BottomHalfSheetMenuItem)
+}
+
 class BottomHalfSheetMenuItemView: UIControl {
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     
     private var item: BottomHalfSheetMenuItem?
 
+    weak var delegate: BottomHalfSheetMenuItemViewDelegate?
+
     class func instanceFromNib() -> BottomHalfSheetMenuItemView {
         let view = R.nib.bottomHalfSheetMenuItemView.firstView(owner: nil)!
         return view
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        addTarget(self, action: #selector(didTapView), for: .touchUpInside)
     }
 
     override var isHighlighted: Bool {
@@ -35,5 +46,13 @@ class BottomHalfSheetMenuItemView: UIControl {
         self.item = item
         imageView.image = item.image
         titleLabel.text = item.title
+    }
+}
+
+// MARK: - Private
+private extension BottomHalfSheetMenuItemView {
+    @objc func didTapView() {
+        guard let item = item else { return }
+        delegate?.bottomHalfSheetMenuItemViewDidTap(item: item)
     }
 }

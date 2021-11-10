@@ -70,10 +70,10 @@ private extension BottomHalfSheetMenuViewController {
 
     func setupMenu(menu: [BottomHalfSheetMenuItem]) {
         menu.forEach { menuItem in
-            let button = BottomHalfSheetMenuItemView.instanceFromNib()
-            button.bind(item: menuItem)
-            button.delegate = self
-            stackView.addArrangedSubview(button)
+            let itemView = BottomHalfSheetMenuItemView.instanceFromNib()
+            itemView.bind(item: menuItem)
+            itemView.delegate = self
+            stackView.addArrangedSubview(itemView)
         }
     }
 }

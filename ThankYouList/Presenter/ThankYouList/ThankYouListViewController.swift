@@ -272,8 +272,8 @@ extension ThankYouListViewController: ListScrollIndicatorDelegate {
 
 // MARK: - ThankYouCellDelegate
 extension ThankYouListViewController: ThankYouCellDelegate {
-    func thankYouCellDidTapThankYouView() {
-        let menu = ThankYouCellTapMenu.allCases.map { $0.bottomHalfSheetMenuItem }
+    func thankYouCellDidTapThankYouView(thankYouId: String) {
+        let menu = ThankYouCellTapMenu.allCases.map { $0.bottomHalfSheetMenuItem(id: thankYouId) }
         let bottomSheet = BottomHalfSheetMenuViewController.createViewController(
             menu: menu,
             bottomSheetDelegate: self

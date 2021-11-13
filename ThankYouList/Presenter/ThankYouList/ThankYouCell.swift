@@ -18,7 +18,7 @@ private var buttonAnimationDuration = 0.2
 private var scaleDownRatio = CGFloat(0.97)
 
 protocol ThankYouCellDelegate: class {
-    func thankYouCellDidTapThankYouView()
+    func thankYouCellDidTapThankYouView(thankYouId: String)
 }
 
 class ThankYouCell: UITableViewCell {
@@ -67,7 +67,8 @@ class ThankYouCell: UITableViewCell {
 private extension ThankYouCell {
     @IBAction func thankYouViewButtonTouchUpInside(_ sender: Any) {
         restoreOriginalScaleAnimation()
-        delegate?.thankYouCellDidTapThankYouView()
+        guard let thankYouData = thankYouData else { return }
+        delegate?.thankYouCellDidTapThankYouView(thankYouId: thankYouData.id)
     }
 
     @IBAction func thankYouViewButtonTouchDown(_ sender: Any) {

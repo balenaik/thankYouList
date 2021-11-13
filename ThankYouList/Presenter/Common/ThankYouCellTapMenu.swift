@@ -28,9 +28,10 @@ enum ThankYouCellTapMenu: Int, CaseIterable {
 }
 
 extension ThankYouCellTapMenu {
-    var bottomHalfSheetMenuItem: BottomHalfSheetMenuItem {
+    func bottomHalfSheetMenuItem(id: String? = nil) -> BottomHalfSheetMenuItem {
         return BottomHalfSheetMenuItem(title: self.title,
                                        image: self.image,
-                                       rawValue: self.rawValue)
+                                       rawValue: self.rawValue,
+                                       id: id)
     }
 }

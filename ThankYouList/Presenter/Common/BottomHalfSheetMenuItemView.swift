@@ -12,6 +12,7 @@ struct BottomHalfSheetMenuItem {
     let title: String
     let image: UIImage?
     let rawValue: Int?
+    let id: String?
 }
 
 protocol BottomHalfSheetMenuItemViewDelegate: class {

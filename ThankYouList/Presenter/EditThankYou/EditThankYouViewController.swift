@@ -24,9 +24,9 @@ class EditThankYouViewController: UIViewController {
     private let deleteViewString = NSLocalizedString("Delete", comment: "")
     
     // MARK: - Properties
+    private var editingThankYouId: String?
     private var delegate = UIApplication.shared.delegate as! AppDelegate
     private var isPosting = false
-    private var editingThankYouData: ThankYouData?
     private var db = Firestore.firestore()
     
     // MARK: - IBOutlets
@@ -139,7 +139,8 @@ private extension EditThankYouViewController {
     }
 
     func setupEditThankYouData() {
-        guard let editingThankYouData = editingThankYouData else {
+        guard let editingThankYouData = GlobalThankYouData.sharedInstance
+                .thankYouDataList.first(where: { $0.id == editingThankYouId }) else {
             dismiss(animated: true, completion: nil)
             return
         }
@@ -172,9 +173,9 @@ private extension EditThankYouViewController {
     }
     
     private func editThankYou(editThankYouData: ThankYouData, uid: String) {
-        guard let editingThankYouData = editingThankYouData else { return }
+        guard let editingThankYouId = editingThankYouId else { return }
         isPosting = true
-        db.collection("users").document(uid).collection("thankYouList").document(editingThankYouData.id).updateData(editThankYouData.dictionary) { [weak self] error in
+        db.collection("users").document(uid).collection("thankYouList").document(editingThankYouId).updateData(editThankYouData.dictionary) { [weak self] error in
             guard let weakSelf = self else { return }
             weakSelf.isPosting = false
             if let error = error {
@@ -209,12 +210,12 @@ private extension EditThankYouViewController {
     }
     
     private func deleteThankYou() {
-        guard let editingThankYouData = editingThankYouData else { return }
+        guard let editingThankYouId = editingThankYouId else { return }
         guard let uid = Auth.auth().currentUser?.uid else {
             print("Not login error")
             return
         }
-        db.collection("users").document(uid).collection("thankYouList").document(editingThankYouData.id).delete(completion: { [weak self] error in
+        db.collection("users").document(uid).collection("thankYouList").document(editingThankYouId).delete(completion: { [weak self] error in
             guard let weakSelf = self else { return }
             if let error = error {
                 debugPrint(error)
@@ -222,7 +223,7 @@ private extension EditThankYouViewController {
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 weakSelf.present(alert, animated: true, completion: nil)
             }
-            Analytics.logEvent(eventName: AnalyticsEventConst.deleteThankYou, userId: uid, targetDate: editingThankYouData.date)
+//            Analytics.logEvent(eventName: AnalyticsEventConst.deleteThankYou, userId: uid, targetDate: editingThankYouData.date)
             weakSelf.dismiss(animated: true, completion: nil)
         })
     }
@@ -244,9 +245,14 @@ extension EditThankYouViewController: UIScrollViewDelegate {
 
 // MARK: - Create View Controller
 extension EditThankYouViewController {
-    class func createViewController(thankYouData: ThankYouData?) -> EditThankYouViewController {
-        let vc = UIStoryboard.init(name: "EditThankYou", bundle: nil).instantiateInitialViewController() as! EditThankYouViewController
-        vc.editingThankYouData = thankYouData
-        return vc
+    class func createViewController(thankYouId: String) -> UIViewController? {
+        guard let viewController = R.storyboard.editThankYou()
+                .instantiateInitialViewController() as? EditThankYouViewController else {
+            return nil
+        }
+        viewController.editingThankYouId = thankYouId
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.modalPresentationStyle = .fullScreen
+        return navigationController
     }
 }

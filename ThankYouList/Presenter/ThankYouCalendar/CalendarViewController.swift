@@ -338,14 +338,6 @@ extension CalendarViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let editingThankYouData = selectedList.getSafely(at: indexPath.row) else { return }
-        let vc = EditThankYouViewController.createViewController(thankYouData: editingThankYouData)
-        let navi = UINavigationController(rootViewController: vc)
-        self.present(navi, animated: true, completion: nil)
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         if smallListView.isFullScreen
             && scrollView.contentOffset.y <= 0

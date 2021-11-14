@@ -179,6 +179,13 @@ private extension ThankYouListViewController {
             sections.remove(at: sectionIndex)
         }
     }
+
+    func presentEditThankYouViewController(thankYouId: String) {
+        guard let editThankYouViewController = EditThankYouViewController.createViewController(thankYouId: thankYouId) else {
+            return
+        }
+        present(editThankYouViewController, animated: true, completion: nil)
+    }
 }
     
     
@@ -294,5 +301,15 @@ extension ThankYouListViewController {
 // MARK: - BottomHalfSheetMenuViewControllerDelegate
 extension ThankYouListViewController: BottomHalfSheetMenuViewControllerDelegate {
     func bottomHalfSheetMenuViewControllerDidTapItem(item: BottomHalfSheetMenuItem) {
+        guard let itemRawValue = item.rawValue,
+              let cellMenu = ThankYouCellTapMenu(rawValue: itemRawValue),
+              let thankYouId = item.id else { return }
+        presentedViewController?.dismiss(animated: true, completion: nil)
+        switch cellMenu {
+        case .edit:
+            presentEditThankYouViewController(thankYouId: thankYouId)
+        case .delete:
+            break
+        }
     }
 }

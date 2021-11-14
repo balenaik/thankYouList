@@ -196,6 +196,13 @@ extension CalendarViewController {
             self.smallListView.reloadTableView()
         }
     }
+
+    func presentEditThankYouViewController(thankYouId: String) {
+        guard let editThankYouViewController = EditThankYouViewController.createViewController(thankYouId: thankYouId) else {
+            return
+        }
+        present(editThankYouViewController, animated: true, completion: nil)
+    }
     
     private func beginDraggingListView() {
         isDraggingListView = true
@@ -310,7 +317,7 @@ extension CalendarViewController: UITableViewDataSource, UITableViewDelegate {
         if let thankYouData = selectedList.getSafely(at: indexPath.row) {
             cell.bind(thankYouData: thankYouData)
         }
-        cell.selectionStyle = .none
+        cell.delegate = self
         return cell
     }
     
@@ -381,6 +388,34 @@ extension CalendarViewController: SmallListViewDelegate {
         guard let user = Auth.auth().currentUser,
             let selectedDate = calendarView.selectedDates.getSafely(at: 0) else { return }
         Analytics.logEvent(eventName: AnalyticsEventConst.calendarSmallListViewFullScreen, userId: user.uid, targetDate: selectedDate)
+    }
+}
+
+// MARK: - ThankYouCellDelegate
+extension CalendarViewController: ThankYouCellDelegate {
+    func thankYouCellDidTapThankYouView(thankYouId: String) {
+        let menu = ThankYouCellTapMenu.allCases.map { $0.bottomHalfSheetMenuItem(id: thankYouId) }
+        let bottomSheet = BottomHalfSheetMenuViewController.createViewController(
+            menu: menu,
+            bottomSheetDelegate: self
+        )
+        present(bottomSheet, animated: true, completion: nil)
+    }
+}
+
+// MARK: - BottomHalfSheetMenuViewControllerDelegate
+extension CalendarViewController: BottomHalfSheetMenuViewControllerDelegate {
+    func bottomHalfSheetMenuViewControllerDidTapItem(item: BottomHalfSheetMenuItem) {
+        guard let itemRawValue = item.rawValue,
+              let cellMenu = ThankYouCellTapMenu(rawValue: itemRawValue),
+              let thankYouId = item.id else { return }
+        presentedViewController?.dismiss(animated: true, completion: nil)
+        switch cellMenu {
+        case .edit:
+            presentEditThankYouViewController(thankYouId: thankYouId)
+        case .delete:
+            break
+        }
     }
 }
 

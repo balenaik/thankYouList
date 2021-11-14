@@ -140,7 +140,6 @@ extension BottomHalfSheetMenuViewController {
         floatingPanelController.surfaceView.appearance = appearance
 
         floatingPanelController.backdropView.dismissalTapGestureRecognizer.isEnabled = true
-        floatingPanelController.panGestureRecognizer.cancelsTouchesInView = false
         floatingPanelController.isRemovalInteractionEnabled = true
 
         floatingPanelController.set(contentViewController: bottomHalfSheetMenuViewController)

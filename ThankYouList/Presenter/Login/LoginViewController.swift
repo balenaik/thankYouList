@@ -22,21 +22,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var appleLoginButton: LoginContinueButton!
 
     private var currentNonce: String?
-    
-    static func createViewController() -> UIViewController? {
-        guard let viewController = R.storyboard.login().instantiateInitialViewController() else { return nil }
-        return viewController
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-    }
-
-    private func setupView() {
-        facebookLoginButton.setTitle(R.string.localizable.login_continue_with_facebook(), for: .normal)
-        googleLoginButton.setTitle(R.string.localizable.login_continue_with_google(), for: .normal)
-        appleLoginButton.setTitle(R.string.localizable.login_continue_with_apple(), for: .normal)
     }
 }
 
@@ -90,7 +79,13 @@ extension LoginViewController {
 
 // MARK: - Private Methods
 private extension LoginViewController {
-    private func signIn(credential: AuthCredential, name: String? = nil, email: String? = nil) {
+    func setupView() {
+        facebookLoginButton.setTitle(R.string.localizable.login_continue_with_facebook(), for: .normal)
+        googleLoginButton.setTitle(R.string.localizable.login_continue_with_google(), for: .normal)
+        appleLoginButton.setTitle(R.string.localizable.login_continue_with_apple(), for: .normal)
+    }
+
+    func signIn(credential: AuthCredential, name: String? = nil, email: String? = nil) {
         Auth.auth().signIn(with: credential) { (fireUser, fireError) in
             if let error = fireError {
                 print(error)
@@ -115,17 +110,17 @@ private extension LoginViewController {
         }
     }
 
-    private func updateUserProfile(name: String) {
+    func updateUserProfile(name: String) {
         let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
         changeRequest?.displayName = name
         changeRequest?.commitChanges()
     }
 
-    private func updateUserEmail(email: String) {
+    func updateUserEmail(email: String) {
         Auth.auth().currentUser?.updateEmail(to: email, completion: nil)
     }
 
-    private func randomNonceString(length: Int = 32) -> String {
+    func randomNonceString(length: Int = 32) -> String {
         precondition(length > 0)
         let charset: Array<Character> =
             Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
@@ -198,5 +193,13 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
 extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
+    }
+}
+
+// MARK: - Public
+extension LoginViewController {
+    static func createViewController() -> UIViewController? {
+        guard let viewController = R.storyboard.login().instantiateInitialViewController() else { return nil }
+        return viewController
     }
 }

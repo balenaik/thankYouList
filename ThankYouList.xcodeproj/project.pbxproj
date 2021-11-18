@@ -32,6 +32,7 @@
 		A824150F205CE28C00172587 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824150E205CE28C00172587 /* LoginViewController.swift */; };
 		A82BBF4F27071321007E8CD9 /* TapAnimationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82BBF4E27071321007E8CD9 /* TapAnimationButton.swift */; };
 		A82BBF78270C4FC4007E8CD9 /* UIFont+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82BBF77270C4FC4007E8CD9 /* UIFont+Theme.swift */; };
+		A831BD432741617C003B5394 /* FirestoreConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A831BD422741617C003B5394 /* FirestoreConst.swift */; };
 		A83D5F891F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */; };
 		A841B339213ED3DE00E8AB5B /* LocalizedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841B338213ED3DE00E8AB5B /* LocalizedLabel.swift */; };
 		A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84CBEE120F198E400CBA0AB /* ConstStruct.swift */; };
@@ -120,6 +121,7 @@
 		A824150E205CE28C00172587 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A82BBF4E27071321007E8CD9 /* TapAnimationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapAnimationButton.swift; sourceTree = "<group>"; };
 		A82BBF77270C4FC4007E8CD9 /* UIFont+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Theme.swift"; sourceTree = "<group>"; };
+		A831BD422741617C003B5394 /* FirestoreConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirestoreConst.swift; sourceTree = "<group>"; };
 		A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+RuntimeAttribute.swift"; sourceTree = "<group>"; };
 		A841B338213ED3DE00E8AB5B /* LocalizedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedLabel.swift; sourceTree = "<group>"; };
 		A84CBEE120F198E400CBA0AB /* ConstStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstStruct.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 				A84CBEE120F198E400CBA0AB /* ConstStruct.swift */,
 				A820DE5321C5432500E7F3DF /* NotificationConst.swift */,
 				A8DABBD527173FA20086B2E8 /* ViewConst.swift */,
+				A831BD422741617C003B5394 /* FirestoreConst.swift */,
 			);
 			path = Const;
 			sourceTree = "<group>";
@@ -570,7 +573,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -691,6 +694,7 @@
 				A85DCC081F5D2151004E1095 /* CustomCell.swift in Sources */,
 				A8114B0B23017DB70024975A /* ListScrollIndicatorMovableIcon.swift in Sources */,
 				A8A85A9925A60DF500182B99 /* UIButton+BackgroundColor.swift in Sources */,
+				A831BD432741617C003B5394 /* FirestoreConst.swift in Sources */,
 				A8C59B76243CC86100FF79EA /* R.generated.swift in Sources */,
 				A86F419E24548797005D929A /* MyPageTableItem.swift in Sources */,
 				A8B6EE952205902100908D51 /* ListSectionHeaderView.swift in Sources */,

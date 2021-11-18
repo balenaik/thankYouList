@@ -186,6 +186,46 @@ private extension ThankYouListViewController {
         }
         present(editThankYouViewController, animated: true, completion: nil)
     }
+
+    func showDeleteConfirmationAlert(thankYouId: String) {
+        let alertController = UIAlertController(
+            title: R.string.localizable.deleteThankYou(),
+            message: R.string.localizable.areYouSureYouWantToDeleteThisThankYou(),
+            preferredStyle: .alert)
+        let deleteAction = UIAlertAction(title: R.string.localizable.delete(),
+                                         style: .destructive) { [weak self] _ in
+            self?.deleteThankYou(thankYouId: thankYouId)
+        }
+        let cancelButton = UIAlertAction(title: R.string.localizable.cancel(),
+                                         style: .cancel)
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelButton)
+        present(alertController,animated: true,completion: nil)
+    }
+
+    func deleteThankYou(thankYouId: String) {
+        guard let userId = Auth.auth().currentUser?.uid else {
+            showErrorAlert(title: nil, message: R.string.localizable.failedToDelete())
+            return
+        }
+        db.collection(FirestoreConst.usersCollecion)
+            .document(userId)
+            .collection(FirestoreConst.thankYouListCollection)
+            .document(thankYouId)
+            .delete(completion: { [weak self] error in
+                guard let self = self else { return }
+                if let error = error {
+                    debugPrint(error)
+                    self.showErrorAlert(title: nil, message: R.string.localizable.failedToDelete())
+                    return
+                }
+                if let thankYouData = self.thankYouDataSingleton.thankYouDataList.first(where: { $0.id == thankYouId }) {
+                    Analytics.logEvent(eventName: AnalyticsEventConst.deleteThankYou,
+                                       userId: userId,
+                                       targetDate: thankYouData.date)
+                }
+            })
+    }
 }
     
     
@@ -309,7 +349,7 @@ extension ThankYouListViewController: BottomHalfSheetMenuViewControllerDelegate 
         case .edit:
             presentEditThankYouViewController(thankYouId: thankYouId)
         case .delete:
-            break
+            showDeleteConfirmationAlert(thankYouId: thankYouId)
         }
     }
 }

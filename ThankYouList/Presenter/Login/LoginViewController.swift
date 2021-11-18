@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FirebaseAuth
+import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
 import GoogleSignIn
@@ -55,9 +55,24 @@ extension LoginViewController {
     }
     
     @IBAction func tapGoogleLoginButton(_ sender: Any) {
-        GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance()?.presentingViewController = self
-        GIDSignIn.sharedInstance().signIn()
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        let configuration = GIDConfiguration(clientID: clientID)
+
+        GIDSignIn.sharedInstance.signIn(with: configuration,
+                                        presenting: self) { [weak self] (user, error) in
+            guard let self = self else { return }
+            if let error = error {
+                print(error.localizedDescription)
+                self.showErrorAlert(title: R.string.localizable.error(),
+                                    message: R.string.localizable.error_authenticate())
+                return
+            }
+            guard let auth = user?.authentication,
+                  let idToken = auth.idToken else { return }
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                           accessToken: auth.accessToken)
+            self.signIn(credential: credential)
+        }
     }
 
     @IBAction func tapAppleLoginButton(_ sender: Any) {
@@ -140,21 +155,6 @@ private extension LoginViewController {
         }
 
         return result
-    }
-}
-
-// MARK: - GIDSignInDelegate, GIDSignInUIDelegate
-extension LoginViewController: GIDSignInDelegate {
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error {
-            print(error.localizedDescription)
-            showErrorAlert(title: R.string.localizable.error(),
-                           message: R.string.localizable.error_authenticate())
-            return
-        }
-        guard let auth = user.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: auth.idToken,accessToken: auth.accessToken)
-        self.signIn(credential: credential)
     }
 }
 

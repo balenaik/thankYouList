@@ -26,16 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
-        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-        
-        // UIWindowを生成.
+
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        
-        // FireCloudの初期設定
-        let db = Firestore.firestore()
-        let settings = db.settings
-        settings.areTimestampsInSnapshotsEnabled = true
-        db.settings = settings
         
         guard Auth.auth().currentUser != nil else {
             if let loginViewController = R.storyboard.login().instantiateInitialViewController() {

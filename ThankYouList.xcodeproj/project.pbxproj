@@ -20,7 +20,7 @@
 		A810D8E423483125008F2E74 /* String+Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A810D8E323483125008F2E74 /* String+Localizable.swift */; };
 		A810D8E62348365B008F2E74 /* LocalizableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A810D8E52348365B008F2E74 /* LocalizableExtensions.swift */; };
 		A8114AF922E435960024975A /* ThankYouList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8114AF822E435960024975A /* ThankYouList.storyboard */; };
-		A8114AFC22E446BD0024975A /* ThankYouCalendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8114AFB22E446BD0024975A /* ThankYouCalendar.storyboard */; };
+		A8114AFC22E446BD0024975A /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8114AFB22E446BD0024975A /* Calendar.storyboard */; };
 		A8114AFF22E448690024975A /* AddThankYou.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8114AFE22E448690024975A /* AddThankYou.storyboard */; };
 		A8114B0222E458C70024975A /* EditThankYou.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8114B0122E458C70024975A /* EditThankYou.storyboard */; };
 		A8114B0822E45BB90024975A /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8114B0722E45BB90024975A /* Login.storyboard */; };
@@ -108,7 +108,7 @@
 		A810D8E323483125008F2E74 /* String+Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localizable.swift"; sourceTree = "<group>"; };
 		A810D8E52348365B008F2E74 /* LocalizableExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableExtensions.swift; sourceTree = "<group>"; };
 		A8114AF822E435960024975A /* ThankYouList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ThankYouList.storyboard; sourceTree = "<group>"; };
-		A8114AFB22E446BD0024975A /* ThankYouCalendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ThankYouCalendar.storyboard; sourceTree = "<group>"; };
+		A8114AFB22E446BD0024975A /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		A8114AFE22E448690024975A /* AddThankYou.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddThankYou.storyboard; sourceTree = "<group>"; };
 		A8114B0122E458C70024975A /* EditThankYou.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditThankYou.storyboard; sourceTree = "<group>"; };
 		A8114B0722E45BB90024975A /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -261,7 +261,7 @@
 				A808C615220FACF6004162E4 /* SmallListView.swift */,
 				A85DCC071F5D2151004E1095 /* CustomCell.swift */,
 				A8DB2FB91F5D41540055E8A4 /* CalendarViewController.swift */,
-				A8114AFB22E446BD0024975A /* ThankYouCalendar.storyboard */,
+				A8114AFB22E446BD0024975A /* Calendar.storyboard */,
 			);
 			path = ThankYouCalendar;
 			sourceTree = "<group>";
@@ -532,7 +532,7 @@
 				A8114B0222E458C70024975A /* EditThankYou.storyboard in Resources */,
 				A8114B0D23017DCC0024975A /* ListScrollIndicatorMovableIcon.xib in Resources */,
 				A8114AF922E435960024975A /* ThankYouList.storyboard in Resources */,
-				A8114AFC22E446BD0024975A /* ThankYouCalendar.storyboard in Resources */,
+				A8114AFC22E446BD0024975A /* Calendar.storyboard in Resources */,
 				A8B6EE932205900D00908D51 /* ListSectionHeaderView.xib in Resources */,
 				A8BA38B91F5CC5F600817D5C /* Images.xcassets in Resources */,
 			);
@@ -573,7 +573,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/R.generated.swift",
+				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

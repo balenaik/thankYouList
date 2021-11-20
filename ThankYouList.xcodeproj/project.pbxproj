@@ -43,7 +43,7 @@
 		A8519450272D466A003631EE /* BottomHalfSheetMenuItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A851944F272D466A003631EE /* BottomHalfSheetMenuItemView.xib */; };
 		A8519453272F3C44003631EE /* ThankYouCellTapMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8519452272F3C44003631EE /* ThankYouCellTapMenu.swift */; };
 		A85D9D011EA64AF900945E6E /* ThankYouData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85D9D001EA64AF900945E6E /* ThankYouData.swift */; };
-		A85DCC081F5D2151004E1095 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85DCC071F5D2151004E1095 /* CustomCell.swift */; };
+		A85DCC081F5D2151004E1095 /* CalendarDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85DCC071F5D2151004E1095 /* CalendarDayCell.swift */; };
 		A864849B2160F5BF0049D90A /* Pods_ThankYouList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D49C15FD4089235E28B5ED /* Pods_ThankYouList.framework */; };
 		A866BEE520B931620073A76D /* TYLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A866BEE420B931620073A76D /* TYLColor.swift */; };
 		A86F419C24547DE6005D929A /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86F419B24547DE6005D929A /* UIView+IBInspectable.swift */; };
@@ -132,7 +132,7 @@
 		A851944F272D466A003631EE /* BottomHalfSheetMenuItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomHalfSheetMenuItemView.xib; sourceTree = "<group>"; };
 		A8519452272F3C44003631EE /* ThankYouCellTapMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouCellTapMenu.swift; sourceTree = "<group>"; };
 		A85D9D001EA64AF900945E6E /* ThankYouData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThankYouData.swift; sourceTree = "<group>"; };
-		A85DCC071F5D2151004E1095 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		A85DCC071F5D2151004E1095 /* CalendarDayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDayCell.swift; sourceTree = "<group>"; };
 		A866BEE420B931620073A76D /* TYLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYLColor.swift; sourceTree = "<group>"; };
 		A86F419B24547DE6005D929A /* UIView+IBInspectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+IBInspectable.swift"; sourceTree = "<group>"; };
 		A86F419D24548797005D929A /* MyPageTableItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableItem.swift; sourceTree = "<group>"; };
@@ -259,7 +259,7 @@
 			children = (
 				A808C617220FAD06004162E4 /* SmallListView.xib */,
 				A808C615220FACF6004162E4 /* SmallListView.swift */,
-				A85DCC071F5D2151004E1095 /* CustomCell.swift */,
+				A85DCC071F5D2151004E1095 /* CalendarDayCell.swift */,
 				A8DB2FB91F5D41540055E8A4 /* CalendarViewController.swift */,
 				A8114AFB22E446BD0024975A /* Calendar.storyboard */,
 			);
@@ -691,7 +691,7 @@
 				A808C616220FACF6004162E4 /* SmallListView.swift in Sources */,
 				A82BBF4F27071321007E8CD9 /* TapAnimationButton.swift in Sources */,
 				A8B6EE9122055CE900908D51 /* Date+ToString.swift in Sources */,
-				A85DCC081F5D2151004E1095 /* CustomCell.swift in Sources */,
+				A85DCC081F5D2151004E1095 /* CalendarDayCell.swift in Sources */,
 				A8114B0B23017DB70024975A /* ListScrollIndicatorMovableIcon.swift in Sources */,
 				A8A85A9925A60DF500182B99 /* UIButton+BackgroundColor.swift in Sources */,
 				A831BD432741617C003B5394 /* FirestoreConst.swift in Sources */,

@@ -112,14 +112,14 @@ extension CalendarViewController {
     }
     
     private func configureCell(cell: JTAppleCell?, cellState: CellState) {
-        guard let validCell = cell as? CustomCell else { return }
+        guard let validCell = cell as? CalendarDayCell else { return }
         handleCellSelected(view: validCell, cellState: cellState)
         handleCellTextColor(view: validCell, cellState: cellState)
         handleCellEvents(view: validCell, cellState: cellState)
     }
     
     private func handleCellTextColor(view: JTAppleCell?, cellState: CellState) {
-        guard let validCell = view as? CustomCell else { return }
+        guard let validCell = view as? CalendarDayCell else { return }
         
         if cellState.isSelected {
             validCell.dateLabel.textColor = TYLColor.TYLGrayColor
@@ -140,7 +140,7 @@ extension CalendarViewController {
     }
     
     private func handleCellSelected(view: JTAppleCell?, cellState: CellState) {
-        guard let validCell = view as? CustomCell else { return }
+        guard let validCell = view as? CalendarDayCell else { return }
         if cellState.isSelected {
             validCell.selectedView.isHidden = false
         } else {
@@ -149,7 +149,7 @@ extension CalendarViewController {
     }
     
     private func handleCellEvents(view: JTAppleCell?, cellState: CellState) {
-        guard let validCell = view as? CustomCell else { return }
+        guard let validCell = view as? CalendarDayCell else { return }
         
         validCell.oneDotView.isHidden = true
         validCell.twoDotsView.isHidden = true
@@ -319,7 +319,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
-        let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "CustomCell", for: indexPath) as! CustomCell
+        let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: R.reuseIdentifier.calendarDayCell.identifier, for: indexPath) as! CalendarDayCell
         cell.dateLabel.text = cellState.text
         configureCell(cell: cell, cellState: cellState)
         return cell

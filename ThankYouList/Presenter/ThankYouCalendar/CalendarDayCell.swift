@@ -1,5 +1,5 @@
 //
-//  CustomCell.swift
+//  CalendarDayCell.swift
 //  ThankYouList
 //
 //  Created by Aika Yamada on 2017/09/04.
@@ -9,7 +9,7 @@
 import UIKit
 import JTAppleCalendar
 
-class CustomCell: JTAppleCell {
+class CalendarDayCell: JTAppleCell {
 
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var selectedView: UIView!
@@ -18,7 +18,4 @@ class CustomCell: JTAppleCell {
     @IBOutlet weak var twoDotsView: UIStackView!
     @IBOutlet weak var threeDotsView: UIStackView!
     @IBOutlet weak var dotsAndPlusView: UIStackView!
-    
-    
-    
 }

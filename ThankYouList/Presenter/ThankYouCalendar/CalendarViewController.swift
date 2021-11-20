@@ -122,10 +122,10 @@ extension CalendarViewController {
         guard let validCell = view as? CalendarDayCell else { return }
         
         if cellState.isSelected {
-            validCell.dateLabel.textColor = TYLColor.TYLGrayColor
+            validCell.dateLabel.textColor = .text
         } else {
             if cellState.dateBelongsTo == .thisMonth {
-                validCell.dateLabel.textColor = TYLColor.TYLGrayColor
+                validCell.dateLabel.textColor = .text
             } else {
                 validCell.dateLabel.textColor = UIColor.highGray
             }

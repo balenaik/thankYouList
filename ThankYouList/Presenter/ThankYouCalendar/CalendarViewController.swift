@@ -28,10 +28,7 @@ class CalendarViewController: UIViewController {
     private var listViewMostTopConstant = CGFloat(0)
     private var isDraggingListView = false
     private let db = Firestore.firestore()
-    
-    
-    
-    
+
     // MARK: - IBOutlets
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var stackView: UIStackView!
@@ -40,24 +37,12 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var yearMonth: UILabel!
 
     @IBOutlet weak var listViewTopConstraint: NSLayoutConstraint!
-   
-    
-    // MARK: - Initializers
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    
-    
+
     // MARK: - Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupNavigationBar()
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -83,7 +68,7 @@ extension CalendarViewController {
 }
 
 // MARK: - Private Methods
-extension CalendarViewController {
+private extension CalendarViewController {
     func setupView() {
         navigationItem.title = R.string.localizable.calendar_navigationbar_title()
         tabBarItem.title = R.string.localizable.calendar_tabbar_title()
@@ -108,66 +93,6 @@ extension CalendarViewController {
         
         calendarView.visibleDates { (visibleDates) in
             self.setupViewsOfCalendar(from: visibleDates)
-        }
-    }
-    
-    private func configureCell(cell: JTAppleCell?, cellState: CellState) {
-        guard let validCell = cell as? CalendarDayCell else { return }
-        handleCellSelected(view: validCell, cellState: cellState)
-        handleCellTextColor(view: validCell, cellState: cellState)
-        handleCellEvents(view: validCell, cellState: cellState)
-    }
-    
-    private func handleCellTextColor(view: JTAppleCell?, cellState: CellState) {
-        guard let validCell = view as? CalendarDayCell else { return }
-        
-        if cellState.isSelected {
-            validCell.dateLabel.textColor = .text
-        } else {
-            if cellState.dateBelongsTo == .thisMonth {
-                validCell.dateLabel.textColor = .text
-            } else {
-                validCell.dateLabel.textColor = UIColor.highGray
-            }
-        }
-
-        let todaysDateString = Date().toThankYouDateString()
-        let monthDateString = cellState.date.toThankYouDateString()
-        
-        if todaysDateString == monthDateString {
-            validCell.dateLabel.textColor = TYLColor.pinkColor
-        }
-    }
-    
-    private func handleCellSelected(view: JTAppleCell?, cellState: CellState) {
-        guard let validCell = view as? CalendarDayCell else { return }
-        if cellState.isSelected {
-            validCell.selectedView.isHidden = false
-        } else {
-            validCell.selectedView.isHidden = true
-        }
-    }
-    
-    private func handleCellEvents(view: JTAppleCell?, cellState: CellState) {
-        guard let validCell = view as? CalendarDayCell else { return }
-        
-        validCell.oneDotView.isHidden = true
-        validCell.twoDotsView.isHidden = true
-        validCell.threeDotsView.isHidden = true
-        validCell.dotsAndPlusView.isHidden = true
-        
-        let count = thankYouDataSingleton.thankYouDataList.filter({$0.date == cellState.date}).count
-        switch count {
-        case 0:
-            break
-        case 1:
-            validCell.oneDotView.isHidden = false
-        case 2:
-            validCell.twoDotsView.isHidden = false
-        case 3:
-            validCell.threeDotsView.isHidden = false
-        default:
-            validCell.dotsAndPlusView.isHidden = false
         }
     }
     
@@ -314,19 +239,20 @@ extension CalendarViewController: JTAppleCalendarViewDataSource {
 
 // MARK: - JTAppleCalendarViewDelegate
 extension CalendarViewController: JTAppleCalendarViewDelegate {
-    func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
-        //
-    }
+    func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {}
     
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: R.reuseIdentifier.calendarDayCell.identifier, for: indexPath) as! CalendarDayCell
-        cell.dateLabel.text = cellState.text
-        configureCell(cell: cell, cellState: cellState)
+        let thankYouCount = thankYouDataSingleton.thankYouDataList.filter { $0.date == cellState.date }.count
+        cell.bind(cellState: cellState, thankYouCount: thankYouCount)
+        cell.bindSelection(isSelected: cellState.isSelected)
         return cell
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        configureCell(cell: cell, cellState: cellState)
+        if let cell = cell as? CalendarDayCell {
+            cell.bindSelection(isSelected: cellState.isSelected)
+        }
         getListFromDate(cellState.date)
         appDelegate.selectedDate = cellState.date
         selectedDate = cellState.date.toThankYouDateString()
@@ -336,7 +262,9 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        configureCell(cell: cell, cellState: cellState)
+        if let cell = cell as? CalendarDayCell {
+            cell.bindSelection(isSelected: cellState.isSelected)
+        }
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {

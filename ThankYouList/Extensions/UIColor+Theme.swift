@@ -33,7 +33,7 @@ extension UIColor {
         return UIColor.black.withAlphaComponent(0.87)
     }
 
-    class var highGray: UIColor {
-        return UIColor(colorWithHexValue: 0xc8c8c8)
+    class var black26: UIColor {
+        return UIColor.black.withAlphaComponent(0.26)
     }
 }

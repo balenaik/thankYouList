@@ -22,6 +22,11 @@ class CalendarDayCell: JTAppleCell {
         super.awakeFromNib()
         selectedView.backgroundColor = UIColor.primary200.withAlphaComponent(0.6)
     }
+
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        selectedView.layer.cornerRadius = selectedView.bounds.height / 2
+    }
 }
 
 // MARK: - Public

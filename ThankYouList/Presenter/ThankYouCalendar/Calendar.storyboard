@@ -108,17 +108,11 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4y4-Xo-BFu">
-                                                            <rect key="frame" x="30" y="18.5" width="25" height="25"/>
-                                                            <color key="backgroundColor" name="highlightYellow"/>
+                                                            <rect key="frame" x="7.5" y="1" width="70" height="70"/>
+                                                            <color key="backgroundColor" name="primary900"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="25" id="Bl5-d1-1z5"/>
-                                                                <constraint firstAttribute="height" constant="25" id="JoP-r5-ydR" userLabel="height = 40"/>
+                                                                <constraint firstAttribute="height" secondItem="4y4-Xo-BFu" secondAttribute="width" multiplier="1:1" id="fcm-f1-IfQ"/>
                                                             </constraints>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <real key="value" value="12.5"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgZ-kH-XKJ">
                                                             <rect key="frame" x="38" y="19.5" width="9.5" height="23.5"/>
@@ -217,13 +211,11 @@
                                                     <constraint firstItem="cgZ-kH-XKJ" firstAttribute="centerY" secondItem="s95-pO-ZJm" secondAttribute="centerY" constant="-10" id="TQb-Vf-8Mn"/>
                                                     <constraint firstItem="R8p-mi-9Od" firstAttribute="centerY" secondItem="s95-pO-ZJm" secondAttribute="centerY" constant="10" id="aR6-jQ-yy6"/>
                                                     <constraint firstItem="7IU-dE-y1B" firstAttribute="centerY" secondItem="s95-pO-ZJm" secondAttribute="centerY" constant="10" id="gq5-kE-yH2"/>
+                                                    <constraint firstItem="cgZ-kH-XKJ" firstAttribute="centerY" secondItem="s95-pO-ZJm" secondAttribute="centerY" constant="-5" id="TQb-Vf-8Mn"/>
+                                                    <constraint firstItem="4y4-Xo-BFu" firstAttribute="top" secondItem="s95-pO-ZJm" secondAttribute="top" constant="1" id="V11-o7-fMg"/>
+                                                    <constraint firstItem="4y4-Xo-BFu" firstAttribute="centerY" secondItem="cgZ-kH-XKJ" secondAttribute="centerY" id="XIo-Li-gRQ"/>
+                                                    <constraint firstItem="4y4-Xo-BFu" firstAttribute="centerX" secondItem="cgZ-kH-XKJ" secondAttribute="centerX" id="f2h-EI-6UA"/>
                                                     <constraint firstItem="4y4-Xo-BFu" firstAttribute="centerX" secondItem="s95-pO-ZJm" secondAttribute="centerX" id="npl-Hl-gpk"/>
-                                                    <constraint firstItem="R8p-mi-9Od" firstAttribute="centerX" secondItem="s95-pO-ZJm" secondAttribute="centerX" id="oiu-d5-J4k"/>
-                                                    <constraint firstItem="7IU-dE-y1B" firstAttribute="centerX" secondItem="s95-pO-ZJm" secondAttribute="centerX" id="pQu-BH-uMI"/>
-                                                    <constraint firstItem="4y4-Xo-BFu" firstAttribute="centerY" secondItem="s95-pO-ZJm" secondAttribute="centerY" constant="-10" id="pbn-zr-3Gc"/>
-                                                    <constraint firstItem="Ujr-D1-Ugq" firstAttribute="centerX" secondItem="s95-pO-ZJm" secondAttribute="centerX" id="rQ9-az-EJQ"/>
-                                                    <constraint firstItem="22c-An-HbW" firstAttribute="centerY" secondItem="s95-pO-ZJm" secondAttribute="centerY" constant="10" id="raq-Oe-x3b"/>
-                                                    <constraint firstItem="Ujr-D1-Ugq" firstAttribute="centerY" secondItem="s95-pO-ZJm" secondAttribute="centerY" constant="10" id="zIe-qH-f68"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="dateLabel" destination="cgZ-kH-XKJ" id="cDc-Mj-otS"/>

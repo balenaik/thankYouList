@@ -17,6 +17,11 @@ class CalendarDayCell: JTAppleCell {
     @IBOutlet weak var twoDotsView: UIStackView!
     @IBOutlet weak var threeDotsView: UIStackView!
     @IBOutlet weak var dotsAndPlusView: UIStackView!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        selectedView.backgroundColor = UIColor.primary200.withAlphaComponent(0.6)
+    }
 }
 
 // MARK: - Public

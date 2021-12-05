@@ -44,6 +44,15 @@ class CalendarViewController: UIViewController {
         setupView()
         setupNavigationBar()
     }
+
+    override func viewWillTransition(
+        to size: CGSize,
+        with coordinator: UIViewControllerTransitionCoordinator) {
+        guard let visibleDates = calendarView?.visibleDates() else { return }
+        calendarView?.viewWillTransition(to: .zero,
+                                         with: coordinator,
+                                         anchorDate: visibleDates.monthDates.first?.date)
+    }
 }
 
 // MARK: - IBActions
@@ -246,6 +255,8 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         let thankYouCount = thankYouDataSingleton.thankYouDataList.filter { $0.date == cellState.date }.count
         cell.bind(cellState: cellState, thankYouCount: thankYouCount)
         cell.bindSelection(isSelected: cellState.isSelected)
+        // To make sure draw(_ rect:) gets called when screen is rotated
+        cell.setNeedsDisplay()
         return cell
     }
     

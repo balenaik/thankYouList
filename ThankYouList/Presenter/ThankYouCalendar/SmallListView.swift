@@ -37,9 +37,19 @@ class SmallListView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         let view = R.nib.smallListView(owner: self)!
-        view.frame = self.bounds
         self.addSubview(view)
+        setupConstraints(view: view)
         self.view = view
+    }
+
+    private func setupConstraints(view: UIView) {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            view.topAnchor.constraint(equalTo: self.topAnchor),
+            view.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            view.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            view.leadingAnchor.constraint(equalTo: self.leadingAnchor)
+        ])
     }
     
     // MARK: - View Lifecycles

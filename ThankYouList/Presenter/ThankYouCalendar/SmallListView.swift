@@ -8,6 +8,11 @@
 
 import UIKit
 
+private let shadowColor = UIColor.black26
+private let shadowOpacity = Float(0.2)
+private let shadowOffset = CGSize(width: 0, height: -0.1)
+private let shadowRadius = CGFloat(3)
+
 protocol SmallListViewDelegate: class {
     func smallListViewBecomeFullScreen(_ view: SmallListView)
 }
@@ -94,5 +99,15 @@ extension SmallListView {
     
     func setTableViewOffsetZero() {
         tableView.contentOffset = CGPoint(x: 0, y: 0)
+    }
+}
+
+// MARK: - Private methods
+private extension SmallListView {
+    func dropShadow() {
+        layer.shadowColor = shadowColor.cgColor
+        layer.shadowOpacity = shadowOpacity
+        layer.shadowOffset = shadowOffset
+        layer.shadowRadius = shadowRadius
     }
 }

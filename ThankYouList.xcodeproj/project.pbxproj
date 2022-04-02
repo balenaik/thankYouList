@@ -28,7 +28,6 @@
 		A8114B0D23017DCC0024975A /* ListScrollIndicatorMovableIcon.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8114B0C23017DCC0024975A /* ListScrollIndicatorMovableIcon.xib */; };
 		A8114B10230180EF0024975A /* ListScrollIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8114B0F230180EF0024975A /* ListScrollIndicator.swift */; };
 		A820DE5421C5432500E7F3DF /* NotificationConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820DE5321C5432500E7F3DF /* NotificationConst.swift */; };
-		A820DE5721C61EF100E7F3DF /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820DE5621C61EF000E7F3DF /* UIView+Shadow.swift */; };
 		A824150F205CE28C00172587 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824150E205CE28C00172587 /* LoginViewController.swift */; };
 		A82BBF4F27071321007E8CD9 /* TapAnimationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82BBF4E27071321007E8CD9 /* TapAnimationButton.swift */; };
 		A82BBF78270C4FC4007E8CD9 /* UIFont+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82BBF77270C4FC4007E8CD9 /* UIFont+Theme.swift */; };
@@ -116,7 +115,6 @@
 		A8114B0C23017DCC0024975A /* ListScrollIndicatorMovableIcon.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListScrollIndicatorMovableIcon.xib; sourceTree = "<group>"; };
 		A8114B0F230180EF0024975A /* ListScrollIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListScrollIndicator.swift; sourceTree = "<group>"; };
 		A820DE5321C5432500E7F3DF /* NotificationConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationConst.swift; sourceTree = "<group>"; };
-		A820DE5621C61EF000E7F3DF /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		A824150B205CDF5800172587 /* ThankYouList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThankYouList.entitlements; sourceTree = "<group>"; };
 		A824150E205CE28C00172587 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A82BBF4E27071321007E8CD9 /* TapAnimationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapAnimationButton.swift; sourceTree = "<group>"; };
@@ -335,7 +333,6 @@
 				A8A0FE60205E005D0048AB33 /* UIColor+SetColor.swift */,
 				A810D8D923461F99008F2E74 /* UIColor+Theme.swift */,
 				A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */,
-				A820DE5621C61EF000E7F3DF /* UIView+Shadow.swift */,
 				A80EAE5721F4C0B4006B02E8 /* UIView+Highlight.swift */,
 				A86F419B24547DE6005D929A /* UIView+IBInspectable.swift */,
 				A8B6EE8D2201E41D00908D51 /* String+ToDate.swift */,
@@ -713,7 +710,6 @@
 				A8831CC71E9CFE6B00F3CA0A /* AppDelegate.swift in Sources */,
 				A8C90AE02302ECA3008C6A4A /* ListScrollIndicatorTitleView.swift in Sources */,
 				A86F419C24547DE6005D929A /* UIView+IBInspectable.swift in Sources */,
-				A820DE5721C61EF100E7F3DF /* UIView+Shadow.swift in Sources */,
 				A83D5F891F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift in Sources */,
 				A8DABC24271ACE4E0086B2E8 /* BottomHalfSheetMenuViewController.swift in Sources */,
 				A8A068662450A15900839D14 /* Profile.swift in Sources */,

@@ -8,6 +8,11 @@
 
 import UIKit
 
+private let topCornerRadiusInFullScreen = CGFloat(0)
+private let topCornerRadiusNotInFullScreen = CGFloat(24)
+
+private let maskedCorners: CACornerMask = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+
 private let shadowColor = UIColor.black26
 private let shadowOpacity = Float(0.2)
 private let shadowOffset = CGSize(width: 0, height: -0.1)
@@ -20,7 +25,6 @@ protocol SmallListViewDelegate: class {
 class SmallListView: UIView {
     
     // MARK: - Properties
-    var view: UIView!
     var isFullScreen = false {
         didSet {
             if isFullScreen {
@@ -30,8 +34,11 @@ class SmallListView: UIView {
             }
         }
     }
-
     weak var delegate: SmallListViewDelegate?
+    private var topCornerRadius: CGFloat {
+        return isFullScreen
+            ? topCornerRadiusInFullScreen : topCornerRadiusNotInFullScreen
+    }
     
     // MARK: - IBOutlets
     @IBOutlet weak var headerView: UIView!
@@ -44,7 +51,7 @@ class SmallListView: UIView {
         let view = R.nib.smallListView(owner: self)!
         self.addSubview(view)
         setupConstraints(view: view)
-        self.view = view
+        setupView(view: view)
     }
 
     private func setupConstraints(view: UIView) {
@@ -56,15 +63,10 @@ class SmallListView: UIView {
             view.leadingAnchor.constraint(equalTo: self.leadingAnchor)
         ])
     }
-    
-    // MARK: - View Lifecycles
+
     override func layoutSubviews() {
-        headerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        let cornerRadius: CGFloat = isFullScreen ? 0 : 10
-        headerView.layer.cornerRadius = cornerRadius
-        view.layer.cornerRadius = cornerRadius
-        view.dropShadow()
         super.layoutSubviews()
+        self.layer.cornerRadius = topCornerRadius
     }
 }
 
@@ -104,6 +106,19 @@ extension SmallListView {
 
 // MARK: - Private methods
 private extension SmallListView {
+    func setupView(view: UIView) {
+        view.layer.maskedCorners = maskedCorners
+        view.layer.cornerRadius = topCornerRadius
+
+        self.layer.maskedCorners = maskedCorners
+        self.layer.cornerRadius = topCornerRadius
+        self.dropShadow()
+
+        headerView.layer.maskedCorners = maskedCorners
+        headerView.layer.cornerRadius = topCornerRadius
+        headerView.clipsToBounds = true
+    }
+
     func dropShadow() {
         layer.shadowColor = shadowColor.cgColor
         layer.shadowOpacity = shadowOpacity

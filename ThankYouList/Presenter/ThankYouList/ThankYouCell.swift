@@ -11,8 +11,8 @@ import SkeletonView
 
 private let thankYouViewCornerRadius = CGFloat(8)
 private let thankYouViewShadowColor = UIColor.black.withAlphaComponent(0.26)
-private let thankYouViewShadowOpacity = Float(0.3)
-private let thankYouViewShadowOffset = CGSize(width: 0, height: 5)
+private let thankYouViewShadowOpacity = Float(0.5)
+private let thankYouViewShadowOffset = CGSize(width: 0, height: 3)
 
 private var buttonAnimationDuration = 0.2
 private var scaleDownRatio = CGFloat(0.97)
@@ -39,6 +39,7 @@ class ThankYouCell: UITableViewCell {
         thankYouView.layer.cornerRadius = thankYouViewCornerRadius
         thankYouView.layer.shadowColor = thankYouViewShadowColor.cgColor
         thankYouView.layer.shadowOpacity = thankYouViewShadowOpacity
+        thankYouView.layer.shadowRadius = 3
         thankYouView.layer.shadowOffset = thankYouViewShadowOffset
         contentLabel.isSkeletonable = true
         dayMonthStackView.isSkeletonable = true

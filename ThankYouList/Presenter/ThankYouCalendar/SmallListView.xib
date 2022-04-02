@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,55 +22,42 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XJ4-oy-Itj" userLabel="headerView">
-                    <rect key="frame" x="0.0" y="44" width="375" height="57"/>
+                    <rect key="frame" x="0.0" y="44" width="375" height="60"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="avR-FS-dVQ" userLabel="horizontalLIne">
-                            <rect key="frame" x="172.5" y="3" width="30" height="4"/>
-                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="30" id="fwX-bc-Qeb"/>
-                                <constraint firstAttribute="height" constant="4" id="qLC-OY-yp5"/>
-                            </constraints>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                    <integer key="value" value="2"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                        </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="ThankYouListSectionHeaderView" text="December 2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nrm-2a-44f">
-                            <rect key="frame" x="16" y="26" width="124" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.46666666670000001" green="0.46666666670000001" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="ThankYouListSectionHeaderView" text="December 8, 2021" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nrm-2a-44f">
+                            <rect key="frame" x="16" y="18.5" width="343" height="23.5"/>
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                            <color key="textColor" name="text"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ogX-cu-9eI" userLabel="bottomLine">
-                            <rect key="frame" x="0.0" y="56.5" width="375" height="0.5"/>
-                            <color key="backgroundColor" white="0.33333333333333331" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <rect key="frame" x="0.0" y="58" width="375" height="2"/>
+                            <color key="backgroundColor" name="black12"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="0.5" id="776-Yp-iHf"/>
+                                <constraint firstAttribute="height" constant="2" id="776-Yp-iHf"/>
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.94117647059999998" green="0.94901960780000005" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="57" id="2Mk-QU-eUD"/>
+                        <constraint firstAttribute="height" constant="60" id="2Mk-QU-eUD"/>
                         <constraint firstItem="Nrm-2a-44f" firstAttribute="leading" secondItem="XJ4-oy-Itj" secondAttribute="leading" constant="16" id="94X-Pe-XRs"/>
                         <constraint firstAttribute="bottom" secondItem="ogX-cu-9eI" secondAttribute="bottom" id="Eje-wb-GNx"/>
-                        <constraint firstItem="avR-FS-dVQ" firstAttribute="centerX" secondItem="XJ4-oy-Itj" secondAttribute="centerX" id="HZB-nq-mqt"/>
+                        <constraint firstItem="Nrm-2a-44f" firstAttribute="centerX" secondItem="XJ4-oy-Itj" secondAttribute="centerX" id="FEI-qN-Ex3"/>
+                        <constraint firstAttribute="trailing" secondItem="Nrm-2a-44f" secondAttribute="trailing" constant="16" id="WEO-Kj-oXr"/>
                         <constraint firstAttribute="trailing" secondItem="ogX-cu-9eI" secondAttribute="trailing" id="ZL0-Tu-WEb"/>
                         <constraint firstItem="ogX-cu-9eI" firstAttribute="leading" secondItem="XJ4-oy-Itj" secondAttribute="leading" id="dam-o0-Ebn"/>
-                        <constraint firstItem="avR-FS-dVQ" firstAttribute="top" secondItem="XJ4-oy-Itj" secondAttribute="top" constant="3" id="rui-xz-tcA"/>
-                        <constraint firstItem="Nrm-2a-44f" firstAttribute="centerY" secondItem="XJ4-oy-Itj" secondAttribute="centerY" constant="8" id="znh-cS-oV5"/>
+                        <constraint firstItem="Nrm-2a-44f" firstAttribute="centerY" secondItem="XJ4-oy-Itj" secondAttribute="centerY" id="znh-cS-oV5"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="grouped" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="cGW-bW-VNl">
-                    <rect key="frame" x="0.0" y="101" width="375" height="199"/>
-                    <color key="backgroundColor" red="0.94117647058823528" green="0.94901960784313721" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <rect key="frame" x="0.0" y="104" width="375" height="196"/>
+                    <color key="backgroundColor" name="grey50"/>
+                    <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="XJ4-oy-Itj" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="3Oi-gk-z7o"/>
                 <constraint firstItem="cGW-bW-VNl" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Blu-gQ-XKI"/>
@@ -83,4 +71,15 @@
             <point key="canvasLocation" x="119.2" y="109.74512743628186"/>
         </view>
     </objects>
+    <resources>
+        <namedColor name="black12">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="grey50">
+            <color red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="text">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

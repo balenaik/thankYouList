@@ -50,6 +50,7 @@ class CenterRoundedTabBar: UITabBar {
     }
 
     override func draw(_ rect: CGRect) {
+        super.draw(rect)
         setupShape()
     }
 
@@ -60,7 +61,7 @@ class CenterRoundedTabBar: UITabBar {
             guard let result = subview.hitTest(subviewPoint, with: event) else { continue }
             return result
         }
-        return nil
+        return super.hitTest(point, with: event)
     }
 }
 

@@ -44,6 +44,7 @@ class LoginContinueButton: UIButton {
         layer.cornerRadius = buttonCornerRadius
         layer.borderWidth = buttonBorderWidth
         layer.borderColor = buttonBorderColor
+        titleLabel?.font = UIFont.boldAvenir(ofSize: 15)
 
         adjustsImageWhenHighlighted = false
 

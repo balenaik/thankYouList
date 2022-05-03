@@ -10,13 +10,15 @@ import Foundation
 import UIKit
 
 class EmptyView: UIView {
-    
-    
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         let view = R.nib.emptyView(owner: self)!
         self.addSubview(view)
         setupConstraints(view: view)
+        setupLabel()
     }
 }
 
@@ -29,5 +31,10 @@ private extension EmptyView {
             view.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             view.leadingAnchor.constraint(equalTo: self.leadingAnchor)
         ])
+    }
+
+    func setupLabel() {
+        titleLabel.text = R.string.localizable.thank_you_list_empty_view_title()
+        descriptionLabel.text = R.string.localizable.thank_you_list_empty_view_description()
     }
 }

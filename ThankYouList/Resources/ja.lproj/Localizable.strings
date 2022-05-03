@@ -15,14 +15,15 @@
 "Edit" = "編集";
 "Delete" = "削除";
 
+"thank_you_list_empty_view_title" = "Thank You Listへようこそ";
+"thank_you_list_empty_view_description" = "ここにThank Youが表示されます。\nさっそく作成しましょう！";
+
 "monthYear" = "%2$@年 %1$@";
 "Date" = "日付";
 "Delete Thank you" = "Thank youを削除";
 "Are you sure you want to delete this thank you?" = "本当にこのThank youを削除してよろしいですか?";
 "Cancel" = "キャンセル";
 "What are you thankful for?" = "ありがとうの気持ちを書こう";
-"EmptyViewLabel" = "ここにThank Youが表示されます。\nさっそく作成しましょう！";
-"Add Thank You From Here" = "Thank Youを作成する";
 "Add Thank You" = "Thank Youを作成";
 "Edit Thank You" = "Thank Youを編集";
 "Logout" = "ログアウト";

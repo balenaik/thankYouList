@@ -15,14 +15,15 @@
 "Edit" = "Edit";
 "Delete" = "Delete";
 
+"thank_you_list_empty_view_title" = "Welcome Aboard";
+"thank_you_list_empty_view_description" = "This is your Thank You List.\nLet's start adding the grateful thoughts!";
+
 "monthYear" = "%1$@ %2$@";
 "Date" = "Date";
 "Delete Thank you" = "Delete Thank you";
 "Are you sure you want to delete this thank you?" = "Are you sure you want to delete this thank you?";
 "Cancel" = "Cancel";
 "What are you thankful for?" = "What are you thankful for?";
-"EmptyViewLabel" = "This is your Thank You List.\nLet's start adding the grateful thoughts!";
-"Add Thank You From Here" = "Add Thank You From Here";
 "Add Thank You" = "Add Thank You";
 "Edit Thank You" = "Edit Thank You";
 "Logout" = "Logout";

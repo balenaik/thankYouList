@@ -354,13 +354,11 @@
 		A86F419F24570987005D929A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A8FF6A222829C42200CF816F /* BottomHalfSheet */,
 				A86F41A024570B0B005D929A /* PlaceHolderTextView.swift */,
 				A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */,
 				A84FDB5D21DC365F00593326 /* SettingHeaderView.xib */,
 				A84FDB5F21DC37E900593326 /* SettingHeaderView.swift */,
-				A8DABC23271ACE4E0086B2E8 /* BottomHalfSheetMenuViewController.swift */,
-				A851944B272BFACE003631EE /* BottomHalfSheetMenuItemView.swift */,
-				A851944F272D466A003631EE /* BottomHalfSheetMenuItemView.xib */,
 				A8519452272F3C44003631EE /* ThankYouCellTapMenu.swift */,
 			);
 			path = Common;
@@ -429,6 +427,16 @@
 				A86F419D24548797005D929A /* MyPageTableItem.swift */,
 			);
 			path = MyPage;
+			sourceTree = "<group>";
+		};
+		A8FF6A222829C42200CF816F /* BottomHalfSheet */ = {
+			isa = PBXGroup;
+			children = (
+				A8DABC23271ACE4E0086B2E8 /* BottomHalfSheetMenuViewController.swift */,
+				A851944B272BFACE003631EE /* BottomHalfSheetMenuItemView.swift */,
+				A851944F272D466A003631EE /* BottomHalfSheetMenuItemView.xib */,
+			);
+			path = BottomHalfSheet;
 			sourceTree = "<group>";
 		};
 		D9B61224EE9861DF0D778DEA /* Frameworks */ = {

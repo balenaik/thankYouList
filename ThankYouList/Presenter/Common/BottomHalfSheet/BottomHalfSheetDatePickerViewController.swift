@@ -9,7 +9,13 @@
 import Foundation
 import FloatingPanel
 
-private let scrollViewTopMargin = CGFloat(16)
+private let navigationBarFontSize = CGFloat(17)
+private let navigationBarTopMargin = CGFloat(16)
+
+private let doneButtonHorizontalMargin = CGFloat(24)
+private let doneButtonCornerRadius = CGFloat(16)
+private let doneButtonFontSize = CGFloat(17)
+private let doneButtonHeight = CGFloat(44)
 
 private let backgroundViewAlpha = CGFloat(0.5)
 
@@ -23,6 +29,7 @@ protocol BottomHalfSheetDatePickerViewControllerDelegate: class {
 
 class BottomHalfSheetDatePickerViewController: UIViewController {
 
+    private let navigationBar = UINavigationBar()
     private let scrollView = UIScrollView()
     private let datePicker = UIDatePicker()
 
@@ -30,19 +37,44 @@ class BottomHalfSheetDatePickerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigation()
         setupScrollView()
         setupDatePicker()
+        setupDoneButton()
     }
 }
 
 // MARK: - Private
 private extension BottomHalfSheetDatePickerViewController {
+    func setupNavigation() {
+        view.addSubview(navigationBar)
+        // Remove shadow
+        navigationBar.setBackgroundImage(UIImage(),
+                                         for: UIBarPosition.any,
+                                         barMetrics: UIBarMetrics.default)
+        navigationBar.shadowImage = UIImage()
+
+        let navigationItem = UINavigationItem()
+        navigationItem.title = R.string.localizable.thank_you_date()
+        navigationBar.setItems([navigationItem], animated: true)
+        navigationBar.titleTextAttributes = [
+            .font: UIFont.boldAvenir(ofSize: navigationBarFontSize)
+        ]
+
+        navigationBar.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            navigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: navigationBarTopMargin),
+            navigationBar.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            navigationBar.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
+        ])
+    }
+
     func setupScrollView() {
         view.addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             scrollView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: scrollViewTopMargin),
+            scrollView.topAnchor.constraint(equalTo: navigationBar.safeAreaLayoutGuide.bottomAnchor),
             scrollView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             scrollView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
@@ -51,13 +83,43 @@ private extension BottomHalfSheetDatePickerViewController {
 
     func setupDatePicker() {
         scrollView.addSubview(datePicker)
+        datePicker.datePickerMode = .date
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+        }
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             datePicker.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor),
             datePicker.leftAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.leftAnchor),
-            datePicker.bottomAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.bottomAnchor),
             datePicker.rightAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.rightAnchor)
         ])
+    }
+
+    func setupDoneButton() {
+        let doneButton = UIButton()
+        view.addSubview(doneButton)
+        doneButton.setTitle(R.string.localizable.done(), for: .normal)
+        doneButton.setBackgroundColor(color: .primary500, for: .normal)
+        doneButton.setBackgroundColor(color: UIColor.primary500.darken(), for: .highlighted)
+        doneButton.layer.cornerRadius = doneButtonCornerRadius
+        doneButton.titleLabel?.font = UIFont.boldAvenir(ofSize: doneButtonFontSize)
+        doneButton.clipsToBounds = true
+        doneButton.addTarget(self, action: #selector(doneButtonDidTap(_:)), for: .touchUpInside)
+
+        doneButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            doneButton.topAnchor.constraint(equalTo: datePicker.safeAreaLayoutGuide.bottomAnchor),
+            doneButton.leftAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.leftAnchor,
+                                             constant: doneButtonHorizontalMargin),
+            doneButton.bottomAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.bottomAnchor),
+            doneButton.rightAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.rightAnchor,
+                                              constant: -doneButtonHorizontalMargin),
+            doneButton.heightAnchor.constraint(equalToConstant: doneButtonHeight)
+        ])
+    }
+
+    @objc func doneButtonDidTap(_ sender: UIButton) {
+        delegate?.bottomHalfSheetDatePickerViewControllerDidTapDone(date: datePicker.date)
     }
 }
 

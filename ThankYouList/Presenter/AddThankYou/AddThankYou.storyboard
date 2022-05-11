@@ -128,14 +128,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add thank you" id="o4f-uy-tjx">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="eyd-Yz-MGI">
+                        <barButtonItem key="leftBarButtonItem" image="icClose24" id="eyd-Yz-MGI">
                             <connections>
                                 <action selector="tappedCancelButton:" destination="OvG-cr-k3e" id="ARM-ri-h77"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="IUz-hT-8tC">
-                            <connections>
-                                <action selector="tappedDoneButton:" destination="OvG-cr-k3e" id="LTo-qL-EG0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -163,6 +158,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icClose24" width="24" height="24"/>
         <namedColor name="tableViewBg">
             <color red="0.94117647058823528" green="0.94901960784313721" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

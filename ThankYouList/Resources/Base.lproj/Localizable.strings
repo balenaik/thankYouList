@@ -18,6 +18,8 @@
 "thank_you_list_empty_view_title" = "Welcome Aboard";
 "thank_you_list_empty_view_description" = "This is your Thank You List.\nLet's start adding the grateful thoughts!";
 
+"thank_you_date" = "Thank You Date";
+
 "monthYear" = "%1$@ %2$@";
 "Date" = "Date";
 "Delete Thank you" = "Delete Thank you";
@@ -43,6 +45,7 @@
 "mypage_logout" = "Logout";
 
 "ok" = "OK";
+"done" = "Done";
 
 "error" = "Error";
 "error_authenticate" = "Authentication failed";

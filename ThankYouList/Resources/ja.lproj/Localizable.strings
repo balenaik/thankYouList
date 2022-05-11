@@ -18,6 +18,8 @@
 "thank_you_list_empty_view_title" = "Thank You Listへようこそ";
 "thank_you_list_empty_view_description" = "ここにThank Youが表示されます。\nさっそく作成しましょう！";
 
+"thank_you_date" = "Thank You Date";
+
 "monthYear" = "%2$@年 %1$@";
 "Date" = "日付";
 "Delete Thank you" = "Thank youを削除";
@@ -40,6 +42,7 @@
 "mypage_logout" = "ログアウト";
 
 "ok" = "OK";
+"done" = "完了";
 
 "error" = "エラー";
 "error_authenticate" = "認証に失敗しました。";

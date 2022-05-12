@@ -18,6 +18,9 @@
 "thank_you_list_empty_view_title" = "Thank You Listへようこそ";
 "thank_you_list_empty_view_description" = "ここにThank Youが表示されます。\nさっそく作成しましょう！";
 
+"add_thank_you_title" = "Thank Youを作成";
+"add_thank_you_text_view_placeholder" = "ありがとうの気持ちを書こう";
+
 "monthYear" = "%2$@年 %1$@";
 "Date" = "日付";
 "Delete Thank you" = "Thank youを削除";

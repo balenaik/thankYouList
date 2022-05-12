@@ -18,6 +18,9 @@
 "thank_you_list_empty_view_title" = "Welcome Aboard";
 "thank_you_list_empty_view_description" = "This is your Thank You List.\nLet's start adding the grateful thoughts!";
 
+"add_thank_you_title" = "Add Thank You";
+"add_thank_you_text_view_placeholder" = "What are you thankful for?";
+
 "monthYear" = "%1$@ %2$@";
 "Date" = "Date";
 "Delete Thank you" = "Delete Thank you";

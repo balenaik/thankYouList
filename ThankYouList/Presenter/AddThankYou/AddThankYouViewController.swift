@@ -97,7 +97,7 @@ extension AddThankYouViewController {
 // MARK: - Private Methods
 private extension AddThankYouViewController {
     func setupView() {
-        thankYouTextView.placeHolder = NSLocalizedString("What are you thankful for?", comment: "")
+        thankYouTextView.placeHolder = R.string.localizable.add_thank_you_text_view_placeholder()
         thankYouTextView.setInset(sideMargin: textViewSideMargin, topMargin: textViewTopBottomMargin, bottomMargin: textViewTopBottomMargin)
         thankYouTextView.becomeFirstResponder()
         thankYouTextView.layer.cornerRadius = rowComponentCornerRadius
@@ -114,9 +114,8 @@ private extension AddThankYouViewController {
         doneButton.setBackgroundColor(
             color: doneButtonDisabledBgColor,
             for: .disabled)
-//        thankYouDateView.setDate(delegate.selectedDate ?? Date())
 
-        self.navigationItem.title = "Add Thank You".localized
+        navigationItem.title = R.string.localizable.add_thank_you_title()
     }
 
     @objc private func keyboardWillShow(notification: Notification) {

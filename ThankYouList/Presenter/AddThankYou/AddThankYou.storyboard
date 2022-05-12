@@ -163,7 +163,7 @@
                     <navigationItem key="navigationItem" title="Add thank you" id="o4f-uy-tjx">
                         <barButtonItem key="leftBarButtonItem" image="icClose24" id="eyd-Yz-MGI">
                             <connections>
-                                <action selector="tappedCancelButton:" destination="OvG-cr-k3e" id="ARM-ri-h77"/>
+                                <action selector="cancelButtonDidTap:" destination="OvG-cr-k3e" id="ARM-ri-h77"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

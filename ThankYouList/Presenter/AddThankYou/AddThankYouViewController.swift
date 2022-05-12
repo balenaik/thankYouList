@@ -64,7 +64,7 @@ class AddThankYouViewController: UIViewController {
 
 // MARK: - IBActions
 extension AddThankYouViewController {
-    @IBAction func tappedCancelButton(_ sender: Any) {
+    @IBAction func cancelButtonDidTap(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
 

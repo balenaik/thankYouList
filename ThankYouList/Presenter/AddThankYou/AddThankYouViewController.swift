@@ -71,7 +71,8 @@ extension AddThankYouViewController {
     }
 
     @IBAction func dateViewDidTap(_ sender: Any) {
-        let datePickerHalfSheet = BottomHalfSheetDatePickerViewController.createViewController(bottomSheetDelegate: nil)
+        let datePickerHalfSheet = BottomHalfSheetDatePickerViewController
+            .createViewController(date: selectedDate, bottomSheetDelegate: self)
         present(datePickerHalfSheet, animated: true)
     }
 
@@ -174,6 +175,13 @@ extension AddThankYouViewController: UITextViewDelegate {
 extension AddThankYouViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         thankYouTextView.resignFirstResponder()
+    }
+}
+
+extension AddThankYouViewController: BottomHalfSheetDatePickerViewControllerDelegate {
+    func bottomHalfSheetDatePickerViewControllerDidTapDone(date: Date) {
+        presentedViewController?.dismiss(animated: true, completion: nil)
+        selectedDate = date
     }
 }
 

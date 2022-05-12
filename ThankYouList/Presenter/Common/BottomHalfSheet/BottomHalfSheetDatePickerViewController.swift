@@ -167,10 +167,12 @@ private extension BottomHalfSheetDatePickerViewController {
 // MARK: - Public
 extension BottomHalfSheetDatePickerViewController {
     static func createViewController(
+        date: Date,
         bottomSheetDelegate: BottomHalfSheetDatePickerViewControllerDelegate?) -> UIViewController {
         let floatingPanelController = FloatingPanelController()
         let bottomHalfSheetViewController = BottomHalfSheetDatePickerViewController()
         bottomHalfSheetViewController.delegate = bottomSheetDelegate
+        bottomHalfSheetViewController.setupDate(date)
 
         floatingPanelController.layout = BottomHalfSheetLayout(layoutGuide: bottomHalfSheetViewController.layoutGuide)
 
@@ -188,5 +190,9 @@ extension BottomHalfSheetDatePickerViewController {
         floatingPanelController.set(contentViewController: bottomHalfSheetViewController)
         floatingPanelController.track(scrollView: bottomHalfSheetViewController.scrollView)
         return floatingPanelController
+    }
+
+    func setupDate(_ date: Date) {
+        datePicker.date = date
     }
 }

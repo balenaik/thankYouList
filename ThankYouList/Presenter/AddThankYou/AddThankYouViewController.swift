@@ -23,10 +23,6 @@ private let rowComponentCornerRadius = CGFloat(16)
 
 class AddThankYouViewController: UIViewController {
     
-    // MARK: - Constants
-    private let addThankYouTextViewHeaderViewString = "Thank You"
-    private let thankYouDatePickerHeaderViewString = NSLocalizedString("Date", comment: "")
-    
     // MARK: - Properties
     private var delegate = UIApplication.shared.delegate as! AppDelegate
     private var isPosting = false
@@ -35,11 +31,11 @@ class AddThankYouViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var addThankYouTextView: PlaceHolderTextView!
+    @IBOutlet weak var thankYouTextView: PlaceHolderTextView!
     @IBOutlet weak var dateView: UIView!
     @IBOutlet weak var doneButton: UIButton!
     
-    @IBOutlet weak var addThankYouTextViewHeightContraint: NSLayoutConstraint!
+    @IBOutlet weak var thankYouTextViewHeightContraint: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +61,7 @@ class AddThankYouViewController: UIViewController {
 // MARK: - IBActions
 extension AddThankYouViewController {
     @IBAction func tappedDoneButton(_ sender: Any) {
-        if isPosting || addThankYouTextView.text.isEqual("") || addThankYouTextView.text.isEmpty {
+        if isPosting || thankYouTextView.text.isEqual("") || thankYouTextView.text.isEmpty {
             return
         }
 //        guard let date = thankYouDateView.getDate(),
@@ -98,13 +94,10 @@ extension AddThankYouViewController {
 private extension AddThankYouViewController {
     func setupView() {
 //        datePicker.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
-
-//        addThankYouTextViewHeaderView.setHeaderTitle(addThankYouTextViewHeaderViewString)
-//        thankYouDatePickerHeaderView.setHeaderTitle(thankYouDatePickerHeaderViewString)
-        addThankYouTextView.placeHolder = NSLocalizedString("What are you thankful for?", comment: "")
-        addThankYouTextView.setInset(sideMargin: textViewSideMargin, topMargin: textViewTopBottomMargin, bottomMargin: textViewTopBottomMargin)
-        addThankYouTextView.becomeFirstResponder()
-        addThankYouTextView.layer.cornerRadius = rowComponentCornerRadius
+        thankYouTextView.placeHolder = NSLocalizedString("What are you thankful for?", comment: "")
+        thankYouTextView.setInset(sideMargin: textViewSideMargin, topMargin: textViewTopBottomMargin, bottomMargin: textViewTopBottomMargin)
+        thankYouTextView.becomeFirstResponder()
+        thankYouTextView.layer.cornerRadius = rowComponentCornerRadius
         dateView.layer.cornerRadius = rowComponentCornerRadius
         doneButton.layer.cornerRadius = rowComponentCornerRadius
 
@@ -138,7 +131,7 @@ private extension AddThankYouViewController {
     }
     
     private func hideKeyboard() {
-        addThankYouTextView.resignFirstResponder()
+        thankYouTextView.resignFirstResponder()
     }
     
     private func addThankYou(thankYouData: ThankYouData, uid: String) {
@@ -159,11 +152,11 @@ private extension AddThankYouViewController {
     }
     
     func adjustTextViewHeight() {
-        var height = addThankYouTextView.sizeThatFits(
-            CGSize(width: addThankYouTextView.frame.size.width,
+        var height = thankYouTextView.sizeThatFits(
+            CGSize(width: thankYouTextView.frame.size.width,
                    height: CGFloat.greatestFiniteMagnitude)).height
         height = height < textViewMinHeight ? textViewMinHeight : height
-        addThankYouTextViewHeightContraint.constant = height
+        thankYouTextViewHeightContraint.constant = height
     }
 }
 
@@ -178,7 +171,7 @@ extension AddThankYouViewController: UITextViewDelegate {
 
 extension AddThankYouViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        addThankYouTextView.resignFirstResponder()
+        thankYouTextView.resignFirstResponder()
     }
 }
 

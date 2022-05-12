@@ -28,6 +28,7 @@ class AddThankYouViewController: UIViewController {
     private var isPosting = false
     private var selectedDate = Date() {
         didSet {
+            selectedDateLabel.text = selectedDate.toThankYouDateString()
         }
     }
     private var db = Firestore.firestore()
@@ -37,6 +38,7 @@ class AddThankYouViewController: UIViewController {
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var thankYouTextView: PlaceHolderTextView!
     @IBOutlet weak var dateView: UIView!
+    @IBOutlet weak var selectedDateLabel: UILabel!
     @IBOutlet weak var doneButton: UIButton!
     
     @IBOutlet weak var thankYouTextViewHeightContraint: NSLayoutConstraint!

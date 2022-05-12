@@ -172,6 +172,7 @@
                         <outlet property="dateView" destination="oJH-sZ-JjQ" id="vaT-ga-9Gf"/>
                         <outlet property="doneButton" destination="GOr-a2-jCc" id="Hx0-UU-GBq"/>
                         <outlet property="scrollView" destination="RE2-cg-Ad8" id="5na-S0-5ga"/>
+                        <outlet property="selectedDateLabel" destination="LPt-wN-ORu" id="F9G-NP-lQz"/>
                         <outlet property="stackView" destination="uyU-Qw-vj9" id="mTp-zs-Hjb"/>
                         <outlet property="thankYouTextView" destination="qF4-i1-sPZ" id="hTj-t9-BJI"/>
                         <outlet property="thankYouTextViewHeightContraint" destination="eEv-M0-aqA" id="bfi-9E-JZO"/>

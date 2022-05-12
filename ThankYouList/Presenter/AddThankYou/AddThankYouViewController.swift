@@ -101,6 +101,7 @@ private extension AddThankYouViewController {
         thankYouTextView.setInset(sideMargin: textViewSideMargin, topMargin: textViewTopBottomMargin, bottomMargin: textViewTopBottomMargin)
         thankYouTextView.becomeFirstResponder()
         thankYouTextView.layer.cornerRadius = rowComponentCornerRadius
+        selectedDate = delegate.selectedDate ?? Date()
         dateView.layer.cornerRadius = rowComponentCornerRadius
         doneButton.layer.cornerRadius = rowComponentCornerRadius
 

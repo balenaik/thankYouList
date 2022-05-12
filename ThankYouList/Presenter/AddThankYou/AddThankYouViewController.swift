@@ -26,6 +26,10 @@ class AddThankYouViewController: UIViewController {
     // MARK: - Properties
     private var delegate = UIApplication.shared.delegate as! AppDelegate
     private var isPosting = false
+    private var selectedDate = Date() {
+        didSet {
+        }
+    }
     private var db = Firestore.firestore()
     
     // MARK: - IBOutlets
@@ -60,18 +64,6 @@ class AddThankYouViewController: UIViewController {
 
 // MARK: - IBActions
 extension AddThankYouViewController {
-    @IBAction func tappedDoneButton(_ sender: Any) {
-        if isPosting || thankYouTextView.text.isEqual("") || thankYouTextView.text.isEmpty {
-            return
-        }
-//        guard let date = thankYouDateView.getDate(),
-//            let uid = Auth.auth().currentUser?.uid else { return }
-//        let uid16string = String(uid.prefix(16))
-//        let encryptedValue = Crypto().encryptString(plainText: addThankYouTextView.text, key: uid16string)
-//        let myThankYouData = ThankYouData(id: "", value: "", encryptedValue: encryptedValue, date: date, createTime: Date())
-//        addThankYou(thankYouData: myThankYouData, uid: uid)
-    }
-    
     @IBAction func tappedCancelButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -81,6 +73,21 @@ extension AddThankYouViewController {
         present(datePickerHalfSheet, animated: true)
     }
 
+    @IBAction func doneButtonDidTap(_ sender: Any) {
+        if isPosting || thankYouTextView.text.isEmpty {
+            return
+        }
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let uid16string = String(uid.prefix(16))
+        let encryptedValue = Crypto().encryptString(
+            plainText: thankYouTextView.text,
+            key: uid16string)
+        let thankYouData = ThankYouData(id: "",
+                                        value: "",
+                                        encryptedValue: encryptedValue,
+                                        date: selectedDate,
+                                        createTime: Date())
+        addThankYou(thankYouData: thankYouData, uid: uid)
     }
 }
 

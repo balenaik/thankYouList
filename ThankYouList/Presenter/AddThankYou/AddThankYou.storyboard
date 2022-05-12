@@ -120,6 +120,9 @@
                                                         <state key="normal" title="Done">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="doneButtonDidTap:" destination="OvG-cr-k3e" eventType="touchUpInside" id="YEd-KY-Vyg"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" name="defaultBackground"/>

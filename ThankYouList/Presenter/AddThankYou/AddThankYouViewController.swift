@@ -12,9 +12,14 @@ import FirebaseFirestore
 import FirebaseAuth
 import Firebase
 
-private let textViewSideMargin = CGFloat(4)
-private let textViewTopBottomMargin = CGFloat(8)
-private let textViewMinHeight = CGFloat(80)
+private let textViewSideMargin = CGFloat(12)
+private let textViewTopBottomMargin = CGFloat(12)
+private let textViewMinHeight = CGFloat(120)
+
+private let doneButtonEnabledBgColorAlpha = CGFloat(1)
+private let doneButtonDisabledBgColorAlpha = CGFloat(0.38)
+
+private let rowComponentCornerRadius = CGFloat(16)
 
 class AddThankYouViewController: UIViewController {
     
@@ -30,12 +35,9 @@ class AddThankYouViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var addThankYouTextViewHeaderView: SettingHeaderView!
     @IBOutlet weak var addThankYouTextView: PlaceHolderTextView!
-    @IBOutlet weak var thankYouDatePickerHeaderView: SettingHeaderView!
-    @IBOutlet weak var thankYouDateView: SettingDateView!
-    @IBOutlet weak var datePickerView: UIView!
-    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var dateView: UIView!
+    @IBOutlet weak var doneButton: UIButton!
     
     @IBOutlet weak var addThankYouTextViewHeightContraint: NSLayoutConstraint!
 
@@ -66,40 +68,28 @@ extension AddThankYouViewController {
         if isPosting || addThankYouTextView.text.isEqual("") || addThankYouTextView.text.isEmpty {
             return
         }
-        guard let date = thankYouDateView.getDate(),
-            let uid = Auth.auth().currentUser?.uid else { return }
-        let uid16string = String(uid.prefix(16))
-        let encryptedValue = Crypto().encryptString(plainText: addThankYouTextView.text, key: uid16string)
-        let myThankYouData = ThankYouData(id: "", value: "", encryptedValue: encryptedValue, date: date, createTime: Date())
-        addThankYou(thankYouData: myThankYouData, uid: uid)
+//        guard let date = thankYouDateView.getDate(),
+//            let uid = Auth.auth().currentUser?.uid else { return }
+//        let uid16string = String(uid.prefix(16))
+//        let encryptedValue = Crypto().encryptString(plainText: addThankYouTextView.text, key: uid16string)
+//        let myThankYouData = ThankYouData(id: "", value: "", encryptedValue: encryptedValue, date: date, createTime: Date())
+//        addThankYou(thankYouData: myThankYouData, uid: uid)
     }
     
     @IBAction func tappedCancelButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    @IBAction func tappedThankYouDateView(_ sender: UILongPressGestureRecognizer) {
-        addThankYouTextView.resignFirstResponder()
-        switch sender.state {
-        case .began:
-            thankYouDateView.changeBgColorOnSettingView(isHighlighted: true)
-        case .ended:
-            thankYouDateView.changeBgColorOnSettingView(isHighlighted: false)
-            UIView.animate(withDuration: 0.3, animations: {
-                self.datePickerView.alpha = !self.datePickerView.isHidden ? 0 : 1
-                self.datePickerView.isHidden = !self.datePickerView.isHidden
-                self.scrollView.contentOffset.y += self.datePickerView.frame.height
-            })
-        default:
-            break
-        }
+
+    @IBAction func dateViewDidTap(_ sender: Any) {
+        let datePickerHalfSheet = BottomHalfSheetDatePickerViewController.createViewController(bottomSheetDelegate: nil)
+        present(datePickerHalfSheet, animated: true)
     }
 }
 
 // MARK: - Internal Methods
 extension AddThankYouViewController {
     @objc func datePickerValueChanged (datePicker: UIDatePicker) {
-        thankYouDateView.setDate(datePicker.date)
+//        thankYouDateView.setDate(datePicker.date)
     }
 }
 
@@ -107,14 +97,24 @@ extension AddThankYouViewController {
 // MARK: - Private Methods
 private extension AddThankYouViewController {
     func setupView() {
-        datePicker.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
+//        datePicker.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
 
-        addThankYouTextViewHeaderView.setHeaderTitle(addThankYouTextViewHeaderViewString)
-        thankYouDatePickerHeaderView.setHeaderTitle(thankYouDatePickerHeaderViewString)
+//        addThankYouTextViewHeaderView.setHeaderTitle(addThankYouTextViewHeaderViewString)
+//        thankYouDatePickerHeaderView.setHeaderTitle(thankYouDatePickerHeaderViewString)
         addThankYouTextView.placeHolder = NSLocalizedString("What are you thankful for?", comment: "")
         addThankYouTextView.setInset(sideMargin: textViewSideMargin, topMargin: textViewTopBottomMargin, bottomMargin: textViewTopBottomMargin)
         addThankYouTextView.becomeFirstResponder()
-        thankYouDateView.setDate(delegate.selectedDate ?? Date())
+        addThankYouTextView.layer.cornerRadius = rowComponentCornerRadius
+        dateView.layer.cornerRadius = rowComponentCornerRadius
+        doneButton.layer.cornerRadius = rowComponentCornerRadius
+
+        doneButton.setBackgroundColor(
+            color: UIColor.primary500.withAlphaComponent(doneButtonEnabledBgColorAlpha),
+            for: .normal)
+        doneButton.setBackgroundColor(
+            color: UIColor.primary500.withAlphaComponent(doneButtonDisabledBgColorAlpha),
+            for: .disabled)
+//        thankYouDateView.setDate(delegate.selectedDate ?? Date())
 
         self.navigationItem.title = "Add Thank You".localized
     }
@@ -171,6 +171,7 @@ private extension AddThankYouViewController {
 // MARK: - Extensions
 extension AddThankYouViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
+        doneButton.isEnabled = !textView.text.isEmpty
         adjustTextViewHeight()
     }
 }

@@ -111,7 +111,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a9I-dl-Tvj" userLabel="Done Row" customClass="SettingDateView" customModule="ThankYouList" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="228" width="414" height="72"/>
                                                 <subviews>
-                                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GOr-a2-jCc">
+                                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GOr-a2-jCc">
                                                         <rect key="frame" x="24" y="12" width="366" height="48"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="48" id="tl7-lL-0Ja"/>

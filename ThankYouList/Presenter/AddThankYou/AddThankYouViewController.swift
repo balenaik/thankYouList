@@ -16,8 +16,8 @@ private let textViewSideMargin = CGFloat(12)
 private let textViewTopBottomMargin = CGFloat(12)
 private let textViewMinHeight = CGFloat(120)
 
-private let doneButtonEnabledBgColorAlpha = CGFloat(1)
-private let doneButtonDisabledBgColorAlpha = CGFloat(0.38)
+private let doneButtonEnabledBgColor = UIColor.primary
+private let doneButtonDisabledBgColor = UIColor.primary.withAlphaComponent(0.38)
 
 private let rowComponentCornerRadius = CGFloat(16)
 
@@ -106,10 +106,13 @@ private extension AddThankYouViewController {
         doneButton.layer.cornerRadius = rowComponentCornerRadius
 
         doneButton.setBackgroundColor(
-            color: UIColor.primary500.withAlphaComponent(doneButtonEnabledBgColorAlpha),
+            color: doneButtonEnabledBgColor,
             for: .normal)
         doneButton.setBackgroundColor(
-            color: UIColor.primary500.withAlphaComponent(doneButtonDisabledBgColorAlpha),
+            color: doneButtonEnabledBgColor.darken(),
+            for: .highlighted)
+        doneButton.setBackgroundColor(
+            color: doneButtonDisabledBgColor,
             for: .disabled)
 //        thankYouDateView.setDate(delegate.selectedDate ?? Date())
 

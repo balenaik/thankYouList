@@ -12,36 +12,37 @@ import FirebaseFirestore
 import FirebaseAuth
 import Firebase
 
-private let textViewSideMargin = CGFloat(4)
-private let textViewTopBottomMargin = CGFloat(8)
-private let textViewMinHeight = CGFloat(80)
+private let textViewSideMargin = CGFloat(12)
+private let textViewTopBottomMargin = CGFloat(12)
+private let textViewMinHeight = CGFloat(120)
+
+private let doneButtonEnabledBgColor = UIColor.primary
+private let doneButtonDisabledBgColor = UIColor.primary.withAlphaComponent(0.38)
+
+private let rowComponentCornerRadius = CGFloat(16)
 
 class EditThankYouViewController: UIViewController {
-    
-    // MARK: - Constants
-    private let addThankYouTextViewHeaderViewString = "Thank You"
-    private let thankYouDatePickerHeaderViewString = NSLocalizedString("Date", comment: "")
-    private let deleteViewString = NSLocalizedString("Delete", comment: "")
     
     // MARK: - Properties
     private var editingThankYouId: String?
     private var delegate = UIApplication.shared.delegate as! AppDelegate
     private var isPosting = false
+    private var selectedDate = Date() {
+        didSet {
+            selectedDateLabel.text = selectedDate.toThankYouDateString()
+        }
+    }
     private var db = Firestore.firestore()
     
     // MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var addThankYouTextViewHeaderView: SettingHeaderView!
-    @IBOutlet weak var editThankYouTextView: PlaceHolderTextView!
-    @IBOutlet weak var thankYouDatePickerHeaderView: SettingHeaderView!
-    @IBOutlet weak var thankYouDateView: SettingDateView!
-    @IBOutlet weak var datePickerView: UIView!
-    @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var deleteHeaderView: SettingHeaderView!
-    @IBOutlet weak var deleteView: UIView!
+    @IBOutlet weak var thankYouTextView: PlaceHolderTextView!
+    @IBOutlet weak var dateView: UIView!
+    @IBOutlet weak var selectedDateLabel: UILabel!
+    @IBOutlet weak var doneButton: UIButton!
     
-    @IBOutlet weak var editThankYouTextViewHeightContraint: NSLayoutConstraint!
+    @IBOutlet weak var thankYouTextViewHeightContraint: NSLayoutConstraint!
     
     // MARK: - View Lifecycles
     override func viewDidLoad() {
@@ -68,74 +69,53 @@ class EditThankYouViewController: UIViewController {
 
 // MARK: - IBActions
 extension EditThankYouViewController {
-    @IBAction func tappedDoneButton(_ sender: Any) {
-        if isPosting || editThankYouTextView.text.isEqual("") || editThankYouTextView.text.isEmpty {
-            return
-        }
-        guard let date = thankYouDateView.getDate(),
-            let uid = Auth.auth().currentUser?.uid else { return }
-        let uid16string = String(uid.prefix(16))
-        let encryptedValue = Crypto().encryptString(plainText: editThankYouTextView.text, key: uid16string)
-        let myThankYouData = ThankYouData(id: "", value: "", encryptedValue: encryptedValue, date: date, createTime: Date())
-        editThankYou(editThankYouData: myThankYouData, uid: uid)
-    }
-    
-    @IBAction func tappedCancelButton(_ sender: Any) {
+    @IBAction func cancelButtonDidTap(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    @IBAction func tappedThankYouDateView(_ sender: UILongPressGestureRecognizer) {
-        editThankYouTextView.resignFirstResponder()
-        switch sender.state {
-        case .began:
-            thankYouDateView.changeBgColorOnSettingView(isHighlighted: true)
-        case .ended:
-            thankYouDateView.changeBgColorOnSettingView(isHighlighted: false)
-            UIView.animate(withDuration: 0.3, animations: {
-                self.datePickerView.alpha = !self.datePickerView.isHidden ? 0 : 1
-                self.datePickerView.isHidden = !self.datePickerView.isHidden
-                self.scrollView.contentOffset.y += self.datePickerView.frame.height
-            })
-        default:
-            break
-        }
+
+    @IBAction func dateViewDidTap(_ sender: Any) {
+        let datePickerHalfSheet = BottomHalfSheetDatePickerViewController
+            .createViewController(date: selectedDate, bottomSheetDelegate: self)
+        present(datePickerHalfSheet, animated: true)
     }
-    
-    @IBAction func tappedDeleteView(_ sender: UILongPressGestureRecognizer) {
-        editThankYouTextView.resignFirstResponder()
-        switch sender.state {
-        case .began:
-            deleteView.changeBgColorOnSettingView(isHighlighted: true)
-        case .ended:
-            deleteView.changeBgColorOnSettingView(isHighlighted: false)
-            deleteAction()
-        default:
-            break
+
+    @IBAction func doneButtonDidTap(_ sender: Any) {
+        if isPosting || thankYouTextView.text.isEmpty {
+            return
         }
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let uid16string = String(uid.prefix(16))
+        let encryptedValue = Crypto().encryptString(plainText: thankYouTextView.text, key: uid16string)
+        let thankYouData = ThankYouData(id: "",
+                                        value: "",
+                                        encryptedValue: encryptedValue,
+                                        date: selectedDate,
+                                        createTime: Date())
+        editThankYou(editThankYouData: thankYouData, uid: uid)
     }
 }
-
-// MARK: - Internal Methods
-extension EditThankYouViewController {
-    @objc func datePickerValueChanged (datePicker: UIDatePicker) {
-        thankYouDateView.setDate(datePicker.date)
-    }
-}
-
 
 // MARK: - Private Methods
 private extension EditThankYouViewController {
     func setupView() {
-        datePicker.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
+        thankYouTextView.placeHolder = R.string.localizable.edit_thank_you_text_view_placeholder()
+        thankYouTextView.setInset(sideMargin: textViewSideMargin, topMargin: textViewTopBottomMargin, bottomMargin: textViewTopBottomMargin)
+        thankYouTextView.becomeFirstResponder()
+        thankYouTextView.layer.cornerRadius = rowComponentCornerRadius
+        dateView.layer.cornerRadius = rowComponentCornerRadius
+        doneButton.layer.cornerRadius = rowComponentCornerRadius
 
-        addThankYouTextViewHeaderView.setHeaderTitle(addThankYouTextViewHeaderViewString)
-        thankYouDatePickerHeaderView.setHeaderTitle(thankYouDatePickerHeaderViewString)
-        deleteHeaderView.hideHeaderTitle()
-        editThankYouTextView.placeHolder = NSLocalizedString("What are you thankful for?", comment: "")
-        editThankYouTextView.setInset(sideMargin: textViewSideMargin, topMargin: textViewTopBottomMargin, bottomMargin: textViewTopBottomMargin)
-        editThankYouTextView.becomeFirstResponder()
+        doneButton.setBackgroundColor(
+            color: doneButtonEnabledBgColor,
+            for: .normal)
+        doneButton.setBackgroundColor(
+            color: doneButtonEnabledBgColor.darken(),
+            for: .highlighted)
+        doneButton.setBackgroundColor(
+            color: doneButtonDisabledBgColor,
+            for: .disabled)
 
-        self.navigationItem.title = "Edit Thank You".localized
+        navigationItem.title = R.string.localizable.edit_thank_you_title()
     }
 
     func setupEditThankYouData() {
@@ -144,9 +124,8 @@ private extension EditThankYouViewController {
             dismiss(animated: true, completion: nil)
             return
         }
-        editThankYouTextView.text = editingThankYouData.value
-        datePicker.setDate(editingThankYouData.date, animated: true)
-        thankYouDateView.setDate(editingThankYouData.date)
+        thankYouTextView.text = editingThankYouData.value
+        selectedDate = editingThankYouData.date
         adjustTextViewHeight()
     }
     
@@ -169,7 +148,7 @@ private extension EditThankYouViewController {
     }
     
     private func hideKeyboard() {
-        editThankYouTextView.resignFirstResponder()
+        thankYouTextView.resignFirstResponder()
     }
     
     private func editThankYou(editThankYouData: ThankYouData, uid: String) {
@@ -191,41 +170,11 @@ private extension EditThankYouViewController {
     }
     
     private func adjustTextViewHeight() {
-        var height = editThankYouTextView.sizeThatFits(
-            CGSize(width: editThankYouTextView.frame.size.width,
+        var height = thankYouTextView.sizeThatFits(
+            CGSize(width: thankYouTextView.frame.size.width,
                    height: CGFloat.greatestFiniteMagnitude)).height
         height = height < textViewMinHeight ? textViewMinHeight : height
-        editThankYouTextViewHeightContraint.constant = height
-    }
-    
-    private func deleteAction() {
-        let alertController = UIAlertController(title: NSLocalizedString("Delete Thank you", comment: ""),message: NSLocalizedString("Are you sure you want to delete this thank you?", comment: ""), preferredStyle: UIAlertController.Style.alert)
-        let deleteAction = UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: UIAlertAction.Style.destructive){ (action: UIAlertAction) in
-            self.deleteThankYou()
-        }
-        let cancelButton = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertAction.Style.cancel, handler: nil)
-        alertController.addAction(deleteAction)
-        alertController.addAction(cancelButton)
-        present(alertController,animated: true,completion: nil)
-    }
-    
-    private func deleteThankYou() {
-        guard let editingThankYouId = editingThankYouId else { return }
-        guard let uid = Auth.auth().currentUser?.uid else {
-            print("Not login error")
-            return
-        }
-        db.collection("users").document(uid).collection("thankYouList").document(editingThankYouId).delete(completion: { [weak self] error in
-            guard let weakSelf = self else { return }
-            if let error = error {
-                debugPrint(error)
-                let alert = UIAlertController(title: nil, message: NSLocalizedString("Failed to delete", comment: ""), preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                weakSelf.present(alert, animated: true, completion: nil)
-            }
-//            Analytics.logEvent(eventName: AnalyticsEventConst.deleteThankYou, userId: uid, targetDate: editingThankYouData.date)
-            weakSelf.dismiss(animated: true, completion: nil)
-        })
+        thankYouTextViewHeightContraint.constant = height
     }
 }
 
@@ -233,13 +182,22 @@ private extension EditThankYouViewController {
 // MARK: - Extensions
 extension EditThankYouViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
+        doneButton.isEnabled = !textView.text.isEmpty
         adjustTextViewHeight()
     }
 }
 
 extension EditThankYouViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        editThankYouTextView.resignFirstResponder()
+        thankYouTextView.resignFirstResponder()
+    }
+}
+
+extension EditThankYouViewController: BottomHalfSheetDatePickerViewControllerDelegate {
+    func bottomHalfSheetDatePickerViewControllerDidTapDone(date: Date) {
+        presentedViewController?.dismiss(animated: true, completion: nil)
+        doneButton.isEnabled = !thankYouTextView.text.isEmpty
+        selectedDate = date
     }
 }
 

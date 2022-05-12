@@ -21,14 +21,14 @@
 "add_thank_you_title" = "Add Thank You";
 "add_thank_you_text_view_placeholder" = "What are you thankful for?";
 
+"edit_thank_you_title" = "Edit Thank You";
+"edit_thank_you_text_view_placeholder" = "What are you thankful for?";
+
 "monthYear" = "%1$@ %2$@";
 "Date" = "Date";
 "Delete Thank you" = "Delete Thank you";
 "Are you sure you want to delete this thank you?" = "Are you sure you want to delete this thank you?";
 "Cancel" = "Cancel";
-"What are you thankful for?" = "What are you thankful for?";
-"Add Thank You" = "Add Thank You";
-"Edit Thank You" = "Edit Thank You";
 "Logout" = "Logout";
 "Failed to add" = "Failed to add";
 "Failed to edit" = "Failed to edit";

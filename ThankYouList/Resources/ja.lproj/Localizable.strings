@@ -21,14 +21,14 @@
 "add_thank_you_title" = "Thank Youを作成";
 "add_thank_you_text_view_placeholder" = "ありがとうの気持ちを書こう";
 
+"edit_thank_you_title" = "Thank Youを編集";
+"edit_thank_you_text_view_placeholder" = "ありがとうの気持ちを書こう";
+
 "monthYear" = "%2$@年 %1$@";
 "Date" = "日付";
 "Delete Thank you" = "Thank youを削除";
 "Are you sure you want to delete this thank you?" = "本当にこのThank youを削除してよろしいですか?";
 "Cancel" = "キャンセル";
-"What are you thankful for?" = "ありがとうの気持ちを書こう";
-"Add Thank You" = "Thank Youを作成";
-"Edit Thank You" = "Thank Youを編集";
 "Logout" = "ログアウト";
 "Failed to add" = "作成できませんでした";
 "Failed to edit" = "編集できませんでした";

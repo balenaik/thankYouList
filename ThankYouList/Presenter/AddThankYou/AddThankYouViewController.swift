@@ -80,20 +80,13 @@ extension AddThankYouViewController {
         let datePickerHalfSheet = BottomHalfSheetDatePickerViewController.createViewController(bottomSheetDelegate: nil)
         present(datePickerHalfSheet, animated: true)
     }
-}
 
-// MARK: - Internal Methods
-extension AddThankYouViewController {
-    @objc func datePickerValueChanged (datePicker: UIDatePicker) {
-//        thankYouDateView.setDate(datePicker.date)
     }
 }
-
 
 // MARK: - Private Methods
 private extension AddThankYouViewController {
     func setupView() {
-//        datePicker.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
         thankYouTextView.placeHolder = NSLocalizedString("What are you thankful for?", comment: "")
         thankYouTextView.setInset(sideMargin: textViewSideMargin, topMargin: textViewTopBottomMargin, bottomMargin: textViewTopBottomMargin)
         thankYouTextView.becomeFirstResponder()

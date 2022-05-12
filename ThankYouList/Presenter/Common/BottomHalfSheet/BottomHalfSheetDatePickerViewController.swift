@@ -55,7 +55,7 @@ private extension BottomHalfSheetDatePickerViewController {
         navigationBar.shadowImage = UIImage()
 
         let navigationItem = UINavigationItem()
-        navigationItem.title = R.string.localizable.thank_you_date()
+        navigationItem.title = R.string.localizable.date()
         navigationBar.setItems([navigationItem], animated: true)
         navigationBar.titleTextAttributes = [
             .font: UIFont.boldAvenir(ofSize: navigationBarFontSize)

@@ -106,6 +106,8 @@ extension MyPageViewController: UITableViewDataSource {
         switch item.style {
         case .text:
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.myPageButtonCell, for: indexPath)!
+            cell.setTableItem(item.item)
+            cell.delegate = self
             return cell
         case .profieInfo:
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.myPageProfileCell, for: indexPath)!
@@ -115,15 +117,16 @@ extension MyPageViewController: UITableViewDataSource {
             return cell
         }
     }
+}
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let item = tableItems[indexPath.section][indexPath.row]
-        switch item.item {
+extension MyPageViewController: MyPageButtonCellDelegate {
+    func myPageButtonCellDidtapButton(tableItem: TableItemType?) {
+        guard let tableItem = tableItem else { return }
+        switch tableItem {
         case .logout:
             logout()
         default:
-            break
+            return
         }
     }
 }

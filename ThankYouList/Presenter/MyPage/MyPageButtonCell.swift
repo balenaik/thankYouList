@@ -11,22 +11,34 @@ import UIKit
 private let buttonCornerRadius = CGFloat(16)
 private let buttonBgColor = UIColor.white
 
+protocol MyPageButtonCellDelegate: class {
+    func myPageButtonCellDidtapButton(tableItem: MyPageViewController.TableItemType?)
+}
+
 class MyPageButtonCell: UITableViewCell {
 
     @IBOutlet weak var button: UIButton!
 
     private var tableItem: MyPageViewController.TableItemType?
+    weak var delegate: MyPageButtonCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         button.layer.cornerRadius = buttonCornerRadius
         button.setBackgroundColor(color: buttonBgColor.darken(), for: .highlighted)
     }
+}
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+private extension MyPageButtonCell {
+    @IBAction func buttonDidTap(_ sender: Any) {
+        delegate?.myPageButtonCellDidtapButton(tableItem: tableItem)
     }
+}
 
+extension MyPageButtonCell {
+    func setTableItem(_ item: MyPageViewController.TableItemType) {
+        self.tableItem = item
+        button.setTitle(item.titleText, for: .normal)
+        button.setTitleColor(item.titleColor, for: .normal)
+    }
 }

@@ -33,6 +33,10 @@ extension UIColor {
         return UIColor(colorWithHexValue: 0xe1e1e1)
     }
 
+    class var redAccent200: UIColor {
+        return UIColor(colorWithHexValue: 0xff5252)
+    }
+
     class var text: UIColor {
         return UIColor.black87
     }

@@ -6,7 +6,7 @@
 //  Copyright © 2020 Aika Yamada. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 // MARK: - TableItem
 extension MyPageViewController {
@@ -25,6 +25,15 @@ extension MyPageViewController {
                 return nil
             case .logout:
                 return R.string.localizable.mypage_logout()
+            }
+        }
+
+        var titleColor: UIColor? {
+            switch self {
+            case .myInformation:
+                return nil
+            case .logout:
+                return .redAccent200
             }
         }
     }

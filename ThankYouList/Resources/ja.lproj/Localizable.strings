@@ -29,7 +29,6 @@
 "Delete Thank you" = "Thank youを削除";
 "Are you sure you want to delete this thank you?" = "本当にこのThank youを削除してよろしいですか?";
 "Cancel" = "キャンセル";
-"Logout" = "ログアウト";
 "Failed to add" = "作成できませんでした";
 "Failed to edit" = "編集できませんでした";
 "Failed to delete" = "削除できませんでした";
@@ -41,6 +40,7 @@
 
 "mypage_title" = "アカウント";
 "mypage_logout" = "ログアウト";
+"mypage_logout_confirmation_message" = "ログアウトしますか？";
 
 "ok" = "OK";
 "done" = "完了";

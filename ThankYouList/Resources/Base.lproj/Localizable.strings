@@ -29,7 +29,6 @@
 "Delete Thank you" = "Delete Thank you";
 "Are you sure you want to delete this thank you?" = "Are you sure you want to delete this thank you?";
 "Cancel" = "Cancel";
-"Logout" = "Logout";
 "Failed to add" = "Failed to add";
 "Failed to edit" = "Failed to edit";
 "Failed to delete" = "Failed to delete";
@@ -43,7 +42,8 @@
 "calendar_tabbar_title" = "calendar";
 
 "mypage_title" = "Account";
-"mypage_logout" = "Logout";
+"mypage_logout" = "Log out";
+"mypage_logout_confirmation_message" = "Are you sure you want to logout?";
 
 "ok" = "OK";
 "done" = "Done";

@@ -67,6 +67,22 @@ private extension MyPageViewController {
         Analytics.logEvent(eventName: AnalyticsEventConst.showMyPage, userId: user.uid)
     }
 
+    func showLogoutAlert() {
+        let alertController = UIAlertController(
+            title: R.string.localizable.mypage_logout(),
+            message: R.string.localizable.mypage_logout_confirmation_message(),
+            preferredStyle: .alert)
+        let logoutAction = UIAlertAction(title: R.string.localizable.mypage_logout(),
+                                         style: .destructive) { [weak self] _ in
+            self?.logout()
+        }
+        let cancelButton = UIAlertAction(title: R.string.localizable.cancel(),
+                                         style: .cancel)
+        alertController.addAction(logoutAction)
+        alertController.addAction(cancelButton)
+        present(alertController,animated: true,completion: nil)
+    }
+
     func logout() {
         do {
             try Auth.auth().signOut()
@@ -124,7 +140,7 @@ extension MyPageViewController: MyPageButtonCellDelegate {
         guard let tableItem = tableItem else { return }
         switch tableItem {
         case .logout:
-            logout()
+            showLogoutAlert()
         default:
             return
         }

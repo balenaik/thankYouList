@@ -50,7 +50,7 @@ private extension MyPageViewController {
 
     func setupTableItems() {
         let myInfoSection = [TableItem(item: .myInformation, style: .profieInfo)]
-        let logoutSection = [TableItem(item: .logout, style: .text)]
+        let logoutSection = [TableItem(item: .logout, style: .button)]
         tableItems.append(contentsOf: [myInfoSection, logoutSection])
     }
 
@@ -104,7 +104,7 @@ extension MyPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = tableItems[indexPath.section][indexPath.row]
         switch item.style {
-        case .text:
+        case .button:
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.myPageButtonCell, for: indexPath)!
             cell.setTableItem(item.item)
             cell.delegate = self

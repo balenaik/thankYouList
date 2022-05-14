@@ -40,6 +40,6 @@ extension MyPageViewController {
 
     enum TableItemStyle {
         case profieInfo
-        case text
+        case button
     }
 }

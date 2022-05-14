@@ -105,8 +105,7 @@ extension MyPageViewController: UITableViewDataSource {
         let item = tableItems[indexPath.section][indexPath.row]
         switch item.style {
         case .text:
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.myPageTextCell, for: indexPath)!
-            cell.textLabel?.text = item.item.titleText
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.myPageButtonCell, for: indexPath)!
             return cell
         case .profieInfo:
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.myPageProfileCell, for: indexPath)!

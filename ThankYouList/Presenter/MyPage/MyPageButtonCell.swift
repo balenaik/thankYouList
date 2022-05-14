@@ -8,11 +8,19 @@
 
 import UIKit
 
+private let buttonCornerRadius = CGFloat(16)
+private let buttonBgColor = UIColor.white
+
 class MyPageButtonCell: UITableViewCell {
+
+    @IBOutlet weak var button: UIButton!
+
+    private var tableItem: MyPageViewController.TableItemType?
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        button.layer.cornerRadius = buttonCornerRadius
+        button.setBackgroundColor(color: buttonBgColor.darken(), for: .highlighted)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

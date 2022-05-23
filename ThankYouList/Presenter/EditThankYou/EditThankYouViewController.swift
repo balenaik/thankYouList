@@ -71,7 +71,11 @@ class EditThankYouViewController: UIViewController {
 // MARK: - IBActions
 extension EditThankYouViewController {
     @IBAction func closeButtonDidTap(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        guard thankYouTextView.text != editingThankYou?.value else {
+            dismiss(animated: true)
+            return
+        }
+        showDiscardAlert()
     }
 
     @IBAction func dateViewDidTap(_ sender: Any) {

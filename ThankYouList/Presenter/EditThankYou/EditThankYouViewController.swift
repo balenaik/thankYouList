@@ -25,6 +25,7 @@ class EditThankYouViewController: UIViewController {
     
     // MARK: - Properties
     private var editingThankYouId: String?
+    private var editingThankYou: ThankYouData?
     private var delegate = UIApplication.shared.delegate as! AppDelegate
     private var isPosting = false
     private var selectedDate = Date() {
@@ -119,13 +120,14 @@ private extension EditThankYouViewController {
     }
 
     func setupEditThankYouData() {
-        guard let editingThankYouData = GlobalThankYouData.sharedInstance
+        guard let editingThankYou = GlobalThankYouData.sharedInstance
                 .thankYouDataList.first(where: { $0.id == editingThankYouId }) else {
             dismiss(animated: true, completion: nil)
             return
         }
-        thankYouTextView.text = editingThankYouData.value
-        selectedDate = editingThankYouData.date
+        self.editingThankYou = editingThankYou
+        thankYouTextView.text = editingThankYou.value
+        selectedDate = editingThankYou.date
         adjustTextViewHeight()
     }
     

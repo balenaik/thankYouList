@@ -13,6 +13,7 @@ private let navigationBarFontSize = CGFloat(17)
 private let navigationBarTopMargin = CGFloat(16)
 
 private let doneButtonHorizontalMargin = CGFloat(24)
+private let doneButtonBottomMargin = CGFloat(16)
 private let doneButtonCornerRadius = CGFloat(16)
 private let doneButtonFontSize = CGFloat(17)
 private let doneButtonHeight = CGFloat(44)
@@ -111,7 +112,7 @@ private extension BottomHalfSheetDatePickerViewController {
             doneButton.topAnchor.constraint(equalTo: datePicker.safeAreaLayoutGuide.bottomAnchor),
             doneButton.leftAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.leftAnchor,
                                              constant: doneButtonHorizontalMargin),
-            doneButton.bottomAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.bottomAnchor),
+            doneButton.bottomAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.bottomAnchor, constant: -doneButtonBottomMargin),
             doneButton.rightAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.rightAnchor,
                                               constant: -doneButtonHorizontalMargin),
             doneButton.heightAnchor.constraint(equalToConstant: doneButtonHeight)

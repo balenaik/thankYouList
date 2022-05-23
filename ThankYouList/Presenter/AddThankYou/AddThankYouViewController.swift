@@ -164,6 +164,23 @@ private extension AddThankYouViewController {
         height = height < textViewMinHeight ? textViewMinHeight : height
         thankYouTextViewHeightContraint.constant = height
     }
+
+    func showDiscardAlert() {
+        let alertController = UIAlertController(
+            title: R.string.localizable.add_thank_you_discard_title(),
+            message: R.string.localizable.add_thank_you_discard_message(),
+            preferredStyle: .alert)
+        let discardAction = UIAlertAction(title: R.string.localizable.discard(),
+                                          style: .destructive) { [weak self] _ in
+            self?.dismiss(animated: true)
+        }
+        let cancelButton = UIAlertAction(
+            title: R.string.localizable.add_thank_you_discard_cancel(),
+            style: .cancel)
+        alertController.addAction(discardAction)
+        alertController.addAction(cancelButton)
+        present(alertController, animated: true, completion: nil)
+    }
 }
 
 

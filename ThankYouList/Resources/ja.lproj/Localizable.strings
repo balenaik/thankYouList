@@ -20,9 +20,15 @@
 
 "add_thank_you_title" = "Thank Youを作成";
 "add_thank_you_text_view_placeholder" = "ありがとうの気持ちを書こう";
+"add_thank_you_discard_title" = "Thank Youを破棄しますか？";
+"add_thank_you_discard_message" = "このThank Youを破棄してもよろしいですか？";
+"add_thank_you_discard_cancel" = "編集を続ける";
 
 "edit_thank_you_title" = "Thank Youを編集";
 "edit_thank_you_text_view_placeholder" = "ありがとうの気持ちを書こう";
+"edit_thank_you_discard_title" = "変更を破棄しますか？";
+"edit_thank_you_discard_message" = "変更を破棄してもよろしいですか？";
+"edit_thank_you_discard_cancel" = "編集を続ける";
 
 "monthYear" = "%2$@年 %1$@";
 "Date" = "日付";
@@ -44,6 +50,7 @@
 
 "ok" = "OK";
 "done" = "完了";
+"discard" = "破棄";
 
 "error" = "エラー";
 "error_authenticate" = "認証に失敗しました。";

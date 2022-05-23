@@ -20,9 +20,15 @@
 
 "add_thank_you_title" = "Add Thank You";
 "add_thank_you_text_view_placeholder" = "What are you thankful for?";
+"add_thank_you_discard_title" = "Discard Thank You?";
+"add_thank_you_discard_message" = "Are you sure you want to discard your thank you?";
+"add_thank_you_discard_cancel" = "Keep Editing";
 
 "edit_thank_you_title" = "Edit Thank You";
 "edit_thank_you_text_view_placeholder" = "What are you thankful for?";
+"edit_thank_you_discard_title" = "Discard Changes?";
+"edit_thank_you_discard_message" = "Are you sure you want to discard changes?";
+"edit_thank_you_discard_cancel" = "Keep Editing";
 
 "monthYear" = "%1$@ %2$@";
 "Date" = "Date";
@@ -47,6 +53,7 @@
 
 "ok" = "OK";
 "done" = "Done";
+"discard" = "Discard";
 
 "error" = "Error";
 "error_authenticate" = "Authentication failed";

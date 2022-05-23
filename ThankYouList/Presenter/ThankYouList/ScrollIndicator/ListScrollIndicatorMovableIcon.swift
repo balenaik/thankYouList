@@ -8,24 +8,39 @@
 
 import UIKit
 
-private let triangleColor = UIColor.sectionTitleGray
+private let triangleColor = UIColor.black87
+
+private let circleViewShadowOffset = CGSize(width: 0, height: 1)
+private let circleViewShadowColor = UIColor.black
+private let circleViewShadowOpacity = Float(0.2)
+private let circleViewShadowRadius = CGFloat(2)
 
 class ListScrollIndicatorMovableIcon: UIView {
-    
-    @IBOutlet weak var upperTriangleView: ListScrollIndicatorMovableIconTriangle!
-    @IBOutlet weak var lowerTriangleView: ListScrollIndicatorMovableIconTriangle!
+
+    @IBOutlet private weak var upperTriangleView: ListScrollIndicatorMovableIconTriangle!
+    @IBOutlet private weak var lowerTriangleView: ListScrollIndicatorMovableIconTriangle!
     
     class func instanceFromNib() -> ListScrollIndicatorMovableIcon {
-        let view = Bundle.main.loadNibNamed("ListScrollIndicatorMovableIcon", owner: self, options: nil)?.first as! ListScrollIndicatorMovableIcon
+        let view = R.nib.listScrollIndicatorMovableIcon.firstView(owner: nil)!
         return view
     }
 
     override func awakeFromNib() {
+        super.awakeFromNib()
         lowerTriangleView.transform = CGAffineTransform(scaleX: 1, y: -1)
     }
 }
 
 class ListScrollIndicatorMovableIconCircle: UIView {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        layer.shadowOffset = circleViewShadowOffset
+        layer.shadowColor = circleViewShadowColor.cgColor
+        layer.shadowOpacity = circleViewShadowOpacity
+        layer.shadowRadius = circleViewShadowRadius
+        layer.masksToBounds = false
+    }
+
     override func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = self.bounds.size.width / 2

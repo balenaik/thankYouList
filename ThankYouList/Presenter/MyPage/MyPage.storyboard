@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4wp-4j-dO9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4wp-4j-dO9">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,33 +17,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="HX0-q2-OSh">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HX0-q2-OSh">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
-                                <color key="backgroundColor" name="tableViewBg"/>
+                                <color key="backgroundColor" name="defaultBackground"/>
+                                <color key="sectionIndexBackgroundColor" name="defaultBackground"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyPageTextCell" id="9XD-eB-68b">
-                                        <rect key="frame" x="0.0" y="55.5" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyPageButtonCell" id="9XD-eB-68b" customClass="MyPageButtonCell" customModule="ThankYouList" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9XD-eB-68b" id="c11-d3-5jf">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="72"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EC2-2t-2b0">
+                                                    <rect key="frame" x="24" y="12" width="366" height="48"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="48" id="fPG-tc-AqA"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                    <state key="normal" title="Button">
+                                                        <color key="titleColor" name="text"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="buttonDidTap:" destination="9XD-eB-68b" eventType="touchUpInside" id="BRk-AN-ILB"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="EC2-2t-2b0" secondAttribute="trailing" constant="24" id="46Q-Uw-SDa"/>
+                                                <constraint firstAttribute="bottom" secondItem="EC2-2t-2b0" secondAttribute="bottom" constant="12" id="Xa0-J4-Odh"/>
+                                                <constraint firstItem="EC2-2t-2b0" firstAttribute="top" secondItem="c11-d3-5jf" secondAttribute="top" constant="12" id="blV-Gf-b59"/>
+                                                <constraint firstItem="EC2-2t-2b0" firstAttribute="leading" secondItem="c11-d3-5jf" secondAttribute="leading" constant="24" id="fBu-3s-fJz"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="button" destination="EC2-2t-2b0" id="pHL-Or-FQp"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="dataSource" destination="4wp-4j-dO9" id="5Wb-ZT-a3l"/>
                                     <outlet property="delegate" destination="4wp-4j-dO9" id="mNU-gt-T1Z"/>
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Jkp-N8-8Wm"/>
+                        <color key="backgroundColor" name="defaultBackground"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="HX0-q2-OSh" secondAttribute="bottom" id="R03-jq-7Tw"/>
                             <constraint firstItem="HX0-q2-OSh" firstAttribute="trailing" secondItem="Jkp-N8-8Wm" secondAttribute="trailing" id="Xvt-lH-I5V"/>
                             <constraint firstItem="HX0-q2-OSh" firstAttribute="leading" secondItem="Jkp-N8-8Wm" secondAttribute="leading" id="dXw-MT-Ke3"/>
                             <constraint firstItem="HX0-q2-OSh" firstAttribute="top" secondItem="Jkp-N8-8Wm" secondAttribute="top" id="vXm-nP-eNd"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Jkp-N8-8Wm"/>
                     </view>
                     <navigationItem key="navigationItem" id="j4Q-6b-AdV">
                         <barButtonItem key="leftBarButtonItem" image="icCancel" id="iik-xr-Wxb">
@@ -64,8 +97,11 @@
     </scenes>
     <resources>
         <image name="icCancel" width="21" height="21"/>
-        <namedColor name="tableViewBg">
-            <color red="0.94117647058823528" green="0.94901960784313721" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="defaultBackground">
+            <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="text">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

@@ -9,16 +9,22 @@
 import Foundation
 import UIKit
 
+private let sectionLabelSkeletonColor = UIColor.white
+
 class ListSectionHeaderView: UITableViewHeaderFooterView {
-    // MARK: -  Properties
+
     static let cellHeight = CGFloat(50)
-    
-    // MARK: - IBOutlets
-    @IBOutlet weak var sectionLabel: UILabel!
-    
-    // MARK: - Initializers
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+
+    @IBOutlet private weak var sectionLabel: UILabel!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        sectionLabel.isSkeletonable = true
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        sectionLabel.hideSkeleton()
     }
 }
 
@@ -31,5 +37,10 @@ extension ListSectionHeaderView {
     
     func bind(sectionString: String) {
         sectionLabel.text = sectionString
+    }
+
+    func showLoadingSkeleton() {
+        sectionLabel.showSkeleton(usingColor: sectionLabelSkeletonColor,
+                                  transition: .crossDissolve(ViewConst.skeletonViewFadeTime))
     }
 }

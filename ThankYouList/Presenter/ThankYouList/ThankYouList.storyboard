@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tYx-4c-akF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tYx-4c-akF">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,9 +22,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="50" sectionHeaderHeight="18" estimatedSectionHeaderHeight="40" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="J3S-5e-ePR">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" name="tableViewBg"/>
-                                <color key="sectionIndexBackgroundColor" red="0.95301049950000005" green="0.95684367420000005" blue="0.95686382059999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="sectionIndexBackgroundColor" name="defaultBackground"/>
                                 <connections>
                                     <outlet property="dataSource" destination="tYx-4c-akF" id="bXV-3o-LSQ"/>
                                     <outlet property="delegate" destination="tYx-4c-akF" id="Gdh-IN-CWN"/>
@@ -42,6 +42,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="s0L-7X-hNI"/>
                         <color key="backgroundColor" red="0.94901960780000005" green="0.96862745100000003" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="adP-X3-het" firstAttribute="top" secondItem="s0L-7X-hNI" secondAttribute="top" id="00B-vL-Qoc"/>
@@ -50,16 +51,15 @@
                             <constraint firstItem="ezU-hS-Ipk" firstAttribute="leading" secondItem="yk0-yc-lwD" secondAttribute="leading" id="HoQ-Jb-ZWL"/>
                             <constraint firstAttribute="trailing" secondItem="ezU-hS-Ipk" secondAttribute="trailing" id="Ljl-hQ-hth"/>
                             <constraint firstItem="adP-X3-het" firstAttribute="trailing" secondItem="s0L-7X-hNI" secondAttribute="trailing" id="Mtk-zP-q7H"/>
-                            <constraint firstItem="s0L-7X-hNI" firstAttribute="bottom" secondItem="J3S-5e-ePR" secondAttribute="bottom" id="OIx-FW-cwM"/>
+                            <constraint firstAttribute="bottom" secondItem="J3S-5e-ePR" secondAttribute="bottom" id="OIx-FW-cwM"/>
                             <constraint firstItem="ezU-hS-Ipk" firstAttribute="top" secondItem="s0L-7X-hNI" secondAttribute="top" id="ibD-40-lY0"/>
                             <constraint firstItem="J3S-5e-ePR" firstAttribute="top" secondItem="s0L-7X-hNI" secondAttribute="top" id="rol-cS-hYo"/>
                             <constraint firstAttribute="trailing" secondItem="J3S-5e-ePR" secondAttribute="trailing" id="sQf-32-rcj"/>
                             <constraint firstItem="J3S-5e-ePR" firstAttribute="leading" secondItem="yk0-yc-lwD" secondAttribute="leading" id="ufX-CX-DGz"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="s0L-7X-hNI"/>
                     </view>
                     <navigationItem key="navigationItem" id="3yM-HQ-dPH">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="icUserFill" id="aTc-Yy-m9S">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="icAccountCircle24" id="aTc-Yy-m9S">
                             <connections>
                                 <action selector="tapUserIcon:" destination="tYx-4c-akF" id="PRq-Ax-w8x"/>
                             </connections>
@@ -78,7 +78,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icUserFill" width="21" height="21"/>
+        <image name="icAccountCircle24" width="23.999998092651367" height="23.999998092651367"/>
+        <namedColor name="defaultBackground">
+            <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="tableViewBg">
             <color red="0.94117647058823528" green="0.94901960784313721" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

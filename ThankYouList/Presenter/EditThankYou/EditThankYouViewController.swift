@@ -70,7 +70,7 @@ class EditThankYouViewController: UIViewController {
 
 // MARK: - IBActions
 extension EditThankYouViewController {
-    @IBAction func cancelButtonDidTap(_ sender: Any) {
+    @IBAction func closeButtonDidTap(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
 

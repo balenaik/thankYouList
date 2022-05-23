@@ -163,7 +163,7 @@
                     <navigationItem key="navigationItem" title="Edit thank you" id="Hct-8f-Tt0">
                         <barButtonItem key="leftBarButtonItem" image="icClose24" id="7oK-4H-XdB">
                             <connections>
-                                <action selector="cancelButtonDidTap:" destination="EBN-Ez-cvI" id="cu3-7a-VX1"/>
+                                <action selector="closeButtonDidTap:" destination="EBN-Ez-cvI" id="ZBr-vs-qQz"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

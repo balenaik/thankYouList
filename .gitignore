@@ -12,9 +12,6 @@ firebase.json
 *.xcworkspace/*
 !*.xcworkspace/contents.xcworkspacedata
 
-# Images
-img/*
-
 # Bundler
 .bundle
 vendor/bundle

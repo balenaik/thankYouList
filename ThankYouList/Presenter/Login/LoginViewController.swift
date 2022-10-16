@@ -97,7 +97,9 @@ private extension LoginViewController {
             if let email = email {
                 self.updateUserEmail(email: email)
             }
-            let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return
+            }
             if let loginViewController = appDelegate.window?.rootViewController,
                let mainTabBarController: MainTabBarController = MainTabBarController.createViewController() {
                 appDelegate.createRootViewController(mainViewController: mainTabBarController)

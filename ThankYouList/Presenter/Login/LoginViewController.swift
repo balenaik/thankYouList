@@ -98,7 +98,6 @@ private extension LoginViewController {
                 self.updateUserEmail(email: email)
             }
             let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.moveUDDataToFirestoreIfNeeded()
             if let loginViewController = appDelegate.window?.rootViewController,
                let mainTabBarController: MainTabBarController = MainTabBarController.createViewController() {
                 appDelegate.createRootViewController(mainViewController: mainTabBarController)

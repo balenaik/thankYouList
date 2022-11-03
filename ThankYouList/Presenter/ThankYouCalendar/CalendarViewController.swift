@@ -107,9 +107,7 @@ private extension CalendarViewController {
     
     private func setupViewsOfCalendar(from visibleDates: DateSegmentInfo) {
         let date = visibleDates.monthDates.first!.date
-        let monthYearDF = DateFormatter()
-        monthYearDF.dateFormat = String(format: NSLocalizedString("monthYear", comment: ""), "MMMM", "yyyy")
-        self.yearMonth.text = monthYearDF.string(from: date)
+        yearMonth.text = date.toMonthYearString()
     }
     
     private func getListFromDate(_ date: Date) {

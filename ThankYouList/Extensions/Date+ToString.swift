@@ -54,4 +54,10 @@ extension Date {
         formatter.locale = Locale(identifier: "en")
         return formatter.string(from: self)
     }
+
+    func toMonthYearString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = R.string.localizable.date_format_month_year()
+        return formatter.string(from: self)
+    }
 }

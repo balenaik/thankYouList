@@ -159,7 +159,8 @@ private extension ThankYouListViewController {
             sections[index].thankYouList.append(thankYouData)
             sections[index].thankYouList.sort(by: {$0.date > $1.date})
         } else {
-            guard let dateYearMonth = dateYearMonthString.toYearMonthDate() else { return }
+            guard let dateYearMonth = dateYearMonthString.toDate(
+                format: R.string.localizable.date_format_year_month()) else { return }
             let newSection = Section(sectionDateString: dateYearMonthString,
                                      displayDateString: dateYearMonth.toYearMonthString(),
                                      thankYouList: [thankYouData])

@@ -58,4 +58,5 @@
 "error_authenticate" = "Authentication failed";
 
 "date_format_thankyou_date" = "yyyy/MM/dd";
+"date_format_year_month" = "yyyy/MM";
 "date_format_month_year" = "MMMM yyyy";

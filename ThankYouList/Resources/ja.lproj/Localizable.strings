@@ -54,4 +54,5 @@
 "error" = "エラー";
 "error_authenticate" = "認証に失敗しました。";
 
+"date_format_thankyou_date" = "yyyy/MM/dd";
 "date_format_month_year" = "yyyy年 MMMM";

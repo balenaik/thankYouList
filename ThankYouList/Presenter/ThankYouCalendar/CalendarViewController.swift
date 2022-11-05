@@ -265,7 +265,9 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         getListFromDate(cellState.date)
         appDelegate.selectedDate = cellState.date
         selectedDate = cellState.date.toThankYouDateString()
-        let displayDateString = selectedDate.toThankYouDate()?.toYearMonthDayString()
+        let displayDateString = selectedDate
+            .toDate(format: R.string.localizable.date_format_thankyou_date())?
+            .toYearMonthDayString()
         smallListView.setDateLabel(dateString: displayDateString ?? "")
         smallListView.reloadTableView()
     }

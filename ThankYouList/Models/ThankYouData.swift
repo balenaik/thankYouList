@@ -33,10 +33,10 @@ struct ThankYouData {
 extension ThankYouData: DocumentSeriarizable {
     init?(dictionary: [String : Any]) {
         guard let encryptedValue = dictionary["encryptedValue"] as? String,
-            let dateString = dictionary["date"] as? String,
-            let date = dateString.toThankYouDate(),
-            let createTime = dictionary["createTime"] as? Timestamp else {
-                return nil
+              let dateString = dictionary["date"] as? String,
+              let date = dateString.toDate(format: R.string.localizable.date_format_thankyou_date()),
+              let createTime = dictionary["createTime"] as? Timestamp else {
+            return nil
         }
         self.init(id: "", value: "", encryptedValue: encryptedValue, date: date, createTime: createTime.dateValue())
     }

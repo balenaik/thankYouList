@@ -39,10 +39,6 @@ class SettingDateView: UIView {
 
 // MARK: - Internal Methods
 extension SettingDateView {
-    func getDate() -> Date? {
-        return dateLabel.text?.toThankYouDate()
-    }
-    
     func setDate(_ date: Date) {
         dateLabel.text = date.toThankYouDateString()
     }

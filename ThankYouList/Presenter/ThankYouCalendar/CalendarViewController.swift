@@ -231,15 +231,19 @@ private extension CalendarViewController {
 // MARK: - JTAppleCalendarViewDataSource
 extension CalendarViewController: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
+        let calendar = Calendar(identifier: .gregorian)
+
         let formatter = DateFormatter()
         formatter.dateFormat = calendarDateFormat
-        formatter.timeZone = Calendar.current.timeZone
-        formatter.locale = Calendar.current.locale
+        formatter.timeZone = calendar.timeZone
+        formatter.locale = calendar.locale
         
         let startDate = formatter.date(from: calendarStartDate) ?? Date()
         let endDate = formatter.date(from: calendarEndDate) ?? Date()
         
-        let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate)
+        let parameters = ConfigurationParameters(startDate: startDate,
+                                                 endDate: endDate,
+                                                 calendar: calendar)
         return parameters
     }
 }

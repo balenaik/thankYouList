@@ -154,12 +154,13 @@ private extension ThankYouListViewController {
     private func addThankYouDataToSection(thankYouData: ThankYouData) {
         /// Crop only year and month (yyyy/MM) from thank you date
         let dateYearMonthString = String(thankYouData.date.toThankYouDateString().prefix(7))
-        let sectionIndex = sections.index(where: {$0.sectionDateString == dateYearMonthString})
+        let sectionIndex = sections.firstIndex(where: { $0.sectionDateString == dateYearMonthString })
         if let index = sectionIndex {
             sections[index].thankYouList.append(thankYouData)
             sections[index].thankYouList.sort(by: {$0.date > $1.date})
         } else {
-            guard let dateYearMonth = dateYearMonthString.toYearMonthDate() else { return }
+            guard let dateYearMonth = dateYearMonthString.toDate(
+                format: R.string.localizable.date_format_year_month()) else { return }
             let newSection = Section(sectionDateString: dateYearMonthString,
                                      displayDateString: dateYearMonth.toYearMonthString(),
                                      thankYouList: [thankYouData])
@@ -171,7 +172,7 @@ private extension ThankYouListViewController {
     private func deleteThankYouDataFromSection(thankYouData: ThankYouData) {
         /// Crop only year and month (yyyy/MM) from thank you date
         let dateYearMonthString = String(thankYouData.date.toThankYouDateString().prefix(7))
-        guard let sectionIndex = sections.index(where: {$0.sectionDateString == dateYearMonthString}),
+        guard let sectionIndex = sections.firstIndex(where: {$0.sectionDateString == dateYearMonthString}),
             let thankYouIndex = sections[sectionIndex].thankYouList
                 .index(where: {$0.id == thankYouData.id}) else { return }
         sections[sectionIndex].thankYouList.remove(at: thankYouIndex)

@@ -107,9 +107,7 @@ private extension CalendarViewController {
     
     private func setupViewsOfCalendar(from visibleDates: DateSegmentInfo) {
         let date = visibleDates.monthDates.first!.date
-        let monthYearDF = DateFormatter()
-        monthYearDF.dateFormat = String(format: NSLocalizedString("monthYear", comment: ""), "MMMM", "yyyy")
-        self.yearMonth.text = monthYearDF.string(from: date)
+        yearMonth.text = date.toMonthYearString()
     }
     
     private func getListFromDate(_ date: Date) {
@@ -233,15 +231,19 @@ private extension CalendarViewController {
 // MARK: - JTAppleCalendarViewDataSource
 extension CalendarViewController: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
+        let calendar = Calendar(identifier: .gregorian)
+
         let formatter = DateFormatter()
         formatter.dateFormat = calendarDateFormat
-        formatter.timeZone = Calendar.current.timeZone
-        formatter.locale = Calendar.current.locale
+        formatter.timeZone = calendar.timeZone
+        formatter.locale = calendar.locale
         
         let startDate = formatter.date(from: calendarStartDate) ?? Date()
         let endDate = formatter.date(from: calendarEndDate) ?? Date()
         
-        let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate)
+        let parameters = ConfigurationParameters(startDate: startDate,
+                                                 endDate: endDate,
+                                                 calendar: calendar)
         return parameters
     }
 }
@@ -267,7 +269,9 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         getListFromDate(cellState.date)
         appDelegate.selectedDate = cellState.date
         selectedDate = cellState.date.toThankYouDateString()
-        let displayDateString = selectedDate.toThankYouDate()?.toYearMonthDayString()
+        let displayDateString = selectedDate
+            .toDate(format: R.string.localizable.date_format_thankyou_date())?
+            .toYearMonthDayString()
         smallListView.setDateLabel(dateString: displayDateString ?? "")
         smallListView.reloadTableView()
     }

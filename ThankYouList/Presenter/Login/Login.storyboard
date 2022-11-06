@@ -4,8 +4,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,108 +21,116 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="character_launchscreen" translatesAutoresizingMaskIntoConstraints="NO" id="QUK-dn-XeN">
-                                <rect key="frame" x="115.5" y="182" width="183" height="193"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="183" id="78i-yX-6vH"/>
-                                    <constraint firstAttribute="height" constant="193" id="kIf-6V-b2e"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="Ggc-Ty-PIo">
-                                <rect key="frame" x="47.5" y="390" width="319" height="41"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Ggc-Ty-PIo" secondAttribute="height" multiplier="335:43" id="eDM-vZ-Slu"/>
-                                </constraints>
-                                <string key="text">Take a simple diary 
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="lhP-97-AFw">
+                                <rect key="frame" x="24" y="247" width="366" height="402"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageThankYouChan" translatesAutoresizingMaskIntoConstraints="NO" id="hPC-Cz-qhF">
+                                        <rect key="frame" x="0.0" y="0.0" width="366" height="100"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CsU-j8-d7u" userLabel="Spacer">
+                                        <rect key="frame" x="0.0" y="104" width="366" height="4"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="4" id="zMO-9L-Skn"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank You List" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="bbT-js-7GH">
+                                        <rect key="frame" x="0.0" y="112" width="366" height="46.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="34"/>
+                                        <color key="textColor" name="primary900"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zyr-09-RDc" userLabel="Spacer">
+                                        <rect key="frame" x="0.0" y="162.5" width="366" height="1"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="cxs-kL-al2"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="Ggc-Ty-PIo">
+                                        <rect key="frame" x="0.0" y="167.5" width="366" height="46.5"/>
+                                        <string key="text">Take a simple diary 
 &amp; be happier</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.50588235290000005" green="0.44705882349999998" blue="0.41568627450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="localizableKey" value="Take a simple diary &amp; be happier"/>
-                                </userDefinedRuntimeAttributes>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank You List" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="bbT-js-7GH">
-                                <rect key="frame" x="20" y="337" width="374" height="43"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
-                                <color key="textColor" red="1" green="0.57647058819999997" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0B-5F-8RG">
-                                <rect key="frame" x="40" y="471" width="334" height="48"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="LnN-VU-2Hf"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <inset key="titleEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <inset key="imageEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Continue with Facebook" image="ic_facebook">
-                                    <color key="titleColor" systemColor="labelColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="tapFacebookLoginButton:" destination="bO3-ed-oMm" eventType="touchUpInside" id="e2b-G8-EDi"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EFS-vD-KQR">
-                                <rect key="frame" x="40" y="529" width="334" height="48"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="V5Y-C1-Ak2"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <inset key="titleEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <inset key="imageEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Continue with Google" image="ic_google">
-                                    <color key="titleColor" systemColor="labelColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="tapGoogleLoginButton:" destination="bO3-ed-oMm" eventType="touchUpInside" id="c3l-zZ-CZB"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCF-UV-jRw">
-                                <rect key="frame" x="40" y="587" width="334" height="48"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="LZZ-b9-91N"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <inset key="titleEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <inset key="imageEdgeInsets" minX="4" minY="-3" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Continue with Apple" image="ic_apple">
-                                    <color key="titleColor" systemColor="labelColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="tapAppleLoginButton:" destination="bO3-ed-oMm" eventType="touchUpInside" id="USV-TW-23k"/>
-                                </connections>
-                            </button>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" name="accent"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizableKey" value="Take a simple diary &amp; be happier"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RgH-3a-EbE" userLabel="Spacer">
+                                        <rect key="frame" x="0.0" y="218" width="366" height="12"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="12" id="Rs5-7X-aF2"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0B-5F-8RG" customClass="LoginContinueButton" customModule="ThankYouList" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="234" width="366" height="48"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                        <inset key="contentEdgeInsets" minX="8" minY="12" maxX="0.0" maxY="12"/>
+                                        <inset key="titleEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Continue with Facebook" image="ic_facebook">
+                                            <color key="titleColor" name="text"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapFacebookLoginButton:" destination="bO3-ed-oMm" eventType="touchUpInside" id="e2b-G8-EDi"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6rq-VH-8bM" userLabel="Spacer">
+                                        <rect key="frame" x="0.0" y="286" width="366" height="4"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="4" id="WgX-ef-9bd"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EFS-vD-KQR" customClass="LoginContinueButton" customModule="ThankYouList" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="294" width="366" height="48"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                        <inset key="contentEdgeInsets" minX="8" minY="12" maxX="0.0" maxY="12"/>
+                                        <inset key="titleEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Continue with Google" image="ic_google">
+                                            <color key="titleColor" name="text"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapGoogleLoginButton:" destination="bO3-ed-oMm" eventType="touchUpInside" id="c3l-zZ-CZB"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bJa-Kb-pZb" userLabel="Spacer">
+                                        <rect key="frame" x="0.0" y="346" width="366" height="4"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="4" id="5uw-CX-ycx"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCF-UV-jRw" customClass="LoginContinueButton" customModule="ThankYouList" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="354" width="366" height="48"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                        <inset key="contentEdgeInsets" minX="8" minY="12" maxX="0.0" maxY="12"/>
+                                        <inset key="titleEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="4" minY="-3" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Continue with Apple" image="ic_apple">
+                                            <color key="titleColor" name="text"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapAppleLoginButton:" destination="bO3-ed-oMm" eventType="touchUpInside" id="USV-TW-23k"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RBM-op-SaG"/>
-                        <color key="backgroundColor" red="1" green="0.97254901959999995" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="defaultBackground"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="bbT-js-7GH" secondAttribute="centerX" id="6dc-mP-tgt"/>
-                            <constraint firstItem="RBM-op-SaG" firstAttribute="trailing" secondItem="L0B-5F-8RG" secondAttribute="trailing" constant="40" id="BPu-PK-OUT"/>
-                            <constraint firstItem="Ggc-Ty-PIo" firstAttribute="centerX" secondItem="MKM-Hd-lzz" secondAttribute="centerX" id="DRJ-pn-5LX"/>
-                            <constraint firstItem="EFS-vD-KQR" firstAttribute="centerX" secondItem="MKM-Hd-lzz" secondAttribute="centerX" id="Dkw-ez-eAJ"/>
-                            <constraint firstItem="qCF-UV-jRw" firstAttribute="top" secondItem="EFS-vD-KQR" secondAttribute="bottom" constant="10" id="His-vn-vVv"/>
-                            <constraint firstItem="RBM-op-SaG" firstAttribute="trailing" secondItem="EFS-vD-KQR" secondAttribute="trailing" constant="40" id="IWC-ZC-Xf3"/>
-                            <constraint firstItem="RBM-op-SaG" firstAttribute="trailing" secondItem="qCF-UV-jRw" secondAttribute="trailing" constant="40" id="PVj-bL-3vy"/>
-                            <constraint firstItem="qCF-UV-jRw" firstAttribute="leading" secondItem="RBM-op-SaG" secondAttribute="leading" constant="40" id="PkG-GF-Nwn"/>
-                            <constraint firstItem="L0B-5F-8RG" firstAttribute="centerX" secondItem="MKM-Hd-lzz" secondAttribute="centerX" id="RlD-hJ-FMQ"/>
-                            <constraint firstItem="bbT-js-7GH" firstAttribute="centerY" secondItem="MKM-Hd-lzz" secondAttribute="bottom" multiplier="2/5" id="TRI-sS-hxg"/>
-                            <constraint firstItem="qCF-UV-jRw" firstAttribute="centerX" secondItem="MKM-Hd-lzz" secondAttribute="centerX" id="c27-Oj-ndP"/>
-                            <constraint firstItem="QUK-dn-XeN" firstAttribute="centerX" secondItem="MKM-Hd-lzz" secondAttribute="centerX" id="cfV-MV-a4P"/>
-                            <constraint firstItem="bbT-js-7GH" firstAttribute="leading" secondItem="MKM-Hd-lzz" secondAttribute="leading" constant="20" symbolic="YES" id="grn-Mh-RGO"/>
-                            <constraint firstItem="Ggc-Ty-PIo" firstAttribute="top" secondItem="bbT-js-7GH" secondAttribute="bottom" constant="10" id="k9q-lA-jXF"/>
-                            <constraint firstItem="L0B-5F-8RG" firstAttribute="top" secondItem="Ggc-Ty-PIo" secondAttribute="bottom" constant="40" id="kUt-82-9Y1"/>
-                            <constraint firstItem="Ggc-Ty-PIo" firstAttribute="width" secondItem="Ggc-Ty-PIo" secondAttribute="height" multiplier="335:43" id="lJH-Rz-Lr9"/>
-                            <constraint firstItem="EFS-vD-KQR" firstAttribute="top" secondItem="L0B-5F-8RG" secondAttribute="bottom" constant="10" id="mxb-hu-pGp"/>
-                            <constraint firstItem="bbT-js-7GH" firstAttribute="top" secondItem="QUK-dn-XeN" secondAttribute="bottom" constant="-38" id="oAu-b7-BPe"/>
-                            <constraint firstItem="EFS-vD-KQR" firstAttribute="leading" secondItem="RBM-op-SaG" secondAttribute="leading" constant="40" id="pqI-c8-5wi"/>
-                            <constraint firstItem="L0B-5F-8RG" firstAttribute="leading" secondItem="RBM-op-SaG" secondAttribute="leading" constant="40" id="vCK-Z0-dta"/>
+                            <constraint firstItem="RBM-op-SaG" firstAttribute="trailing" secondItem="lhP-97-AFw" secondAttribute="trailing" constant="24" id="6XS-vq-B6Z"/>
+                            <constraint firstItem="lhP-97-AFw" firstAttribute="leading" secondItem="RBM-op-SaG" secondAttribute="leading" constant="24" id="8m1-PA-NPB"/>
+                            <constraint firstItem="lhP-97-AFw" firstAttribute="centerX" secondItem="MKM-Hd-lzz" secondAttribute="centerX" id="b43-fs-MEr"/>
+                            <constraint firstItem="lhP-97-AFw" firstAttribute="centerY" secondItem="MKM-Hd-lzz" secondAttribute="centerY" id="xMF-HY-zyF"/>
                         </constraints>
                     </view>
                     <connections>
@@ -137,12 +145,21 @@
         </scene>
     </scenes>
     <resources>
-        <image name="character_launchscreen" width="1024" height="1024"/>
         <image name="ic_apple" width="24" height="24"/>
         <image name="ic_facebook" width="24" height="24"/>
         <image name="ic_google" width="24" height="24"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="imageThankYouChan" width="123" height="100.38173675537109"/>
+        <namedColor name="accent">
+            <color red="0.50588235294117645" green="0.44705882352941179" blue="0.41568627450980394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="defaultBackground">
+            <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="primary900">
+            <color red="0.98039215686274506" green="0.55294117647058827" blue="0.55294117647058827" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="text">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

@@ -11,7 +11,7 @@ import UIKit
 extension UIImage {
     static func createImage(color: UIColor, width: Double = 1, height: Double = 1) -> UIImage? {
         let rect = CGRect(x: 0, y: 0, width: width, height: height)
-        UIGraphicsBeginImageContext(rect.size)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0)
         guard let context = UIGraphicsGetCurrentContext() else {
             return nil
         }

@@ -1,82 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EmptyView" customModule="ThankYouList" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EmptyView" customModule="ThankYouList" customModuleProvider="target">
+            <connections>
+                <outlet property="descriptionLabel" destination="0zd-l6-nhp" id="58d-bJ-k9V"/>
+                <outlet property="titleLabel" destination="0Qi-3g-o0b" id="WvD-LX-B4v"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" restorationIdentifier="EmptyView" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <rect key="frame" x="0.0" y="0.0" width="400" height="345"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4N-Mz-U2e" customClass="BalloonView" customModule="ThankYouList" customModuleProvider="target">
-                    <rect key="frame" x="30" y="682" width="354" height="100"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uKR-AF-hUC">
+                    <rect key="frame" x="64.5" y="39" width="271.5" height="267.5"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Thank You From Here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9J-38-tpm" customClass="LocalizedLabel" customModule="ThankYouList" customModuleProvider="target">
-                            <rect key="frame" x="71" y="31.5" width="212" height="20"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                            <color key="textColor" red="0.50588235294117645" green="0.44705882352941173" blue="0.41568627450980389" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageEmptyList" translatesAutoresizingMaskIntoConstraints="NO" id="wgZ-25-dHQ">
+                            <rect key="frame" x="55.5" y="0.0" width="160" height="160"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="160" id="b2K-AF-f34"/>
+                                <constraint firstAttribute="width" constant="160" id="qrc-Fh-ibl"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Aboard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Qi-3g-o0b">
+                            <rect key="frame" x="54" y="188" width="163" height="27.5"/>
+                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
+                            <color key="textColor" name="text"/>
                             <nil key="highlightedColor"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="Add Thank You From Here"/>
-                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0zd-l6-nhp">
+                            <rect key="frame" x="8" y="223.5" width="255.5" height="44"/>
+                            <string key="text">This is your Thank You List.
+Let's start adding grateful thoughts!</string>
+                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                            <color key="textColor" name="text"/>
+                            <nil key="highlightedColor"/>
                         </label>
                     </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="b9J-38-tpm" firstAttribute="centerX" secondItem="k4N-Mz-U2e" secondAttribute="centerX" id="fmX-rt-k9o"/>
-                        <constraint firstItem="b9J-38-tpm" firstAttribute="centerY" secondItem="k4N-Mz-U2e" secondAttribute="centerY" constant="-8.6500000000000004" id="mux-O2-kqo"/>
-                        <constraint firstAttribute="height" constant="100" id="pba-wR-Qfr"/>
+                        <constraint firstAttribute="bottom" secondItem="0zd-l6-nhp" secondAttribute="bottom" id="0nd-FI-Bez"/>
+                        <constraint firstItem="wgZ-25-dHQ" firstAttribute="centerX" secondItem="uKR-AF-hUC" secondAttribute="centerX" id="9WJ-vl-jF1"/>
+                        <constraint firstItem="0zd-l6-nhp" firstAttribute="leading" secondItem="uKR-AF-hUC" secondAttribute="leading" constant="8" id="NI6-Cr-1WA"/>
+                        <constraint firstItem="0Qi-3g-o0b" firstAttribute="centerX" secondItem="uKR-AF-hUC" secondAttribute="centerX" id="Phz-kr-oUn"/>
+                        <constraint firstAttribute="trailing" secondItem="0zd-l6-nhp" secondAttribute="trailing" constant="8" id="QQr-ir-dKq"/>
+                        <constraint firstItem="0zd-l6-nhp" firstAttribute="top" secondItem="0Qi-3g-o0b" secondAttribute="bottom" constant="8" id="UBd-0O-1aN"/>
+                        <constraint firstItem="0zd-l6-nhp" firstAttribute="centerX" secondItem="uKR-AF-hUC" secondAttribute="centerX" id="UqF-a4-aAs"/>
+                        <constraint firstItem="0Qi-3g-o0b" firstAttribute="top" secondItem="wgZ-25-dHQ" secondAttribute="bottom" constant="28" id="h0A-k7-ZbX"/>
+                        <constraint firstItem="wgZ-25-dHQ" firstAttribute="top" secondItem="uKR-AF-hUC" secondAttribute="top" id="zfS-iA-22F"/>
                     </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
-                            <size key="value" width="5" height="5"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
-                            <integer key="value" value="5"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
-                            <real key="value" value="0.10000000000000001"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_thankyouchan" translatesAutoresizingMaskIntoConstraints="NO" id="8Bb-Bl-kmN">
-                    <rect key="frame" x="120.5" y="206.5" width="173" height="183"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="183" id="O3Z-1i-dyP"/>
-                        <constraint firstAttribute="width" constant="173" id="WTf-rO-1oR"/>
-                    </constraints>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is your Thank You List. Let's start adding the grateful thoughts!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHV-O9-kV5" customClass="LocalizedLabel" customModule="ThankYouList" customModuleProvider="target">
-                    <rect key="frame" x="66" y="389.5" width="282.5" height="37.5"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                    <color key="textColor" red="0.50588235294117645" green="0.44705882352941173" blue="0.41568627450980389" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="EmptyViewLabel"/>
-                    </userDefinedRuntimeAttributes>
-                </label>
             </subviews>
-            <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="k4N-Mz-U2e" secondAttribute="bottom" constant="80" id="9t1-bK-d5x"/>
-                <constraint firstItem="8Bb-Bl-kmN" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="YOS-Yk-A41"/>
-                <constraint firstItem="8Bb-Bl-kmN" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-150" id="hU0-52-OnU"/>
-                <constraint firstItem="PHV-O9-kV5" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="htJ-ob-K0V"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="k4N-Mz-U2e" secondAttribute="trailing" constant="30" id="naP-2O-dL7"/>
-                <constraint firstItem="k4N-Mz-U2e" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="sLc-4R-Kau"/>
-                <constraint firstItem="k4N-Mz-U2e" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="wu3-Tz-Uor"/>
-                <constraint firstItem="PHV-O9-kV5" firstAttribute="top" secondItem="8Bb-Bl-kmN" secondAttribute="bottom" id="zdv-1B-R9z"/>
-            </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" name="defaultBackground"/>
+            <constraints>
+                <constraint firstItem="uKR-AF-hUC" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="N3d-r3-wGf"/>
+                <constraint firstItem="uKR-AF-hUC" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="uEf-FT-F9p"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="89.855072463768124" y="-106.13839285714285"/>
         </view>
     </objects>
     <resources>
-        <image name="ic_thankyouchan" width="1024" height="1024"/>
+        <image name="imageEmptyList" width="276.48001098632812" height="271.36001586914062"/>
+        <namedColor name="defaultBackground">
+            <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="text">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

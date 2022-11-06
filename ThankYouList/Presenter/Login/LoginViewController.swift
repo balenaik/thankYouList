@@ -7,61 +7,25 @@
 //
 
 import UIKit
-import FirebaseAuth
+import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
 import GoogleSignIn
 import AuthenticationServices
 
-private let loginButtonBorderWidth = CGFloat(0.5)
-private let loginButtonBorderColor = UIColor.black.cgColor
-private let loginButtonCornerRadius = CGFloat(10)
-private let loginButtonHighlightedColor = UIColor.gray.withAlphaComponent(0.1)
-
-private let loginButtonImageLeftInset = CGFloat(20)
-
 private let appleProviderId = "apple.com"
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet weak var facebookLoginButton: UIButton!
-    @IBOutlet weak var googleLoginButton: UIButton!
-    @IBOutlet weak var appleLoginButton: UIButton!
+    @IBOutlet weak var facebookLoginButton: LoginContinueButton!
+    @IBOutlet weak var googleLoginButton: LoginContinueButton!
+    @IBOutlet weak var appleLoginButton: LoginContinueButton!
 
     private var currentNonce: String?
-    
-    static func createViewController() -> UIViewController? {
-        guard let viewController = R.storyboard.login().instantiateInitialViewController() else { return nil }
-        return viewController
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-    }
-
-    private func setupView() {
-        facebookLoginButton.setTitle(R.string.localizable.login_continue_with_facebook(), for: .normal)
-        googleLoginButton.setTitle(R.string.localizable.login_continue_with_google(), for: .normal)
-        appleLoginButton.setTitle(R.string.localizable.login_continue_with_apple(), for: .normal)
-        
-        facebookLoginButton.layer.cornerRadius = loginButtonCornerRadius
-        facebookLoginButton.layer.borderWidth = loginButtonBorderWidth
-        facebookLoginButton.layer.borderColor = loginButtonBorderColor
-        googleLoginButton.layer.cornerRadius = loginButtonCornerRadius
-        googleLoginButton.layer.borderWidth = loginButtonBorderWidth
-        googleLoginButton.layer.borderColor = loginButtonBorderColor
-        appleLoginButton.layer.cornerRadius = loginButtonCornerRadius
-        appleLoginButton.layer.borderWidth = loginButtonBorderWidth
-        appleLoginButton.layer.borderColor = loginButtonBorderColor
-
-        facebookLoginButton.setBackgroundColor(color: loginButtonHighlightedColor, for: .highlighted)
-        googleLoginButton.setBackgroundColor(color: loginButtonHighlightedColor, for: .highlighted)
-        appleLoginButton.setBackgroundColor(color: loginButtonHighlightedColor, for: .highlighted)
-
-        facebookLoginButton.adjustLoginInset()
-        googleLoginButton.adjustLoginInset()
-        appleLoginButton.adjustLoginInset()
     }
 }
 
@@ -80,9 +44,24 @@ extension LoginViewController {
     }
     
     @IBAction func tapGoogleLoginButton(_ sender: Any) {
-        GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance()?.presentingViewController = self
-        GIDSignIn.sharedInstance().signIn()
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        let configuration = GIDConfiguration(clientID: clientID)
+
+        GIDSignIn.sharedInstance.signIn(with: configuration,
+                                        presenting: self) { [weak self] (user, error) in
+            guard let self = self else { return }
+            if let error = error {
+                print(error.localizedDescription)
+                self.showErrorAlert(title: R.string.localizable.error(),
+                                    message: R.string.localizable.error_authenticate())
+                return
+            }
+            guard let auth = user?.authentication,
+                  let idToken = auth.idToken else { return }
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                           accessToken: auth.accessToken)
+            self.signIn(credential: credential)
+        }
     }
 
     @IBAction func tapAppleLoginButton(_ sender: Any) {
@@ -100,7 +79,13 @@ extension LoginViewController {
 
 // MARK: - Private Methods
 private extension LoginViewController {
-    private func signIn(credential: AuthCredential, name: String? = nil, email: String? = nil) {
+    func setupView() {
+        facebookLoginButton.setTitle(R.string.localizable.login_continue_with_facebook(), for: .normal)
+        googleLoginButton.setTitle(R.string.localizable.login_continue_with_google(), for: .normal)
+        appleLoginButton.setTitle(R.string.localizable.login_continue_with_apple(), for: .normal)
+    }
+
+    func signIn(credential: AuthCredential, name: String? = nil, email: String? = nil) {
         Auth.auth().signIn(with: credential) { (fireUser, fireError) in
             if let error = fireError {
                 print(error)
@@ -114,8 +99,8 @@ private extension LoginViewController {
             }
             let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.moveUDDataToFirestoreIfNeeded()
-            if let loginViewController = appDelegate.window?.rootViewController {
-                let mainTabBarController: MainTabBarController = MainTabBarController()
+            if let loginViewController = appDelegate.window?.rootViewController,
+               let mainTabBarController: MainTabBarController = MainTabBarController.createViewController() {
                 appDelegate.createRootViewController(mainViewController: mainTabBarController)
                 loginViewController.dismiss(animated: true, completion: nil)
             }
@@ -125,17 +110,17 @@ private extension LoginViewController {
         }
     }
 
-    private func updateUserProfile(name: String) {
+    func updateUserProfile(name: String) {
         let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
         changeRequest?.displayName = name
         changeRequest?.commitChanges()
     }
 
-    private func updateUserEmail(email: String) {
+    func updateUserEmail(email: String) {
         Auth.auth().currentUser?.updateEmail(to: email, completion: nil)
     }
 
-    private func randomNonceString(length: Int = 32) -> String {
+    func randomNonceString(length: Int = 32) -> String {
         precondition(length > 0)
         let charset: Array<Character> =
             Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
@@ -165,21 +150,6 @@ private extension LoginViewController {
         }
 
         return result
-    }
-}
-
-// MARK: - GIDSignInDelegate, GIDSignInUIDelegate
-extension LoginViewController: GIDSignInDelegate {
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error {
-            print(error.localizedDescription)
-            showErrorAlert(title: R.string.localizable.error(),
-                           message: R.string.localizable.error_authenticate())
-            return
-        }
-        guard let auth = user.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: auth.idToken,accessToken: auth.accessToken)
-        self.signIn(credential: credential)
     }
 }
 
@@ -226,23 +196,10 @@ extension LoginViewController: ASAuthorizationControllerPresentationContextProvi
     }
 }
 
-// MARK: - UIButton extension
-fileprivate extension UIButton {
-    func adjustLoginInset() {
-        let originalImageEdgeInsets = self.imageEdgeInsets
-        let originalTitleEdgeInsets = self.titleEdgeInsets
-        let buttonWidth = self.frame.width
-        let imageWidth = self.imageView?.frame.width ?? 0
-        let textWidth = self.titleLabel?.frame.width ?? 0
-
-        self.contentEdgeInsets = UIEdgeInsets.zero
-        self.imageEdgeInsets = UIEdgeInsets(top: originalImageEdgeInsets.top,
-                                            left: loginButtonImageLeftInset,
-                                            bottom: originalImageEdgeInsets.bottom,
-                                            right: buttonWidth - textWidth - imageWidth)
-        self.titleEdgeInsets = UIEdgeInsets(top: originalTitleEdgeInsets.top,
-                                            left: -imageWidth / 2,
-                                            bottom: originalTitleEdgeInsets.bottom,
-                                            right: 0)
+// MARK: - Public
+extension LoginViewController {
+    static func createViewController() -> UIViewController? {
+        guard let viewController = R.storyboard.login().instantiateInitialViewController() else { return nil }
+        return viewController
     }
 }

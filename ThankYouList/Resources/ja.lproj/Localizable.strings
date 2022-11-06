@@ -9,18 +9,32 @@
 "login_continue_with_google" = "Googleで続行";
 "login_continue_with_apple" = "Appleで続行";
 
+"main_tabbar_item_list" = "List";
+"main_tabbar_item_calendar" = "Calendar";
+
+"Edit" = "編集";
+"Delete" = "削除";
+
+"thank_you_list_empty_view_title" = "Thank You Listへようこそ";
+"thank_you_list_empty_view_description" = "ここにThank Youが表示されます。\nさっそく作成しましょう！";
+
+"add_thank_you_title" = "Thank Youを作成";
+"add_thank_you_text_view_placeholder" = "ありがとうの気持ちを書こう";
+"add_thank_you_discard_title" = "Thank Youを破棄しますか？";
+"add_thank_you_discard_message" = "このThank Youを破棄してもよろしいですか？";
+"add_thank_you_discard_cancel" = "編集を続ける";
+
+"edit_thank_you_title" = "Thank Youを編集";
+"edit_thank_you_text_view_placeholder" = "ありがとうの気持ちを書こう";
+"edit_thank_you_discard_title" = "変更を破棄しますか？";
+"edit_thank_you_discard_message" = "変更を破棄してもよろしいですか？";
+"edit_thank_you_discard_cancel" = "編集を続ける";
+
 "monthYear" = "%2$@年 %1$@";
 "Date" = "日付";
 "Delete Thank you" = "Thank youを削除";
 "Are you sure you want to delete this thank you?" = "本当にこのThank youを削除してよろしいですか?";
-"Delete" = "削除";
 "Cancel" = "キャンセル";
-"What are you thankful for?" = "ありがとうの気持ちを書こう";
-"EmptyViewLabel" = "ここにThank Youが表示されます。\nさっそく作成しましょう！";
-"Add Thank You From Here" = "Thank Youを作成する";
-"Add Thank You" = "Thank Youを作成";
-"Edit Thank You" = "Thank Youを編集";
-"Logout" = "ログアウト";
 "Failed to add" = "作成できませんでした";
 "Failed to edit" = "編集できませんでした";
 "Failed to delete" = "削除できませんでした";
@@ -28,12 +42,15 @@
 
 "list_navigationbar_title" = "Thank You List";
 
-"calendar_navigationbar_title" = "Thank You Calendar 🗓";
+"calendar_navigationbar_title" = "Thank You Calendar";
 
 "mypage_title" = "アカウント";
 "mypage_logout" = "ログアウト";
+"mypage_logout_confirmation_message" = "ログアウトしますか？";
 
 "ok" = "OK";
+"done" = "完了";
+"discard" = "破棄";
 
 "error" = "エラー";
 "error_authenticate" = "認証に失敗しました。";

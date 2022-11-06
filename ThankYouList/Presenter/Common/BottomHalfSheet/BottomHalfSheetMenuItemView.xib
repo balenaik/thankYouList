@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB" customClass="BottomHalfSheetMenuItemView" customModule="ThankYouList" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="52"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zNV-Yw-3Pc">
+                    <rect key="frame" x="20" y="14" width="24" height="24"/>
+                    <color key="tintColor" name="black45"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="24" id="HE5-0R-FaN"/>
+                        <constraint firstAttribute="height" constant="24" id="HOd-pX-eYI"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zs6-Vp-9sp">
+                    <rect key="frame" x="64" y="14.5" width="338" height="23.5"/>
+                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                    <color key="textColor" name="text"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="zNV-Yw-3Pc" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="23I-iE-NJq"/>
+                <constraint firstItem="zNV-Yw-3Pc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="h4F-Mn-lyP"/>
+                <constraint firstItem="Zs6-Vp-9sp" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="kjA-9U-Wtj"/>
+                <constraint firstAttribute="trailing" secondItem="Zs6-Vp-9sp" secondAttribute="trailing" constant="12" id="vWG-aO-ivX"/>
+                <constraint firstAttribute="height" constant="52" id="w29-c2-6tI"/>
+                <constraint firstItem="Zs6-Vp-9sp" firstAttribute="leading" secondItem="zNV-Yw-3Pc" secondAttribute="trailing" constant="20" id="xWp-5h-fga"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="imageView" destination="zNV-Yw-3Pc" id="oqA-Dc-kT6"/>
+                <outlet property="titleLabel" destination="Zs6-Vp-9sp" id="BPg-VB-gA9"/>
+            </connections>
+            <point key="canvasLocation" x="-81.159420289855078" y="36.830357142857139"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="black45">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.45000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="text">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

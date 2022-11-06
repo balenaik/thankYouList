@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,34 +17,35 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fe4-qi-K3y">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                    <color key="backgroundColor" red="0.94117647058823528" green="0.94901960784313721" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <viewLayoutGuide key="safeArea" id="TW5-3k-UjC"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="ThankYouListSectionHeaderView" text="December 2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VvJ-pW-3fD">
-                    <rect key="frame" x="16" y="19.5" width="125" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" name="sectionTitleGray"/>
+                    <rect key="frame" x="24" y="18.5" width="327" height="23.5"/>
+                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                    <color key="textColor" name="text"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <constraints>
                 <constraint firstItem="Fe4-qi-K3y" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="711-Qa-kFt"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="VvJ-pW-3fD" secondAttribute="trailing" constant="24" id="A8w-MH-vdf"/>
                 <constraint firstItem="Fe4-qi-K3y" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="XRQ-MD-e3U"/>
                 <constraint firstAttribute="bottom" secondItem="Fe4-qi-K3y" secondAttribute="bottom" id="nAP-Qz-Dq9"/>
-                <constraint firstItem="VvJ-pW-3fD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="qWL-rD-Lg1"/>
+                <constraint firstItem="VvJ-pW-3fD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="qWL-rD-Lg1"/>
                 <constraint firstItem="Fe4-qi-K3y" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="qdt-8E-YdX"/>
                 <constraint firstItem="VvJ-pW-3fD" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="5" id="yOr-sl-9pK"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="sectionLabel" destination="VvJ-pW-3fD" id="qXd-rC-Lhn"/>
             </connections>
+            <point key="canvasLocation" x="76" y="36"/>
         </view>
     </objects>
     <resources>
-        <namedColor name="sectionTitleGray">
-            <color red="0.46666666666666667" green="0.46666666666666667" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="text">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

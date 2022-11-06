@@ -50,7 +50,7 @@ private extension MyPageViewController {
 
     func setupTableItems() {
         let myInfoSection = [TableItem(item: .myInformation, style: .profieInfo)]
-        let logoutSection = [TableItem(item: .logout, style: .text)]
+        let logoutSection = [TableItem(item: .logout, style: .button)]
         tableItems.append(contentsOf: [myInfoSection, logoutSection])
     }
 
@@ -65,6 +65,22 @@ private extension MyPageViewController {
     func logEvent() {
         guard let user = Auth.auth().currentUser else { return }
         Analytics.logEvent(eventName: AnalyticsEventConst.showMyPage, userId: user.uid)
+    }
+
+    func showLogoutAlert() {
+        let alertController = UIAlertController(
+            title: R.string.localizable.mypage_logout(),
+            message: R.string.localizable.mypage_logout_confirmation_message(),
+            preferredStyle: .alert)
+        let logoutAction = UIAlertAction(title: R.string.localizable.mypage_logout(),
+                                         style: .destructive) { [weak self] _ in
+            self?.logout()
+        }
+        let cancelButton = UIAlertAction(title: R.string.localizable.cancel(),
+                                         style: .cancel)
+        alertController.addAction(logoutAction)
+        alertController.addAction(cancelButton)
+        present(alertController,animated: true,completion: nil)
     }
 
     func logout() {
@@ -104,9 +120,10 @@ extension MyPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = tableItems[indexPath.section][indexPath.row]
         switch item.style {
-        case .text:
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.myPageTextCell, for: indexPath)!
-            cell.textLabel?.text = item.item.titleText
+        case .button:
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.myPageButtonCell, for: indexPath)!
+            cell.setTableItem(item.item)
+            cell.delegate = self
             return cell
         case .profieInfo:
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.myPageProfileCell, for: indexPath)!
@@ -116,15 +133,16 @@ extension MyPageViewController: UITableViewDataSource {
             return cell
         }
     }
+}
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let item = tableItems[indexPath.section][indexPath.row]
-        switch item.item {
+extension MyPageViewController: MyPageButtonCellDelegate {
+    func myPageButtonCellDidtapButton(tableItem: TableItemType?) {
+        guard let tableItem = tableItem else { return }
+        switch tableItem {
         case .logout:
-            logout()
+            showLogoutAlert()
         default:
-            break
+            return
         }
     }
 }

@@ -45,6 +45,7 @@
 
 "mypage_title" = "アカウント";
 "mypage_logout" = "ログアウト";
+"mypage_delete_account" = "アカウントを削除";
 "mypage_logout_confirmation_message" = "ログアウトしますか？";
 
 "ok" = "OK";

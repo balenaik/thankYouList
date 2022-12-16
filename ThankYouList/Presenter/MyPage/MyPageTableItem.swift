@@ -18,6 +18,7 @@ extension MyPageViewController {
     enum TableItemType: Int {
         case myInformation
         case logout
+        case deleteAccount
 
         var titleText: String? {
             switch self {
@@ -25,6 +26,8 @@ extension MyPageViewController {
                 return nil
             case .logout:
                 return R.string.localizable.mypage_logout()
+            case .deleteAccount:
+                return R.string.localizable.mypage_delete_account()
             }
         }
 
@@ -33,6 +36,8 @@ extension MyPageViewController {
             case .myInformation:
                 return nil
             case .logout:
+                return .text
+            case .deleteAccount:
                 return .redAccent200
             }
         }

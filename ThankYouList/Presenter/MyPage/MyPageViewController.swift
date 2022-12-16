@@ -51,7 +51,8 @@ private extension MyPageViewController {
     func setupTableItems() {
         let myInfoSection = [TableItem(item: .myInformation, style: .profieInfo)]
         let logoutSection = [TableItem(item: .logout, style: .button)]
-        tableItems.append(contentsOf: [myInfoSection, logoutSection])
+        let deleteAccountSection = [TableItem(item: .deleteAccount, style: .button)]
+        tableItems.append(contentsOf: [myInfoSection, logoutSection, deleteAccountSection])
     }
 
     func loadMyProfile() {
@@ -90,6 +91,9 @@ private extension MyPageViewController {
         } catch let error as NSError {
             print(error.localizedDescription)
         }
+    }
+
+    func showDeleteAccountAlert() {
     }
 }
 
@@ -141,6 +145,8 @@ extension MyPageViewController: MyPageButtonCellDelegate {
         switch tableItem {
         case .logout:
             showLogoutAlert()
+        case .deleteAccount:
+            showDeleteAccountAlert()
         default:
             return
         }

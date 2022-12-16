@@ -48,6 +48,7 @@
 
 "mypage_title" = "Account";
 "mypage_logout" = "Log out";
+"mypage_delete_account" = "Delete Account";
 "mypage_logout_confirmation_message" = "Are you sure you want to logout?";
 
 "ok" = "OK";

@@ -427,7 +427,7 @@ PODS:
     - GoogleUtilities/Environment (~> 7.6)
     - GoogleUtilities/UserDefaults (~> 7.6)
     - PromisesObjC (< 3.0, >= 1.2)
-  - FloatingPanel (2.5.0)
+  - FloatingPanel (2.5.5)
   - GoogleAppMeasurement (8.9.1):
     - GoogleAppMeasurement/AdIdSupport (= 8.9.1)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.6)
@@ -528,7 +528,7 @@ DEPENDENCIES:
   - Firebase/Core (= 8.9.1)
   - Firebase/Database (= 8.9.1)
   - Firebase/Firestore (= 8.9.1)
-  - FloatingPanel (= 2.5.0)
+  - FloatingPanel (= 2.5.5)
   - GoogleSignIn (= 6.0.2)
   - JTAppleCalendar (~> 7.0)
   - R.swift (= 5.0.3)
@@ -586,7 +586,7 @@ SPEC CHECKSUMS:
   FirebaseDatabase: 2236b804cf0cac165b4620669bedf7ee643a2bcc
   FirebaseFirestore: 15ae9648476436efed698a909e44c4737498f9b4
   FirebaseInstallations: caa7c8e0d3e2345b8829d2fa9ca1b4dfbf2fcc85
-  FloatingPanel: ddb1c8cbbacd164cfee651c449febe867a28e2cb
+  FloatingPanel: a27e7827e0f710fa6236fe2596dd1b5484cb4fc1
   GoogleAppMeasurement: 837649ad3987936c232f6717c5680216f6243d24
   GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
   GoogleSignIn: fd381840dbe7c1137aa6dc30849a5c3e070c034a
@@ -605,6 +605,6 @@ SPEC CHECKSUMS:
   SDWebImage: 97351f6582ceca541ea294ba66a1fcb342a331c2
   SkeletonView: 77079530e1348a72f48b79ae30dcb966c1b18b6a
 
-PODFILE CHECKSUM: 77ac0868be30e5fb258869951bfcc9e552b44acd
+PODFILE CHECKSUM: ad51ab5c8adc2cb00c4a38ab1a5d3bfdd6fb199b
 
 COCOAPODS: 1.10.2

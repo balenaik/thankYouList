@@ -33,6 +33,6 @@ target 'ThankYouList' do
   pod 'SDWebImage', '~> 5.0'
 
   # FloatingPanel
-  pod 'FloatingPanel', '2.5.0'
+  pod 'FloatingPanel', '2.5.5'
 
 end

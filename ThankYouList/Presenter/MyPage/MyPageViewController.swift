@@ -126,8 +126,11 @@ extension MyPageViewController: UITableViewDataSource {
         switch item.style {
         case .button:
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.myPageButtonCell, for: indexPath)!
-            cell.setTableItem(item.item)
-            cell.delegate = self
+            var configuration = cell.defaultContentConfiguration()
+            configuration.text = item.item.titleText
+            configuration.textProperties.color = item.item.titleColor ?? .text
+            cell.contentConfiguration = configuration
+
             return cell
         case .profieInfo:
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.myPageProfileCell, for: indexPath)!
@@ -139,16 +142,3 @@ extension MyPageViewController: UITableViewDataSource {
     }
 }
 
-extension MyPageViewController: MyPageButtonCellDelegate {
-    func myPageButtonCellDidtapButton(tableItem: TableItemType?) {
-        guard let tableItem = tableItem else { return }
-        switch tableItem {
-        case .logout:
-            showLogoutAlert()
-        case .deleteAccount:
-            showDeleteAccountAlert()
-        default:
-            return
-        }
-    }
-}

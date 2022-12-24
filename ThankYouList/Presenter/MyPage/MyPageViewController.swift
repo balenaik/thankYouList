@@ -50,9 +50,14 @@ private extension MyPageViewController {
 
     func setupTableItems() {
         let myInfoSection = [TableItem(item: .myInformation, style: .profieInfo)]
+        let additionalSection = [
+            TableItem(item: .rate, style: .button),
+            TableItem(item: .feedback, style: .button),
+            TableItem(item: .privacyPolicy, style: .button)
+        ]
         let logoutSection = [TableItem(item: .logout, style: .button)]
         let deleteAccountSection = [TableItem(item: .deleteAccount, style: .button)]
-        tableItems.append(contentsOf: [myInfoSection, logoutSection, deleteAccountSection])
+        tableItems.append(contentsOf: [myInfoSection, additionalSection, logoutSection, deleteAccountSection])
     }
 
     func loadMyProfile() {

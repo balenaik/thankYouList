@@ -47,6 +47,9 @@
 "calendar_tabbar_title" = "calendar";
 
 "mypage_title" = "Account";
+"mypage_rate" = "Rate Thank You List";
+"mypage_feedback" = "Give us Feedback";
+"mypage_privacy_policy" = "Privacy Policy";
 "mypage_logout" = "Log out";
 "mypage_delete_account" = "Delete Account";
 "mypage_logout_confirmation_message" = "Are you sure you want to logout?";

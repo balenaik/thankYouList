@@ -44,6 +44,9 @@
 "calendar_navigationbar_title" = "Thank You Calendar";
 
 "mypage_title" = "アカウント";
+"mypage_rate" = "Thank You Listを評価する";
+"mypage_feedback" = "フィードバック";
+"mypage_privacy_policy" = "プライバシーポリシー";
 "mypage_logout" = "ログアウト";
 "mypage_delete_account" = "アカウントを削除";
 "mypage_logout_confirmation_message" = "ログアウトしますか？";

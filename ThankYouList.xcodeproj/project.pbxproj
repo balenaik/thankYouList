@@ -88,7 +88,9 @@
 		A8DABBD627173FA20086B2E8 /* ViewConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DABBD527173FA20086B2E8 /* ViewConst.swift */; };
 		A8DABC24271ACE4E0086B2E8 /* BottomHalfSheetMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DABC23271ACE4E0086B2E8 /* BottomHalfSheetMenuViewController.swift */; };
 		A8DB2FBA1F5D41540055E8A4 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DB2FB91F5D41540055E8A4 /* CalendarViewController.swift */; };
+		A8E6CD07295C7D050042AA81 /* ConfirmDeleteAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD06295C7D050042AA81 /* ConfirmDeleteAccountViewModel.swift */; };
 		A8F06BB91F55396F00A90170 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */; };
+		A8F407CA2957DBF6007FDF2D /* ConfirmDeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F407C92957DBF6007FDF2D /* ConfirmDeleteAccountView.swift */; };
 		A8F649B71EEB96D100D6BA84 /* GlobalThankYouData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F649B61EEB96D100D6BA84 /* GlobalThankYouData.swift */; };
 		A8FF6A202829C40500CF816F /* BottomHalfSheetDatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FF6A1F2829C40400CF816F /* BottomHalfSheetDatePickerViewController.swift */; };
 /* End PBXBuildFile section */
@@ -180,7 +182,9 @@
 		A8DABBD527173FA20086B2E8 /* ViewConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConst.swift; sourceTree = "<group>"; };
 		A8DABC23271ACE4E0086B2E8 /* BottomHalfSheetMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomHalfSheetMenuViewController.swift; sourceTree = "<group>"; };
 		A8DB2FB91F5D41540055E8A4 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		A8E6CD06295C7D050042AA81 /* ConfirmDeleteAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDeleteAccountViewModel.swift; sourceTree = "<group>"; };
 		A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A8F407C92957DBF6007FDF2D /* ConfirmDeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDeleteAccountView.swift; sourceTree = "<group>"; };
 		A8F649B61EEB96D100D6BA84 /* GlobalThankYouData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalThankYouData.swift; sourceTree = "<group>"; };
 		A8FF6A1F2829C40400CF816F /* BottomHalfSheetDatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomHalfSheetDatePickerViewController.swift; sourceTree = "<group>"; };
 		BA00FC82559EE1AEA8CE9577 /* Pods-ThankYouList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.debug.xcconfig"; sourceTree = "<group>"; };
@@ -231,6 +235,7 @@
 				A8114B0922E45DC10024975A /* MainTabBar */,
 				A8114B0622E45BAA0024975A /* Login */,
 				A8C59B77243CD30700FF79EA /* MyPage */,
+				A8F407C829575416007FDF2D /* ConfirmDeleteAccount */,
 				A8114B0022E458AD0024975A /* EditThankYou */,
 				A8114AFD22E4484C0024975A /* AddThankYou */,
 				A8114AFA22E4468B0024975A /* ThankYouCalendar */,
@@ -432,6 +437,15 @@
 				A86F419D24548797005D929A /* MyPageTableItem.swift */,
 			);
 			path = MyPage;
+			sourceTree = "<group>";
+		};
+		A8F407C829575416007FDF2D /* ConfirmDeleteAccount */ = {
+			isa = PBXGroup;
+			children = (
+				A8F407C92957DBF6007FDF2D /* ConfirmDeleteAccountView.swift */,
+				A8E6CD06295C7D050042AA81 /* ConfirmDeleteAccountViewModel.swift */,
+			);
+			path = ConfirmDeleteAccount;
 			sourceTree = "<group>";
 		};
 		A8FF6A222829C42200CF816F /* BottomHalfSheet */ = {
@@ -671,6 +685,7 @@
 			files = (
 				A810D8DA23461F99008F2E74 /* UIColor+Theme.swift in Sources */,
 				A820DE5421C5432500E7F3DF /* NotificationConst.swift in Sources */,
+				A8E6CD07295C7D050042AA81 /* ConfirmDeleteAccountViewModel.swift in Sources */,
 				A8C59B7D243CD72300FF79EA /* UIViewController+Setup.swift in Sources */,
 				A8A06863244F444400839D14 /* MyPageProfileCell.swift in Sources */,
 				A8F649B71EEB96D100D6BA84 /* GlobalThankYouData.swift in Sources */,
@@ -719,6 +734,7 @@
 				A86F41A124570B0B005D929A /* PlaceHolderTextView.swift in Sources */,
 				A8959E8F245952260080C05A /* Array+Nullable.swift in Sources */,
 				A8851E9C26FA752B008B2D7A /* LoginContinueButton.swift in Sources */,
+				A8F407CA2957DBF6007FDF2D /* ConfirmDeleteAccountView.swift in Sources */,
 				A80BBB992459182B00CB032B /* Analytics+Log.swift in Sources */,
 				A8DB2FBA1F5D41540055E8A4 /* CalendarViewController.swift in Sources */,
 				A810D8E62348365B008F2E74 /* LocalizableExtensions.swift in Sources */,

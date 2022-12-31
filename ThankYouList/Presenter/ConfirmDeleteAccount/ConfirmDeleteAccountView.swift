@@ -13,16 +13,17 @@ struct ConfirmDeleteAccountView: View {
     @StateObject var viewModel: ConfirmDeleteAccountViewModel
 
     var body: some View {
-        VStack {
-            Text("Confirm your mail")
-                .font(.largeTitle)
+        NavigationView {
+            VStack {
+            }
+            .navigationBarTitle("Confirm your mail")
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") {
 
-            Spacer()
-
-            Text("Complete your deletion request by entering the email address associated with your account")
-                .padding(20)
-
-            Spacer()
+                    }
+                }
+            }
         }
     }
 }

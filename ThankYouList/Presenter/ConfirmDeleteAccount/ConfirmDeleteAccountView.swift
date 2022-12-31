@@ -14,13 +14,17 @@ struct ConfirmDeleteAccountView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
-            }
-            .navigationBarTitle("Confirm your mail")
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
+            ZStack {
+                Color.defaultBackground
+                    .ignoresSafeArea()
 
+                VStack {
+                }
+                .navigationBarTitle("Confirm your mail")
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("Cancel") {
+                        }
                     }
                 }
             }

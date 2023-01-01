@@ -9,8 +9,9 @@
 import SwiftUI
 
 private let textFieldPadding = CGFloat(16)
-private let textFieldSideMargin = CGFloat(20)
 private let textFieldCornerRadius = CGFloat(16)
+
+private let componentsSideMargin = CGFloat(20)
 
 struct ConfirmDeleteAccountView: View {
 
@@ -27,7 +28,7 @@ struct ConfirmDeleteAccountView: View {
                         .padding(.all, textFieldPadding)
                         .background(Color.white)
                         .cornerRadius(textFieldCornerRadius)
-                        .padding(.horizontal, textFieldSideMargin)
+                        .padding(.horizontal, componentsSideMargin)
                 }
                 .navigationBarTitle("Confirm your mail")
                 .toolbar {

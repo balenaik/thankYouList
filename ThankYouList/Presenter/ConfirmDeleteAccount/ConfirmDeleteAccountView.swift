@@ -8,12 +8,14 @@
 
 import SwiftUI
 
+private let topSpacerHeight = CGFloat(8)
+
 private let textFieldPadding = CGFloat(16)
 private let textFieldCornerRadius = CGFloat(16)
 
-private let descriptionVerticalMergin = CGFloat(20)
 
 private let componentsSideMargin = CGFloat(20)
+private let componentsVerticalMargin = CGFloat(8)
 
 struct ConfirmDeleteAccountView: View {
 
@@ -26,10 +28,13 @@ struct ConfirmDeleteAccountView: View {
                     .ignoresSafeArea()
 
                 VStack {
+                    Spacer()
+                        .frame(height: topSpacerHeight)
+
                     Text("Complete your deletion request by entering the email address associated with your account")
                         .font(.regularAvenir(ofSize: 16))
                         .padding(.horizontal, componentsSideMargin)
-                        .padding(.vertical, descriptionVerticalMergin)
+                        .padding(.vertical, componentsVerticalMargin)
 
                     TextField("Email address", text: $viewModel.emailAddress)
                         .font(.regularAvenir(ofSize: 16))
@@ -37,6 +42,7 @@ struct ConfirmDeleteAccountView: View {
                         .background(Color.white)
                         .cornerRadius(textFieldCornerRadius)
                         .padding(.horizontal, componentsSideMargin)
+                        .padding(.vertical, componentsVerticalMargin)
 
                     Spacer()
                 }

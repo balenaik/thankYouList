@@ -9,5 +9,5 @@
 import Combine
 
 class ConfirmDeleteAccountViewModel: ObservableObject {
-    
+    @Published var emailAddress = ""
 }

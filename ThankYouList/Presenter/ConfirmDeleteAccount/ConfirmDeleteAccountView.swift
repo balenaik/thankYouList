@@ -8,6 +8,10 @@
 
 import SwiftUI
 
+private let textFieldPadding = CGFloat(16)
+private let textFieldSideMargin = CGFloat(20)
+private let textFieldCornerRadius = CGFloat(16)
+
 struct ConfirmDeleteAccountView: View {
 
     @StateObject var viewModel: ConfirmDeleteAccountViewModel
@@ -19,6 +23,11 @@ struct ConfirmDeleteAccountView: View {
                     .ignoresSafeArea()
 
                 VStack {
+                    TextField("Email address", text: $viewModel.emailAddress)
+                        .padding(.all, textFieldPadding)
+                        .background(Color.white)
+                        .cornerRadius(textFieldCornerRadius)
+                        .padding(.horizontal, textFieldSideMargin)
                 }
                 .navigationBarTitle("Confirm your mail")
                 .toolbar {

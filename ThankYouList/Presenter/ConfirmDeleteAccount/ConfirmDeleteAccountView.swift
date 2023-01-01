@@ -12,6 +12,7 @@ private let topSpacerHeight = CGFloat(8)
 
 private let textFieldPadding = CGFloat(16)
 
+private let buttonPadding = CGFloat(16)
 
 private let componentsSideMargin = CGFloat(20)
 private let componentsVerticalMargin = CGFloat(8)
@@ -43,6 +44,16 @@ struct ConfirmDeleteAccountView: View {
                         .cornerRadius(componentsCornerRadius)
                         .padding(.horizontal, componentsSideMargin)
                         .padding(.vertical, componentsVerticalMargin)
+
+                    Button("Delete") { }
+                    .accentColor(Color.white)
+                    .font(.boldAvenir(ofSize: 17))
+                    .frame(maxWidth: .infinity)
+                    .padding(.all, buttonPadding)
+                    .background(Color.redAccent200)
+                    .cornerRadius(componentsCornerRadius)
+                    .padding(.horizontal, componentsSideMargin)
+                    .padding(.vertical, componentsVerticalMargin)
 
                     Spacer()
                 }

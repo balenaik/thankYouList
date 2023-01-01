@@ -91,6 +91,7 @@
 		A8E6CD07295C7D050042AA81 /* ConfirmDeleteAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD06295C7D050042AA81 /* ConfirmDeleteAccountViewModel.swift */; };
 		A8E6CD0929601D870042AA81 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD0829601D870042AA81 /* Color+Theme.swift */; };
 		A8E6CD0B29601E150042AA81 /* Color+SetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD0A29601E150042AA81 /* Color+SetColor.swift */; };
+		A8E6CD0D29615BE00042AA81 /* Font+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD0C29615BE00042AA81 /* Font+Theme.swift */; };
 		A8F06BB91F55396F00A90170 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */; };
 		A8F407CA2957DBF6007FDF2D /* ConfirmDeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F407C92957DBF6007FDF2D /* ConfirmDeleteAccountView.swift */; };
 		A8F649B71EEB96D100D6BA84 /* GlobalThankYouData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F649B61EEB96D100D6BA84 /* GlobalThankYouData.swift */; };
@@ -187,6 +188,7 @@
 		A8E6CD06295C7D050042AA81 /* ConfirmDeleteAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDeleteAccountViewModel.swift; sourceTree = "<group>"; };
 		A8E6CD0829601D870042AA81 /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Theme.swift"; sourceTree = "<group>"; };
 		A8E6CD0A29601E150042AA81 /* Color+SetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+SetColor.swift"; sourceTree = "<group>"; };
+		A8E6CD0C29615BE00042AA81 /* Font+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Theme.swift"; sourceTree = "<group>"; };
 		A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8F407C92957DBF6007FDF2D /* ConfirmDeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDeleteAccountView.swift; sourceTree = "<group>"; };
 		A8F649B61EEB96D100D6BA84 /* GlobalThankYouData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalThankYouData.swift; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 				A8A85A9825A60DF400182B99 /* UIButton+BackgroundColor.swift */,
 				A8A85ABF25A60E8500182B99 /* UIImage+FromUIColor.swift */,
 				A82BBF77270C4FC4007E8CD9 /* UIFont+Theme.swift */,
+				A8E6CD0C29615BE00042AA81 /* Font+Theme.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -715,6 +718,7 @@
 				A881350C211FD40C00BE8F48 /* BalloonView.swift in Sources */,
 				A84FDB5C21DBB8DF00593326 /* AddThankYouViewController.swift in Sources */,
 				A80BBB97245889A600CB032B /* AnalyticsConst.swift in Sources */,
+				A8E6CD0D29615BE00042AA81 /* Font+Theme.swift in Sources */,
 				A8A0FE61205E005D0048AB33 /* UIColor+SetColor.swift in Sources */,
 				A8851ECC27014FE1008B2D7A /* CenterRoundedTabBar.swift in Sources */,
 				A8FF6A202829C40500CF816F /* BottomHalfSheetDatePickerViewController.swift in Sources */,

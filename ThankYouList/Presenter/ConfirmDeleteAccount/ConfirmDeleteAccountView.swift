@@ -27,10 +27,12 @@ struct ConfirmDeleteAccountView: View {
 
                 VStack {
                     Text("Complete your deletion request by entering the email address associated with your account")
+                        .font(.regularAvenir(ofSize: 16))
                         .padding(.horizontal, componentsSideMargin)
                         .padding(.vertical, descriptionVerticalMergin)
 
                     TextField("Email address", text: $viewModel.emailAddress)
+                        .font(.regularAvenir(ofSize: 16))
                         .padding(.all, textFieldPadding)
                         .background(Color.white)
                         .cornerRadius(textFieldCornerRadius)

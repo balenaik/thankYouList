@@ -11,11 +11,11 @@ import SwiftUI
 private let topSpacerHeight = CGFloat(8)
 
 private let textFieldPadding = CGFloat(16)
-private let textFieldCornerRadius = CGFloat(16)
 
 
 private let componentsSideMargin = CGFloat(20)
 private let componentsVerticalMargin = CGFloat(8)
+private let componentsCornerRadius = CGFloat(16)
 
 struct ConfirmDeleteAccountView: View {
 
@@ -40,7 +40,7 @@ struct ConfirmDeleteAccountView: View {
                         .font(.regularAvenir(ofSize: 16))
                         .padding(.all, textFieldPadding)
                         .background(Color.white)
-                        .cornerRadius(textFieldCornerRadius)
+                        .cornerRadius(componentsCornerRadius)
                         .padding(.horizontal, componentsSideMargin)
                         .padding(.vertical, componentsVerticalMargin)
 

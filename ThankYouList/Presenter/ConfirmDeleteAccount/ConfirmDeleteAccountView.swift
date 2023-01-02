@@ -34,6 +34,7 @@ struct ConfirmDeleteAccountView: View {
 
                     Text("Complete your deletion request by entering the email address associated with your account")
                         .font(.regularAvenir(ofSize: 16))
+                        .foregroundColor(.text)
                         .padding(.horizontal, componentsSideMargin)
                         .padding(.vertical, componentsVerticalMargin)
 
@@ -60,7 +61,10 @@ struct ConfirmDeleteAccountView: View {
                 .navigationBarTitle("Confirm your mail")
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
-                        Button("Cancel") {
+                        Button(action: {
+                        }) {
+                            Image(R.image.icCancel)
+                                .foregroundColor(.text)
                         }
                     }
                 }

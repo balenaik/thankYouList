@@ -333,7 +333,7 @@ extension ThankYouListViewController: ThankYouCellDelegate {
 // MARK: - Public
 extension ThankYouListViewController {
     static func createViewController() -> UIViewController? {
-        guard let viewController = R.storyboard.thankYouList().instantiateInitialViewController() else { return nil }
+        guard let viewController = R.storyboard.thankYouList.instantiateInitialViewController() else { return nil }
         let navigationController = UINavigationController(rootViewController: viewController)
         return navigationController
     }

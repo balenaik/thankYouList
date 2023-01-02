@@ -18,7 +18,7 @@ class MyPageViewController: UIViewController {
     private var profile: Profile?
 
     static func createViewController() -> UIViewController? {
-        guard let viewController = R.storyboard.myPage().instantiateInitialViewController() else { return nil }
+        guard let viewController = R.storyboard.myPage.instantiateInitialViewController() else { return nil }
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.modalPresentationStyle = .pageSheet
         return navigationController

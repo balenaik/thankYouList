@@ -200,7 +200,7 @@ extension LoginViewController: ASAuthorizationControllerPresentationContextProvi
 // MARK: - Public
 extension LoginViewController {
     static func createViewController() -> UIViewController? {
-        guard let viewController = R.storyboard.login().instantiateInitialViewController() else { return nil }
+        guard let viewController = R.storyboard.login.instantiateInitialViewController() else { return nil }
         return viewController
     }
 }

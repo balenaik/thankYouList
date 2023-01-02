@@ -227,8 +227,8 @@ extension EditThankYouViewController: BottomHalfSheetDatePickerViewControllerDel
 // MARK: - Create View Controller
 extension EditThankYouViewController {
     class func createViewController(thankYouId: String) -> UIViewController? {
-        guard let viewController = R.storyboard.editThankYou()
-                .instantiateInitialViewController() as? EditThankYouViewController else {
+        guard let viewController = R.storyboard.editThankYou
+                .instantiateInitialViewController() else {
             return nil
         }
         viewController.editingThankYouId = thankYouId

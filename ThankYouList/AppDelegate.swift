@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
         guard Auth.auth().currentUser != nil else {
-            if let loginViewController = R.storyboard.login().instantiateInitialViewController() {
+            if let loginViewController = R.storyboard.login.instantiateInitialViewController() {
                 self.window?.rootViewController = loginViewController
                 self.window?.makeKeyAndVisible()
             }

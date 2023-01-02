@@ -33,7 +33,7 @@ class MainTabBarController: UITabBarController {
 // MARK: - Public
 extension MainTabBarController {
     static func createViewController() -> MainTabBarController? {
-        guard let viewController = R.storyboard.mainTabBar().instantiateInitialViewController() as? MainTabBarController else {
+        guard let viewController = R.storyboard.mainTabBar.instantiateInitialViewController() else {
             return nil
         }
         return viewController

@@ -20,7 +20,7 @@ target 'ThankYouList' do
   pod 'GoogleSignIn', '6.0.2'
 
   # R.swift
-  pod 'R.swift', '5.0.3'
+  pod 'R.swift', '7.2.4'
 
   # Crypto
   pod 'RNCryptor', '~> 5.0'

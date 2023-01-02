@@ -22,6 +22,8 @@ struct ConfirmDeleteAccountView: View {
 
     @StateObject var viewModel: ConfirmDeleteAccountViewModel
 
+    @Environment(\.presentationMode) var presentationMode
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -62,11 +64,15 @@ struct ConfirmDeleteAccountView: View {
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
                         Button(action: {
+                            viewModel.inputs.cancelButtonDidTap.send(())
                         }) {
                             Image(R.image.icCancel)
                                 .foregroundColor(.text)
                         }
                     }
+                }
+                .onReceive(viewModel.outputs.dismissView) {
+                    presentationMode.wrappedValue.dismiss()
                 }
             }
         }

@@ -48,7 +48,8 @@ struct ConfirmDeleteAccountView: View {
                         .padding(.horizontal, componentsSideMargin)
                         .padding(.vertical, componentsVerticalMargin)
 
-                    Button("Delete") { }
+                    Button("Delete Account") {
+                    }
                     .accentColor(Color.white)
                     .font(.boldAvenir(ofSize: 17))
                     .frame(maxWidth: .infinity)

@@ -42,6 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.selectedDate = Date()
         self.window?.makeKeyAndVisible()
+
+        setupNavigationBar()
         
         return true
     }
@@ -79,6 +81,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func createRootViewController(mainViewController: UIViewController) {
         self.window?.rootViewController = mainViewController
+    }
+}
+
+private extension AppDelegate {
+    func setupNavigationBar() {
+        // Setup NavigationBar in SwiftUI
+        UINavigationBar.appearance().largeTitleTextAttributes = [
+            .font : UIFont.boldAvenir(ofSize: 32)
+        ]
     }
 }
 

@@ -50,15 +50,8 @@ struct ConfirmDeleteAccountView: View {
 
                     Button("Delete Account") {
                     }
-                    .accentColor(Color.white)
-                    .font(.boldAvenir(ofSize: 17))
-                    .frame(maxWidth: .infinity)
-                    .padding(.all, buttonPadding)
-                    .background(Color.redAccent200)
-                    .cornerRadius(componentsCornerRadius)
-                    .padding(.horizontal, componentsSideMargin)
-                    .padding(.vertical, componentsVerticalMargin)
                     .disabled(viewModel.outputs.isDeleteAccountButtonDisabled)
+                    .buttonStyle(DeleteAccountButtonStyle())
 
                     Spacer()
                 }
@@ -78,6 +71,23 @@ struct ConfirmDeleteAccountView: View {
                 }
             }
         }
+    }
+}
+
+private struct DeleteAccountButtonStyle: ButtonStyle {
+    @Environment(\.isEnabled) var isEnabled: Bool
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .foregroundColor(.white)
+            .font(.boldAvenir(ofSize: 17))
+            .frame(maxWidth: .infinity)
+            .padding(.all, buttonPadding)
+            .background(Color.redAccent200)
+            .brightness(isEnabled ? 0 : -0.1)
+            .cornerRadius(componentsCornerRadius)
+            .padding(.horizontal, componentsSideMargin)
+            .padding(.vertical, componentsVerticalMargin)
     }
 }
 

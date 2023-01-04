@@ -34,7 +34,7 @@ struct ConfirmDeleteAccountView: View {
                     Spacer()
                         .frame(height: topSpacerHeight)
 
-                    Text("Complete your deletion request by entering the email address associated with your account")
+                    Text(R.string.localizable.confirm_delete_account_description)
                         .font(.regularAvenir(ofSize: 16))
                         .foregroundColor(.text)
                         .padding(.horizontal, componentsSideMargin)
@@ -48,14 +48,14 @@ struct ConfirmDeleteAccountView: View {
                         .padding(.horizontal, componentsSideMargin)
                         .padding(.vertical, componentsVerticalMargin)
 
-                    Button("Delete Account") {
+                    Button(R.string.localizable.confirm_delete_account_delete_account()) {
                     }
                     .disabled(viewModel.outputs.isDeleteAccountButtonDisabled)
                     .buttonStyle(DeleteAccountButtonStyle())
 
                     Spacer()
                 }
-                .navigationBarTitle("Confirm your mail")
+                .navigationBarTitle(R.string.localizable.confirm_delete_account_title())
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
                         Button(action: {

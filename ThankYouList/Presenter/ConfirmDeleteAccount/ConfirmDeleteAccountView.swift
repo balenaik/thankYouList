@@ -58,6 +58,7 @@ struct ConfirmDeleteAccountView: View {
                     .cornerRadius(componentsCornerRadius)
                     .padding(.horizontal, componentsSideMargin)
                     .padding(.vertical, componentsVerticalMargin)
+                    .disabled(viewModel.outputs.isDeleteAccountButtonDisabled)
 
                     Spacer()
                 }

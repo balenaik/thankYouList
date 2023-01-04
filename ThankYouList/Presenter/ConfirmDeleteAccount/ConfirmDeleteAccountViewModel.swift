@@ -28,6 +28,10 @@ private extension ConfirmDeleteAccountViewModel {
                 self?.outputs.dismissView.send(())
             }
             .store(in: &cancellable)
+
+        bindings.$emailTextFieldText
+            .map { !$0.isValidMail }
+            .assign(to: &outputs.$isDeleteAccountButtonDisabled)
     }
 }
 
@@ -38,6 +42,7 @@ extension ConfirmDeleteAccountViewModel {
 
     class Outputs {
         let dismissView = PassthroughSubject<Void, Never>()
+        @Published var isDeleteAccountButtonDisabled = true
     }
 
     class Bindings {

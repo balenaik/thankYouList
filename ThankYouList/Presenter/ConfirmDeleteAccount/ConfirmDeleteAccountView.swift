@@ -53,6 +53,10 @@ struct ConfirmDeleteAccountView: View {
                     .disabled(viewModel.outputs.isDeleteAccountButtonDisabled)
                     .buttonStyle(DeleteAccountButtonStyle())
 
+                    Button(R.string.localizable.cancel()) {
+                    }
+                    .buttonStyle(CancelButtonStyle())
+
                     Spacer()
                 }
                 .navigationBarTitle(R.string.localizable.confirm_delete_account_title())
@@ -85,6 +89,19 @@ private struct DeleteAccountButtonStyle: ButtonStyle {
             .padding(.all, buttonPadding)
             .background(Color.redAccent200)
             .brightness(isEnabled ? 0 : -0.1)
+            .cornerRadius(componentsCornerRadius)
+            .padding(.horizontal, componentsSideMargin)
+            .padding(.vertical, componentsVerticalMargin)
+    }
+}
+
+private struct CancelButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .foregroundColor(.text)
+            .font(.boldAvenir(ofSize: 17))
+            .frame(maxWidth: .infinity)
+            .padding(.all, buttonPadding)
             .cornerRadius(componentsCornerRadius)
             .padding(.horizontal, componentsSideMargin)
             .padding(.vertical, componentsVerticalMargin)

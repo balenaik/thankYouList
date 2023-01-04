@@ -32,15 +32,15 @@ private extension ConfirmDeleteAccountViewModel {
 }
 
 extension ConfirmDeleteAccountViewModel {
-    struct Inputs {
+    class Inputs {
         let cancelButtonDidTap = PassthroughSubject<Void, Never>()
     }
 
-    struct Outputs {
+    class Outputs {
         let dismissView = PassthroughSubject<Void, Never>()
     }
 
-    class Bindings: ObservableObject {
+    class Bindings {
         @Published var emailTextFieldText = ""
     }
 }

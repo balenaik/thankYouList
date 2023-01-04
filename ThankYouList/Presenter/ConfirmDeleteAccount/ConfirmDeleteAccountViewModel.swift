@@ -12,8 +12,8 @@ class ConfirmDeleteAccountViewModel: ObservableObject {
 
     let inputs = Inputs()
     let outputs = Outputs()
+    @Published var bindings = Bindings()
 
-    @Published var emailAddress = ""
     private var cancellable = Set<AnyCancellable>()
 
     init() {
@@ -38,5 +38,9 @@ extension ConfirmDeleteAccountViewModel {
 
     struct Outputs {
         let dismissView = PassthroughSubject<Void, Never>()
+    }
+
+    class Bindings: ObservableObject {
+        @Published var emailTextFieldText = ""
     }
 }

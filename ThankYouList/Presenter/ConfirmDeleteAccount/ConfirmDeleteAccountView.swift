@@ -40,7 +40,7 @@ struct ConfirmDeleteAccountView: View {
                         .padding(.horizontal, componentsSideMargin)
                         .padding(.vertical, componentsVerticalMargin)
 
-                    TextField("Email address", text: $viewModel.emailAddress)
+                    TextField("Email address", text: $viewModel.bindings.emailTextFieldText)
                         .font(.regularAvenir(ofSize: 16))
                         .padding(.all, textFieldPadding)
                         .background(Color.white)

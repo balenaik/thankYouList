@@ -93,6 +93,7 @@
 		A8E6CD0B29601E150042AA81 /* Color+SetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD0A29601E150042AA81 /* Color+SetColor.swift */; };
 		A8E6CD0D29615BE00042AA81 /* Font+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD0C29615BE00042AA81 /* Font+Theme.swift */; };
 		A8E6CD0F296513000042AA81 /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD0E296513000042AA81 /* String+Validation.swift */; };
+		A8E6CD122965B2F20042AA81 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD112965B2F20042AA81 /* UserRepository.swift */; };
 		A8F06BB91F55396F00A90170 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */; };
 		A8F407CA2957DBF6007FDF2D /* ConfirmDeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F407C92957DBF6007FDF2D /* ConfirmDeleteAccountView.swift */; };
 		A8F649B71EEB96D100D6BA84 /* GlobalThankYouData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F649B61EEB96D100D6BA84 /* GlobalThankYouData.swift */; };
@@ -191,6 +192,7 @@
 		A8E6CD0A29601E150042AA81 /* Color+SetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+SetColor.swift"; sourceTree = "<group>"; };
 		A8E6CD0C29615BE00042AA81 /* Font+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Theme.swift"; sourceTree = "<group>"; };
 		A8E6CD0E296513000042AA81 /* String+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Validation.swift"; sourceTree = "<group>"; };
+		A8E6CD112965B2F20042AA81 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8F407C92957DBF6007FDF2D /* ConfirmDeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDeleteAccountView.swift; sourceTree = "<group>"; };
 		A8F649B61EEB96D100D6BA84 /* GlobalThankYouData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalThankYouData.swift; sourceTree = "<group>"; };
@@ -413,6 +415,7 @@
 				A820DE5521C61E6F00E7F3DF /* Extensions */,
 				A808C612220E349A004162E4 /* Models */,
 				A8114AF622E435140024975A /* Presenter */,
+				A8E6CD102965B2D20042AA81 /* Repositories */,
 				A8B6EE8F2201E49C00908D51 /* Resources */,
 				A8114AF522DB97410024975A /* Supports */,
 				A89CF875211C73AC00CA5518 /* SecretData.swift */,
@@ -449,6 +452,14 @@
 				A86F419D24548797005D929A /* MyPageTableItem.swift */,
 			);
 			path = MyPage;
+			sourceTree = "<group>";
+		};
+		A8E6CD102965B2D20042AA81 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				A8E6CD112965B2F20042AA81 /* UserRepository.swift */,
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 		A8F407C829575416007FDF2D /* ConfirmDeleteAccount */ = {
@@ -745,6 +756,7 @@
 				A8B6EE952205902100908D51 /* ListSectionHeaderView.swift in Sources */,
 				A80EAE5821F4C0B4006B02E8 /* UIView+Highlight.swift in Sources */,
 				A851944C272BFACE003631EE /* BottomHalfSheetMenuItemView.swift in Sources */,
+				A8E6CD122965B2F20042AA81 /* UserRepository.swift in Sources */,
 				A80EAE5A21FD5F87006B02E8 /* ThankYouCell.swift in Sources */,
 				A8A85AC025A60E8500182B99 /* UIImage+FromUIColor.swift in Sources */,
 				A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */,

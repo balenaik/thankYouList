@@ -38,9 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             createRootViewController(mainViewController: mainTabBarController)
         }
 
-        self.selectedDate = Date()
         self.window?.makeKeyAndVisible()
 
+        setupInitialSelectedDate()
         setupNavigationBar()
         
         return true
@@ -83,6 +83,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 private extension AppDelegate {
+    func setupInitialSelectedDate() {
+        selectedDate = Date()
+    }
+
     func setupNavigationBar() {
         // Setup NavigationBar in SwiftUI
         UINavigationBar.appearance().largeTitleTextAttributes = [

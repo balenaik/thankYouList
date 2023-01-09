@@ -15,6 +15,10 @@ import AuthenticationServices
 
 private let appleProviderId = "apple.com"
 
+protocol LoginRouter: AnyObject {
+    func switchToMainTabBar()
+}
+
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var facebookLoginButton: LoginContinueButton!
@@ -22,6 +26,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var appleLoginButton: LoginContinueButton!
 
     private var currentNonce: String?
+
+    weak var router: LoginRouter?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,29 +91,21 @@ private extension LoginViewController {
         appleLoginButton.setTitle(R.string.localizable.login_continue_with_apple(), for: .normal)
     }
 
-    func signIn(credential: AuthCredential, name: String? = nil, email: String? = nil) {
-        Auth.auth().signIn(with: credential) { (fireUser, fireError) in
-            if let error = fireError {
+    func signIn(credential: AuthCredential,
+                name: String? = nil,
+                email: String? = nil) {
+        Auth.auth().signIn(with: credential) { [weak self] (user, error) in
+            if let error = error {
                 print(error)
                 return
             }
             if let name = name {
-                self.updateUserProfile(name: name)
+                self?.updateUserProfile(name: name)
             }
             if let email = email {
-                self.updateUserEmail(email: email)
+                self?.updateUserEmail(email: email)
             }
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                return
-            }
-            if let loginViewController = appDelegate.window?.rootViewController,
-               let mainTabBarController: MainTabBarController = MainTabBarController.createViewController() {
-                appDelegate.createRootViewController(mainViewController: mainTabBarController)
-                loginViewController.dismiss(animated: true, completion: nil)
-            }
-            if let loginViewController = appDelegate.window?.rootViewController?.presentedViewController {
-                loginViewController.dismiss(animated: true, completion: nil)
-            }
+            self?.router?.switchToMainTabBar()
         }
     }
 
@@ -194,13 +192,5 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
 extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
-    }
-}
-
-// MARK: - Public
-extension LoginViewController {
-    static func createViewController() -> UIViewController? {
-        guard let viewController = R.storyboard.login.instantiateInitialViewController() else { return nil }
-        return viewController
     }
 }

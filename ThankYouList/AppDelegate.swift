@@ -25,23 +25,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        
-        guard Auth.auth().currentUser != nil else {
-            if let loginViewController = R.storyboard.login.instantiateInitialViewController() {
-                self.window?.rootViewController = loginViewController
-                self.window?.makeKeyAndVisible()
-            }
-            return true
-        }
-        if let mainTabBarController = MainTabBarController.createViewController() {
-            createRootViewController(mainViewController: mainTabBarController)
-        }
-
-        self.window?.makeKeyAndVisible()
-
         setupInitialSelectedDate()
         setupNavigationBar()
+
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        self.window = window
+        let appCoordinator = AppCoordinator(
+            window: window,
+            userRepository: DefaultUserRepository())
+        appCoordinator.start()
         
         return true
     }

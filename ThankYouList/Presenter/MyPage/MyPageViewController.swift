@@ -105,10 +105,13 @@ private extension MyPageViewController {
 // MARK: - Transition
 private extension MyPageViewController {
     func showLoginViewController() {
-        if let loginViewController = LoginViewController.createViewController() {
-            loginViewController.modalPresentationStyle = .fullScreen
-            self.present(loginViewController, animated: true)
-        }
+//        let loginCoordinator = LoginCoordinator()
+//        loginCoordinator.start()
+//        present(loginCoordinator.loginViewController!, animated: true)
+//        if let loginViewController = LoginViewController.createViewController() {
+//            loginViewController.modalPresentationStyle = .fullScreen
+//            self.present(loginViewController, animated: true)
+//        }
     }
 }
 

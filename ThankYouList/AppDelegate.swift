@@ -9,13 +9,11 @@
 import UIKit
 import Firebase
 import FBSDKCoreKit
-import GoogleSignIn
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var uid: String?
     var selectedDate: Date?
     
     override init() {

@@ -15,6 +15,10 @@ import FloatingPanel
 
 private let skeletonedThankYouCellCount = 3
 
+protocol ThankYouListRouter {
+    func presentMyPage()
+}
+
 class ThankYouListViewController: UIViewController {
 
     struct Section {
@@ -29,6 +33,8 @@ class ThankYouListViewController: UIViewController {
     private var sections = [Section]()
     private var estimatedRowHeights = [String : CGFloat]()
     private var hasLoadedThankYouList = false
+
+    var router: ThankYouListRouter?
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var scrollIndicator: ListScrollIndicator!
@@ -49,8 +55,7 @@ class ThankYouListViewController: UIViewController {
 // MARK: - IBActions
 extension ThankYouListViewController {
     @IBAction func tapUserIcon(_ sender: Any) {
-        guard let myPageViewController = MyPageViewController.createViewController() else { return }
-        present(myPageViewController, animated: true, completion: nil)
+        router?.presentMyPage()
     }
 }
 
@@ -327,15 +332,6 @@ extension ThankYouListViewController: ThankYouCellDelegate {
             bottomSheetDelegate: self
         )
         present(bottomSheet, animated: true, completion: nil)
-    }
-}
-
-// MARK: - Public
-extension ThankYouListViewController {
-    static func createViewController() -> UIViewController? {
-        guard let viewController = R.storyboard.thankYouList.instantiateInitialViewController() else { return nil }
-        let navigationController = UINavigationController(rootViewController: viewController)
-        return navigationController
     }
 }
 

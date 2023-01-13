@@ -20,14 +20,17 @@ class MainTabbarCoordinator: Coordinator {
         guard let mainTabbarController = R.storyboard.mainTabBar.instantiateInitialViewController() else {
             return
         }
-        
-        let thankYouListViewController = ThankYouListViewController.createViewController()
+
+        let thankYouListNavController = UINavigationController()
+        let thankYouListCoordinator = ThankYouListCoordinator(navigationController: thankYouListNavController)
+        thankYouListCoordinator.start()
+
         let calendarViewController = CalendarViewController.createViewController()
 
-        mainTabbarController.thankYouListNavigationController = thankYouListViewController as? UINavigationController
+        mainTabbarController.thankYouListNavigationController = thankYouListNavController
         mainTabbarController.calendarNavigationController = calendarViewController as? UINavigationController
 
-        let tabs = [thankYouListViewController, calendarViewController].compactMap { $0 }
+        let tabs = [thankYouListNavController, calendarViewController].compactMap { $0 }
         mainTabbarController.setViewControllers(tabs, animated: false)
 
         window.rootViewController = mainTabbarController

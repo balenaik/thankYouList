@@ -9,11 +9,11 @@
 import UIKit
 
 class MyPageCoordinator: Coordinator {
-    private weak var presentingNavigationController: UINavigationController?
+    private weak var presentingViewController: UIViewController?
     private weak var navigationController: UINavigationController?
 
-    init(presentingNavigationController: UINavigationController) {
-        self.presentingNavigationController = presentingNavigationController
+    init(presentingViewController: UIViewController) {
+        self.presentingViewController = presentingViewController
     }
 
     func start() {
@@ -24,7 +24,7 @@ class MyPageCoordinator: Coordinator {
         let navigationController = UINavigationController(rootViewController: viewController)
         self.navigationController = navigationController
         navigationController.modalPresentationStyle = .pageSheet
-        presentingNavigationController?.present(navigationController, animated: true)
+        presentingViewController?.present(navigationController, animated: true)
     }
 }
 

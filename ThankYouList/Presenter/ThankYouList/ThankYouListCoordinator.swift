@@ -26,7 +26,8 @@ class ThankYouListCoordinator: Coordinator {
 
 extension ThankYouListCoordinator: ThankYouListRouter {
     func presentMyPage() {
-        guard let myPageViewController = MyPageViewController.createViewController() else { return }
-        navigationController?.present(myPageViewController, animated: true, completion: nil)
+        guard let navigationController = navigationController else { return }
+        let coordinator = MyPageCoordinator(presentingNavigationController: navigationController)
+        coordinator.start()
     }
 }

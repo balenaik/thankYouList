@@ -10,12 +10,19 @@ import Foundation
 import UIKit
 import Firebase
 
+protocol MyPageRouter {
+    func dismiss()
+    func switchToLogin()
+}
+
 class MyPageViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     private var tableItems = [[TableItem]]()
 
     private var profile: Profile?
+
+    var router: MyPageRouter?
 
     static func createViewController() -> UIViewController? {
         guard let viewController = R.storyboard.myPage.instantiateInitialViewController() else { return nil }
@@ -37,7 +44,7 @@ class MyPageViewController: UIViewController {
 // MARK: - IBActions
 extension MyPageViewController {
     @IBAction func tapClose(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        router?.dismiss()
     }
 }
 
@@ -105,13 +112,7 @@ private extension MyPageViewController {
 // MARK: - Transition
 private extension MyPageViewController {
     func showLoginViewController() {
-//        let loginCoordinator = LoginCoordinator()
-//        loginCoordinator.start()
-//        present(loginCoordinator.loginViewController!, animated: true)
-//        if let loginViewController = LoginViewController.createViewController() {
-//            loginViewController.modalPresentationStyle = .fullScreen
-//            self.present(loginViewController, animated: true)
-//        }
+        router?.switchToLogin()
     }
 }
 

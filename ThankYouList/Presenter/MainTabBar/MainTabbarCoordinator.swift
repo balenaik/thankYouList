@@ -11,7 +11,7 @@ import UIKit
 class MainTabbarCoordinator: Coordinator {
 
     private let window: UIWindow
-    private weak var mainTabbarController: MainTabBarController?
+    private weak var mainTabbarController: UIViewController?
 
     init(window: UIWindow) {
         self.window = window
@@ -21,6 +21,7 @@ class MainTabbarCoordinator: Coordinator {
         guard let mainTabbarController = R.storyboard.mainTabBar.instantiateInitialViewController() else {
             return
         }
+        mainTabbarController.router = self
         self.mainTabbarController = mainTabbarController
 
         let thankYouListNavController = UINavigationController()
@@ -37,5 +38,14 @@ class MainTabbarCoordinator: Coordinator {
 
         window.rootViewController = mainTabbarController
         window.makeKeyAndVisible()
+    }
+}
+
+extension MainTabbarCoordinator: MainTabBarRouter {
+    func presentAddThankYou() {
+        guard let mainTabbarController = mainTabbarController else { return }
+        let coordinator = AddThankYouCoordinator(
+            presentingViewController: mainTabbarController)
+        coordinator.start()
     }
 }

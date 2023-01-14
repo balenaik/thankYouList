@@ -3,12 +3,18 @@ import FirebaseAuth
 
 private let tabBarTitleFontSize = CGFloat(11)
 
+protocol MainTabBarRouter {
+    func presentAddThankYou()
+}
+
 class MainTabBarController: UITabBarController {
 
     @IBOutlet private weak var centerRoundedTabBar: CenterRoundedTabBar!
 
     var thankYouListNavigationController: UINavigationController?
     var calendarNavigationController: UINavigationController?
+
+    var router: MainTabBarRouter?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +36,6 @@ class MainTabBarController: UITabBarController {
 // MARK: - CenterRoundedTabBarDelegate
 extension MainTabBarController: CenterRoundedTabBarDelegate {
     func centerRoundedTabBarDidTapCenterButton() {
-        guard let viewController = AddThankYouViewController.createViewController() else { return }
-        present(viewController, animated: true, completion: nil)
+        router?.presentAddThankYou()
     }
 }

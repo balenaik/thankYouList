@@ -9,11 +9,12 @@
 import UIKit
 
 class MyPageCoordinator: Coordinator {
-    private weak var presentingViewController: UIViewController?
-    private weak var navigationController: UINavigationController?
+
+    var routingType: RoutingType
+    weak var viewController: UIViewController?
 
     init(presentingViewController: UIViewController) {
-        self.presentingViewController = presentingViewController
+        routingType = RoutingType.modal(presentingViewController: presentingViewController)
     }
 
     func start() {
@@ -22,15 +23,15 @@ class MyPageCoordinator: Coordinator {
         }
         viewController.router = self
         let navigationController = UINavigationController(rootViewController: viewController)
-        self.navigationController = navigationController
+        self.viewController = navigationController
         navigationController.modalPresentationStyle = .pageSheet
-        presentingViewController?.present(navigationController, animated: true)
+        routingType.previousViewController?.present(navigationController, animated: true)
     }
 }
 
 extension MyPageCoordinator: MyPageRouter {
     func dismiss() {
-        navigationController?.dismiss(animated: true)
+        viewController?.dismiss(animated: true)
     }
 
     func switchToLogin() {

@@ -9,10 +9,12 @@
 import UIKit
 
 class ThankYouListCoordinator: Coordinator {
-    private weak var navigationController: UINavigationController?
+    var routingType: RoutingType
+    weak var viewController: UIViewController?
 
     init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+        routingType = .push(navigationController: navigationController)
+        viewController = navigationController
     }
 
     func start() {
@@ -20,14 +22,14 @@ class ThankYouListCoordinator: Coordinator {
             return
         }
         viewController.router = self
-        navigationController?.pushViewController(viewController, animated: false)
+        routingType.navigationController?.pushViewController(viewController, animated: false)
     }
 }
 
 extension ThankYouListCoordinator: ThankYouListRouter {
     func presentMyPage() {
-        guard let navigationController = navigationController else { return }
-        let coordinator = MyPageCoordinator(presentingViewController: navigationController)
+        guard let viewController = viewController else { return }
+        let coordinator = MyPageCoordinator(presentingViewController: viewController)
         coordinator.start()
     }
 }

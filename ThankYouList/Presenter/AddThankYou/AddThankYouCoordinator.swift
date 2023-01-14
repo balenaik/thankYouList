@@ -9,11 +9,12 @@
 import UIKit
 
 class AddThankYouCoordinator: Coordinator {
-    private weak var presentingViewController: UIViewController?
-    private weak var navigationController: UINavigationController?
+
+    var routingType: RoutingType
+    weak var viewController: UIViewController?
 
     init(presentingViewController: UIViewController) {
-        self.presentingViewController = presentingViewController
+        routingType = .modal(presentingViewController: presentingViewController)
     }
 
     func start() {
@@ -21,8 +22,8 @@ class AddThankYouCoordinator: Coordinator {
             return
         }
         let navigationController = UINavigationController(rootViewController: viewController)
-        self.navigationController = navigationController
+        self.viewController = navigationController
         navigationController.modalPresentationStyle = .fullScreen
-        presentingViewController?.present(navigationController, animated: true)
+        routingType.previousViewController?.present(navigationController, animated: true)
     }
 }

@@ -8,16 +8,47 @@
 
 import UIKit
 
-protocol Coordinator {
+enum RoutingType {
+    case push(navigationController: UINavigationController)
+    case modal(presentingViewController: UIViewController)
+    case none
+
+    var previousViewController: UIViewController? {
+        switch self {
+        case .push(let viewController):
+            return viewController
+        case .modal(let viewController):
+            return viewController
+        case .none:
+            return nil
+        }
+    }
+
+    var navigationController: UINavigationController? {
+        switch self {
+        case .push(let navigationController):
+            return navigationController
+        default:
+            return nil
+        }
+    }
+}
+
+protocol Coordinator: Router {
+    var routingType: RoutingType { get set }
+    var viewController: UIViewController? { get set }
     func start()
 }
 
 class AppCoordinator: Coordinator {
-    let window: UIWindow
-    let userRepository: UserRepository
+    var routingType: RoutingType
+    weak var viewController: UIViewController?
+    private let window: UIWindow
+    private let userRepository: UserRepository
 
     init(window: UIWindow,
          userRepository: UserRepository) {
+        routingType = .none
         self.window = window
         self.userRepository = userRepository
     }

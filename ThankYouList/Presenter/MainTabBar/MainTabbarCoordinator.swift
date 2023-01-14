@@ -11,10 +11,12 @@ import UIKit
 class MainTabbarCoordinator: Coordinator {
 
     private let window: UIWindow
-    private weak var mainTabbarController: UIViewController?
+    var routingType: RoutingType
+    weak var viewController: UIViewController?
 
     init(window: UIWindow) {
         self.window = window
+        routingType = .none
     }
 
     func start() {
@@ -22,7 +24,7 @@ class MainTabbarCoordinator: Coordinator {
             return
         }
         mainTabbarController.router = self
-        self.mainTabbarController = mainTabbarController
+        self.viewController = mainTabbarController
 
         let thankYouListNavController = UINavigationController()
         let thankYouListCoordinator = ThankYouListCoordinator(navigationController: thankYouListNavController)
@@ -43,9 +45,9 @@ class MainTabbarCoordinator: Coordinator {
 
 extension MainTabbarCoordinator: MainTabBarRouter {
     func presentAddThankYou() {
-        guard let mainTabbarController = mainTabbarController else { return }
+        guard let viewController = viewController else { return }
         let coordinator = AddThankYouCoordinator(
-            presentingViewController: mainTabbarController)
+            presentingViewController: viewController)
         coordinator.start()
     }
 }

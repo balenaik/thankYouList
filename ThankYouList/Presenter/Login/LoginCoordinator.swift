@@ -10,10 +10,12 @@ import UIKit
 
 class LoginCoordinator: Coordinator {
     private let window: UIWindow
-    private weak var navigationController: UINavigationController?
+    var routingType: RoutingType
+    weak var viewController: UIViewController?
 
     init(window: UIWindow) {
         self.window = window
+        routingType = .none
     }
 
     func start() {
@@ -22,7 +24,7 @@ class LoginCoordinator: Coordinator {
         }
         viewController.router = self
         let navigationController = UINavigationController(rootViewController: viewController)
-        self.navigationController = navigationController
+        self.viewController = navigationController
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
     }

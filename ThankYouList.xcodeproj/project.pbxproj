@@ -35,6 +35,7 @@
 		A83A361A296C537B00AD2790 /* ThankYouListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83A3619296C537B00AD2790 /* ThankYouListCoordinator.swift */; };
 		A83A361C296CE98600AD2790 /* MyPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83A361B296CE98600AD2790 /* MyPageCoordinator.swift */; };
 		A83A361E2972615900AD2790 /* AddThankYouCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83A361D2972615800AD2790 /* AddThankYouCoordinator.swift */; };
+		A83A36202972830A00AD2790 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83A361F2972830A00AD2790 /* Router.swift */; };
 		A83D5F891F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */; };
 		A841B339213ED3DE00E8AB5B /* LocalizedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841B338213ED3DE00E8AB5B /* LocalizedLabel.swift */; };
 		A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84CBEE120F198E400CBA0AB /* ConstStruct.swift */; };
@@ -138,6 +139,7 @@
 		A83A3619296C537B00AD2790 /* ThankYouListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouListCoordinator.swift; sourceTree = "<group>"; };
 		A83A361B296CE98600AD2790 /* MyPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCoordinator.swift; sourceTree = "<group>"; };
 		A83A361D2972615800AD2790 /* AddThankYouCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThankYouCoordinator.swift; sourceTree = "<group>"; };
+		A83A361F2972830A00AD2790 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+RuntimeAttribute.swift"; sourceTree = "<group>"; };
 		A841B338213ED3DE00E8AB5B /* LocalizedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedLabel.swift; sourceTree = "<group>"; };
 		A84CBEE120F198E400CBA0AB /* ConstStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstStruct.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 			children = (
 				A8E6CD13296BA31A0042AA81 /* Coordinator.swift */,
 				A8F649B61EEB96D100D6BA84 /* GlobalThankYouData.swift */,
+				A83A361F2972830A00AD2790 /* Router.swift */,
 			);
 			path = Supports;
 			sourceTree = "<group>";
@@ -733,6 +736,7 @@
 				A83A361A296C537B00AD2790 /* ThankYouListCoordinator.swift in Sources */,
 				A8E6CD0B29601E150042AA81 /* Color+SetColor.swift in Sources */,
 				A8A06863244F444400839D14 /* MyPageProfileCell.swift in Sources */,
+				A83A36202972830A00AD2790 /* Router.swift in Sources */,
 				A8F649B71EEB96D100D6BA84 /* GlobalThankYouData.swift in Sources */,
 				A83A361E2972615900AD2790 /* AddThankYouCoordinator.swift in Sources */,
 				A8A85AED25A7473D00182B99 /* UIViewController+Alert.swift in Sources */,

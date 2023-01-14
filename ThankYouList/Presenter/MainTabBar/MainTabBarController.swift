@@ -7,8 +7,8 @@ class MainTabBarController: UITabBarController {
 
     @IBOutlet private weak var centerRoundedTabBar: CenterRoundedTabBar!
 
-    weak var thankYouListNavigationController: UINavigationController?
-    weak var calendarNavigationController: UINavigationController?
+    var thankYouListNavigationController: UINavigationController?
+    var calendarNavigationController: UINavigationController?
 
     override func viewDidLoad() {
         super.viewDidLoad()

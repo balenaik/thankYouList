@@ -15,7 +15,7 @@ import AuthenticationServices
 
 private let appleProviderId = "apple.com"
 
-protocol LoginRouter: AnyObject {
+protocol LoginRouter {
     func switchToMainTabBar()
 }
 
@@ -27,7 +27,7 @@ class LoginViewController: UIViewController {
 
     private var currentNonce: String?
 
-    weak var router: LoginRouter?
+    var router: LoginRouter?
 
     override func viewDidLoad() {
         super.viewDidLoad()

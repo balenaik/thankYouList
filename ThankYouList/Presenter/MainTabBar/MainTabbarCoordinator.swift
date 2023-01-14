@@ -10,7 +10,8 @@ import UIKit
 
 class MainTabbarCoordinator: Coordinator {
 
-    let window: UIWindow
+    private let window: UIWindow
+    private weak var mainTabbarController: MainTabBarController?
 
     init(window: UIWindow) {
         self.window = window
@@ -20,6 +21,7 @@ class MainTabbarCoordinator: Coordinator {
         guard let mainTabbarController = R.storyboard.mainTabBar.instantiateInitialViewController() else {
             return
         }
+        self.mainTabbarController = mainTabbarController
 
         let thankYouListNavController = UINavigationController()
         let thankYouListCoordinator = ThankYouListCoordinator(navigationController: thankYouListNavController)

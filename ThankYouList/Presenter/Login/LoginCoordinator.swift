@@ -10,7 +10,7 @@ import UIKit
 
 class LoginCoordinator: Coordinator {
     private let window: UIWindow
-    private var navigationController: UINavigationController?
+    private weak var navigationController: UINavigationController?
 
     init(window: UIWindow) {
         self.window = window

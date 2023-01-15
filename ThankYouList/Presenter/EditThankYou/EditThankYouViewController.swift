@@ -166,19 +166,23 @@ private extension EditThankYouViewController {
     private func editThankYou(editThankYouData: ThankYouData, userId: String) {
         guard let editingThankYouId = editingThankYouId else { return }
         isPosting = true
-        db.collection("users").document(userId).collection("thankYouList").document(editingThankYouId).updateData(editThankYouData.dictionary) { [weak self] error in
-            guard let weakSelf = self else { return }
-            weakSelf.isPosting = false
-            if let error = error {
-                print("Error adding document: \(error.localizedDescription)")
-                let alert = UIAlertController(title: nil, message: NSLocalizedString("Failed to edit", comment: ""), preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                weakSelf.present(alert, animated: true, completion: nil)
-                return
+        db.collection(FirestoreConst.usersCollecion)
+            .document(userId)
+            .collection(FirestoreConst.thankYouListCollection)
+            .document(editingThankYouId)
+            .updateData(editThankYouData.dictionary) { [weak self] error in
+                guard let self = self else { return }
+                self.isPosting = false
+                if let error = error {
+                    print("Error adding document: \(error.localizedDescription)")
+                    let alert = UIAlertController(title: nil, message: NSLocalizedString("Failed to edit", comment: ""), preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                }
+                Analytics.logEvent(eventName: AnalyticsEventConst.editThankYou, userId: userId, targetDate: editThankYouData.date)
+                self.dismiss(animated: true, completion: nil)
             }
-            Analytics.logEvent(eventName: AnalyticsEventConst.editThankYou, userId: userId, targetDate: editThankYouData.date)
-            weakSelf?.router?.dismiss()
-        }
     }
     
     private func adjustTextViewHeight() {

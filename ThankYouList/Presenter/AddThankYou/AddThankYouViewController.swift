@@ -150,19 +150,22 @@ private extension AddThankYouViewController {
     
     private func addThankYou(thankYouData: ThankYouData, userId: String) {
         isPosting = true
-        db.collection("users").document(userId).collection("thankYouList").addDocument(data: thankYouData.dictionary) { [weak self] error in
-            guard let weakSelf = self else { return }
-            weakSelf.isPosting = false
-            if let error = error {
-                print("Error adding document: \(error.localizedDescription)")
-                let alert = UIAlertController(title: nil, message: NSLocalizedString("Failed to add", comment: ""), preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                weakSelf.present(alert, animated: true, completion: nil)
-                return
+        db.collection(FirestoreConst.usersCollecion)
+            .document(userId)
+            .collection(FirestoreConst.thankYouListCollection)
+            .addDocument(data: thankYouData.dictionary) { [weak self] error in
+                guard let self = self else { return }
+                self.isPosting = false
+                if let error = error {
+                    print("Error adding document: \(error.localizedDescription)")
+                    let alert = UIAlertController(title: nil, message: NSLocalizedString("Failed to add", comment: ""), preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                }
+                Analytics.logEvent(eventName: AnalyticsEventConst.addThankYou, userId: userId, targetDate: thankYouData.date)
+                self.router?.dismiss()
             }
-            Analytics.logEvent(eventName: AnalyticsEventConst.addThankYou, userId: userId, targetDate: thankYouData.date)
-            weakSelf.router?.dismiss()
-        }
     }
     
     func adjustTextViewHeight() {

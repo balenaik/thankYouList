@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 
-protocol MyPageRouter {
+protocol MyPageRouter: Router {
     func dismiss()
     func switchToLogin()
 }
@@ -23,13 +23,6 @@ class MyPageViewController: UIViewController {
     private var profile: Profile?
 
     var router: MyPageRouter?
-
-    static func createViewController() -> UIViewController? {
-        guard let viewController = R.storyboard.myPage.instantiateInitialViewController() else { return nil }
-        let navigationController = UINavigationController(rootViewController: viewController)
-        navigationController.modalPresentationStyle = .pageSheet
-        return navigationController
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,19 +74,15 @@ private extension MyPageViewController {
     }
 
     func showLogoutAlert() {
-        let alertController = UIAlertController(
-            title: R.string.localizable.mypage_logout(),
-            message: R.string.localizable.mypage_logout_confirmation_message(),
-            preferredStyle: .alert)
         let logoutAction = UIAlertAction(title: R.string.localizable.mypage_logout(),
                                          style: .destructive) { [weak self] _ in
             self?.logout()
         }
-        let cancelButton = UIAlertAction(title: R.string.localizable.cancel(),
+        let cancelAction = UIAlertAction(title: R.string.localizable.cancel(),
                                          style: .cancel)
-        alertController.addAction(logoutAction)
-        alertController.addAction(cancelButton)
-        present(alertController,animated: true,completion: nil)
+        router?.presentAlert(title: R.string.localizable.mypage_logout(),
+                             message: R.string.localizable.mypage_logout_confirmation_message(),
+                             actions: [logoutAction, cancelAction])
     }
 
     func logout() {
@@ -114,10 +103,6 @@ private extension MyPageViewController {
     func showLoginViewController() {
         router?.switchToLogin()
     }
-}
-
-// MARK: - UITableViewDelegate
-extension MyPageViewController: UITableViewDelegate {
 }
 
 // MARK: - UITableViewDataSource
@@ -151,3 +136,20 @@ extension MyPageViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
+extension MyPageViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let item = tableItems.getSafely(at: indexPath.section)?.getSafely(at: indexPath.row) else {
+            return
+        }
+        switch item.item {
+        case .logout:
+            showLogoutAlert()
+        case .deleteAccount:
+            showDeleteAccountAlert()
+        default:
+            return
+        }
+    }
+}

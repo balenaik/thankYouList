@@ -399,12 +399,3 @@ extension CalendarViewController: BottomHalfSheetMenuViewControllerDelegate {
         }
     }
 }
-
-// MARK: - Public
-extension CalendarViewController {
-    static func createViewController() -> UIViewController? {
-        guard let viewController = R.storyboard.calendar.instantiateInitialViewController() else { return nil }
-        let navigationController = UINavigationController(rootViewController: viewController)
-        return navigationController
-    }
-}

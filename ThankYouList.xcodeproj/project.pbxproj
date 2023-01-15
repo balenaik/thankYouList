@@ -37,6 +37,7 @@
 		A83A361E2972615900AD2790 /* AddThankYouCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83A361D2972615800AD2790 /* AddThankYouCoordinator.swift */; };
 		A83A36202972830A00AD2790 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83A361F2972830A00AD2790 /* Router.swift */; };
 		A83A362229737D2000AD2790 /* EditThankYouCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83A362129737D2000AD2790 /* EditThankYouCoordinator.swift */; };
+		A83A36242973D4B300AD2790 /* CalendarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83A36232973D4B300AD2790 /* CalendarCoordinator.swift */; };
 		A83D5F891F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */; };
 		A841B339213ED3DE00E8AB5B /* LocalizedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841B338213ED3DE00E8AB5B /* LocalizedLabel.swift */; };
 		A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84CBEE120F198E400CBA0AB /* ConstStruct.swift */; };
@@ -142,6 +143,7 @@
 		A83A361D2972615800AD2790 /* AddThankYouCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThankYouCoordinator.swift; sourceTree = "<group>"; };
 		A83A361F2972830A00AD2790 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		A83A362129737D2000AD2790 /* EditThankYouCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditThankYouCoordinator.swift; sourceTree = "<group>"; };
+		A83A36232973D4B300AD2790 /* CalendarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCoordinator.swift; sourceTree = "<group>"; };
 		A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+RuntimeAttribute.swift"; sourceTree = "<group>"; };
 		A841B338213ED3DE00E8AB5B /* LocalizedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedLabel.swift; sourceTree = "<group>"; };
 		A84CBEE120F198E400CBA0AB /* ConstStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstStruct.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				A85DCC071F5D2151004E1095 /* CalendarDayCell.swift */,
 				A8DB2FB91F5D41540055E8A4 /* CalendarViewController.swift */,
 				A8114AFB22E446BD0024975A /* Calendar.storyboard */,
+				A83A36232973D4B300AD2790 /* CalendarCoordinator.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -737,6 +740,7 @@
 				A8E6CD0F296513000042AA81 /* String+Validation.swift in Sources */,
 				A8C59B7D243CD72300FF79EA /* UIViewController+Setup.swift in Sources */,
 				A83A361A296C537B00AD2790 /* ThankYouListCoordinator.swift in Sources */,
+				A83A36242973D4B300AD2790 /* CalendarCoordinator.swift in Sources */,
 				A8E6CD0B29601E150042AA81 /* Color+SetColor.swift in Sources */,
 				A8A06863244F444400839D14 /* MyPageProfileCell.swift in Sources */,
 				A83A36202972830A00AD2790 /* Router.swift in Sources */,

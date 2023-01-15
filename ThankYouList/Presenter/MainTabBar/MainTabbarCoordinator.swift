@@ -30,13 +30,16 @@ class MainTabbarCoordinator: Coordinator {
         let thankYouListCoordinator = ThankYouListCoordinator(navigationController: thankYouListNavController)
         thankYouListCoordinator.start()
 
-        let calendarViewController = CalendarViewController.createViewController()
+        let calendarNavController = UINavigationController()
+        let calendarCoordinator = CalendarCoordinator(navigationController: calendarNavController)
+        calendarCoordinator.start()
 
         mainTabbarController.thankYouListNavigationController = thankYouListNavController
-        mainTabbarController.calendarNavigationController = calendarViewController as? UINavigationController
+        mainTabbarController.calendarNavigationController = calendarNavController
 
-        let tabs = [thankYouListNavController, calendarViewController].compactMap { $0 }
-        mainTabbarController.setViewControllers(tabs, animated: false)
+        mainTabbarController.setViewControllers(
+            [thankYouListNavController, calendarNavController],
+            animated: false)
 
         window.rootViewController = mainTabbarController
         window.makeKeyAndVisible()

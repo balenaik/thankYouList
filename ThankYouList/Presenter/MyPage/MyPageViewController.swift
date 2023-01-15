@@ -13,6 +13,7 @@ import Firebase
 protocol MyPageRouter: Router {
     func dismiss()
     func switchToLogin()
+    func presentConfirmDeleteAccount()
 }
 
 class MyPageViewController: UIViewController {
@@ -107,6 +108,7 @@ private extension MyPageViewController {
     }
 
     func presentConfirmDeleteAccount() {
+        router?.presentConfirmDeleteAccount()
     }
 }
 

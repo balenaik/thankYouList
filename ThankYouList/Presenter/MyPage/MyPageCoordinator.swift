@@ -41,4 +41,10 @@ extension MyPageCoordinator: MyPageRouter {
         let loginCoordinator = LoginCoordinator(window: window)
         loginCoordinator.start()
     }
+
+    func presentConfirmDeleteAccount() {
+        guard let viewController = viewController else { return }
+        let coordinator = ConfirmDeleteAccountCoordinator(presentingViewController: viewController)
+        coordinator.start()
+    }
 }

@@ -53,6 +53,7 @@
 "mypage_logout" = "Log out";
 "mypage_delete_account" = "Delete Account";
 "mypage_logout_confirmation_message" = "Are you sure you want to logout?";
+"mypage_delete_account_confirmation_message" = "By deleting the account, all data will be permanently deleted and you will no longer access your Thank You List. Are you sure you want to delete your Thank You List account?";
 
 "confirm_delete_account_title" = "Confirm your email";
 "confirm_delete_account_description" = "Complete deletion of your account and your data by entering the email address associated with your account.";
@@ -61,6 +62,7 @@
 "ok" = "OK";
 "done" = "Done";
 "discard" = "Discard";
+"next" = "Next";
 
 "error" = "Error";
 "error_authenticate" = "Authentication failed";

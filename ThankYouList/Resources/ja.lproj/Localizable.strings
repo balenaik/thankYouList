@@ -50,6 +50,7 @@
 "mypage_logout" = "ログアウト";
 "mypage_delete_account" = "アカウントを削除";
 "mypage_logout_confirmation_message" = "ログアウトしますか？";
+"mypage_delete_account_confirmation_message" = "アカウントを削除すると、アカウントに紐づく全てのデータが完全に削除され、元に戻すことができなくなります。本当にアカウントを削除しますか？";
 
 "confirm_delete_account_title" = "メールアドレスを確認";
 "confirm_delete_account_description" = "アカウントとデータの削除を完了するには、アカウントに登録されているメールアドレスを入力してください。";
@@ -58,6 +59,7 @@
 "ok" = "OK";
 "done" = "完了";
 "discard" = "破棄";
+"next" = "次へ";
 
 "error" = "エラー";
 "error_authenticate" = "認証に失敗しました。";

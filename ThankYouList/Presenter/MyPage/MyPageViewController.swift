@@ -95,6 +95,18 @@ private extension MyPageViewController {
     }
 
     func showDeleteAccountAlert() {
+        let nextAction = UIAlertAction(title: R.string.localizable.next(),
+                                       style: .destructive) { [weak self] _ in
+            self?.presentConfirmDeleteAccount()
+        }
+        let cancelAction = UIAlertAction(title: R.string.localizable.cancel(),
+                                         style: .cancel)
+        router?.presentAlert(title: R.string.localizable.mypage_delete_account(),
+                             message: R.string.localizable.mypage_delete_account_confirmation_message(),
+                             actions: [nextAction, cancelAction])
+    }
+
+    func presentConfirmDeleteAccount() {
     }
 }
 

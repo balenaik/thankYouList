@@ -266,7 +266,7 @@
 				A8F407C829575416007FDF2D /* ConfirmDeleteAccount */,
 				A8114B0022E458AD0024975A /* EditThankYou */,
 				A8114AFD22E4484C0024975A /* AddThankYou */,
-				A8114AFA22E4468B0024975A /* ThankYouCalendar */,
+				A8114AFA22E4468B0024975A /* Calendar */,
 				A8114AF722E4355B0024975A /* ThankYouList */,
 			);
 			path = Presenter;
@@ -290,7 +290,7 @@
 			path = ThankYouList;
 			sourceTree = "<group>";
 		};
-		A8114AFA22E4468B0024975A /* ThankYouCalendar */ = {
+		A8114AFA22E4468B0024975A /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
 				A808C617220FAD06004162E4 /* SmallListView.xib */,
@@ -299,7 +299,7 @@
 				A8DB2FB91F5D41540055E8A4 /* CalendarViewController.swift */,
 				A8114AFB22E446BD0024975A /* Calendar.storyboard */,
 			);
-			path = ThankYouCalendar;
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 		A8114AFD22E4484C0024975A /* AddThankYou */ = {

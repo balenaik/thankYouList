@@ -21,6 +21,10 @@ private let doneButtonDisabledBgColor = UIColor.primary.withAlphaComponent(0.38)
 
 private let rowComponentCornerRadius = CGFloat(16)
 
+protocol EditThankYouRouter {
+    func dismiss()
+}
+
 class EditThankYouViewController: UIViewController {
     
     // MARK: - Properties
@@ -34,6 +38,7 @@ class EditThankYouViewController: UIViewController {
         }
     }
     private var db = Firestore.firestore()
+    var router: EditThankYouRouter?
     
     // MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
@@ -72,7 +77,7 @@ class EditThankYouViewController: UIViewController {
 extension EditThankYouViewController {
     @IBAction func closeButtonDidTap(_ sender: Any) {
         guard thankYouTextView.text != editingThankYou?.value else {
-            dismiss(animated: true)
+            router?.dismiss()
             return
         }
         showDiscardAlert()
@@ -126,7 +131,7 @@ private extension EditThankYouViewController {
     func setupEditThankYouData() {
         guard let editingThankYou = GlobalThankYouData.sharedInstance
                 .thankYouDataList.first(where: { $0.id == editingThankYouId }) else {
-            dismiss(animated: true, completion: nil)
+            router?.dismiss()
             return
         }
         self.editingThankYou = editingThankYou
@@ -171,7 +176,7 @@ private extension EditThankYouViewController {
                 return
             }
             Analytics.logEvent(eventName: AnalyticsEventConst.editThankYou, userId: uid, targetDate: editThankYouData.date)
-            weakSelf.dismiss(animated: true, completion: nil)
+            weakSelf?.router?.dismiss()
         }
     }
     
@@ -190,7 +195,7 @@ private extension EditThankYouViewController {
             preferredStyle: .alert)
         let discardAction = UIAlertAction(title: R.string.localizable.discard(),
                                           style: .destructive) { [weak self] _ in
-            self?.dismiss(animated: true)
+            self?.router?.dismiss()
         }
         let cancelButton = UIAlertAction(
             title: R.string.localizable.edit_thank_you_discard_cancel(),

@@ -24,9 +24,16 @@ class EditThankYouCoordinator: Coordinator {
             return
         }
         viewController.editingThankYouId = thankYouId
+        viewController.router = self
         let navigationController = UINavigationController(rootViewController: viewController)
         self.viewController = navigationController
         navigationController.modalPresentationStyle = .fullScreen
         routingType.previousViewController?.present(navigationController, animated: true)
+    }
+}
+
+extension EditThankYouCoordinator: EditThankYouRouter {
+    func dismiss() {
+        viewController?.dismiss(animated: true)
     }
 }

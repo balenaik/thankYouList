@@ -190,19 +190,15 @@ private extension CalendarViewController {
     }
 
     func showDeleteConfirmationAlert(thankYouId: String) {
-        let alertController = UIAlertController(
-            title: R.string.localizable.deleteThankYou(),
-            message: R.string.localizable.areYouSureYouWantToDeleteThisThankYou(),
-            preferredStyle: .alert)
         let deleteAction = UIAlertAction(title: R.string.localizable.delete(),
                                          style: .destructive) { [weak self] _ in
             self?.deleteThankYou(thankYouId: thankYouId)
         }
-        let cancelButton = UIAlertAction(title: R.string.localizable.cancel(),
+        let cancelAction = UIAlertAction(title: R.string.localizable.cancel(),
                                          style: .cancel)
-        alertController.addAction(deleteAction)
-        alertController.addAction(cancelButton)
-        present(alertController,animated: true,completion: nil)
+        router?.presentAlert(title: R.string.localizable.deleteThankYou(),
+                             message: R.string.localizable.areYouSureYouWantToDeleteThisThankYou(),
+                             actions: [deleteAction, cancelAction])
     }
 
     func deleteThankYou(thankYouId: String) {

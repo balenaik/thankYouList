@@ -89,17 +89,16 @@ extension AddThankYouViewController {
         if isPosting || thankYouTextView.text.isEmpty {
             return
         }
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        let uid16string = String(uid.prefix(16))
-        let encryptedValue = Crypto().encryptString(
-            plainText: thankYouTextView.text,
-            key: uid16string)
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        let userId16string = String(userId.prefix(16))
+        let encryptedValue = Crypto().encryptString(plainText: thankYouTextView.text,
+                                                    key: userId16string)
         let thankYouData = ThankYouData(id: "",
                                         value: "",
                                         encryptedValue: encryptedValue,
                                         date: selectedDate,
                                         createTime: Date())
-        addThankYou(thankYouData: thankYouData, uid: uid)
+        addThankYou(thankYouData: thankYouData, userId: userId)
     }
 }
 
@@ -149,9 +148,9 @@ private extension AddThankYouViewController {
         thankYouTextView.resignFirstResponder()
     }
     
-    private func addThankYou(thankYouData: ThankYouData, uid: String) {
+    private func addThankYou(thankYouData: ThankYouData, userId: String) {
         isPosting = true
-        db.collection("users").document(uid).collection("thankYouList").addDocument(data: thankYouData.dictionary) { [weak self] error in
+        db.collection("users").document(userId).collection("thankYouList").addDocument(data: thankYouData.dictionary) { [weak self] error in
             guard let weakSelf = self else { return }
             weakSelf.isPosting = false
             if let error = error {
@@ -161,7 +160,7 @@ private extension AddThankYouViewController {
                 weakSelf.present(alert, animated: true, completion: nil)
                 return
             }
-            Analytics.logEvent(eventName: AnalyticsEventConst.addThankYou, userId: uid, targetDate: thankYouData.date)
+            Analytics.logEvent(eventName: AnalyticsEventConst.addThankYou, userId: userId, targetDate: thankYouData.date)
             weakSelf.router?.dismiss()
         }
     }

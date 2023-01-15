@@ -93,15 +93,16 @@ extension EditThankYouViewController {
         if isPosting || thankYouTextView.text.isEmpty {
             return
         }
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        let uid16string = String(uid.prefix(16))
-        let encryptedValue = Crypto().encryptString(plainText: thankYouTextView.text, key: uid16string)
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        let userId16string = String(userId.prefix(16))
+        let encryptedValue = Crypto().encryptString(plainText: thankYouTextView.text,
+                                                    key: userId16string)
         let thankYouData = ThankYouData(id: "",
                                         value: "",
                                         encryptedValue: encryptedValue,
                                         date: selectedDate,
                                         createTime: Date())
-        editThankYou(editThankYouData: thankYouData, uid: uid)
+        editThankYou(editThankYouData: thankYouData, userId: userId)
     }
 }
 
@@ -162,10 +163,10 @@ private extension EditThankYouViewController {
         thankYouTextView.resignFirstResponder()
     }
     
-    private func editThankYou(editThankYouData: ThankYouData, uid: String) {
+    private func editThankYou(editThankYouData: ThankYouData, userId: String) {
         guard let editingThankYouId = editingThankYouId else { return }
         isPosting = true
-        db.collection("users").document(uid).collection("thankYouList").document(editingThankYouId).updateData(editThankYouData.dictionary) { [weak self] error in
+        db.collection("users").document(userId).collection("thankYouList").document(editingThankYouId).updateData(editThankYouData.dictionary) { [weak self] error in
             guard let weakSelf = self else { return }
             weakSelf.isPosting = false
             if let error = error {
@@ -175,7 +176,7 @@ private extension EditThankYouViewController {
                 weakSelf.present(alert, animated: true, completion: nil)
                 return
             }
-            Analytics.logEvent(eventName: AnalyticsEventConst.editThankYou, userId: uid, targetDate: editThankYouData.date)
+            Analytics.logEvent(eventName: AnalyticsEventConst.editThankYou, userId: userId, targetDate: editThankYouData.date)
             weakSelf?.router?.dismiss()
         }
     }

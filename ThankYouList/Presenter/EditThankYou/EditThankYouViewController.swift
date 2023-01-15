@@ -24,7 +24,7 @@ private let rowComponentCornerRadius = CGFloat(16)
 class EditThankYouViewController: UIViewController {
     
     // MARK: - Properties
-    private var editingThankYouId: String?
+    var editingThankYouId: String?
     private var editingThankYou: ThankYouData?
     private var delegate = UIApplication.shared.delegate as! AppDelegate
     private var isPosting = false

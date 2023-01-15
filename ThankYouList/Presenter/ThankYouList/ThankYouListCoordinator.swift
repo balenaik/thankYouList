@@ -32,4 +32,11 @@ extension ThankYouListCoordinator: ThankYouListRouter {
         let coordinator = MyPageCoordinator(presentingViewController: viewController)
         coordinator.start()
     }
+
+    func presentEditThankYou(thankYouId: String) {
+        guard let viewController = viewController else { return }
+        let coordinator = EditThankYouCoordinator(thankYouId: thankYouId,
+                                                  presentingViewController: viewController)
+        coordinator.start()
+    }
 }

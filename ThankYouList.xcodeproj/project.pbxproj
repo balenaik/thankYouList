@@ -36,6 +36,7 @@
 		A83A361C296CE98600AD2790 /* MyPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83A361B296CE98600AD2790 /* MyPageCoordinator.swift */; };
 		A83A361E2972615900AD2790 /* AddThankYouCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83A361D2972615800AD2790 /* AddThankYouCoordinator.swift */; };
 		A83A36202972830A00AD2790 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83A361F2972830A00AD2790 /* Router.swift */; };
+		A83A362229737D2000AD2790 /* EditThankYouCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83A362129737D2000AD2790 /* EditThankYouCoordinator.swift */; };
 		A83D5F891F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */; };
 		A841B339213ED3DE00E8AB5B /* LocalizedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841B338213ED3DE00E8AB5B /* LocalizedLabel.swift */; };
 		A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84CBEE120F198E400CBA0AB /* ConstStruct.swift */; };
@@ -140,6 +141,7 @@
 		A83A361B296CE98600AD2790 /* MyPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCoordinator.swift; sourceTree = "<group>"; };
 		A83A361D2972615800AD2790 /* AddThankYouCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThankYouCoordinator.swift; sourceTree = "<group>"; };
 		A83A361F2972830A00AD2790 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		A83A362129737D2000AD2790 /* EditThankYouCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditThankYouCoordinator.swift; sourceTree = "<group>"; };
 		A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+RuntimeAttribute.swift"; sourceTree = "<group>"; };
 		A841B338213ED3DE00E8AB5B /* LocalizedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedLabel.swift; sourceTree = "<group>"; };
 		A84CBEE120F198E400CBA0AB /* ConstStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstStruct.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 			children = (
 				A80EAE5521F44DD7006B02E8 /* EditThankYouViewController.swift */,
 				A8114B0122E458C70024975A /* EditThankYou.storyboard */,
+				A83A362129737D2000AD2790 /* EditThankYouCoordinator.swift */,
 			);
 			path = EditThankYou;
 			sourceTree = "<group>";
@@ -743,6 +746,7 @@
 				A8D5DFE82450A4FD00F30205 /* UIImageView+URL.swift in Sources */,
 				A810D8E423483125008F2E74 /* String+Localizable.swift in Sources */,
 				A841B339213ED3DE00E8AB5B /* LocalizedLabel.swift in Sources */,
+				A83A362229737D2000AD2790 /* EditThankYouCoordinator.swift in Sources */,
 				A8D41E1C21E0E07B00A77B48 /* SettingDateView.swift in Sources */,
 				A88135102131435100BE8F48 /* EmptyView.swift in Sources */,
 				A80EAE5621F44DD7006B02E8 /* EditThankYouViewController.swift in Sources */,

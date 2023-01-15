@@ -17,6 +17,7 @@ private let skeletonedThankYouCellCount = 3
 
 protocol ThankYouListRouter {
     func presentMyPage()
+    func presentEditThankYou(thankYouId: String)
 }
 
 class ThankYouListViewController: UIViewController {
@@ -187,10 +188,7 @@ private extension ThankYouListViewController {
     }
 
     func presentEditThankYouViewController(thankYouId: String) {
-        guard let editThankYouViewController = EditThankYouViewController.createViewController(thankYouId: thankYouId) else {
-            return
-        }
-        present(editThankYouViewController, animated: true, completion: nil)
+        router?.presentEditThankYou(thankYouId: thankYouId)
     }
 
     func showDeleteConfirmationAlert(thankYouId: String) {

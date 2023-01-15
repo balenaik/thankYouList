@@ -21,9 +21,16 @@ class AddThankYouCoordinator: Coordinator {
         guard let viewController = R.storyboard.addThankYou.instantiateInitialViewController() else {
             return
         }
+        viewController.router = self
         let navigationController = UINavigationController(rootViewController: viewController)
         self.viewController = navigationController
         navigationController.modalPresentationStyle = .fullScreen
         routingType.previousViewController?.present(navigationController, animated: true)
+    }
+}
+
+extension AddThankYouCoordinator: AddThankYouRouter {
+    func dismiss() {
+        viewController?.dismiss(animated: true)
     }
 }

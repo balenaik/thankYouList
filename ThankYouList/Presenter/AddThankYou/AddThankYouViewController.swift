@@ -21,6 +21,10 @@ private let doneButtonDisabledBgColor = UIColor.primary.withAlphaComponent(0.38)
 
 private let rowComponentCornerRadius = CGFloat(16)
 
+protocol AddThankYouRouter {
+    func dismiss()
+}
+
 class AddThankYouViewController: UIViewController {
     
     // MARK: - Properties
@@ -32,6 +36,7 @@ class AddThankYouViewController: UIViewController {
         }
     }
     private var db = Firestore.firestore()
+    var router: AddThankYouRouter?
     
     // MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
@@ -68,7 +73,7 @@ class AddThankYouViewController: UIViewController {
 extension AddThankYouViewController {
     @IBAction func closeButtonDidTap(_ sender: Any) {
         guard !thankYouTextView.text.isEmpty else {
-            dismiss(animated: true)
+            router?.dismiss()
             return
         }
         showDiscardAlert()
@@ -157,7 +162,7 @@ private extension AddThankYouViewController {
                 return
             }
             Analytics.logEvent(eventName: AnalyticsEventConst.addThankYou, userId: uid, targetDate: thankYouData.date)
-            weakSelf.dismiss(animated: true, completion: nil)
+            weakSelf.router?.dismiss()
         }
     }
     
@@ -176,7 +181,7 @@ private extension AddThankYouViewController {
             preferredStyle: .alert)
         let discardAction = UIAlertAction(title: R.string.localizable.discard(),
                                           style: .destructive) { [weak self] _ in
-            self?.dismiss(animated: true)
+            self?.router?.dismiss()
         }
         let cancelButton = UIAlertAction(
             title: R.string.localizable.add_thank_you_discard_cancel(),

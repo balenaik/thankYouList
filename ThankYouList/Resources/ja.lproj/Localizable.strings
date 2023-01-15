@@ -23,19 +23,19 @@
 "add_thank_you_discard_title" = "Thank Youを破棄しますか？";
 "add_thank_you_discard_message" = "このThank Youを破棄してもよろしいですか？";
 "add_thank_you_discard_cancel" = "編集を続ける";
+"add_thank_you_add_error" = "作成できませんでした"; // TODO: Need to consider the wording later
 
 "edit_thank_you_title" = "Thank Youを編集";
 "edit_thank_you_text_view_placeholder" = "ありがとうの気持ちを書こう";
 "edit_thank_you_discard_title" = "変更を破棄しますか？";
 "edit_thank_you_discard_message" = "変更を破棄してもよろしいですか？";
 "edit_thank_you_discard_cancel" = "編集を続ける";
+"edit_thank_you_edit_error" = "編集できませんでした"; // TODO: Need to consider the wording later
 
 "Date" = "日付";
 "Delete Thank you" = "Thank youを削除";
 "Are you sure you want to delete this thank you?" = "本当にこのThank youを削除してよろしいですか?";
 "Cancel" = "キャンセル";
-"Failed to add" = "作成できませんでした";
-"Failed to edit" = "編集できませんでした";
 "Failed to delete" = "削除できませんでした";
 "Take a simple diary & be happier" = "日々の「ありがとう」を書いて\n幸せな気持ちになろう";
 

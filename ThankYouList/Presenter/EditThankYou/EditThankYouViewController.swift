@@ -21,7 +21,7 @@ private let doneButtonDisabledBgColor = UIColor.primary.withAlphaComponent(0.38)
 
 private let rowComponentCornerRadius = CGFloat(16)
 
-protocol EditThankYouRouter {
+protocol EditThankYouRouter: Router {
     func dismiss()
 }
 
@@ -175,12 +175,12 @@ private extension EditThankYouViewController {
                 self.isPosting = false
                 if let error = error {
                     print("Error adding document: \(error.localizedDescription)")
-                    let alert = UIAlertController(title: nil, message: NSLocalizedString("Failed to edit", comment: ""), preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
+                    self.router?.presentAlert(message: R.string.localizable.edit_thank_you_edit_error())
                     return
                 }
-                Analytics.logEvent(eventName: AnalyticsEventConst.editThankYou, userId: userId, targetDate: editThankYouData.date)
+                Analytics.logEvent(eventName: AnalyticsEventConst.editThankYou,
+                                   userId: userId,
+                                   targetDate: editThankYouData.date)
                 self.dismiss(animated: true, completion: nil)
             }
     }
@@ -194,20 +194,16 @@ private extension EditThankYouViewController {
     }
 
     func showDiscardAlert() {
-        let alertController = UIAlertController(
-            title: R.string.localizable.edit_thank_you_discard_title(),
-            message: R.string.localizable.edit_thank_you_discard_message(),
-            preferredStyle: .alert)
         let discardAction = UIAlertAction(title: R.string.localizable.discard(),
                                           style: .destructive) { [weak self] _ in
             self?.router?.dismiss()
         }
-        let cancelButton = UIAlertAction(
+        let cancelAction = UIAlertAction(
             title: R.string.localizable.edit_thank_you_discard_cancel(),
             style: .cancel)
-        alertController.addAction(discardAction)
-        alertController.addAction(cancelButton)
-        present(alertController, animated: true, completion: nil)
+        router?.presentAlert(title: R.string.localizable.edit_thank_you_discard_title(),
+                             message: R.string.localizable.edit_thank_you_discard_message(),
+                             actions: [discardAction, cancelAction])
     }
 }
 

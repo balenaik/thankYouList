@@ -21,6 +21,22 @@ class CalendarCoordinator: Coordinator {
         guard let viewController = R.storyboard.calendar.instantiateInitialViewController() else {
             return
         }
+        viewController.router = self
         routingType.navigationController?.pushViewController(viewController, animated: false)
+    }
+}
+
+extension CalendarCoordinator: CalendarRouter {
+    func presentMyPage() {
+        guard let viewController = viewController else { return }
+        let coordinator = MyPageCoordinator(presentingViewController: viewController)
+        coordinator.start()
+    }
+
+    func presentEditThankYou(thankYouId: String) {
+        guard let viewController = viewController else { return }
+        let coordinator = EditThankYouCoordinator(thankYouId: thankYouId,
+                                                  presentingViewController: viewController)
+        coordinator.start()
     }
 }

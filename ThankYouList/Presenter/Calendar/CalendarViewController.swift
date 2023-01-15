@@ -16,6 +16,11 @@ private let calendarDateFormat = "yyyy/MM/dd"
 private let calendarStartDate = "2016/01/01"
 private let calendarEndDate = "2025/12/31"
 
+protocol CalendarRouter: Router {
+    func presentMyPage()
+    func presentEditThankYou(thankYouId: String)
+}
+
 class CalendarViewController: UIViewController {
     
     // MARK: - Properties
@@ -28,6 +33,7 @@ class CalendarViewController: UIViewController {
     private var listViewMostTopConstant = CGFloat(0)
     private var isDraggingListView = false
     private let db = Firestore.firestore()
+    var router: CalendarRouter?
 
     // MARK: - IBOutlets
     @IBOutlet weak var contentView: UIView!
@@ -58,8 +64,7 @@ class CalendarViewController: UIViewController {
 // MARK: - IBActions
 extension CalendarViewController {
     @IBAction func tapUserIcon(_ sender: Any) {
-        guard let myPageViewController = MyPageViewController.createViewController() else { return }
-        present(myPageViewController, animated: true, completion: nil)
+        router?.presentMyPage()
     }
     
     @IBAction func draggedListView(_ sender: UIPanGestureRecognizer) {
@@ -130,10 +135,7 @@ private extension CalendarViewController {
     }
 
     func presentEditThankYouViewController(thankYouId: String) {
-        guard let editThankYouViewController = EditThankYouViewController.createViewController(thankYouId: thankYouId) else {
-            return
-        }
-        present(editThankYouViewController, animated: true, completion: nil)
+        router?.presentEditThankYou(thankYouId: thankYouId)
     }
     
     private func beginDraggingListView() {

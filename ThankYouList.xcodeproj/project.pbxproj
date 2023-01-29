@@ -67,6 +67,7 @@
 		A8851ECC27014FE1008B2D7A /* CenterRoundedTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8851ECB27014FE1008B2D7A /* CenterRoundedTabBar.swift */; };
 		A8851ECF2701560F008B2D7A /* MainTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8851ECE2701560F008B2D7A /* MainTabBar.storyboard */; };
 		A8959E8F245952260080C05A /* Array+Nullable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8959E8E245952260080C05A /* Array+Nullable.swift */; };
+		A895A56F297CCAAC0081E08F /* Publisher+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A895A56E297CCAAC0081E08F /* Publisher+Operators.swift */; };
 		A89AF9E72106905500FF6893 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AF9E62106905500FF6893 /* Crypto.swift */; };
 		A89CF876211C73AC00CA5518 /* SecretData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89CF875211C73AC00CA5518 /* SecretData.swift */; };
 		A8A06863244F444400839D14 /* MyPageProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A06861244F444300839D14 /* MyPageProfileCell.swift */; };
@@ -175,6 +176,7 @@
 		A8851ECB27014FE1008B2D7A /* CenterRoundedTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterRoundedTabBar.swift; sourceTree = "<group>"; };
 		A8851ECE2701560F008B2D7A /* MainTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainTabBar.storyboard; sourceTree = "<group>"; };
 		A8959E8E245952260080C05A /* Array+Nullable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Nullable.swift"; sourceTree = "<group>"; };
+		A895A56E297CCAAC0081E08F /* Publisher+Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Operators.swift"; sourceTree = "<group>"; };
 		A89AF9E62106905500FF6893 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		A89CF875211C73AC00CA5518 /* SecretData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretData.swift; sourceTree = "<group>"; };
 		A8A06861244F444300839D14 /* MyPageProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageProfileCell.swift; sourceTree = "<group>"; };
@@ -399,6 +401,7 @@
 				A8A85ABF25A60E8500182B99 /* UIImage+FromUIColor.swift */,
 				A82BBF77270C4FC4007E8CD9 /* UIFont+Theme.swift */,
 				A8E6CD0C29615BE00042AA81 /* Font+Theme.swift */,
+				A895A56E297CCAAC0081E08F /* Publisher+Operators.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -745,6 +748,7 @@
 				A83A361A296C537B00AD2790 /* ThankYouListCoordinator.swift in Sources */,
 				A83A36262973DFB000AD2790 /* ConfirmDeleteAccountCoordinator.swift in Sources */,
 				A83A36242973D4B300AD2790 /* CalendarCoordinator.swift in Sources */,
+				A895A56F297CCAAC0081E08F /* Publisher+Operators.swift in Sources */,
 				A8E6CD0B29601E150042AA81 /* Color+SetColor.swift in Sources */,
 				A8A06863244F444400839D14 /* MyPageProfileCell.swift in Sources */,
 				A83A36202972830A00AD2790 /* Router.swift in Sources */,

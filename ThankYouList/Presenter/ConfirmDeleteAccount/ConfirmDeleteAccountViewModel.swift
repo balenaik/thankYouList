@@ -29,11 +29,21 @@ private extension ConfirmDeleteAccountViewModel {
             .map { [userRepository] _ in
                 userRepository.getUserProfile().map { $0.email }
             }
+            .shareReplay(1)
 
         email
             .compactMap { $0 }
             .filter { !$0.isEmpty }
             .subscribe(outputs.emailTextFieldPlaceHolder)
+            .store(in: &cancellable)
+
+        email
+            .filter { $0 == nil || $0?.isEmpty ?? true }
+            .map { _ in AlertItem(
+                title: R.string.localizable.confirm_delete_account_error_title(),
+                message: R.string.localizable.confirm_delete_account_error_message())
+            }
+            .assign(to: \.alertItem, on: bindings)
             .store(in: &cancellable)
 
         inputs.cancelButtonDidTap
@@ -58,7 +68,8 @@ extension ConfirmDeleteAccountViewModel {
         @Published var isDeleteAccountButtonDisabled = true
     }
 
-    class Bindings {
+    class Bindings: ObservableObject {
         @Published var emailTextFieldText = ""
+        @Published var alertItem: AlertItem?
     }
 }

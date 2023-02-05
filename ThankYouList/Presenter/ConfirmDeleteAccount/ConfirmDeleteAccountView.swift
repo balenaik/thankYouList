@@ -21,8 +21,15 @@ private let componentsCornerRadius = CGFloat(16)
 struct ConfirmDeleteAccountView: View {
 
     @ObservedObject var viewModel: ConfirmDeleteAccountViewModel
+    // NOTE: this additional ObservedObject was needed to make .alert(item:) works, instead of simply referencing viewModel.bindings
+    @ObservedObject var viewModelBindings: ConfirmDeleteAccountViewModel.Bindings
 
     @Environment(\.presentationMode) var presentationMode
+
+    init(viewModel: ConfirmDeleteAccountViewModel) {
+        self.viewModel = viewModel
+        self.viewModelBindings = viewModel.bindings
+    }
 
     var body: some View {
         NavigationView {
@@ -69,6 +76,11 @@ struct ConfirmDeleteAccountView: View {
                                 .foregroundColor(.text)
                         }
                     }
+                }
+                .alert(item: $viewModelBindings.alertItem) { alertItem in
+                    Alert(title: Text(alertItem.title),
+                          message: Text(alertItem.message),
+                          dismissButton: .default(Text(R.string.localizable.ok())))
                 }
                 .onReceive(viewModel.outputs.dismissView) {
                     presentationMode.wrappedValue.dismiss()

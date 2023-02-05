@@ -32,6 +32,7 @@ private extension ConfirmDeleteAccountViewModel {
 
         email
             .compactMap { $0 }
+            .filter { !$0.isEmpty }
             .subscribe(outputs.emailTextFieldPlaceHolder)
             .store(in: &cancellable)
 

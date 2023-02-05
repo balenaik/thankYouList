@@ -23,4 +23,8 @@ extension Publisher {
             .map(resultSelector)
             .eraseToAnyPublisher()
     }
+
+    func shareReplay(_ bufferSize: Int) -> AnyPublisher<Output, Failure> {
+        return multicast(subject: ReplaySubject(bufferSize)).autoconnect().eraseToAnyPublisher()
+    }
 }

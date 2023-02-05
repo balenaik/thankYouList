@@ -15,14 +15,26 @@ class ConfirmDeleteAccountViewModel: ObservableObject {
     @Published var bindings = Bindings()
 
     private var cancellable = Set<AnyCancellable>()
+    private let userRepository: UserRepository
 
-    init() {
+    init(userRepository: UserRepository) {
+        self.userRepository = userRepository
         bind()
     }
 }
 
 private extension ConfirmDeleteAccountViewModel {
     func bind() {
+        let email = Just(())
+            .map { [userRepository] _ in
+                userRepository.getUserProfile().map { $0.email }
+            }
+
+        email
+            .compactMap { $0 }
+            .subscribe(outputs.emailTextFieldPlaceHolder)
+            .store(in: &cancellable)
+
         inputs.cancelButtonDidTap
             .sink { [weak self] _ in
                 self?.outputs.dismissView.send(())
@@ -41,6 +53,7 @@ extension ConfirmDeleteAccountViewModel {
     }
 
     class Outputs {
+        let emailTextFieldPlaceHolder = CurrentValueSubject<String, Never>("")
         let dismissView = PassthroughSubject<Void, Never>()
         @Published var isDeleteAccountButtonDisabled = true
     }

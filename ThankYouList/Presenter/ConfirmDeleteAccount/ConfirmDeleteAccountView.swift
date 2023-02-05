@@ -20,7 +20,7 @@ private let componentsCornerRadius = CGFloat(16)
 
 struct ConfirmDeleteAccountView: View {
 
-    @StateObject var viewModel: ConfirmDeleteAccountViewModel
+    @ObservedObject var viewModel: ConfirmDeleteAccountViewModel
 
     @Environment(\.presentationMode) var presentationMode
 

@@ -37,9 +37,8 @@ private extension ConfirmDeleteAccountViewModel {
             .store(in: &cancellable)
 
         inputs.cancelButtonDidTap
-            .sink { [weak self] _ in
-                self?.outputs.dismissView.send(())
-            }
+            .subscribe(outputs.dismissView)
+            .store(in: &cancellable)
             .store(in: &cancellable)
 
         bindings.$emailTextFieldText

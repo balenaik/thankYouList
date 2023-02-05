@@ -180,7 +180,7 @@ private extension ThankYouListViewController {
         let dateYearMonthString = String(thankYouData.date.toThankYouDateString().prefix(7))
         guard let sectionIndex = sections.firstIndex(where: {$0.sectionDateString == dateYearMonthString}),
             let thankYouIndex = sections[sectionIndex].thankYouList
-                .index(where: {$0.id == thankYouData.id}) else { return }
+                .firstIndex(where: {$0.id == thankYouData.id}) else { return }
         sections[sectionIndex].thankYouList.remove(at: thankYouIndex)
         if sections[sectionIndex].thankYouList.count == 0 {
             sections.remove(at: sectionIndex)

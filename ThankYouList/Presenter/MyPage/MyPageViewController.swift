@@ -64,7 +64,7 @@ private extension MyPageViewController {
     func loadMyProfile() {
         guard let user = Auth.auth().currentUser else { return }
         let profile = Profile(name: user.displayName ?? "",
-                              emailAddress: user.email ?? "",
+                              email: user.email ?? "",
                               imageUrl: user.providerData.first?.photoURL) // To get photoURL with Google Authentication since user.photoURL has 404 data
         self.profile = profile
     }

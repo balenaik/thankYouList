@@ -10,12 +10,12 @@ import Foundation
 
 class Profile {
     let name: String
-    let emailAddress: String
+    let email: String
     let imageUrl: URL?
 
-    init(name: String, emailAddress: String, imageUrl: URL?) {
+    init(name: String, email: String, imageUrl: URL?) {
         self.name = name
-        self.emailAddress = emailAddress
+        self.email = email
         self.imageUrl = imageUrl
     }
 }

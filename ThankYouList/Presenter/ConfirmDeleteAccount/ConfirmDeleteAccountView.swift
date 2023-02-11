@@ -10,9 +10,9 @@ import SwiftUI
 
 private let topSpacerHeight = CGFloat(8)
 
-private let textFieldPadding = CGFloat(16)
+private let textFieldPadding = CGFloat(12)
 
-private let buttonPadding = CGFloat(16)
+private let buttonPadding = CGFloat(12)
 
 private let componentsSideMargin = CGFloat(20)
 private let componentsVerticalMargin = CGFloat(8)

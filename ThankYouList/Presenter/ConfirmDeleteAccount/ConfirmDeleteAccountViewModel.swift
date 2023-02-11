@@ -8,6 +8,10 @@
 
 import Combine
 
+protocol ConfirmDeleteAccountRouter: Router {
+    func dismiss()
+}
+
 class ConfirmDeleteAccountViewModel: ObservableObject {
 
     let inputs = Inputs()
@@ -16,16 +20,19 @@ class ConfirmDeleteAccountViewModel: ObservableObject {
 
     private var cancellable = Set<AnyCancellable>()
     private let userRepository: UserRepository
+    private let router: ConfirmDeleteAccountRouter?
 
-    init(userRepository: UserRepository) {
+    init(userRepository: UserRepository,
+         router: ConfirmDeleteAccountRouter?) {
         self.userRepository = userRepository
+        self.router = router
         bind()
     }
 }
 
 private extension ConfirmDeleteAccountViewModel {
     func bind() {
-        let outputs = outputs
+        let router = router
 
         let email = Just(())
             .map { [userRepository] _ in
@@ -44,13 +51,13 @@ private extension ConfirmDeleteAccountViewModel {
             .map { _ in AlertItem(
                 title: R.string.localizable.confirm_delete_account_error_title(),
                 message: R.string.localizable.confirm_delete_account_error_message(),
-                okAction: { outputs.dismissView.send(()) })
+                okAction: { router?.dismiss() })
             }
             .assign(to: \.alertItem, on: bindings)
             .store(in: &cancellable)
 
         inputs.cancelButtonDidTap
-            .subscribe(outputs.dismissView)
+            .sink { router?.dismiss() }
             .store(in: &cancellable)
 
         inputs.deleteAccountButtonDidTap
@@ -79,7 +86,6 @@ extension ConfirmDeleteAccountViewModel {
 
     class Outputs {
         let emailTextFieldPlaceHolder = CurrentValueSubject<String, Never>("")
-        let dismissView = PassthroughSubject<Void, Never>()
         @Published var isDeleteAccountButtonDisabled = true
     }
 

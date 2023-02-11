@@ -24,8 +24,6 @@ struct ConfirmDeleteAccountView: View {
     // NOTE: this additional ObservedObject was needed to make .alert(item:) works, instead of simply referencing viewModel.bindings
     @ObservedObject var viewModelBindings: ConfirmDeleteAccountViewModel.Bindings
 
-    @Environment(\.presentationMode) var presentationMode
-
     init(viewModel: ConfirmDeleteAccountViewModel) {
         self.viewModel = viewModel
         self.viewModelBindings = viewModel.bindings
@@ -84,9 +82,6 @@ struct ConfirmDeleteAccountView: View {
                           dismissButton: .default(Text(R.string.localizable.ok()),
                                                   action: alertItem.okAction))
                 }
-                .onReceive(viewModel.outputs.dismissView) {
-                    presentationMode.wrappedValue.dismiss()
-                }
             }
         }
     }
@@ -124,7 +119,8 @@ private struct CancelButtonStyle: ButtonStyle {
 
 struct ConfirmDeleteAccountView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = ConfirmDeleteAccountViewModel(userRepository: DefaultUserRepository())
+        let viewModel = ConfirmDeleteAccountViewModel(userRepository: DefaultUserRepository(),
+                                                      router: nil)
         ConfirmDeleteAccountView(viewModel: viewModel)
     }
 }

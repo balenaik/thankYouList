@@ -25,6 +25,8 @@ class ConfirmDeleteAccountViewModel: ObservableObject {
 
 private extension ConfirmDeleteAccountViewModel {
     func bind() {
+        let outputs = outputs
+
         let email = Just(())
             .map { [userRepository] _ in
                 userRepository.getUserProfile().map { $0.email }
@@ -41,7 +43,8 @@ private extension ConfirmDeleteAccountViewModel {
             .filter { $0 == nil || $0?.isEmpty ?? true }
             .map { _ in AlertItem(
                 title: R.string.localizable.confirm_delete_account_error_title(),
-                message: R.string.localizable.confirm_delete_account_error_message())
+                message: R.string.localizable.confirm_delete_account_error_message(),
+                okAction: { outputs.dismissView.send(()) })
             }
             .assign(to: \.alertItem, on: bindings)
             .store(in: &cancellable)

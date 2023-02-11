@@ -12,4 +12,11 @@ struct AlertItem: Identifiable {
     let id = UUID()
     let title: String
     let message: String
+    let okAction: (() -> Void)?
+
+    init(title: String, message: String, okAction: (() -> Void)? = nil) {
+        self.title = title
+        self.message = message
+        self.okAction = okAction
+    }
 }

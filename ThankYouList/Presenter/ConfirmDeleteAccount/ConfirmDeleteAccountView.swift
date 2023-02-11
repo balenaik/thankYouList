@@ -80,7 +80,8 @@ struct ConfirmDeleteAccountView: View {
                 .alert(item: $viewModelBindings.alertItem) { alertItem in
                     Alert(title: Text(alertItem.title),
                           message: Text(alertItem.message),
-                          dismissButton: .default(Text(R.string.localizable.ok())))
+                          dismissButton: .default(Text(R.string.localizable.ok()),
+                                                  action: alertItem.okAction))
                 }
                 .onReceive(viewModel.outputs.dismissView) {
                     presentationMode.wrappedValue.dismiss()

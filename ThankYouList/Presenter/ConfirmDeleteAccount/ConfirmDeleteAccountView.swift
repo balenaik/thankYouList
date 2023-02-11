@@ -56,6 +56,7 @@ struct ConfirmDeleteAccountView: View {
                         .padding(.vertical, componentsVerticalMargin)
 
                     Button(R.string.localizable.confirm_delete_account_delete_account()) {
+                        viewModel.inputs.deleteAccountButtonDidTap.send(())
                     }
                     .disabled(viewModel.outputs.isDeleteAccountButtonDisabled)
                     .buttonStyle(DeleteAccountButtonStyle())

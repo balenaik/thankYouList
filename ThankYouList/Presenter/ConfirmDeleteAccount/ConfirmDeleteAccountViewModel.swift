@@ -52,6 +52,17 @@ private extension ConfirmDeleteAccountViewModel {
         inputs.cancelButtonDidTap
             .subscribe(outputs.dismissView)
             .store(in: &cancellable)
+
+        inputs.deleteAccountButtonDidTap
+            .flatMap { email }
+            .compactMap { $0 }
+            .withLatestFrom(bindings.$emailTextFieldText) { ($0, $1) }
+            .filter { $0.0.lowercased() != $0.1.lowercased() }
+            .map { registeredEmail, _ in AlertItem(
+                title: R.string.localizable.confirm_delete_account_email_not_match_title(),
+                message: R.string.localizable.confirm_delete_account_email_not_match_message(registeredEmail))
+            }
+            .assign(to: \.alertItem, on: bindings)
             .store(in: &cancellable)
 
         bindings.$emailTextFieldText
@@ -63,6 +74,7 @@ private extension ConfirmDeleteAccountViewModel {
 extension ConfirmDeleteAccountViewModel {
     class Inputs {
         let cancelButtonDidTap = PassthroughSubject<Void, Never>()
+        let deleteAccountButtonDidTap = PassthroughSubject<Void, Never>()
     }
 
     class Outputs {

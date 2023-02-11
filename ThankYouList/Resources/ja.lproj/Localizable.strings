@@ -57,6 +57,8 @@
 "confirm_delete_account_delete_account" = "アカウント削除";
 "confirm_delete_account_error_title" = "アカウント削除に失敗しました";
 "confirm_delete_account_error_message" = "恐れ入りますが、「フィードバック」メニューより開発者にご連絡ください。";
+"confirm_delete_account_email_not_match_title" = "メールアドレスが一致しません";
+"confirm_delete_account_email_not_match_message" = "登録メールアドレス%sを入力してください。";
 
 "ok" = "OK";
 "done" = "完了";

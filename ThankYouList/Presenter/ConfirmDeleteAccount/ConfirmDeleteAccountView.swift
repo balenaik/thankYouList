@@ -21,13 +21,8 @@ private let componentsCornerRadius = CGFloat(16)
 struct ConfirmDeleteAccountView: View {
 
     @ObservedObject var viewModel: ConfirmDeleteAccountViewModel
-    // NOTE: this additional ObservedObject was needed to make .alert(item:) works, instead of simply referencing viewModel.bindings
-    @ObservedObject var viewModelBindings: ConfirmDeleteAccountViewModel.Bindings
 
-    init(viewModel: ConfirmDeleteAccountViewModel) {
-        self.viewModel = viewModel
-        self.viewModelBindings = viewModel.bindings
-    }
+    @State private var alertItem: AlertItem?
 
     var body: some View {
         NavigationView {
@@ -76,7 +71,7 @@ struct ConfirmDeleteAccountView: View {
                         }
                     }
                 }
-                .alert(item: $viewModelBindings.alertItem) { alertItem in
+                .alert(item: $alertItem) { alertItem in
                     Alert(title: Text(alertItem.title),
                           message: Text(alertItem.message),
                           dismissButton: .default(Text(R.string.localizable.ok()),
@@ -85,6 +80,9 @@ struct ConfirmDeleteAccountView: View {
             }
         }
         .accentColor(.text) // Remove this when finish supporting iOS 14.x
+        .onReceive(viewModel.bindings.$alertItem) { alertItem in
+            self.alertItem = alertItem
+        }
     }
 }
 

@@ -40,7 +40,8 @@ struct ConfirmDeleteAccountView: View {
                         .padding(.horizontal, componentsSideMargin)
                         .padding(.vertical, componentsVerticalMargin)
 
-                    TextField(viewModel.outputs.emailTextFieldPlaceHolder.value, text: $viewModel.bindings.emailTextFieldText)
+                    TextField(viewModel.outputs.emailTextFieldPlaceHolder.value,
+                              text: $viewModel.bindings.emailTextFieldText)
                         .font(.regularAvenir(ofSize: 16))
                         .padding(.all, textFieldPadding)
                         .background(Color.white)
@@ -55,6 +56,7 @@ struct ConfirmDeleteAccountView: View {
                     .buttonStyle(DeleteAccountButtonStyle())
 
                     Button(R.string.localizable.cancel()) {
+                        viewModel.inputs.cancelButtonDidTap.send(())
                     }
                     .buttonStyle(CancelButtonStyle())
 

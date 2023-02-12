@@ -84,6 +84,7 @@ struct ConfirmDeleteAccountView: View {
                 }
             }
         }
+        .accentColor(.text) // Remove this when finish supporting iOS 14.x
     }
 }
 

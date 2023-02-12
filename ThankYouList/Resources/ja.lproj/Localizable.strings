@@ -40,8 +40,10 @@
 "Take a simple diary & be happier" = "日々の「ありがとう」を書いて\n幸せな気持ちになろう";
 
 "list_navigationbar_title" = "Thank You List";
+"list_tabbar_title" = "list";
 
 "calendar_navigationbar_title" = "Thank You Calendar";
+"calendar_tabbar_title" = "calendar";
 
 "mypage_title" = "アカウント";
 "mypage_rate" = "Thank You Listを評価する";

@@ -62,6 +62,7 @@
 "confirm_delete_account_error_message" = "Please ask the developer from 'Give us Feedback' menu.";
 "confirm_delete_account_email_not_match_title" = "Email address dosen't match your account";
 "confirm_delete_account_email_not_match_message" = "Please enter your registered email address: %s";
+"confirm_delete_account_completed_title" = "Your account has been deleted";
 
 "ok" = "OK";
 "done" = "Done";
@@ -70,6 +71,7 @@
 
 "error" = "Error";
 "error_authenticate" = "Authentication failed";
+"try_again_later_message" = "Please try again later";
 
 "date_format_thankyou_date" = "yyyy/MM/dd";
 "date_format_year_month" = "yyyy/MM";

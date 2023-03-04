@@ -27,4 +27,46 @@ extension Publisher {
     func shareReplay(_ bufferSize: Int) -> AnyPublisher<Output, Failure> {
         return multicast(subject: ReplaySubject(bufferSize)).autoconnect().eraseToAnyPublisher()
     }
+
+    func asResult() -> AnyPublisher<Result<Output, Failure>, Never> {
+        return map(Result.success)
+            .catch { Just(Result.failure($0)) }
+            .eraseToAnyPublisher()
+    }
+
+    func values<S, F: Error>()
+    -> AnyPublisher<S, Never> where Output == Result<S, F>, Failure == Never {
+        return filter { result in
+            switch result {
+            case .success: return true
+            case .failure: return false
+            }
+        }
+        .flatMap { result -> AnyPublisher<S, Never> in
+            switch result {
+            case .success(let value):
+                return Just(value).eraseToAnyPublisher()
+            case .failure:
+                return Empty().eraseToAnyPublisher() // Should not come
+            }
+        }.eraseToAnyPublisher()
+    }
+
+    func errors<S, F: Error>()
+    -> AnyPublisher<F, Never> where Output == Result<S, F>, Failure == Never {
+        return filter { result in
+            switch result {
+            case .success: return false
+            case .failure: return true
+            }
+        }
+        .flatMap { (result) -> AnyPublisher<F, Never> in
+            switch result {
+            case .success:
+                return Empty().eraseToAnyPublisher() // Should not come
+            case .failure(let error):
+                return Just(error).eraseToAnyPublisher()
+            }
+        }.eraseToAnyPublisher()
+    }
 }

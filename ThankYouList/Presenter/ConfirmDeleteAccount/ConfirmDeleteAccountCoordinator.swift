@@ -31,4 +31,12 @@ extension ConfirmDeleteAccountCoordinator: ConfirmDeleteAccountRouter {
     func dismiss() {
         viewController?.dismiss(animated: true)
     }
+
+    func switchToLogin() {
+        guard let window = UIApplication.shared.windows.first(where: \.isKeyWindow) else {
+            return
+        }
+        let loginCoordinator = LoginCoordinator(window: window)
+        loginCoordinator.start()
+    }
 }

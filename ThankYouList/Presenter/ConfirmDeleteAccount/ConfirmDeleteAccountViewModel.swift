@@ -10,6 +10,7 @@ import Combine
 
 protocol ConfirmDeleteAccountRouter: Router {
     func dismiss()
+    func switchToLogin()
 }
 
 class ConfirmDeleteAccountViewModel: ObservableObject {

@@ -75,7 +75,7 @@ struct ConfirmDeleteAccountView: View {
                 }
                 .alert(item: $alertItem) { alertItem in
                     Alert(title: Text(alertItem.title),
-                          message: Text(alertItem.message),
+                          message: Text(alertItem.message ?? ""),
                           dismissButton: .default(Text(R.string.localizable.ok()),
                                                   action: alertItem.okAction))
                 }

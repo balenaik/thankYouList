@@ -11,11 +11,11 @@ import Foundation
 struct AlertItem: Identifiable {
     let id = UUID()
     let title: String
-    let message: String
+    let message: String?
     let okAction: (() -> Void)
 
     init(title: String,
-         message: String,
+         message: String?,
          okAction: @escaping (() -> Void) = {}) {
         self.title = title
         self.message = message

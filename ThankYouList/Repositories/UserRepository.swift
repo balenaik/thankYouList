@@ -7,10 +7,16 @@
 //
 
 import FirebaseAuth
+import Combine
+
+enum UserRepositoryError: Error {
+    case currentUserNotExist
+}
 
 protocol UserRepository {
     func isLoggedIn() -> Bool
     func getUserProfile() -> Profile?
+    func deleteAccount() -> Future<Void, Error>
 }
 
 struct DefaultUserRepository: UserRepository {
@@ -30,5 +36,21 @@ struct DefaultUserRepository: UserRepository {
                               email: email ?? "",
                               imageUrl: user.providerData.first?.photoURL) // To get photoURL with Google Authentication since user.photoURL has 404 data
         return profile
+    }
+
+    func deleteAccount() -> Future<Void, Error> {
+        return Future<Void, Error> { promise in
+            guard let user = Auth.auth().currentUser else {
+                promise(.failure(UserRepositoryError.currentUserNotExist))
+                return
+            }
+            user.delete() { error in
+                if let error = error {
+                    promise(.failure(error))
+                    return
+                }
+                promise(.success(()))
+            }
+        }
     }
 }

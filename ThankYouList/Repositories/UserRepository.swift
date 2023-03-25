@@ -8,14 +8,22 @@
 
 import FirebaseAuth
 import Combine
+import GoogleSignIn
 
 enum UserRepositoryError: Error {
     case currentUserNotExist
 }
 
+enum AuthProvider: String {
+    case facebook = "facebook.com"
+    case google = "google.com"
+    case apple = "apple.com"
+}
+
 protocol UserRepository {
     func isLoggedIn() -> Bool
     func getUserProfile() -> Profile?
+    func reAuthenticateToProviderIfNeeded() -> Future<Void, Error>
     func deleteAccount() -> Future<Void, Error>
 }
 
@@ -52,5 +60,31 @@ struct DefaultUserRepository: UserRepository {
                 promise(.success(()))
             }
         }
+    }
+
+    func reAuthenticateToProviderIfNeeded() -> Future<Void, Error> {
+        return Future<Void, Error> { promise in
+            let authProvider = self.getUsersAuthProvider()
+            switch authProvider {
+            case .google:
+                GIDSignIn.sharedInstance.restorePreviousSignIn { _, error in
+                    if let error = error {
+                        promise(.failure(error))
+                        return
+                    }
+                    promise(.success(()))
+                }
+            default:
+                return
+            }
+        }
+    }
+}
+
+private extension DefaultUserRepository {
+    func getUsersAuthProvider() -> AuthProvider? {
+        guard let providerId = Auth.auth().currentUser?.providerData.first?.providerID,
+              let authProvider = AuthProvider(rawValue: providerId) else { return nil }
+        return authProvider
     }
 }

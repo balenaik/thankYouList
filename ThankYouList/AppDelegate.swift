@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Combine
 import Firebase
 import FBSDKCoreKit
 
@@ -15,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var selectedDate: Date?
+
+    private let userRepository: UserRepository = DefaultUserRepository()
+    private var cancellable = Set<AnyCancellable>()
     
     override init() {
         super.init()
@@ -27,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         setupInitialSelectedDate()
         setupNavigationBar()
+        reAuthenticateToProvider()
 
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
@@ -80,6 +85,12 @@ private extension AppDelegate {
         UINavigationBar.appearance().largeTitleTextAttributes = [
             .font : UIFont.boldAvenir(ofSize: 32)
         ]
+    }
+
+    func reAuthenticateToProvider() {
+        userRepository.reAuthenticateToProviderIfNeeded()
+            .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
+            .store(in: &cancellable)
     }
 }
 

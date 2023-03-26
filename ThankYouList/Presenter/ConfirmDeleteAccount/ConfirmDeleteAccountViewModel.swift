@@ -79,6 +79,31 @@ private extension ConfirmDeleteAccountViewModel {
             .assign(to: \.alertItem, on: bindings)
             .store(in: &cancellable)
 
+        let deleteAccountResult = textFieldMatchesEmailResult
+            .filter { $0 }
+            .flatMap { [userRepository] _ -> AnyPublisher<Result<Void, Error>, Never> in
+                userRepository.deleteAccount().asResult()
+            }
+            .share()
+
+        deleteAccountResult
+            .values()
+            .map { _ in
+                AlertItem(title: R.string.localizable.confirm_delete_account_completed_title(),
+                          message: nil) {
+                    router?.switchToLogin()
+                }
+            }
+            .assign(to: \.alertItem, on: bindings)
+            .store(in: &cancellable)
+
+        deleteAccountResult
+            .errors()
+            .map { _ in AlertItem(title: R.string.localizable.confirm_delete_account_error_title(),
+                                  message: R.string.localizable.try_again_later_message()) }
+            .assign(to: \.alertItem, on: bindings)
+            .store(in: &cancellable)
+
         bindings.$emailTextFieldText
             .map { !$0.isValidMail }
             .assign(to: &outputs.$isDeleteAccountButtonDisabled)

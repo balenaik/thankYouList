@@ -67,6 +67,7 @@
 		A8851ECC27014FE1008B2D7A /* CenterRoundedTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8851ECB27014FE1008B2D7A /* CenterRoundedTabBar.swift */; };
 		A8851ECF2701560F008B2D7A /* MainTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8851ECE2701560F008B2D7A /* MainTabBar.storyboard */; };
 		A892354229C0BF460093A92F /* String+Nonce.swift in Sources */ = {isa = PBXBuildFile; fileRef = A892354129C0BF460093A92F /* String+Nonce.swift */; };
+		A892354429D008E60093A92F /* AppleAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A892354329D008E60093A92F /* AppleAuthenticationManager.swift */; };
 		A8959E8F245952260080C05A /* Array+Nullable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8959E8E245952260080C05A /* Array+Nullable.swift */; };
 		A895A56F297CCAAC0081E08F /* Publisher+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A895A56E297CCAAC0081E08F /* Publisher+Operators.swift */; };
 		A895A571297D77C20081E08F /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A895A570297D77C20081E08F /* AlertItem.swift */; };
@@ -180,6 +181,7 @@
 		A8851ECB27014FE1008B2D7A /* CenterRoundedTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterRoundedTabBar.swift; sourceTree = "<group>"; };
 		A8851ECE2701560F008B2D7A /* MainTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainTabBar.storyboard; sourceTree = "<group>"; };
 		A892354129C0BF460093A92F /* String+Nonce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Nonce.swift"; sourceTree = "<group>"; };
+		A892354329D008E60093A92F /* AppleAuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthenticationManager.swift; sourceTree = "<group>"; };
 		A8959E8E245952260080C05A /* Array+Nullable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Nullable.swift"; sourceTree = "<group>"; };
 		A895A56E297CCAAC0081E08F /* Publisher+Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Operators.swift"; sourceTree = "<group>"; };
 		A895A570297D77C20081E08F /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 		A8114AF522DB97410024975A /* Supports */ = {
 			isa = PBXGroup;
 			children = (
+				A892354329D008E60093A92F /* AppleAuthenticationManager.swift */,
 				A8E6CD13296BA31A0042AA81 /* Coordinator.swift */,
 				A8F649B61EEB96D100D6BA84 /* GlobalThankYouData.swift */,
 				A83A361F2972830A00AD2790 /* Router.swift */,
@@ -783,6 +786,7 @@
 				A8B6EE8E2201E41D00908D51 /* String+ToDate.swift in Sources */,
 				A824150F205CE28C00172587 /* LoginViewController.swift in Sources */,
 				A8DABBD627173FA20086B2E8 /* ViewConst.swift in Sources */,
+				A892354429D008E60093A92F /* AppleAuthenticationManager.swift in Sources */,
 				A8114B10230180EF0024975A /* ListScrollIndicator.swift in Sources */,
 				A89AF9E72106905500FF6893 /* Crypto.swift in Sources */,
 				A881350C211FD40C00BE8F48 /* BalloonView.swift in Sources */,

@@ -9,9 +9,12 @@
 import FirebaseAuth
 import Combine
 import GoogleSignIn
+import FBSDKCoreKit
 
 enum UserRepositoryError: Error {
     case currentUserNotExist
+    case authProviderNotFound
+    case tokenNotFound
 }
 
 enum AuthProvider: String {
@@ -28,6 +31,8 @@ protocol UserRepository {
 }
 
 struct DefaultUserRepository: UserRepository {
+    private let appleAuthenticationManager = AppleAuthenticationManager()
+
     func isLoggedIn() -> Bool {
         return Auth.auth().currentUser != nil
     }
@@ -86,5 +91,37 @@ private extension DefaultUserRepository {
         guard let providerId = Auth.auth().currentUser?.providerData.first?.providerID,
               let authProvider = AuthProvider(rawValue: providerId) else { return nil }
         return authProvider
+    }
+
+    func getCredential() -> Future<AuthCredential, Error> {
+        guard let provider = getUsersAuthProvider() else {
+            return Fail(error: UserRepositoryError.authProviderNotFound)
+                .asFuture()
+        }
+        let authCredential: AuthCredential
+        switch provider {
+        case .google:
+            let authentication = GIDSignIn.sharedInstance.currentUser?.authentication
+            guard let idToken = authentication?.idToken,
+                  let accessToken = authentication?.accessToken else {
+                return Fail(error: UserRepositoryError.tokenNotFound)
+                    .asFuture()
+            }
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                           accessToken: accessToken)
+            authCredential = credential
+        case .facebook:
+            guard let tokenString = AccessToken.current?.tokenString else {
+                return Fail(error: UserRepositoryError.tokenNotFound)
+                    .asFuture()
+            }
+            let credential = FacebookAuthProvider.credential(withAccessToken: tokenString)
+            authCredential = credential
+        case .apple:
+            return appleAuthenticationManager
+                .signInWithApple()
+                .asFuture()
+        }
+        return Just(authCredential).setFailureType(to: Error.self).asFuture()
     }
 }

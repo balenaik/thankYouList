@@ -51,22 +51,6 @@ struct DefaultUserRepository: UserRepository {
         return profile
     }
 
-    func deleteAccount() -> Future<Void, Error> {
-        return Future<Void, Error> { promise in
-            guard let user = Auth.auth().currentUser else {
-                promise(.failure(UserRepositoryError.currentUserNotExist))
-                return
-            }
-            user.delete() { error in
-                if let error = error {
-                    promise(.failure(error))
-                    return
-                }
-                promise(.success(()))
-            }
-        }
-    }
-
     func reAuthenticateToProviderIfNeeded() -> Future<Void, Error> {
         return Future<Void, Error> { promise in
             let authProvider = self.getUsersAuthProvider()
@@ -83,6 +67,15 @@ struct DefaultUserRepository: UserRepository {
                 return
             }
         }
+    }
+
+    func deleteAccount() -> Future<Void, Error> {
+        return getCredential()
+            .flatMap { credential -> Future<Void, Error> in
+                self.reauthenticateAndDeleteAccount(credential: credential)
+            }
+            .eraseToAnyPublisher()
+            .asFuture()
     }
 }
 
@@ -123,5 +116,24 @@ private extension DefaultUserRepository {
                 .asFuture()
         }
         return Just(authCredential).setFailureType(to: Error.self).asFuture()
+    }
+
+    func reauthenticateAndDeleteAccount(credential: AuthCredential) -> Future<Void, Error> {
+        guard let user = Auth.auth().currentUser else {
+            return Fail(error: UserRepositoryError.currentUserNotExist).asFuture()
+        }
+        return Future<Void, Error> { promise in
+            user.reauthenticate(with: credential) { _, reAuthenticateError in
+                if let reAuthenticateError = reAuthenticateError {
+                    promise(.failure(reAuthenticateError))
+                }
+                user.delete() { deleteError in
+                    if let deleteError = deleteError {
+                        promise(.failure(deleteError))
+                    }
+                    promise(.success(()))
+                }
+            }
+        }
     }
 }

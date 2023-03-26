@@ -61,12 +61,18 @@ private extension ConfirmDeleteAccountViewModel {
             .sink { router?.dismiss() }
             .store(in: &cancellable)
 
-        inputs.deleteAccountButtonDidTap
+        let textFieldMatchesEmailResult = inputs.deleteAccountButtonDidTap
             .flatMap { email }
             .compactMap { $0 }
             .withLatestFrom(bindings.$emailTextFieldText) { ($0, $1) }
-            .filter { $0.0.lowercased() != $0.1.lowercased() }
-            .map { registeredEmail, _ in AlertItem(
+            .map { $0.0.lowercased() == $0.1.lowercased() }
+            .share()
+
+        textFieldMatchesEmailResult
+            .filter { !$0 }
+            .flatMap { _ in email }
+            .compactMap { $0 }
+            .map { registeredEmail in AlertItem(
                 title: R.string.localizable.confirm_delete_account_email_not_match_title(),
                 message: R.string.localizable.confirm_delete_account_email_not_match_message(registeredEmail))
             }

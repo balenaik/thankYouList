@@ -36,19 +36,22 @@ private extension ConfirmDeleteAccountViewModel {
         let router = router
 
         let email = Just(())
-            .map { [userRepository] _ in
-                userRepository.getUserProfile().map { $0.email }
+            .flatMap { [userRepository] _ in
+                userRepository.getUserProfile()
             }
+            .map(\.email)
+            .asResult()
+            .eraseToAnyPublisher()
             .shareReplay(1)
 
         email
-            .compactMap { $0 }
+            .values()
             .filter { !$0.isEmpty }
             .subscribe(outputs.emailTextFieldPlaceHolder)
             .store(in: &cancellable)
 
-        email
-            .filter { $0 == nil || $0?.isEmpty ?? true }
+        email.values().filter { $0.isEmpty }.map { _ in }
+            .merge(with: email.errors().map { _ in })
             .map { _ in AlertItem(
                 title: R.string.localizable.confirm_delete_account_error_title(),
                 message: R.string.localizable.confirm_delete_account_error_message(),
@@ -62,7 +65,7 @@ private extension ConfirmDeleteAccountViewModel {
             .store(in: &cancellable)
 
         let textFieldMatchesEmailResult = inputs.deleteAccountButtonDidTap
-            .flatMap { email }
+            .flatMap { email.values() }
             .compactMap { $0 }
             .withLatestFrom(bindings.$emailTextFieldText) { ($0, $1) }
             .map { $0.0.lowercased() == $0.1.lowercased() }
@@ -70,7 +73,7 @@ private extension ConfirmDeleteAccountViewModel {
 
         textFieldMatchesEmailResult
             .filter { !$0 }
-            .flatMap { _ in email }
+            .flatMap { _ in email.values() }
             .compactMap { $0 }
             .map { registeredEmail in AlertItem(
                 title: R.string.localizable.confirm_delete_account_email_not_match_title(),

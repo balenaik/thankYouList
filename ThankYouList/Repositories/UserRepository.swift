@@ -25,7 +25,7 @@ enum AuthProvider: String {
 
 protocol UserRepository {
     func isLoggedIn() -> Bool
-    func getUserProfile() -> Profile?
+    func getUserProfile() -> Future<Profile, Error>
     func reAuthenticateToProviderIfNeeded() -> Future<Void, Error>
     func deleteAccount() -> Future<Void, Error>
 }
@@ -37,18 +37,22 @@ struct DefaultUserRepository: UserRepository {
         return Auth.auth().currentUser != nil
     }
 
-    func getUserProfile() -> Profile? {
-        guard let user = Auth.auth().currentUser else { return nil }
-        var email = user.email
-        if email == nil {
-            // For accounts whose email is not correctly registered to Firebase
-            // e.g. The same email has been already registered in another account by other method
-            email = user.providerData.first?.email
+    func getUserProfile() -> Future<Profile, Error> {
+        return Future<Profile, Error> { promise in
+            guard let user = Auth.auth().currentUser else {
+                return promise(.failure(UserRepositoryError.currentUserNotExist))
+            }
+            var email = user.email
+            if email == nil {
+                // For accounts whose email is not correctly registered to Firebase
+                // e.g. The same email has been already registered in another account by other method
+                email = user.providerData.first?.email
+            }
+            let profile = Profile(name: user.displayName ?? "",
+                                  email: email ?? "",
+                                  imageUrl: user.providerData.first?.photoURL) // To get photoURL with Google Authentication since user.photoURL has 404 data
+            return promise(.success(profile))
         }
-        let profile = Profile(name: user.displayName ?? "",
-                              email: email ?? "",
-                              imageUrl: user.providerData.first?.photoURL) // To get photoURL with Google Authentication since user.photoURL has 404 data
-        return profile
     }
 
     func reAuthenticateToProviderIfNeeded() -> Future<Void, Error> {

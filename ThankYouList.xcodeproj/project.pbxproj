@@ -67,6 +67,7 @@
 		A8851EA326FC1522008B2D7A /* imageLaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = A8851EA226FC1522008B2D7A /* imageLaunchScreen.png */; };
 		A8851ECC27014FE1008B2D7A /* CenterRoundedTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8851ECB27014FE1008B2D7A /* CenterRoundedTabBar.swift */; };
 		A8851ECF2701560F008B2D7A /* MainTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8851ECE2701560F008B2D7A /* MainTabBar.storyboard */; };
+		A890D3B929D823A30066D098 /* TestScheduler+Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A890D3B829D823A30066D098 /* TestScheduler+Observer.swift */; };
 		A892354229C0BF460093A92F /* String+Nonce.swift in Sources */ = {isa = PBXBuildFile; fileRef = A892354129C0BF460093A92F /* String+Nonce.swift */; };
 		A892354429D008E60093A92F /* AppleAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A892354329D008E60093A92F /* AppleAuthenticationManager.swift */; };
 		A892355A29D818500093A92F /* EntwineTest in Frameworks */ = {isa = PBXBuildFile; productRef = A892355929D818500093A92F /* EntwineTest */; };
@@ -194,6 +195,7 @@
 		A8851EA226FC1522008B2D7A /* imageLaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imageLaunchScreen.png; sourceTree = "<group>"; };
 		A8851ECB27014FE1008B2D7A /* CenterRoundedTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterRoundedTabBar.swift; sourceTree = "<group>"; };
 		A8851ECE2701560F008B2D7A /* MainTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainTabBar.storyboard; sourceTree = "<group>"; };
+		A890D3B829D823A30066D098 /* TestScheduler+Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TestScheduler+Observer.swift"; sourceTree = "<group>"; };
 		A892354129C0BF460093A92F /* String+Nonce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Nonce.swift"; sourceTree = "<group>"; };
 		A892354329D008E60093A92F /* AppleAuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthenticationManager.swift; sourceTree = "<group>"; };
 		A892354929D731720093A92F /* ThankYouListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThankYouListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -499,6 +501,22 @@
 				A841B338213ED3DE00E8AB5B /* LocalizedLabel.swift */,
 			);
 			path = ThankYouList;
+			sourceTree = "<group>";
+		};
+		A890D3B729D823560066D098 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A890D3B829D823A30066D098 /* TestScheduler+Observer.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A892354A29D731730093A92F /* ThankYouListTests */ = {
+			isa = PBXGroup;
+			children = (
+				A890D3B729D823560066D098 /* Extensions */,
+			);
+			path = ThankYouListTests;
 			sourceTree = "<group>";
 		};
 		A8B6EE8F2201E49C00908D51 /* Resources */ = {
@@ -927,6 +945,14 @@
 				A83D5F891F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift in Sources */,
 				A8DABC24271ACE4E0086B2E8 /* BottomHalfSheetMenuViewController.swift in Sources */,
 				A8A068662450A15900839D14 /* Profile.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A892354529D731720093A92F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A890D3B929D823A30066D098 /* TestScheduler+Observer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

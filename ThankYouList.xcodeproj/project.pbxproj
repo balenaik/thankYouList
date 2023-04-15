@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		888DB934A4AE8CBBD75F7D39 /* libPods-ThankYouListTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E50183A58E3BE5286274D4 /* libPods-ThankYouListTests.a */; };
 		A808C616220FACF6004162E4 /* SmallListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A808C615220FACF6004162E4 /* SmallListView.swift */; };
 		A808C618220FAD06004162E4 /* SmallListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A808C617220FAD06004162E4 /* SmallListView.xib */; };
 		A80BBB97245889A600CB032B /* AnalyticsConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80BBB96245889A600CB032B /* AnalyticsConst.swift */; };
@@ -116,8 +117,20 @@
 		A8FF6A202829C40500CF816F /* BottomHalfSheetDatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FF6A1F2829C40400CF816F /* BottomHalfSheetDatePickerViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A892354D29D731730093A92F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A8831CBB1E9CFE6B00F3CA0A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A8831CC21E9CFE6B00F3CA0A;
+			remoteInfo = ThankYouList;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		14D49C15FD4089235E28B5ED /* Pods_ThankYouList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThankYouList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		497D645982F8305FDC379821 /* Pods-ThankYouListTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouListTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouListTests/Pods-ThankYouListTests.debug.xcconfig"; sourceTree = "<group>"; };
+		60AC734479A45E3CB2416DB5 /* Pods-ThankYouListTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouListTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouListTests/Pods-ThankYouListTests.release.xcconfig"; sourceTree = "<group>"; };
 		A015AC112826D3ABF5A416EC /* Pods-ThankYouList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.release.xcconfig"; sourceTree = "<group>"; };
 		A808C615220FACF6004162E4 /* SmallListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallListView.swift; sourceTree = "<group>"; };
 		A808C617220FAD06004162E4 /* SmallListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallListView.xib; sourceTree = "<group>"; };
@@ -182,6 +195,7 @@
 		A8851ECE2701560F008B2D7A /* MainTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainTabBar.storyboard; sourceTree = "<group>"; };
 		A892354129C0BF460093A92F /* String+Nonce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Nonce.swift"; sourceTree = "<group>"; };
 		A892354329D008E60093A92F /* AppleAuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthenticationManager.swift; sourceTree = "<group>"; };
+		A892354929D731720093A92F /* ThankYouListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThankYouListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8959E8E245952260080C05A /* Array+Nullable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Nullable.swift"; sourceTree = "<group>"; };
 		A895A56E297CCAAC0081E08F /* Publisher+Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Operators.swift"; sourceTree = "<group>"; };
 		A895A570297D77C20081E08F /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
@@ -230,6 +244,7 @@
 		A8F649B61EEB96D100D6BA84 /* GlobalThankYouData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalThankYouData.swift; sourceTree = "<group>"; };
 		A8FF6A1F2829C40400CF816F /* BottomHalfSheetDatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomHalfSheetDatePickerViewController.swift; sourceTree = "<group>"; };
 		BA00FC82559EE1AEA8CE9577 /* Pods-ThankYouList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.debug.xcconfig"; sourceTree = "<group>"; };
+		C9E50183A58E3BE5286274D4 /* libPods-ThankYouListTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ThankYouListTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +256,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A892354629D731720093A92F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				888DB934A4AE8CBBD75F7D39 /* libPods-ThankYouListTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -249,6 +272,8 @@
 			children = (
 				BA00FC82559EE1AEA8CE9577 /* Pods-ThankYouList.debug.xcconfig */,
 				A015AC112826D3ABF5A416EC /* Pods-ThankYouList.release.xcconfig */,
+				497D645982F8305FDC379821 /* Pods-ThankYouListTests.debug.xcconfig */,
+				60AC734479A45E3CB2416DB5 /* Pods-ThankYouListTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -437,6 +462,7 @@
 		A8831CBA1E9CFE6B00F3CA0A = {
 			isa = PBXGroup;
 			children = (
+				A892354A29D731730093A92F /* ThankYouListTests */,
 				A8831CC41E9CFE6B00F3CA0A /* Products */,
 				A8831CC51E9CFE6B00F3CA0A /* ThankYouList */,
 				21D7F665A4A556DF37EC30AD /* Pods */,
@@ -448,6 +474,7 @@
 			isa = PBXGroup;
 			children = (
 				A8831CC31E9CFE6B00F3CA0A /* ThankYouList.app */,
+				A892354929D731720093A92F /* ThankYouListTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -534,6 +561,7 @@
 			isa = PBXGroup;
 			children = (
 				14D49C15FD4089235E28B5ED /* Pods_ThankYouList.framework */,
+				C9E50183A58E3BE5286274D4 /* libPods-ThankYouListTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -561,13 +589,35 @@
 			productReference = A8831CC31E9CFE6B00F3CA0A /* ThankYouList.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A892354829D731720093A92F /* ThankYouListTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A892354F29D731730093A92F /* Build configuration list for PBXNativeTarget "ThankYouListTests" */;
+			buildPhases = (
+				16D046CD44A3E97563048322 /* [CP] Check Pods Manifest.lock */,
+				A892354529D731720093A92F /* Sources */,
+				A892354629D731720093A92F /* Frameworks */,
+				A892354729D731720093A92F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A892354E29D731730093A92F /* PBXTargetDependency */,
+			);
+			name = ThankYouListTests;
+			packageProductDependencies = (
+				A892355929D818500093A92F /* EntwineTest */,
+			);
+			productName = ThankYouListTests;
+			productReference = A892354929D731720093A92F /* ThankYouListTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		A8831CBB1E9CFE6B00F3CA0A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Aika Yamada";
 				TargetAttributes = {
@@ -580,6 +630,10 @@
 								enabled = 1;
 							};
 						};
+					};
+					A892354829D731720093A92F = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = A8831CC21E9CFE6B00F3CA0A;
 					};
 				};
 			};
@@ -599,6 +653,7 @@
 			projectRoot = "";
 			targets = (
 				A8831CC21E9CFE6B00F3CA0A /* ThankYouList */,
+				A892354829D731720093A92F /* ThankYouListTests */,
 			);
 		};
 /* End PBXProject section */
@@ -634,9 +689,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A892354729D731720093A92F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		16D046CD44A3E97563048322 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ThankYouListTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4A818A52C71909CB7AAB9067 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -842,6 +926,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A892354E29D731730093A92F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A8831CC21E9CFE6B00F3CA0A /* ThankYouList */;
+			targetProxy = A892354D29D731730093A92F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A8AC1BCE1FAE00B600D1B25B /* Localizable.strings */ = {
@@ -1052,6 +1144,63 @@
 			};
 			name = Release;
 		};
+		A892355029D731730093A92F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 497D645982F8305FDC379821 /* Pods-ThankYouListTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6JDKJKDJ28;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "${SRCROOT}/Pods/Firebase/CoreOnly/Sources";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.balenaik.ThankYouListTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ThankYouList.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ThankYouList";
+			};
+			name = Debug;
+		};
+		A892355129D731730093A92F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 60AC734479A45E3CB2416DB5 /* Pods-ThankYouListTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6JDKJKDJ28;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "${SRCROOT}/Pods/Firebase/CoreOnly/Sources";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.balenaik.ThankYouListTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ThankYouList.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ThankYouList";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1069,6 +1218,15 @@
 			buildConfigurations = (
 				A8831CD61E9CFE6B00F3CA0A /* Debug */,
 				A8831CD71E9CFE6B00F3CA0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A892354F29D731730093A92F /* Build configuration list for PBXNativeTarget "ThankYouListTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A892355029D731730093A92F /* Debug */,
+				A892355129D731730093A92F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

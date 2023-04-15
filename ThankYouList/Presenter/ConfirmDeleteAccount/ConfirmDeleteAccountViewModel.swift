@@ -36,6 +36,7 @@ private extension ConfirmDeleteAccountViewModel {
         let router = router
 
         let email = Just(())
+            .merge(with: inputs.onAppear)
             .flatMap { [userRepository] _ in
                 userRepository.getUserProfile()
             }
@@ -115,6 +116,7 @@ private extension ConfirmDeleteAccountViewModel {
 
 extension ConfirmDeleteAccountViewModel {
     class Inputs {
+        let onAppear = PassthroughSubject<Void, Never>() // Only for testing purpose
         let cancelButtonDidTap = PassthroughSubject<Void, Never>()
         let deleteAccountButtonDidTap = PassthroughSubject<Void, Never>()
     }

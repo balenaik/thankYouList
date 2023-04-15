@@ -36,3 +36,7 @@ target 'ThankYouList' do
   pod 'FloatingPanel', '2.5.5'
 
 end
+
+target 'ThankYouListTests' do
+  pod 'R.swift', '7.2.4'
+end

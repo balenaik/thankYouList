@@ -70,6 +70,8 @@
 		A890D3B929D823A30066D098 /* TestScheduler+Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A890D3B829D823A30066D098 /* TestScheduler+Observer.swift */; };
 		A892354229C0BF460093A92F /* String+Nonce.swift in Sources */ = {isa = PBXBuildFile; fileRef = A892354129C0BF460093A92F /* String+Nonce.swift */; };
 		A892354429D008E60093A92F /* AppleAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A892354329D008E60093A92F /* AppleAuthenticationManager.swift */; };
+		A892354C29D731730093A92F /* ConfirmDeleteAccountViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A892354B29D731730093A92F /* ConfirmDeleteAccountViewModelTests.swift */; };
+		A892355429D73E3D0093A92F /* MockUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A892355329D73E3D0093A92F /* MockUserRepository.swift */; };
 		A892355A29D818500093A92F /* EntwineTest in Frameworks */ = {isa = PBXBuildFile; productRef = A892355929D818500093A92F /* EntwineTest */; };
 		A8959E8F245952260080C05A /* Array+Nullable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8959E8E245952260080C05A /* Array+Nullable.swift */; };
 		A895A56F297CCAAC0081E08F /* Publisher+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A895A56E297CCAAC0081E08F /* Publisher+Operators.swift */; };
@@ -199,6 +201,8 @@
 		A892354129C0BF460093A92F /* String+Nonce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Nonce.swift"; sourceTree = "<group>"; };
 		A892354329D008E60093A92F /* AppleAuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthenticationManager.swift; sourceTree = "<group>"; };
 		A892354929D731720093A92F /* ThankYouListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThankYouListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A892354B29D731730093A92F /* ConfirmDeleteAccountViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDeleteAccountViewModelTests.swift; sourceTree = "<group>"; };
+		A892355329D73E3D0093A92F /* MockUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserRepository.swift; sourceTree = "<group>"; };
 		A8959E8E245952260080C05A /* Array+Nullable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Nullable.swift"; sourceTree = "<group>"; };
 		A895A56E297CCAAC0081E08F /* Publisher+Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Operators.swift"; sourceTree = "<group>"; };
 		A895A570297D77C20081E08F /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
@@ -515,8 +519,18 @@
 			isa = PBXGroup;
 			children = (
 				A890D3B729D823560066D098 /* Extensions */,
+				A892355229D73E290093A92F /* Mock */,
+				A892354B29D731730093A92F /* ConfirmDeleteAccountViewModelTests.swift */,
 			);
 			path = ThankYouListTests;
+			sourceTree = "<group>";
+		};
+		A892355229D73E290093A92F /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				A892355329D73E3D0093A92F /* MockUserRepository.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		A8B6EE8F2201E49C00908D51 /* Resources */ = {
@@ -952,7 +966,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A892355429D73E3D0093A92F /* MockUserRepository.swift in Sources */,
 				A890D3B929D823A30066D098 /* TestScheduler+Observer.swift in Sources */,
+				A892354C29D731730093A92F /* ConfirmDeleteAccountViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

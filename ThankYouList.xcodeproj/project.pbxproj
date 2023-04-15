@@ -69,6 +69,7 @@
 		A8851ECF2701560F008B2D7A /* MainTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8851ECE2701560F008B2D7A /* MainTabBar.storyboard */; };
 		A892354229C0BF460093A92F /* String+Nonce.swift in Sources */ = {isa = PBXBuildFile; fileRef = A892354129C0BF460093A92F /* String+Nonce.swift */; };
 		A892354429D008E60093A92F /* AppleAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A892354329D008E60093A92F /* AppleAuthenticationManager.swift */; };
+		A892355A29D818500093A92F /* EntwineTest in Frameworks */ = {isa = PBXBuildFile; productRef = A892355929D818500093A92F /* EntwineTest */; };
 		A8959E8F245952260080C05A /* Array+Nullable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8959E8E245952260080C05A /* Array+Nullable.swift */; };
 		A895A56F297CCAAC0081E08F /* Publisher+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A895A56E297CCAAC0081E08F /* Publisher+Operators.swift */; };
 		A895A571297D77C20081E08F /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A895A570297D77C20081E08F /* AlertItem.swift */; };
@@ -260,6 +261,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A892355A29D818500093A92F /* EntwineTest in Frameworks */,
 				888DB934A4AE8CBBD75F7D39 /* libPods-ThankYouListTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -648,6 +650,9 @@
 				ja,
 			);
 			mainGroup = A8831CBA1E9CFE6B00F3CA0A;
+			packageReferences = (
+				A892355829D818500093A92F /* XCRemoteSwiftPackageReference "Entwine" */,
+			);
 			productRefGroup = A8831CC41E9CFE6B00F3CA0A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1232,6 +1237,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A892355829D818500093A92F /* XCRemoteSwiftPackageReference "Entwine" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tcldr/Entwine";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A892355929D818500093A92F /* EntwineTest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A892355829D818500093A92F /* XCRemoteSwiftPackageReference "Entwine" */;
+			productName = EntwineTest;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A8831CBB1E9CFE6B00F3CA0A /* Project object */;
 }

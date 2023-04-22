@@ -33,6 +33,7 @@ class CalendarViewController: UIViewController {
     private var listViewMostTopConstant = CGFloat(0)
     private var isDraggingListView = false
     private let db = Firestore.firestore()
+    private let analyticsManager = DefaultAnalyticsManager()
     var router: CalendarRouter?
 
     // MARK: - IBOutlets
@@ -218,9 +219,10 @@ private extension CalendarViewController {
                     return
                 }
                 if let thankYouData = self.thankYouDataSingleton.thankYouDataList.first(where: { $0.id == thankYouId }) {
-                    Analytics.logEvent(eventName: AnalyticsEventConst.deleteThankYou,
-                                       userId: userId,
-                                       targetDate: thankYouData.date)
+                    self.analyticsManager.logEvent(
+                        eventName: AnalyticsEventConst.deleteThankYou,
+                        userId: userId,
+                        targetDate: thankYouData.date)
                 }
             })
     }
@@ -366,7 +368,10 @@ extension CalendarViewController: SmallListViewDelegate {
     func smallListViewBecomeFullScreen(_ view: SmallListView) {
         guard let user = Auth.auth().currentUser,
             let selectedDate = calendarView.selectedDates.getSafely(at: 0) else { return }
-        Analytics.logEvent(eventName: AnalyticsEventConst.calendarSmallListViewFullScreen, userId: user.uid, targetDate: selectedDate)
+        analyticsManager.logEvent(
+            eventName: AnalyticsEventConst.calendarSmallListViewFullScreen,
+            userId: user.uid,
+            targetDate: selectedDate)
     }
 }
 

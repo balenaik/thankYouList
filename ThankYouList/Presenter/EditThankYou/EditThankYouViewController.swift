@@ -38,6 +38,7 @@ class EditThankYouViewController: UIViewController {
         }
     }
     private var db = Firestore.firestore()
+    private let analyticsManager = DefaultAnalyticsManager()
     var router: EditThankYouRouter?
     
     // MARK: - IBOutlets
@@ -178,9 +179,9 @@ private extension EditThankYouViewController {
                     self.router?.presentAlert(message: R.string.localizable.edit_thank_you_edit_error())
                     return
                 }
-                Analytics.logEvent(eventName: AnalyticsEventConst.editThankYou,
-                                   userId: userId,
-                                   targetDate: editThankYouData.date)
+                self.analyticsManager.logEvent(eventName: AnalyticsEventConst.editThankYou,
+                                               userId: userId,
+                                               targetDate: editThankYouData.date)
                 self.dismiss(animated: true, completion: nil)
             }
     }

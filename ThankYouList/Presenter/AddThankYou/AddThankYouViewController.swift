@@ -36,6 +36,7 @@ class AddThankYouViewController: UIViewController {
         }
     }
     private var db = Firestore.firestore()
+    private let analyticsManager = DefaultAnalyticsManager()
     var router: AddThankYouRouter?
     
     // MARK: - IBOutlets
@@ -161,9 +162,9 @@ private extension AddThankYouViewController {
                     self.router?.presentAlert(message: R.string.localizable.add_thank_you_add_error())
                     return
                 }
-                Analytics.logEvent(eventName: AnalyticsEventConst.addThankYou,
-                                   userId: userId,
-                                   targetDate: thankYouData.date)
+                self.analyticsManager.logEvent(eventName: AnalyticsEventConst.addThankYou,
+                                               userId: userId,
+                                               targetDate: thankYouData.date)
                 self.router?.dismiss()
             }
     }

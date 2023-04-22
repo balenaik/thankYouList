@@ -20,9 +20,9 @@ class MyPageViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     private var tableItems = [[TableItem]]()
-
     private var profile: Profile?
 
+    private let analyticsManager = DefaultAnalyticsManager()
     var router: MyPageRouter?
 
     override func viewDidLoad() {
@@ -71,7 +71,7 @@ private extension MyPageViewController {
 
     func logEvent() {
         guard let user = Auth.auth().currentUser else { return }
-        Analytics.logEvent(eventName: AnalyticsEventConst.showMyPage, userId: user.uid)
+        analyticsManager.logEvent(eventName: AnalyticsEventConst.showMyPage, userId: user.uid)
     }
 
     func showLogoutAlert() {

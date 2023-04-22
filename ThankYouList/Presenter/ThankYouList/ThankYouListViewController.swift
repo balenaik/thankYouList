@@ -30,6 +30,7 @@ class ThankYouListViewController: UIViewController {
     }
 
     private var db = Firestore.firestore()
+    private let analyticsManager = DefaultAnalyticsManager()
     private var thankYouDataSingleton = GlobalThankYouData.sharedInstance
     private var sections = [Section]()
     private var estimatedRowHeights = [String : CGFloat]()
@@ -220,9 +221,10 @@ private extension ThankYouListViewController {
                     return
                 }
                 if let thankYouData = self.thankYouDataSingleton.thankYouDataList.first(where: { $0.id == thankYouId }) {
-                    Analytics.logEvent(eventName: AnalyticsEventConst.deleteThankYou,
-                                       userId: userId,
-                                       targetDate: thankYouData.date)
+                    self.analyticsManager.logEvent(
+                        eventName: AnalyticsEventConst.deleteThankYou,
+                        userId: userId,
+                        targetDate: thankYouData.date)
                 }
             })
     }
@@ -313,7 +315,9 @@ extension ThankYouListViewController: UITableViewDelegate {
 extension ThankYouListViewController: ListScrollIndicatorDelegate {
     func listScrollIndicatorDidBeginDraggingMovableIcon(_ indicator: ListScrollIndicator) {
         guard let user = Auth.auth().currentUser else { return }
-        Analytics.logEvent(eventName: AnalyticsEventConst.startDraggingListScrollIndicatorMovableIcon, userId: user.uid)
+        analyticsManager.logEvent(
+            eventName: AnalyticsEventConst.startDraggingListScrollIndicatorMovableIcon,
+            userId: user.uid)
     }
 }
 

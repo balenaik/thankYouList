@@ -63,6 +63,8 @@
 		A8831CC71E9CFE6B00F3CA0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8831CC61E9CFE6B00F3CA0A /* AppDelegate.swift */; };
 		A8831CC91E9CFE6B00F3CA0A /* ThankYouListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8831CC81E9CFE6B00F3CA0A /* ThankYouListViewController.swift */; };
 		A8831CCE1E9CFE6B00F3CA0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */; };
+		A883EE5929EB6DCE002DCBCA /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A883EE5829EB6DCE002DCBCA /* AnalyticsManager.swift */; };
+		A883EE5B29F03524002DCBCA /* MockAnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A883EE5A29F03524002DCBCA /* MockAnalyticsManager.swift */; };
 		A8851E9C26FA752B008B2D7A /* LoginContinueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8851E9B26FA752B008B2D7A /* LoginContinueButton.swift */; };
 		A8851EA326FC1522008B2D7A /* imageLaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = A8851EA226FC1522008B2D7A /* imageLaunchScreen.png */; };
 		A8851ECC27014FE1008B2D7A /* CenterRoundedTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8851ECB27014FE1008B2D7A /* CenterRoundedTabBar.swift */; };
@@ -193,6 +195,8 @@
 		A8831CC81E9CFE6B00F3CA0A /* ThankYouListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouListViewController.swift; sourceTree = "<group>"; };
 		A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8831CD21E9CFE6B00F3CA0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A883EE5829EB6DCE002DCBCA /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
+		A883EE5A29F03524002DCBCA /* MockAnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAnalyticsManager.swift; sourceTree = "<group>"; };
 		A8851E9B26FA752B008B2D7A /* LoginContinueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginContinueButton.swift; sourceTree = "<group>"; };
 		A8851EA226FC1522008B2D7A /* imageLaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imageLaunchScreen.png; sourceTree = "<group>"; };
 		A8851ECB27014FE1008B2D7A /* CenterRoundedTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterRoundedTabBar.swift; sourceTree = "<group>"; };
@@ -299,6 +303,7 @@
 		A8114AF522DB97410024975A /* Supports */ = {
 			isa = PBXGroup;
 			children = (
+				A883EE5829EB6DCE002DCBCA /* AnalyticsManager.swift */,
 				A892354329D008E60093A92F /* AppleAuthenticationManager.swift */,
 				A8E6CD13296BA31A0042AA81 /* Coordinator.swift */,
 				A8F649B61EEB96D100D6BA84 /* GlobalThankYouData.swift */,
@@ -528,6 +533,7 @@
 		A892355229D73E290093A92F /* Mock */ = {
 			isa = PBXGroup;
 			children = (
+				A883EE5A29F03524002DCBCA /* MockAnalyticsManager.swift */,
 				A892355329D73E3D0093A92F /* MockUserRepository.swift */,
 			);
 			path = Mock;
@@ -791,7 +797,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/R.generated.swift",
+				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -940,6 +946,7 @@
 				A8B6EE952205902100908D51 /* ListSectionHeaderView.swift in Sources */,
 				A895A571297D77C20081E08F /* AlertItem.swift in Sources */,
 				A80EAE5821F4C0B4006B02E8 /* UIView+Highlight.swift in Sources */,
+				A883EE5929EB6DCE002DCBCA /* AnalyticsManager.swift in Sources */,
 				A851944C272BFACE003631EE /* BottomHalfSheetMenuItemView.swift in Sources */,
 				A8E6CD122965B2F20042AA81 /* UserRepository.swift in Sources */,
 				A80EAE5A21FD5F87006B02E8 /* ThankYouCell.swift in Sources */,
@@ -968,6 +975,7 @@
 			files = (
 				A892355429D73E3D0093A92F /* MockUserRepository.swift in Sources */,
 				A890D3B929D823A30066D098 /* TestScheduler+Observer.swift in Sources */,
+				A883EE5B29F03524002DCBCA /* MockAnalyticsManager.swift in Sources */,
 				A892354C29D731730093A92F /* ConfirmDeleteAccountViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -48,7 +48,8 @@ struct DefaultUserRepository: UserRepository {
                 // e.g. The same email has been already registered in another account by other method
                 email = user.providerData.first?.email
             }
-            let profile = Profile(name: user.displayName ?? "",
+            let profile = Profile(id: user.uid,
+                                  name: user.displayName ?? "",
                                   email: email ?? "",
                                   imageUrl: user.providerData.first?.photoURL) // To get photoURL with Google Authentication since user.photoURL has 404 data
             return promise(.success(profile))

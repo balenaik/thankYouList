@@ -30,7 +30,7 @@ final class ConfirmDeleteAccountViewModelTests: XCTestCase {
     func test_ifTheUserOpensTheScreen_whenHisEmailIsRegistered__itShouldShowHisEmailAsTextFieldPlaceHolder() {
         let mockEmail = "mock@email.com"
         userRepository.getUserProfile_result =
-            Just(Profile(name: "", email: mockEmail, imageUrl: nil))
+            Just(Profile(id: "", name: "", email: mockEmail, imageUrl: nil))
             .setFailureType(to: Error.self).asFuture()
 
         let emailTextFieldPlaceHolder = scheduler.createObserver(from: viewModel.outputs.emailTextFieldPlaceHolder)
@@ -50,7 +50,7 @@ final class ConfirmDeleteAccountViewModelTests: XCTestCase {
 
     func test_ifTheUserOpensTheScreen_whenHisEmailIsEmpty__itShouldShowErrorAlert__andWhenOkButtonTapped__itShouldDismissScreen() {
         userRepository.getUserProfile_result =
-            Just(Profile(name: "", email: "", imageUrl: nil))
+            Just(Profile(id: "", name: "", email: "", imageUrl: nil))
             .setFailureType(to: Error.self).asFuture()
 
         let alertItemTitle = scheduler
@@ -82,7 +82,7 @@ final class ConfirmDeleteAccountViewModelTests: XCTestCase {
     func test_ifTheUserOpensTheScreen_whenHisEmailIsRegistered_inputOtherThanHisEmailOnTextField_andTapDeleteButton__itShouldShowErrorAlert() {
         let userEmail = "user@email.com"
         userRepository.getUserProfile_result =
-            Just(Profile(name: "", email: userEmail, imageUrl: nil))
+            Just(Profile(id: "", name: "", email: userEmail, imageUrl: nil))
             .setFailureType(to: Error.self).asFuture()
 
         let alertItemTitle = scheduler
@@ -131,7 +131,7 @@ final class ConfirmDeleteAccountViewModelTests: XCTestCase {
     func test_ifTheUserOpensTheScreen_whenHisEmailIsRegistered_inputHisEmailOnTextField_tapDeleteButton_andDeleteSucceeded__itShouldShowAlert__andWhenOkButtonTapped__itShouldSwitchToLogin() {
         let userEmail = "user@email.com"
         userRepository.getUserProfile_result =
-            Just(Profile(name: "", email: userEmail, imageUrl: nil))
+            Just(Profile(id: "", name: "", email: userEmail, imageUrl: nil))
             .setFailureType(to: Error.self).asFuture()
         userRepository.deleteAccount_result = Just(())
             .setFailureType(to: Error.self).asFuture()
@@ -169,7 +169,7 @@ final class ConfirmDeleteAccountViewModelTests: XCTestCase {
     func test_ifTheUserOpensTheScreen_whenHisEmailIsRegistered_inputHisEmailOnTextField_tapDeleteButton_andDeleteFailed__itShouldShowAlert() {
         let userEmail = "user@email.com"
         userRepository.getUserProfile_result =
-            Just(Profile(name: "", email: userEmail, imageUrl: nil))
+            Just(Profile(id: "", name: "", email: userEmail, imageUrl: nil))
             .setFailureType(to: Error.self).asFuture()
         userRepository.deleteAccount_result = Fail(error: UserRepositoryError.authProviderNotFound)
             .asFuture()
@@ -201,7 +201,7 @@ final class ConfirmDeleteAccountViewModelTests: XCTestCase {
 
     func test_ifTheUserOpensTheScreen_whenHisEmailIsRegistered_andInputHisEmailOnTextField__itShouldEnableDeleteAccountButton_onlyWhenTheInputEmailIsValid_otherwiseDisableTheButton() {
         userRepository.getUserProfile_result =
-            Just(Profile(name: "", email: "user@email.com", imageUrl: nil))
+            Just(Profile(id: "", name: "", email: "user@email.com", imageUrl: nil))
             .setFailureType(to: Error.self).asFuture()
 
         let isDeleteAccountButtonDisabled = scheduler

@@ -16,7 +16,7 @@ class MockUserRepository: UserRepository {
         isLoggedIn_result
     }
 
-    var getUserProfile_result = Just(Profile(name: "", email: "", imageUrl: nil))
+    var getUserProfile_result = Just(Profile(id: "", name: "", email: "", imageUrl: nil))
         .setFailureType(to: Error.self).asFuture()
     func getUserProfile() -> Future<Profile, Error> {
         getUserProfile_result

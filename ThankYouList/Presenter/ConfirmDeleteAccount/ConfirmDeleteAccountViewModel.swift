@@ -35,24 +35,25 @@ private extension ConfirmDeleteAccountViewModel {
     func bind() {
         let router = router
 
-        let email = Just(())
+        let profile = Just(())
             .merge(with: inputs.onAppear)
             .flatMap { [userRepository] _ in
                 userRepository.getUserProfile()
             }
-            .map(\.email)
             .asResult()
             .eraseToAnyPublisher()
             .shareReplay(1)
 
-        email
+        profile
             .values()
+            .map(\.email)
             .filter { !$0.isEmpty }
             .subscribe(outputs.emailTextFieldPlaceHolder)
             .store(in: &cancellable)
 
-        email.values().filter { $0.isEmpty }.map { _ in }
-            .merge(with: email.errors().map { _ in })
+        profile.values()
+            .map(\.email).filter { $0.isEmpty }.map { _ in }
+            .merge(with: profile.errors().map { _ in })
             .map { _ in AlertItem(
                 title: R.string.localizable.confirm_delete_account_error_title(),
                 message: R.string.localizable.confirm_delete_account_error_message(),
@@ -66,16 +67,16 @@ private extension ConfirmDeleteAccountViewModel {
             .store(in: &cancellable)
 
         let textFieldMatchesEmailResult = inputs.deleteAccountButtonDidTap
-            .flatMap { email.values() }
-            .compactMap { $0 }
+            .flatMap { profile.values() }
+            .compactMap { $0.email }
             .withLatestFrom(bindings.$emailTextFieldText) { ($0, $1) }
             .map { $0.0.lowercased() == $0.1.lowercased() }
             .share()
 
         textFieldMatchesEmailResult
             .filter { !$0 }
-            .flatMap { _ in email.values() }
-            .compactMap { $0 }
+            .flatMap { _ in profile.values() }
+            .compactMap { $0.email }
             .map { registeredEmail in AlertItem(
                 title: R.string.localizable.confirm_delete_account_email_not_match_title(),
                 message: R.string.localizable.confirm_delete_account_email_not_match_message(registeredEmail))

@@ -15,14 +15,17 @@ final class ConfirmDeleteAccountViewModelTests: XCTestCase {
 
     private var viewModel: ConfirmDeleteAccountViewModel!
     private var userRepository: MockUserRepository!
+    private var analyticsManager: MockAnalyticsManager!
     private var router: MockConfirmDeleteAccouuntRouter!
 
     private var scheduler: TestScheduler!
 
     override func setUp() {
         userRepository = MockUserRepository()
+        analyticsManager = MockAnalyticsManager()
         router = MockConfirmDeleteAccouuntRouter()
         viewModel = ConfirmDeleteAccountViewModel(userRepository: userRepository,
+                                                  analyticsManager: analyticsManager,
                                                   router: router)
         scheduler = TestScheduler()
     }
@@ -164,6 +167,29 @@ final class ConfirmDeleteAccountViewModelTests: XCTestCase {
             (20, .input(nil))
         ])
         XCTAssertEqual(self.router.switchToLogin_calledCount, 1)
+    }
+
+    func test_ifTheUserOpensTheScreen_whenHisEmailIsRegistered_inputHisEmailOnTextField_tapDeleteButton_andDeleteSucceeded__itShouldPostAnalyticsEvent() {
+        let userEmail = "user@email.com"
+        let userId = "userId"
+        userRepository.getUserProfile_result =
+            Just(Profile(id: userId, name: "", email: userEmail, imageUrl: nil))
+            .setFailureType(to: Error.self).asFuture()
+        userRepository.deleteAccount_result = Just(())
+            .setFailureType(to: Error.self).asFuture()
+
+        scheduler.schedule(after: 10) {
+            self.viewModel.inputs.onAppear.send(())
+        }
+        scheduler.schedule(after: 20) {
+            self.viewModel.bindings.emailTextFieldText = userEmail
+            self.viewModel.inputs.deleteAccountButtonDidTap.send(())
+        }
+
+        scheduler.resume()
+
+        XCTAssertEqual(analyticsManager.logEvent_eventName, AnalyticsEventConst.deleteAccount)
+        XCTAssertEqual(analyticsManager.logEvent_userId, userId)
     }
 
     func test_ifTheUserOpensTheScreen_whenHisEmailIsRegistered_inputHisEmailOnTextField_tapDeleteButton_andDeleteFailed__itShouldShowAlert() {

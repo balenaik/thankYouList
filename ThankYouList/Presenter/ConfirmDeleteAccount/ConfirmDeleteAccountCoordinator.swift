@@ -18,6 +18,7 @@ class ConfirmDeleteAccountCoordinator: Coordinator {
 
     func start() {
         let viewModel = ConfirmDeleteAccountViewModel(userRepository: DefaultUserRepository(),
+                                                      analyticsManager: DefaultAnalyticsManager(),
                                                       router: self)
         let view = UIHostingController(
             rootView: ConfirmDeleteAccountView(viewModel: viewModel)

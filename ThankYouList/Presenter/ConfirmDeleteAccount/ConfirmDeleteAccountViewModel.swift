@@ -21,11 +21,14 @@ class ConfirmDeleteAccountViewModel: ObservableObject {
 
     private var cancellable = Set<AnyCancellable>()
     private let userRepository: UserRepository
+    private let analyticsManager: AnalyticsManager
     private let router: ConfirmDeleteAccountRouter?
 
     init(userRepository: UserRepository,
+         analyticsManager: AnalyticsManager,
          router: ConfirmDeleteAccountRouter?) {
         self.userRepository = userRepository
+        self.analyticsManager = analyticsManager
         self.router = router
         bind()
     }
@@ -93,6 +96,11 @@ private extension ConfirmDeleteAccountViewModel {
 
         deleteAccountResult
             .values()
+            .flatMap { _ in profile.values() }
+            .handleEvents(receiveOutput: { [analyticsManager] profile in
+                analyticsManager.logEvent(eventName: AnalyticsEventConst.deleteAccount,
+                                          userId: profile.id)
+            })
             .map { _ in
                 AlertItem(title: R.string.localizable.confirm_delete_account_completed_title(),
                           message: nil) {

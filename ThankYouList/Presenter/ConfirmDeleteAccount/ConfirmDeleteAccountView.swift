@@ -121,6 +121,7 @@ private struct CancelButtonStyle: ButtonStyle {
 struct ConfirmDeleteAccountView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = ConfirmDeleteAccountViewModel(userRepository: DefaultUserRepository(),
+                                                      analyticsManager: DefaultAnalyticsManager(),
                                                       router: nil)
         ConfirmDeleteAccountView(viewModel: viewModel)
     }

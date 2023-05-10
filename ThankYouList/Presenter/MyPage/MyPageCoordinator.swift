@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 private let appStoreReviewUrl = "https://apps.apple.com/app/id1271631134?action=write-review"
 
@@ -47,6 +48,12 @@ extension MyPageCoordinator: MyPageRouter {
     func openAppStoreReview() {
         guard let appStoreUrl = URL(string: appStoreReviewUrl) else { return }
         UIApplication.shared.open(appStoreUrl)
+    }
+
+    func presentPrivacyPolicy() {
+        guard let privacyPolicyUrl = URL(string: R.string.localizable.privacy_policy_url()) else { return }
+        let safariViewController = SFSafariViewController(url: privacyPolicyUrl)
+        viewController?.present(safariViewController, animated: true)
     }
 
     func presentConfirmDeleteAccount() {

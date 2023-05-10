@@ -14,6 +14,7 @@ protocol MyPageRouter: Router {
     func dismiss()
     func switchToLogin()
     func openAppStoreReview()
+    func presentPrivacyPolicy()
     func presentConfirmDeleteAccount()
 }
 
@@ -78,6 +79,10 @@ private extension MyPageViewController {
 
     func showRating() {
         router?.openAppStoreReview()
+    }
+
+    func showPrivacyPolicy() {
+        router?.presentPrivacyPolicy()
     }
 
     func showLogoutAlert() {
@@ -166,6 +171,8 @@ extension MyPageViewController: UITableViewDelegate {
         switch item.item {
         case .rate:
             showRating()
+        case .privacyPolicy:
+            showPrivacyPolicy()
         case .logout:
             showLogoutAlert()
         case .deleteAccount:

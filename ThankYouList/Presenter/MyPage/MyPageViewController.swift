@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 import Firebase
+import MessageUI
+
+private let feedbackTo = "balenaik+thankyoulist-feedback@gmail.com"
+private let feedbackSubject = "Thank You List Feedback"
 
 protocol MyPageRouter: Router {
     func dismiss()
@@ -16,6 +20,8 @@ protocol MyPageRouter: Router {
     func openAppStoreReview()
     func presentPrivacyPolicy()
     func presentConfirmDeleteAccount()
+    func openDefaultMailAppIfAvailable(to: String, subject: String) -> Bool
+    func openGmailAppIfAvailable(to: String, subject: String) -> Bool
 }
 
 class MyPageViewController: UIViewController {
@@ -79,6 +85,22 @@ private extension MyPageViewController {
 
     func showRating() {
         router?.openAppStoreReview()
+    }
+
+    func showFeedbackAlert() {
+        guard let router = router else { return }
+        if router.openDefaultMailAppIfAvailable(to: feedbackTo,
+                                                subject: feedbackSubject) {
+            return
+        }
+        if router.openGmailAppIfAvailable(to: feedbackTo,
+                                          subject: feedbackSubject) {
+            return
+        }
+        router.presentAlert(
+            title: R.string.localizable.mypage_feedback_unable_to_send_email_title(),
+            message: R.string.localizable.mypage_feedback_unable_to_send_email_message()
+        )
     }
 
     func showPrivacyPolicy() {
@@ -171,6 +193,8 @@ extension MyPageViewController: UITableViewDelegate {
         switch item.item {
         case .rate:
             showRating()
+        case .feedback:
+            showFeedbackAlert()
         case .privacyPolicy:
             showPrivacyPolicy()
         case .logout:
@@ -178,7 +202,15 @@ extension MyPageViewController: UITableViewDelegate {
         case .deleteAccount:
             showDeleteAccountAlert()
         default:
-            return
+            break
         }
+    }
+}
+
+extension MyPageViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController,
+                               didFinishWith result: MFMailComposeResult,
+                               error: Error?) {
+        controller.dismiss(animated: true)
     }
 }

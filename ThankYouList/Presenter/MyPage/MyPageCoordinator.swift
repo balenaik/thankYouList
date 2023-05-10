@@ -8,6 +8,7 @@
 
 import UIKit
 import SafariServices
+import MessageUI
 
 private let appStoreReviewUrl = "https://apps.apple.com/app/id1271631134?action=write-review"
 
@@ -60,5 +61,31 @@ extension MyPageCoordinator: MyPageRouter {
         guard let viewController = viewController else { return }
         let coordinator = ConfirmDeleteAccountCoordinator(presentingViewController: viewController)
         coordinator.start()
+    }
+
+    func openDefaultMailAppIfAvailable(to: String, subject: String) -> Bool {
+        guard MFMailComposeViewController.canSendMail(),
+              // TODO: Wanna fix how to access MyPageVC
+              let navigationController = viewController as? UINavigationController,
+              let myPageViewController = navigationController.viewControllers.first else {
+            return false
+        }
+        let mail = MFMailComposeViewController()
+        mail.mailComposeDelegate = myPageViewController as? MFMailComposeViewControllerDelegate
+        mail.setToRecipients([to])
+        mail.setSubject(subject)
+        viewController?.present(mail, animated: true)
+        return true
+    }
+
+    func openGmailAppIfAvailable(to: String, subject: String) -> Bool {
+        guard let encodedSubject = subject
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+              let url = URL(string: "googlegmail://co?to=\(to)&subject=\(encodedSubject)"),
+              UIApplication.shared.canOpenURL(url) else {
+            return false
+        }
+        UIApplication.shared.open(url)
+        return true
     }
 }

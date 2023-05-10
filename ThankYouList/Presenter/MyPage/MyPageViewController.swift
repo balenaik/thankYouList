@@ -163,13 +163,19 @@ extension MyPageViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = tableItems[indexPath.section][indexPath.row]
+        guard let item = tableItems.getSafely(at: indexPath.section)?.getSafely(at: indexPath.row) else {
+            return UITableViewCell()
+        }
+
         switch item.style {
         case .button:
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.myPageButtonCell, for: indexPath)!
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.myPageButtonCell, for: indexPath) else {
+                return UITableViewCell()
+            }
             var configuration = cell.defaultContentConfiguration()
             configuration.text = item.item.titleText
             configuration.textProperties.color = item.item.titleColor ?? .text
+            configuration.textProperties.font = UIFont.regularAvenir(ofSize: 16)
             cell.contentConfiguration = configuration
 
             return cell

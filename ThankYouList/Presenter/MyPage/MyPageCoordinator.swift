@@ -8,6 +8,8 @@
 
 import UIKit
 
+private let appStoreReviewUrl = "https://apps.apple.com/app/id1271631134?action=write-review"
+
 class MyPageCoordinator: Coordinator {
 
     var routingType: RoutingType
@@ -40,6 +42,11 @@ extension MyPageCoordinator: MyPageRouter {
         }
         let loginCoordinator = LoginCoordinator(window: window)
         loginCoordinator.start()
+    }
+
+    func openAppStoreReview() {
+        guard let appStoreUrl = URL(string: appStoreReviewUrl) else { return }
+        UIApplication.shared.open(appStoreUrl)
     }
 
     func presentConfirmDeleteAccount() {

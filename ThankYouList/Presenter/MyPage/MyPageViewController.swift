@@ -13,6 +13,7 @@ import Firebase
 protocol MyPageRouter: Router {
     func dismiss()
     func switchToLogin()
+    func openAppStoreReview()
     func presentConfirmDeleteAccount()
 }
 
@@ -73,6 +74,10 @@ private extension MyPageViewController {
     func logEvent() {
         guard let user = Auth.auth().currentUser else { return }
         analyticsManager.logEvent(eventName: AnalyticsEventConst.showMyPage, userId: user.uid)
+    }
+
+    func showRating() {
+        router?.openAppStoreReview()
     }
 
     func showLogoutAlert() {
@@ -159,6 +164,8 @@ extension MyPageViewController: UITableViewDelegate {
             return
         }
         switch item.item {
+        case .rate:
+            showRating()
         case .logout:
             showLogoutAlert()
         case .deleteAccount:

@@ -7,16 +7,18 @@
 //
 
 import UIKit
+import Combine
 import Firebase
 import FBSDKCoreKit
-import GoogleSignIn
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var uid: String?
     var selectedDate: Date?
+
+    private let userRepository: UserRepository = DefaultUserRepository()
+    private var cancellable = Set<AnyCancellable>()
     
     override init() {
         super.init()
@@ -27,21 +29,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        
-        guard Auth.auth().currentUser != nil else {
-            if let loginViewController = R.storyboard.login().instantiateInitialViewController() {
-                self.window?.rootViewController = loginViewController
-                self.window?.makeKeyAndVisible()
-            }
-            return true
-        }
-        if let mainTabBarController = MainTabBarController.createViewController() {
-            createRootViewController(mainViewController: mainTabBarController)
-        }
+        setupInitialSelectedDate()
+        setupNavigationBar()
+        reAuthenticateToProvider()
 
-        self.selectedDate = Date()
-        self.window?.makeKeyAndVisible()
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        self.window = window
+        let appCoordinator = AppCoordinator(
+            window: window,
+            userRepository: DefaultUserRepository())
+        appCoordinator.start()
         
         return true
     }
@@ -72,13 +69,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
         -> Bool {
             return ApplicationDelegate.shared.application(application,
-                                                             open: url,
-                                                             sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
-                                                             annotation: [:])
+                                                          open: url,
+                                                          sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+                                                          annotation: [:])
     }
-    
-    func createRootViewController(mainViewController: UIViewController) {
-        self.window?.rootViewController = mainViewController
+}
+
+private extension AppDelegate {
+    func setupInitialSelectedDate() {
+        selectedDate = Date()
+    }
+
+    func setupNavigationBar() {
+        // Setup NavigationBar in SwiftUI
+        UINavigationBar.appearance().largeTitleTextAttributes = [
+            .font : UIFont.boldAvenir(ofSize: 32)
+        ]
+    }
+
+    func reAuthenticateToProvider() {
+        userRepository.reAuthenticateToProviderIfNeeded()
+            .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
+            .store(in: &cancellable)
     }
 }
 

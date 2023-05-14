@@ -23,37 +23,59 @@
 "add_thank_you_discard_title" = "Thank Youを破棄しますか？";
 "add_thank_you_discard_message" = "このThank Youを破棄してもよろしいですか？";
 "add_thank_you_discard_cancel" = "編集を続ける";
+"add_thank_you_add_error" = "作成できませんでした"; // TODO: Need to consider the wording later
 
 "edit_thank_you_title" = "Thank Youを編集";
 "edit_thank_you_text_view_placeholder" = "ありがとうの気持ちを書こう";
 "edit_thank_you_discard_title" = "変更を破棄しますか？";
 "edit_thank_you_discard_message" = "変更を破棄してもよろしいですか？";
 "edit_thank_you_discard_cancel" = "編集を続ける";
+"edit_thank_you_edit_error" = "編集できませんでした"; // TODO: Need to consider the wording later
 
 "Date" = "日付";
 "Delete Thank you" = "Thank youを削除";
 "Are you sure you want to delete this thank you?" = "本当にこのThank youを削除してよろしいですか?";
 "Cancel" = "キャンセル";
-"Failed to add" = "作成できませんでした";
-"Failed to edit" = "編集できませんでした";
 "Failed to delete" = "削除できませんでした";
 "Take a simple diary & be happier" = "日々の「ありがとう」を書いて\n幸せな気持ちになろう";
 
 "list_navigationbar_title" = "Thank You List";
+"list_tabbar_title" = "list";
 
 "calendar_navigationbar_title" = "Thank You Calendar";
+"calendar_tabbar_title" = "calendar";
 
 "mypage_title" = "アカウント";
+"mypage_rate" = "Thank You Listを評価する";
+"mypage_feedback" = "フィードバック";
+"mypage_privacy_policy" = "プライバシーポリシー";
 "mypage_logout" = "ログアウト";
+"mypage_delete_account" = "アカウントを削除";
 "mypage_logout_confirmation_message" = "ログアウトしますか？";
+"mypage_delete_account_confirmation_message" = "アカウントを削除すると、アカウントに紐づく全てのデータが完全に削除され、元に戻すことができなくなります。本当にアカウントを削除しますか？";
+"mypage_feedback_unable_to_send_email_title" = "Emailを送信できません";
+"mypage_feedback_unable_to_send_email_message" = "お持ちのデバイスからはメール送信できません。Eメール設定をご確認の上、もう一度お試しください。もしくはbalenaik@gmail.com宛にお送りください。";
+
+"confirm_delete_account_title" = "メールアドレスを確認";
+"confirm_delete_account_description" = "アカウントとデータの削除を完了するには、アカウントに登録されているメールアドレスを入力してください。";
+"confirm_delete_account_delete_account" = "アカウント削除";
+"confirm_delete_account_error_title" = "アカウント削除に失敗しました";
+"confirm_delete_account_error_message" = "恐れ入りますが、「フィードバック」メニューより開発者にご連絡ください。";
+"confirm_delete_account_email_not_match_title" = "メールアドレスが一致しません";
+"confirm_delete_account_email_not_match_message" = "登録メールアドレス%sを入力してください。";
+"confirm_delete_account_completed_title" = "アカウントの削除が完了しました";
 
 "ok" = "OK";
 "done" = "完了";
 "discard" = "破棄";
+"next" = "次へ";
 
 "error" = "エラー";
 "error_authenticate" = "認証に失敗しました。";
+"try_again_later_message" = "問題が発生しました。もう一度お試しください。";
 
 "date_format_thankyou_date" = "yyyy/MM/dd";
 "date_format_year_month" = "yyyy/MM";
 "date_format_month_year" = "yyyy年 MMMM";
+
+"privacy_policy_url" = "https://thank-you-list-dc0da.firebaseapp.com/ja.html";

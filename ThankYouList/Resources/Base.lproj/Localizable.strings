@@ -23,19 +23,19 @@
 "add_thank_you_discard_title" = "Discard Thank You?";
 "add_thank_you_discard_message" = "Are you sure you want to discard your thank you?";
 "add_thank_you_discard_cancel" = "Keep Editing";
+"add_thank_you_add_error" = "Failed to add"; // TODO: Need to consider the wording later
 
 "edit_thank_you_title" = "Edit Thank You";
 "edit_thank_you_text_view_placeholder" = "What are you thankful for?";
 "edit_thank_you_discard_title" = "Discard Changes?";
 "edit_thank_you_discard_message" = "Are you sure you want to discard changes?";
 "edit_thank_you_discard_cancel" = "Keep Editing";
+"edit_thank_you_edit_error" = "Failed to edit"; // TODO: Need to consider the wording later
 
 "Date" = "Date";
 "Delete Thank you" = "Delete Thank you";
 "Are you sure you want to delete this thank you?" = "Are you sure you want to delete this thank you?";
 "Cancel" = "Cancel";
-"Failed to add" = "Failed to add";
-"Failed to edit" = "Failed to edit";
 "Failed to delete" = "Failed to delete";
 
 "Take a simple diary & be happier" = "Take a simple diary\n& be happier";
@@ -47,16 +47,36 @@
 "calendar_tabbar_title" = "calendar";
 
 "mypage_title" = "Account";
+"mypage_rate" = "Rate Thank You List";
+"mypage_feedback" = "Give us Feedback";
+"mypage_privacy_policy" = "Privacy Policy";
 "mypage_logout" = "Log out";
+"mypage_delete_account" = "Delete Account";
 "mypage_logout_confirmation_message" = "Are you sure you want to logout?";
+"mypage_delete_account_confirmation_message" = "By deleting the account, all data will be permanently deleted and you will no longer access your Thank You List. Are you sure you want to delete your Thank You List account?";
+"mypage_feedback_unable_to_send_email_title" = "Could Not Send Email";
+"mypage_feedback_unable_to_send_email_message" = "Your device could not send email.\nPlease check your email configuration and try again. Or send email to balenaik@gmail.com";
+
+"confirm_delete_account_title" = "Confirm your email";
+"confirm_delete_account_description" = "Complete deletion of your account and your data by entering the email address associated with your account.";
+"confirm_delete_account_delete_account" = "Delete Account";
+"confirm_delete_account_error_title" = "Unable to Delete Your Account";
+"confirm_delete_account_error_message" = "Please ask the developer from 'Give us Feedback' menu.";
+"confirm_delete_account_email_not_match_title" = "Email address dosen't match your account";
+"confirm_delete_account_email_not_match_message" = "Please enter your registered email address: %s";
+"confirm_delete_account_completed_title" = "Your account has been deleted";
 
 "ok" = "OK";
 "done" = "Done";
 "discard" = "Discard";
+"next" = "Next";
 
 "error" = "Error";
 "error_authenticate" = "Authentication failed";
+"try_again_later_message" = "Please try again later";
 
 "date_format_thankyou_date" = "yyyy/MM/dd";
 "date_format_year_month" = "yyyy/MM";
 "date_format_month_year" = "MMMM yyyy";
+
+"privacy_policy_url" = "https://thank-you-list-dc0da.firebaseapp.com/en.html";

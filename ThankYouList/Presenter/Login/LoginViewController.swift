@@ -15,6 +15,10 @@ import AuthenticationServices
 
 private let appleProviderId = "apple.com"
 
+protocol LoginRouter {
+    func switchToMainTabBar()
+}
+
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var facebookLoginButton: LoginContinueButton!
@@ -22,6 +26,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var appleLoginButton: LoginContinueButton!
 
     private var currentNonce: String?
+
+    var router: LoginRouter?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,12 +40,16 @@ extension LoginViewController {
     @IBAction func tapFacebookLoginButton(_ sender: Any) {
         let loginManager = LoginManager()
         loginManager.logIn(permissions: ["email"], from: self) { [weak self] loginResult, _ in
-            guard let weakSelf = self else { return }
+            guard let self = self else { return }
             guard let accessTokenString = AccessToken.current?.tokenString else {
                 return
             }
-            let credential = FacebookAuthProvider.credential(withAccessToken: accessTokenString)
-            weakSelf.signIn(credential: credential)
+            GraphRequest(graphPath: "me",
+                         parameters: ["fields" : "email"]).start { _, result, _ in
+                let dict = result as? [String: String]
+                let credential = FacebookAuthProvider.credential(withAccessToken: accessTokenString)
+                self.signIn(credential: credential, email: dict?["email"])
+            }
         }
     }
     
@@ -60,12 +70,13 @@ extension LoginViewController {
                   let idToken = auth.idToken else { return }
             let credential = GoogleAuthProvider.credential(withIDToken: idToken,
                                                            accessToken: auth.accessToken)
-            self.signIn(credential: credential)
+            self.signIn(credential: credential,
+                        email: user?.profile?.email)
         }
     }
 
     @IBAction func tapAppleLoginButton(_ sender: Any) {
-        currentNonce = randomNonceString()
+        currentNonce = String.randomNonce()
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
         request.requestedScopes = [.fullName, .email]
@@ -85,29 +96,21 @@ private extension LoginViewController {
         appleLoginButton.setTitle(R.string.localizable.login_continue_with_apple(), for: .normal)
     }
 
-    func signIn(credential: AuthCredential, name: String? = nil, email: String? = nil) {
-        Auth.auth().signIn(with: credential) { (fireUser, fireError) in
-            if let error = fireError {
+    func signIn(credential: AuthCredential,
+                name: String? = nil,
+                email: String? = nil) {
+        Auth.auth().signIn(with: credential) { [weak self] (user, error) in
+            if let error = error {
                 print(error)
                 return
             }
             if let name = name {
-                self.updateUserProfile(name: name)
+                self?.updateUserProfile(name: name)
             }
             if let email = email {
-                self.updateUserEmail(email: email)
+                self?.updateUserEmail(email: email)
             }
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                return
-            }
-            if let loginViewController = appDelegate.window?.rootViewController,
-               let mainTabBarController: MainTabBarController = MainTabBarController.createViewController() {
-                appDelegate.createRootViewController(mainViewController: mainTabBarController)
-                loginViewController.dismiss(animated: true, completion: nil)
-            }
-            if let loginViewController = appDelegate.window?.rootViewController?.presentedViewController {
-                loginViewController.dismiss(animated: true, completion: nil)
-            }
+            self?.router?.switchToMainTabBar()
         }
     }
 
@@ -119,38 +122,6 @@ private extension LoginViewController {
 
     func updateUserEmail(email: String) {
         Auth.auth().currentUser?.updateEmail(to: email, completion: nil)
-    }
-
-    func randomNonceString(length: Int = 32) -> String {
-        precondition(length > 0)
-        let charset: Array<Character> =
-            Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
-        var result = ""
-        var remainingLength = length
-
-        while remainingLength > 0 {
-            let randoms: [UInt8] = (0 ..< 16).map { _ in
-                var random: UInt8 = 0
-                let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
-                if errorCode != errSecSuccess {
-                    fatalError("Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)")
-                }
-                return random
-            }
-
-            randoms.forEach { random in
-                if remainingLength == 0 {
-                    return
-                }
-
-                if random < charset.count {
-                    result.append(charset[Int(random)])
-                    remainingLength -= 1
-                }
-            }
-        }
-
-        return result
     }
 }
 
@@ -194,13 +165,5 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
 extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
-    }
-}
-
-// MARK: - Public
-extension LoginViewController {
-    static func createViewController() -> UIViewController? {
-        guard let viewController = R.storyboard.login().instantiateInitialViewController() else { return nil }
-        return viewController
     }
 }

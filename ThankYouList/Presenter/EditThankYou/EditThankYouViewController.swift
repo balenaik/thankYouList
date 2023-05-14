@@ -21,10 +21,14 @@ private let doneButtonDisabledBgColor = UIColor.primary.withAlphaComponent(0.38)
 
 private let rowComponentCornerRadius = CGFloat(16)
 
+protocol EditThankYouRouter: Router {
+    func dismiss()
+}
+
 class EditThankYouViewController: UIViewController {
     
     // MARK: - Properties
-    private var editingThankYouId: String?
+    var editingThankYouId: String?
     private var editingThankYou: ThankYouData?
     private var delegate = UIApplication.shared.delegate as! AppDelegate
     private var isPosting = false
@@ -34,6 +38,8 @@ class EditThankYouViewController: UIViewController {
         }
     }
     private var db = Firestore.firestore()
+    private let analyticsManager = DefaultAnalyticsManager()
+    var router: EditThankYouRouter?
     
     // MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
@@ -72,7 +78,7 @@ class EditThankYouViewController: UIViewController {
 extension EditThankYouViewController {
     @IBAction func closeButtonDidTap(_ sender: Any) {
         guard thankYouTextView.text != editingThankYou?.value else {
-            dismiss(animated: true)
+            router?.dismiss()
             return
         }
         showDiscardAlert()
@@ -88,15 +94,16 @@ extension EditThankYouViewController {
         if isPosting || thankYouTextView.text.isEmpty {
             return
         }
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        let uid16string = String(uid.prefix(16))
-        let encryptedValue = Crypto().encryptString(plainText: thankYouTextView.text, key: uid16string)
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        let userId16string = String(userId.prefix(16))
+        let encryptedValue = Crypto().encryptString(plainText: thankYouTextView.text,
+                                                    key: userId16string)
         let thankYouData = ThankYouData(id: "",
                                         value: "",
                                         encryptedValue: encryptedValue,
                                         date: selectedDate,
                                         createTime: Date())
-        editThankYou(editThankYouData: thankYouData, uid: uid)
+        editThankYou(editThankYouData: thankYouData, userId: userId)
     }
 }
 
@@ -126,7 +133,7 @@ private extension EditThankYouViewController {
     func setupEditThankYouData() {
         guard let editingThankYou = GlobalThankYouData.sharedInstance
                 .thankYouDataList.first(where: { $0.id == editingThankYouId }) else {
-            dismiss(animated: true, completion: nil)
+            router?.dismiss()
             return
         }
         self.editingThankYou = editingThankYou
@@ -157,22 +164,26 @@ private extension EditThankYouViewController {
         thankYouTextView.resignFirstResponder()
     }
     
-    private func editThankYou(editThankYouData: ThankYouData, uid: String) {
+    private func editThankYou(editThankYouData: ThankYouData, userId: String) {
         guard let editingThankYouId = editingThankYouId else { return }
         isPosting = true
-        db.collection("users").document(uid).collection("thankYouList").document(editingThankYouId).updateData(editThankYouData.dictionary) { [weak self] error in
-            guard let weakSelf = self else { return }
-            weakSelf.isPosting = false
-            if let error = error {
-                print("Error adding document: \(error.localizedDescription)")
-                let alert = UIAlertController(title: nil, message: NSLocalizedString("Failed to edit", comment: ""), preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                weakSelf.present(alert, animated: true, completion: nil)
-                return
+        db.collection(FirestoreConst.usersCollecion)
+            .document(userId)
+            .collection(FirestoreConst.thankYouListCollection)
+            .document(editingThankYouId)
+            .updateData(editThankYouData.dictionary) { [weak self] error in
+                guard let self = self else { return }
+                self.isPosting = false
+                if let error = error {
+                    print("Error adding document: \(error.localizedDescription)")
+                    self.router?.presentAlert(message: R.string.localizable.edit_thank_you_edit_error())
+                    return
+                }
+                self.analyticsManager.logEvent(eventName: AnalyticsEventConst.editThankYou,
+                                               userId: userId,
+                                               targetDate: editThankYouData.date)
+                self.dismiss(animated: true, completion: nil)
             }
-            Analytics.logEvent(eventName: AnalyticsEventConst.editThankYou, userId: uid, targetDate: editThankYouData.date)
-            weakSelf.dismiss(animated: true, completion: nil)
-        }
     }
     
     private func adjustTextViewHeight() {
@@ -184,20 +195,16 @@ private extension EditThankYouViewController {
     }
 
     func showDiscardAlert() {
-        let alertController = UIAlertController(
-            title: R.string.localizable.edit_thank_you_discard_title(),
-            message: R.string.localizable.edit_thank_you_discard_message(),
-            preferredStyle: .alert)
         let discardAction = UIAlertAction(title: R.string.localizable.discard(),
                                           style: .destructive) { [weak self] _ in
-            self?.dismiss(animated: true)
+            self?.router?.dismiss()
         }
-        let cancelButton = UIAlertAction(
+        let cancelAction = UIAlertAction(
             title: R.string.localizable.edit_thank_you_discard_cancel(),
             style: .cancel)
-        alertController.addAction(discardAction)
-        alertController.addAction(cancelButton)
-        present(alertController, animated: true, completion: nil)
+        router?.presentAlert(title: R.string.localizable.edit_thank_you_discard_title(),
+                             message: R.string.localizable.edit_thank_you_discard_message(),
+                             actions: [discardAction, cancelAction])
     }
 }
 
@@ -227,8 +234,8 @@ extension EditThankYouViewController: BottomHalfSheetDatePickerViewControllerDel
 // MARK: - Create View Controller
 extension EditThankYouViewController {
     class func createViewController(thankYouId: String) -> UIViewController? {
-        guard let viewController = R.storyboard.editThankYou()
-                .instantiateInitialViewController() as? EditThankYouViewController else {
+        guard let viewController = R.storyboard.editThankYou
+                .instantiateInitialViewController() else {
             return nil
         }
         viewController.editingThankYouId = thankYouId

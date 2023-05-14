@@ -16,6 +16,11 @@ private let calendarDateFormat = "yyyy/MM/dd"
 private let calendarStartDate = "2016/01/01"
 private let calendarEndDate = "2025/12/31"
 
+protocol CalendarRouter: Router {
+    func presentMyPage()
+    func presentEditThankYou(thankYouId: String)
+}
+
 class CalendarViewController: UIViewController {
     
     // MARK: - Properties
@@ -28,6 +33,8 @@ class CalendarViewController: UIViewController {
     private var listViewMostTopConstant = CGFloat(0)
     private var isDraggingListView = false
     private let db = Firestore.firestore()
+    private let analyticsManager = DefaultAnalyticsManager()
+    var router: CalendarRouter?
 
     // MARK: - IBOutlets
     @IBOutlet weak var contentView: UIView!
@@ -58,8 +65,7 @@ class CalendarViewController: UIViewController {
 // MARK: - IBActions
 extension CalendarViewController {
     @IBAction func tapUserIcon(_ sender: Any) {
-        guard let myPageViewController = MyPageViewController.createViewController() else { return }
-        present(myPageViewController, animated: true, completion: nil)
+        router?.presentMyPage()
     }
     
     @IBAction func draggedListView(_ sender: UIPanGestureRecognizer) {
@@ -130,10 +136,7 @@ private extension CalendarViewController {
     }
 
     func presentEditThankYouViewController(thankYouId: String) {
-        guard let editThankYouViewController = EditThankYouViewController.createViewController(thankYouId: thankYouId) else {
-            return
-        }
-        present(editThankYouViewController, animated: true, completion: nil)
+        router?.presentEditThankYou(thankYouId: thankYouId)
     }
     
     private func beginDraggingListView() {
@@ -188,19 +191,15 @@ private extension CalendarViewController {
     }
 
     func showDeleteConfirmationAlert(thankYouId: String) {
-        let alertController = UIAlertController(
-            title: R.string.localizable.deleteThankYou(),
-            message: R.string.localizable.areYouSureYouWantToDeleteThisThankYou(),
-            preferredStyle: .alert)
         let deleteAction = UIAlertAction(title: R.string.localizable.delete(),
                                          style: .destructive) { [weak self] _ in
             self?.deleteThankYou(thankYouId: thankYouId)
         }
-        let cancelButton = UIAlertAction(title: R.string.localizable.cancel(),
+        let cancelAction = UIAlertAction(title: R.string.localizable.cancel(),
                                          style: .cancel)
-        alertController.addAction(deleteAction)
-        alertController.addAction(cancelButton)
-        present(alertController,animated: true,completion: nil)
+        router?.presentAlert(title: R.string.localizable.deleteThankYou(),
+                             message: R.string.localizable.areYouSureYouWantToDeleteThisThankYou(),
+                             actions: [deleteAction, cancelAction])
     }
 
     func deleteThankYou(thankYouId: String) {
@@ -220,9 +219,10 @@ private extension CalendarViewController {
                     return
                 }
                 if let thankYouData = self.thankYouDataSingleton.thankYouDataList.first(where: { $0.id == thankYouId }) {
-                    Analytics.logEvent(eventName: AnalyticsEventConst.deleteThankYou,
-                                       userId: userId,
-                                       targetDate: thankYouData.date)
+                    self.analyticsManager.logEvent(
+                        eventName: AnalyticsEventConst.deleteThankYou,
+                        userId: userId,
+                        targetDate: thankYouData.date)
                 }
             })
     }
@@ -368,7 +368,10 @@ extension CalendarViewController: SmallListViewDelegate {
     func smallListViewBecomeFullScreen(_ view: SmallListView) {
         guard let user = Auth.auth().currentUser,
             let selectedDate = calendarView.selectedDates.getSafely(at: 0) else { return }
-        Analytics.logEvent(eventName: AnalyticsEventConst.calendarSmallListViewFullScreen, userId: user.uid, targetDate: selectedDate)
+        analyticsManager.logEvent(
+            eventName: AnalyticsEventConst.calendarSmallListViewFullScreen,
+            userId: user.uid,
+            targetDate: selectedDate)
     }
 }
 
@@ -397,14 +400,5 @@ extension CalendarViewController: BottomHalfSheetMenuViewControllerDelegate {
         case .delete:
             showDeleteConfirmationAlert(thankYouId: thankYouId)
         }
-    }
-}
-
-// MARK: - Public
-extension CalendarViewController {
-    static func createViewController() -> UIViewController? {
-        guard let viewController = R.storyboard.calendar().instantiateInitialViewController() else { return nil }
-        let navigationController = UINavigationController(rootViewController: viewController)
-        return navigationController
     }
 }

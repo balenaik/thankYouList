@@ -25,6 +25,10 @@ extension UIColor {
         return UIColor(colorWithHexValue: 0xfa8d8d)
     }
 
+    class var defaultBackground: UIColor {
+        return UIColor(colorWithHexValue: 0xf5f5f5)
+    }
+
     class var materialGrey: UIColor {
         return UIColor(colorWithHexValue: 0x9e9e9e)
     }

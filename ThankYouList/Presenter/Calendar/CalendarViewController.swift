@@ -11,6 +11,7 @@ import JTAppleCalendar
 import FirebaseFirestore
 import FirebaseAuth
 import Firebase
+import Combine
 
 private let calendarDateFormat = "yyyy/MM/dd"
 private let calendarStartDate = "2016/01/01"
@@ -34,6 +35,7 @@ class CalendarViewController: UIViewController {
     private let db = Firestore.firestore()
     private let analyticsManager = DefaultAnalyticsManager()
     var router: CalendarRouter?
+    private var cancellables = Set<AnyCancellable>()
 
     var viewModel: CalendarViewModel!
 
@@ -51,6 +53,7 @@ class CalendarViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupNavigationBar()
+        viewModel.inputs.viewDidLoad.send()
     }
 
     override func viewWillTransition(
@@ -257,7 +260,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: R.reuseIdentifier.calendarDayCell.identifier, for: indexPath) as! CalendarDayCell
         let thankYouCount = thankYouDataSingleton.thankYouDataList.filter { $0.date == cellState.date }.count
         cell.bind(cellState: cellState, thankYouCount: thankYouCount)
-        cell.bindSelection(isSelected: cellState.isSelected)
+        cell.bindSelection(isSelected: viewModel.outputs.currentSelectedDate.value.isSameDayAs(date))
         // To make sure draw(_ rect:) gets called when screen is rotated
         cell.setNeedsDisplay()
         return cell

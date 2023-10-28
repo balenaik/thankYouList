@@ -270,6 +270,8 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         if let cell = cell as? CalendarDayCell {
             cell.bindSelection(isSelected: cellState.isSelected)
         }
+        viewModel.inputs.calendarDidSelectDate.send(date)
+        // TODO: Will migrate to VM later
         getListFromDate(cellState.date)
         selectedDate = cellState.date.toThankYouDateString()
         let displayDateString = selectedDate

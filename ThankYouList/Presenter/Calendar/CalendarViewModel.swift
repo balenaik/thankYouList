@@ -26,6 +26,10 @@ private extension CalendarViewModel {
     func bind() {
         inputs.viewDidLoad
             .compactMap { [weak self] in self?.inMemoryDataStore.selectedDate }
+            .merge(with: inputs.calendarDidSelectDate
+                .handleEvents(receiveOutput: { [weak self] date in
+                    self?.inMemoryDataStore.selectedDate = date
+                }))
             .subscribe(outputs.currentSelectedDate)
             .store(in: &cancellables)
     }
@@ -34,6 +38,7 @@ private extension CalendarViewModel {
 extension CalendarViewModel {
     class Inputs {
         let viewDidLoad = PassthroughSubject<Void, Never>()
+        let calendarDidSelectDate = PassthroughSubject<Date, Never>()
     }
 
     class Outputs {

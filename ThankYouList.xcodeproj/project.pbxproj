@@ -43,6 +43,7 @@
 		A841B339213ED3DE00E8AB5B /* LocalizedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841B338213ED3DE00E8AB5B /* LocalizedLabel.swift */; };
 		A84635AF2AA3F4270030A358 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635AE2AA3F4270030A358 /* CalendarViewModel.swift */; };
 		A84635B12AB9D08B0030A358 /* InMemoryDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635B02AB9D08B0030A358 /* InMemoryDataStore.swift */; };
+		A84635B32ABE83550030A358 /* Date+Compare.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635B22ABE83550030A358 /* Date+Compare.swift */; };
 		A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84CBEE120F198E400CBA0AB /* ConstStruct.swift */; };
 		A84FDB5C21DBB8DF00593326 /* AddThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84FDB5B21DBB8DF00593326 /* AddThankYouViewController.swift */; };
 		A84FDB5E21DC365F00593326 /* SettingHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84FDB5D21DC365F00593326 /* SettingHeaderView.xib */; };
@@ -175,6 +176,7 @@
 		A841B338213ED3DE00E8AB5B /* LocalizedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedLabel.swift; sourceTree = "<group>"; };
 		A84635AE2AA3F4270030A358 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		A84635B02AB9D08B0030A358 /* InMemoryDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryDataStore.swift; sourceTree = "<group>"; };
+		A84635B22ABE83550030A358 /* Date+Compare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Compare.swift"; sourceTree = "<group>"; };
 		A84CBEE120F198E400CBA0AB /* ConstStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstStruct.swift; sourceTree = "<group>"; };
 		A84FDB5B21DBB8DF00593326 /* AddThankYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThankYouViewController.swift; sourceTree = "<group>"; };
 		A84FDB5D21DC365F00593326 /* SettingHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingHeaderView.xib; sourceTree = "<group>"; };
@@ -446,6 +448,7 @@
 				A892354129C0BF460093A92F /* String+Nonce.swift */,
 				A8B6EE8D2201E41D00908D51 /* String+ToDate.swift */,
 				A8E6CD0E296513000042AA81 /* String+Validation.swift */,
+				A84635B22ABE83550030A358 /* Date+Compare.swift */,
 				A8B6EE9022055CE900908D51 /* Date+ToString.swift */,
 				A810D8E52348365B008F2E74 /* LocalizableExtensions.swift */,
 				A8C59B7C243CD72300FF79EA /* UIViewController+Setup.swift */,
@@ -950,6 +953,7 @@
 				A8B6EE9122055CE900908D51 /* Date+ToString.swift in Sources */,
 				A85DCC081F5D2151004E1095 /* CalendarDayCell.swift in Sources */,
 				A8114B0B23017DB70024975A /* ListScrollIndicatorMovableIcon.swift in Sources */,
+				A84635B32ABE83550030A358 /* Date+Compare.swift in Sources */,
 				A8A85A9925A60DF500182B99 /* UIButton+BackgroundColor.swift in Sources */,
 				A831BD432741617C003B5394 /* FirestoreConst.swift in Sources */,
 				A8E6CD14296BA31A0042AA81 /* Coordinator.swift in Sources */,

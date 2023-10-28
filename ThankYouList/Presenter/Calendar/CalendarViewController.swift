@@ -35,6 +35,8 @@ class CalendarViewController: UIViewController {
     private let analyticsManager = DefaultAnalyticsManager()
     var router: CalendarRouter?
 
+    var viewModel: CalendarViewModel!
+
     // MARK: - IBOutlets
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var stackView: UIStackView!

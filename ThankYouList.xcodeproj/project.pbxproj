@@ -41,6 +41,7 @@
 		A83A36262973DFB000AD2790 /* ConfirmDeleteAccountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83A36252973DFB000AD2790 /* ConfirmDeleteAccountCoordinator.swift */; };
 		A83D5F891F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */; };
 		A841B339213ED3DE00E8AB5B /* LocalizedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841B338213ED3DE00E8AB5B /* LocalizedLabel.swift */; };
+		A84635B12AB9D08B0030A358 /* InMemoryDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635B02AB9D08B0030A358 /* InMemoryDataStore.swift */; };
 		A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84CBEE120F198E400CBA0AB /* ConstStruct.swift */; };
 		A84FDB5C21DBB8DF00593326 /* AddThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84FDB5B21DBB8DF00593326 /* AddThankYouViewController.swift */; };
 		A84FDB5E21DC365F00593326 /* SettingHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84FDB5D21DC365F00593326 /* SettingHeaderView.xib */; };
@@ -171,6 +172,7 @@
 		A83A36252973DFB000AD2790 /* ConfirmDeleteAccountCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDeleteAccountCoordinator.swift; sourceTree = "<group>"; };
 		A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+RuntimeAttribute.swift"; sourceTree = "<group>"; };
 		A841B338213ED3DE00E8AB5B /* LocalizedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedLabel.swift; sourceTree = "<group>"; };
+		A84635B02AB9D08B0030A358 /* InMemoryDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryDataStore.swift; sourceTree = "<group>"; };
 		A84CBEE120F198E400CBA0AB /* ConstStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstStruct.swift; sourceTree = "<group>"; };
 		A84FDB5B21DBB8DF00593326 /* AddThankYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThankYouViewController.swift; sourceTree = "<group>"; };
 		A84FDB5D21DC365F00593326 /* SettingHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingHeaderView.xib; sourceTree = "<group>"; };
@@ -456,6 +458,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		A84635B62AD25A040030A358 /* DataStores */ = {
+			isa = PBXGroup;
+			children = (
+				A84635B02AB9D08B0030A358 /* InMemoryDataStore.swift */,
+			);
+			path = DataStores;
+			sourceTree = "<group>";
+		};
 		A86F419F24570987005D929A /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -495,6 +505,7 @@
 				A8C59B75243CC86100FF79EA /* R.generated.swift */,
 				A8831CC61E9CFE6B00F3CA0A /* AppDelegate.swift */,
 				A820DE5221C5430B00E7F3DF /* Const */,
+				A84635B62AD25A040030A358 /* DataStores */,
 				A820DE5521C61E6F00E7F3DF /* Extensions */,
 				A808C612220E349A004162E4 /* Models */,
 				A8114AF622E435140024975A /* Presenter */,
@@ -922,6 +933,7 @@
 				A8FF6A202829C40500CF816F /* BottomHalfSheetDatePickerViewController.swift in Sources */,
 				A8AC1BD71FD20E5500D1B25B /* MainTabBarController.swift in Sources */,
 				A82BBF78270C4FC4007E8CD9 /* UIFont+Theme.swift in Sources */,
+				A84635B12AB9D08B0030A358 /* InMemoryDataStore.swift in Sources */,
 				A8E6CD0929601D870042AA81 /* Color+Theme.swift in Sources */,
 				A85D9D011EA64AF900945E6E /* ThankYouData.swift in Sources */,
 				A892354229C0BF460093A92F /* String+Nonce.swift in Sources */,

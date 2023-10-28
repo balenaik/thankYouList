@@ -15,7 +15,6 @@ import FBSDKCoreKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var selectedDate: Date?
 
     private let userRepository: UserRepository = DefaultUserRepository()
     private var cancellable = Set<AnyCancellable>()
@@ -29,7 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
-        setupInitialSelectedDate()
         setupNavigationBar()
         reAuthenticateToProvider()
 
@@ -76,10 +74,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 private extension AppDelegate {
-    func setupInitialSelectedDate() {
-        selectedDate = Date()
-    }
-
     func setupNavigationBar() {
         // Setup NavigationBar in SwiftUI
         UINavigationBar.appearance().largeTitleTextAttributes = [

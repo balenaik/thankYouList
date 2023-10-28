@@ -30,7 +30,6 @@ class EditThankYouViewController: UIViewController {
     // MARK: - Properties
     var editingThankYouId: String?
     private var editingThankYou: ThankYouData?
-    private var delegate = UIApplication.shared.delegate as! AppDelegate
     private var isPosting = false
     private var selectedDate = Date() {
         didSet {

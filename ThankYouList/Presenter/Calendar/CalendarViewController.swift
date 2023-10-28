@@ -24,7 +24,6 @@ protocol CalendarRouter: Router {
 class CalendarViewController: UIViewController {
     
     // MARK: - Properties
-    private var appDelegate = UIApplication.shared.delegate as! AppDelegate
     private let thankYouDataSingleton = GlobalThankYouData.sharedInstance
     private var selectedList = [ThankYouData]()
     private var estimatedRowHeights = [String : CGFloat]()
@@ -267,7 +266,6 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
             cell.bindSelection(isSelected: cellState.isSelected)
         }
         getListFromDate(cellState.date)
-        appDelegate.selectedDate = cellState.date
         selectedDate = cellState.date.toThankYouDateString()
         let displayDateString = selectedDate
             .toDate(format: R.string.localizable.date_format_thankyou_date())?

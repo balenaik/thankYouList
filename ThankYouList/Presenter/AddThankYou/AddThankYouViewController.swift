@@ -28,7 +28,6 @@ protocol AddThankYouRouter: Router {
 class AddThankYouViewController: UIViewController {
     
     // MARK: - Properties
-    private var delegate = UIApplication.shared.delegate as! AppDelegate
     private var isPosting = false
     private var selectedDate = Date() {
         didSet {
@@ -110,7 +109,7 @@ private extension AddThankYouViewController {
         thankYouTextView.setInset(sideMargin: textViewSideMargin, topMargin: textViewTopBottomMargin, bottomMargin: textViewTopBottomMargin)
         thankYouTextView.becomeFirstResponder()
         thankYouTextView.layer.cornerRadius = rowComponentCornerRadius
-        selectedDate = delegate.selectedDate ?? Date()
+        selectedDate = DefaultInMemoryDataStore.shared.selectedDate
         dateView.layer.cornerRadius = rowComponentCornerRadius
         doneButton.layer.cornerRadius = rowComponentCornerRadius
 

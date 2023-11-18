@@ -6,6 +6,7 @@
 //  Copyright © 2023 Aika Yamada. All rights reserved.
 //
 
+import Foundation
 import Combine
 
 class CalendarViewModel: ObservableObject {
@@ -38,6 +39,7 @@ private extension CalendarViewModel {
 extension CalendarViewModel {
     class Inputs {
         let viewDidLoad = PassthroughSubject<Void, Never>()
+        let calendarDidScrollToMonth = PassthroughSubject<Date, Never>()
         let calendarDidSelectDate = PassthroughSubject<Date, Never>()
     }
 

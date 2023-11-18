@@ -289,6 +289,8 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
         setupViewsOfCalendar(from: visibleDates)
+        guard let firstVisibleDate = visibleDates.monthDates.first?.date else { return }
+        viewModel.inputs.calendarDidScrollToMonth.send(firstVisibleDate)
     }
 }
 

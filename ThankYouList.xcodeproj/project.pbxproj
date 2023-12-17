@@ -88,6 +88,7 @@
 		A8A06864244F444400839D14 /* MyPageProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8A06862244F444300839D14 /* MyPageProfileCell.xib */; };
 		A8A068662450A15900839D14 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A068652450A15900839D14 /* Profile.swift */; };
 		A8A0FE61205E005D0048AB33 /* UIColor+SetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0FE60205E005D0048AB33 /* UIColor+SetColor.swift */; };
+		A8A1E2072B0AC1590083C3FF /* CombineSchedulers in Frameworks */ = {isa = PBXBuildFile; productRef = A8A1E2062B0AC1590083C3FF /* CombineSchedulers */; };
 		A8A1E20A2B2F08E60083C3FF /* TestRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A1E2092B2F08E60083C3FF /* TestRecord.swift */; };
 		A8A85A9925A60DF500182B99 /* UIButton+BackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A85A9825A60DF400182B99 /* UIButton+BackgroundColor.swift */; };
 		A8A85AC025A60E8500182B99 /* UIImage+FromUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A85ABF25A60E8500182B99 /* UIImage+FromUIColor.swift */; };
@@ -269,6 +270,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8A1E2072B0AC1590083C3FF /* CombineSchedulers in Frameworks */,
 				A864849B2160F5BF0049D90A /* Pods_ThankYouList.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -650,6 +652,9 @@
 			dependencies = (
 			);
 			name = ThankYouList;
+			packageProductDependencies = (
+				A8A1E2062B0AC1590083C3FF /* CombineSchedulers */,
+			);
 			productName = ThankYouList;
 			productReference = A8831CC31E9CFE6B00F3CA0A /* ThankYouList.app */;
 			productType = "com.apple.product-type.application";
@@ -715,6 +720,7 @@
 			mainGroup = A8831CBA1E9CFE6B00F3CA0A;
 			packageReferences = (
 				A892355829D818500093A92F /* XCRemoteSwiftPackageReference "Entwine" */,
+				A8A1E2052B0AC1590083C3FF /* XCRemoteSwiftPackageReference "combine-schedulers" */,
 			);
 			productRefGroup = A8831CC41E9CFE6B00F3CA0A /* Products */;
 			projectDirPath = "";
@@ -1325,6 +1331,14 @@
 				kind = branch;
 			};
 		};
+		A8A1E2052B0AC1590083C3FF /* XCRemoteSwiftPackageReference "combine-schedulers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/combine-schedulers";
+			requirement = {
+				kind = exactVersion;
+				version = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1332,6 +1346,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A892355829D818500093A92F /* XCRemoteSwiftPackageReference "Entwine" */;
 			productName = EntwineTest;
+		};
+		A8A1E2062B0AC1590083C3FF /* CombineSchedulers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A8A1E2052B0AC1590083C3FF /* XCRemoteSwiftPackageReference "combine-schedulers" */;
+			productName = CombineSchedulers;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

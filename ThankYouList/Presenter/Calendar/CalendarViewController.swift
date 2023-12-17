@@ -13,10 +13,6 @@ import FirebaseAuth
 import Firebase
 import Combine
 
-private let calendarDateFormat = "yyyy/MM/dd"
-private let calendarStartDate = "2016/01/01"
-private let calendarEndDate = "2025/12/31"
-
 protocol CalendarRouter: Router {
     func presentMyPage()
     func presentEditThankYou(thankYouId: String)
@@ -235,20 +231,8 @@ private extension CalendarViewController {
 // MARK: - JTAppleCalendarViewDataSource
 extension CalendarViewController: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
-        let calendar = Calendar(identifier: .gregorian)
-
-        let formatter = DateFormatter()
-        formatter.dateFormat = calendarDateFormat
-        formatter.timeZone = calendar.timeZone
-        formatter.locale = calendar.locale
-        
-        let startDate = formatter.date(from: calendarStartDate) ?? Date()
-        let endDate = formatter.date(from: calendarEndDate) ?? Date()
-        
-        let parameters = ConfigurationParameters(startDate: startDate,
-                                                 endDate: endDate,
-                                                 calendar: calendar)
-        return parameters
+        viewModel.outputs.calendarConfiguration.value?.toConfigurationParameters ??
+        ConfigurationParameters(startDate: Date(), endDate: Date())
     }
 }
 

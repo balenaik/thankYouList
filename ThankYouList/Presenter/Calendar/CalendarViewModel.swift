@@ -47,3 +47,16 @@ extension CalendarViewModel {
         let currentSelectedDate = CurrentValueSubject<Date, Never>(Date())
     }
 }
+
+private extension CalendarConfiguration {
+    static func createWith2YearsRange(baseDate: Date) -> CalendarConfiguration? {
+        let calendar = Calendar(identifier: .gregorian)
+        guard let oneYearAgo = calendar.date(byAdding: .year, value: -1, to: baseDate),
+              let oneYearLater = calendar.date(byAdding: .year, value: 1, to: baseDate) else {
+            return nil
+        }
+        return CalendarConfiguration(startDate: oneYearAgo,
+                                     endDate: oneYearLater,
+                                     calendar: calendar)
+    }
+}

@@ -88,6 +88,7 @@
 		A8A06864244F444400839D14 /* MyPageProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8A06862244F444300839D14 /* MyPageProfileCell.xib */; };
 		A8A068662450A15900839D14 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A068652450A15900839D14 /* Profile.swift */; };
 		A8A0FE61205E005D0048AB33 /* UIColor+SetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A0FE60205E005D0048AB33 /* UIColor+SetColor.swift */; };
+		A8A1E20A2B2F08E60083C3FF /* TestRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A1E2092B2F08E60083C3FF /* TestRecord.swift */; };
 		A8A85A9925A60DF500182B99 /* UIButton+BackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A85A9825A60DF400182B99 /* UIButton+BackgroundColor.swift */; };
 		A8A85AC025A60E8500182B99 /* UIImage+FromUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A85ABF25A60E8500182B99 /* UIImage+FromUIColor.swift */; };
 		A8A85AED25A7473D00182B99 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A85AEC25A7473D00182B99 /* UIViewController+Alert.swift */; };
@@ -222,6 +223,7 @@
 		A8A06862244F444300839D14 /* MyPageProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPageProfileCell.xib; sourceTree = "<group>"; };
 		A8A068652450A15900839D14 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		A8A0FE60205E005D0048AB33 /* UIColor+SetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+SetColor.swift"; sourceTree = "<group>"; };
+		A8A1E2092B2F08E60083C3FF /* TestRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRecord.swift; sourceTree = "<group>"; };
 		A8A85A9825A60DF400182B99 /* UIButton+BackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+BackgroundColor.swift"; sourceTree = "<group>"; };
 		A8A85ABF25A60E8500182B99 /* UIImage+FromUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+FromUIColor.swift"; sourceTree = "<group>"; };
 		A8A85AEC25A7473D00182B99 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
@@ -539,6 +541,7 @@
 			children = (
 				A890D3B729D823560066D098 /* Extensions */,
 				A892355229D73E290093A92F /* Mock */,
+				A8A1E2082B2EA7550083C3FF /* Supports */,
 				A892354B29D731730093A92F /* ConfirmDeleteAccountViewModelTests.swift */,
 			);
 			path = ThankYouListTests;
@@ -551,6 +554,14 @@
 				A892355329D73E3D0093A92F /* MockUserRepository.swift */,
 			);
 			path = Mock;
+			sourceTree = "<group>";
+		};
+		A8A1E2082B2EA7550083C3FF /* Supports */ = {
+			isa = PBXGroup;
+			children = (
+				A8A1E2092B2F08E60083C3FF /* TestRecord.swift */,
+			);
+			path = Supports;
 			sourceTree = "<group>";
 		};
 		A8B6EE8F2201E49C00908D51 /* Resources */ = {
@@ -989,6 +1000,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8A1E20A2B2F08E60083C3FF /* TestRecord.swift in Sources */,
 				A892355429D73E3D0093A92F /* MockUserRepository.swift in Sources */,
 				A890D3B929D823A30066D098 /* TestScheduler+Observer.swift in Sources */,
 				A883EE5B29F03524002DCBCA /* MockAnalyticsManager.swift in Sources */,

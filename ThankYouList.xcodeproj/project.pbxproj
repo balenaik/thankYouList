@@ -44,6 +44,7 @@
 		A84635AF2AA3F4270030A358 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635AE2AA3F4270030A358 /* CalendarViewModel.swift */; };
 		A84635B12AB9D08B0030A358 /* InMemoryDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635B02AB9D08B0030A358 /* InMemoryDataStore.swift */; };
 		A84635B32ABE83550030A358 /* Date+Compare.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635B22ABE83550030A358 /* Date+Compare.swift */; };
+		A84635BE2AFF02820030A358 /* CalendarConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635BD2AFF02820030A358 /* CalendarConfiguration.swift */; };
 		A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84CBEE120F198E400CBA0AB /* ConstStruct.swift */; };
 		A84FDB5C21DBB8DF00593326 /* AddThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84FDB5B21DBB8DF00593326 /* AddThankYouViewController.swift */; };
 		A84FDB5E21DC365F00593326 /* SettingHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84FDB5D21DC365F00593326 /* SettingHeaderView.xib */; };
@@ -179,6 +180,7 @@
 		A84635AE2AA3F4270030A358 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		A84635B02AB9D08B0030A358 /* InMemoryDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryDataStore.swift; sourceTree = "<group>"; };
 		A84635B22ABE83550030A358 /* Date+Compare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Compare.swift"; sourceTree = "<group>"; };
+		A84635BD2AFF02820030A358 /* CalendarConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarConfiguration.swift; sourceTree = "<group>"; };
 		A84CBEE120F198E400CBA0AB /* ConstStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstStruct.swift; sourceTree = "<group>"; };
 		A84FDB5B21DBB8DF00593326 /* AddThankYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThankYouViewController.swift; sourceTree = "<group>"; };
 		A84FDB5D21DC365F00593326 /* SettingHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingHeaderView.xib; sourceTree = "<group>"; };
@@ -301,9 +303,10 @@
 		A808C612220E349A004162E4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A85D9D001EA64AF900945E6E /* ThankYouData.swift */,
-				A8A068652450A15900839D14 /* Profile.swift */,
 				A895A570297D77C20081E08F /* AlertItem.swift */,
+				A84635BD2AFF02820030A358 /* CalendarConfiguration.swift */,
+				A8A068652450A15900839D14 /* Profile.swift */,
+				A85D9D001EA64AF900945E6E /* ThankYouData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -944,6 +947,7 @@
 				A8B6EE8E2201E41D00908D51 /* String+ToDate.swift in Sources */,
 				A824150F205CE28C00172587 /* LoginViewController.swift in Sources */,
 				A8DABBD627173FA20086B2E8 /* ViewConst.swift in Sources */,
+				A84635BE2AFF02820030A358 /* CalendarConfiguration.swift in Sources */,
 				A892354429D008E60093A92F /* AppleAuthenticationManager.swift in Sources */,
 				A8114B10230180EF0024975A /* ListScrollIndicator.swift in Sources */,
 				A89AF9E72106905500FF6893 /* Crypto.swift in Sources */,

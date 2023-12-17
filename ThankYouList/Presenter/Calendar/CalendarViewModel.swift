@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import CombineSchedulers
 
 class CalendarViewModel: ObservableObject {
 
@@ -16,9 +17,12 @@ class CalendarViewModel: ObservableObject {
 
     private var cancellables = Set<AnyCancellable>()
     private var inMemoryDataStore: InMemoryDataStore
+    private let scheduler: AnySchedulerOf<DispatchQueue>
 
-    init(inMemoryDataStore: InMemoryDataStore = DefaultInMemoryDataStore.shared) {
+    init(inMemoryDataStore: InMemoryDataStore = DefaultInMemoryDataStore.shared,
+         scheduler: AnySchedulerOf<DispatchQueue> = .main) {
         self.inMemoryDataStore = inMemoryDataStore
+        self.scheduler = scheduler
         bind()
     }
 }
@@ -32,6 +36,14 @@ private extension CalendarViewModel {
                     self?.inMemoryDataStore.selectedDate = date
                 }))
             .subscribe(outputs.currentSelectedDate)
+            .store(in: &cancellables)
+
+        inputs.calendarDidScrollToMonth
+            .compactMap { newDate in
+                CalendarConfiguration.createWith2YearsRange(baseDate: newDate)
+            }
+            .delay(for: .milliseconds(100), scheduler: scheduler)
+            .subscribe(outputs.calendarConfiguration)
             .store(in: &cancellables)
     }
 }

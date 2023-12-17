@@ -58,6 +58,7 @@ extension CalendarViewModel {
     class Outputs {
         let calendarConfiguration = CurrentValueSubject<CalendarConfiguration?, Never>(CalendarConfiguration.createWith2YearsRange(baseDate: Date()))
         let currentSelectedDate = CurrentValueSubject<Date, Never>(Date())
+        let reconfigureCalendarDataSource = PassthroughSubject<Date, Never>()
     }
 }
 

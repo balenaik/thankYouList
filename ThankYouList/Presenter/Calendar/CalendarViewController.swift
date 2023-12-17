@@ -49,6 +49,7 @@ class CalendarViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupNavigationBar()
+        bind()
         viewModel.inputs.viewDidLoad.send()
     }
 
@@ -109,6 +110,18 @@ private extension CalendarViewController {
         calendarView.visibleDates { (visibleDates) in
             self.setupViewsOfCalendar(from: visibleDates)
         }
+    }
+
+    private func bind() {
+        viewModel.outputs
+            .reconfigureCalendarDataSource
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                guard let self = self else { return }
+                self.calendarView.calendarDataSource = self
+                self.calendarView.reloadData(withanchor: $0)
+            }
+            .store(in: &cancellables)
     }
     
     private func setupViewsOfCalendar(from visibleDates: DateSegmentInfo) {

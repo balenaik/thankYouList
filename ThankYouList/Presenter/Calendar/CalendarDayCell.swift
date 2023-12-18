@@ -56,22 +56,9 @@ extension CalendarDayCell {
 // MARK: - Private
 private extension CalendarDayCell {
     func bindThankYouCount(count: Int) {
-        oneDotView.isHidden = true
-        twoDotsView.isHidden = true
-        threeDotsView.isHidden = true
-        dotsAndPlusView.isHidden = true
-
-        switch count {
-        case 0:
-            break
-        case 1:
-            oneDotView.isHidden = false
-        case 2:
-            twoDotsView.isHidden = false
-        case 3:
-            threeDotsView.isHidden = false
-        default:
-            dotsAndPlusView.isHidden = false
-        }
+        oneDotView.isHidden = count != 1
+        twoDotsView.isHidden = count != 2
+        threeDotsView.isHidden = count != 3
+        dotsAndPlusView.isHidden = count < 4
     }
 }

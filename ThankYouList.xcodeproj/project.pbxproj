@@ -44,6 +44,8 @@
 		A84635AF2AA3F4270030A358 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635AE2AA3F4270030A358 /* CalendarViewModel.swift */; };
 		A84635B12AB9D08B0030A358 /* InMemoryDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635B02AB9D08B0030A358 /* InMemoryDataStore.swift */; };
 		A84635B32ABE83550030A358 /* Date+Compare.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635B22ABE83550030A358 /* Date+Compare.swift */; };
+		A84635B82AD270210030A358 /* CalendarViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635B72AD270210030A358 /* CalendarViewModelTests.swift */; };
+		A84635BA2AD270B40030A358 /* MockInMemoryDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635B92AD270B40030A358 /* MockInMemoryDataStore.swift */; };
 		A84635BE2AFF02820030A358 /* CalendarConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635BD2AFF02820030A358 /* CalendarConfiguration.swift */; };
 		A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84CBEE120F198E400CBA0AB /* ConstStruct.swift */; };
 		A84FDB5C21DBB8DF00593326 /* AddThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84FDB5B21DBB8DF00593326 /* AddThankYouViewController.swift */; };
@@ -180,6 +182,8 @@
 		A84635AE2AA3F4270030A358 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		A84635B02AB9D08B0030A358 /* InMemoryDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryDataStore.swift; sourceTree = "<group>"; };
 		A84635B22ABE83550030A358 /* Date+Compare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Compare.swift"; sourceTree = "<group>"; };
+		A84635B72AD270210030A358 /* CalendarViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModelTests.swift; sourceTree = "<group>"; };
+		A84635B92AD270B40030A358 /* MockInMemoryDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockInMemoryDataStore.swift; sourceTree = "<group>"; };
 		A84635BD2AFF02820030A358 /* CalendarConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarConfiguration.swift; sourceTree = "<group>"; };
 		A84CBEE120F198E400CBA0AB /* ConstStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstStruct.swift; sourceTree = "<group>"; };
 		A84FDB5B21DBB8DF00593326 /* AddThankYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThankYouViewController.swift; sourceTree = "<group>"; };
@@ -547,6 +551,7 @@
 				A890D3B729D823560066D098 /* Extensions */,
 				A892355229D73E290093A92F /* Mock */,
 				A8A1E2082B2EA7550083C3FF /* Supports */,
+				A84635B72AD270210030A358 /* CalendarViewModelTests.swift */,
 				A892354B29D731730093A92F /* ConfirmDeleteAccountViewModelTests.swift */,
 			);
 			path = ThankYouListTests;
@@ -556,6 +561,7 @@
 			isa = PBXGroup;
 			children = (
 				A883EE5A29F03524002DCBCA /* MockAnalyticsManager.swift */,
+				A84635B92AD270B40030A358 /* MockInMemoryDataStore.swift */,
 				A892355329D73E3D0093A92F /* MockUserRepository.swift */,
 			);
 			path = Mock;
@@ -1010,11 +1016,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A84635B82AD270210030A358 /* CalendarViewModelTests.swift in Sources */,
 				A8A1E20A2B2F08E60083C3FF /* TestRecord.swift in Sources */,
 				A892355429D73E3D0093A92F /* MockUserRepository.swift in Sources */,
 				A890D3B929D823A30066D098 /* TestScheduler+Observer.swift in Sources */,
 				A883EE5B29F03524002DCBCA /* MockAnalyticsManager.swift in Sources */,
 				A892354C29D731730093A92F /* ConfirmDeleteAccountViewModelTests.swift in Sources */,
+				A84635BA2AD270B40030A358 /* MockInMemoryDataStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

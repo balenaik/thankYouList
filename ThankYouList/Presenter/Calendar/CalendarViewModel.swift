@@ -45,6 +45,11 @@ private extension CalendarViewModel {
             .delay(for: .milliseconds(100), scheduler: scheduler)
             .subscribe(outputs.calendarConfiguration)
             .store(in: &cancellables)
+
+        outputs.calendarConfiguration
+            .withLatestFrom(inputs.calendarDidScrollToMonth) { $1 }
+            .subscribe(outputs.reconfigureCalendarDataSource)
+            .store(in: &cancellables)
     }
 }
 

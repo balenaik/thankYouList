@@ -188,8 +188,9 @@ final class ConfirmDeleteAccountViewModelTests: XCTestCase {
 
         scheduler.resume()
 
-        XCTAssertEqual(analyticsManager.logEvent_eventName, AnalyticsEventConst.deleteAccount)
-        XCTAssertEqual(analyticsManager.logEvent_userId, userId)
+        XCTAssertEqual(analyticsManager.loggedEvent.count, 1)
+        XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.deleteAccount)
+        XCTAssertEqual(analyticsManager.loggedEvent.first?.userId, userId)
     }
 
     func test_ifTheUserOpensTheScreen_whenHisEmailIsRegistered_inputHisEmailOnTextField_tapDeleteButton_andDeleteFailed__itShouldShowAlert() {
@@ -282,7 +283,6 @@ private extension TestSequence {
 }
 
 private class MockConfirmDeleteAccouuntRouter: ConfirmDeleteAccountRouter {
-
     var dismiss_calledCount = 0
     func dismiss() {
         dismiss_calledCount += 1
@@ -292,5 +292,4 @@ private class MockConfirmDeleteAccouuntRouter: ConfirmDeleteAccountRouter {
     func switchToLogin() {
         switchToLogin_calledCount += 1
     }
-
 }

@@ -256,17 +256,15 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: R.reuseIdentifier.calendarDayCell.identifier, for: indexPath) as! CalendarDayCell
         let thankYouCount = thankYouDataSingleton.thankYouDataList.filter { $0.date == cellState.date }.count
-        cell.bind(cellState: cellState, thankYouCount: thankYouCount)
-        cell.bindSelection(isSelected: viewModel.outputs.currentSelectedDate.value.isSameDayAs(date))
+        cell.bind(cellState: cellState,
+                  thankYouCount: thankYouCount,
+                  isSelected: viewModel.outputs.currentSelectedDate.value.isSameDayAs(date))
         // To make sure draw(_ rect:) gets called when screen is rotated
         cell.setNeedsDisplay()
         return cell
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        if let cell = cell as? CalendarDayCell {
-            cell.bindSelection(isSelected: cellState.isSelected)
-        }
         viewModel.inputs.calendarDidSelectDate.send(date)
         // TODO: Will migrate to VM later
         getListFromDate(cellState.date)

@@ -31,7 +31,7 @@ class CalendarDayCell: JTAppleCell {
 
 // MARK: - Public
 extension CalendarDayCell {
-    func bind(cellState: CellState, thankYouCount: Int) {
+    func bind(cellState: CellState, thankYouCount: Int, isSelected: Bool) {
         var dateLabelColor: UIColor
         switch cellState.dateBelongsTo {
         case .thisMonth:
@@ -46,9 +46,6 @@ extension CalendarDayCell {
         dateLabel.textColor = dateLabelColor
 
         bindThankYouCount(count: thankYouCount)
-    }
-
-    func bindSelection(isSelected: Bool) {
         selectedView.isHidden = !isSelected
     }
 }

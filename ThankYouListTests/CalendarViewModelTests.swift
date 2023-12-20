@@ -15,13 +15,19 @@ final class CalendarViewModelTests: XCTestCase {
 
     private var viewModel: CalendarViewModel!
     private var inMemoryDataStore: InMemoryDataStore!
+    private var userRepository: MockUserRepository!
+    private var analyticsManager: MockAnalyticsManager!
 
     private var scheduler: TestSchedulerOf<DispatchQueue>!
 
     override func setUp() {
         inMemoryDataStore = MockInMemoryDataStore()
+        userRepository = MockUserRepository()
+        analyticsManager = MockAnalyticsManager()
         scheduler = DispatchQueue.test
         viewModel = CalendarViewModel(inMemoryDataStore: inMemoryDataStore,
+                                      userRepository: userRepository,
+                                      analyticsManager: analyticsManager,
                                       scheduler: scheduler.eraseToAnyScheduler())
     }
 
@@ -105,5 +111,19 @@ final class CalendarViewModelTests: XCTestCase {
         XCTAssertEqual(reconfigureCalendarDataSourceRecords.results, [
             .value(date)
         ])
+    }
+
+    func test_ifUserScrollsCalendar__itShouldSendAnalyticsEvent_withUserId_andTheScrolledDate() {
+        let userId = "userId"
+        userRepository.getUserProfile_result = Just(Profile(id: userId, name: "", email: "", imageUrl: nil)).setFailureType(to: Error.self).asFuture()
+
+        // Scrolls calendar
+        let date = Date(timeIntervalSince1970: 1234566)
+        viewModel.inputs.calendarDidScrollToMonth.send(date)
+
+        XCTAssertEqual(analyticsManager.loggedEvent.count, 1)
+        XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.scrollCalendar)
+        XCTAssertEqual(analyticsManager.loggedEvent.first?.userId, userId)
+        XCTAssertEqual(analyticsManager.loggedEvent.first?.targetDate, date)
     }
 }

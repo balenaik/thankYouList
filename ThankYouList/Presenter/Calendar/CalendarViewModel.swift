@@ -17,11 +17,17 @@ class CalendarViewModel: ObservableObject {
 
     private var cancellables = Set<AnyCancellable>()
     private var inMemoryDataStore: InMemoryDataStore
+    private let userRepository: UserRepository
+    private let analyticsManager: AnalyticsManager
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     init(inMemoryDataStore: InMemoryDataStore = DefaultInMemoryDataStore.shared,
+         userRepository: UserRepository,
+         analyticsManager: AnalyticsManager,
          scheduler: AnySchedulerOf<DispatchQueue> = .main) {
         self.inMemoryDataStore = inMemoryDataStore
+        self.userRepository = userRepository
+        self.analyticsManager = analyticsManager
         self.scheduler = scheduler
         bind()
     }
@@ -54,6 +60,20 @@ private extension CalendarViewModel {
         outputs.calendarConfiguration
             .withLatestFrom(inputs.calendarDidScrollToMonth) { $1 }
             .subscribe(outputs.reconfigureCalendarDataSource)
+            .store(in: &cancellables)
+
+        inputs.calendarDidScrollToMonth
+            .setFailureType(to: Error.self)
+            .flatMap { [userRepository] newDate in
+                userRepository.getUserProfile()
+                    .map { ($0.id, newDate) }
+            }
+            .sink(receiveCompletion: { _ in },
+                  receiveValue: { [analyticsManager] userId, newDate in
+                analyticsManager.logEvent(eventName: AnalyticsEventConst.scrollCalendar,
+                                          userId: userId,
+                                          targetDate: newDate)
+            })
             .store(in: &cancellables)
     }
 }

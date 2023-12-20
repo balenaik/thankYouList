@@ -21,7 +21,8 @@ class CalendarCoordinator: Coordinator {
         guard let viewController = R.storyboard.calendar.instantiateInitialViewController() else {
             return
         }
-        let viewModel = CalendarViewModel()
+        let viewModel = CalendarViewModel(userRepository: DefaultUserRepository(),
+                                          analyticsManager: DefaultAnalyticsManager())
         viewController.viewModel = viewModel
         routingType.navigationController?.pushViewController(viewController, animated: false)
     }

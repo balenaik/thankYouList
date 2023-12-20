@@ -38,6 +38,11 @@ private extension CalendarViewModel {
             .subscribe(outputs.currentSelectedDate)
             .store(in: &cancellables)
 
+        outputs.currentSelectedDate
+            .map { _ in }
+            .subscribe(outputs.reloadCurrentVisibleCalendar)
+            .store(in: &cancellables)
+
         inputs.calendarDidScrollToMonth
             .compactMap { newDate in
                 CalendarConfiguration.createWith2YearsRange(baseDate: newDate)

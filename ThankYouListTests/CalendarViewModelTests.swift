@@ -25,6 +25,58 @@ final class CalendarViewModelTests: XCTestCase {
                                       scheduler: scheduler.eraseToAnyScheduler())
     }
 
+    func test_ifTheUserOpensTheScreen__itShouldOutputTheSelectedDateAsCurrentSelectedDate_andReloadCurrentVisibleCalendar() {
+        let date = Date(timeIntervalSince1970: 12345)
+        inMemoryDataStore.selectedDate = date
+
+        let currentSelectedDateRecords = TestRecord(
+            publisher: viewModel.outputs.currentSelectedDate.eraseToAnyPublisher())
+
+        let reloadCurrentVisibleCalendarRecords = TestRecord(
+            publisher: viewModel.outputs.reloadCurrentVisibleCalendar.map { "" }.eraseToAnyPublisher()) // Void cannot be compared
+
+        // Opens screen
+        viewModel.inputs.viewDidLoad.send()
+
+        // index 0 should be the time when this Subject is created, which cannot be tested, so remove it beforehand
+        currentSelectedDateRecords.results.removeFirst()
+        XCTAssertEqual(currentSelectedDateRecords.results, [
+            (.value(date))
+        ])
+        XCTAssertEqual(reloadCurrentVisibleCalendarRecords.results, [
+            (.value("")),
+            (.value(""))
+        ])
+    }
+
+    func test_ifTheUserTapsDateFromCalendar__itShouldUpdateInMemoryDataStore_andOutputTheDateAsCurrentSelectedDate_andReloadCurrentVisibleCalendar() {
+        inMemoryDataStore.selectedDate = Date(timeIntervalSince1970: 12345)
+
+        let currentSelectedDateRecords = TestRecord(
+            publisher: viewModel.outputs.currentSelectedDate.eraseToAnyPublisher())
+
+        let reloadCurrentVisibleCalendarRecords = TestRecord(
+            publisher: viewModel.outputs.reloadCurrentVisibleCalendar.map { "" }.eraseToAnyPublisher()) // Void cannot be compared
+
+        let tappedDate = Date(timeIntervalSince1970: 67890)
+
+        // Taps date
+        viewModel.inputs.calendarDidSelectDate.send(tappedDate)
+
+        // Should update InMemoryDataStore
+        XCTAssertEqual(inMemoryDataStore.selectedDate, tappedDate)
+
+        // index 1 should be the time when this Subject is created, which cannot be tested, so remove it beforehand
+        currentSelectedDateRecords.results.removeFirst()
+        XCTAssertEqual(currentSelectedDateRecords.results, [
+            (.value(tappedDate))
+        ])
+        XCTAssertEqual(reloadCurrentVisibleCalendarRecords.results, [
+            .value(""),
+            .value("")
+        ])
+    }
+
     func test_ifTheUserScrollsCalendar__itShouldOutputCalendarConfiguration_with2YearsRange_andReconfigureCalendarDataSource() throws {
 
         let calendarConfigurationRecords = TestRecord(

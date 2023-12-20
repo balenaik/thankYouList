@@ -39,7 +39,7 @@ extension CalendarDayCell {
         default:
             dateLabelColor = .black26
         }
-        if Calendar.current.isDateInToday(cellState.date) {
+        if Calendar(identifier: .gregorian).isDateInToday(cellState.date) {
             dateLabelColor = .primary900
         }
         dateLabel.text = cellState.text

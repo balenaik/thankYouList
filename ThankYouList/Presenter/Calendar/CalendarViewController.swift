@@ -13,11 +13,6 @@ import FirebaseAuth
 import Firebase
 import Combine
 
-protocol CalendarRouter: Router {
-    func presentMyPage()
-    func presentEditThankYou(thankYouId: String)
-}
-
 class CalendarViewController: UIViewController {
     
     // MARK: - Properties

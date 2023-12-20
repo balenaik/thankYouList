@@ -10,6 +10,11 @@ import Foundation
 import Combine
 import CombineSchedulers
 
+protocol CalendarRouter: Router {
+    func presentMyPage()
+    func presentEditThankYou(thankYouId: String)
+}
+
 class CalendarViewModel: ObservableObject {
 
     let inputs = Inputs()

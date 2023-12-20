@@ -122,6 +122,15 @@ private extension CalendarViewController {
                 self.calendarView.reloadData(withanchor: $0)
             }
             .store(in: &cancellables)
+
+        viewModel.outputs
+            .reloadCurrentVisibleCalendar
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                let visibleCalendarIndex = 12
+                self?.calendarView.reloadSections(IndexSet(integer: visibleCalendarIndex))
+            }
+            .store(in: &cancellables)
     }
     
     private func setupViewsOfCalendar(from visibleDates: DateSegmentInfo) {

@@ -24,15 +24,18 @@ class CalendarViewModel: ObservableObject {
     private var inMemoryDataStore: InMemoryDataStore
     private let userRepository: UserRepository
     private let analyticsManager: AnalyticsManager
+    private let router: CalendarRouter?
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     init(inMemoryDataStore: InMemoryDataStore = DefaultInMemoryDataStore.shared,
          userRepository: UserRepository,
          analyticsManager: AnalyticsManager,
+         router: CalendarRouter,
          scheduler: AnySchedulerOf<DispatchQueue> = .main) {
         self.inMemoryDataStore = inMemoryDataStore
         self.userRepository = userRepository
         self.analyticsManager = analyticsManager
+        self.router = router
         self.scheduler = scheduler
         bind()
     }
@@ -79,6 +82,12 @@ private extension CalendarViewModel {
                                           userId: userId,
                                           targetDate: newDate)
             })
+            .store(in: &cancellables)
+
+        inputs.userIconDidTap
+            .sink { [router] in
+                router?.presentMyPage()
+            }
             .store(in: &cancellables)
     }
 }

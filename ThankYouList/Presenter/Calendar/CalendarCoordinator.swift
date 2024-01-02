@@ -22,7 +22,8 @@ class CalendarCoordinator: Coordinator {
             return
         }
         let viewModel = CalendarViewModel(userRepository: DefaultUserRepository(),
-                                          analyticsManager: DefaultAnalyticsManager())
+                                          analyticsManager: DefaultAnalyticsManager(),
+                                          router: self)
         viewController.viewModel = viewModel
         routingType.navigationController?.pushViewController(viewController, animated: false)
     }

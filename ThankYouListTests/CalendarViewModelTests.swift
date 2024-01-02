@@ -17,6 +17,7 @@ final class CalendarViewModelTests: XCTestCase {
     private var inMemoryDataStore: InMemoryDataStore!
     private var userRepository: MockUserRepository!
     private var analyticsManager: MockAnalyticsManager!
+    private var router: MockCalendarRouter!
 
     private var scheduler: TestSchedulerOf<DispatchQueue>!
 
@@ -24,10 +25,12 @@ final class CalendarViewModelTests: XCTestCase {
         inMemoryDataStore = MockInMemoryDataStore()
         userRepository = MockUserRepository()
         analyticsManager = MockAnalyticsManager()
+        router = MockCalendarRouter()
         scheduler = DispatchQueue.test
         viewModel = CalendarViewModel(inMemoryDataStore: inMemoryDataStore,
                                       userRepository: userRepository,
                                       analyticsManager: analyticsManager,
+                                      router: router,
                                       scheduler: scheduler.eraseToAnyScheduler())
     }
 
@@ -125,5 +128,24 @@ final class CalendarViewModelTests: XCTestCase {
         XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.scrollCalendar)
         XCTAssertEqual(analyticsManager.loggedEvent.first?.userId, userId)
         XCTAssertEqual(analyticsManager.loggedEvent.first?.targetDate, date)
+    }
+
+    func test_ifUserTapsUserIcon__itShouldShowMyPage() {
+        viewModel.inputs.userIconDidTap.send()
+        XCTAssertEqual(router.presentMyPage_calledCount, 1)
+    }
+}
+
+private class MockCalendarRouter: CalendarRouter {
+    var presentMyPage_calledCount = 0
+    func presentMyPage() {
+        presentMyPage_calledCount += 1
+    }
+
+    var presentEditThankYou_calledCount = 0
+    var presentEditThankYou_thankYouId: String?
+    func presentEditThankYou(thankYouId: String) {
+        presentEditThankYou_thankYouId = thankYouId
+        presentEditThankYou_calledCount += 1
     }
 }

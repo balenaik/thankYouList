@@ -12,6 +12,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import Firebase
 import Combine
+import CombineCocoa
 
 class CalendarViewController: UIViewController {
     
@@ -36,6 +37,7 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var smallListView: SmallListView!
     @IBOutlet weak var yearMonth: UILabel!
+    @IBOutlet private weak var userIcon: UIBarButtonItem!
 
     @IBOutlet weak var listViewTopConstraint: NSLayoutConstraint!
 
@@ -60,10 +62,6 @@ class CalendarViewController: UIViewController {
 
 // MARK: - IBActions
 extension CalendarViewController {
-    @IBAction func tapUserIcon(_ sender: Any) {
-        router?.presentMyPage()
-    }
-    
     @IBAction func draggedListView(_ sender: UIPanGestureRecognizer) {
         switch sender.state {
         case .began:
@@ -108,6 +106,11 @@ private extension CalendarViewController {
     }
 
     private func bind() {
+        bindOutputs()
+        bindInputs()
+    }
+
+    private func bindOutputs() {
         viewModel.outputs
             .reconfigureCalendarDataSource
             .receive(on: DispatchQueue.main)
@@ -125,6 +128,12 @@ private extension CalendarViewController {
                 let visibleCalendarIndex = 12
                 self?.calendarView.reloadSections(IndexSet(integer: visibleCalendarIndex))
             }
+            .store(in: &cancellables)
+    }
+
+    private func bindInputs() {
+        userIcon.tapPublisher
+            .subscribe(viewModel.inputs.userIconDidTap)
             .store(in: &cancellables)
     }
     

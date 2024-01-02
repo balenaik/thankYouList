@@ -88,6 +88,7 @@ extension CalendarViewModel {
         let viewDidLoad = PassthroughSubject<Void, Never>()
         let calendarDidScrollToMonth = PassthroughSubject<Date, Never>()
         let calendarDidSelectDate = PassthroughSubject<Date, Never>()
+        let userIconDidTap = PassthroughSubject<Void, Never>()
     }
 
     class Outputs {

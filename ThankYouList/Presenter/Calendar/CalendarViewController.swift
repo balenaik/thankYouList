@@ -32,14 +32,14 @@ class CalendarViewController: UIViewController {
     var viewModel: CalendarViewModel!
 
     // MARK: - IBOutlets
-    @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var calendarView: JTAppleCalendarView!
-    @IBOutlet weak var smallListView: SmallListView!
-    @IBOutlet weak var yearMonth: UILabel!
+    @IBOutlet private weak var contentView: UIView!
+    @IBOutlet private weak var stackView: UIStackView!
+    @IBOutlet private weak var calendarView: JTAppleCalendarView!
+    @IBOutlet private weak var smallListView: SmallListView!
+    @IBOutlet private weak var yearMonth: UILabel!
     @IBOutlet private weak var userIcon: UIBarButtonItem!
 
-    @IBOutlet weak var listViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var listViewTopConstraint: NSLayoutConstraint!
 
     // MARK: - Life cycles
     override func viewDidLoad() {

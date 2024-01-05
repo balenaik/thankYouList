@@ -107,4 +107,8 @@ extension Publisher {
             )
         }
     }
+
+    func sendEvent<S>(_ output: S, to subject: PassthroughSubject<S, Never>) -> Publishers.HandleEvents<Self> {
+        handleEvents(receiveOutput: { _ in subject.send(output) })
+    }
 }

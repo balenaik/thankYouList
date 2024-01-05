@@ -17,10 +17,6 @@ struct BottomHalfSheetMenuItem {
     let id: String?
 }
 
-protocol BottomHalfSheetMenuItemViewDelegate: class {
-    func bottomHalfSheetMenuItemViewDidTap(item: BottomHalfSheetMenuItem)
-}
-
 class BottomHalfSheetMenuItemView: UIControl {
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!

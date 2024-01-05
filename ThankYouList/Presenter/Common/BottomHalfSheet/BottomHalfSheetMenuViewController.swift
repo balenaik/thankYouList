@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Combine
 import FloatingPanel
 
 private let scrollViewTopMargin = CGFloat(16)
@@ -34,7 +35,9 @@ class BottomHalfSheetMenuViewController: UIViewController {
         return stackView
     }()
 
-    weak var delegate: BottomHalfSheetMenuViewControllerDelegate?
+    // Public Publisher
+    let itemDidTap = PassthroughSubject<BottomHalfSheetMenuItem, Never>()
+    var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,7 +75,10 @@ private extension BottomHalfSheetMenuViewController {
         menu.forEach { menuItem in
             let itemView = BottomHalfSheetMenuItemView.instanceFromNib()
             itemView.bind(item: menuItem)
-            itemView.delegate = self
+            itemView.viewDidTap
+                .subscribe(itemDidTap)
+                .store(in: &cancellables)
+
             stackView.addArrangedSubview(itemView)
         }
     }
@@ -145,12 +151,5 @@ extension BottomHalfSheetMenuViewController {
         floatingPanelController.set(contentViewController: bottomHalfSheetMenuViewController)
         floatingPanelController.track(scrollView: bottomHalfSheetMenuViewController.scrollView)
         return floatingPanelController
-    }
-}
-
-// MARK: - BottomHalfSheetMenuItemViewDelegate
-extension BottomHalfSheetMenuViewController: BottomHalfSheetMenuItemViewDelegate {
-    func bottomHalfSheetMenuItemViewDidTap(item: BottomHalfSheetMenuItem) {
-        delegate?.bottomHalfSheetMenuViewControllerDidTapItem(item: item)
     }
 }

@@ -136,7 +136,7 @@ final class CalendarViewModelTests: XCTestCase {
     }
 }
 
-private class MockCalendarRouter: CalendarRouter {
+private class MockCalendarRouter: MockRouter, CalendarRouter {
     var presentMyPage_calledCount = 0
     func presentMyPage() {
         presentMyPage_calledCount += 1

@@ -129,6 +129,14 @@ private extension CalendarViewController {
                 self?.calendarView.reloadSections(IndexSet(integer: visibleCalendarIndex))
             }
             .store(in: &cancellables)
+
+        viewModel.outputs
+            .dismissPresentedView
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.presentedViewController?.dismiss(animated: true, completion: nil)
+            }
+            .store(in: &cancellables)
     }
 
     private func bindInputs() {

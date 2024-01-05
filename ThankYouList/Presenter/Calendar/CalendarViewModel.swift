@@ -105,6 +105,7 @@ extension CalendarViewModel {
         let currentSelectedDate = CurrentValueSubject<Date, Never>(Date())
         let reconfigureCalendarDataSource = PassthroughSubject<Date, Never>()
         let reloadCurrentVisibleCalendar = PassthroughSubject<Void, Never>()
+        let dismissPresentedView = PassthroughSubject<Void, Never>()
     }
 }
 

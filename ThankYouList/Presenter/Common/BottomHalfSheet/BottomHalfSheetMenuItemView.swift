@@ -28,7 +28,7 @@ class BottomHalfSheetMenuItemView: UIControl {
     weak var delegate: BottomHalfSheetMenuItemViewDelegate?
 
     class func instanceFromNib() -> BottomHalfSheetMenuItemView {
-        let view = R.nib.bottomHalfSheetMenuItemView.firstView(owner: nil)!
+        let view = R.nib.bottomHalfSheetMenuItemView.firstView(withOwner: nil)!
         return view
     }
 

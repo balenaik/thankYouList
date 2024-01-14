@@ -132,7 +132,6 @@
 		A8F2619A2B43FA0500A65C0A /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A8F261992B43FA0500A65C0A /* CombineCocoa */; };
 		A8F2619C2B476FAE00A65C0A /* MockRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F2619B2B476FAE00A65C0A /* MockRouter.swift */; };
 		A8F407CA2957DBF6007FDF2D /* ConfirmDeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F407C92957DBF6007FDF2D /* ConfirmDeleteAccountView.swift */; };
-		A8F649B71EEB96D100D6BA84 /* GlobalThankYouData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F649B61EEB96D100D6BA84 /* GlobalThankYouData.swift */; };
 		A8FF6A202829C40500CF816F /* BottomHalfSheetDatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FF6A1F2829C40400CF816F /* BottomHalfSheetDatePickerViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -275,7 +274,6 @@
 		A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8F2619B2B476FAE00A65C0A /* MockRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRouter.swift; sourceTree = "<group>"; };
 		A8F407C92957DBF6007FDF2D /* ConfirmDeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDeleteAccountView.swift; sourceTree = "<group>"; };
-		A8F649B61EEB96D100D6BA84 /* GlobalThankYouData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalThankYouData.swift; sourceTree = "<group>"; };
 		A8FF6A1F2829C40400CF816F /* BottomHalfSheetDatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomHalfSheetDatePickerViewController.swift; sourceTree = "<group>"; };
 		BA00FC82559EE1AEA8CE9577 /* Pods-ThankYouList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.debug.xcconfig"; sourceTree = "<group>"; };
 		C9E50183A58E3BE5286274D4 /* libPods-ThankYouListTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ThankYouListTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -334,7 +332,6 @@
 				A883EE5829EB6DCE002DCBCA /* AnalyticsManager.swift */,
 				A892354329D008E60093A92F /* AppleAuthenticationManager.swift */,
 				A8E6CD13296BA31A0042AA81 /* Coordinator.swift */,
-				A8F649B61EEB96D100D6BA84 /* GlobalThankYouData.swift */,
 				A83A361F2972830A00AD2790 /* Router.swift */,
 				A895A572298FA6B60081E08F /* ReplaySubject.swift */,
 				A895A574298FA6E10081E08F /* ReplaySubjectSubscription.swift */,
@@ -954,7 +951,6 @@
 				A8E6CD0B29601E150042AA81 /* Color+SetColor.swift in Sources */,
 				A8A06863244F444400839D14 /* MyPageProfileCell.swift in Sources */,
 				A83A36202972830A00AD2790 /* Router.swift in Sources */,
-				A8F649B71EEB96D100D6BA84 /* GlobalThankYouData.swift in Sources */,
 				A83A361E2972615900AD2790 /* AddThankYouCoordinator.swift in Sources */,
 				A8A85AED25A7473D00182B99 /* UIViewController+Alert.swift in Sources */,
 				A8D5DFE82450A4FD00F30205 /* UIImageView+URL.swift in Sources */,

@@ -31,7 +31,7 @@ class ThankYouListViewController: UIViewController {
 
     private var db = Firestore.firestore()
     private let analyticsManager = DefaultAnalyticsManager()
-    private var thankYouDataSingleton = GlobalThankYouData.sharedInstance
+    private var thankYouDataSingleton = DefaultInMemoryDataStore.shared
     private var sections = [Section]()
     private var estimatedRowHeights = [String : CGFloat]()
     private var hasLoadedThankYouList = false
@@ -67,7 +67,7 @@ private extension ThankYouListViewController {
         navigationItem.title = R.string.localizable.list_navigationbar_title()
         tabBarItem.title = R.string.localizable.calendar_tabbar_title()
 
-        thankYouDataSingleton.thankYouDataList = []
+        thankYouDataSingleton.thankYouList = []
         sections = []
         loadAndCheckForUpdates()
 
@@ -107,17 +107,17 @@ private extension ThankYouListViewController {
                     let decryptedValue = Crypto().decryptString(encryptText: newThankYouData.encryptedValue, key: uid16string)
                     newThankYouData.id = diff.document.documentID
                     newThankYouData.value = decryptedValue
-                    let thankYouDataIds: [String] = self.thankYouDataSingleton.thankYouDataList.map{$0.id}
+                    let thankYouDataIds: [String] = self.thankYouDataSingleton.thankYouList.map{$0.id}
                     if !thankYouDataIds.contains(newThankYouData.id) {
-                        self.thankYouDataSingleton.thankYouDataList.append(newThankYouData)
+                        self.thankYouDataSingleton.thankYouList.append(newThankYouData)
                         self.addThankYouDataToSection(thankYouData: newThankYouData)
                     }
                 }
                 if diff.type == .removed {
                     let removedDataId = diff.document.documentID
-                    for (index, thankYouData) in self.thankYouDataSingleton.thankYouDataList.enumerated() {
+                    for (index, thankYouData) in self.thankYouDataSingleton.thankYouList.enumerated() {
                         if thankYouData.id == removedDataId {
-                            self.thankYouDataSingleton.thankYouDataList.remove(at: index)
+                            self.thankYouDataSingleton.thankYouList.remove(at: index)
                             self.deleteThankYouDataFromSection(thankYouData: thankYouData)
                             break
                         }
@@ -129,19 +129,19 @@ private extension ThankYouListViewController {
                     let decryptedValue = Crypto().decryptString(encryptText: editedThankYouData.encryptedValue, key: uid16string)
                     editedThankYouData.id = diff.document.documentID
                     editedThankYouData.value = decryptedValue
-                    for (index, thankYouData) in self.thankYouDataSingleton.thankYouDataList.enumerated() {
+                    for (index, thankYouData) in self.thankYouDataSingleton.thankYouList.enumerated() {
                         if editedThankYouData.id == thankYouData.id {
-                            self.thankYouDataSingleton.thankYouDataList.remove(at: index)
+                            self.thankYouDataSingleton.thankYouList.remove(at: index)
                             self.deleteThankYouDataFromSection(thankYouData: thankYouData)
                             break
                         }
                     }
-                    self.thankYouDataSingleton.thankYouDataList.append(editedThankYouData)
+                    self.thankYouDataSingleton.thankYouList.append(editedThankYouData)
                     self.addThankYouDataToSection(thankYouData: editedThankYouData)
                 }
             }
             DispatchQueue.main.async {
-                if self.thankYouDataSingleton.thankYouDataList.count == 0 {
+                if self.thankYouDataSingleton.thankYouList.count == 0 {
                     self.emptyView.isHidden = false
                 } else {
                     self.emptyView.isHidden = true
@@ -220,7 +220,7 @@ private extension ThankYouListViewController {
                     self.showErrorAlert(title: nil, message: R.string.localizable.failedToDelete())
                     return
                 }
-                if let thankYouData = self.thankYouDataSingleton.thankYouDataList.first(where: { $0.id == thankYouId }) {
+                if let thankYouData = self.thankYouDataSingleton.thankYouList.first(where: { $0.id == thankYouId }) {
                     self.analyticsManager.logEvent(
                         eventName: AnalyticsEventConst.deleteThankYou,
                         userId: userId,

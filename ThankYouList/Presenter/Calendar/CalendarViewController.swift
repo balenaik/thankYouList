@@ -18,7 +18,7 @@ import FloatingPanel
 class CalendarViewController: UIViewController {
     
     // MARK: - Properties
-    private let thankYouDataSingleton = GlobalThankYouData.sharedInstance
+    private let thankYouDataSingleton = DefaultInMemoryDataStore.shared
     private var selectedList = [ThankYouData]()
     private var estimatedRowHeights = [String : CGFloat]()
     private var selectedDate = ""
@@ -151,7 +151,7 @@ private extension CalendarViewController {
     }
     
     private func getListFromDate(_ date: Date) {
-        let thankYouDataList = thankYouDataSingleton.thankYouDataList
+        let thankYouDataList = thankYouDataSingleton.thankYouList
         estimatedRowHeights.removeAll()
         selectedList = thankYouDataList.filter({$0.date == date})
     }
@@ -236,7 +236,7 @@ private extension CalendarViewController {
                     self.showErrorAlert(title: nil, message: R.string.localizable.failedToDelete())
                     return
                 }
-                if let thankYouData = self.thankYouDataSingleton.thankYouDataList.first(where: { $0.id == thankYouId }) {
+                if let thankYouData = self.thankYouDataSingleton.thankYouList.first(where: { $0.id == thankYouId }) {
                     self.analyticsManager.logEvent(
                         eventName: AnalyticsEventConst.deleteThankYou,
                         userId: userId,
@@ -260,7 +260,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
     
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: R.reuseIdentifier.calendarDayCell.identifier, for: indexPath) as! CalendarDayCell
-        let thankYouCount = thankYouDataSingleton.thankYouDataList.filter { $0.date == cellState.date }.count
+        let thankYouCount = thankYouDataSingleton.thankYouList.filter { $0.date == cellState.date }.count
         cell.bind(cellState: cellState,
                   thankYouCount: thankYouCount,
                   isSelected: viewModel.outputs.currentSelectedDate.value.isSameDayAs(date))

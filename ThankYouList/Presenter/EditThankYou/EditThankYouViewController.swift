@@ -130,8 +130,8 @@ private extension EditThankYouViewController {
     }
 
     func setupEditThankYouData() {
-        guard let editingThankYou = GlobalThankYouData.sharedInstance
-                .thankYouDataList.first(where: { $0.id == editingThankYouId }) else {
+        guard let editingThankYou = DefaultInMemoryDataStore.shared
+                .thankYouList.first(where: { $0.id == editingThankYouId }) else {
             router?.dismiss()
             return
         }

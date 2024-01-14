@@ -10,6 +10,12 @@ import Combine
 @testable import ThankYouList
 
 class MockThankYouRepository: ThankYouRepository {
+    var loadThankYou_result: ThankYouData?
+    var loadThankYou_thankYouId: String?
+    func loadThankYou(thankYouId: String) -> ThankYouData? {
+        loadThankYou_thankYouId = thankYouId
+        return loadThankYou_result
+    }
 
     var deleteThankYou_result = Just(()).setFailureType(to: Error.self).asFuture()
     var deleteThankYou_thankYouId: String?

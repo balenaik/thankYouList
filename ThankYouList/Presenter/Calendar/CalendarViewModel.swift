@@ -135,6 +135,28 @@ private extension CalendarViewModel {
                                      actions: [deleteAction, cancelAction])
             }
             .store(in: &cancellables)
+
+        let deleteResult = deleteAction
+            .flatMap { [userRepository, thankYouRepository] thankYouId in
+                userRepository.getUserProfile()
+                    .flatMap { [thankYouRepository] profile in
+                        return thankYouRepository.deleteThankYou(
+                            thankYouId: thankYouId,
+                            userId: profile.id)
+                        .map { _ in
+                            (userId: profile.id,
+                             deletedThankYou: deletingThankYou)
+                        }
+                    }
+                    .asResult()
+            }
+            .eraseToAnyPublisher()
+            .share()
+
+        deleteResult
+            .values()
+            .sink { _ in }
+            .store(in: &cancellables)
 }
 
 extension CalendarViewModel {

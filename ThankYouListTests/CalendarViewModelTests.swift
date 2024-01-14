@@ -208,6 +208,38 @@ final class CalendarViewModelTests: XCTestCase {
         XCTAssertEqual(secondAction?.title, R.string.localizable.cancel())
         XCTAssertEqual(secondAction?.style, .cancel)
     }
+
+    func test_ifUserTapsBottomHalfSheetMenu_thatHasDeleteValue_andTapsDeleteButton__itShouldCallDeleteThankYou__andEvenIfTheFirstTryFails__itShouldCallDeleteThankYouAgain() {
+
+        // Tap delete button on menu
+        viewModel.inputs.bottomHalfSheetMenuDidTap.send(
+            .init(title: "",
+                  image: nil,
+                  rawValue: ThankYouCellTapMenu.delete.rawValue,
+                  id: "thankYouId")
+        )
+        scheduler.advance(by: .milliseconds(100))
+
+        let deleteAction = router.presentAlert_actions?.first
+
+        // Set delete thank you first result as failed
+        thankYouRepository.deleteThankYou_result = Fail(error: NSError()).asFuture()
+
+        // Tap delete button on confirmation halfsheet #1
+        deleteAction?.action!()
+
+        // deleteThankYou should be called once
+        XCTAssertEqual(thankYouRepository.deleteThankYou_calledCount, 1)
+
+        // Set delete thank you first result as success
+        thankYouRepository.deleteThankYou_result = Just(()).setFailureType(to: Error.self).asFuture()
+
+        // Tap delete button on confirmation halfsheet #2
+        deleteAction?.action!()
+
+        // deleteThankYou should be called twice
+        XCTAssertEqual(thankYouRepository.deleteThankYou_calledCount, 2)
+    }
 }
 
 private class MockCalendarRouter: MockRouter, CalendarRouter {

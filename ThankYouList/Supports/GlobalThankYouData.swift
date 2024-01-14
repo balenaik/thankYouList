@@ -11,7 +11,6 @@ import Foundation
 class GlobalThankYouData {
     
     // Create a singleton
-    var thankYouDataUDList = [ThankYouDataUD]()
     var thankYouDataList = [ThankYouData]()
     
     // Get instance

@@ -43,6 +43,8 @@ class CalendarViewModel: ObservableObject {
 
 private extension CalendarViewModel {
     func bind() {
+        bindCellTapAction()
+
         inputs.viewDidLoad
             .compactMap { [weak self] in self?.inMemoryDataStore.selectedDate }
             .merge(with: inputs.calendarDidSelectDate
@@ -90,6 +92,27 @@ private extension CalendarViewModel {
             }
             .store(in: &cancellables)
     }
+
+    func bindCellTapAction() {
+        let didTapMenu = inputs.bottomHalfSheetMenuDidTap
+            .compactMap { menuItem -> (menu: ThankYouCellTapMenu, thankYouId: String)? in
+                guard let itemRawValue = menuItem.rawValue,
+                      let cellMenu = ThankYouCellTapMenu(rawValue: itemRawValue),
+                      let thankYouId = menuItem.id else {
+                    return nil
+                }
+                return (menu: cellMenu, thankYouId: thankYouId)
+            }
+            .sendEvent((), to: outputs.dismissPresentedView)
+            .share()
+
+        didTapMenu
+            .filter { $0.menu == .edit }
+            .receive(on: scheduler)
+            .sink { [router] in
+                router?.presentEditThankYou(thankYouId: $0.thankYouId)
+            }
+            .store(in: &cancellables)
 }
 
 extension CalendarViewModel {
@@ -98,6 +121,7 @@ extension CalendarViewModel {
         let calendarDidScrollToMonth = PassthroughSubject<Date, Never>()
         let calendarDidSelectDate = PassthroughSubject<Date, Never>()
         let userIconDidTap = PassthroughSubject<Void, Never>()
+        let bottomHalfSheetMenuDidTap = PassthroughSubject<BottomHalfSheetMenuItem, Never>()
     }
 
     class Outputs {

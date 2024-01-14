@@ -169,10 +169,6 @@ private extension CalendarViewController {
             self.smallListView.reloadTableView()
         }
     }
-
-    func presentEditThankYouViewController(thankYouId: String) {
-        router?.presentEditThankYou(thankYouId: thankYouId)
-    }
     
     private func beginDraggingListView() {
         isDraggingListView = true
@@ -408,17 +404,7 @@ extension CalendarViewController: ThankYouCellDelegate {
             return
         }
         bottomHalfSheetMenuViewController.itemDidTap
-            .sink { [weak self] item in
-                guard let itemRawValue = item.rawValue,
-                      let cellMenu = ThankYouCellTapMenu(rawValue: itemRawValue),
-                      let thankYouId = item.id else { return }
-                self?.presentedViewController?.dismiss(animated: true, completion: nil)
-                switch cellMenu {
-                case .edit:
-                    self?.presentEditThankYouViewController(thankYouId: thankYouId)
-                case .delete:
-                    self?.showDeleteConfirmationAlert(thankYouId: thankYouId)
-            }
+            .subscribe(viewModel.inputs.bottomHalfSheetMenuDidTap)
             .store(in: &bottomHalfSheetMenuViewController.cancellables)
 
         present(floatingPanelViewController, animated: true, completion: nil)

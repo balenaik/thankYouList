@@ -134,6 +134,53 @@ final class CalendarViewModelTests: XCTestCase {
         viewModel.inputs.userIconDidTap.send()
         XCTAssertEqual(router.presentMyPage_calledCount, 1)
     }
+
+    func test_ifUserTapsBottomHalfSheetMenu_thatHasNilRawValue__itShouldNotEitherPresentEditThankYouOrPresentAlert() {
+        viewModel.inputs.bottomHalfSheetMenuDidTap.send(
+            .init(title: "", image: nil, rawValue: nil, id: "123")
+        )
+        scheduler.advance(by: .milliseconds(100))
+        XCTAssertEqual(router.presentEditThankYou_calledCount, 0)
+        XCTAssertEqual(router.presentAlert_calledCount, 0)
+    }
+
+    func test_ifUserTapsBottomHalfSheetMenu_thatHasNotExistingThankYouCellTapMenuRawValue__itShouldNotEitherPresentEditThankYouOrPresentAlert() {
+        viewModel.inputs.bottomHalfSheetMenuDidTap.send(
+            .init(title: "", image: nil, rawValue: 2, id: "123")
+        )
+        scheduler.advance(by: .milliseconds(100))
+        XCTAssertEqual(router.presentEditThankYou_calledCount, 0)
+        XCTAssertEqual(router.presentAlert_calledCount, 0)
+    }
+
+    func test_ifUserTapsBottomHalfSheetMenu_thatHasAvailableRawValue_andNilId__itShouldNotEitherPresentEditThankYouOrPresentAlert() {
+        viewModel.inputs.bottomHalfSheetMenuDidTap.send(
+            .init(title: "",
+                  image: nil,
+                  rawValue: ThankYouCellTapMenu.edit.rawValue,
+                  id: nil)
+        )
+        scheduler.advance(by: .milliseconds(100))
+        XCTAssertEqual(router.presentEditThankYou_calledCount, 0)
+        XCTAssertEqual(router.presentAlert_calledCount, 0)
+    }
+
+    func test_ifUserTapsBottomHalfSheetMenu_thatHasEditValue__itShouldDismissPresentedView_andPresentEditThankYou_withPassedThankYouId() {
+        let dismissPresentedViewRecords = TestRecord(
+            publisher: viewModel.outputs.dismissPresentedView.map { "" }.eraseToAnyPublisher())
+
+        let thankYouId = "thank you id"
+        viewModel.inputs.bottomHalfSheetMenuDidTap.send(
+            .init(title: "",
+                  image: nil,
+                  rawValue: ThankYouCellTapMenu.edit.rawValue,
+                  id: thankYouId)
+        )
+        scheduler.advance(by: .milliseconds(100))
+        XCTAssertEqual(dismissPresentedViewRecords.results, [.value("")])
+        XCTAssertEqual(router.presentEditThankYou_calledCount, 1)
+        XCTAssertEqual(router.presentEditThankYou_thankYouId, thankYouId)
+    }
 }
 
 private class MockCalendarRouter: MockRouter, CalendarRouter {

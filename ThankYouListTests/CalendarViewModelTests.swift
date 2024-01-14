@@ -132,6 +132,7 @@ final class CalendarViewModelTests: XCTestCase {
 
     func test_ifUserTapsUserIcon__itShouldShowMyPage() {
         viewModel.inputs.userIconDidTap.send()
+        scheduler.advance(by: .milliseconds(100))
         XCTAssertEqual(router.presentMyPage_calledCount, 1)
     }
 

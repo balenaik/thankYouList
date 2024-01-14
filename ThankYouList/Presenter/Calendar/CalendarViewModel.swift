@@ -87,6 +87,7 @@ private extension CalendarViewModel {
             .store(in: &cancellables)
 
         inputs.userIconDidTap
+            .receive(on: scheduler)
             .sink { [router] in
                 router?.presentMyPage()
             }

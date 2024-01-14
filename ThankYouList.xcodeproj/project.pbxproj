@@ -44,6 +44,7 @@
 		A84635AF2AA3F4270030A358 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635AE2AA3F4270030A358 /* CalendarViewModel.swift */; };
 		A84635B12AB9D08B0030A358 /* InMemoryDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635B02AB9D08B0030A358 /* InMemoryDataStore.swift */; };
 		A84635B32ABE83550030A358 /* Date+Compare.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635B22ABE83550030A358 /* Date+Compare.swift */; };
+		A84635B52AC020C00030A358 /* ThankYouRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635B42AC020C00030A358 /* ThankYouRepository.swift */; };
 		A84635B82AD270210030A358 /* CalendarViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635B72AD270210030A358 /* CalendarViewModelTests.swift */; };
 		A84635BA2AD270B40030A358 /* MockInMemoryDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635B92AD270B40030A358 /* MockInMemoryDataStore.swift */; };
 		A84635BE2AFF02820030A358 /* CalendarConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635BD2AFF02820030A358 /* CalendarConfiguration.swift */; };
@@ -186,6 +187,7 @@
 		A84635AE2AA3F4270030A358 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		A84635B02AB9D08B0030A358 /* InMemoryDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryDataStore.swift; sourceTree = "<group>"; };
 		A84635B22ABE83550030A358 /* Date+Compare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Compare.swift"; sourceTree = "<group>"; };
+		A84635B42AC020C00030A358 /* ThankYouRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouRepository.swift; sourceTree = "<group>"; };
 		A84635B72AD270210030A358 /* CalendarViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModelTests.swift; sourceTree = "<group>"; };
 		A84635B92AD270B40030A358 /* MockInMemoryDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockInMemoryDataStore.swift; sourceTree = "<group>"; };
 		A84635BD2AFF02820030A358 /* CalendarConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarConfiguration.swift; sourceTree = "<group>"; };
@@ -618,6 +620,7 @@
 			isa = PBXGroup;
 			children = (
 				A8E6CD112965B2F20042AA81 /* UserRepository.swift */,
+				A84635B42AC020C00030A358 /* ThankYouRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -938,6 +941,7 @@
 				A810D8DA23461F99008F2E74 /* UIColor+Theme.swift in Sources */,
 				A820DE5421C5432500E7F3DF /* NotificationConst.swift in Sources */,
 				A8E6CD07295C7D050042AA81 /* ConfirmDeleteAccountViewModel.swift in Sources */,
+				A84635B52AC020C00030A358 /* ThankYouRepository.swift in Sources */,
 				A8E6CD0F296513000042AA81 /* String+Validation.swift in Sources */,
 				A8C59B7D243CD72300FF79EA /* UIViewController+Setup.swift in Sources */,
 				A83A361A296C537B00AD2790 /* ThankYouListCoordinator.swift in Sources */,

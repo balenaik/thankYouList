@@ -108,12 +108,12 @@ private extension MyPageViewController {
     }
 
     func showLogoutAlert() {
-        let logoutAction = UIAlertAction(title: R.string.localizable.mypage_logout(),
-                                         style: .destructive) { [weak self] _ in
+        let logoutAction = AlertAction(title: R.string.localizable.mypage_logout(),
+                                       style: .destructive) { [weak self] in
             self?.logout()
         }
-        let cancelAction = UIAlertAction(title: R.string.localizable.cancel(),
-                                         style: .cancel)
+        let cancelAction = AlertAction(title: R.string.localizable.cancel(),
+                                       style: .cancel)
         router?.presentAlert(title: R.string.localizable.mypage_logout(),
                              message: R.string.localizable.mypage_logout_confirmation_message(),
                              actions: [logoutAction, cancelAction])
@@ -129,12 +129,12 @@ private extension MyPageViewController {
     }
 
     func showDeleteAccountAlert() {
-        let nextAction = UIAlertAction(title: R.string.localizable.next(),
-                                       style: .destructive) { [weak self] _ in
+        let nextAction = AlertAction(title: R.string.localizable.next(),
+                                     style: .destructive) { [weak self] in
             self?.presentConfirmDeleteAccount()
         }
-        let cancelAction = UIAlertAction(title: R.string.localizable.cancel(),
-                                         style: .cancel)
+        let cancelAction = AlertAction(title: R.string.localizable.cancel(),
+                                       style: .cancel)
         router?.presentAlert(title: R.string.localizable.mypage_delete_account(),
                              message: R.string.localizable.mypage_delete_account_confirmation_message(),
                              actions: [nextAction, cancelAction])

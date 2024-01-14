@@ -177,11 +177,11 @@ private extension AddThankYouViewController {
     }
 
     func showDiscardAlert() {
-        let discardAction = UIAlertAction(title: R.string.localizable.discard(),
-                                          style: .destructive) { [weak self] _ in
+        let discardAction = AlertAction(title: R.string.localizable.discard(),
+                                        style: .destructive) { [weak self] in
             self?.router?.dismiss()
         }
-        let cancelAction = UIAlertAction(
+        let cancelAction = AlertAction(
             title: R.string.localizable.add_thank_you_discard_cancel(),
             style: .cancel)
         router?.presentAlert(title: R.string.localizable.add_thank_you_discard_title(),

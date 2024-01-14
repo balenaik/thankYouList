@@ -193,12 +193,12 @@ private extension ThankYouListViewController {
     }
 
     func showDeleteConfirmationAlert(thankYouId: String) {
-        let deleteAction = UIAlertAction(title: R.string.localizable.delete(),
-                                         style: .destructive) { [weak self] _ in
+        let deleteAction = AlertAction(title: R.string.localizable.delete(),
+                                       style: .destructive) { [weak self] in
             self?.deleteThankYou(thankYouId: thankYouId)
         }
-        let cancelAction = UIAlertAction(title: R.string.localizable.cancel(),
-                                         style: .cancel)
+        let cancelAction = AlertAction(title: R.string.localizable.cancel(),
+                                       style: .cancel)
         router?.presentAlert(title: R.string.localizable.deleteThankYou(),
                              message: R.string.localizable.areYouSureYouWantToDeleteThisThankYou(),
                              actions: [deleteAction, cancelAction])

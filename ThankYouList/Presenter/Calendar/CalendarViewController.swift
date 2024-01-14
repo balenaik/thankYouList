@@ -13,6 +13,7 @@ import FirebaseAuth
 import Firebase
 import Combine
 import CombineCocoa
+import FloatingPanel
 
 class CalendarViewController: UIViewController {
     
@@ -402,26 +403,24 @@ extension CalendarViewController: SmallListViewDelegate {
 extension CalendarViewController: ThankYouCellDelegate {
     func thankYouCellDidTapThankYouView(thankYouId: String) {
         let menu = ThankYouCellTapMenu.allCases.map { $0.bottomHalfSheetMenuItem(id: thankYouId) }
-        let bottomSheet = BottomHalfSheetMenuViewController.createViewController(
-            menu: menu,
-            bottomSheetDelegate: self
-        )
-        present(bottomSheet, animated: true, completion: nil)
-    }
-}
-
-// MARK: - BottomHalfSheetMenuViewControllerDelegate
-extension CalendarViewController: BottomHalfSheetMenuViewControllerDelegate {
-    func bottomHalfSheetMenuViewControllerDidTapItem(item: BottomHalfSheetMenuItem) {
-        guard let itemRawValue = item.rawValue,
-              let cellMenu = ThankYouCellTapMenu(rawValue: itemRawValue),
-              let thankYouId = item.id else { return }
-        presentedViewController?.dismiss(animated: true, completion: nil)
-        switch cellMenu {
-        case .edit:
-            presentEditThankYouViewController(thankYouId: thankYouId)
-        case .delete:
-            showDeleteConfirmationAlert(thankYouId: thankYouId)
+        let floatingPanelViewController = FloatingPanelController.createBottomHalfSheetMenu(menu: menu)
+        guard let bottomHalfSheetMenuViewController = floatingPanelViewController.contentBottomHalfSheetMenuViewController else {
+            return
         }
+        bottomHalfSheetMenuViewController.itemDidTap
+            .sink { [weak self] item in
+                guard let itemRawValue = item.rawValue,
+                      let cellMenu = ThankYouCellTapMenu(rawValue: itemRawValue),
+                      let thankYouId = item.id else { return }
+                self?.presentedViewController?.dismiss(animated: true, completion: nil)
+                switch cellMenu {
+                case .edit:
+                    self?.presentEditThankYouViewController(thankYouId: thankYouId)
+                case .delete:
+                    self?.showDeleteConfirmationAlert(thankYouId: thankYouId)
+            }
+            .store(in: &bottomHalfSheetMenuViewController.cancellables)
+
+        present(floatingPanelViewController, animated: true, completion: nil)
     }
 }

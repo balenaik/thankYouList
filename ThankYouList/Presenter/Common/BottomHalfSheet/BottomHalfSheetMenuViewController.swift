@@ -18,13 +18,9 @@ private let removalInteractionVelocityThreshold = CGFloat(2)
 
 private let halfSheetCornerRadius = CGFloat(12)
 
-protocol BottomHalfSheetMenuViewControllerDelegate: class {
-    func bottomHalfSheetMenuViewControllerDidTapItem(item: BottomHalfSheetMenuItem)
-}
-
 class BottomHalfSheetMenuViewController: UIViewController {
 
-    private let scrollView = UIScrollView()
+    let scrollView = UIScrollView()
 
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -84,33 +80,8 @@ private extension BottomHalfSheetMenuViewController {
     }
 }
 
-// MARK: - FloatingPanel Properties
+// MARK: - Properties
 private extension BottomHalfSheetMenuViewController {
-    class BottomHalfSheetMenuLayout: FloatingPanelBottomLayout {
-        init(layoutGuide: UILayoutGuide) {
-            self.layoutGuide = layoutGuide
-        }
-        private let layoutGuide: UILayoutGuide
-        override var initialState: FloatingPanelState { .tip }
-        override var anchors: [FloatingPanelState : FloatingPanelLayoutAnchoring] {
-            return [
-                .tip: FloatingPanelAdaptiveLayoutAnchor(fractionalOffset: 0,
-                                                        contentLayout: layoutGuide,
-                                                        referenceGuide: .safeArea)
-            ]
-        }
-
-        override func backdropAlpha(for state: FloatingPanelState) -> CGFloat {
-            return backgroundViewAlpha
-        }
-    }
-
-    class BottomHalfSheetMenuBehavior: FloatingPanelDefaultBehavior {
-        override func allowsRubberBanding(for edge: UIRectEdge) -> Bool {
-            return true
-        }
-    }
-
     var layoutGuide: UILayoutGuide {
         let layoutGuide = UILayoutGuide()
         view.addLayoutGuide(layoutGuide)
@@ -125,14 +96,11 @@ private extension BottomHalfSheetMenuViewController {
     }
 }
 
-// MARK: - Public
-extension BottomHalfSheetMenuViewController {
-    static func createViewController(
-        menu: [BottomHalfSheetMenuItem],
-        bottomSheetDelegate: BottomHalfSheetMenuViewControllerDelegate?) -> UIViewController {
+// MARK: - FloatingPanelController Public Extension
+extension FloatingPanelController {
+    static func createBottomHalfSheetMenu(menu: [BottomHalfSheetMenuItem]) -> FloatingPanelController {
         let floatingPanelController = FloatingPanelController()
         let bottomHalfSheetMenuViewController = BottomHalfSheetMenuViewController()
-        bottomHalfSheetMenuViewController.delegate = bottomSheetDelegate
         bottomHalfSheetMenuViewController.setupMenu(menu: menu)
 
         floatingPanelController.layout = BottomHalfSheetMenuLayout(layoutGuide: bottomHalfSheetMenuViewController.layoutGuide)
@@ -151,5 +119,37 @@ extension BottomHalfSheetMenuViewController {
         floatingPanelController.set(contentViewController: bottomHalfSheetMenuViewController)
         floatingPanelController.track(scrollView: bottomHalfSheetMenuViewController.scrollView)
         return floatingPanelController
+    }
+
+    var contentBottomHalfSheetMenuViewController: BottomHalfSheetMenuViewController? {
+        contentViewController as? BottomHalfSheetMenuViewController
+    }
+}
+
+// MARK: - FloatingPanel Properties
+private extension FloatingPanelController {
+    class BottomHalfSheetMenuBehavior: FloatingPanelDefaultBehavior {
+        override func allowsRubberBanding(for edge: UIRectEdge) -> Bool {
+            return true
+        }
+    }
+
+    class BottomHalfSheetMenuLayout: FloatingPanelBottomLayout {
+        init(layoutGuide: UILayoutGuide) {
+            self.layoutGuide = layoutGuide
+        }
+        private let layoutGuide: UILayoutGuide
+        override var initialState: FloatingPanelState { .tip }
+        override var anchors: [FloatingPanelState : FloatingPanelLayoutAnchoring] {
+            return [
+                .tip: FloatingPanelAdaptiveLayoutAnchor(fractionalOffset: 0,
+                                                        contentLayout: layoutGuide,
+                                                        referenceGuide: .safeArea)
+            ]
+        }
+
+        override func backdropAlpha(for state: FloatingPanelState) -> CGFloat {
+            return backgroundViewAlpha
+        }
     }
 }

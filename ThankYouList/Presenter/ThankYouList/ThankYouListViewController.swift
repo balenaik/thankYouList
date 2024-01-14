@@ -228,6 +228,19 @@ private extension ThankYouListViewController {
                 }
             })
     }
+
+    func handleMenuTapAction(item: BottomHalfSheetMenuItem) {
+        guard let itemRawValue = item.rawValue,
+              let cellMenu = ThankYouCellTapMenu(rawValue: itemRawValue),
+              let thankYouId = item.id else { return }
+        presentedViewController?.dismiss(animated: true, completion: nil)
+        switch cellMenu {
+        case .edit:
+            presentEditThankYouViewController(thankYouId: thankYouId)
+        case .delete:
+            showDeleteConfirmationAlert(thankYouId: thankYouId)
+        }
+    }
 }
     
     
@@ -325,26 +338,16 @@ extension ThankYouListViewController: ListScrollIndicatorDelegate {
 extension ThankYouListViewController: ThankYouCellDelegate {
     func thankYouCellDidTapThankYouView(thankYouId: String) {
         let menu = ThankYouCellTapMenu.allCases.map { $0.bottomHalfSheetMenuItem(id: thankYouId) }
-        let bottomSheet = BottomHalfSheetMenuViewController.createViewController(
-            menu: menu,
-            bottomSheetDelegate: self
-        )
-        present(bottomSheet, animated: true, completion: nil)
-    }
-}
-
-// MARK: - BottomHalfSheetMenuViewControllerDelegate
-extension ThankYouListViewController: BottomHalfSheetMenuViewControllerDelegate {
-    func bottomHalfSheetMenuViewControllerDidTapItem(item: BottomHalfSheetMenuItem) {
-        guard let itemRawValue = item.rawValue,
-              let cellMenu = ThankYouCellTapMenu(rawValue: itemRawValue),
-              let thankYouId = item.id else { return }
-        presentedViewController?.dismiss(animated: true, completion: nil)
-        switch cellMenu {
-        case .edit:
-            presentEditThankYouViewController(thankYouId: thankYouId)
-        case .delete:
-            showDeleteConfirmationAlert(thankYouId: thankYouId)
+        let floatingPanelViewController = FloatingPanelController.createBottomHalfSheetMenu(menu: menu)
+        guard let bottomHalfSheetMenuViewController = floatingPanelViewController.contentBottomHalfSheetMenuViewController else {
+            return
         }
+        bottomHalfSheetMenuViewController.itemDidTap
+            .sink { [weak self] item in
+                self?.handleMenuTapAction(item: item)
+            }
+            .store(in: &bottomHalfSheetMenuViewController.cancellables)
+
+        present(floatingPanelViewController, animated: true, completion: nil)
     }
 }

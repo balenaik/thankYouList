@@ -182,6 +182,29 @@ final class CalendarViewModelTests: XCTestCase {
         XCTAssertEqual(router.presentEditThankYou_calledCount, 1)
         XCTAssertEqual(router.presentEditThankYou_thankYouId, thankYouId)
     }
+
+    func test_ifUserTapsBottomHalfSheetMenu_thatHasDeleteValue__itShouldDismissPresentedView_andPresentAlert() {
+        let dismissPresentedViewRecords = TestRecord(
+            publisher: viewModel.outputs.dismissPresentedView.map { "" }.eraseToAnyPublisher())
+
+        viewModel.inputs.bottomHalfSheetMenuDidTap.send(
+            .init(title: "",
+                  image: nil,
+                  rawValue: ThankYouCellTapMenu.delete.rawValue,
+                  id: "thankYouId")
+        )
+        scheduler.advance(by: .milliseconds(100))
+        XCTAssertEqual(dismissPresentedViewRecords.results, [.value("")])
+        XCTAssertEqual(router.presentAlert_calledCount, 1)
+        XCTAssertEqual(router.presentAlert_title, R.string.localizable.deleteThankYou())
+        XCTAssertEqual(router.presentAlert_message, R.string.localizable.areYouSureYouWantToDeleteThisThankYou())
+        let firstAction = router.presentAlert_actions?.first
+        XCTAssertEqual(firstAction?.title, R.string.localizable.delete())
+        XCTAssertEqual(firstAction?.style, .destructive)
+        let secondAction = router.presentAlert_actions?[1]
+        XCTAssertEqual(secondAction?.title, R.string.localizable.cancel())
+        XCTAssertEqual(secondAction?.style, .cancel)
+    }
 }
 
 private class MockCalendarRouter: MockRouter, CalendarRouter {

@@ -114,6 +114,24 @@ private extension CalendarViewModel {
                 router?.presentEditThankYou(thankYouId: $0.thankYouId)
             }
             .store(in: &cancellables)
+
+        let deleteAction = PassthroughSubject<String, Never>()
+
+        didTapMenu
+            .filter { $0.menu == .delete }
+            .receive(on: scheduler)
+            .sink { [router] menuItem in
+                let deleteAction = AlertAction(title: R.string.localizable.delete(),
+                                               style: .destructive) {
+                    deleteAction.send(menuItem.thankYouId)
+                }
+                let cancelAction = AlertAction(title: R.string.localizable.cancel(),
+                                               style: .cancel)
+                router?.presentAlert(title: R.string.localizable.deleteThankYou(),
+                                     message: R.string.localizable.areYouSureYouWantToDeleteThisThankYou(),
+                                     actions: [deleteAction, cancelAction])
+            }
+            .store(in: &cancellables)
 }
 
 extension CalendarViewModel {

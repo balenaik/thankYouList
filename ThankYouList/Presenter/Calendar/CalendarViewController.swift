@@ -27,7 +27,6 @@ class CalendarViewController: UIViewController {
     private var isDraggingListView = false
     private let db = Firestore.firestore()
     private let analyticsManager = DefaultAnalyticsManager()
-    var router: CalendarRouter?
     private var cancellables = Set<AnyCancellable>()
 
     var viewModel: CalendarViewModel!
@@ -219,18 +218,6 @@ private extension CalendarViewController {
             smallListView.isFullScreen = false
             smallListView.setTableViewScrollingSetting(isEnabled: false)
         }
-    }
-
-    func showDeleteConfirmationAlert(thankYouId: String) {
-        let deleteAction = UIAlertAction(title: R.string.localizable.delete(),
-                                         style: .destructive) { [weak self] _ in
-            self?.deleteThankYou(thankYouId: thankYouId)
-        }
-        let cancelAction = UIAlertAction(title: R.string.localizable.cancel(),
-                                         style: .cancel)
-        router?.presentAlert(title: R.string.localizable.deleteThankYou(),
-                             message: R.string.localizable.areYouSureYouWantToDeleteThisThankYou(),
-                             actions: [deleteAction, cancelAction])
     }
 
     func deleteThankYou(thankYouId: String) {

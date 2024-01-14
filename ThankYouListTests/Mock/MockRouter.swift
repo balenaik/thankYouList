@@ -12,11 +12,11 @@ import UIKit
 class MockRouter: Router {
     var presentAlert_title: String?
     var presentAlert_message: String?
-    var presentAlert_actions: [UIAlertAction]?
+    var presentAlert_actions: [AlertAction]?
     var presentAlert_calledCount = 0
     func presentAlert(title: String?,
                       message: String?,
-                      actions: [UIAlertAction]?) {
+                      actions: [AlertAction]?) {
         presentAlert_title = title
         presentAlert_message = message
         presentAlert_actions = actions

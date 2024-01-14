@@ -47,6 +47,7 @@
 		A84635B52AC020C00030A358 /* ThankYouRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635B42AC020C00030A358 /* ThankYouRepository.swift */; };
 		A84635B82AD270210030A358 /* CalendarViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635B72AD270210030A358 /* CalendarViewModelTests.swift */; };
 		A84635BA2AD270B40030A358 /* MockInMemoryDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635B92AD270B40030A358 /* MockInMemoryDataStore.swift */; };
+		A84635BC2AD2711D0030A358 /* MockThankYouRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635BB2AD2711D0030A358 /* MockThankYouRepository.swift */; };
 		A84635BE2AFF02820030A358 /* CalendarConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635BD2AFF02820030A358 /* CalendarConfiguration.swift */; };
 		A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84CBEE120F198E400CBA0AB /* ConstStruct.swift */; };
 		A84FDB5C21DBB8DF00593326 /* AddThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84FDB5B21DBB8DF00593326 /* AddThankYouViewController.swift */; };
@@ -190,6 +191,7 @@
 		A84635B42AC020C00030A358 /* ThankYouRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouRepository.swift; sourceTree = "<group>"; };
 		A84635B72AD270210030A358 /* CalendarViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModelTests.swift; sourceTree = "<group>"; };
 		A84635B92AD270B40030A358 /* MockInMemoryDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockInMemoryDataStore.swift; sourceTree = "<group>"; };
+		A84635BB2AD2711D0030A358 /* MockThankYouRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockThankYouRepository.swift; sourceTree = "<group>"; };
 		A84635BD2AFF02820030A358 /* CalendarConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarConfiguration.swift; sourceTree = "<group>"; };
 		A84CBEE120F198E400CBA0AB /* ConstStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstStruct.swift; sourceTree = "<group>"; };
 		A84FDB5B21DBB8DF00593326 /* AddThankYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThankYouViewController.swift; sourceTree = "<group>"; };
@@ -573,6 +575,7 @@
 			children = (
 				A883EE5A29F03524002DCBCA /* MockAnalyticsManager.swift */,
 				A84635B92AD270B40030A358 /* MockInMemoryDataStore.swift */,
+				A84635BB2AD2711D0030A358 /* MockThankYouRepository.swift */,
 				A892355329D73E3D0093A92F /* MockUserRepository.swift */,
 				A8F2619B2B476FAE00A65C0A /* MockRouter.swift */,
 			);
@@ -1035,6 +1038,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A84635B82AD270210030A358 /* CalendarViewModelTests.swift in Sources */,
+				A84635BC2AD2711D0030A358 /* MockThankYouRepository.swift in Sources */,
 				A8A1E20A2B2F08E60083C3FF /* TestRecord.swift in Sources */,
 				A8F2619C2B476FAE00A65C0A /* MockRouter.swift in Sources */,
 				A892355429D73E3D0093A92F /* MockUserRepository.swift in Sources */,

@@ -16,6 +16,7 @@ final class CalendarViewModelTests: XCTestCase {
     private var viewModel: CalendarViewModel!
     private var inMemoryDataStore: InMemoryDataStore!
     private var userRepository: MockUserRepository!
+    private var thankYouRepository: MockThankYouRepository!
     private var analyticsManager: MockAnalyticsManager!
     private var router: MockCalendarRouter!
 
@@ -24,11 +25,13 @@ final class CalendarViewModelTests: XCTestCase {
     override func setUp() {
         inMemoryDataStore = MockInMemoryDataStore()
         userRepository = MockUserRepository()
+        thankYouRepository = MockThankYouRepository()
         analyticsManager = MockAnalyticsManager()
         router = MockCalendarRouter()
         scheduler = DispatchQueue.test
         viewModel = CalendarViewModel(inMemoryDataStore: inMemoryDataStore,
                                       userRepository: userRepository,
+                                      thankYouRepository: thankYouRepository,
                                       analyticsManager: analyticsManager,
                                       router: router,
                                       scheduler: scheduler.eraseToAnyScheduler())

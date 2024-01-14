@@ -23,17 +23,20 @@ class CalendarViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     private var inMemoryDataStore: InMemoryDataStore
     private let userRepository: UserRepository
+    private let thankYouRepository: ThankYouRepository
     private let analyticsManager: AnalyticsManager
     private let router: CalendarRouter?
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     init(inMemoryDataStore: InMemoryDataStore = DefaultInMemoryDataStore.shared,
          userRepository: UserRepository,
+         thankYouRepository: ThankYouRepository,
          analyticsManager: AnalyticsManager,
          router: CalendarRouter,
          scheduler: AnySchedulerOf<DispatchQueue> = .main) {
         self.inMemoryDataStore = inMemoryDataStore
         self.userRepository = userRepository
+        self.thankYouRepository = thankYouRepository
         self.analyticsManager = analyticsManager
         self.router = router
         self.scheduler = scheduler

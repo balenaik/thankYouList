@@ -240,6 +240,41 @@ final class CalendarViewModelTests: XCTestCase {
         // deleteThankYou should be called twice
         XCTAssertEqual(thankYouRepository.deleteThankYou_calledCount, 2)
     }
+
+    func test_ifUserTapsBottomHalfSheetMenu_thatHasDeleteValue_tapsDeleteButton_andDeleteSucceeded__itShouldSendAnalytics_withUserId_andTheThankYouDate_andShouldNotPresentAlertTwice() {
+
+        let userId = "userId"
+        userRepository.getUserProfile_result = Just(Profile(id: userId, name: "", email: "", imageUrl: nil)).setFailureType(to: Error.self).asFuture()
+        let thankYouDate = Date(timeIntervalSince1970: 123456)
+        thankYouRepository.loadThankYou_result = ThankYouData(id: "", value: "", encryptedValue: "", date: thankYouDate, createTime: Date())
+
+        // Tap delete button on menu
+        let thankYouId = "abcddd"
+        viewModel.inputs.bottomHalfSheetMenuDidTap.send(
+            .init(title: "",
+                  image: nil,
+                  rawValue: ThankYouCellTapMenu.delete.rawValue,
+                  id: thankYouId)
+        )
+        scheduler.advance(by: .milliseconds(100))
+
+        let deleteAction = router.presentAlert_actions?.first
+
+        // Set delete thank you result as success
+        thankYouRepository.deleteThankYou_result = Just(()).setFailureType(to: Error.self).asFuture()
+
+        // Tap delete button on confirmation halfsheet #1
+        deleteAction?.action!()
+
+        // Should send analytics
+        XCTAssertEqual(analyticsManager.loggedEvent.count, 1)
+        XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.deleteThankYou)
+        XCTAssertEqual(analyticsManager.loggedEvent.first?.userId, userId)
+        XCTAssertEqual(analyticsManager.loggedEvent.first?.targetDate, thankYouDate)
+
+        // Should not present alert twice
+        XCTAssertEqual(router.presentAlert_calledCount, 1)
+    }
 }
 
 private class MockCalendarRouter: MockRouter, CalendarRouter {

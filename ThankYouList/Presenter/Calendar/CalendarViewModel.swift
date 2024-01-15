@@ -140,6 +140,7 @@ private extension CalendarViewModel {
             .flatMap { [userRepository, thankYouRepository] thankYouId in
                 userRepository.getUserProfile()
                     .flatMap { [thankYouRepository] profile in
+                        let deletingThankYou = thankYouRepository.loadThankYou(thankYouId: thankYouId)
                         return thankYouRepository.deleteThankYou(
                             thankYouId: thankYouId,
                             userId: profile.id)
@@ -155,7 +156,12 @@ private extension CalendarViewModel {
 
         deleteResult
             .values()
-            .sink { _ in }
+            .sink { [analyticsManager] userId, deletedThankYou in
+                analyticsManager.logEvent(
+                    eventName: AnalyticsEventConst.deleteThankYou,
+                    userId: userId,
+                    targetDate: deletedThankYou?.date)
+            }
             .store(in: &cancellables)
 }
 

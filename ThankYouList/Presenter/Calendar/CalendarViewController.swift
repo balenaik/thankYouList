@@ -81,9 +81,7 @@ private extension CalendarViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(CalendarViewController.updatedThankYouList(notification:)), name: Notification.Name(rawValue: NotificationConst.THANK_YOU_LIST_UPDATED), object: nil)
 
-        calendarView.scrollToDate(Date(), animateScroll: false)
         setupCalendarView()
-        calendarView.selectDates([Date()])
 
         smallListView.setupTableView(self)
         smallListView.delegate = self
@@ -100,6 +98,9 @@ private extension CalendarViewController {
         calendarView.visibleDates { (visibleDates) in
             self.setupViewsOfCalendar(from: visibleDates)
         }
+
+        calendarView.scrollToDate(Date(), animateScroll: false)
+        calendarView.selectDates([Date()])
     }
 
     private func bind() {

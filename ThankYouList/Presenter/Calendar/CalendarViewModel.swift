@@ -189,6 +189,7 @@ extension CalendarViewModel {
         let currentSelectedDate = CurrentValueSubject<Date, Never>(Date())
         let reconfigureCalendarDataSource = PassthroughSubject<Date, Never>()
         let reloadCurrentVisibleCalendar = PassthroughSubject<Void, Never>()
+        let updateYearMonthLabel = CurrentValueSubject<String?, Never>(Date().toYearMonthString())
         let dismissPresentedView = PassthroughSubject<Void, Never>()
     }
 }

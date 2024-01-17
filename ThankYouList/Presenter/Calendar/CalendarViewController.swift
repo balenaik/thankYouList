@@ -125,6 +125,11 @@ private extension CalendarViewController {
             .store(in: &cancellables)
 
         viewModel.outputs
+            .updateYearMonthLabel
+            .assign(to: \.text, on: yearMonthLabel)
+            .store(in: &cancellables)
+
+        viewModel.outputs
             .dismissPresentedView
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in

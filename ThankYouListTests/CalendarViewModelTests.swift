@@ -266,6 +266,10 @@ final class CalendarViewModelTests: XCTestCase {
         // Tap delete button on confirmation halfsheet #1
         deleteAction?.action!()
 
+        // Should pass correct parameters
+        XCTAssertEqual(thankYouRepository.deleteThankYou_thankYouId, thankYouId)
+        XCTAssertEqual(thankYouRepository.deleteThankYou_userId, userId)
+
         // Should send analytics
         XCTAssertEqual(analyticsManager.loggedEvent.count, 1)
         XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.deleteThankYou)
@@ -274,6 +278,42 @@ final class CalendarViewModelTests: XCTestCase {
 
         // Should not present alert twice
         XCTAssertEqual(router.presentAlert_calledCount, 1)
+    }
+
+    func test_ifUserTapsBottomHalfSheetMenu_thatHasDeleteValue_tapsDeleteButton_andDeleteFailed__itShouldPresentAlert_andShouldNotSendAnalytics() {
+
+        userRepository.getUserProfile_result = Just(Profile(id: "userId", name: "", email: "", imageUrl: nil)).setFailureType(to: Error.self).asFuture()
+
+        // Tap delete button on menu
+        viewModel.inputs.bottomHalfSheetMenuDidTap.send(
+            .init(title: "",
+                  image: nil,
+                  rawValue: ThankYouCellTapMenu.delete.rawValue,
+                  id: "thankYouId")
+        )
+        scheduler.advance(by: .milliseconds(100))
+
+        // Should present alert
+        XCTAssertEqual(router.presentAlert_calledCount, 1)
+        // Reset
+        router.presentAlert_calledCount = 0
+        router.presentAlert_message = nil
+
+        let deleteAction = router.presentAlert_actions?.first
+
+        // Set delete thank you result as failure
+        thankYouRepository.deleteThankYou_result = Fail(error: NSError()).asFuture()
+
+        // Tap delete button on confirmation halfsheet #1
+        deleteAction?.action!()
+        scheduler.advance(by: .milliseconds(100))
+
+        // Should present alert
+        XCTAssertEqual(router.presentAlert_calledCount, 1)
+        XCTAssertEqual(router.presentAlert_message, R.string.localizable.failedToDelete())
+
+        // Should not send analytics
+        XCTAssertEqual(analyticsManager.loggedEvent.count, 0)
     }
 }
 

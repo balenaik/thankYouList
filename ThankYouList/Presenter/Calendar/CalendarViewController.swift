@@ -8,9 +8,7 @@
 
 import UIKit
 import JTAppleCalendar
-import FirebaseFirestore
 import FirebaseAuth
-import Firebase
 import Combine
 import CombineCocoa
 import FloatingPanel
@@ -25,7 +23,6 @@ class CalendarViewController: UIViewController {
     private var listViewOriginalTopConstant = CGFloat(0)
     private var listViewMostTopConstant = CGFloat(0)
     private var isDraggingListView = false
-    private let db = Firestore.firestore()
     private let analyticsManager = DefaultAnalyticsManager()
     private var cancellables = Set<AnyCancellable>()
 
@@ -218,31 +215,6 @@ private extension CalendarViewController {
             smallListView.isFullScreen = false
             smallListView.setTableViewScrollingSetting(isEnabled: false)
         }
-    }
-
-    func deleteThankYou(thankYouId: String) {
-        guard let userId = Auth.auth().currentUser?.uid else {
-            showErrorAlert(title: nil, message: R.string.localizable.failedToDelete())
-            return
-        }
-        db.collection(FirestoreConst.usersCollecion)
-            .document(userId)
-            .collection(FirestoreConst.thankYouListCollection)
-            .document(thankYouId)
-            .delete(completion: { [weak self] error in
-                guard let self = self else { return }
-                if let error = error {
-                    debugPrint(error)
-                    self.showErrorAlert(title: nil, message: R.string.localizable.failedToDelete())
-                    return
-                }
-                if let thankYouData = self.thankYouDataSingleton.thankYouList.first(where: { $0.id == thankYouId }) {
-                    self.analyticsManager.logEvent(
-                        eventName: AnalyticsEventConst.deleteThankYou,
-                        userId: userId,
-                        targetDate: thankYouData.date)
-                }
-            })
     }
 }
 

@@ -163,6 +163,16 @@ private extension CalendarViewModel {
                     targetDate: deletedThankYou?.date)
             }
             .store(in: &cancellables)
+
+        deleteResult
+            .errors()
+            .receive(on: scheduler)
+            .sink { [router] _ in
+                router?.presentAlert(title: nil,
+                                     message: R.string.localizable.failedToDelete())
+            }
+            .store(in: &cancellables)
+    }
 }
 
 extension CalendarViewModel {

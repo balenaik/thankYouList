@@ -94,10 +94,6 @@ private extension CalendarViewController {
     private func setupCalendarView() {
         calendarView.minimumLineSpacing = 0
         calendarView.minimumInteritemSpacing = 0
-        
-        calendarView.visibleDates { (visibleDates) in
-            self.setupViewsOfCalendar(from: visibleDates)
-        }
 
         calendarView.scrollToDate(Date(), animateScroll: false)
         calendarView.selectDates([Date()])

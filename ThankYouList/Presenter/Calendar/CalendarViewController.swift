@@ -33,7 +33,7 @@ class CalendarViewController: UIViewController {
     @IBOutlet private weak var stackView: UIStackView!
     @IBOutlet private weak var calendarView: JTAppleCalendarView!
     @IBOutlet private weak var smallListView: SmallListView!
-    @IBOutlet private weak var yearMonth: UILabel!
+    @IBOutlet private weak var yearMonthLabel: UILabel!
     @IBOutlet private weak var userIcon: UIBarButtonItem!
 
     @IBOutlet private weak var listViewTopConstraint: NSLayoutConstraint!
@@ -141,7 +141,7 @@ private extension CalendarViewController {
     
     private func setupViewsOfCalendar(from visibleDates: DateSegmentInfo) {
         let date = visibleDates.monthDates.first!.date
-        yearMonth.text = date.toMonthYearString()
+        yearMonthLabel.text = date.toMonthYearString()
     }
     
     private func getListFromDate(_ date: Date) {

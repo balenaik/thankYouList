@@ -95,6 +95,12 @@ private extension CalendarViewModel {
                 router?.presentMyPage()
             }
             .store(in: &cancellables)
+
+        inputs.viewDidLoad.map { Date() }
+            .merge(with: inputs.calendarDidScrollToMonth)
+            .map { $0.toMonthYearString() }
+            .subscribe(outputs.updateYearMonthLabel)
+            .store(in: &cancellables)
     }
 
     func bindCellTapAction() {

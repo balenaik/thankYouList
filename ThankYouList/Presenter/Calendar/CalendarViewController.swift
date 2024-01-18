@@ -143,12 +143,7 @@ private extension CalendarViewController {
             .subscribe(viewModel.inputs.userIconDidTap)
             .store(in: &cancellables)
     }
-    
-    private func setupViewsOfCalendar(from visibleDates: DateSegmentInfo) {
-        let date = visibleDates.monthDates.first!.date
-        yearMonthLabel.text = date.toMonthYearString()
-    }
-    
+
     private func getListFromDate(_ date: Date) {
         let thankYouDataList = thankYouDataSingleton.thankYouList
         estimatedRowHeights.removeAll()
@@ -262,7 +257,6 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
-        setupViewsOfCalendar(from: visibleDates)
         guard let firstVisibleDate = visibleDates.monthDates.first?.date else { return }
         viewModel.inputs.calendarDidScrollToMonth.send(firstVisibleDate)
     }

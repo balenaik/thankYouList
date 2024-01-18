@@ -315,6 +315,30 @@ final class CalendarViewModelTests: XCTestCase {
         // Should not send analytics
         XCTAssertEqual(analyticsManager.loggedEvent.count, 0)
     }
+
+    func test_ifTheUserOpensTheScreen__itShouldOutputUpdateYearMonthLabel_withTheCurrentDate__andIfHeScrollToAnotherMonth__itShouldOutputupdateYearMonthLabel_withTheScrolledDate() {
+
+        let updateYearMonthLabelRecords = TestRecord(
+            publisher: viewModel.outputs.updateYearMonthLabel.map { $0?.replacingOccurrences(of: " ", with: "") }.eraseToAnyPublisher())
+
+        // Opens screen
+        viewModel.inputs.viewDidLoad.send()
+
+        // Should update with current year month
+        XCTAssertEqual(updateYearMonthLabelRecords.results, [
+            .value(Date().toMonthYearString().replacingOccurrences(of: " ", with: "")), // Initialized value
+            .value(Date().toMonthYearString().replacingOccurrences(of: " ", with: ""))
+        ])
+
+        updateYearMonthLabelRecords.clearResult()
+
+        // Scroll to another month
+        let date1 = Date(timeIntervalSince1970: 12345565)
+        viewModel.inputs.calendarDidScrollToMonth.send(date1)
+
+        // Should update with the new year month
+        XCTAssertEqual(updateYearMonthLabelRecords.results, [.value(date1.toMonthYearString().replacingOccurrences(of: " ", with: ""))])
+    }
 }
 
 private class MockCalendarRouter: MockRouter, CalendarRouter {

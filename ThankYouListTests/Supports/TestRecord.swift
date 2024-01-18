@@ -41,4 +41,8 @@ class TestRecord<Output: Equatable, Failure: Error & Equatable> {
             }
             .store(in: &cancellables)
     }
+
+    func clearResult() {
+        results = []
+    }
 }

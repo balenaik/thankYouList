@@ -250,16 +250,12 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         smallListView.reloadTableView()
     }
     
-    func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        if let cell = cell as? CalendarDayCell {
-            cell.bindSelection(isSelected: cellState.isSelected)
-        }
-    }
-    
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
         guard let firstVisibleDate = visibleDates.monthDates.first?.date else { return }
         viewModel.inputs.calendarDidScrollToMonth.send(firstVisibleDate)
     }
+
+    func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {}
 }
 
 // MARK: - UITableViewDataSource, UITableViewDelegate

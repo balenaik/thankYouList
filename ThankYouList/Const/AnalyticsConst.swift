@@ -16,6 +16,7 @@ enum AnalyticsEventConst {
     static let deleteAccount = "delete_account"
     static let startDraggingListScrollIndicatorMovableIcon = "start_dragging_scroll_indicator"
     static let calendarSmallListViewFullScreen = "calendar_small_list_view_full_screen"
+    static let scrollCalendar = "scroll_calendar"
 }
 
 enum AnalyticsParameterConst {

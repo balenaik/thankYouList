@@ -10,12 +10,17 @@ import Foundation
 @testable import ThankYouList
 
 class MockAnalyticsManager: AnalyticsManager {
-    var logEvent_eventName: String?
-    var logEvent_userId: String?
-    var logEvent_targetDate: Date?
+    struct AnalyticsEvent {
+        let eventName: String
+        let userId: String
+        let targetDate: Date?
+    }
+
+    var loggedEvent = [AnalyticsEvent]()
     func logEvent(eventName: String, userId: String, targetDate: Date?) {
-        logEvent_eventName = eventName
-        logEvent_userId = userId
-        logEvent_targetDate = targetDate
+        loggedEvent.append(AnalyticsEvent(
+            eventName: eventName,
+            userId: userId,
+            targetDate: targetDate))
     }
 }

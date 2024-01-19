@@ -30,7 +30,6 @@ class EditThankYouViewController: UIViewController {
     // MARK: - Properties
     var editingThankYouId: String?
     private var editingThankYou: ThankYouData?
-    private var delegate = UIApplication.shared.delegate as! AppDelegate
     private var isPosting = false
     private var selectedDate = Date() {
         didSet {
@@ -131,8 +130,8 @@ private extension EditThankYouViewController {
     }
 
     func setupEditThankYouData() {
-        guard let editingThankYou = GlobalThankYouData.sharedInstance
-                .thankYouDataList.first(where: { $0.id == editingThankYouId }) else {
+        guard let editingThankYou = DefaultInMemoryDataStore.shared
+                .thankYouList.first(where: { $0.id == editingThankYouId }) else {
             router?.dismiss()
             return
         }
@@ -195,11 +194,11 @@ private extension EditThankYouViewController {
     }
 
     func showDiscardAlert() {
-        let discardAction = UIAlertAction(title: R.string.localizable.discard(),
-                                          style: .destructive) { [weak self] _ in
+        let discardAction = AlertAction(title: R.string.localizable.discard(),
+                                        style: .destructive) { [weak self] in
             self?.router?.dismiss()
         }
-        let cancelAction = UIAlertAction(
+        let cancelAction = AlertAction(
             title: R.string.localizable.edit_thank_you_discard_cancel(),
             style: .cancel)
         router?.presentAlert(title: R.string.localizable.edit_thank_you_discard_title(),

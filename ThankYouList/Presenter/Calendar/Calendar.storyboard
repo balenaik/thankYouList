@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BHa-r9-xW4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BHa-r9-xW4">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,7 +21,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="6ew-AQ-oPn" userLabel="Calendar Stack View">
-                                <rect key="frame" x="8" y="88" width="398" height="400"/>
+                                <rect key="frame" x="8" y="92" width="398" height="400"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xwb-MG-5vY" userLabel="Spacer">
                                         <rect key="frame" x="0.0" y="0.0" width="398" height="4"/>
@@ -263,7 +262,7 @@
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SWq-XS-yVo" userLabel="List View" customClass="SmallListView" customModule="ThankYouList" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="488" width="414" height="408"/>
+                                <rect key="frame" x="0.0" y="492" width="414" height="404"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -284,11 +283,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xkW-t1-bKd">
-                        <barButtonItem key="rightBarButtonItem" image="icAccountCircle24" id="bkB-jK-IfK">
-                            <connections>
-                                <action selector="tapUserIcon:" destination="BHa-r9-xW4" id="gKK-AU-w2h"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="icAccountCircle24" id="bkB-jK-IfK"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
@@ -297,7 +292,8 @@
                         <outlet property="listViewTopConstraint" destination="DJi-Lz-XM0" id="2CD-hk-nia"/>
                         <outlet property="smallListView" destination="SWq-XS-yVo" id="02P-4B-0LH"/>
                         <outlet property="stackView" destination="6ew-AQ-oPn" id="YRn-hb-M0v"/>
-                        <outlet property="yearMonth" destination="bqu-Ir-cbe" id="Azn-Mg-Alw"/>
+                        <outlet property="userIcon" destination="bkB-jK-IfK" id="9Jq-3B-YjC"/>
+                        <outlet property="yearMonthLabel" destination="bqu-Ir-cbe" id="Azn-Mg-Alw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TP3-U3-gaR" userLabel="First Responder" sceneMemberID="firstResponder"/>

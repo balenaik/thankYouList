@@ -9,15 +9,15 @@ target 'ThankYouList' do
   pod 'JTAppleCalendar', '~> 7.0'
 
   # Firebase
-  pod 'Firebase/Core', '8.9.1'
-  pod 'Firebase/Database', '8.9.1'
-  pod 'Firebase/Auth', '8.9.1'
-  pod 'Firebase/Firestore', '8.9.1'
+  pod 'Firebase/Core', '10.19.0'
+  pod 'Firebase/Database', '10.19.0'
+  pod 'Firebase/Auth', '10.19.0'
+  pod 'Firebase/Firestore', '10.19.0'
 
   # Auth
   pod 'FBSDKCoreKit', '~> 6.5.0'
   pod 'FBSDKLoginKit', '~> 6.5.0'
-  pod 'GoogleSignIn', '6.0.2'
+  pod 'GoogleSignIn', '7.0.0'
 
   # R.swift
   pod 'R.swift', '7.2.4'

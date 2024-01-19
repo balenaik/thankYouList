@@ -99,14 +99,15 @@ private extension DefaultUserRepository {
         let authCredential: AuthCredential
         switch provider {
         case .google:
-            let authentication = GIDSignIn.sharedInstance.currentUser?.authentication
-            guard let idToken = authentication?.idToken,
-                  let accessToken = authentication?.accessToken else {
+            guard let currentUser = GIDSignIn.sharedInstance.currentUser,
+                  let idToken = currentUser.idToken else {
                 return Fail(error: UserRepositoryError.tokenNotFound)
                     .asFuture()
             }
-            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                           accessToken: accessToken)
+            let accessToken = currentUser.accessToken
+            let credential = GoogleAuthProvider.credential(
+                withIDToken: idToken.tokenString,
+                accessToken: accessToken.tokenString)
             authCredential = credential
         case .facebook:
             guard let tokenString = AccessToken.current?.tokenString else {

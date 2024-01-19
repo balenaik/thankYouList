@@ -8,48 +8,43 @@
 
 import UIKit
 import JTAppleCalendar
-import FirebaseFirestore
 import FirebaseAuth
-import Firebase
-
-private let calendarDateFormat = "yyyy/MM/dd"
-private let calendarStartDate = "2016/01/01"
-private let calendarEndDate = "2025/12/31"
-
-protocol CalendarRouter: Router {
-    func presentMyPage()
-    func presentEditThankYou(thankYouId: String)
-}
+import Combine
+import CombineCocoa
+import FloatingPanel
 
 class CalendarViewController: UIViewController {
     
     // MARK: - Properties
-    private var appDelegate = UIApplication.shared.delegate as! AppDelegate
-    private let thankYouDataSingleton = GlobalThankYouData.sharedInstance
+    private let thankYouDataSingleton = DefaultInMemoryDataStore.shared
     private var selectedList = [ThankYouData]()
     private var estimatedRowHeights = [String : CGFloat]()
     private var selectedDate = ""
     private var listViewOriginalTopConstant = CGFloat(0)
     private var listViewMostTopConstant = CGFloat(0)
     private var isDraggingListView = false
-    private let db = Firestore.firestore()
     private let analyticsManager = DefaultAnalyticsManager()
-    var router: CalendarRouter?
+    private var cancellables = Set<AnyCancellable>()
+
+    var viewModel: CalendarViewModel!
 
     // MARK: - IBOutlets
-    @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var calendarView: JTAppleCalendarView!
-    @IBOutlet weak var smallListView: SmallListView!
-    @IBOutlet weak var yearMonth: UILabel!
+    @IBOutlet private weak var contentView: UIView!
+    @IBOutlet private weak var stackView: UIStackView!
+    @IBOutlet private weak var calendarView: JTAppleCalendarView!
+    @IBOutlet private weak var smallListView: SmallListView!
+    @IBOutlet private weak var yearMonthLabel: UILabel!
+    @IBOutlet private weak var userIcon: UIBarButtonItem!
 
-    @IBOutlet weak var listViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var listViewTopConstraint: NSLayoutConstraint!
 
     // MARK: - Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupNavigationBar()
+        bind()
+        viewModel.inputs.viewDidLoad.send()
     }
 
     override func viewWillTransition(
@@ -64,10 +59,6 @@ class CalendarViewController: UIViewController {
 
 // MARK: - IBActions
 extension CalendarViewController {
-    @IBAction func tapUserIcon(_ sender: Any) {
-        router?.presentMyPage()
-    }
-    
     @IBAction func draggedListView(_ sender: UIPanGestureRecognizer) {
         switch sender.state {
         case .began:
@@ -90,9 +81,7 @@ private extension CalendarViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(CalendarViewController.updatedThankYouList(notification:)), name: Notification.Name(rawValue: NotificationConst.THANK_YOU_LIST_UPDATED), object: nil)
 
-        calendarView.scrollToDate(Date(), animateScroll: false)
         setupCalendarView()
-        calendarView.selectDates([Date()])
 
         smallListView.setupTableView(self)
         smallListView.delegate = self
@@ -105,19 +94,58 @@ private extension CalendarViewController {
     private func setupCalendarView() {
         calendarView.minimumLineSpacing = 0
         calendarView.minimumInteritemSpacing = 0
-        
-        calendarView.visibleDates { (visibleDates) in
-            self.setupViewsOfCalendar(from: visibleDates)
-        }
+
+        calendarView.scrollToDate(Date(), animateScroll: false)
+        calendarView.selectDates([Date()])
     }
-    
-    private func setupViewsOfCalendar(from visibleDates: DateSegmentInfo) {
-        let date = visibleDates.monthDates.first!.date
-        yearMonth.text = date.toMonthYearString()
+
+    private func bind() {
+        bindOutputs()
+        bindInputs()
     }
-    
+
+    private func bindOutputs() {
+        viewModel.outputs
+            .reconfigureCalendarDataSource
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                guard let self = self else { return }
+                self.calendarView.calendarDataSource = self
+                self.calendarView.reloadData(withanchor: $0)
+            }
+            .store(in: &cancellables)
+
+        viewModel.outputs
+            .reloadCurrentVisibleCalendar
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                let visibleCalendarIndex = 12
+                self?.calendarView.reloadSections(IndexSet(integer: visibleCalendarIndex))
+            }
+            .store(in: &cancellables)
+
+        viewModel.outputs
+            .updateYearMonthLabel
+            .assign(to: \.text, on: yearMonthLabel)
+            .store(in: &cancellables)
+
+        viewModel.outputs
+            .dismissPresentedView
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.presentedViewController?.dismiss(animated: true, completion: nil)
+            }
+            .store(in: &cancellables)
+    }
+
+    private func bindInputs() {
+        userIcon.tapPublisher
+            .subscribe(viewModel.inputs.userIconDidTap)
+            .store(in: &cancellables)
+    }
+
     private func getListFromDate(_ date: Date) {
-        let thankYouDataList = thankYouDataSingleton.thankYouDataList
+        let thankYouDataList = thankYouDataSingleton.thankYouList
         estimatedRowHeights.removeAll()
         selectedList = thankYouDataList.filter({$0.date == date})
     }
@@ -133,10 +161,6 @@ private extension CalendarViewController {
             self.calendarView.reloadData()
             self.smallListView.reloadTableView()
         }
-    }
-
-    func presentEditThankYouViewController(thankYouId: String) {
-        router?.presentEditThankYou(thankYouId: thankYouId)
     }
     
     private func beginDraggingListView() {
@@ -189,62 +213,13 @@ private extension CalendarViewController {
             smallListView.setTableViewScrollingSetting(isEnabled: false)
         }
     }
-
-    func showDeleteConfirmationAlert(thankYouId: String) {
-        let deleteAction = UIAlertAction(title: R.string.localizable.delete(),
-                                         style: .destructive) { [weak self] _ in
-            self?.deleteThankYou(thankYouId: thankYouId)
-        }
-        let cancelAction = UIAlertAction(title: R.string.localizable.cancel(),
-                                         style: .cancel)
-        router?.presentAlert(title: R.string.localizable.deleteThankYou(),
-                             message: R.string.localizable.areYouSureYouWantToDeleteThisThankYou(),
-                             actions: [deleteAction, cancelAction])
-    }
-
-    func deleteThankYou(thankYouId: String) {
-        guard let userId = Auth.auth().currentUser?.uid else {
-            showErrorAlert(title: nil, message: R.string.localizable.failedToDelete())
-            return
-        }
-        db.collection(FirestoreConst.usersCollecion)
-            .document(userId)
-            .collection(FirestoreConst.thankYouListCollection)
-            .document(thankYouId)
-            .delete(completion: { [weak self] error in
-                guard let self = self else { return }
-                if let error = error {
-                    debugPrint(error)
-                    self.showErrorAlert(title: nil, message: R.string.localizable.failedToDelete())
-                    return
-                }
-                if let thankYouData = self.thankYouDataSingleton.thankYouDataList.first(where: { $0.id == thankYouId }) {
-                    self.analyticsManager.logEvent(
-                        eventName: AnalyticsEventConst.deleteThankYou,
-                        userId: userId,
-                        targetDate: thankYouData.date)
-                }
-            })
-    }
 }
 
 // MARK: - JTAppleCalendarViewDataSource
 extension CalendarViewController: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
-        let calendar = Calendar(identifier: .gregorian)
-
-        let formatter = DateFormatter()
-        formatter.dateFormat = calendarDateFormat
-        formatter.timeZone = calendar.timeZone
-        formatter.locale = calendar.locale
-        
-        let startDate = formatter.date(from: calendarStartDate) ?? Date()
-        let endDate = formatter.date(from: calendarEndDate) ?? Date()
-        
-        let parameters = ConfigurationParameters(startDate: startDate,
-                                                 endDate: endDate,
-                                                 calendar: calendar)
-        return parameters
+        viewModel.outputs.calendarConfiguration.value?.toConfigurationParameters ??
+        ConfigurationParameters(startDate: Date(), endDate: Date())
     }
 }
 
@@ -254,20 +229,19 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
     
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: R.reuseIdentifier.calendarDayCell.identifier, for: indexPath) as! CalendarDayCell
-        let thankYouCount = thankYouDataSingleton.thankYouDataList.filter { $0.date == cellState.date }.count
-        cell.bind(cellState: cellState, thankYouCount: thankYouCount)
-        cell.bindSelection(isSelected: cellState.isSelected)
+        let thankYouCount = thankYouDataSingleton.thankYouList.filter { $0.date == cellState.date }.count
+        cell.bind(cellState: cellState,
+                  thankYouCount: thankYouCount,
+                  isSelected: viewModel.outputs.currentSelectedDate.value.isSameDayAs(date))
         // To make sure draw(_ rect:) gets called when screen is rotated
         cell.setNeedsDisplay()
         return cell
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        if let cell = cell as? CalendarDayCell {
-            cell.bindSelection(isSelected: cellState.isSelected)
-        }
+        viewModel.inputs.calendarDidSelectDate.send(date)
+        // TODO: Will migrate to VM later
         getListFromDate(cellState.date)
-        appDelegate.selectedDate = cellState.date
         selectedDate = cellState.date.toThankYouDateString()
         let displayDateString = selectedDate
             .toDate(format: R.string.localizable.date_format_thankyou_date())?
@@ -276,15 +250,12 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         smallListView.reloadTableView()
     }
     
-    func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        if let cell = cell as? CalendarDayCell {
-            cell.bindSelection(isSelected: cellState.isSelected)
-        }
-    }
-    
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
-        setupViewsOfCalendar(from: visibleDates)
+        guard let firstVisibleDate = visibleDates.monthDates.first?.date else { return }
+        viewModel.inputs.calendarDidScrollToMonth.send(firstVisibleDate)
     }
+
+    func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {}
 }
 
 // MARK: - UITableViewDataSource, UITableViewDelegate
@@ -379,26 +350,14 @@ extension CalendarViewController: SmallListViewDelegate {
 extension CalendarViewController: ThankYouCellDelegate {
     func thankYouCellDidTapThankYouView(thankYouId: String) {
         let menu = ThankYouCellTapMenu.allCases.map { $0.bottomHalfSheetMenuItem(id: thankYouId) }
-        let bottomSheet = BottomHalfSheetMenuViewController.createViewController(
-            menu: menu,
-            bottomSheetDelegate: self
-        )
-        present(bottomSheet, animated: true, completion: nil)
-    }
-}
-
-// MARK: - BottomHalfSheetMenuViewControllerDelegate
-extension CalendarViewController: BottomHalfSheetMenuViewControllerDelegate {
-    func bottomHalfSheetMenuViewControllerDidTapItem(item: BottomHalfSheetMenuItem) {
-        guard let itemRawValue = item.rawValue,
-              let cellMenu = ThankYouCellTapMenu(rawValue: itemRawValue),
-              let thankYouId = item.id else { return }
-        presentedViewController?.dismiss(animated: true, completion: nil)
-        switch cellMenu {
-        case .edit:
-            presentEditThankYouViewController(thankYouId: thankYouId)
-        case .delete:
-            showDeleteConfirmationAlert(thankYouId: thankYouId)
+        let floatingPanelViewController = FloatingPanelController.createBottomHalfSheetMenu(menu: menu)
+        guard let bottomHalfSheetMenuViewController = floatingPanelViewController.contentBottomHalfSheetMenuViewController else {
+            return
         }
+        bottomHalfSheetMenuViewController.itemDidTap
+            .subscribe(viewModel.inputs.bottomHalfSheetMenuDidTap)
+            .store(in: &bottomHalfSheetMenuViewController.cancellables)
+
+        present(floatingPanelViewController, animated: true, completion: nil)
     }
 }

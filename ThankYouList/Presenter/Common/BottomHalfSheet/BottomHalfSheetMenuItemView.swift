@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Combine
+import CombineCocoa
 
 struct BottomHalfSheetMenuItem {
     let title: String
@@ -15,26 +17,29 @@ struct BottomHalfSheetMenuItem {
     let id: String?
 }
 
-protocol BottomHalfSheetMenuItemViewDelegate: class {
-    func bottomHalfSheetMenuItemViewDidTap(item: BottomHalfSheetMenuItem)
-}
-
 class BottomHalfSheetMenuItemView: UIControl {
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     
     private var item: BottomHalfSheetMenuItem?
+    private var cancellables = Set<AnyCancellable>()
 
-    weak var delegate: BottomHalfSheetMenuItemViewDelegate?
+    // Public Publisher
+    let viewDidTap = PassthroughSubject<BottomHalfSheetMenuItem, Never>()
 
     class func instanceFromNib() -> BottomHalfSheetMenuItemView {
-        let view = R.nib.bottomHalfSheetMenuItemView.firstView(owner: nil)!
+        let view = R.nib.bottomHalfSheetMenuItemView.firstView(withOwner: nil)!
         return view
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        addTarget(self, action: #selector(didTapView), for: .touchUpInside)
+        controlEventPublisher(for: .touchUpInside)
+            .compactMap { [weak self] in
+                self?.item
+            }
+            .subscribe(viewDidTap)
+            .store(in: &cancellables)
     }
 
     override var isHighlighted: Bool {
@@ -47,13 +52,5 @@ class BottomHalfSheetMenuItemView: UIControl {
         self.item = item
         imageView.image = item.image
         titleLabel.text = item.title
-    }
-}
-
-// MARK: - Private
-private extension BottomHalfSheetMenuItemView {
-    @objc func didTapView() {
-        guard let item = item else { return }
-        delegate?.bottomHalfSheetMenuItemViewDidTap(item: item)
     }
 }

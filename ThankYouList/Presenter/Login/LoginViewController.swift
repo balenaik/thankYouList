@@ -55,10 +55,9 @@ extension LoginViewController {
     
     @IBAction func tapGoogleLoginButton(_ sender: Any) {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-        let configuration = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = GIDConfiguration(clientID: clientID)
 
-        GIDSignIn.sharedInstance.signIn(with: configuration,
-                                        presenting: self) { [weak self] (user, error) in
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] (result, error) in
             guard let self = self else { return }
             if let error = error {
                 print(error.localizedDescription)
@@ -66,12 +65,13 @@ extension LoginViewController {
                                     message: R.string.localizable.error_authenticate())
                 return
             }
-            guard let auth = user?.authentication,
-                  let idToken = auth.idToken else { return }
-            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                           accessToken: auth.accessToken)
+            guard let idToken = result?.user.idToken,
+                  let accessToken = result?.user.accessToken else { return }
+            let credential = GoogleAuthProvider.credential(
+                withIDToken: idToken.tokenString,
+                accessToken: accessToken.tokenString)
             self.signIn(credential: credential,
-                        email: user?.profile?.email)
+                        email: result?.user.profile?.email)
         }
     }
 

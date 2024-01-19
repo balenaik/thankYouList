@@ -15,6 +15,11 @@ import FloatingPanel
 
 private let skeletonedThankYouCellCount = 3
 
+protocol ThankYouListRouter: Router {
+    func presentMyPage()
+    func presentEditThankYou(thankYouId: String)
+}
+
 class ThankYouListViewController: UIViewController {
 
     struct Section {
@@ -25,10 +30,13 @@ class ThankYouListViewController: UIViewController {
     }
 
     private var db = Firestore.firestore()
+    private let analyticsManager = DefaultAnalyticsManager()
     private var thankYouDataSingleton = GlobalThankYouData.sharedInstance
     private var sections = [Section]()
     private var estimatedRowHeights = [String : CGFloat]()
     private var hasLoadedThankYouList = false
+
+    var router: ThankYouListRouter?
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var scrollIndicator: ListScrollIndicator!
@@ -49,8 +57,7 @@ class ThankYouListViewController: UIViewController {
 // MARK: - IBActions
 extension ThankYouListViewController {
     @IBAction func tapUserIcon(_ sender: Any) {
-        guard let myPageViewController = MyPageViewController.createViewController() else { return }
-        present(myPageViewController, animated: true, completion: nil)
+        router?.presentMyPage()
     }
 }
 
@@ -154,12 +161,13 @@ private extension ThankYouListViewController {
     private func addThankYouDataToSection(thankYouData: ThankYouData) {
         /// Crop only year and month (yyyy/MM) from thank you date
         let dateYearMonthString = String(thankYouData.date.toThankYouDateString().prefix(7))
-        let sectionIndex = sections.index(where: {$0.sectionDateString == dateYearMonthString})
+        let sectionIndex = sections.firstIndex(where: { $0.sectionDateString == dateYearMonthString })
         if let index = sectionIndex {
             sections[index].thankYouList.append(thankYouData)
             sections[index].thankYouList.sort(by: {$0.date > $1.date})
         } else {
-            guard let dateYearMonth = dateYearMonthString.toYearMonthDate() else { return }
+            guard let dateYearMonth = dateYearMonthString.toDate(
+                format: R.string.localizable.date_format_year_month()) else { return }
             let newSection = Section(sectionDateString: dateYearMonthString,
                                      displayDateString: dateYearMonth.toYearMonthString(),
                                      thankYouList: [thankYouData])
@@ -171,9 +179,9 @@ private extension ThankYouListViewController {
     private func deleteThankYouDataFromSection(thankYouData: ThankYouData) {
         /// Crop only year and month (yyyy/MM) from thank you date
         let dateYearMonthString = String(thankYouData.date.toThankYouDateString().prefix(7))
-        guard let sectionIndex = sections.index(where: {$0.sectionDateString == dateYearMonthString}),
+        guard let sectionIndex = sections.firstIndex(where: {$0.sectionDateString == dateYearMonthString}),
             let thankYouIndex = sections[sectionIndex].thankYouList
-                .index(where: {$0.id == thankYouData.id}) else { return }
+                .firstIndex(where: {$0.id == thankYouData.id}) else { return }
         sections[sectionIndex].thankYouList.remove(at: thankYouIndex)
         if sections[sectionIndex].thankYouList.count == 0 {
             sections.remove(at: sectionIndex)
@@ -181,26 +189,19 @@ private extension ThankYouListViewController {
     }
 
     func presentEditThankYouViewController(thankYouId: String) {
-        guard let editThankYouViewController = EditThankYouViewController.createViewController(thankYouId: thankYouId) else {
-            return
-        }
-        present(editThankYouViewController, animated: true, completion: nil)
+        router?.presentEditThankYou(thankYouId: thankYouId)
     }
 
     func showDeleteConfirmationAlert(thankYouId: String) {
-        let alertController = UIAlertController(
-            title: R.string.localizable.deleteThankYou(),
-            message: R.string.localizable.areYouSureYouWantToDeleteThisThankYou(),
-            preferredStyle: .alert)
         let deleteAction = UIAlertAction(title: R.string.localizable.delete(),
                                          style: .destructive) { [weak self] _ in
             self?.deleteThankYou(thankYouId: thankYouId)
         }
-        let cancelButton = UIAlertAction(title: R.string.localizable.cancel(),
+        let cancelAction = UIAlertAction(title: R.string.localizable.cancel(),
                                          style: .cancel)
-        alertController.addAction(deleteAction)
-        alertController.addAction(cancelButton)
-        present(alertController,animated: true,completion: nil)
+        router?.presentAlert(title: R.string.localizable.deleteThankYou(),
+                             message: R.string.localizable.areYouSureYouWantToDeleteThisThankYou(),
+                             actions: [deleteAction, cancelAction])
     }
 
     func deleteThankYou(thankYouId: String) {
@@ -220,9 +221,10 @@ private extension ThankYouListViewController {
                     return
                 }
                 if let thankYouData = self.thankYouDataSingleton.thankYouDataList.first(where: { $0.id == thankYouId }) {
-                    Analytics.logEvent(eventName: AnalyticsEventConst.deleteThankYou,
-                                       userId: userId,
-                                       targetDate: thankYouData.date)
+                    self.analyticsManager.logEvent(
+                        eventName: AnalyticsEventConst.deleteThankYou,
+                        userId: userId,
+                        targetDate: thankYouData.date)
                 }
             })
     }
@@ -313,7 +315,9 @@ extension ThankYouListViewController: UITableViewDelegate {
 extension ThankYouListViewController: ListScrollIndicatorDelegate {
     func listScrollIndicatorDidBeginDraggingMovableIcon(_ indicator: ListScrollIndicator) {
         guard let user = Auth.auth().currentUser else { return }
-        Analytics.logEvent(eventName: AnalyticsEventConst.startDraggingListScrollIndicatorMovableIcon, userId: user.uid)
+        analyticsManager.logEvent(
+            eventName: AnalyticsEventConst.startDraggingListScrollIndicatorMovableIcon,
+            userId: user.uid)
     }
 }
 
@@ -326,15 +330,6 @@ extension ThankYouListViewController: ThankYouCellDelegate {
             bottomSheetDelegate: self
         )
         present(bottomSheet, animated: true, completion: nil)
-    }
-}
-
-// MARK: - Public
-extension ThankYouListViewController {
-    static func createViewController() -> UIViewController? {
-        guard let viewController = R.storyboard.thankYouList().instantiateInitialViewController() else { return nil }
-        let navigationController = UINavigationController(rootViewController: viewController)
-        return navigationController
     }
 }
 

@@ -21,6 +21,10 @@ private let doneButtonDisabledBgColor = UIColor.primary.withAlphaComponent(0.38)
 
 private let rowComponentCornerRadius = CGFloat(16)
 
+protocol AddThankYouRouter: Router {
+    func dismiss()
+}
+
 class AddThankYouViewController: UIViewController {
     
     // MARK: - Properties
@@ -32,6 +36,8 @@ class AddThankYouViewController: UIViewController {
         }
     }
     private var db = Firestore.firestore()
+    private let analyticsManager = DefaultAnalyticsManager()
+    var router: AddThankYouRouter?
     
     // MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
@@ -68,7 +74,7 @@ class AddThankYouViewController: UIViewController {
 extension AddThankYouViewController {
     @IBAction func closeButtonDidTap(_ sender: Any) {
         guard !thankYouTextView.text.isEmpty else {
-            dismiss(animated: true)
+            router?.dismiss()
             return
         }
         showDiscardAlert()
@@ -84,17 +90,16 @@ extension AddThankYouViewController {
         if isPosting || thankYouTextView.text.isEmpty {
             return
         }
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        let uid16string = String(uid.prefix(16))
-        let encryptedValue = Crypto().encryptString(
-            plainText: thankYouTextView.text,
-            key: uid16string)
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        let userId16string = String(userId.prefix(16))
+        let encryptedValue = Crypto().encryptString(plainText: thankYouTextView.text,
+                                                    key: userId16string)
         let thankYouData = ThankYouData(id: "",
                                         value: "",
                                         encryptedValue: encryptedValue,
                                         date: selectedDate,
                                         createTime: Date())
-        addThankYou(thankYouData: thankYouData, uid: uid)
+        addThankYou(thankYouData: thankYouData, userId: userId)
     }
 }
 
@@ -144,21 +149,24 @@ private extension AddThankYouViewController {
         thankYouTextView.resignFirstResponder()
     }
     
-    private func addThankYou(thankYouData: ThankYouData, uid: String) {
+    private func addThankYou(thankYouData: ThankYouData, userId: String) {
         isPosting = true
-        db.collection("users").document(uid).collection("thankYouList").addDocument(data: thankYouData.dictionary) { [weak self] error in
-            guard let weakSelf = self else { return }
-            weakSelf.isPosting = false
-            if let error = error {
-                print("Error adding document: \(error.localizedDescription)")
-                let alert = UIAlertController(title: nil, message: NSLocalizedString("Failed to add", comment: ""), preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                weakSelf.present(alert, animated: true, completion: nil)
-                return
+        db.collection(FirestoreConst.usersCollecion)
+            .document(userId)
+            .collection(FirestoreConst.thankYouListCollection)
+            .addDocument(data: thankYouData.dictionary) { [weak self] error in
+                guard let self = self else { return }
+                self.isPosting = false
+                if let error = error {
+                    print("Error adding document: \(error.localizedDescription)")
+                    self.router?.presentAlert(message: R.string.localizable.add_thank_you_add_error())
+                    return
+                }
+                self.analyticsManager.logEvent(eventName: AnalyticsEventConst.addThankYou,
+                                               userId: userId,
+                                               targetDate: thankYouData.date)
+                self.router?.dismiss()
             }
-            Analytics.logEvent(eventName: AnalyticsEventConst.addThankYou, userId: uid, targetDate: thankYouData.date)
-            weakSelf.dismiss(animated: true, completion: nil)
-        }
     }
     
     func adjustTextViewHeight() {
@@ -170,20 +178,16 @@ private extension AddThankYouViewController {
     }
 
     func showDiscardAlert() {
-        let alertController = UIAlertController(
-            title: R.string.localizable.add_thank_you_discard_title(),
-            message: R.string.localizable.add_thank_you_discard_message(),
-            preferredStyle: .alert)
         let discardAction = UIAlertAction(title: R.string.localizable.discard(),
                                           style: .destructive) { [weak self] _ in
-            self?.dismiss(animated: true)
+            self?.router?.dismiss()
         }
-        let cancelButton = UIAlertAction(
+        let cancelAction = UIAlertAction(
             title: R.string.localizable.add_thank_you_discard_cancel(),
             style: .cancel)
-        alertController.addAction(discardAction)
-        alertController.addAction(cancelButton)
-        present(alertController, animated: true, completion: nil)
+        router?.presentAlert(title: R.string.localizable.add_thank_you_discard_title(),
+                             message: R.string.localizable.add_thank_you_discard_message(),
+                             actions: [discardAction, cancelAction])
     }
 }
 
@@ -206,15 +210,5 @@ extension AddThankYouViewController: BottomHalfSheetDatePickerViewControllerDele
     func bottomHalfSheetDatePickerViewControllerDidTapDone(date: Date) {
         presentedViewController?.dismiss(animated: true, completion: nil)
         selectedDate = date
-    }
-}
-
-// MARK: - Public
-extension AddThankYouViewController {
-    static func createViewController() -> UIViewController? {
-        guard let viewController = R.storyboard.addThankYou().instantiateInitialViewController() else { return nil }
-        let navigationController = UINavigationController(rootViewController: viewController)
-        navigationController.modalPresentationStyle = .fullScreen
-        return navigationController
     }
 }

@@ -427,7 +427,7 @@ PODS:
     - GoogleUtilities/Environment (~> 7.6)
     - GoogleUtilities/UserDefaults (~> 7.6)
     - PromisesObjC (< 3.0, >= 1.2)
-  - FloatingPanel (2.5.0)
+  - FloatingPanel (2.5.5)
   - GoogleAppMeasurement (8.9.1):
     - GoogleAppMeasurement/AdIdSupport (= 8.9.1)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.6)
@@ -511,9 +511,7 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (2.0.0)
-  - R.swift (5.0.3):
-    - R.swift.Library (~> 5.0.0)
-  - R.swift.Library (5.0.1)
+  - R.swift (7.2.4)
   - RNCryptor (5.1.0)
   - SDWebImage (5.7.3):
     - SDWebImage/Core (= 5.7.3)
@@ -528,10 +526,10 @@ DEPENDENCIES:
   - Firebase/Core (= 8.9.1)
   - Firebase/Database (= 8.9.1)
   - Firebase/Firestore (= 8.9.1)
-  - FloatingPanel (= 2.5.0)
+  - FloatingPanel (= 2.5.5)
   - GoogleSignIn (= 6.0.2)
   - JTAppleCalendar (~> 7.0)
-  - R.swift (= 5.0.3)
+  - R.swift (= 7.2.4)
   - RNCryptor (~> 5.0)
   - SDWebImage (~> 5.0)
   - SkeletonView (= 1.25.1)
@@ -566,7 +564,6 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - R.swift
-    - R.swift.Library
     - RNCryptor
     - SDWebImage
     - SkeletonView
@@ -586,7 +583,7 @@ SPEC CHECKSUMS:
   FirebaseDatabase: 2236b804cf0cac165b4620669bedf7ee643a2bcc
   FirebaseFirestore: 15ae9648476436efed698a909e44c4737498f9b4
   FirebaseInstallations: caa7c8e0d3e2345b8829d2fa9ca1b4dfbf2fcc85
-  FloatingPanel: ddb1c8cbbacd164cfee651c449febe867a28e2cb
+  FloatingPanel: a27e7827e0f710fa6236fe2596dd1b5484cb4fc1
   GoogleAppMeasurement: 837649ad3987936c232f6717c5680216f6243d24
   GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
   GoogleSignIn: fd381840dbe7c1137aa6dc30849a5c3e070c034a
@@ -599,12 +596,11 @@ SPEC CHECKSUMS:
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
-  R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
-  R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
+  R.swift: 681bb9135f482e7a81d9d27445b837fef5467e11
   RNCryptor: a369134686cd2ad391323cc856b62e591193ba79
   SDWebImage: 97351f6582ceca541ea294ba66a1fcb342a331c2
   SkeletonView: 77079530e1348a72f48b79ae30dcb966c1b18b6a
 
-PODFILE CHECKSUM: 77ac0868be30e5fb258869951bfcc9e552b44acd
+PODFILE CHECKSUM: 1f3247f0c370f803b13d517792df32c4177af093
 
-COCOAPODS: 1.10.2
+COCOAPODS: 1.12.1

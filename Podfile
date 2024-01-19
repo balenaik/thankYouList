@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+ platform :ios, '14.0'
 
 target 'ThankYouList' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -20,7 +20,7 @@ target 'ThankYouList' do
   pod 'GoogleSignIn', '6.0.2'
 
   # R.swift
-  pod 'R.swift', '5.0.3'
+  pod 'R.swift', '7.2.4'
 
   # Crypto
   pod 'RNCryptor', '~> 5.0'
@@ -33,6 +33,18 @@ target 'ThankYouList' do
   pod 'SDWebImage', '~> 5.0'
 
   # FloatingPanel
-  pod 'FloatingPanel', '2.5.0'
+  pod 'FloatingPanel', '2.5.5'
 
+end
+
+target 'ThankYouListTests' do
+  pod 'R.swift', '7.2.4'
+end
+
+post_install do | installer |
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
+        end
+    end
 end

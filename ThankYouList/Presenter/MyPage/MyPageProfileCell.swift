@@ -16,7 +16,7 @@ class MyPageProfileCell: UITableViewCell {
 
     func bind(profile: Profile) {
         nameLabel.text = profile.name
-        emailLabel.text = profile.emailAddress
+        emailLabel.text = profile.email
         profileImageView.setImage(from: profile.imageUrl)
     }
 }

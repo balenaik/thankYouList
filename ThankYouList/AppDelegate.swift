@@ -7,16 +7,18 @@
 //
 
 import UIKit
+import Combine
 import Firebase
 import FBSDKCoreKit
-import GoogleSignIn
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var uid: String?
     var selectedDate: Date?
+
+    private let userRepository: UserRepository = DefaultUserRepository()
+    private var cancellable = Set<AnyCancellable>()
     
     override init() {
         super.init()
@@ -27,22 +29,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        
-        guard Auth.auth().currentUser != nil else {
-            if let loginViewController = R.storyboard.login().instantiateInitialViewController() {
-                self.window?.rootViewController = loginViewController
-                self.window?.makeKeyAndVisible()
-            }
-            return true
-        }
-        moveUDDataToFirestoreIfNeeded()
-        if let mainTabBarController = MainTabBarController.createViewController() {
-            createRootViewController(mainViewController: mainTabBarController)
-        }
+        setupInitialSelectedDate()
+        setupNavigationBar()
+        reAuthenticateToProvider()
 
-        self.selectedDate = Date()
-        self.window?.makeKeyAndVisible()
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        self.window = window
+        let appCoordinator = AppCoordinator(
+            window: window,
+            userRepository: DefaultUserRepository())
+        appCoordinator.start()
         
         return true
     }
@@ -73,63 +69,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
         -> Bool {
             return ApplicationDelegate.shared.application(application,
-                                                             open: url,
-                                                             sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
-                                                             annotation: [:])
+                                                          open: url,
+                                                          sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+                                                          annotation: [:])
     }
-    
-    func createRootViewController(mainViewController: UIViewController) {
-        self.window?.rootViewController = mainViewController
+}
+
+private extension AppDelegate {
+    func setupInitialSelectedDate() {
+        selectedDate = Date()
     }
-    
-    func moveUDDataToFirestoreIfNeeded() {
-        let userDefaults = UserDefaults.standard
-        guard let storedThankYouDataUDList = userDefaults.object(forKey: "thankYouDataList") as? Data else { return }
-        NSKeyedUnarchiver.setClass(ThankYouDataUD.self, forClassName: "ThankYouList.ThankYouData")
-        guard let unarchiveThankYouDataUDList = NSKeyedUnarchiver.unarchiveObject(with: storedThankYouDataUDList) as? [ThankYouDataUD] else { return }
-        if unarchiveThankYouDataUDList.count != 0 {
-            moveUDDataToFirestore(thankYouDataUDList: unarchiveThankYouDataUDList)
-        }
+
+    func setupNavigationBar() {
+        // Setup NavigationBar in SwiftUI
+        UINavigationBar.appearance().largeTitleTextAttributes = [
+            .font : UIFont.boldAvenir(ofSize: 32)
+        ]
     }
-    
-    private func moveUDDataToFirestore(thankYouDataUDList: [ThankYouDataUD]) {
-        guard let uid = Auth.auth().currentUser?.uid else {
-            print("Not login? error")
-            return
-        }
-        let userDefaults = UserDefaults.standard
-        var copiedUDDataList: [ThankYouDataUD] = []
-        if let oldThankYouDataList = userDefaults.object(forKey: "oldThankYouDataList") as? Data {
-            if let unarchiveOldThankYouDataList = NSKeyedUnarchiver.unarchiveObject(with: oldThankYouDataList) as? [ThankYouDataUD] {
-                copiedUDDataList = unarchiveOldThankYouDataList
-            }
-        }
-        let allOldThankYouDataCount = copiedUDDataList.count + thankYouDataUDList.count
-        var unCopiedUDDataList: [ThankYouDataUD] = []
-        let db = Firestore.firestore()
-        for thankYouDataUD in thankYouDataUDList {
-            guard let thankYouValue = thankYouDataUD.thankYouValue, let thankYouDate = thankYouDataUD.thankYouDate?.toThankYouDate() else { return }
-            let uid16string = String(uid.prefix(16))
-            let encryptedValue = Crypto().encryptString(plainText: thankYouValue, key: uid16string)
-            let thankYouData = ThankYouData(id: "", value: "", encryptedValue: encryptedValue, date: thankYouDate, createTime: Date())
-            db.collection("users").document(uid).collection("thankYouList").addDocument(data: thankYouData.dictionary) { error in
-                if let error = error {
-                    print("Error adding document: \(error.localizedDescription)")
-                    unCopiedUDDataList.append(thankYouDataUD)
-                } else {
-                    copiedUDDataList.append(thankYouDataUD)
-                }
-                if copiedUDDataList.count + unCopiedUDDataList.count == allOldThankYouDataCount {
-                    let copiedData = NSKeyedArchiver.archivedData(withRootObject: copiedUDDataList)
-                    let unCopiedData = NSKeyedArchiver.archivedData(withRootObject: unCopiedUDDataList)
-                    userDefaults.set(copiedData, forKey: "oldThankYouDataList")
-                    userDefaults.set(unCopiedData, forKey: "thankYouDataList")
-                    userDefaults.synchronize()
-                    print("copiedData:\(copiedUDDataList)")
-                    print("unCopiedData:\(unCopiedUDDataList)")
-                }
-            }
-        }
+
+    func reAuthenticateToProvider() {
+        userRepository.reAuthenticateToProviderIfNeeded()
+            .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
+            .store(in: &cancellable)
     }
 }
 

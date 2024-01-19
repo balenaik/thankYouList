@@ -17,14 +17,26 @@ extension MyPageViewController {
 
     enum TableItemType: Int {
         case myInformation
+        case rate
+        case feedback
+        case privacyPolicy
         case logout
+        case deleteAccount
 
         var titleText: String? {
             switch self {
             case .myInformation:
                 return nil
+            case .rate:
+                return R.string.localizable.mypage_rate()
+            case .feedback:
+                return R.string.localizable.mypage_feedback()
+            case .privacyPolicy:
+                return R.string.localizable.mypage_privacy_policy()
             case .logout:
                 return R.string.localizable.mypage_logout()
+            case .deleteAccount:
+                return R.string.localizable.mypage_delete_account()
             }
         }
 
@@ -32,7 +44,15 @@ extension MyPageViewController {
             switch self {
             case .myInformation:
                 return nil
+            case .rate:
+                return .text
+            case .feedback:
+                return .text
+            case .privacyPolicy:
+                return .text
             case .logout:
+                return .text
+            case .deleteAccount:
                 return .redAccent200
             }
         }

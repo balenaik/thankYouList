@@ -108,6 +108,9 @@
 		A8B6EE952205902100908D51 /* ListSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6EE942205902100908D51 /* ListSectionHeaderView.swift */; };
 		A8BA38B91F5CC5F600817D5C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8BA38B81F5CC5F600817D5C /* Images.xcassets */; };
 		A8BFB8BC2B53C23E00C3DE65 /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BFB8BB2B53C23E00C3DE65 /* AlertAction.swift */; };
+		A8C5630E2B5BFF8F0047ED4C /* PositiveStatementListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C5630D2B5BFF8F0047ED4C /* PositiveStatementListView.swift */; };
+		A8C563102B5CAC6F0047ED4C /* PositiveStatementListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C5630F2B5CAC6F0047ED4C /* PositiveStatementListViewModel.swift */; };
+		A8C563122B5CAD190047ED4C /* PositiveStatementListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C563112B5CAD190047ED4C /* PositiveStatementListCoordinator.swift */; };
 		A8C59B76243CC86100FF79EA /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C59B75243CC86100FF79EA /* R.generated.swift */; };
 		A8C59B79243CD32200FF79EA /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8C59B78243CD32200FF79EA /* MyPage.storyboard */; };
 		A8C59B7B243CD35D00FF79EA /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C59B7A243CD35D00FF79EA /* MyPageViewController.swift */; };
@@ -251,6 +254,9 @@
 		A8B6EE942205902100908D51 /* ListSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSectionHeaderView.swift; sourceTree = "<group>"; };
 		A8BA38B81F5CC5F600817D5C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A8BFB8BB2B53C23E00C3DE65 /* AlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
+		A8C5630D2B5BFF8F0047ED4C /* PositiveStatementListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementListView.swift; sourceTree = "<group>"; };
+		A8C5630F2B5CAC6F0047ED4C /* PositiveStatementListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementListViewModel.swift; sourceTree = "<group>"; };
+		A8C563112B5CAD190047ED4C /* PositiveStatementListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementListCoordinator.swift; sourceTree = "<group>"; };
 		A8C59B75243CC86100FF79EA /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		A8C59B78243CD32200FF79EA /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
 		A8C59B7A243CD35D00FF79EA /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
@@ -351,6 +357,7 @@
 				A8114AFD22E4484C0024975A /* AddThankYou */,
 				A8114AFA22E4468B0024975A /* Calendar */,
 				A8114AF722E4355B0024975A /* ThankYouList */,
+				A8C5630C2B5BFF3D0047ED4C /* PositiveStatementList */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -601,6 +608,16 @@
 				A8AC1BCE1FAE00B600D1B25B /* Localizable.strings */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		A8C5630C2B5BFF3D0047ED4C /* PositiveStatementList */ = {
+			isa = PBXGroup;
+			children = (
+				A8C5630D2B5BFF8F0047ED4C /* PositiveStatementListView.swift */,
+				A8C5630F2B5CAC6F0047ED4C /* PositiveStatementListViewModel.swift */,
+				A8C563112B5CAD190047ED4C /* PositiveStatementListCoordinator.swift */,
+			);
+			path = PositiveStatementList;
 			sourceTree = "<group>";
 		};
 		A8C59B77243CD30700FF79EA /* MyPage */ = {
@@ -982,6 +999,7 @@
 				A8114B10230180EF0024975A /* ListScrollIndicator.swift in Sources */,
 				A89AF9E72106905500FF6893 /* Crypto.swift in Sources */,
 				A881350C211FD40C00BE8F48 /* BalloonView.swift in Sources */,
+				A8C563122B5CAD190047ED4C /* PositiveStatementListCoordinator.swift in Sources */,
 				A84FDB5C21DBB8DF00593326 /* AddThankYouViewController.swift in Sources */,
 				A80BBB97245889A600CB032B /* AnalyticsConst.swift in Sources */,
 				A8E6CD0D29615BE00042AA81 /* Font+Theme.swift in Sources */,
@@ -1009,6 +1027,7 @@
 				A831BD432741617C003B5394 /* FirestoreConst.swift in Sources */,
 				A8E6CD14296BA31A0042AA81 /* Coordinator.swift in Sources */,
 				A8C59B76243CC86100FF79EA /* R.generated.swift in Sources */,
+				A8C563102B5CAC6F0047ED4C /* PositiveStatementListViewModel.swift in Sources */,
 				A83A361C296CE98600AD2790 /* MyPageCoordinator.swift in Sources */,
 				A86F419E24548797005D929A /* MyPageTableItem.swift in Sources */,
 				A8B6EE952205902100908D51 /* ListSectionHeaderView.swift in Sources */,
@@ -1018,6 +1037,7 @@
 				A851944C272BFACE003631EE /* BottomHalfSheetMenuItemView.swift in Sources */,
 				A8E6CD122965B2F20042AA81 /* UserRepository.swift in Sources */,
 				A80EAE5A21FD5F87006B02E8 /* ThankYouCell.swift in Sources */,
+				A8C5630E2B5BFF8F0047ED4C /* PositiveStatementListView.swift in Sources */,
 				A8A85AC025A60E8500182B99 /* UIImage+FromUIColor.swift in Sources */,
 				A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */,
 				A86F41A124570B0B005D929A /* PlaceHolderTextView.swift in Sources */,

@@ -66,7 +66,7 @@
 		A8775598282C5C5C003141B0 /* UIColor+Modification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8775597282C5C5C003141B0 /* UIColor+Modification.swift */; };
 		A881350C211FD40C00BE8F48 /* BalloonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A881350B211FD40C00BE8F48 /* BalloonView.swift */; };
 		A881350E2131432C00BE8F48 /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A881350D2131432C00BE8F48 /* EmptyView.xib */; };
-		A88135102131435100BE8F48 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A881350F2131435100BE8F48 /* EmptyView.swift */; };
+		A88135102131435100BE8F48 /* ThankYouEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A881350F2131435100BE8F48 /* ThankYouEmptyView.swift */; };
 		A88217272B41029800BD8BFD /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A88217262B41029800BD8BFD /* CombineCocoa */; };
 		A8831CC71E9CFE6B00F3CA0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8831CC61E9CFE6B00F3CA0A /* AppDelegate.swift */; };
 		A8831CC91E9CFE6B00F3CA0A /* ThankYouListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8831CC81E9CFE6B00F3CA0A /* ThankYouListViewController.swift */; };
@@ -211,7 +211,7 @@
 		A8775597282C5C5C003141B0 /* UIColor+Modification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Modification.swift"; sourceTree = "<group>"; };
 		A881350B211FD40C00BE8F48 /* BalloonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonView.swift; sourceTree = "<group>"; };
 		A881350D2131432C00BE8F48 /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
-		A881350F2131435100BE8F48 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		A881350F2131435100BE8F48 /* ThankYouEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouEmptyView.swift; sourceTree = "<group>"; };
 		A8831CC31E9CFE6B00F3CA0A /* ThankYouList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThankYouList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8831CC61E9CFE6B00F3CA0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8831CC81E9CFE6B00F3CA0A /* ThankYouListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouListViewController.swift; sourceTree = "<group>"; };
@@ -368,7 +368,7 @@
 				A8114B0E23017F6A0024975A /* ScrollIndicator */,
 				A881350B211FD40C00BE8F48 /* BalloonView.swift */,
 				A881350D2131432C00BE8F48 /* EmptyView.xib */,
-				A881350F2131435100BE8F48 /* EmptyView.swift */,
+				A881350F2131435100BE8F48 /* ThankYouEmptyView.swift */,
 				A8B6EE922205900D00908D51 /* ListSectionHeaderView.xib */,
 				A8B6EE942205902100908D51 /* ListSectionHeaderView.swift */,
 				A80EAE5B21FD5FA6006B02E8 /* ThankYouCell.xib */,
@@ -983,7 +983,7 @@
 				A841B339213ED3DE00E8AB5B /* LocalizedLabel.swift in Sources */,
 				A83A362229737D2000AD2790 /* EditThankYouCoordinator.swift in Sources */,
 				A8D41E1C21E0E07B00A77B48 /* SettingDateView.swift in Sources */,
-				A88135102131435100BE8F48 /* EmptyView.swift in Sources */,
+				A88135102131435100BE8F48 /* ThankYouEmptyView.swift in Sources */,
 				A80EAE5621F44DD7006B02E8 /* EditThankYouViewController.swift in Sources */,
 				A8831CC91E9CFE6B00F3CA0A /* ThankYouListViewController.swift in Sources */,
 				A89CF876211C73AC00CA5518 /* SecretData.swift in Sources */,

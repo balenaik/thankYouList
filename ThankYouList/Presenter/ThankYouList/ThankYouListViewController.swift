@@ -40,7 +40,7 @@ class ThankYouListViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var scrollIndicator: ListScrollIndicator!
-    @IBOutlet private weak var emptyView: EmptyView!
+    @IBOutlet private weak var emptyView: ThankYouEmptyView!
 
     override func viewDidLoad() {
         super.viewDidLoad()

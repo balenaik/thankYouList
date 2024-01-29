@@ -1,5 +1,5 @@
 //
-//  EmptyView.swift
+//  ThankYouEmptyView.swift
 //  ThankYouList
 //
 //  Created by Aika Yamada on 2018/08/25.
@@ -9,20 +9,20 @@
 import Foundation
 import UIKit
 
-class EmptyView: UIView {
+class ThankYouEmptyView: UIView {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        let view = R.nib.emptyView(owner: self)!
+        let view = R.nib.emptyView(withOwner: self)!
         self.addSubview(view)
         setupConstraints(view: view)
         setupLabel()
     }
 }
 
-private extension EmptyView {
+private extension ThankYouEmptyView {
     func setupConstraints(view: UIView) {
         view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

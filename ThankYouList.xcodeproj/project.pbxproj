@@ -111,6 +111,7 @@
 		A8C5630E2B5BFF8F0047ED4C /* PositiveStatementListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C5630D2B5BFF8F0047ED4C /* PositiveStatementListView.swift */; };
 		A8C563102B5CAC6F0047ED4C /* PositiveStatementListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C5630F2B5CAC6F0047ED4C /* PositiveStatementListViewModel.swift */; };
 		A8C563122B5CAD190047ED4C /* PositiveStatementListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C563112B5CAD190047ED4C /* PositiveStatementListCoordinator.swift */; };
+		A8C563152B764D810047ED4C /* AddPositiveStatementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C563142B764D810047ED4C /* AddPositiveStatementView.swift */; };
 		A8C59B76243CC86100FF79EA /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C59B75243CC86100FF79EA /* R.generated.swift */; };
 		A8C59B79243CD32200FF79EA /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8C59B78243CD32200FF79EA /* MyPage.storyboard */; };
 		A8C59B7B243CD35D00FF79EA /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C59B7A243CD35D00FF79EA /* MyPageViewController.swift */; };
@@ -257,6 +258,7 @@
 		A8C5630D2B5BFF8F0047ED4C /* PositiveStatementListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementListView.swift; sourceTree = "<group>"; };
 		A8C5630F2B5CAC6F0047ED4C /* PositiveStatementListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementListViewModel.swift; sourceTree = "<group>"; };
 		A8C563112B5CAD190047ED4C /* PositiveStatementListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementListCoordinator.swift; sourceTree = "<group>"; };
+		A8C563142B764D810047ED4C /* AddPositiveStatementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPositiveStatementView.swift; sourceTree = "<group>"; };
 		A8C59B75243CC86100FF79EA /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		A8C59B78243CD32200FF79EA /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
 		A8C59B7A243CD35D00FF79EA /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 				A8114AFA22E4468B0024975A /* Calendar */,
 				A8114AF722E4355B0024975A /* ThankYouList */,
 				A8C5630C2B5BFF3D0047ED4C /* PositiveStatementList */,
+				A8C563132B764D110047ED4C /* AddPositiveStatement */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -618,6 +621,14 @@
 				A8C563112B5CAD190047ED4C /* PositiveStatementListCoordinator.swift */,
 			);
 			path = PositiveStatementList;
+			sourceTree = "<group>";
+		};
+		A8C563132B764D110047ED4C /* AddPositiveStatement */ = {
+			isa = PBXGroup;
+			children = (
+				A8C563142B764D810047ED4C /* AddPositiveStatementView.swift */,
+			);
+			path = AddPositiveStatement;
 			sourceTree = "<group>";
 		};
 		A8C59B77243CD30700FF79EA /* MyPage */ = {
@@ -1009,6 +1020,7 @@
 				A8AC1BD71FD20E5500D1B25B /* MainTabBarController.swift in Sources */,
 				A82BBF78270C4FC4007E8CD9 /* UIFont+Theme.swift in Sources */,
 				A84635B12AB9D08B0030A358 /* InMemoryDataStore.swift in Sources */,
+				A8C563152B764D810047ED4C /* AddPositiveStatementView.swift in Sources */,
 				A8E6CD0929601D870042AA81 /* Color+Theme.swift in Sources */,
 				A85D9D011EA64AF900945E6E /* ThankYouData.swift in Sources */,
 				A892354229C0BF460093A92F /* String+Nonce.swift in Sources */,

@@ -79,3 +79,5 @@
 "date_format_month_year" = "yyyy年 MMMM";
 
 "privacy_policy_url" = "https://thank-you-list-dc0da.firebaseapp.com/ja.html";
+
+"add_positive_statement_title" = "ポジティブメッセージを追加";

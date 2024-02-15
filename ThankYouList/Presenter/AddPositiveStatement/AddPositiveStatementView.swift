@@ -14,6 +14,7 @@ struct AddPositiveStatementView: View {
             Text(
                 "Hello, World!"
             )
+            .screenBackground(Color.defaultBackground)
             .navigationBarTitle(R.string.localizable.add_positive_statement_title(), displayMode: .inline)
         }
     }

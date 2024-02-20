@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
         setupNavigationBar()
+        setupListView()
         reAuthenticateToProvider()
 
         let window = UIWindow(frame: UIScreen.main.bounds)
@@ -79,6 +80,11 @@ private extension AppDelegate {
         UINavigationBar.appearance().largeTitleTextAttributes = [
             .font : UIFont.boldAvenir(ofSize: 32)
         ]
+    }
+
+    func setupListView() {
+        // Setup SwiftUI ListView background color for iOS 15
+        UITableView.appearance().backgroundColor = .clear
     }
 
     func reAuthenticateToProvider() {

@@ -13,10 +13,9 @@ struct PositiveStatementListView: View {
     @StateObject var viewModel: PositiveStatementListViewModel
 
     var body: some View {
-        NavigationView {
-            List {
-            }
+        List {
         }
+        .listBackgroundForIOS16AndAbove(Color.clear)
     }
 }
 

@@ -15,4 +15,13 @@ extension View {
             self
         }
     }
+
+    func listBackgroundForIOS16AndAbove<Background: View>(_ background: Background) -> some View {
+        if #available(iOS 16.0, *) {
+            return self.scrollContentBackground(.hidden)
+                .background(background)
+        } else {
+            return self
+        }
+    }
 }

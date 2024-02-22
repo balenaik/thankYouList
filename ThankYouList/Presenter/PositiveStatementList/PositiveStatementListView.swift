@@ -20,9 +20,7 @@ struct PositiveStatementListView: View {
     }
 }
 
-struct PositiveStatementListView_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = PositiveStatementListViewModel()
-        PositiveStatementListView(viewModel: viewModel)
-    }
+#Preview {
+    let viewModel = PositiveStatementListViewModel()
+    return PositiveStatementListView(viewModel: viewModel)
 }

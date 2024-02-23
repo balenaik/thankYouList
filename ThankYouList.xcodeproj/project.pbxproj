@@ -112,6 +112,7 @@
 		A8C563102B5CAC6F0047ED4C /* PositiveStatementListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C5630F2B5CAC6F0047ED4C /* PositiveStatementListViewModel.swift */; };
 		A8C563122B5CAD190047ED4C /* PositiveStatementListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C563112B5CAD190047ED4C /* PositiveStatementListCoordinator.swift */; };
 		A8C563152B764D810047ED4C /* AddPositiveStatementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C563142B764D810047ED4C /* AddPositiveStatementView.swift */; };
+		A8C563172B7653F00047ED4C /* AddPositiveStatementCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C563162B7653F00047ED4C /* AddPositiveStatementCoordinator.swift */; };
 		A8C563192B7D73A70047ED4C /* View+Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C563182B7D73A70047ED4C /* View+Background.swift */; };
 		A8C59B76243CC86100FF79EA /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C59B75243CC86100FF79EA /* R.generated.swift */; };
 		A8C59B79243CD32200FF79EA /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8C59B78243CD32200FF79EA /* MyPage.storyboard */; };
@@ -260,6 +261,7 @@
 		A8C5630F2B5CAC6F0047ED4C /* PositiveStatementListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementListViewModel.swift; sourceTree = "<group>"; };
 		A8C563112B5CAD190047ED4C /* PositiveStatementListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementListCoordinator.swift; sourceTree = "<group>"; };
 		A8C563142B764D810047ED4C /* AddPositiveStatementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPositiveStatementView.swift; sourceTree = "<group>"; };
+		A8C563162B7653F00047ED4C /* AddPositiveStatementCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPositiveStatementCoordinator.swift; sourceTree = "<group>"; };
 		A8C563182B7D73A70047ED4C /* View+Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Background.swift"; sourceTree = "<group>"; };
 		A8C59B75243CC86100FF79EA /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		A8C59B78243CD32200FF79EA /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
@@ -630,6 +632,7 @@
 			isa = PBXGroup;
 			children = (
 				A8C563142B764D810047ED4C /* AddPositiveStatementView.swift */,
+				A8C563162B7653F00047ED4C /* AddPositiveStatementCoordinator.swift */,
 			);
 			path = AddPositiveStatement;
 			sourceTree = "<group>";
@@ -979,6 +982,7 @@
 			files = (
 				A810D8DA23461F99008F2E74 /* UIColor+Theme.swift in Sources */,
 				A820DE5421C5432500E7F3DF /* NotificationConst.swift in Sources */,
+				A8C563172B7653F00047ED4C /* AddPositiveStatementCoordinator.swift in Sources */,
 				A8E6CD07295C7D050042AA81 /* ConfirmDeleteAccountViewModel.swift in Sources */,
 				A84635B52AC020C00030A358 /* ThankYouRepository.swift in Sources */,
 				A8E6CD0F296513000042AA81 /* String+Validation.swift in Sources */,

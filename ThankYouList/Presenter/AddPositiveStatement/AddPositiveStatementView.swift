@@ -8,8 +8,6 @@
 
 import SwiftUI
 
-private let contentViewSpacing = CGFloat(16)
-
 struct AddPositiveStatementView: View {
     var body: some View {
         NavigationView {
@@ -19,7 +17,7 @@ struct AddPositiveStatementView: View {
     }
 
     var contentView: some View {
-        VStack(spacing: contentViewSpacing) {
+        VStack(spacing: ViewConst.spacing16) {
         }
     }
 }

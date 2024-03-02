@@ -8,14 +8,18 @@
 
 import SwiftUI
 
+private let contentViewSpacing = CGFloat(16)
+
 struct AddPositiveStatementView: View {
     var body: some View {
         NavigationView {
-            Text(
-                "Hello, World!"
-            )
-            .screenBackground(Color.defaultBackground)
-            .navigationBarTitle(R.string.localizable.add_positive_statement_title(), displayMode: .inline)
+            contentView
+                .screenBackground(Color.defaultBackground)
+        }
+    }
+
+    var contentView: some View {
+        VStack(spacing: contentViewSpacing) {
         }
     }
 }

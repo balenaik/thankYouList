@@ -19,6 +19,7 @@ struct AddPositiveStatementView: View {
     var contentView: some View {
         VStack(spacing: ViewConst.spacing16) {
         }
+        .padding(.horizontal, ViewConst.spacing20)
     }
 }
 

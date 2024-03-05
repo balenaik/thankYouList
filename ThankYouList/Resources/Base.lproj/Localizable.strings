@@ -81,4 +81,5 @@
 
 "privacy_policy_url" = "https://thank-you-list-dc0da.firebaseapp.com/en.html";
 
-"add_positive_statement_title" = "Add Positive Statement";
+"add_positive_statement_title" = "What does your ideal future look like?";
+"add_positive_statement_description" = "Imagine your ideal future or the person you want to become. Then, express it in the form of \"I am...\" or \"I will...\" as if you are already that way. Let's put it into words.";

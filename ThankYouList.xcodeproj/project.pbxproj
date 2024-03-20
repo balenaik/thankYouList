@@ -77,6 +77,7 @@
 		A8851EA326FC1522008B2D7A /* imageLaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = A8851EA226FC1522008B2D7A /* imageLaunchScreen.png */; };
 		A8851ECC27014FE1008B2D7A /* CenterRoundedTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8851ECB27014FE1008B2D7A /* CenterRoundedTabBar.swift */; };
 		A8851ECF2701560F008B2D7A /* MainTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8851ECE2701560F008B2D7A /* MainTabBar.storyboard */; };
+		A88546632B97DAD2000A4245 /* AddPositiveStatementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88546622B97DAD2000A4245 /* AddPositiveStatementViewModel.swift */; };
 		A890D3B929D823A30066D098 /* TestScheduler+Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A890D3B829D823A30066D098 /* TestScheduler+Observer.swift */; };
 		A892354229C0BF460093A92F /* String+Nonce.swift in Sources */ = {isa = PBXBuildFile; fileRef = A892354129C0BF460093A92F /* String+Nonce.swift */; };
 		A892354429D008E60093A92F /* AppleAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A892354329D008E60093A92F /* AppleAuthenticationManager.swift */; };
@@ -226,6 +227,7 @@
 		A8851EA226FC1522008B2D7A /* imageLaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imageLaunchScreen.png; sourceTree = "<group>"; };
 		A8851ECB27014FE1008B2D7A /* CenterRoundedTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterRoundedTabBar.swift; sourceTree = "<group>"; };
 		A8851ECE2701560F008B2D7A /* MainTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainTabBar.storyboard; sourceTree = "<group>"; };
+		A88546622B97DAD2000A4245 /* AddPositiveStatementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPositiveStatementViewModel.swift; sourceTree = "<group>"; };
 		A890D3B829D823A30066D098 /* TestScheduler+Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TestScheduler+Observer.swift"; sourceTree = "<group>"; };
 		A892354129C0BF460093A92F /* String+Nonce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Nonce.swift"; sourceTree = "<group>"; };
 		A892354329D008E60093A92F /* AppleAuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthenticationManager.swift; sourceTree = "<group>"; };
@@ -633,6 +635,7 @@
 			children = (
 				A8C563142B764D810047ED4C /* AddPositiveStatementView.swift */,
 				A8C563162B7653F00047ED4C /* AddPositiveStatementCoordinator.swift */,
+				A88546622B97DAD2000A4245 /* AddPositiveStatementViewModel.swift */,
 			);
 			path = AddPositiveStatement;
 			sourceTree = "<group>";
@@ -983,6 +986,7 @@
 				A810D8DA23461F99008F2E74 /* UIColor+Theme.swift in Sources */,
 				A820DE5421C5432500E7F3DF /* NotificationConst.swift in Sources */,
 				A8C563172B7653F00047ED4C /* AddPositiveStatementCoordinator.swift in Sources */,
+				A88546632B97DAD2000A4245 /* AddPositiveStatementViewModel.swift in Sources */,
 				A8E6CD07295C7D050042AA81 /* ConfirmDeleteAccountViewModel.swift in Sources */,
 				A84635B52AC020C00030A358 /* ThankYouRepository.swift in Sources */,
 				A8E6CD0F296513000042AA81 /* String+Validation.swift in Sources */,

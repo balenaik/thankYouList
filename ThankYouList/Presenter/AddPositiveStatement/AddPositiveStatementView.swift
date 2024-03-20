@@ -11,6 +11,11 @@ import SwiftUI
 private let titleFontSize = CGFloat(24)
 private let descriptionFontSize = CGFloat(16)
 
+private let textFieldMinLine = 2
+private let textFieldFontSize = CGFloat(16)
+private let textFieldPlaceHolderOpacity = CGFloat(0.25)
+private let textFieldCornerRadius = CGFloat(8)
+
 struct AddPositiveStatementView: View {
     @StateObject var viewModel: AddPositiveStatementViewModel
 
@@ -24,6 +29,8 @@ struct AddPositiveStatementView: View {
     var contentView: some View {
         VStack(spacing: ViewConst.spacing16) {
             titleDescriptionView
+            textFieldView
+            Spacer()
         }
         .padding(.horizontal, ViewConst.spacing20)
     }
@@ -41,6 +48,39 @@ struct AddPositiveStatementView: View {
                 .fixedSize(horizontal: false, vertical: true) // To fix text trancate issue on iOS 15
                 .padding(.vertical, ViewConst.spacing4)
                 .frame(maxWidth: .infinity, alignment: .leading)
+        }
+    }
+
+    var textFieldView: some View {
+        VStack {
+            textField(R.string.localizable.add_positive_statement_textfield_placeholder(), text: $viewModel.bindings.textFieldText)
+                .font(.regularAvenir(ofSize: textFieldFontSize))
+                .padding(.all, ViewConst.spacing12)
+                .background(Color.white)
+                .cornerRadius(textFieldCornerRadius)
+        }
+    }
+
+    @ViewBuilder
+    func textField(_ placeHolder: String, text: Binding<String>) -> some View {
+        if #available(iOS 16.0, *) {
+            ZStack {
+                // Prepare custom placeholder rather than build-in placeholder
+                // in order to show multiline placeholder
+                TextField("", text: text, axis: .vertical)
+                    .lineLimit(textFieldMinLine...)
+                if text.wrappedValue.isEmpty {
+                    HStack {
+                        Text(placeHolder)
+                            .opacity(textFieldPlaceHolderOpacity)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .allowsHitTesting(false)
+                    }
+                }
+            }
+        } else {
+            // iOS 15 or lower doesn't support multiline textField
+            TextField(placeHolder, text: text)
         }
     }
 }

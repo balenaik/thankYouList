@@ -17,8 +17,9 @@ class AddPositiveStatementCoordinator: Coordinator {
     }
 
     func start() {
+        let viewModel = AddPositiveStatementViewModel()
         let view = UIHostingController(
-            rootView: AddPositiveStatementView()
+            rootView: AddPositiveStatementView(viewModel: viewModel)
         )
         viewController = view
         routingType.previousViewController?.present(view, animated: true)

@@ -12,6 +12,8 @@ private let titleFontSize = CGFloat(24)
 private let descriptionFontSize = CGFloat(16)
 
 struct AddPositiveStatementView: View {
+    @StateObject var viewModel: AddPositiveStatementViewModel
+
     var body: some View {
         NavigationView {
             contentView
@@ -44,5 +46,5 @@ struct AddPositiveStatementView: View {
 }
 
 #Preview {
-    AddPositiveStatementView()
+    AddPositiveStatementView(viewModel: AddPositiveStatementViewModel())
 }

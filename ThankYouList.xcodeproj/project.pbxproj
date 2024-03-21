@@ -58,6 +58,7 @@
 		A8519453272F3C44003631EE /* ThankYouCellTapMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8519452272F3C44003631EE /* ThankYouCellTapMenu.swift */; };
 		A85D9D011EA64AF900945E6E /* ThankYouData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85D9D001EA64AF900945E6E /* ThankYouData.swift */; };
 		A85DCC081F5D2151004E1095 /* CalendarDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85DCC071F5D2151004E1095 /* CalendarDayCell.swift */; };
+		A863F1262BABDE3F00F79314 /* AddPositiveStatementViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863F1252BABDE3F00F79314 /* AddPositiveStatementViewModelTests.swift */; };
 		A864849B2160F5BF0049D90A /* Pods_ThankYouList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D49C15FD4089235E28B5ED /* Pods_ThankYouList.framework */; };
 		A866BEE520B931620073A76D /* TYLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A866BEE420B931620073A76D /* TYLColor.swift */; };
 		A86F419C24547DE6005D929A /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86F419B24547DE6005D929A /* UIView+IBInspectable.swift */; };
@@ -208,6 +209,7 @@
 		A8519452272F3C44003631EE /* ThankYouCellTapMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouCellTapMenu.swift; sourceTree = "<group>"; };
 		A85D9D001EA64AF900945E6E /* ThankYouData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThankYouData.swift; sourceTree = "<group>"; };
 		A85DCC071F5D2151004E1095 /* CalendarDayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDayCell.swift; sourceTree = "<group>"; };
+		A863F1252BABDE3F00F79314 /* AddPositiveStatementViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPositiveStatementViewModelTests.swift; sourceTree = "<group>"; };
 		A866BEE420B931620073A76D /* TYLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYLColor.swift; sourceTree = "<group>"; };
 		A86F419B24547DE6005D929A /* UIView+IBInspectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+IBInspectable.swift"; sourceTree = "<group>"; };
 		A86F419D24548797005D929A /* MyPageTableItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableItem.swift; sourceTree = "<group>"; };
@@ -578,6 +580,7 @@
 				A890D3B729D823560066D098 /* Extensions */,
 				A892355229D73E290093A92F /* Mock */,
 				A8A1E2082B2EA7550083C3FF /* Supports */,
+				A863F1252BABDE3F00F79314 /* AddPositiveStatementViewModelTests.swift */,
 				A84635B72AD270210030A358 /* CalendarViewModelTests.swift */,
 				A892354B29D731730093A92F /* ConfirmDeleteAccountViewModelTests.swift */,
 			);
@@ -1094,6 +1097,7 @@
 				A883EE5B29F03524002DCBCA /* MockAnalyticsManager.swift in Sources */,
 				A892354C29D731730093A92F /* ConfirmDeleteAccountViewModelTests.swift in Sources */,
 				A84635BA2AD270B40030A358 /* MockInMemoryDataStore.swift in Sources */,
+				A863F1262BABDE3F00F79314 /* AddPositiveStatementViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

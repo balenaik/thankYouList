@@ -23,6 +23,13 @@ struct AddPositiveStatementView: View {
         NavigationView {
             contentView
                 .screenBackground(Color.defaultBackground)
+                .onReceive(viewModel.outputs.closeKeyboard) { _ in
+                    UIApplication.shared.sendAction(
+                        #selector(UIResponder.resignFirstResponder),
+                        to: nil,
+                        from: nil,
+                        for: nil)
+                }
         }
     }
 

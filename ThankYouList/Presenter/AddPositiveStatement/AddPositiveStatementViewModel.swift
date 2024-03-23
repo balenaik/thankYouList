@@ -23,11 +23,16 @@ class AddPositiveStatementViewModel: ObservableObject {
 
 private extension AddPositiveStatementViewModel {
     func bind() {
-        bindings.$textFieldText
-            .sink { aaa in
-                debugPrint(aaa)
+        inputs.textFieldTextDidChange
+            .compactMap { text in
+                // Don't allow a line with only newline character
+                guard text.suffix(2).allSatisfy({ $0.isNewline }) else {
+                    return nil
+                }
+                return String(text.dropLast())
             }
-            .store(in: &cancellable)
+            .sendEvent((), to: outputs.closeKeyboard)
+            .assign(to: &bindings.$textFieldText)
     }
 }
 

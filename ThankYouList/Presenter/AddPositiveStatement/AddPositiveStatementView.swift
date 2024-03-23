@@ -65,6 +65,9 @@ struct AddPositiveStatementView: View {
                 .padding(.all, ViewConst.spacing12)
                 .background(Color.white)
                 .cornerRadius(textFieldCornerRadius)
+                .onChange(of: viewModel.bindings.textFieldText) { text in
+                    viewModel.inputs.textFieldTextDidChange.send(text)
+                }
         }
     }
 

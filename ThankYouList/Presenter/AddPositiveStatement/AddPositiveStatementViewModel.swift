@@ -33,6 +33,7 @@ private extension AddPositiveStatementViewModel {
 
 extension AddPositiveStatementViewModel {
     class Inputs {
+        let textFieldTextDidChange = PassthroughSubject<String, Never>()
     }
 
     class Outputs {

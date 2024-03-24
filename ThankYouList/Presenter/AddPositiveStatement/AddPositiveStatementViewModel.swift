@@ -8,6 +8,8 @@
 
 import Combine
 
+private let positiveStatementMaxCount = 100
+
 class AddPositiveStatementViewModel: ObservableObject {
 
     let inputs = Inputs()
@@ -33,6 +35,16 @@ private extension AddPositiveStatementViewModel {
             }
             .sendEvent((), to: outputs.closeKeyboard)
             .assign(to: &bindings.$textFieldText)
+
+        bindings.$textFieldText
+            .map {
+                R.string.localizable
+                    .add_positive_statement_character_count_text(
+                        String($0.count),
+                        String(positiveStatementMaxCount))
+            }
+            .subscribe(outputs.characterCounterText)
+            .store(in: &cancellable)
     }
 }
 

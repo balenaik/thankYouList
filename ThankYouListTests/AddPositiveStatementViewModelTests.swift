@@ -48,4 +48,30 @@ final class AddPositiveStatementViewModelTests: XCTestCase {
             (.value(""))
         ])
     }
+
+    func test_ifTextFieldTextUpdated__itShouldUpdateCharacterCounterText_withTheCurrentTextCount() {
+        let characterCounterTextRecords = TestRecord(
+            publisher: viewModel.outputs.characterCounterText.eraseToAnyPublisher())
+        characterCounterTextRecords.clearResult() // Remove the initial record
+
+        let maxCountString = "100"
+
+        // characterCounterText should be updated along with textFieldText
+        viewModel.bindings.textFieldText = "a"
+        XCTAssertEqual(characterCounterTextRecords.results, [
+            .value(R.string.localizable.add_positive_statement_character_count_text("1", maxCountString))
+        ])
+        characterCounterTextRecords.clearResult()
+
+        viewModel.bindings.textFieldText = "abcdefghi"
+        XCTAssertEqual(characterCounterTextRecords.results, [
+            .value(R.string.localizable.add_positive_statement_character_count_text("9", maxCountString))
+        ])
+        characterCounterTextRecords.clearResult()
+
+        viewModel.bindings.textFieldText = "abcdefghiあいうえお今晩は😀\n！！"
+        XCTAssertEqual(characterCounterTextRecords.results, [
+            .value(R.string.localizable.add_positive_statement_character_count_text("21", maxCountString))
+        ])
+    }
 }

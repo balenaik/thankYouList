@@ -16,6 +16,8 @@ private let textFieldFontSize = CGFloat(16)
 private let textFieldPlaceHolderOpacity = CGFloat(0.25)
 private let textFieldCornerRadius = CGFloat(8)
 
+private let characterCounterTextFontSize = CGFloat(13)
+
 struct AddPositiveStatementView: View {
     @StateObject var viewModel: AddPositiveStatementViewModel
 
@@ -68,6 +70,10 @@ struct AddPositiveStatementView: View {
                 .onChange(of: viewModel.bindings.textFieldText) { text in
                     viewModel.inputs.textFieldTextDidChange.send(text)
                 }
+
+            Text(viewModel.outputs.characterCounterText.value)
+                .font(.regularAvenir(ofSize: characterCounterTextFontSize))
+                .frame(maxWidth: .infinity, alignment: .trailing)
         }
     }
 

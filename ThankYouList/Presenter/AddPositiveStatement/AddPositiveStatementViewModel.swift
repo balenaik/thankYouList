@@ -43,6 +43,7 @@ extension AddPositiveStatementViewModel {
 
     class Outputs {
         let closeKeyboard = PassthroughSubject<Void, Never>()
+        let characterCounterText = CurrentValueSubject<String, Never>("")
     }
 
     class Bindings: ObservableObject {

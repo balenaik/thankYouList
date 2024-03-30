@@ -90,6 +90,7 @@
 		A895A575298FA6E10081E08F /* ReplaySubjectSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = A895A574298FA6E10081E08F /* ReplaySubjectSubscription.swift */; };
 		A89AF9E72106905500FF6893 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AF9E62106905500FF6893 /* Crypto.swift */; };
 		A89CF876211C73AC00CA5518 /* SecretData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89CF875211C73AC00CA5518 /* SecretData.swift */; };
+		A89D114C2BAFFD6A00C026E6 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89D114B2BAFFD6A00C026E6 /* ThemeColor.swift */; };
 		A8A06863244F444400839D14 /* MyPageProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A06861244F444300839D14 /* MyPageProfileCell.swift */; };
 		A8A06864244F444400839D14 /* MyPageProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8A06862244F444300839D14 /* MyPageProfileCell.xib */; };
 		A8A068662450A15900839D14 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A068652450A15900839D14 /* Profile.swift */; };
@@ -239,6 +240,7 @@
 		A895A574298FA6E10081E08F /* ReplaySubjectSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaySubjectSubscription.swift; sourceTree = "<group>"; };
 		A89AF9E62106905500FF6893 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		A89CF875211C73AC00CA5518 /* SecretData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretData.swift; sourceTree = "<group>"; };
+		A89D114B2BAFFD6A00C026E6 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
 		A8A06861244F444300839D14 /* MyPageProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageProfileCell.swift; sourceTree = "<group>"; };
 		A8A06862244F444300839D14 /* MyPageProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPageProfileCell.xib; sourceTree = "<group>"; };
 		A8A068652450A15900839D14 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 				A83A361F2972830A00AD2790 /* Router.swift */,
 				A895A572298FA6B60081E08F /* ReplaySubject.swift */,
 				A895A574298FA6E10081E08F /* ReplaySubjectSubscription.swift */,
+				A89D114B2BAFFD6A00C026E6 /* ThemeColor.swift */,
 			);
 			path = Supports;
 			sourceTree = "<group>";
@@ -1059,6 +1062,7 @@
 				A8C5630E2B5BFF8F0047ED4C /* PositiveStatementListView.swift in Sources */,
 				A8A85AC025A60E8500182B99 /* UIImage+FromUIColor.swift in Sources */,
 				A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */,
+				A89D114C2BAFFD6A00C026E6 /* ThemeColor.swift in Sources */,
 				A86F41A124570B0B005D929A /* PlaceHolderTextView.swift in Sources */,
 				A8959E8F245952260080C05A /* Array+Nullable.swift in Sources */,
 				A8851E9C26FA752B008B2D7A /* LoginContinueButton.swift in Sources */,

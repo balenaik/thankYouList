@@ -73,6 +73,7 @@ struct AddPositiveStatementView: View {
 
             Text(viewModel.outputs.characterCounterText.value)
                 .font(.regularAvenir(ofSize: characterCounterTextFontSize))
+                .foregroundStyle(viewModel.outputs.characterCounterColor.value.swiftUIColor)
                 .frame(maxWidth: .infinity, alignment: .trailing)
         }
     }

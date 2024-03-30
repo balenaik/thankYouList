@@ -45,6 +45,15 @@ private extension AddPositiveStatementViewModel {
             }
             .subscribe(outputs.characterCounterText)
             .store(in: &cancellable)
+
+        bindings.$textFieldText
+            .map {
+                $0.count > positiveStatementMaxCount
+                ? ThemeColor.redAccent200
+                : ThemeColor.text
+            }
+            .subscribe(outputs.characterCounterColor)
+            .store(in: &cancellable)
     }
 }
 
@@ -56,6 +65,7 @@ extension AddPositiveStatementViewModel {
     class Outputs {
         let closeKeyboard = PassthroughSubject<Void, Never>()
         let characterCounterText = CurrentValueSubject<String, Never>("")
+        let characterCounterColor = CurrentValueSubject<ThemeColor, Never>(.text)
     }
 
     class Bindings: ObservableObject {

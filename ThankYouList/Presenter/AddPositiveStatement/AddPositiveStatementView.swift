@@ -33,6 +33,7 @@ struct AddPositiveStatementView: View {
                         for: nil)
                 }
         }
+        .interactiveDismissDisabled(true)
     }
 
     var contentView: some View {

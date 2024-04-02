@@ -18,6 +18,9 @@ private let textFieldCornerRadius = CGFloat(8)
 
 private let characterCounterTextFontSize = CGFloat(13)
 
+private let doneButtonFontSize = CGFloat(17)
+private let doneButtonCornerRadius = CGFloat(16)
+
 struct AddPositiveStatementView: View {
     @StateObject var viewModel: AddPositiveStatementViewModel
 
@@ -40,6 +43,7 @@ struct AddPositiveStatementView: View {
         VStack(spacing: ViewConst.spacing16) {
             titleDescriptionView
             textFieldView
+            doneButton
             Spacer()
         }
         .padding(.horizontal, ViewConst.spacing20)
@@ -99,6 +103,22 @@ struct AddPositiveStatementView: View {
         } else {
             // iOS 15 or lower doesn't support multiline textField
             TextField(placeHolder, text: text)
+        }
+    }
+
+    var doneButton: some View {
+        Button(R.string.localizable.done()) {
+        }
+        .buttonStyle(DoneButtonStyle())
+    }
+
+    private struct DoneButtonStyle: ButtonStyle {
+        func makeBody(configuration: Self.Configuration) -> some View {
+            configuration.label
+               .font(.boldAvenir(ofSize: doneButtonFontSize))
+               .frame(maxWidth: .infinity)
+               .padding(.all, ViewConst.spacing12)
+               .cornerRadius(doneButtonCornerRadius)
         }
     }
 }

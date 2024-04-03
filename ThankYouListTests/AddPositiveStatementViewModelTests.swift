@@ -107,4 +107,44 @@ final class AddPositiveStatementViewModelTests: XCTestCase {
             .value(.redAccent200)
         ])
     }
+
+    func test_ifTextFieldTextUpdated_withoutText__itShouldUpdateIsDoneButtonDisabledFalse__withLessThanOrEqualTo100Characters__itShouldUpdateTrue__andWithMoreThan100Characters__itShouldUpdateFalse() {
+        let isDoneButtonDisabledRecords = TestRecord(
+            publisher: viewModel.outputs.isDoneButtonDisabled.eraseToAnyPublisher())
+        isDoneButtonDisabledRecords.clearResult() // Remove the initial record
+
+        // when textFieldText character count is 0, done button should be disabled
+        viewModel.bindings.textFieldText = ""
+        XCTAssertEqual(isDoneButtonDisabledRecords.results, [
+            .value(true)
+        ])
+        isDoneButtonDisabledRecords.clearResult()
+
+        // when textFieldText character count is 1, done button should be enabled
+        viewModel.bindings.textFieldText = "a"
+        XCTAssertEqual(isDoneButtonDisabledRecords.results, [
+            .value(false)
+        ])
+        isDoneButtonDisabledRecords.clearResult()
+
+        // when textFieldText character count is 99, done button should be enabled
+        viewModel.bindings.textFieldText = "99characters......................................................................................"
+        XCTAssertEqual(isDoneButtonDisabledRecords.results, [
+            .value(false)
+        ])
+        isDoneButtonDisabledRecords.clearResult()
+
+        // when textFieldText character count is 100, done button should be enabled
+        viewModel.bindings.textFieldText = "100characters......................................................................................"
+        XCTAssertEqual(isDoneButtonDisabledRecords.results, [
+            .value(false)
+        ])
+        isDoneButtonDisabledRecords.clearResult()
+
+        // when textFieldText character count is 101, done button should be disabled
+        viewModel.bindings.textFieldText = "101characters........................................................................................."
+        XCTAssertEqual(isDoneButtonDisabledRecords.results, [
+            .value(true)
+        ])
+    }
 }

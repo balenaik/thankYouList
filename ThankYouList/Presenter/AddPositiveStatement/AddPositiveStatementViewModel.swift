@@ -54,6 +54,11 @@ private extension AddPositiveStatementViewModel {
             }
             .subscribe(outputs.characterCounterColor)
             .store(in: &cancellable)
+
+        bindings.$textFieldText
+            .map { $0.isEmpty || $0.count > positiveStatementMaxCount }
+            .subscribe(outputs.isDoneButtonDisabled)
+            .store(in: &cancellable)
     }
 }
 
@@ -66,6 +71,7 @@ extension AddPositiveStatementViewModel {
         let closeKeyboard = PassthroughSubject<Void, Never>()
         let characterCounterText = CurrentValueSubject<String, Never>("")
         let characterCounterColor = CurrentValueSubject<ThemeColor, Never>(.text)
+        let isDoneButtonDisabled = CurrentValueSubject<Bool, Never>(true)
     }
 
     class Bindings: ObservableObject {

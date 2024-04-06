@@ -21,6 +21,7 @@ private let characterCounterTextFontSize = CGFloat(13)
 private let doneButtonFontSize = CGFloat(17)
 private let doneButtonCornerRadius = CGFloat(16)
 private let doneButtonDisabledOpacity = CGFloat(0.38)
+private let doneButtonPressedOpacity = CGFloat(0.7)
 
 struct AddPositiveStatementView: View {
     @StateObject var viewModel: AddPositiveStatementViewModel
@@ -110,6 +111,7 @@ struct AddPositiveStatementView: View {
     var doneButton: some View {
         Button(R.string.localizable.done()) {
         }
+        .disabled(viewModel.outputs.isDoneButtonDisabled.value)
         .buttonStyle(DoneButtonStyle())
     }
 
@@ -117,11 +119,16 @@ struct AddPositiveStatementView: View {
         @Environment(\.isEnabled) var isEnabled: Bool
 
         func makeBody(configuration: Self.Configuration) -> some View {
-            configuration.label
+            let backgroundOpacity = isEnabled ?
+            configuration.isPressed ? doneButtonPressedOpacity : 1
+            : doneButtonDisabledOpacity
+
+            return configuration.label
                .font(.boldAvenir(ofSize: doneButtonFontSize))
                .frame(maxWidth: .infinity)
                .padding(.all, ViewConst.spacing12)
                .foregroundColor(isEnabled ? .text : .text.opacity(doneButtonDisabledOpacity))
+               .background(Color.primary500.opacity(backgroundOpacity))
                .cornerRadius(doneButtonCornerRadius)
         }
     }

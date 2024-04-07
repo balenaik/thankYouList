@@ -30,6 +30,7 @@ struct AddPositiveStatementView: View {
         NavigationView {
             contentView
                 .screenBackground(Color.defaultBackground)
+                .cancelButtonToolbar { viewModel.inputs.cancelButtonDidTap.send() }
                 .onReceive(viewModel.outputs.closeKeyboard) { _ in
                     UIApplication.shared.sendAction(
                         #selector(UIResponder.resignFirstResponder),

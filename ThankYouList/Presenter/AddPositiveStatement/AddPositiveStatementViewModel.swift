@@ -65,12 +65,17 @@ private extension AddPositiveStatementViewModel {
             .map { $0.isEmpty || $0.count > positiveStatementMaxCount }
             .subscribe(outputs.isDoneButtonDisabled)
             .store(in: &cancellable)
+
+        inputs.cancelButtonDidTap
+            .sink { [router] in router?.dismiss() }
+            .store(in: &cancellable)
     }
 }
 
 extension AddPositiveStatementViewModel {
     class Inputs {
         let textFieldTextDidChange = PassthroughSubject<String, Never>()
+        let cancelButtonDidTap = PassthroughSubject<Void, Never>()
     }
 
     class Outputs {

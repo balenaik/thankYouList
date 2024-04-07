@@ -149,6 +149,14 @@ final class AddPositiveStatementViewModelTests: XCTestCase {
             .value(true)
         ])
     }
+
+    func test_ifAUserTapsCancelButton__itShouldDismissView() {
+        // Taps cancel button
+        viewModel.inputs.cancelButtonDidTap.send()
+
+        // Should not call router.dismiss
+        XCTAssertEqual(router.dismiss_calledCount, 1)
+    }
 }
 
 private class MockAddPositiveStatementRouter: AddPositiveStatementRouter {

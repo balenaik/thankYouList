@@ -135,5 +135,5 @@ struct AddPositiveStatementView: View {
 }
 
 #Preview {
-    AddPositiveStatementView(viewModel: AddPositiveStatementViewModel())
+    AddPositiveStatementView(viewModel: AddPositiveStatementViewModel(router: nil))
 }

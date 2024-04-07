@@ -10,6 +10,10 @@ import Combine
 
 private let positiveStatementMaxCount = 100
 
+protocol AddPositiveStatementRouter: Router {
+    func dismiss()
+}
+
 class AddPositiveStatementViewModel: ObservableObject {
 
     let inputs = Inputs()
@@ -17,8 +21,10 @@ class AddPositiveStatementViewModel: ObservableObject {
     @Published var bindings = Bindings()
 
     private var cancellable = Set<AnyCancellable>()
+    private let router: AddPositiveStatementRouter?
 
-    init() {
+    init(router: AddPositiveStatementRouter?) {
+        self.router = router
         bind()
     }
 }

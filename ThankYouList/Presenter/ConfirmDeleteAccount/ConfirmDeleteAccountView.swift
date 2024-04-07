@@ -59,16 +59,7 @@ struct ConfirmDeleteAccountView: View {
                 Spacer()
             }
             .navigationBarTitle(R.string.localizable.confirm_delete_account_title())
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button(action: {
-                        viewModel.inputs.cancelButtonDidTap.send(())
-                    }) {
-                        Image(R.image.icCancel)
-                            .foregroundColor(.text)
-                    }
-                }
-            }
+            .cancelButtonToolbar { viewModel.inputs.cancelButtonDidTap.send() }
             .alert(item: $alertItem) { alertItem in
                 Alert(title: Text(alertItem.title),
                       message: Text(alertItem.message ?? ""),

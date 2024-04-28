@@ -56,6 +56,7 @@
 		A851944C272BFACE003631EE /* BottomHalfSheetMenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851944B272BFACE003631EE /* BottomHalfSheetMenuItemView.swift */; };
 		A8519450272D466A003631EE /* BottomHalfSheetMenuItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A851944F272D466A003631EE /* BottomHalfSheetMenuItemView.xib */; };
 		A8519453272F3C44003631EE /* ThankYouCellTapMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8519452272F3C44003631EE /* ThankYouCellTapMenu.swift */; };
+		A85323D02BCA11A50038D5B9 /* PositiveStatementCreateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85323CF2BCA11A50038D5B9 /* PositiveStatementCreateModel.swift */; };
 		A85D9D011EA64AF900945E6E /* ThankYouData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85D9D001EA64AF900945E6E /* ThankYouData.swift */; };
 		A85DCC081F5D2151004E1095 /* CalendarDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85DCC071F5D2151004E1095 /* CalendarDayCell.swift */; };
 		A863F1262BABDE3F00F79314 /* AddPositiveStatementViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863F1252BABDE3F00F79314 /* AddPositiveStatementViewModelTests.swift */; };
@@ -206,6 +207,7 @@
 		A851944B272BFACE003631EE /* BottomHalfSheetMenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomHalfSheetMenuItemView.swift; sourceTree = "<group>"; };
 		A851944F272D466A003631EE /* BottomHalfSheetMenuItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomHalfSheetMenuItemView.xib; sourceTree = "<group>"; };
 		A8519452272F3C44003631EE /* ThankYouCellTapMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouCellTapMenu.swift; sourceTree = "<group>"; };
+		A85323CF2BCA11A50038D5B9 /* PositiveStatementCreateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementCreateModel.swift; sourceTree = "<group>"; };
 		A85D9D001EA64AF900945E6E /* ThankYouData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThankYouData.swift; sourceTree = "<group>"; };
 		A85DCC071F5D2151004E1095 /* CalendarDayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDayCell.swift; sourceTree = "<group>"; };
 		A863F1252BABDE3F00F79314 /* AddPositiveStatementViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPositiveStatementViewModelTests.swift; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 				A84635BD2AFF02820030A358 /* CalendarConfiguration.swift */,
 				A8A068652450A15900839D14 /* Profile.swift */,
 				A85D9D001EA64AF900945E6E /* ThankYouData.swift */,
+				A85323CF2BCA11A50038D5B9 /* PositiveStatementCreateModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1030,6 +1033,7 @@
 				A82BBF78270C4FC4007E8CD9 /* UIFont+Theme.swift in Sources */,
 				A84635B12AB9D08B0030A358 /* InMemoryDataStore.swift in Sources */,
 				A8C563152B764D810047ED4C /* AddPositiveStatementView.swift in Sources */,
+				A85323D02BCA11A50038D5B9 /* PositiveStatementCreateModel.swift in Sources */,
 				A8E6CD0929601D870042AA81 /* Color+Theme.swift in Sources */,
 				A85D9D011EA64AF900945E6E /* ThankYouData.swift in Sources */,
 				A892354229C0BF460093A92F /* String+Nonce.swift in Sources */,

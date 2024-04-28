@@ -17,7 +17,10 @@ class AddPositiveStatementCoordinator: Coordinator {
     }
 
     func start() {
-        let viewModel = AddPositiveStatementViewModel(router: self)
+        let viewModel = AddPositiveStatementViewModel(
+            userRepository: DefaultUserRepository(),
+            positiveStatementRepository: DefaultPositiveStatementRepository(),
+            router: self)
         let view = UIHostingController(
             rootView: AddPositiveStatementView(viewModel: viewModel)
         )

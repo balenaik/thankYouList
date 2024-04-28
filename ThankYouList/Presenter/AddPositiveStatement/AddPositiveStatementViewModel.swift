@@ -21,10 +21,16 @@ class AddPositiveStatementViewModel: ObservableObject {
     @Published var bindings = Bindings()
 
     private var cancellable = Set<AnyCancellable>()
+    private let userRepository: UserRepository
+    private let positiveStatementRepository: PositiveStatementRepository
     private let router: AddPositiveStatementRouter?
 
-    init(router: AddPositiveStatementRouter?) {
+    init(userRepository: UserRepository,
+         positiveStatementRepository: PositiveStatementRepository,
+         router: AddPositiveStatementRouter?) {
         self.router = router
+        self.userRepository = userRepository
+        self.positiveStatementRepository = positiveStatementRepository
         bind()
     }
 }

@@ -14,11 +14,19 @@ import CombineSchedulers
 final class AddPositiveStatementViewModelTests: XCTestCase {
 
     private var viewModel: AddPositiveStatementViewModel!
+    private var userRepository: MockUserRepository!
+    private var positiveStatementRepository: MockPositiveStatementRepository!
     private var router: MockAddPositiveStatementRouter!
 
     override func setUp() {
         router = MockAddPositiveStatementRouter()
-        viewModel = AddPositiveStatementViewModel(router: router)
+        userRepository = MockUserRepository()
+        positiveStatementRepository = MockPositiveStatementRepository()
+
+        viewModel = AddPositiveStatementViewModel(
+            userRepository: userRepository,
+            positiveStatementRepository: positiveStatementRepository,
+            router: router)
     }
 
     func test_ifTextFieldDidChange_withLessThan2NewlineCharsInARow__itShouldNotUpdateTextFieldText_orSendCloseKeyboardEvent__viceVersa() {
@@ -159,7 +167,7 @@ final class AddPositiveStatementViewModelTests: XCTestCase {
     }
 }
 
-private class MockAddPositiveStatementRouter: AddPositiveStatementRouter {
+private class MockAddPositiveStatementRouter: MockRouter, AddPositiveStatementRouter {
     var dismiss_calledCount = 0
     func dismiss() {
         dismiss_calledCount += 1

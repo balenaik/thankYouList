@@ -75,6 +75,29 @@ private extension AddPositiveStatementViewModel {
         inputs.cancelButtonDidTap
             .sink { [router] in router?.dismiss() }
             .store(in: &cancellable)
+
+        inputs.doneButtonDidTap
+            .map { [bindings] in bindings.textFieldText }
+            .setFailureType(to: Error.self)
+            .flatMap { [userRepository, positiveStatementRepository] positiveStatement in
+                userRepository.getUserProfile().map { ($0, positiveStatement) }
+                    .flatMap { [positiveStatementRepository] userProfile, positiveStatement in
+                        positiveStatementRepository
+                            .createPositiveStatement(
+                                positiveStatement: positiveStatement,
+                                userId: userProfile.id)
+                    }
+                    .asResult()
+            }
+            .sink(receiveCompletion: { _ in }, receiveValue: { [router] result in
+                switch result {
+                case .success:
+                    router?.dismiss()
+                case .failure:
+                    router?.presentAlert(title: R.string.localizable.add_positive_statement_add_error())
+                }
+            })
+            .store(in: &cancellable)
     }
 }
 
@@ -82,6 +105,7 @@ extension AddPositiveStatementViewModel {
     class Inputs {
         let textFieldTextDidChange = PassthroughSubject<String, Never>()
         let cancelButtonDidTap = PassthroughSubject<Void, Never>()
+        let doneButtonDidTap = PassthroughSubject<Void, Never>()
     }
 
     class Outputs {

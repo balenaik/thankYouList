@@ -18,8 +18,10 @@ class MockUserRepository: UserRepository {
 
     var getUserProfile_result = Just(Profile(id: "", name: "", email: "", imageUrl: nil))
         .setFailureType(to: Error.self).asFuture()
+    var getUserProfile_calledCount = 0
     func getUserProfile() -> Future<Profile, Error> {
-        getUserProfile_result
+        getUserProfile_calledCount += 1
+        return getUserProfile_result
     }
 
     var reAuthenticateToProviderIfNeeded_result = Just(()).setFailureType(to: Error.self).asFuture()

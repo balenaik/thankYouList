@@ -165,6 +165,102 @@ final class AddPositiveStatementViewModelTests: XCTestCase {
         // Should not call router.dismiss
         XCTAssertEqual(router.dismiss_calledCount, 1)
     }
+
+    func test_ifAUserTapsDoneButton__itShouldCreatePositiveStatement_withPassingTheTextFieldValue_andUserIdFromGetUserProfile__andIfAllSucceeded__itShouldDismissTheView() {
+
+        // Setup UserProfile
+        let userProfile = Profile(id: "This is User ID", name: "", email: "", imageUrl: nil)
+        userRepository.getUserProfile_result = Just(userProfile).setFailureType(to: Error.self).asFuture()
+
+        // Setup createPositiveStatement response as succeed
+        positiveStatementRepository.createPositiveStatement_result = Just(())
+            .setFailureType(to: Error.self).asFuture()
+
+        // Input textField
+        viewModel.bindings.textFieldText = "Add Positive Statement"
+
+        // Taps done button
+        viewModel.inputs.doneButtonDidTap.send()
+
+        // Should create Positive Statement
+        XCTAssertEqual(
+            positiveStatementRepository.createPositiveStatement_calledCount,
+            1)
+        // Should pass positiveStatement from textField
+        XCTAssertEqual(
+            positiveStatementRepository.createPositiveStatement_positiveStatement,
+            viewModel.bindings.textFieldText)
+        // Should pass userId from GetUserProfile
+        XCTAssertEqual(
+            positiveStatementRepository.createPositiveStatement_userId,
+            userProfile.id)
+        // Should dismiss view
+        XCTAssertEqual(router.dismiss_calledCount, 1)
+    }
+
+    func test_ifAUserTapsDoneButton_andGetUserProfileThrowsAnError__itShouldShowAlert_andShouldNotCreatePositiveStatement_andShouldNotDismissTheView__andIfUserTapsDoneButtonAgain__itShouldCallGetUserProfileAgain_andShouldShowAlertAgain() {
+
+        // Setup UserProfile as throwing an error
+        userRepository.getUserProfile_result = Fail(error: NSError()).asFuture()
+
+        // Taps done button
+        viewModel.inputs.doneButtonDidTap.send()
+
+        // Should show an error alert
+        XCTAssertEqual(router.presentAlert_title, R.string.localizable.add_positive_statement_add_error())
+        XCTAssertNil(router.presentAlert_message)
+        XCTAssertEqual(router.presentAlert_calledCount, 1)
+
+        // Should not create Positive Statement
+        XCTAssertEqual(
+            positiveStatementRepository.createPositiveStatement_calledCount,
+            0)
+        // Should not dismiss view
+        XCTAssertEqual(router.dismiss_calledCount, 0)
+
+        // Taps done button again
+        viewModel.inputs.doneButtonDidTap.send()
+
+        // Should call userRepository.getUserProfile again
+        XCTAssertEqual(userRepository.getUserProfile_calledCount, 2)
+
+        // Should show an error alert again
+        XCTAssertEqual(router.presentAlert_title, R.string.localizable.add_positive_statement_add_error())
+        XCTAssertNil(router.presentAlert_message)
+        XCTAssertEqual(router.presentAlert_calledCount, 2)
+    }
+
+    func test_ifAUserTapsDoneButton_andCreatePositiveStatementThrowsAnError__itShouldShowAlert_andShouldNotDismissTheView__andIfUserTapsDoneButtonAgain__itShouldCallCreatePositiveStatmentAgain_andShouldShowAlertAgain() {
+
+        // Setup UserProfile as succeed
+        let userProfile = Profile(id: "", name: "", email: "", imageUrl: nil)
+        userRepository.getUserProfile_result = Just(userProfile).setFailureType(to: Error.self).asFuture()
+
+        // Setup createPositiveStatement response as throwing an error
+        positiveStatementRepository.createPositiveStatement_result = Fail(error: NSError()).asFuture()
+
+        // Taps done button
+        viewModel.inputs.doneButtonDidTap.send()
+
+        // Should show an error alert
+        XCTAssertEqual(router.presentAlert_title, R.string.localizable.add_positive_statement_add_error())
+        XCTAssertNil(router.presentAlert_message)
+        XCTAssertEqual(router.presentAlert_calledCount, 1)
+
+        // Should not dismiss view
+        XCTAssertEqual(router.dismiss_calledCount, 0)
+
+        // Taps done button again
+        viewModel.inputs.doneButtonDidTap.send()
+
+        // Should call userRepository.getUserProfile again
+        XCTAssertEqual(positiveStatementRepository.createPositiveStatement_calledCount, 2)
+
+        // Should show an error alert again
+        XCTAssertEqual(router.presentAlert_title, R.string.localizable.add_positive_statement_add_error())
+        XCTAssertNil(router.presentAlert_message)
+        XCTAssertEqual(router.presentAlert_calledCount, 2)
+    }
 }
 
 private class MockAddPositiveStatementRouter: MockRouter, AddPositiveStatementRouter {

@@ -11,4 +11,5 @@ import Foundation
 enum FirestoreConst {
     static let usersCollecion = "users"
     static let thankYouListCollection = "thankYouList"
+    static let positiveStatementsCollection = "positiveStatements"
 }

@@ -58,6 +58,7 @@
 		A8519453272F3C44003631EE /* ThankYouCellTapMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8519452272F3C44003631EE /* ThankYouCellTapMenu.swift */; };
 		A85323CE2BC4A5370038D5B9 /* PositiveStatementRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85323CD2BC4A5370038D5B9 /* PositiveStatementRepository.swift */; };
 		A85323D02BCA11A50038D5B9 /* PositiveStatementCreateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85323CF2BCA11A50038D5B9 /* PositiveStatementCreateModel.swift */; };
+		A8574DD12BDF489B0073AA61 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = A8574DD02BDF489B0073AA61 /* Lottie */; };
 		A85D9D011EA64AF900945E6E /* ThankYouData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85D9D001EA64AF900945E6E /* ThankYouData.swift */; };
 		A85DCC081F5D2151004E1095 /* CalendarDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85DCC071F5D2151004E1095 /* CalendarDayCell.swift */; };
 		A863F1262BABDE3F00F79314 /* AddPositiveStatementViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863F1252BABDE3F00F79314 /* AddPositiveStatementViewModelTests.swift */; };
@@ -309,6 +310,7 @@
 				A8A1E2072B0AC1590083C3FF /* CombineSchedulers in Frameworks */,
 				A88217272B41029800BD8BFD /* CombineCocoa in Frameworks */,
 				A864849B2160F5BF0049D90A /* Pods_ThankYouList.framework in Frameworks */,
+				A8574DD12BDF489B0073AA61 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,11 +731,13 @@
 			buildRules = (
 			);
 			dependencies = (
+				A8C563062B5B6C7B0047ED4C /* PBXTargetDependency */,
 			);
 			name = ThankYouList;
 			packageProductDependencies = (
 				A8A1E2062B0AC1590083C3FF /* CombineSchedulers */,
 				A88217262B41029800BD8BFD /* CombineCocoa */,
+				A8574DD02BDF489B0073AA61 /* Lottie */,
 			);
 			productName = ThankYouList;
 			productReference = A8831CC31E9CFE6B00F3CA0A /* ThankYouList.app */;
@@ -802,7 +806,8 @@
 			packageReferences = (
 				A892355829D818500093A92F /* XCRemoteSwiftPackageReference "Entwine" */,
 				A8A1E2052B0AC1590083C3FF /* XCRemoteSwiftPackageReference "combine-schedulers" */,
-				A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa.git" */,
+				A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa" */,
+				A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm" */,
 			);
 			productRefGroup = A8831CC41E9CFE6B00F3CA0A /* Products */;
 			projectDirPath = "";
@@ -1434,7 +1439,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa.git" */ = {
+		A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
+			requirement = {
+				kind = exactVersion;
+				version = 4.4.3;
+			};
+		};
+		A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CombineCommunity/CombineCocoa.git";
 			requirement = {
@@ -1461,9 +1474,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A8574DD02BDF489B0073AA61 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
+		};
 		A88217262B41029800BD8BFD /* CombineCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa.git" */;
+			package = A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa" */;
 			productName = CombineCocoa;
 		};
 		A892355929D818500093A92F /* EntwineTest */ = {
@@ -1478,7 +1496,7 @@
 		};
 		A8F261992B43FA0500A65C0A /* CombineCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa.git" */;
+			package = A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa" */;
 			productName = CombineCocoa;
 		};
 /* End XCSwiftPackageProductDependency section */

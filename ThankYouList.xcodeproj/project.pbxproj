@@ -59,6 +59,7 @@
 		A85323CE2BC4A5370038D5B9 /* PositiveStatementRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85323CD2BC4A5370038D5B9 /* PositiveStatementRepository.swift */; };
 		A85323D02BCA11A50038D5B9 /* PositiveStatementCreateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85323CF2BCA11A50038D5B9 /* PositiveStatementCreateModel.swift */; };
 		A8574DD12BDF489B0073AA61 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = A8574DD02BDF489B0073AA61 /* Lottie */; };
+		A8574DD62BE2FB240073AA61 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8574DD52BE2FB240073AA61 /* LottieView.swift */; };
 		A85D9D011EA64AF900945E6E /* ThankYouData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85D9D001EA64AF900945E6E /* ThankYouData.swift */; };
 		A85DCC081F5D2151004E1095 /* CalendarDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85DCC071F5D2151004E1095 /* CalendarDayCell.swift */; };
 		A863F1262BABDE3F00F79314 /* AddPositiveStatementViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863F1252BABDE3F00F79314 /* AddPositiveStatementViewModelTests.swift */; };
@@ -213,6 +214,7 @@
 		A8519452272F3C44003631EE /* ThankYouCellTapMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouCellTapMenu.swift; sourceTree = "<group>"; };
 		A85323CD2BC4A5370038D5B9 /* PositiveStatementRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementRepository.swift; sourceTree = "<group>"; };
 		A85323CF2BCA11A50038D5B9 /* PositiveStatementCreateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementCreateModel.swift; sourceTree = "<group>"; };
+		A8574DD52BE2FB240073AA61 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		A85D9D001EA64AF900945E6E /* ThankYouData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThankYouData.swift; sourceTree = "<group>"; };
 		A85DCC071F5D2151004E1095 /* CalendarDayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDayCell.swift; sourceTree = "<group>"; };
 		A863F1252BABDE3F00F79314 /* AddPositiveStatementViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPositiveStatementViewModelTests.swift; sourceTree = "<group>"; };
@@ -534,6 +536,7 @@
 			isa = PBXGroup;
 			children = (
 				A8FF6A222829C42200CF816F /* BottomHalfSheet */,
+				A8574DD52BE2FB240073AA61 /* LottieView.swift */,
 				A86F41A024570B0B005D929A /* PlaceHolderTextView.swift */,
 				A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */,
 				A84FDB5D21DC365F00593326 /* SettingHeaderView.xib */,
@@ -1035,6 +1038,7 @@
 				A80EAE5621F44DD7006B02E8 /* EditThankYouViewController.swift in Sources */,
 				A8831CC91E9CFE6B00F3CA0A /* ThankYouListViewController.swift in Sources */,
 				A89CF876211C73AC00CA5518 /* SecretData.swift in Sources */,
+				A8574DD62BE2FB240073AA61 /* LottieView.swift in Sources */,
 				A895A575298FA6E10081E08F /* ReplaySubjectSubscription.swift in Sources */,
 				A84FDB6021DC37EA00593326 /* SettingHeaderView.swift in Sources */,
 				A8E6CD18296BF3100042AA81 /* LoginCoordinator.swift in Sources */,

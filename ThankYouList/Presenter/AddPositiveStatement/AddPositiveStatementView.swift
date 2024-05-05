@@ -31,15 +31,15 @@ struct AddPositiveStatementView: View {
             contentView
                 .screenBackground(Color.defaultBackground)
                 .cancelButtonToolbar { viewModel.inputs.cancelButtonDidTap.send() }
-                .onReceive(viewModel.outputs.closeKeyboard) { _ in
-                    UIApplication.shared.sendAction(
-                        #selector(UIResponder.resignFirstResponder),
-                        to: nil,
-                        from: nil,
-                        for: nil)
-                }
         }
         .interactiveDismissDisabled(true)
+        .onReceive(viewModel.outputs.closeKeyboard) { _ in
+            UIApplication.shared.sendAction(
+                #selector(UIResponder.resignFirstResponder),
+                to: nil,
+                from: nil,
+                for: nil)
+        }
     }
 
     var contentView: some View {

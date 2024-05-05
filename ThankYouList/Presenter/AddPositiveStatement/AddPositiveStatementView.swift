@@ -111,6 +111,7 @@ struct AddPositiveStatementView: View {
 
     var doneButton: some View {
         Button(R.string.localizable.done()) {
+            viewModel.inputs.doneButtonDidTap.send()
         }
         .disabled(viewModel.outputs.isDoneButtonDisabled.value)
         .buttonStyle(DoneButtonStyle())

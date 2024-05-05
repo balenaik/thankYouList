@@ -49,7 +49,7 @@ struct AddPositiveStatementView: View {
             doneButton
             Spacer()
         }
-        .padding(.horizontal, ViewConst.spacing20)
+        .padding(.horizontal, ViewConst.spacing24)
     }
 
     var titleDescriptionView: some View {

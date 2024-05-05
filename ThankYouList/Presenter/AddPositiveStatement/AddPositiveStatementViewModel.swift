@@ -77,6 +77,10 @@ private extension AddPositiveStatementViewModel {
             .store(in: &cancellable)
 
         inputs.doneButtonDidTap
+            .subscribe(outputs.closeKeyboard)
+            .store(in: &cancellable)
+
+        inputs.doneButtonDidTap
             .map { [bindings] in bindings.textFieldText }
             .setFailureType(to: Error.self)
             .flatMap { [userRepository, positiveStatementRepository] positiveStatement in

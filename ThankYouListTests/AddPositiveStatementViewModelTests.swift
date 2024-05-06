@@ -166,7 +166,10 @@ final class AddPositiveStatementViewModelTests: XCTestCase {
         XCTAssertEqual(router.dismiss_calledCount, 1)
     }
 
-    func test_ifAUserTapsDoneButton__itShouldCreatePositiveStatement_withPassingTheTextFieldValue_andUserIdFromGetUserProfile__andIfAllSucceeded__itShouldDismissTheView() {
+    func test_ifAUserTapsDoneButton__itShouldCreatePositiveStatement_withPassingTheTextFieldValue_andUserIdFromGetUserProfile__andIfAllSucceeded__itShouldDismissTheView_andShouldUpdateIsProcessingStatus() {
+
+        let isProcessingRecorder = TestRecord(publisher: viewModel.bindings.$isProcessing.eraseToAnyPublisher())
+        isProcessingRecorder.clearResult() // Remove the initial value
 
         // Setup UserProfile
         let userProfile = Profile(id: "This is User ID", name: "", email: "", imageUrl: nil)
@@ -196,9 +199,14 @@ final class AddPositiveStatementViewModelTests: XCTestCase {
             userProfile.id)
         // Should dismiss view
         XCTAssertEqual(router.dismiss_calledCount, 1)
+        // Should show and hide isProcessing status
+        XCTAssertEqual(isProcessingRecorder.results, [.value(true), .value(false)])
     }
 
-    func test_ifAUserTapsDoneButton_andGetUserProfileThrowsAnError__itShouldShowAlert_andShouldNotCreatePositiveStatement_andShouldNotDismissTheView__andIfUserTapsDoneButtonAgain__itShouldCallGetUserProfileAgain_andShouldShowAlertAgain() {
+    func test_ifAUserTapsDoneButton_andGetUserProfileThrowsAnError__itShouldShowAlert_andShouldNotCreatePositiveStatement_andShouldNotDismissTheView__andIfUserTapsDoneButtonAgain__itShouldCallGetUserProfileAgain_shouldShowAlertAgain_andShouldUpdateIsProcessingStatus() {
+
+        let isProcessingRecorder = TestRecord(publisher: viewModel.bindings.$isProcessing.eraseToAnyPublisher())
+        isProcessingRecorder.clearResult() // Remove the initial value
 
         // Setup UserProfile as throwing an error
         userRepository.getUserProfile_result = Fail(error: NSError()).asFuture()
@@ -217,6 +225,9 @@ final class AddPositiveStatementViewModelTests: XCTestCase {
             0)
         // Should not dismiss view
         XCTAssertEqual(router.dismiss_calledCount, 0)
+        // Should show and hide isProcessing status
+        XCTAssertEqual(isProcessingRecorder.results, [.value(true), .value(false)])
+        isProcessingRecorder.clearResult()
 
         // Taps done button again
         viewModel.inputs.doneButtonDidTap.send()
@@ -228,9 +239,15 @@ final class AddPositiveStatementViewModelTests: XCTestCase {
         XCTAssertEqual(router.presentAlert_title, R.string.localizable.add_positive_statement_add_error())
         XCTAssertNil(router.presentAlert_message)
         XCTAssertEqual(router.presentAlert_calledCount, 2)
+
+        // Should show and hide isProcessing status again
+        XCTAssertEqual(isProcessingRecorder.results, [.value(true), .value(false)])
     }
 
-    func test_ifAUserTapsDoneButton_andCreatePositiveStatementThrowsAnError__itShouldShowAlert_andShouldNotDismissTheView__andIfUserTapsDoneButtonAgain__itShouldCallCreatePositiveStatmentAgain_andShouldShowAlertAgain() {
+    func test_ifAUserTapsDoneButton_andCreatePositiveStatementThrowsAnError__itShouldShowAlert_andShouldNotDismissTheView__andIfUserTapsDoneButtonAgain__itShouldCallCreatePositiveStatmentAgain_shouldShowAlertAgain_andShouldUpdateIsProcessingStatus() {
+
+        let isProcessingRecorder = TestRecord(publisher: viewModel.bindings.$isProcessing.eraseToAnyPublisher())
+        isProcessingRecorder.clearResult() // Remove the initial value
 
         // Setup UserProfile as succeed
         let userProfile = Profile(id: "", name: "", email: "", imageUrl: nil)
@@ -250,6 +267,10 @@ final class AddPositiveStatementViewModelTests: XCTestCase {
         // Should not dismiss view
         XCTAssertEqual(router.dismiss_calledCount, 0)
 
+        // Should show and hide isProcessing status
+        XCTAssertEqual(isProcessingRecorder.results, [.value(true), .value(false)])
+        isProcessingRecorder.clearResult()
+
         // Taps done button again
         viewModel.inputs.doneButtonDidTap.send()
 
@@ -260,6 +281,9 @@ final class AddPositiveStatementViewModelTests: XCTestCase {
         XCTAssertEqual(router.presentAlert_title, R.string.localizable.add_positive_statement_add_error())
         XCTAssertNil(router.presentAlert_message)
         XCTAssertEqual(router.presentAlert_calledCount, 2)
+
+        // Should show and hide isProcessing status again
+        XCTAssertEqual(isProcessingRecorder.results, [.value(true), .value(false)])
     }
 
     func test_ifAUserTapsDoneButton__itShouldCloseKeyboard() {

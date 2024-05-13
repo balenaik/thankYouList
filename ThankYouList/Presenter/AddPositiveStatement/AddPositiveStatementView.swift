@@ -26,6 +26,8 @@ private let doneButtonPressedOpacity = CGFloat(0.7)
 struct AddPositiveStatementView: View {
     @StateObject var viewModel: AddPositiveStatementViewModel
 
+    @State private var isProcessing = false
+
     var body: some View {
         NavigationView {
             contentView
@@ -40,6 +42,10 @@ struct AddPositiveStatementView: View {
                 from: nil,
                 for: nil)
         }
+        .onReceive(viewModel.bindings.$isProcessing) { isProcessing in
+            self.isProcessing = isProcessing
+        }
+        .proccessingOverlay(isProcessing: $isProcessing)
     }
 
     var contentView: some View {

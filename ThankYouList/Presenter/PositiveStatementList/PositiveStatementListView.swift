@@ -8,6 +8,8 @@
 
 import SwiftUI
 
+private let descriptionFontSize = CGFloat(16)
+
 struct PositiveStatementListView: View {
 
     @StateObject var viewModel: PositiveStatementListViewModel
@@ -22,9 +24,25 @@ struct PositiveStatementListView: View {
 
     private var contentView: some View {
         List {
+            descriptionSection
         }
         .listStyle(.plain)
         .listBackgroundForIOS16AndAbove(Color.clear)
+    }
+
+    private var descriptionSection: some View {
+        Section {
+            VStack(spacing: 0) {
+                Text(R.string.localizable.positive_statement_list_description)
+                    .font(.regularAvenir(ofSize: descriptionFontSize))
+                    .foregroundStyle(Color.text)
+                    .padding(.horizontal, ViewConst.spacing20)
+                    .padding(.top, ViewConst.spacing4)
+            }
+        }
+        .listRowBackground(Color.clear)
+        .listSectionSeparator(.hidden)
+        .listRowInsets(EdgeInsets())
     }
 }
 

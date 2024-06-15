@@ -49,7 +49,6 @@
 		A84635BA2AD270B40030A358 /* MockInMemoryDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635B92AD270B40030A358 /* MockInMemoryDataStore.swift */; };
 		A84635BC2AD2711D0030A358 /* MockThankYouRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635BB2AD2711D0030A358 /* MockThankYouRepository.swift */; };
 		A84635BE2AFF02820030A358 /* CalendarConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635BD2AFF02820030A358 /* CalendarConfiguration.swift */; };
-		A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84CBEE120F198E400CBA0AB /* ConstStruct.swift */; };
 		A84FDB5C21DBB8DF00593326 /* AddThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84FDB5B21DBB8DF00593326 /* AddThankYouViewController.swift */; };
 		A84FDB5E21DC365F00593326 /* SettingHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84FDB5D21DC365F00593326 /* SettingHeaderView.xib */; };
 		A84FDB6021DC37EA00593326 /* SettingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84FDB5F21DC37E900593326 /* SettingHeaderView.swift */; };
@@ -206,7 +205,6 @@
 		A84635B92AD270B40030A358 /* MockInMemoryDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockInMemoryDataStore.swift; sourceTree = "<group>"; };
 		A84635BB2AD2711D0030A358 /* MockThankYouRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockThankYouRepository.swift; sourceTree = "<group>"; };
 		A84635BD2AFF02820030A358 /* CalendarConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarConfiguration.swift; sourceTree = "<group>"; };
-		A84CBEE120F198E400CBA0AB /* ConstStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstStruct.swift; sourceTree = "<group>"; };
 		A84FDB5B21DBB8DF00593326 /* AddThankYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThankYouViewController.swift; sourceTree = "<group>"; };
 		A84FDB5D21DC365F00593326 /* SettingHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingHeaderView.xib; sourceTree = "<group>"; };
 		A84FDB5F21DC37E900593326 /* SettingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHeaderView.swift; sourceTree = "<group>"; };
@@ -477,7 +475,6 @@
 			isa = PBXGroup;
 			children = (
 				A80BBB96245889A600CB032B /* AnalyticsConst.swift */,
-				A84CBEE120F198E400CBA0AB /* ConstStruct.swift */,
 				A820DE5321C5432500E7F3DF /* NotificationConst.swift */,
 				A8DABBD527173FA20086B2E8 /* ViewConst.swift */,
 				A831BD422741617C003B5394 /* FirestoreConst.swift */,
@@ -1096,7 +1093,6 @@
 				A80EAE5A21FD5F87006B02E8 /* ThankYouCell.swift in Sources */,
 				A8C5630E2B5BFF8F0047ED4C /* PositiveStatementListView.swift in Sources */,
 				A8A85AC025A60E8500182B99 /* UIImage+FromUIColor.swift in Sources */,
-				A84CBEE220F198E500CBA0AB /* ConstStruct.swift in Sources */,
 				A89D114C2BAFFD6A00C026E6 /* ThemeColor.swift in Sources */,
 				A8384FE42BC0DED6003EF718 /* View+Toolbar.swift in Sources */,
 				A86F41A124570B0B005D929A /* PlaceHolderTextView.swift in Sources */,

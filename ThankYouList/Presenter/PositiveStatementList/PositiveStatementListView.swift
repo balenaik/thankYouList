@@ -10,6 +10,11 @@ import SwiftUI
 
 private let descriptionFontSize = CGFloat(16)
 
+private let widgetSetupHintButtonFontSize = CGFloat(14)
+private let widgetSetupHintBulbIconOpacity = CGFloat(0.9)
+private let widgetSetupHintRightArrowIconOpacity = CGFloat(0.5)
+private let widgetSetupHintButtonCornerRadius = CGFloat(8)
+
 struct PositiveStatementListView: View {
 
     @StateObject var viewModel: PositiveStatementListViewModel
@@ -38,11 +43,38 @@ struct PositiveStatementListView: View {
                     .foregroundStyle(Color.text)
                     .padding(.horizontal, ViewConst.spacing20)
                     .padding(.top, ViewConst.spacing4)
+
+                widgetSetupHintButton
+                    .padding(.horizontal, ViewConst.spacing20)
+                    .padding(.vertical, ViewConst.spacing20)
             }
         }
         .listRowBackground(Color.clear)
         .listSectionSeparator(.hidden)
         .listRowInsets(EdgeInsets())
+    }
+
+    private var widgetSetupHintButton: some View {
+        HStack {
+            Image(systemName: SFSymbolConst.lightbulb)
+                .imageScale(.medium)
+                .foregroundStyle(Color.text.opacity(widgetSetupHintBulbIconOpacity))
+
+            Text(R.string.localizable.positive_statement_list_widget_setup_hint_text)
+                .font(.regularAvenir(ofSize: widgetSetupHintButtonFontSize))
+                .foregroundStyle(Color.text)
+                .fixedSize(horizontal: false, vertical: true)
+                .padding(.vertical, ViewConst.spacing12)
+
+            Spacer()
+
+            Image(systemName: SFSymbolConst.chevronRight)
+                .imageScale(.small)
+                .foregroundStyle(Color.text.opacity(widgetSetupHintRightArrowIconOpacity))
+        }
+        .padding(.horizontal, ViewConst.spacing12)
+        .background(Color.primary100)
+        .clipShape(RoundedRectangle(cornerRadius: widgetSetupHintButtonCornerRadius, style: .circular))
     }
 }
 

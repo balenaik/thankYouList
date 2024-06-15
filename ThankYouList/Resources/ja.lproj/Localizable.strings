@@ -82,6 +82,7 @@
 
 "positive_statement_list_title" = "ポジティブメッセージ";
 "positive_statement_list_description" = "あなたを元気づけるポジティブな言葉を追加しましょう。あなたの言葉はホーム画面のウィジェットに表示されます。最大10個まで追加できます。";
+"positive_statement_list_widget_setup_hint_text" = "ホーム画面にウィジェットを追加するには？";
 
 "add_positive_statement_title" = "あなたの理想の未来はどんな状態ですか？";
 "add_positive_statement_description" = "あなたの理想の未来、またはなりたい自分の姿をイメージしましょう。\nそして「私は〜ます。」「私は〜です。」という形で、あなたが現在すでにそうであるかのように言葉にしてみましょう。";

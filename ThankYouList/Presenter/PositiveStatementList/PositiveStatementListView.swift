@@ -13,8 +13,17 @@ struct PositiveStatementListView: View {
     @StateObject var viewModel: PositiveStatementListViewModel
 
     var body: some View {
+        ZStack(alignment: .bottom) {
+            contentView
+        }
+        .screenBackground(Color.defaultBackground)
+        .navigationBarTitle(R.string.localizable.positive_statement_list_title(), displayMode: .large)
+    }
+
+    private var contentView: some View {
         List {
         }
+        .listStyle(.plain)
         .listBackgroundForIOS16AndAbove(Color.clear)
     }
 }

@@ -80,6 +80,8 @@
 
 "privacy_policy_url" = "https://thank-you-list-dc0da.firebaseapp.com/ja.html";
 
+"positive_statement_list_title" = "ポジティブメッセージ";
+
 "add_positive_statement_title" = "あなたの理想の未来はどんな状態ですか？";
 "add_positive_statement_description" = "あなたの理想の未来、またはなりたい自分の姿をイメージしましょう。\nそして「私は〜ます。」「私は〜です。」という形で、あなたが現在すでにそうであるかのように言葉にしてみましょう。";
 "add_positive_statement_textfield_placeholder" = "私は今日も生きていることに感謝し、幸せで満たされています。";

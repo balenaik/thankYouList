@@ -13,6 +13,10 @@ extension Color {
         return Color(hex: 0xfcb5b5)
     }
 
+    static var primary100: Color {
+        return Color(hex: 0xfee9e9)
+    }
+
     static var primary200: Color {
         return Color(hex: 0xfedada)
     }

@@ -145,6 +145,7 @@
 		A8F06BB91F55396F00A90170 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */; };
 		A8F2619A2B43FA0500A65C0A /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A8F261992B43FA0500A65C0A /* CombineCocoa */; };
 		A8F2619C2B476FAE00A65C0A /* MockRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F2619B2B476FAE00A65C0A /* MockRouter.swift */; };
+		A8F270102BD0883F00227009 /* AnyPublisher+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F2700F2BD0883F00227009 /* AnyPublisher+Operators.swift */; };
 		A8F407CA2957DBF6007FDF2D /* ConfirmDeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F407C92957DBF6007FDF2D /* ConfirmDeleteAccountView.swift */; };
 		A8FF6A202829C40500CF816F /* BottomHalfSheetDatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FF6A1F2829C40400CF816F /* BottomHalfSheetDatePickerViewController.swift */; };
 /* End PBXBuildFile section */
@@ -300,6 +301,7 @@
 		A8E6CD17296BF3100042AA81 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8F2619B2B476FAE00A65C0A /* MockRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRouter.swift; sourceTree = "<group>"; };
+		A8F2700F2BD0883F00227009 /* AnyPublisher+Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyPublisher+Operators.swift"; sourceTree = "<group>"; };
 		A8F407C92957DBF6007FDF2D /* ConfirmDeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDeleteAccountView.swift; sourceTree = "<group>"; };
 		A8FF6A1F2829C40400CF816F /* BottomHalfSheetDatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomHalfSheetDatePickerViewController.swift; sourceTree = "<group>"; };
 		BA00FC82559EE1AEA8CE9577 /* Pods-ThankYouList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.debug.xcconfig"; sourceTree = "<group>"; };
@@ -512,6 +514,7 @@
 				A82BBF77270C4FC4007E8CD9 /* UIFont+Theme.swift */,
 				A8E6CD0C29615BE00042AA81 /* Font+Theme.swift */,
 				A895A56E297CCAAC0081E08F /* Publisher+Operators.swift */,
+				A8F2700F2BD0883F00227009 /* AnyPublisher+Operators.swift */,
 				A8C563182B7D73A70047ED4C /* View+Background.swift */,
 				A8384FE32BC0DED6003EF718 /* View+Toolbar.swift */,
 			);
@@ -1021,6 +1024,7 @@
 				A88546632B97DAD2000A4245 /* AddPositiveStatementViewModel.swift in Sources */,
 				A8E6CD07295C7D050042AA81 /* ConfirmDeleteAccountViewModel.swift in Sources */,
 				A84635B52AC020C00030A358 /* ThankYouRepository.swift in Sources */,
+				A8F270102BD0883F00227009 /* AnyPublisher+Operators.swift in Sources */,
 				A8E6CD0F296513000042AA81 /* String+Validation.swift in Sources */,
 				A8C59B7D243CD72300FF79EA /* UIViewController+Setup.swift in Sources */,
 				A83A361A296C537B00AD2790 /* ThankYouListCoordinator.swift in Sources */,

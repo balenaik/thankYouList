@@ -70,6 +70,7 @@
 		A86F41A124570B0B005D929A /* PlaceHolderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86F41A024570B0B005D929A /* PlaceHolderTextView.swift */; };
 		A8775598282C5C5C003141B0 /* UIColor+Modification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8775597282C5C5C003141B0 /* UIColor+Modification.swift */; };
 		A87AD1362BE46AE1007FF79A /* processingCircle.json in Resources */ = {isa = PBXBuildFile; fileRef = A87AD1352BE46AE1007FF79A /* processingCircle.json */; };
+		A87EE43D2C1E8B0E00CCB997 /* PositiveStatementListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87EE43C2C1E8B0E00CCB997 /* PositiveStatementListViewModelTests.swift */; };
 		A881350E2131432C00BE8F48 /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A881350D2131432C00BE8F48 /* EmptyView.xib */; };
 		A88135102131435100BE8F48 /* ThankYouEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A881350F2131435100BE8F48 /* ThankYouEmptyView.swift */; };
 		A88217272B41029800BD8BFD /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A88217262B41029800BD8BFD /* CombineCocoa */; };
@@ -227,6 +228,7 @@
 		A86F41A024570B0B005D929A /* PlaceHolderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderTextView.swift; sourceTree = "<group>"; };
 		A8775597282C5C5C003141B0 /* UIColor+Modification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Modification.swift"; sourceTree = "<group>"; };
 		A87AD1352BE46AE1007FF79A /* processingCircle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = processingCircle.json; sourceTree = "<group>"; };
+		A87EE43C2C1E8B0E00CCB997 /* PositiveStatementListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementListViewModelTests.swift; sourceTree = "<group>"; };
 		A881350D2131432C00BE8F48 /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
 		A881350F2131435100BE8F48 /* ThankYouEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouEmptyView.swift; sourceTree = "<group>"; };
 		A8831CC31E9CFE6B00F3CA0A /* ThankYouList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThankYouList.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -611,6 +613,7 @@
 				A863F1252BABDE3F00F79314 /* AddPositiveStatementViewModelTests.swift */,
 				A84635B72AD270210030A358 /* CalendarViewModelTests.swift */,
 				A892354B29D731730093A92F /* ConfirmDeleteAccountViewModelTests.swift */,
+				A87EE43C2C1E8B0E00CCB997 /* PositiveStatementListViewModelTests.swift */,
 			);
 			path = ThankYouListTests;
 			sourceTree = "<group>";
@@ -1135,6 +1138,7 @@
 				A892355429D73E3D0093A92F /* MockUserRepository.swift in Sources */,
 				A890D3B929D823A30066D098 /* TestScheduler+Observer.swift in Sources */,
 				A883EE5B29F03524002DCBCA /* MockAnalyticsManager.swift in Sources */,
+				A87EE43D2C1E8B0E00CCB997 /* PositiveStatementListViewModelTests.swift in Sources */,
 				A892354C29D731730093A92F /* ConfirmDeleteAccountViewModelTests.swift in Sources */,
 				A84635BA2AD270B40030A358 /* MockInMemoryDataStore.swift in Sources */,
 				A8C9736C2BD9BA6B004A8A30 /* MockPositiveStatementRepository.swift in Sources */,

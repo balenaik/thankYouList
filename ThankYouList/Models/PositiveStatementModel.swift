@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PositiveStatementModel: Identifiable {
+struct PositiveStatementModel: Identifiable, Equatable {
     let id = UUID()
     let value: String
     let createdDate: Date

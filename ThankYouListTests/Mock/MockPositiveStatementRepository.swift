@@ -10,6 +10,15 @@ import Combine
 @testable import ThankYouList
 
 class MockPositiveStatementRepository: PositiveStatementRepository {
+    var subscribePositiveStatements_calledCount = 0
+    var subscribePositiveStatements_userId: String?
+    var subscribePositiveStatements_result = Just([PositiveStatementModel]()).setFailureType(to: Error.self).eraseToAnyPublisher()
+    func subscribePositiveStatements(userId: String) -> AnyPublisher<[PositiveStatementModel], Error> {
+        subscribePositiveStatements_calledCount += 1
+        subscribePositiveStatements_userId = userId
+        return subscribePositiveStatements_result
+    }
+
     var createPositiveStatement_calledCount = 0
     var createPositiveStatement_positiveStatement: String?
     var createPositiveStatement_userId: String?

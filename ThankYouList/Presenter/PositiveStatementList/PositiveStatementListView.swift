@@ -25,6 +25,7 @@ struct PositiveStatementListView: View {
         }
         .screenBackground(Color.defaultBackground)
         .navigationBarTitle(R.string.localizable.positive_statement_list_title(), displayMode: .large)
+        .onAppear { viewModel.inputs.onAppear.send() }
     }
 
     private var contentView: some View {

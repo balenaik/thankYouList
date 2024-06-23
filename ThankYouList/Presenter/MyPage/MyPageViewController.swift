@@ -42,6 +42,11 @@ class MyPageViewController: UIViewController {
         loadMyProfile()
         logEvent()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
 }
 
 // MARK: - IBActions

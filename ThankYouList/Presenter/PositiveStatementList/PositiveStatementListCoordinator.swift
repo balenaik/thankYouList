@@ -6,11 +6,14 @@
 //  Copyright © 2024 Aika Yamada. All rights reserved.
 //
 
+import Combine
 import SwiftUI
 
 class PositiveStatementListCoordinator: Coordinator {
     var routingType: RoutingType
     weak var viewController: UIViewController?
+
+    private var cancellable = Set<AnyCancellable>()
 
     init(navigationController: UINavigationController) {
         routingType = .push(navigationController: navigationController)
@@ -22,10 +25,19 @@ class PositiveStatementListCoordinator: Coordinator {
             positiveStatementRepository: DefaultPositiveStatementRepository(),
             router: self
         )
-        let view = UIHostingController(
+        let view = ViewLifecycleAwareHostingController(
             rootView: PositiveStatementListView(viewModel: viewModel)
         )
         viewController = view
+
+        view.viewWillAppearRelay
+            .sink { [weak self] _ in
+                // This setup needs to be on viewWillAppear to always show large title
+                // even when a user tries to use swipe to back but cancels it
+                self?.routingType.navigationController?.navigationBar.prefersLargeTitles = true
+            }
+            .store(in: &cancellable)
+
         routingType.navigationController?.pushViewController(view, animated: true)
     }
 }

@@ -71,6 +71,7 @@
 		A8775598282C5C5C003141B0 /* UIColor+Modification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8775597282C5C5C003141B0 /* UIColor+Modification.swift */; };
 		A87AD1362BE46AE1007FF79A /* processingCircle.json in Resources */ = {isa = PBXBuildFile; fileRef = A87AD1352BE46AE1007FF79A /* processingCircle.json */; };
 		A87EE43D2C1E8B0E00CCB997 /* PositiveStatementListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87EE43C2C1E8B0E00CCB997 /* PositiveStatementListViewModelTests.swift */; };
+		A87EE43F2C28143900CCB997 /* ViewLifecycleAwareHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87EE43E2C28143800CCB997 /* ViewLifecycleAwareHostingController.swift */; };
 		A881350E2131432C00BE8F48 /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A881350D2131432C00BE8F48 /* EmptyView.xib */; };
 		A88135102131435100BE8F48 /* ThankYouEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A881350F2131435100BE8F48 /* ThankYouEmptyView.swift */; };
 		A88217272B41029800BD8BFD /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A88217262B41029800BD8BFD /* CombineCocoa */; };
@@ -229,6 +230,7 @@
 		A8775597282C5C5C003141B0 /* UIColor+Modification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Modification.swift"; sourceTree = "<group>"; };
 		A87AD1352BE46AE1007FF79A /* processingCircle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = processingCircle.json; sourceTree = "<group>"; };
 		A87EE43C2C1E8B0E00CCB997 /* PositiveStatementListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementListViewModelTests.swift; sourceTree = "<group>"; };
+		A87EE43E2C28143800CCB997 /* ViewLifecycleAwareHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewLifecycleAwareHostingController.swift; sourceTree = "<group>"; };
 		A881350D2131432C00BE8F48 /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
 		A881350F2131435100BE8F48 /* ThankYouEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouEmptyView.swift; sourceTree = "<group>"; };
 		A8831CC31E9CFE6B00F3CA0A /* ThankYouList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThankYouList.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -553,6 +555,7 @@
 				A84FDB5D21DC365F00593326 /* SettingHeaderView.xib */,
 				A84FDB5F21DC37E900593326 /* SettingHeaderView.swift */,
 				A8519452272F3C44003631EE /* ThankYouCellTapMenu.swift */,
+				A87EE43E2C28143800CCB997 /* ViewLifecycleAwareHostingController.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1095,6 +1098,7 @@
 				A8E6CD14296BA31A0042AA81 /* Coordinator.swift in Sources */,
 				A8C59B76243CC86100FF79EA /* R.generated.swift in Sources */,
 				A8C563102B5CAC6F0047ED4C /* PositiveStatementListViewModel.swift in Sources */,
+				A87EE43F2C28143900CCB997 /* ViewLifecycleAwareHostingController.swift in Sources */,
 				A83A361C296CE98600AD2790 /* MyPageCoordinator.swift in Sources */,
 				A8574DCE2BDF47410073AA61 /* ProcessingOverlayView.swift in Sources */,
 				A86F419E24548797005D929A /* MyPageTableItem.swift in Sources */,

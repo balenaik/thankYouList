@@ -93,9 +93,41 @@ final class PositiveStatementListViewModelTests: XCTestCase {
             .value(secondPositiveStatements)
         ])
     }
+
+    func test_ifAUserOpensTheScreen_andSubscribePositiveStatementsFails__itShouldPresentErrorAlert() {
+        // Set an error result on subscribePositiveStatements
+        positiveStatementRepository.subscribePositiveStatements_result = Fail(error: NSError()).eraseToAnyPublisher()
+
+        // Open the screen
+        viewModel.inputs.onAppear.send()
+
+        // It should present an error alert
+        XCTAssertEqual(router.presentAlert_calledCount, 1)
+        XCTAssertEqual(router.presentAlert_title, R.string.localizable.something_went_wrong_title())
+        XCTAssertEqual(router.presentAlert_message, R.string.localizable.positive_statement_list_error_message())
+    }
+
+    func test_ifAUserOpensTheScreen_subscribePositiveStatementsFails_andTapsOKOnTheAlert__itShouldPopToPreviousScreen() {
+        // Set an error result on subscribePositiveStatements
+        positiveStatementRepository.subscribePositiveStatements_result = Fail(error: NSError()).eraseToAnyPublisher()
+
+        // Open the screen
+        viewModel.inputs.onAppear.send()
+
+        // Taps OK on the error alert
+        router.presentAlert_actions?.first?.action?()
+
+        // It should pop to previous screen
+        XCTAssertEqual(router.popToPreviousScreen_calledCount, 1)
+    }
 }
 
 private class MockPositiveStatementListRouter: MockRouter, PositiveStatementListRouter {
+    var popToPreviousScreen_calledCount = 0
+    func popToPreviousScreen() {
+        popToPreviousScreen_calledCount += 1
+    }
+    
     var presentAddPositiveStatement_calledCount = 0
     func presentAddPositiveStatement() {
         presentAddPositiveStatement_calledCount += 1

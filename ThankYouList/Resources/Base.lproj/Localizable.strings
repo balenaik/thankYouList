@@ -74,6 +74,7 @@
 "error" = "Error";
 "error_authenticate" = "Authentication failed";
 "try_again_later_message" = "Please try again later";
+"something_went_wrong_title" = "Oops, something went wrong";
 
 "date_format_thankyou_date" = "yyyy/MM/dd";
 "date_format_year_month" = "yyyy/MM";
@@ -84,6 +85,7 @@
 "positive_statement_list_title" = "Positive Statements";
 "positive_statement_list_description" = "Add your uplifting positive statements. Your statements will be shown on iOS Home Widgets. You can add up to 10 positive statements.";
 "positive_statement_list_widget_setup_hint_text" = "How to add a widget on Home Screen?";
+"positive_statement_list_error_message" = "Positive Statements are not loading right now. Please retry later.";
 
 "add_positive_statement_title" = "What does your ideal future look like?";
 "add_positive_statement_description" = "Imagine your ideal future or the person you want to become. Then, express it in the form of \"I am...\" or \"I will...\" as if you are already that way. Let's put it into words.";

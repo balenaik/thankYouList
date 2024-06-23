@@ -31,4 +31,7 @@ class PositiveStatementListCoordinator: Coordinator {
 }
 
 extension PositiveStatementListCoordinator: PositiveStatementListRouter {
+    func popToPreviousScreen() {
+        routingType.navigationController?.popViewController(animated: true)
+    }
 }

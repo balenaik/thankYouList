@@ -10,6 +10,7 @@ import Combine
 import Foundation
 
 protocol PositiveStatementListRouter: Router {
+    func popToPreviousScreen()
 }
 
 class PositiveStatementListViewModel: ObservableObject {
@@ -55,6 +56,21 @@ private extension PositiveStatementListViewModel {
         positiveStatements
             .values()
             .subscribe(outputs.positiveStatements)
+            .store(in: &cancellable)
+
+        positiveStatements
+            .errors()
+            .sink { [router] _ in
+                router?.presentAlert(
+                    title: R.string.localizable.something_went_wrong_title(),
+                    message: R.string.localizable.positive_statement_list_error_message(),
+                    actions: [.init(
+                        title: R.string.localizable.ok(),
+                        action: {
+                            router?.popToPreviousScreen()
+                        })
+                    ])
+            }
             .store(in: &cancellable)
     }
 }

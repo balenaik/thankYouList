@@ -17,11 +17,18 @@ class PositiveStatementListCoordinator: Coordinator {
     }
 
     func start() {
-        let viewModel = PositiveStatementListViewModel()
+        let viewModel = PositiveStatementListViewModel(
+            userRepository: DefaultUserRepository(),
+            positiveStatementRepository: DefaultPositiveStatementRepository(),
+            router: self
+        )
         let view = UIHostingController(
             rootView: PositiveStatementListView(viewModel: viewModel)
         )
         viewController = view
         routingType.navigationController?.pushViewController(view, animated: true)
     }
+}
+
+extension PositiveStatementListCoordinator: PositiveStatementListRouter {
 }

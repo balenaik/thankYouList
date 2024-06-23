@@ -79,6 +79,9 @@ struct PositiveStatementListView: View {
 }
 
 #Preview {
-    let viewModel = PositiveStatementListViewModel()
+    let viewModel = PositiveStatementListViewModel(
+        userRepository: DefaultUserRepository(),
+        positiveStatementRepository: DefaultPositiveStatementRepository(),
+        router: nil)
     return PositiveStatementListView(viewModel: viewModel)
 }

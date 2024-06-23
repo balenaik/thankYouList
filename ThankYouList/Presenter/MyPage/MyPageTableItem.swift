@@ -17,6 +17,7 @@ extension MyPageViewController {
 
     enum TableItemType: Int {
         case myInformation
+        case positiveStatements
         case rate
         case feedback
         case privacyPolicy
@@ -27,6 +28,8 @@ extension MyPageViewController {
             switch self {
             case .myInformation:
                 return nil
+            case .positiveStatements:
+                return R.string.localizable.mypage_positive_statements()
             case .rate:
                 return R.string.localizable.mypage_rate()
             case .feedback:
@@ -44,6 +47,8 @@ extension MyPageViewController {
             switch self {
             case .myInformation:
                 return nil
+            case .positiveStatements:
+                return .text
             case .rate:
                 return .text
             case .feedback:

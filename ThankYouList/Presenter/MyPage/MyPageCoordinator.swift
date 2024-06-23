@@ -63,6 +63,12 @@ extension MyPageCoordinator: MyPageRouter {
         coordinator.start()
     }
 
+    func pushToPositiveStatementList() {
+        guard let navigationController = viewController as? UINavigationController else { return }
+        let coordinator = PositiveStatementListCoordinator(navigationController: navigationController)
+        coordinator.start()
+    }
+
     func openDefaultMailAppIfAvailable(to: String, subject: String) -> Bool {
         guard MFMailComposeViewController.canSendMail(),
               // TODO: Wanna fix how to access MyPageVC

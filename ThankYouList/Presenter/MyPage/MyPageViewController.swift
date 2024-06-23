@@ -20,6 +20,7 @@ protocol MyPageRouter: Router {
     func openAppStoreReview()
     func presentPrivacyPolicy()
     func presentConfirmDeleteAccount()
+    func pushToPositiveStatementList()
     func openDefaultMailAppIfAvailable(to: String, subject: String) -> Bool
     func openGmailAppIfAvailable(to: String, subject: String) -> Bool
 }
@@ -59,6 +60,7 @@ private extension MyPageViewController {
 
     func setupTableItems() {
         let myInfoSection = [TableItem(item: .myInformation, style: .profieInfo)]
+        let settingSection = [TableItem(item: .positiveStatements, style: .button)]
         let additionalSection = [
             TableItem(item: .rate, style: .button),
             TableItem(item: .feedback, style: .button),
@@ -66,7 +68,13 @@ private extension MyPageViewController {
         ]
         let logoutSection = [TableItem(item: .logout, style: .button)]
         let deleteAccountSection = [TableItem(item: .deleteAccount, style: .button)]
-        tableItems.append(contentsOf: [myInfoSection, additionalSection, logoutSection, deleteAccountSection])
+        tableItems.append(contentsOf: [
+            myInfoSection,
+            settingSection,
+            additionalSection,
+            logoutSection,
+            deleteAccountSection
+        ])
     }
 
     func loadMyProfile() {
@@ -197,6 +205,8 @@ extension MyPageViewController: UITableViewDelegate {
             return
         }
         switch item.item {
+        case .positiveStatements:
+            router?.pushToPositiveStatementList()
         case .rate:
             showRating()
         case .feedback:

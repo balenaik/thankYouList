@@ -15,9 +15,15 @@ private let widgetSetupHintBulbIconOpacity = CGFloat(0.9)
 private let widgetSetupHintRightArrowIconOpacity = CGFloat(0.5)
 private let widgetSetupHintButtonCornerRadius = CGFloat(8)
 
+private let positiveStatementsSectionCornerRadius = CGFloat(12)
+private let positiveStatementFontSize = CGFloat(16)
+private let positiveStatementRowDotsIconOpacity = CGFloat(0.5)
+
 struct PositiveStatementListView: View {
 
     @StateObject var viewModel: PositiveStatementListViewModel
+
+    @State private var positiveStatements = [PositiveStatementModel]()
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -26,11 +32,15 @@ struct PositiveStatementListView: View {
         .screenBackground(Color.defaultBackground)
         .navigationBarTitle(R.string.localizable.positive_statement_list_title(), displayMode: .large)
         .onAppear { viewModel.inputs.onAppear.send() }
+        .onReceive(viewModel.outputs.positiveStatements) {
+            positiveStatements = $0
+        }
     }
 
     private var contentView: some View {
         List {
             descriptionSection
+            positiveStatementsSection
         }
         .listStyle(.plain)
         .listBackgroundForIOS16AndAbove(Color.clear)
@@ -76,6 +86,34 @@ struct PositiveStatementListView: View {
         .padding(.horizontal, ViewConst.spacing12)
         .background(Color.primary100)
         .clipShape(RoundedRectangle(cornerRadius: widgetSetupHintButtonCornerRadius, style: .circular))
+    }
+
+    private var positiveStatementsSection: some View {
+        Section {
+            VStack(spacing: 0) {
+                ForEach(positiveStatements) { positiveStatement in
+                    positiveStatementRow(positiveStatement)
+                }
+            }
+            .clipShape(RoundedRectangle(cornerRadius: positiveStatementsSectionCornerRadius, style: .circular))
+            .listRowBackground(Color.clear)
+            .padding(.bottom, ViewConst.spacing80)
+        }
+        .listSectionSeparator(.hidden)
+    }
+
+    private func positiveStatementRow(_ positiveStatement: PositiveStatementModel) -> some View {
+        HStack {
+            Text(positiveStatement.value)
+                .font(.regularAvenir(ofSize: positiveStatementFontSize))
+            Spacer()
+            Image(systemName: SFSymbolConst.ellipsis)
+                .imageScale(.large)
+                .foregroundStyle(Color.text.opacity(positiveStatementRowDotsIconOpacity))
+        }
+        .padding(.horizontal, ViewConst.spacing20)
+        .padding(.vertical, ViewConst.spacing16)
+        .background(Color.white)
     }
 }
 

@@ -17,4 +17,5 @@ enum ViewConst {
     static let spacing16 = CGFloat(16)
     static let spacing20 = CGFloat(20)
     static let spacing24 = CGFloat(24)
+    static let spacing80 = CGFloat(80)
 }

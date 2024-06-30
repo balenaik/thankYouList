@@ -19,6 +19,11 @@ private let positiveStatementsSectionCornerRadius = CGFloat(12)
 private let positiveStatementFontSize = CGFloat(16)
 private let positiveStatementRowDotsIconOpacity = CGFloat(0.5)
 
+private let emptyViewImageSize = CGFloat(120)
+private let emptyViewTitleFontSize = CGFloat(20)
+private let emptyViewDescriptionFontSize = CGFloat(15)
+private let emptyViewDescriptionLineSpacing = CGFloat(3)
+
 struct PositiveStatementListView: View {
 
     @StateObject var viewModel: PositiveStatementListViewModel
@@ -37,13 +42,18 @@ struct PositiveStatementListView: View {
         }
     }
 
+    @ViewBuilder
     private var contentView: some View {
-        List {
-            descriptionSection
-            positiveStatementsSection
+        if positiveStatements.isEmpty {
+            emptyView
+        } else {
+            List {
+                descriptionSection
+                positiveStatementsSection
+            }
+            .listStyle(.plain)
+            .listBackgroundForIOS16AndAbove(Color.clear)
         }
-        .listStyle(.plain)
-        .listBackgroundForIOS16AndAbove(Color.clear)
     }
 
     private var descriptionSection: some View {
@@ -114,6 +124,29 @@ struct PositiveStatementListView: View {
         .padding(.horizontal, ViewConst.spacing20)
         .padding(.vertical, ViewConst.spacing16)
         .background(Color.white)
+    }
+
+    private var emptyView: some View {
+        VStack {
+            Image(R.image.imageEmptyList.name)
+                .resizable()
+                .frame(width: emptyViewImageSize, height: emptyViewImageSize, alignment: .center)
+                .padding(.vertical, ViewConst.spacing16)
+
+            Text(R.string.localizable.positive_statement_empty_title)
+                .font(.boldAvenir(ofSize: emptyViewTitleFontSize))
+                .foregroundStyle(Color.text)
+                .padding(.vertical, ViewConst.spacing4)
+
+            Text(R.string.localizable.positive_statement_list_description)
+                .multilineTextAlignment(.center)
+                .font(.regularAvenir(ofSize: emptyViewDescriptionFontSize))
+                .lineSpacing(emptyViewDescriptionLineSpacing)
+                .foregroundStyle(Color.text)
+        }
+        .frame(maxHeight: .infinity)
+        .padding(.horizontal, ViewConst.spacing20)
+        .padding(.bottom, ViewConst.spacing80)
     }
 }
 

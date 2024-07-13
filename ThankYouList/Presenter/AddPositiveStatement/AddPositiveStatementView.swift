@@ -120,25 +120,7 @@ struct AddPositiveStatementView: View {
             viewModel.inputs.doneButtonDidTap.send()
         }
         .disabled(viewModel.outputs.isDoneButtonDisabled.value)
-        .buttonStyle(DoneButtonStyle())
-    }
-
-    private struct DoneButtonStyle: ButtonStyle {
-        @Environment(\.isEnabled) var isEnabled: Bool
-
-        func makeBody(configuration: Self.Configuration) -> some View {
-            let backgroundOpacity = isEnabled ?
-            configuration.isPressed ? doneButtonPressedOpacity : 1
-            : doneButtonDisabledOpacity
-
-            return configuration.label
-               .font(.boldAvenir(ofSize: doneButtonFontSize))
-               .frame(maxWidth: .infinity)
-               .padding(.all, ViewConst.spacing12)
-               .foregroundColor(isEnabled ? .text : .text.opacity(doneButtonDisabledOpacity))
-               .background(Color.primary500.opacity(backgroundOpacity))
-               .cornerRadius(doneButtonCornerRadius)
-        }
+        .buttonStyle(PrimaryButtonStyle())
     }
 }
 

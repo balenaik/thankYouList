@@ -18,21 +18,19 @@ import CryptoSwift
 class Crypto {
     
     func encryptString(plainText: String, key: String) -> String {
-        let iv = SecretData.getCryptIv()
-        let encrypt = try! plainText.aesEncrypt(key, iv: iv)
+        let encrypt = try! plainText.aesEncrypt(key)
         return encrypt
     }
     
     func decryptString(encryptText: String, key: String) -> String {
-        let iv = SecretData.getCryptIv()
-        let decrypt = try! encryptText.aesDecrypt(key, iv: iv)
+        let decrypt = try! encryptText.aesDecrypt(key)
         return decrypt
     }
 }
 
 
 extension String {
-    func aesEncrypt(_ key: String, iv: String) throws -> String {
+    func aesEncrypt(_ key: String) throws -> String {
         let data = self.data(using: String.Encoding.utf8)
         let aes = try AES(key: key.bytes, blockMode: ECB(), padding: .pkcs5)
         let encrypted = try! aes.encrypt(Array(data!))
@@ -41,7 +39,7 @@ extension String {
         return encryptedData.base64EncodedString()
     }
     
-    func aesDecrypt(_ key: String, iv: String) throws -> String {
+    func aesDecrypt(_ key: String) throws -> String {
         let data = Data(base64Encoded: self)!
         let aes = try AES(key: key.bytes, blockMode: ECB(), padding: .pkcs5)
         let decrypted = try! aes.decrypt([UInt8](data))

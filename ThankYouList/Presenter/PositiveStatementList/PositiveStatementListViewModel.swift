@@ -9,6 +9,8 @@
 import Combine
 import Foundation
 
+private let maxPositiveStatementCount = 10
+
 protocol PositiveStatementListRouter: Router {
     func popToPreviousScreen()
     func presentAddPositiveStatement()
@@ -74,6 +76,12 @@ private extension PositiveStatementListViewModel {
             }
             .store(in: &cancellable)
 
+        positiveStatements
+            .values()
+            .map { $0.count >= maxPositiveStatementCount }
+            .subscribe(outputs.isAddButtonDisabled)
+            .store(in: &cancellable)
+
         inputs.addButtonDidTap
             .sink { [router] in
                 router?.presentAddPositiveStatement()
@@ -90,5 +98,6 @@ extension PositiveStatementListViewModel {
 
     class Outputs {
         let positiveStatements = CurrentValueSubject<[PositiveStatementModel], Never>([])
+        let isAddButtonDisabled = CurrentValueSubject<Bool, Never>(true)
     }
 }

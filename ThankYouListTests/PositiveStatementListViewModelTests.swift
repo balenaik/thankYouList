@@ -121,6 +121,63 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         XCTAssertEqual(router.popToPreviousScreen_calledCount, 1)
     }
 
+    func test_ifPositiveStatementCountLessThanOrEqualTo9__itShouldEnableAddButton() {
+        let positiveStatementsRelay = PassthroughSubject<[PositiveStatementModel], Error>()
+        positiveStatementRepository.subscribePositiveStatements_result = positiveStatementsRelay.eraseToAnyPublisher()
+
+        let isAddButtonDisabledRecords = TestRecord(publisher: viewModel.outputs.isAddButtonDisabled.eraseToAnyPublisher())
+
+        // add button should be initially disabled
+        XCTAssertEqual(isAddButtonDisabledRecords.results, [
+            .value(true)
+        ])
+        isAddButtonDisabledRecords.clearResult()
+
+        // Open the screen
+        viewModel.inputs.onAppear.send()
+
+        // 8 positive statements
+        positiveStatementsRelay.send(Array(repeating: PositiveStatementModel(value: "", createdDate: Date()), count: 8))
+        // It should enable add button
+        XCTAssertEqual(isAddButtonDisabledRecords.results, [
+            .value(false)
+        ])
+        isAddButtonDisabledRecords.clearResult()
+
+        // 3 positive statements
+        positiveStatementsRelay.send(Array(repeating: PositiveStatementModel(value: "", createdDate: Date()), count: 3))
+        // It should enable add button
+        XCTAssertEqual(isAddButtonDisabledRecords.results, [
+            .value(false)
+        ])
+    }
+
+    func test_ifPositiveStatementCountMoreThan9__itShouldEnableAddButton() {
+        let positiveStatementsRelay = PassthroughSubject<[PositiveStatementModel], Error>()
+        positiveStatementRepository.subscribePositiveStatements_result = positiveStatementsRelay.eraseToAnyPublisher()
+
+        let isAddButtonDisabledRecords = TestRecord(publisher: viewModel.outputs.isAddButtonDisabled.eraseToAnyPublisher())
+        isAddButtonDisabledRecords.clearResult()
+
+        // Open the screen
+        viewModel.inputs.onAppear.send()
+
+        // 10 positive statements
+        positiveStatementsRelay.send(Array(repeating: PositiveStatementModel(value: "", createdDate: Date()), count: 10))
+        // It should disable add button
+        XCTAssertEqual(isAddButtonDisabledRecords.results, [
+            .value(true)
+        ])
+        isAddButtonDisabledRecords.clearResult()
+
+        // 15 positive statements
+        positiveStatementsRelay.send(Array(repeating: PositiveStatementModel(value: "", createdDate: Date()), count: 15))
+        // It should disable add button
+        XCTAssertEqual(isAddButtonDisabledRecords.results, [
+            .value(true)
+        ])
+    }
+
     func test_ifAUserTapsAddButton__itShouldPresentAddPositiveStatement() {
         // Taps add button
         viewModel.inputs.addButtonDidTap.send()

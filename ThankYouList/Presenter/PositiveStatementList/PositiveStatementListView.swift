@@ -162,6 +162,7 @@ struct PositiveStatementListView: View {
                 Text(R.string.localizable.positive_statement_list_add_button_text())
             }
         }
+        .disabled(viewModel.outputs.isAddButtonDisabled.value)
         .buttonStyle(PrimaryButtonStyle())
         .padding(.horizontal, ViewConst.spacing20)
         .padding(.vertical, ViewConst.spacing8)

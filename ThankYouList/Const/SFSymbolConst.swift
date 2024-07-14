@@ -10,4 +10,5 @@ enum SFSymbolConst {
     static let lightbulb = "lightbulb"
     static let chevronRight = "chevron.right"
     static let ellipsis = "ellipsis"
+    static let squareAndPencil = "square.and.pencil"
 }

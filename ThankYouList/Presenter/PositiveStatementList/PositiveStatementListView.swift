@@ -24,6 +24,8 @@ private let emptyViewTitleFontSize = CGFloat(20)
 private let emptyViewDescriptionFontSize = CGFloat(15)
 private let emptyViewDescriptionLineSpacing = CGFloat(3)
 
+private let addButtonIconFontSize = CGFloat(17)
+
 struct PositiveStatementListView: View {
 
     @StateObject var viewModel: PositiveStatementListViewModel
@@ -33,6 +35,7 @@ struct PositiveStatementListView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             contentView
+            addButton
         }
         .screenBackground(Color.defaultBackground)
         .navigationBarTitle(R.string.localizable.positive_statement_list_title(), displayMode: .large)
@@ -147,6 +150,20 @@ struct PositiveStatementListView: View {
         .frame(maxHeight: .infinity)
         .padding(.horizontal, ViewConst.spacing20)
         .padding(.bottom, ViewConst.spacing80)
+    }
+    
+    private var addButton: some View {
+        Button {
+        } label: {
+            HStack {
+                Image(systemName: SFSymbolConst.squareAndPencil)
+                    .font(.regularAvenir(ofSize: addButtonIconFontSize))
+                Text(R.string.localizable.positive_statement_list_add_button_text())
+            }
+        }
+        .buttonStyle(PrimaryButtonStyle())
+        .padding(.horizontal, ViewConst.spacing20)
+        .padding(.vertical, ViewConst.spacing8)
     }
 }
 

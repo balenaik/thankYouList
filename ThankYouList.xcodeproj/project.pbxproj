@@ -111,6 +111,7 @@
 		A8AC1BD01FAE00B600D1B25B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A8AC1BCE1FAE00B600D1B25B /* Localizable.strings */; };
 		A8AC1BD71FD20E5500D1B25B /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC1BD61FD20E5500D1B25B /* MainTabBarController.swift */; };
 		A8ADC1552C43366200830B39 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ADC1542C43366200830B39 /* PrimaryButtonStyle.swift */; };
+		A8ADC1572C43B45200830B39 /* Color+Blend.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ADC1562C43B45200830B39 /* Color+Blend.swift */; };
 		A8AFE4CF22DB81960045C707 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8AFE4CE22DB81960045C707 /* GoogleService-Info.plist */; };
 		A8B6EE8E2201E41D00908D51 /* String+ToDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6EE8D2201E41D00908D51 /* String+ToDate.swift */; };
 		A8B6EE9122055CE900908D51 /* Date+ToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6EE9022055CE900908D51 /* Date+ToString.swift */; };
@@ -271,6 +272,7 @@
 		A8AC1BD11FAE00DE00D1B25B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A8AC1BD61FD20E5500D1B25B /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		A8ADC1542C43366200830B39 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
+		A8ADC1562C43B45200830B39 /* Color+Blend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Blend.swift"; sourceTree = "<group>"; };
 		A8AFE4CE22DB81960045C707 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A8B6EE8D2201E41D00908D51 /* String+ToDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ToDate.swift"; sourceTree = "<group>"; };
 		A8B6EE9022055CE900908D51 /* Date+ToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ToString.swift"; sourceTree = "<group>"; };
@@ -500,6 +502,7 @@
 				A8775597282C5C5C003141B0 /* UIColor+Modification.swift */,
 				A8A0FE60205E005D0048AB33 /* UIColor+SetColor.swift */,
 				A810D8D923461F99008F2E74 /* UIColor+Theme.swift */,
+				A8ADC1562C43B45200830B39 /* Color+Blend.swift */,
 				A8E6CD0A29601E150042AA81 /* Color+SetColor.swift */,
 				A8E6CD0829601D870042AA81 /* Color+Theme.swift */,
 				A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */,
@@ -1042,6 +1045,7 @@
 				A895A56F297CCAAC0081E08F /* Publisher+Operators.swift in Sources */,
 				A8E6CD0B29601E150042AA81 /* Color+SetColor.swift in Sources */,
 				A8A06863244F444400839D14 /* MyPageProfileCell.swift in Sources */,
+				A8ADC1572C43B45200830B39 /* Color+Blend.swift in Sources */,
 				A83A36202972830A00AD2790 /* Router.swift in Sources */,
 				A83A361E2972615900AD2790 /* AddThankYouCoordinator.swift in Sources */,
 				A8A85AED25A7473D00182B99 /* UIViewController+Alert.swift in Sources */,

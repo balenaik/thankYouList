@@ -14,7 +14,7 @@ extension View {
         self.toolbar {
             ToolbarItem(placement: .cancellationAction) {
                 Button(action: buttonTapAction) {
-                    Image(R.image.icCancel)
+                    Image(R.image.icClose24)
                         .foregroundColor(.text)
                 }
             }

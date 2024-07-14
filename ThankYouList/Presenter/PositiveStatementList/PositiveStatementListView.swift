@@ -154,6 +154,7 @@ struct PositiveStatementListView: View {
     
     private var addButton: some View {
         Button {
+            viewModel.inputs.addButtonDidTap.send()
         } label: {
             HStack {
                 Image(systemName: SFSymbolConst.squareAndPencil)

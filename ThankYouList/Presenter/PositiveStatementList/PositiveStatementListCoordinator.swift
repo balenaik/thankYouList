@@ -46,4 +46,10 @@ extension PositiveStatementListCoordinator: PositiveStatementListRouter {
     func popToPreviousScreen() {
         routingType.navigationController?.popViewController(animated: true)
     }
+
+    func presentAddPositiveStatement() {
+        guard let viewController = viewController else { return }
+        let coordinator = AddPositiveStatementCoordinator(presentingViewController: viewController)
+        coordinator.start()
+    }
 }

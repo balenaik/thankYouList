@@ -11,6 +11,7 @@ import Foundation
 
 protocol PositiveStatementListRouter: Router {
     func popToPreviousScreen()
+    func presentAddPositiveStatement()
 }
 
 class PositiveStatementListViewModel: ObservableObject {
@@ -72,12 +73,19 @@ private extension PositiveStatementListViewModel {
                     ])
             }
             .store(in: &cancellable)
+
+        inputs.addButtonDidTap
+            .sink { [router] in
+                router?.presentAddPositiveStatement()
+            }
+            .store(in: &cancellable)
     }
 }
 
 extension PositiveStatementListViewModel {
     class Inputs {
         let onAppear = PassthroughSubject<Void, Never>()
+        let addButtonDidTap = PassthroughSubject<Void, Never>()
     }
 
     class Outputs {

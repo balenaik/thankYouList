@@ -120,6 +120,14 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         // It should pop to previous screen
         XCTAssertEqual(router.popToPreviousScreen_calledCount, 1)
     }
+
+    func test_ifAUserTapsAddButton__itShouldPresentAddPositiveStatement() {
+        // Taps add button
+        viewModel.inputs.addButtonDidTap.send()
+
+        // It should present AddPositiveStatement
+        XCTAssertEqual(router.presentAddPositiveStatement_calledCount, 1)
+    }
 }
 
 private class MockPositiveStatementListRouter: MockRouter, PositiveStatementListRouter {

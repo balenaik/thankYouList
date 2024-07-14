@@ -21,12 +21,17 @@ struct PrimaryButtonStyle: ButtonStyle {
         configuration.isPressed ? pressedOpacity : 1
         : disabledOpacity
 
+        let backgroundColor = Color.createBlendedColor(
+            base: .defaultBackground,
+            with: .primary500,
+            blendingOpacity: backgroundOpacity)
+
         return configuration.label
            .font(.boldAvenir(ofSize: fontSize))
            .frame(maxWidth: .infinity)
            .padding(.all, ViewConst.spacing12)
            .foregroundColor(isEnabled ? .text : .text.opacity(disabledOpacity))
-           .background(Color.primary500.opacity(backgroundOpacity))
+           .background(backgroundColor)
            .cornerRadius(cornerRadius)
     }
 }

@@ -60,7 +60,7 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         let positiveStatementsRelay = PassthroughSubject<[PositiveStatementModel], Error>()
         positiveStatementRepository.subscribePositiveStatements_result = positiveStatementsRelay.eraseToAnyPublisher()
 
-        let positiveStatementsRecords = TestRecord(publisher: viewModel.outputs.positiveStatements.eraseToAnyPublisher())
+        let positiveStatementsRecords = TestRecord(publisher: viewModel.outputs.$positiveStatements.eraseToAnyPublisher())
         positiveStatementsRecords.clearResult()
 
         // Open the screen
@@ -125,7 +125,7 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         let positiveStatementsRelay = PassthroughSubject<[PositiveStatementModel], Error>()
         positiveStatementRepository.subscribePositiveStatements_result = positiveStatementsRelay.eraseToAnyPublisher()
 
-        let isAddButtonDisabledRecords = TestRecord(publisher: viewModel.outputs.isAddButtonDisabled.eraseToAnyPublisher())
+        let isAddButtonDisabledRecords = TestRecord(publisher: viewModel.outputs.$isAddButtonDisabled.eraseToAnyPublisher())
 
         // add button should be initially disabled
         XCTAssertEqual(isAddButtonDisabledRecords.results, [
@@ -156,7 +156,7 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         let positiveStatementsRelay = PassthroughSubject<[PositiveStatementModel], Error>()
         positiveStatementRepository.subscribePositiveStatements_result = positiveStatementsRelay.eraseToAnyPublisher()
 
-        let isAddButtonDisabledRecords = TestRecord(publisher: viewModel.outputs.isAddButtonDisabled.eraseToAnyPublisher())
+        let isAddButtonDisabledRecords = TestRecord(publisher: viewModel.outputs.$isAddButtonDisabled.eraseToAnyPublisher())
         isAddButtonDisabledRecords.clearResult()
 
         // Open the screen

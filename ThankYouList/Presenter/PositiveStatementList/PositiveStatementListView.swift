@@ -28,9 +28,17 @@ private let addButtonIconFontSize = CGFloat(17)
 
 struct PositiveStatementListView: View {
 
-    @StateObject var viewModel: PositiveStatementListViewModel
+    // To receive output event update in real time,
+    // we need to hold outputs itself as a StateObject. viewModel.outputs doesn't work.
+    // (There is another way to solve this issue by adding @State property to each output property and use onReceive to update them,
+    // but for this view, I chose to hold outputs itself as a StateObject for scalability.)
+    private let viewModelInputs: PositiveStatementListViewModel.Inputs
+    @StateObject private var viewModelOutputs: PositiveStatementListViewModel.Outputs
 
-    @State private var positiveStatements = [PositiveStatementModel]()
+    init(viewModel: PositiveStatementListViewModel) {
+        viewModelInputs = viewModel.inputs
+        _viewModelOutputs = StateObject(wrappedValue: viewModel.outputs)
+    }
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -39,15 +47,12 @@ struct PositiveStatementListView: View {
         }
         .screenBackground(Color.defaultBackground)
         .navigationBarTitle(R.string.localizable.positive_statement_list_title(), displayMode: .large)
-        .onAppear { viewModel.inputs.onAppear.send() }
-        .onReceive(viewModel.outputs.positiveStatements) {
-            positiveStatements = $0
-        }
+        .onAppear { viewModelInputs.onAppear.send() }
     }
 
     @ViewBuilder
     private var contentView: some View {
-        if positiveStatements.isEmpty {
+        if viewModelOutputs.positiveStatements.isEmpty {
             emptyView
         } else {
             List {
@@ -104,7 +109,7 @@ struct PositiveStatementListView: View {
     private var positiveStatementsSection: some View {
         Section {
             VStack(spacing: 0) {
-                ForEach(positiveStatements) { positiveStatement in
+                ForEach(viewModelOutputs.positiveStatements) { positiveStatement in
                     positiveStatementRow(positiveStatement)
                 }
             }
@@ -154,7 +159,7 @@ struct PositiveStatementListView: View {
     
     private var addButton: some View {
         Button {
-            viewModel.inputs.addButtonDidTap.send()
+            viewModelInputs.addButtonDidTap.send()
         } label: {
             HStack {
                 Image(systemName: SFSymbolConst.squareAndPencil)
@@ -162,7 +167,7 @@ struct PositiveStatementListView: View {
                 Text(R.string.localizable.positive_statement_list_add_button_text())
             }
         }
-        .disabled(viewModel.outputs.isAddButtonDisabled.value)
+        .disabled(viewModelOutputs.isAddButtonDisabled)
         .buttonStyle(PrimaryButtonStyle())
         .padding(.horizontal, ViewConst.spacing20)
         .padding(.vertical, ViewConst.spacing8)

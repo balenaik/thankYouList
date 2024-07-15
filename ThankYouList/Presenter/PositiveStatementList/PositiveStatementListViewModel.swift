@@ -19,7 +19,7 @@ protocol PositiveStatementListRouter: Router {
 class PositiveStatementListViewModel: ObservableObject {
 
     let inputs = Inputs()
-    let outputs = Outputs()
+    @Published var outputs = Outputs()
 
     private var cancellable = Set<AnyCancellable>()
     private let userRepository: UserRepository
@@ -58,8 +58,7 @@ private extension PositiveStatementListViewModel {
 
         positiveStatements
             .values()
-            .subscribe(outputs.positiveStatements)
-            .store(in: &cancellable)
+            .assign(to: &outputs.$positiveStatements)
 
         positiveStatements
             .errors()
@@ -79,8 +78,7 @@ private extension PositiveStatementListViewModel {
         positiveStatements
             .values()
             .map { $0.count >= maxPositiveStatementCount }
-            .subscribe(outputs.isAddButtonDisabled)
-            .store(in: &cancellable)
+            .assign(to: &outputs.$isAddButtonDisabled)
 
         inputs.addButtonDidTap
             .sink { [router] in
@@ -96,8 +94,8 @@ extension PositiveStatementListViewModel {
         let addButtonDidTap = PassthroughSubject<Void, Never>()
     }
 
-    class Outputs {
-        let positiveStatements = CurrentValueSubject<[PositiveStatementModel], Never>([])
-        let isAddButtonDisabled = CurrentValueSubject<Bool, Never>(true)
+    class Outputs: ObservableObject {
+        @Published var positiveStatements = [PositiveStatementModel]()
+        @Published var isAddButtonDisabled = true
     }
 }

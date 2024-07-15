@@ -170,7 +170,7 @@ struct PositiveStatementListView: View {
         .disabled(viewModelOutputs.isAddButtonDisabled)
         .buttonStyle(PrimaryButtonStyle())
         .padding(.horizontal, ViewConst.spacing20)
-        .padding(.vertical, ViewConst.spacing8)
+        .padding(.vertical, ViewConst.spacing16)
     }
 }
 

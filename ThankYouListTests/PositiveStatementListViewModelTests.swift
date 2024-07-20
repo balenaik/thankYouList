@@ -185,6 +185,14 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         // It should present AddPositiveStatement
         XCTAssertEqual(router.presentAddPositiveStatement_calledCount, 1)
     }
+
+    func test_ifAUserTapsWidgetHintButton__itShouldPresentHomeWidgetInstruction() {
+        // Taps widget hint button
+        viewModel.inputs.widgetHintButtonDidTap.send()
+
+        // It should present home widget instruction
+        XCTAssertEqual(router.presentHomeWidgetInstruction_calledCount, 1)
+    }
 }
 
 private class MockPositiveStatementListRouter: MockRouter, PositiveStatementListRouter {
@@ -196,5 +204,10 @@ private class MockPositiveStatementListRouter: MockRouter, PositiveStatementList
     var presentAddPositiveStatement_calledCount = 0
     func presentAddPositiveStatement() {
         presentAddPositiveStatement_calledCount += 1
+    }
+
+    var presentHomeWidgetInstruction_calledCount = 0
+    func presentHomeWidgetInstruction() {
+        presentHomeWidgetInstruction_calledCount += 1
     }
 }

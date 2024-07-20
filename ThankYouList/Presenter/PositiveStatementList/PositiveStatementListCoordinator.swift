@@ -52,4 +52,13 @@ extension PositiveStatementListCoordinator: PositiveStatementListRouter {
         let coordinator = AddPositiveStatementCoordinator(presentingViewController: viewController)
         coordinator.start()
     }
+
+    func presentHomeWidgetInstruction() {
+        guard let viewController = viewController else { return }
+        let coordinator = HomeWidgetInstructionCoordinator(
+            presentingViewController: viewController,
+            page: .page1
+        )
+        coordinator?.start()
+    }
 }

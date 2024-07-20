@@ -104,6 +104,9 @@ struct PositiveStatementListView: View {
         .padding(.horizontal, ViewConst.spacing12)
         .background(Color.primary100)
         .clipShape(RoundedRectangle(cornerRadius: widgetSetupHintButtonCornerRadius, style: .circular))
+        .onTapGesture {
+            viewModelInputs.widgetHintButtonDidTap.send()
+        }
     }
 
     private var positiveStatementsSection: some View {

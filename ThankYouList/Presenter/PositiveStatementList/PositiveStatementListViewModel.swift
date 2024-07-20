@@ -14,6 +14,7 @@ private let maxPositiveStatementCount = 10
 protocol PositiveStatementListRouter: Router {
     func popToPreviousScreen()
     func presentAddPositiveStatement()
+    func presentHomeWidgetInstruction()
 }
 
 class PositiveStatementListViewModel: ObservableObject {
@@ -85,6 +86,12 @@ private extension PositiveStatementListViewModel {
                 router?.presentAddPositiveStatement()
             }
             .store(in: &cancellable)
+
+        inputs.widgetHintButtonDidTap
+            .sink { [router] in
+                router?.presentHomeWidgetInstruction()
+            }
+            .store(in: &cancellable)
     }
 }
 
@@ -92,6 +99,7 @@ extension PositiveStatementListViewModel {
     class Inputs {
         let onAppear = PassthroughSubject<Void, Never>()
         let addButtonDidTap = PassthroughSubject<Void, Never>()
+        let widgetHintButtonDidTap = PassthroughSubject<Void, Never>()
     }
 
     class Outputs: ObservableObject {

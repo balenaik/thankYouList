@@ -113,6 +113,7 @@
 		A8ADC1552C43366200830B39 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ADC1542C43366200830B39 /* PrimaryButtonStyle.swift */; };
 		A8ADC1572C43B45200830B39 /* Color+Blend.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ADC1562C43B45200830B39 /* Color+Blend.swift */; };
 		A8ADC15A2C43CF5300830B39 /* HomeWidgetInstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ADC1592C43CF5300830B39 /* HomeWidgetInstructionView.swift */; };
+		A8ADC15C2C43D06800830B39 /* HomeWidgetInstructionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ADC15B2C43D06800830B39 /* HomeWidgetInstructionCoordinator.swift */; };
 		A8ADC15E2C43D0A800830B39 /* HomeWidgetInstructionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ADC15D2C43D0A800830B39 /* HomeWidgetInstructionViewModel.swift */; };
 		A8AFE4CF22DB81960045C707 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8AFE4CE22DB81960045C707 /* GoogleService-Info.plist */; };
 		A8B6EE8E2201E41D00908D51 /* String+ToDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6EE8D2201E41D00908D51 /* String+ToDate.swift */; };
@@ -276,6 +277,7 @@
 		A8ADC1542C43366200830B39 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		A8ADC1562C43B45200830B39 /* Color+Blend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Blend.swift"; sourceTree = "<group>"; };
 		A8ADC1592C43CF5300830B39 /* HomeWidgetInstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWidgetInstructionView.swift; sourceTree = "<group>"; };
+		A8ADC15B2C43D06800830B39 /* HomeWidgetInstructionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWidgetInstructionCoordinator.swift; sourceTree = "<group>"; };
 		A8ADC15D2C43D0A800830B39 /* HomeWidgetInstructionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWidgetInstructionViewModel.swift; sourceTree = "<group>"; };
 		A8AFE4CE22DB81960045C707 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A8B6EE8D2201E41D00908D51 /* String+ToDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ToDate.swift"; sourceTree = "<group>"; };
@@ -655,6 +657,7 @@
 			children = (
 				A8ADC1592C43CF5300830B39 /* HomeWidgetInstructionView.swift */,
 				A8ADC15D2C43D0A800830B39 /* HomeWidgetInstructionViewModel.swift */,
+				A8ADC15B2C43D06800830B39 /* HomeWidgetInstructionCoordinator.swift */,
 			);
 			path = HomeWidgetInstruction;
 			sourceTree = "<group>";
@@ -1072,6 +1075,7 @@
 				A88135102131435100BE8F48 /* ThankYouEmptyView.swift in Sources */,
 				A80EAE5621F44DD7006B02E8 /* EditThankYouViewController.swift in Sources */,
 				A8831CC91E9CFE6B00F3CA0A /* ThankYouListViewController.swift in Sources */,
+				A8ADC15C2C43D06800830B39 /* HomeWidgetInstructionCoordinator.swift in Sources */,
 				A8574DD62BE2FB240073AA61 /* LottieView.swift in Sources */,
 				A895A575298FA6E10081E08F /* ReplaySubjectSubscription.swift in Sources */,
 				A84FDB6021DC37EA00593326 /* SettingHeaderView.swift in Sources */,

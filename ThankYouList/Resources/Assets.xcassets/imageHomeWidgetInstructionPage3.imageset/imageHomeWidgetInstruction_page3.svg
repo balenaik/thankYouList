@@ -1,0 +1,67 @@
+<svg width="400" height="800" xmlns="http://www.w3.org/2000/svg">
+  <!-- iPhone frame with thicker edge and centered shorter, straight-top notch -->
+  <rect x="10" y="10" width="380" height="780" rx="50" ry="50" fill="none" stroke="#2E2025" stroke-width="20" />
+  <rect x="180" y="740" width="40" height="5" fill="#2E2025" />
+
+  <!-- Background to represent the home screen, adjusted to fit inside the frame with curved corners and no gap -->
+  <rect x="20" y="20" width="360" height="760" rx="40" ry="40" fill="#fedada" />
+
+  <!-- View that covers 4/5 of the screen from the bottom with fdfdfd background -->
+  <rect x="20" y="180" width="360" height="600" rx="40" ry="40" fill="#fdfdfd" />
+
+  <!-- Small wide rectangle at the top of the covered view with color c1c4c2, centered horizontally and shorter -->
+  <rect x="160" y="200" width="80" height="10" rx="5" ry="5" fill="#c1c4c2" />
+
+  <!-- Search bar lower position with a lighter color, wider and height increased -->
+  <rect x="50" y="280" width="300" height="60" rx="15" ry="15" fill="#ebedec" />
+
+  <!-- Search icon on the left side of the search bar -->
+  <circle cx="80" cy="310" r="11" fill="none" stroke="#000000" stroke-opacity="0.87" stroke-width="4" />
+  <line x1="88" y1="318" x2="94" y2="324" stroke="#000000" stroke-opacity="0.87" stroke-width="4" stroke-linecap="round" />
+
+  <!-- Embedded PNG image for "Thank You List", slightly upper and righter -->
+  <image x="110" y="285" width="200" height="50" href="data:image/png;base64,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" />
+
+  <!-- Centered Shorter Notch with straight top and rounded bottom -->
+  <path d="M130,10 h140 v15 a20,20 0 0 1 -20,20 h-100 a20,20 0 0 1 -20,-20 v-15 z" fill="#2E2025" />
+
+  <!-- Rounded square background behind Thank You Chan icon -->
+  <rect x="110" y="410" width="180" height="180" rx="20" ry="20" fill="#fcb5b5" />
+
+  <!-- Thank You Chan icon below the search bar, resized to 180x180 and color set to white -->
+  <g transform="translate(110,410) scale(0.133)">
+    <g transform="matrix(1.3333333,0,0,-1.3333333,0,1365.3333)">
+      <g id="g843" />
+      <g id="g855">
+        <g clip-path="url(#clipPath861)" id="g857">
+          <path id="path863" style="fill:#ffffff;fill-opacity:0.9;fill-rule:nonzero;stroke:none" d="m 686.7938,620.0689 c 13.8967,-14.8894 13.8967,-39.0299 0,-53.9193 -13.8967,-14.8894 -36.4276,-14.8894 -50.3243,0 -13.8967,14.8894 -13.8967,39.0299 0,53.9193 13.8967,14.8894 36.4276,14.8894 50.3243,0 z" />
+        </g>
+      </g>
+      <g transform="matrix(1,0,0,1.0940542,0,-37.828161)" id="g865">
+        <g transform="translate(6)" clip-path="url(#clipPath871)" id="g867">
+          <g clip-path="url(#clipPath877)" id="g873">
+            <g clip-path="url(#clipPath883)" id="g879">
+              <g transform="rotate(90,138.5,465.5)" id="g885">
+                <g style="font-variant:normal;font-weight:normal;font-size:350px;font-family:'Andale Mono';-inkscape-font-specification:AndaleMono;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none" id="text889" transform="scale(1,-1)" aria-label="(">
+                  <path style="stroke-width:1.01609" id="path925" d="m 163.65028,34.31364 c 10.08301,9.410212 3.03651,31.959411 -9.66694,22.019874 C 141.27989,46.393978 109.20795,13.34061 95.87787,-13.007984 82.547791,-39.356577 75.882752,-67.175516 75.882752,-96.4648 c 0,-29.52455 6.608073,-57.34348 19.824219,-83.45682 13.216149,-26.23096 45.458989,-59.22552 58.276369,-69.16506 12.81738,-9.93953 22.91192,10.79317 12.48712,20.43864 -10.4248,9.64547 -40.62264,36.20684 -49.85115,57.37982 -9.11459,21.05535 -17.579013,44.57311 -17.579013,74.45054 0,30.936068 11.306973,56.990591 20.763353,78.163569 9.57031,21.0553494 33.76362,43.55754 43.84663,52.967751 z" />
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g id="g891">
+        <g clip-path="url(#clipPath897)" id="g893">
+          <g transform="matrix(1,0,0,-1,189.0927,781.3186)" id="g907">
+            <path id="path923" d="M 322.90625,-14 C 230.89624,-14 147.33673,13.91021 86.167969,59.871094 24.999211,105.83198 -14,170.59133 -14,242.625 -13.999989,314.65866 24.999214,379.41802 86.167969,425.37891 147.33672,471.33979 230.89624,499.25 322.90625,499.25 c 39.58912,0 77.54929,-5.27536 112.87891,-14.82617 7.81738,4.41661 51.31203,28.94734 69.86132,37.54101 8.22295,3.8096 14.40319,7.78484 21.5254,10.86524 3.5611,1.5402 7.56893,2.99993 12.6621,3.07422 5.09318,0.0743 11.00913,-1.95715 15.13868,-5.28516 3.1976,-2.57696 6.3487,-6.1382 8.01953,-10.67187 1.67082,-4.53368 1.4818,-9.10299 0.90039,-12.41407 -1.16282,-6.62216 -3.11286,-10.52508 -4.51172,-16.78906 C 556.19548,476.48026 547.24927,449.4282 543.05664,436.89062 613.73203,390.39159 659.8125,320.94089 659.8125,242.625 659.8125,170.59133 620.8133,105.83198 559.64453,59.871094 498.47576,13.91021 414.91631,-14 322.90625,-14 Z m 0,28 c 86.32494,0 164.21734,26.403618 219.91797,68.255859 55.70063,41.852241 88.98828,98.405311 88.98828,160.369141 0,70.32227 -37.6998,129.60881 -107.44249,172.14345 -11.92152,7.27069 -14.56817,12.07594 -10.2667,24.94943 0.9913,2.96679 4.9653,15.02749 9.08598,27.5631 3.53899,10.76604 9.58145,26.34712 11.54029,32.35379 1.16521,3.57307 -1.63059,3.38086 -2.41886,4.19724 -2.07986,2.15404 -11.30464,-4.5109 -19.19656,-8.17198 -10.88297,-5.04864 -62.91712,-34.69213 -65.89853,-36.70812 -4.9286,-3.33266 -11.48623,-3.49519 -16.91419,-1.94384 -34.4002,9.8318 -68.26863,14.24193 -107.39519,14.24193 -86.32489,0 -164.21735,-26.40362 -219.91797,-68.25586 C 47.287666,361.1419 14.000009,304.58884 14,242.625 14,180.66117 47.287664,124.1081 102.98828,82.255859 158.6889,40.403618 236.58136,14 322.90625,14 Z" style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:0.8968;fill-rule:nonzero;stroke:none;stroke-width:28;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate;stop-color:#000000;stop-opacity:1" />
+          </g>
+        </g>
+      </g>
+      <g id="g911">
+        <g clip-path="url(#clipPath917)" id="g913">
+          <path id="path919" style="fill:#ffffff;fill-opacity:0.9;fill-rule:nonzero;stroke:none" d="m 382.1027,620.0689 c 13.8966,-14.8894 13.8966,-39.0299 0,-53.9193 -13.8967,-14.8894 -36.4277,-14.8894 -50.3244,0 -13.8966,14.8894 -13.8966,39.0299 0,53.9193 13.8967,14.8894 36.4277,14.8894 50.3244,0 z" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

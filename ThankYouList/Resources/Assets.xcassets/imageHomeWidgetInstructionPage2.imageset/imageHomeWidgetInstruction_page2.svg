@@ -1,0 +1,55 @@
+<svg width="400" height="800" xmlns="http://www.w3.org/2000/svg">
+  <!-- iPhone frame with thicker edge and centered shorter, straight-top notch -->
+  <rect x="10" y="10" width="380" height="780" rx="50" ry="50" fill="none" stroke="#2E2025" stroke-width="20" />
+  <rect x="180" y="740" width="40" height="5" fill="#2E2025" />
+
+  <!-- Background to represent the home screen, adjusted to fit inside the frame with curved corners and no gap -->
+  <rect x="20" y="20" width="360" height="760" rx="40" ry="40" fill="#fff6f6" />
+
+  <!-- Centered Shorter Notch with straight top and rounded bottom -->
+  <path d="M130,10 h140 v15 a20,20 0 0 1 -20,20 h-100 a20,20 0 0 1 -20,-20 v-15 z" fill="#2E2025" />
+
+  <!-- App icons in non-jiggling state, arranged in 4 columns and 6 rows with #fedada color -->
+  <g id="app-icons">
+    <!-- Row 1 -->
+    <rect x="48" y="90" width="65" height="65" rx="10" ry="10" fill="#fedada" />
+    <rect x="128" y="90" width="65" height="65" rx="10" ry="10" fill="#fedada" />
+    <rect x="208" y="90" width="65" height="65" rx="10" ry="10" fill="#fedada" />
+    <rect x="288" y="90" width="65" height="65" rx="10" ry="10" fill="#fedada" />
+    
+    <!-- Row 2 -->
+    <rect x="48" y="180" width="65" height="65" rx="10" ry="10" fill="#fedada" />
+    <rect x="128" y="180" width="65" height="65" rx="10" ry="10" fill="#fedada" />
+    <rect x="208" y="180" width="65" height="65" rx="10" ry="10" fill="#fedada" />
+    <rect x="288" y="180" width="65" height="65" rx="10" ry="10" fill="#fedada" />
+    
+    <!-- Row 3 -->
+    <rect x="48" y="270" width="65" height="65" rx="10" ry="10" fill="#fedada" />
+    <rect x="128" y="270" width="65" height="65" rx="10" ry="10" fill="#fedada" />
+    <rect x="208" y="270" width="65" height="65" rx="10" ry="10" fill="#fedada" />
+    <rect x="288" y="270" width="65" height="65" rx="10" ry="10" fill="#fedada" />
+    
+    <!-- Row 4 -->
+    <rect x="48" y="360" width="65" height="65" rx="10" ry="10" fill="#fedada" />
+    <rect x="128" y="360" width="65" height="65" rx="10" ry="10" fill="#fedada" />
+    <rect x="208" y="360" width="65" height="65" rx="10" ry="10" fill="#fedada" />
+    <rect x="288" y="360" width="65" height="65" rx="10" ry="10" fill="#fedada" />
+    
+    <!-- Row 5 -->
+    <rect x="48" y="450" width="65" height="65" rx="10" ry="10" fill="#fedada" />
+    <rect x="128" y="450" width="65" height="65" rx="10" ry="10" fill="#fedada" />
+    <rect x="208" y="450" width="65" height="65" rx="10" ry="10" fill="#fedada" />
+    <rect x="288" y="450" width="65" height="65" rx="10" ry="10" fill="#fedada" />
+    
+    <!-- Row 6 (aligned to the bottom of the frame) -->
+    <rect x="48" y="680" width="65" height="65" rx="10" ry="10" fill="#fedada" />
+    <rect x="128" y="680" width="65" height="65" rx="10" ry="10" fill="#fedada" />
+    <rect x="208" y="680" width="65" height="65" rx="10" ry="10" fill="#fedada" />
+    <rect x="288" y="680" width="65" height="65" rx="10" ry="10" fill="#fedada" />
+  </g>
+
+  <!-- Plus button in a wide rectangle on the upper left of the device, centered around the plus symbol -->
+  <rect x="42.5" y="32.5" width="75" height="35" rx="15" ry="15" fill="#FA8D8D" />
+  <line x1="70" y1="50" x2="90" y2="50" stroke="white" stroke-width="4" stroke-linecap="round" />
+  <line x1="80" y1="40" x2="80" y2="60" stroke="white" stroke-width="4" stroke-linecap="round" />
+</svg>

@@ -30,8 +30,9 @@ class HomeWidgetInstructionCoordinator: Coordinator {
     }
 
     func start() {
+        let viewModel = HomeWidgetInstructionViewModel(page: page, router: self)
         let hostingController = UIHostingController(
-            rootView: HomeWidgetInstructionView()
+            rootView: HomeWidgetInstructionView(viewModel: viewModel)
         )
         switch page.navigationType {
         case .modal:

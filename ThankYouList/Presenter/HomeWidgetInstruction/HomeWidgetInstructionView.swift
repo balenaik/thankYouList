@@ -16,6 +16,19 @@ private let imageHeight = CGFloat(300)
 private let descriptionFontSize = CGFloat(16)
 
 struct HomeWidgetInstructionView: View {
+
+    // MARK: - ViewModel
+
+    private let viewModelInputs: HomeWidgetInstructionViewModel.Inputs
+    @StateObject private var viewModelOutputs: HomeWidgetInstructionViewModel.Outputs
+
+    init(viewModel: HomeWidgetInstructionViewModel) {
+        viewModelInputs = viewModel.inputs
+        _viewModelOutputs = StateObject(wrappedValue: viewModel.outputs)
+    }
+
+    // MARK: - Body
+
     var body: some View {
         NavigationView {
             contentView

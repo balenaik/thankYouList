@@ -53,3 +53,21 @@ class HomeWidgetInstructionCoordinator: Coordinator {
         routingType.navigationController?.pushViewController(hostingController, animated: true)
     }
 }
+
+extension HomeWidgetInstructionCoordinator: HomeWidgetinstructionRouter {
+    func pushToPage2() {
+        guard let navigationController = viewController as? UINavigationController else { return }
+        let coordinator = HomeWidgetInstructionCoordinator(
+            navigationController: navigationController,
+            page: .page2)
+        coordinator?.start()
+    }
+
+    func pushToPage3() {
+        guard let navigationController = viewController as? UINavigationController else { return }
+        let coordinator = HomeWidgetInstructionCoordinator(
+            navigationController: navigationController,
+            page: .page3)
+        coordinator?.start()
+    }
+}

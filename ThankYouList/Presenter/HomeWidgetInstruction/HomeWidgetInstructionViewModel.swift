@@ -23,3 +23,8 @@ enum HomeWidgetinstructionPage {
         }
     }
 }
+
+protocol HomeWidgetinstructionRouter: Router {
+    func pushToPage2()
+    func pushToPage3()
+}

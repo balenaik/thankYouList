@@ -24,6 +24,7 @@ class HomeWidgetInstructionCoordinator: Coordinator {
         case .push:
             guard let navigationController else { return nil }
             routingType = .push(navigationController: navigationController)
+            viewController = navigationController
         }
         self.page = page
     }
@@ -49,7 +50,6 @@ class HomeWidgetInstructionCoordinator: Coordinator {
     }
 
     private func startPush(_ hostingController: UIHostingController<HomeWidgetInstructionView>) {
-        viewController = hostingController
         routingType.navigationController?.pushViewController(hostingController, animated: true)
     }
 }

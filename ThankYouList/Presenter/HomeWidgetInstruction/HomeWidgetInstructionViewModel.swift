@@ -40,6 +40,13 @@ enum HomeWidgetinstructionPage {
         case .page3: R.string.localizable.home_widget_instruction_page3_description()
         }
     }
+
+    var bottomButtonTitle: String {
+        switch self {
+        case .page1, .page2: R.string.localizable.next()
+        case .page3: R.string.localizable.done()
+        }
+    }
 }
 
 protocol HomeWidgetinstructionRouter: Router {
@@ -71,6 +78,7 @@ private extension HomeWidgetInstructionViewModel {
             .sink { [outputs, page] in
                 outputs.imageName = page.imageName
                 outputs.description = page.description
+                outputs.bottomButtonTitle = page.bottomButtonTitle
             }
             .store(in: &cancellable)
 
@@ -91,5 +99,6 @@ extension HomeWidgetInstructionViewModel {
     class Outputs: ObservableObject {
         @Published var imageName = ""
         @Published var description = ""
+        @Published var bottomButtonTitle = ""
     }
 }

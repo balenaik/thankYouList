@@ -61,9 +61,10 @@ struct HomeWidgetInstructionView: View {
 
             Spacer(minLength: 0)
 
-            Button(R.string.localizable.next()) { }
-                .buttonStyle(PrimaryButtonStyle())
-                .padding(.vertical, ViewConst.spacing16)
+            Button(viewModelOutputs.bottomButtonTitle) {
+            }
+            .buttonStyle(PrimaryButtonStyle())
+            .padding(.vertical, ViewConst.spacing16)
         }
         .padding(.horizontal, ViewConst.spacing20)
     }

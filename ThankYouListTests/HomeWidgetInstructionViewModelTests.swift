@@ -111,6 +111,48 @@ final class HomeWidgetInstructionViewModelTests: XCTestCase {
         XCTAssertEqual(descriptionRecords.results, [.value(R.string.localizable.home_widget_instruction_page3_description())])
     }
 
+    func test_ifTheUserOpensTheScreen_onPage1__itShouldShowNextOnTheBottomButton() {
+        // Setup page1
+        setupViewModel(page: .page1)
+
+        let bottomButtonTitleRecords = TestRecord(publisher: viewModel.outputs.$bottomButtonTitle.eraseToAnyPublisher())
+        bottomButtonTitleRecords.clearResult()
+
+        // Opens the screen
+        viewModel.inputs.onAppear.send()
+
+        // It should show "Next" for bottomButtonTitle
+        XCTAssertEqual(bottomButtonTitleRecords.results, [.value(R.string.localizable.next())])
+    }
+
+    func test_ifTheUserOpensTheScreen_onPage2__itShouldShowNextOnTheBottomButton() {
+        // Setup page2
+        setupViewModel(page: .page2)
+
+        let bottomButtonTitleRecords = TestRecord(publisher: viewModel.outputs.$bottomButtonTitle.eraseToAnyPublisher())
+        bottomButtonTitleRecords.clearResult()
+
+        // Opens the screen
+        viewModel.inputs.onAppear.send()
+
+        // It should show "Next" for bottomButtonTitle
+        XCTAssertEqual(bottomButtonTitleRecords.results, [.value(R.string.localizable.next())])
+    }
+
+    func test_ifTheUserOpensTheScreen_onPage3__itShouldShowDoneOnTheBottomButton() {
+        // Setup page3
+        setupViewModel(page: .page3)
+
+        let bottomButtonTitleRecords = TestRecord(publisher: viewModel.outputs.$bottomButtonTitle.eraseToAnyPublisher())
+        bottomButtonTitleRecords.clearResult()
+
+        // Opens the screen
+        viewModel.inputs.onAppear.send()
+
+        // It should show "Done" for bottomButtonTitle
+        XCTAssertEqual(bottomButtonTitleRecords.results, [.value(R.string.localizable.done())])
+    }
+
     func test_ifTheUserTapsCancelButton__itShouldDismissView() {
         // Taps cancel button
         viewModel.inputs.cancelButtonDidTap.send()

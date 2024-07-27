@@ -71,4 +71,8 @@ extension HomeWidgetInstructionCoordinator: HomeWidgetinstructionRouter {
             page: .page3)
         coordinator?.start()
     }
+
+    func dismiss() {
+        viewController?.dismiss(animated: true)
+    }
 }

@@ -50,11 +50,17 @@ class HomeWidgetInstructionViewModel: ObservableObject {
 
 private extension HomeWidgetInstructionViewModel {
     func bind() {
+        inputs.cancelButtonDidTap
+            .sink { [router] in
+                router?.dismiss()
+            }
+            .store(in: &cancellable)
     }
 }
 
 extension HomeWidgetInstructionViewModel {
     class Inputs {
+        let cancelButtonDidTap = PassthroughSubject<Void, Never>()
     }
 
     class Outputs: ObservableObject {

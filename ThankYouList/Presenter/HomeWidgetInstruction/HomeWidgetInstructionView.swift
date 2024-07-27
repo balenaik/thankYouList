@@ -33,7 +33,9 @@ struct HomeWidgetInstructionView: View {
         NavigationView {
             contentView
                 .screenBackground(Color.defaultBackground)
-                .cancelButtonToolbar {}
+                .cancelButtonToolbar {
+                    viewModelInputs.cancelButtonDidTap.send()
+                }
         }
     }
 

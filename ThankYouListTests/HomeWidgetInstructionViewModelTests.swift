@@ -11,8 +11,8 @@ import XCTest
 
 @testable import ThankYouList
 
-final class HomeWidgetInstructionViewModelTests: XCTest {
-    
+final class HomeWidgetInstructionViewModelTests: XCTestCase {
+
     private var viewModel: HomeWidgetInstructionViewModel!
     private var router: MockHomeWidgetInstructionRouter!
 
@@ -25,6 +25,14 @@ final class HomeWidgetInstructionViewModelTests: XCTest {
         viewModel = HomeWidgetInstructionViewModel(
             page: page,
             router: router)
+    }
+
+    func test_ifTheUserTapsCancelButton__itShouldDismissView() {
+        // Taps cancel button
+        viewModel.inputs.cancelButtonDidTap.send()
+
+        // It should dismiss view
+        XCTAssertEqual(router.dismiss_calledCount, 1)
     }
 }
 

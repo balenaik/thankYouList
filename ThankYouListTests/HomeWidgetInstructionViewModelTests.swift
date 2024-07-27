@@ -69,6 +69,48 @@ final class HomeWidgetInstructionViewModelTests: XCTestCase {
         XCTAssertEqual(imageNameRecords.results, [.value(R.image.imageHomeWidgetInstructionPage3.name)])
     }
 
+    func test_ifTheUserOpensTheScreen_onPage1__itShouldShowDescriptionForPage1() {
+        // Setup page1
+        setupViewModel(page: .page1)
+
+        let descriptionRecords = TestRecord(publisher: viewModel.outputs.$description.eraseToAnyPublisher())
+        descriptionRecords.clearResult()
+
+        // Opens the screen
+        viewModel.inputs.onAppear.send()
+
+        // It should show description for Page1
+        XCTAssertEqual(descriptionRecords.results, [.value(R.string.localizable.home_widget_instruction_page1_description())])
+    }
+
+    func test_ifTheUserOpensTheScreen_onPage2__itShouldShowDescriptionForPage2() {
+        // Setup page2
+        setupViewModel(page: .page2)
+
+        let descriptionRecords = TestRecord(publisher: viewModel.outputs.$description.eraseToAnyPublisher())
+        descriptionRecords.clearResult()
+
+        // Opens the screen
+        viewModel.inputs.onAppear.send()
+
+        // It should show description for Page2
+        XCTAssertEqual(descriptionRecords.results, [.value(R.string.localizable.home_widget_instruction_page2_description())])
+    }
+
+    func test_ifTheUserOpensTheScreen_onPage3__itShouldShowDescriptionForPage3() {
+        // Setup page3
+        setupViewModel(page: .page3)
+
+        let descriptionRecords = TestRecord(publisher: viewModel.outputs.$description.eraseToAnyPublisher())
+        descriptionRecords.clearResult()
+
+        // Opens the screen
+        viewModel.inputs.onAppear.send()
+
+        // It should show description for Page3
+        XCTAssertEqual(descriptionRecords.results, [.value(R.string.localizable.home_widget_instruction_page3_description())])
+    }
+
     func test_ifTheUserTapsCancelButton__itShouldDismissView() {
         // Taps cancel button
         viewModel.inputs.cancelButtonDidTap.send()

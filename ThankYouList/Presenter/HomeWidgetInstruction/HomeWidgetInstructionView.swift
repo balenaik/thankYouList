@@ -53,7 +53,7 @@ struct HomeWidgetInstructionView: View {
                 .frame(width: imageWidth, height: imageHeight)
                 .padding(.vertical, ViewConst.spacing24)
 
-            Text(R.string.localizable.home_widget_instruction_page1_description)
+            Text(viewModelOutputs.description)
                 .font(.regularAvenir(ofSize: descriptionFontSize))
                 .foregroundStyle(Color.text)
                 .multilineTextAlignment(.center)

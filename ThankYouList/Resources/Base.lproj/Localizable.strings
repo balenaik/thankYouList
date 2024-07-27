@@ -98,3 +98,5 @@
 
 "home_widget_instruction_title" = "How to add Widget";
 "home_widget_instruction_page1_description" = "Tap and hold any blank area on the home screen until the app icons start jiggling.";
+"home_widget_instruction_page2_description" = "Press the \"+\" button on the top left corner";
+"home_widget_instruction_page3_description" = "Search for \"Thank You List\", drag the widget to your home screen, and you're all set!";

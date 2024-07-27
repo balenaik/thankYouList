@@ -32,6 +32,14 @@ enum HomeWidgetinstructionPage {
         case .page3: R.image.imageHomeWidgetInstructionPage3.name
         }
     }
+
+    var description: String {
+        switch self {
+        case .page1: R.string.localizable.home_widget_instruction_page1_description()
+        case .page2: R.string.localizable.home_widget_instruction_page2_description()
+        case .page3: R.string.localizable.home_widget_instruction_page3_description()
+        }
+    }
 }
 
 protocol HomeWidgetinstructionRouter: Router {
@@ -62,6 +70,7 @@ private extension HomeWidgetInstructionViewModel {
             .first()
             .sink { [outputs, page] in
                 outputs.imageName = page.imageName
+                outputs.description = page.description
             }
             .store(in: &cancellable)
 
@@ -81,5 +90,6 @@ extension HomeWidgetInstructionViewModel {
 
     class Outputs: ObservableObject {
         @Published var imageName = ""
+        @Published var description = ""
     }
 }

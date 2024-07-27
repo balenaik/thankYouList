@@ -97,3 +97,5 @@
 
 "home_widget_instruction_title" = "ウィジェットの追加方法";
 "home_widget_instruction_page1_description" = "ホーム画面の空いている場所を長押しし、\nアプリアイコンが揺れ始めるまで待ちます。";
+"home_widget_instruction_page2_description" = "画面左上の「＋」ボタンをタップします。";
+"home_widget_instruction_page3_description" = "「Thank You List」を検索し、ウィジェットをホーム画面に移動すれば準備完了です！";

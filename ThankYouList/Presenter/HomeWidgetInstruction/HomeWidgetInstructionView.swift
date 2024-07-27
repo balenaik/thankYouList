@@ -62,6 +62,7 @@ struct HomeWidgetInstructionView: View {
             Spacer(minLength: 0)
 
             Button(viewModelOutputs.bottomButtonTitle) {
+                viewModelInputs.bottomButtomDidTap.send()
             }
             .buttonStyle(PrimaryButtonStyle())
             .padding(.vertical, ViewConst.spacing16)

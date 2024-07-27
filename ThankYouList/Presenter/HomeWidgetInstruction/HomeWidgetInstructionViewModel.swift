@@ -82,6 +82,16 @@ private extension HomeWidgetInstructionViewModel {
             }
             .store(in: &cancellable)
 
+        inputs.bottomButtomDidTap
+            .sink { [page, router] in
+                switch page {
+                case .page1: router?.pushToPage2()
+                case .page2: router?.pushToPage3()
+                case .page3: router?.dismiss()
+                }
+            }
+            .store(in: &cancellable)
+
         inputs.cancelButtonDidTap
             .sink { [router] in
                 router?.dismiss()
@@ -93,6 +103,7 @@ private extension HomeWidgetInstructionViewModel {
 extension HomeWidgetInstructionViewModel {
     class Inputs {
         let onAppear = PassthroughSubject<Void, Never>()
+        let bottomButtomDidTap = PassthroughSubject<Void, Never>()
         let cancelButtonDidTap = PassthroughSubject<Void, Never>()
     }
 

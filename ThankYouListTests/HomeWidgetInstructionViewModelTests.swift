@@ -153,6 +153,39 @@ final class HomeWidgetInstructionViewModelTests: XCTestCase {
         XCTAssertEqual(bottomButtonTitleRecords.results, [.value(R.string.localizable.done())])
     }
 
+    func test_ifTheUserTapsBottomButton_onPage1__itShouldPushToPage2() {
+        // Setup page1
+        setupViewModel(page: .page1)
+
+        // Taps bottom button
+        viewModel.inputs.bottomButtomDidTap.send()
+
+        // It should push to page2
+        XCTAssertEqual(router.pushToPage2_calledCount, 1)
+    }
+
+    func test_ifTheUserTapsBottomButton_onPage2__itShouldPushToPage3() {
+        // Setup page2
+        setupViewModel(page: .page2)
+
+        // Taps bottom button
+        viewModel.inputs.bottomButtomDidTap.send()
+
+        // It should push to page3
+        XCTAssertEqual(router.pushToPage3_calledCount, 1)
+    }
+
+    func test_ifTheUserTapsBottomButton_onPage3__itShouldDismiss() {
+        // Setup page3
+        setupViewModel(page: .page3)
+
+        // Taps bottom button
+        viewModel.inputs.bottomButtomDidTap.send()
+
+        // It should dismiss
+        XCTAssertEqual(router.dismiss_calledCount, 1)
+    }
+
     func test_ifTheUserTapsCancelButton__itShouldDismissView() {
         // Taps cancel button
         viewModel.inputs.cancelButtonDidTap.send()

@@ -27,6 +27,48 @@ final class HomeWidgetInstructionViewModelTests: XCTestCase {
             router: router)
     }
 
+    func test_ifTheUserOpensTheScreen_onPage1__itShouldShowImageForPage1() {
+        // Setup page1
+        setupViewModel(page: .page1)
+
+        let imageNameRecords = TestRecord(publisher: viewModel.outputs.$imageName.eraseToAnyPublisher())
+        imageNameRecords.clearResult()
+
+        // Opens the screen
+        viewModel.inputs.onAppear.send()
+
+        // It should show image for Page1
+        XCTAssertEqual(imageNameRecords.results, [.value(R.image.imageHomeWidgetInstructionPage1.name)])
+    }
+
+    func test_ifTheUserOpensTheScreen_onPage2__itShouldShowImageForPage2() {
+        // Setup page2
+        setupViewModel(page: .page2)
+
+        let imageNameRecords = TestRecord(publisher: viewModel.outputs.$imageName.eraseToAnyPublisher())
+        imageNameRecords.clearResult()
+
+        // Opens the screen
+        viewModel.inputs.onAppear.send()
+
+        // It should show image for Page2
+        XCTAssertEqual(imageNameRecords.results, [.value(R.image.imageHomeWidgetInstructionPage2.name)])
+    }
+
+    func test_ifTheUserOpensTheScreen_onPage3__itShouldShowImageForPage3() {
+        // Setup page3
+        setupViewModel(page: .page3)
+
+        let imageNameRecords = TestRecord(publisher: viewModel.outputs.$imageName.eraseToAnyPublisher())
+        imageNameRecords.clearResult()
+
+        // Opens the screen
+        viewModel.inputs.onAppear.send()
+
+        // It should show image for Page3
+        XCTAssertEqual(imageNameRecords.results, [.value(R.image.imageHomeWidgetInstructionPage3.name)])
+    }
+
     func test_ifTheUserTapsCancelButton__itShouldDismissView() {
         // Taps cancel button
         viewModel.inputs.cancelButtonDidTap.send()

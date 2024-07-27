@@ -37,6 +37,7 @@ struct HomeWidgetInstructionView: View {
                     viewModelInputs.cancelButtonDidTap.send()
                 }
         }
+        .onAppear { viewModelInputs.onAppear.send() }
     }
 
     private var contentView: some View {
@@ -47,7 +48,7 @@ struct HomeWidgetInstructionView: View {
                 .font(.boldAvenir(ofSize: titleFontSize))
                 .foregroundStyle(Color.text)
 
-            Image(R.image.imageHomeWidgetInstructionPage1.name)
+            Image(viewModelOutputs.imageName)
                 .resizable()
                 .frame(width: imageWidth, height: imageHeight)
                 .padding(.vertical, ViewConst.spacing24)

@@ -24,6 +24,14 @@ enum HomeWidgetinstructionPage {
         case .page2, .page3: return .push
         }
     }
+
+    var imageName: String {
+        switch self {
+        case .page1: R.image.imageHomeWidgetInstructionPage1.name
+        case .page2: R.image.imageHomeWidgetInstructionPage2.name
+        case .page3: R.image.imageHomeWidgetInstructionPage3.name
+        }
+    }
 }
 
 protocol HomeWidgetinstructionRouter: Router {
@@ -50,6 +58,13 @@ class HomeWidgetInstructionViewModel: ObservableObject {
 
 private extension HomeWidgetInstructionViewModel {
     func bind() {
+        inputs.onAppear
+            .first()
+            .sink { [outputs, page] in
+                outputs.imageName = page.imageName
+            }
+            .store(in: &cancellable)
+
         inputs.cancelButtonDidTap
             .sink { [router] in
                 router?.dismiss()
@@ -60,9 +75,11 @@ private extension HomeWidgetInstructionViewModel {
 
 extension HomeWidgetInstructionViewModel {
     class Inputs {
+        let onAppear = PassthroughSubject<Void, Never>()
         let cancelButtonDidTap = PassthroughSubject<Void, Never>()
     }
 
     class Outputs: ObservableObject {
+        @Published var imageName = ""
     }
 }

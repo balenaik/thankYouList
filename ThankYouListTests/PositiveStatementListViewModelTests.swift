@@ -68,9 +68,9 @@ final class PositiveStatementListViewModelTests: XCTestCase {
 
         // Send first event
         let firstPositiveStatements = [
-            PositiveStatementModel(value: "value1", createdDate: Date()),
-            PositiveStatementModel(value: "value2", createdDate: Date()),
-            PositiveStatementModel(value: "value3", createdDate: Date())
+            PositiveStatementModel(id: "id1", value: "value1", createdDate: Date()),
+            PositiveStatementModel(id: "id2", value: "value2", createdDate: Date()),
+            PositiveStatementModel(id: "id3", value: "value3", createdDate: Date())
         ]
         positiveStatementsRelay.send(firstPositiveStatements)
 
@@ -82,9 +82,9 @@ final class PositiveStatementListViewModelTests: XCTestCase {
 
         // Send second event
         let secondPositiveStatements = [
-            PositiveStatementModel(value: "value4", createdDate: Date()),
-            PositiveStatementModel(value: "value5", createdDate: Date()),
-            PositiveStatementModel(value: "value6", createdDate: Date())
+            PositiveStatementModel(id: "id4", value: "value4", createdDate: Date()),
+            PositiveStatementModel(id: "id5", value: "value5", createdDate: Date()),
+            PositiveStatementModel(id: "id6", value: "value6", createdDate: Date())
         ]
         positiveStatementsRelay.send(secondPositiveStatements)
 
@@ -137,7 +137,7 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         viewModel.inputs.onAppear.send()
 
         // 8 positive statements
-        positiveStatementsRelay.send(Array(repeating: PositiveStatementModel(value: "", createdDate: Date()), count: 8))
+        positiveStatementsRelay.send(Array(repeating: PositiveStatementModel(id: "", value: "", createdDate: Date()), count: 8))
         // It should enable add button
         XCTAssertEqual(isAddButtonDisabledRecords.results, [
             .value(false)
@@ -145,7 +145,7 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         isAddButtonDisabledRecords.clearResult()
 
         // 3 positive statements
-        positiveStatementsRelay.send(Array(repeating: PositiveStatementModel(value: "", createdDate: Date()), count: 3))
+        positiveStatementsRelay.send(Array(repeating: PositiveStatementModel(id: "", value: "", createdDate: Date()), count: 3))
         // It should enable add button
         XCTAssertEqual(isAddButtonDisabledRecords.results, [
             .value(false)
@@ -163,7 +163,7 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         viewModel.inputs.onAppear.send()
 
         // 10 positive statements
-        positiveStatementsRelay.send(Array(repeating: PositiveStatementModel(value: "", createdDate: Date()), count: 10))
+        positiveStatementsRelay.send(Array(repeating: PositiveStatementModel(id: "", value: "", createdDate: Date()), count: 10))
         // It should disable add button
         XCTAssertEqual(isAddButtonDisabledRecords.results, [
             .value(true)
@@ -171,7 +171,7 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         isAddButtonDisabledRecords.clearResult()
 
         // 15 positive statements
-        positiveStatementsRelay.send(Array(repeating: PositiveStatementModel(value: "", createdDate: Date()), count: 15))
+        positiveStatementsRelay.send(Array(repeating: PositiveStatementModel(id: "", value: "", createdDate: Date()), count: 15))
         // It should disable add button
         XCTAssertEqual(isAddButtonDisabledRecords.results, [
             .value(true)

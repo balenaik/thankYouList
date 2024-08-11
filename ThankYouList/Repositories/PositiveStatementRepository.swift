@@ -47,6 +47,7 @@ struct DefaultPositiveStatementRepository: PositiveStatementRepository {
                                 encryptText: encryptedValue,
                                 key: userId16string)
                             return PositiveStatementModel(
+                                id: document.documentID,
                                 value: decryptedValue,
                                 createdDate: createdDate.dateValue())
                         }

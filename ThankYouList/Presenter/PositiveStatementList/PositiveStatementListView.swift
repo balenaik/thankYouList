@@ -112,7 +112,7 @@ struct PositiveStatementListView: View {
     private var positiveStatementsSection: some View {
         Section {
             VStack(spacing: 0) {
-                ForEach(viewModelOutputs.positiveStatements) { positiveStatement in
+                ForEach(viewModelOutputs.positiveStatements, id: \.id) { positiveStatement in
                     positiveStatementRow(positiveStatement)
                 }
             }

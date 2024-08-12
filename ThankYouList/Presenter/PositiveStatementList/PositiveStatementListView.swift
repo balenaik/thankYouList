@@ -24,6 +24,7 @@ private let emptyViewTitleFontSize = CGFloat(20)
 private let emptyViewDescriptionFontSize = CGFloat(15)
 private let emptyViewDescriptionLineSpacing = CGFloat(3)
 
+private let bottomMenuButtonHeight = CGFloat(52)
 
 struct PositiveStatementListView: View {
 
@@ -186,6 +187,47 @@ struct PositiveStatementListView: View {
         .buttonStyle(PrimaryButtonStyle())
         .padding(.horizontal, ViewConst.spacing20)
         .padding(.vertical, ViewConst.spacing16)
+    }
+}
+
+// MARK: - Bottom Half Sheet
+
+private extension PositiveStatementListView {
+    var bottomMenu: some View {
+        VStack(spacing: 0) {
+            ForEach(viewModelOutputs.bottomMenuList, id: \.self) {
+                bottomMenuButton(menu: $0)
+            }
+        }
+        .padding(.top, ViewConst.spacing16)
+        .padding(.bottom, 1) // To prevent the last menu view look longer than the fixed size while it's hovered
+    }
+
+    func bottomMenuButton(menu: PositiveStatementTapMenu) -> some View {
+        Button {
+        } label: {
+            HStack(spacing: 0) {
+                Image(menu.imageName)
+                    .padding(.horizontal, ViewConst.spacing20)
+                    .foregroundStyle(Color.black45)
+
+                Text(menu.title)
+                    .foregroundStyle(Color.text)
+                    .font(.regularAvenir(ofSize: ViewConst.fontSize17))
+
+                Spacer()
+            }
+            .frame(height: bottomMenuButtonHeight)
+        }
+        .buttonStyle(BottomMenuButtonStyle())
+    }
+
+    private struct BottomMenuButtonStyle: ButtonStyle {
+        func makeBody(configuration: Self.Configuration) -> some View {
+            return configuration.label
+               .foregroundColor(.text)
+               .background(configuration.isPressed ? Color.highlight : Color.white)
+        }
     }
 }
 

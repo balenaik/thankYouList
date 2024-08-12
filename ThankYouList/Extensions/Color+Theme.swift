@@ -53,6 +53,10 @@ extension Color {
         return Color.black.opacity(0.87)
     }
 
+    static var black45: Color {
+        return Color.black.opacity(0.45)
+    }
+
     static var black26: Color {
         return Color.black.opacity(0.26)
     }

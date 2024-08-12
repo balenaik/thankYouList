@@ -28,6 +28,8 @@ private let addButtonIconFontSize = CGFloat(17)
 
 struct PositiveStatementListView: View {
 
+    // MARK: - Properties
+
     // To receive output event update in real time,
     // we need to hold outputs itself as a StateObject. viewModel.outputs doesn't work.
     // (There is another way to solve this issue by adding @State property to each output property and use onReceive to update them,
@@ -35,10 +37,14 @@ struct PositiveStatementListView: View {
     private let viewModelInputs: PositiveStatementListViewModel.Inputs
     @StateObject private var viewModelOutputs: PositiveStatementListViewModel.Outputs
 
+    // MARK: - Initializer
+
     init(viewModel: PositiveStatementListViewModel) {
         viewModelInputs = viewModel.inputs
         _viewModelOutputs = StateObject(wrappedValue: viewModel.outputs)
     }
+
+    // MARK: - Body
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -183,6 +189,8 @@ struct PositiveStatementListView: View {
         .padding(.vertical, ViewConst.spacing16)
     }
 }
+
+// MARK: - Preview
 
 #Preview {
     let viewModel = PositiveStatementListViewModel(

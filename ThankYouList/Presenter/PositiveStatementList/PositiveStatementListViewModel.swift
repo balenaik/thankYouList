@@ -105,6 +105,7 @@ extension PositiveStatementListViewModel {
         let addButtonDidTap = PassthroughSubject<Void, Never>()
         let widgetHintButtonDidTap = PassthroughSubject<Void, Never>()
         let positiveStatementMenuButtonDidTap = PassthroughSubject<String, Never>()
+        let bottomMenuDidTap = PassthroughSubject<PositiveStatementTapMenu, Never>()
     }
 
     class Outputs: ObservableObject {

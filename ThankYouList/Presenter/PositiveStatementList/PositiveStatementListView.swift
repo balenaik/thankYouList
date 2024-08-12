@@ -205,6 +205,7 @@ private extension PositiveStatementListView {
 
     func bottomMenuButton(menu: PositiveStatementTapMenu) -> some View {
         Button {
+            viewModelInputs.bottomMenuDidTap.send(menu)
         } label: {
             HStack(spacing: 0) {
                 Image(menu.imageName)

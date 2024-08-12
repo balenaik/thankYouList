@@ -53,6 +53,9 @@ struct PositiveStatementListView: View {
         }
         .screenBackground(Color.defaultBackground)
         .navigationBarTitle(R.string.localizable.positive_statement_list_title(), displayMode: .large)
+        .flexibleHeightBottomHalfSheet(
+            isPresented: $viewModelOutputs.showBottomMenu,
+            sheetContent: bottomMenu)
         .onAppear { viewModelInputs.onAppear.send() }
     }
 

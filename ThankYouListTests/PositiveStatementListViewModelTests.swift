@@ -204,6 +204,28 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         // It should output all bottom menu list
         XCTAssertEqual(bottomMenuListRecords.results, [.value(PositiveStatementTapMenu.allCases)])
     }
+
+    func test_ifAUserTapsPositiveStatementMenuButton__itShouldShowBottomMenu() {
+        let showBottomMenuRecords = TestRecord(publisher: viewModel.outputs.$showBottomMenu.eraseToAnyPublisher())
+        showBottomMenuRecords.clearResult()
+
+        // User taps positive statment menu button
+        viewModel.inputs.positiveStatementMenuButtonDidTap.send("")
+
+        // It shoud show bottom menu
+        XCTAssertEqual(showBottomMenuRecords.results, [.value(true)])
+    }
+
+    func test_ifAUserTapsBottomMenu__itShouldHideBottomMenu() {
+        let showBottomMenuRecords = TestRecord(publisher: viewModel.outputs.$showBottomMenu.eraseToAnyPublisher())
+        showBottomMenuRecords.clearResult()
+
+        // User taps bottom menu
+        viewModel.inputs.bottomMenuDidTap.send(.delete)
+
+        // It shoud hide bottom menu
+        XCTAssertEqual(showBottomMenuRecords.results, [.value(false)])
+    }
 }
 
 private class MockPositiveStatementListRouter: MockRouter, PositiveStatementListRouter {

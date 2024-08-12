@@ -96,6 +96,13 @@ private extension PositiveStatementListViewModel {
         inputs.positiveStatementMenuButtonDidTap
             .map { _ in PositiveStatementTapMenu.allCases }
             .assign(to: &outputs.$bottomMenuList)
+
+        Publishers
+            .Merge(
+                inputs.positiveStatementMenuButtonDidTap.map { _ in true },
+                inputs.bottomMenuDidTap.map { _ in false }
+            )
+            .assign(to: &outputs.$showBottomMenu)
     }
 }
 
@@ -111,6 +118,7 @@ extension PositiveStatementListViewModel {
     class Outputs: ObservableObject {
         @Published var positiveStatements = [PositiveStatementModel]()
         @Published var isAddButtonDisabled = true
+        @Published var showBottomMenu = false
         @Published var bottomMenuList = [PositiveStatementTapMenu]()
     }
 }

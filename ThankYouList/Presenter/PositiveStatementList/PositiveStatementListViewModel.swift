@@ -100,6 +100,7 @@ extension PositiveStatementListViewModel {
         let onAppear = PassthroughSubject<Void, Never>()
         let addButtonDidTap = PassthroughSubject<Void, Never>()
         let widgetHintButtonDidTap = PassthroughSubject<Void, Never>()
+        let positiveStatementMenuButtonDidTap = PassthroughSubject<String, Never>()
     }
 
     class Outputs: ObservableObject {

@@ -127,10 +127,17 @@ struct PositiveStatementListView: View {
         HStack {
             Text(positiveStatement.value)
                 .font(.regularAvenir(ofSize: positiveStatementFontSize))
+
             Spacer()
+
             Image(systemName: SFSymbolConst.ellipsis)
                 .imageScale(.large)
                 .foregroundStyle(Color.text.opacity(positiveStatementRowDotsIconOpacity))
+                .padding(.vertical, ViewConst.spacing4)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    viewModelInputs.positiveStatementMenuButtonDidTap.send(positiveStatement.id)
+                }
         }
         .padding(.horizontal, ViewConst.spacing20)
         .padding(.vertical, ViewConst.spacing16)

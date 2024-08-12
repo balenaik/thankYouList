@@ -193,6 +193,17 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         // It should present home widget instruction
         XCTAssertEqual(router.presentHomeWidgetInstruction_calledCount, 1)
     }
+
+    func test_ifAUserTapsPositiveStatementMenuButton__itShouldOutputBottomMenuList() {
+        let bottomMenuListRecords = TestRecord(publisher: viewModel.outputs.$bottomMenuList.eraseToAnyPublisher())
+        bottomMenuListRecords.clearResult()
+
+        // User taps positive statment menu button
+        viewModel.inputs.positiveStatementMenuButtonDidTap.send("")
+
+        // It should output all bottom menu list
+        XCTAssertEqual(bottomMenuListRecords.results, [.value(PositiveStatementTapMenu.allCases)])
+    }
 }
 
 private class MockPositiveStatementListRouter: MockRouter, PositiveStatementListRouter {

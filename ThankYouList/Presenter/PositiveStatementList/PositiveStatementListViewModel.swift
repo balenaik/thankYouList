@@ -92,6 +92,10 @@ private extension PositiveStatementListViewModel {
                 router?.presentHomeWidgetInstruction()
             }
             .store(in: &cancellable)
+
+        inputs.positiveStatementMenuButtonDidTap
+            .map { _ in PositiveStatementTapMenu.allCases }
+            .assign(to: &outputs.$bottomMenuList)
     }
 }
 
@@ -106,5 +110,6 @@ extension PositiveStatementListViewModel {
     class Outputs: ObservableObject {
         @Published var positiveStatements = [PositiveStatementModel]()
         @Published var isAddButtonDisabled = true
+        @Published var bottomMenuList = [PositiveStatementTapMenu]()
     }
 }

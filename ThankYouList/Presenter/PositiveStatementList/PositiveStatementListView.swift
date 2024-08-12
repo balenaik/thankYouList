@@ -24,7 +24,6 @@ private let emptyViewTitleFontSize = CGFloat(20)
 private let emptyViewDescriptionFontSize = CGFloat(15)
 private let emptyViewDescriptionLineSpacing = CGFloat(3)
 
-private let addButtonIconFontSize = CGFloat(17)
 
 struct PositiveStatementListView: View {
 
@@ -179,7 +178,7 @@ struct PositiveStatementListView: View {
         } label: {
             HStack {
                 Image(systemName: SFSymbolConst.squareAndPencil)
-                    .font(.regularAvenir(ofSize: addButtonIconFontSize))
+                    .font(.regularAvenir(ofSize: ViewConst.fontSize17))
                 Text(R.string.localizable.positive_statement_list_add_button_text())
             }
         }

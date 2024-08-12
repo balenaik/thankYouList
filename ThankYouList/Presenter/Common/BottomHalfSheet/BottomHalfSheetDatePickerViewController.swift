@@ -9,13 +9,11 @@
 import Foundation
 import FloatingPanel
 
-private let navigationBarFontSize = CGFloat(17)
 private let navigationBarTopMargin = CGFloat(16)
 
 private let doneButtonHorizontalMargin = CGFloat(24)
 private let doneButtonBottomMargin = CGFloat(16)
 private let doneButtonCornerRadius = CGFloat(16)
-private let doneButtonFontSize = CGFloat(17)
 private let doneButtonHeight = CGFloat(44)
 
 private let backgroundViewAlpha = CGFloat(0.5)
@@ -59,7 +57,7 @@ private extension BottomHalfSheetDatePickerViewController {
         navigationItem.title = R.string.localizable.date()
         navigationBar.setItems([navigationItem], animated: true)
         navigationBar.titleTextAttributes = [
-            .font: UIFont.boldAvenir(ofSize: navigationBarFontSize)
+            .font: UIFont.boldAvenir(ofSize: ViewConst.fontSize17)
         ]
 
         navigationBar.translatesAutoresizingMaskIntoConstraints = false
@@ -103,7 +101,7 @@ private extension BottomHalfSheetDatePickerViewController {
         doneButton.setBackgroundColor(color: .primary500, for: .normal)
         doneButton.setBackgroundColor(color: UIColor.primary500.darken(), for: .highlighted)
         doneButton.layer.cornerRadius = doneButtonCornerRadius
-        doneButton.titleLabel?.font = UIFont.boldAvenir(ofSize: doneButtonFontSize)
+        doneButton.titleLabel?.font = UIFont.boldAvenir(ofSize: ViewConst.fontSize17)
         doneButton.clipsToBounds = true
         doneButton.addTarget(self, action: #selector(doneButtonDidTap(_:)), for: .touchUpInside)
 

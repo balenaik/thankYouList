@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-private let fontSize = CGFloat(17)
 private let cornerRadius = CGFloat(16)
 private let disabledOpacity = CGFloat(0.38)
 private let pressedOpacity = CGFloat(0.7)
@@ -27,7 +26,7 @@ struct PrimaryButtonStyle: ButtonStyle {
             blendingOpacity: backgroundOpacity)
 
         return configuration.label
-           .font(.boldAvenir(ofSize: fontSize))
+           .font(.boldAvenir(ofSize: ViewConst.fontSize17))
            .frame(maxWidth: .infinity)
            .padding(.all, ViewConst.spacing12)
            .foregroundColor(isEnabled ? .text : .text.opacity(disabledOpacity))

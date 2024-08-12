@@ -18,7 +18,6 @@ private let textFieldCornerRadius = CGFloat(8)
 
 private let characterCounterTextFontSize = CGFloat(13)
 
-private let doneButtonFontSize = CGFloat(17)
 private let doneButtonCornerRadius = CGFloat(16)
 private let doneButtonDisabledOpacity = CGFloat(0.38)
 private let doneButtonPressedOpacity = CGFloat(0.7)

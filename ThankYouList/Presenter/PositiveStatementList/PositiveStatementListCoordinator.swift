@@ -17,6 +17,7 @@ class PositiveStatementListCoordinator: Coordinator {
 
     init(navigationController: UINavigationController) {
         routingType = .push(navigationController: navigationController)
+        viewController = navigationController
     }
 
     func start() {
@@ -28,7 +29,6 @@ class PositiveStatementListCoordinator: Coordinator {
         let view = ViewLifecycleAwareHostingController(
             rootView: PositiveStatementListView(viewModel: viewModel)
         )
-        viewController = view
 
         view.viewWillAppearRelay
             .sink { [weak self] _ in

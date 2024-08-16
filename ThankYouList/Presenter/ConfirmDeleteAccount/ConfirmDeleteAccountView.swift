@@ -60,12 +60,7 @@ struct ConfirmDeleteAccountView: View {
             }
             .navigationBarTitle(R.string.localizable.confirm_delete_account_title())
             .cancelButtonToolbar { viewModel.inputs.cancelButtonDidTap.send() }
-            .alert(item: $alertItem) { alertItem in
-                Alert(title: Text(alertItem.title),
-                      message: Text(alertItem.message ?? ""),
-                      dismissButton: .default(Text(R.string.localizable.ok()),
-                                              action: alertItem.okAction))
-            }
+            .alert(item: $alertItem) { alertItem in alertItem.toAlert }
             .screenBackground(Color.defaultBackground)
         }
         .accentColor(.text) // Remove this when finish supporting iOS 14.x

@@ -66,7 +66,7 @@ final class ConfirmDeleteAccountViewModelTests: XCTestCase {
         }
         scheduler.schedule(after: 20) {
             XCTAssertEqual(self.router.dismiss_calledCount, 0)
-            self.viewModel.bindings.alertItem?.okAction()
+            self.viewModel.bindings.alertItem?.primaryAction?.action?()
         }
 
         scheduler.resume()
@@ -153,7 +153,7 @@ final class ConfirmDeleteAccountViewModelTests: XCTestCase {
         }
         scheduler.schedule(after: 30) {
             XCTAssertEqual(self.router.switchToLogin_calledCount, 0)
-            self.viewModel.bindings.alertItem?.okAction()
+            self.viewModel.bindings.alertItem?.primaryAction?.action?()
         }
 
         scheduler.resume()

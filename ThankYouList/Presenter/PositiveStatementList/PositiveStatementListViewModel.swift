@@ -49,17 +49,19 @@ class PositiveStatementListViewModel: ObservableObject {
 
 private extension PositiveStatementListViewModel {
     func bind() {
-        let positiveStatements = inputs.onAppear
+        let profile = inputs.onAppear
             .first()
             .flatMap { [userRepository] in
                 userRepository.getUserProfile()
             }
+            .shareReplay(1)
+
+        let positiveStatements = profile
             .flatMap { [positiveStatementRepository] profile in
                 positiveStatementRepository.subscribePositiveStatements(userId: profile.id)
             }
             .asResult()
             .share()
-            .eraseToAnyPublisher()
 
         positiveStatements
             .values()
@@ -112,6 +114,8 @@ private extension PositiveStatementListViewModel {
             .withLatestFrom(inputs.positiveStatementMenuButtonDidTap) { ($0, $1) }
             .share()
 
+        let confirmDeleteButtonDidTap = PassthroughSubject<String, Error>()
+
         bottomMenuDidTap
             .filter { menuType, _ in menuType == .delete }
             .flatMap { [outputs, scheduler] menuInfo in
@@ -122,6 +126,7 @@ private extension PositiveStatementListViewModel {
             .map { _, positiveStatementId in
                 let deleteAction = AlertAction(title: R.string.localizable.delete(),
                                                style: .destructive) {
+                    confirmDeleteButtonDidTap.send(positiveStatementId)
                 }
                 let cancelAction = AlertAction(title: R.string.localizable.cancel(),
                                                style: .cancel)
@@ -133,6 +138,23 @@ private extension PositiveStatementListViewModel {
                 )
             }
             .assign(to: &outputs.$showAlert)
+
+        let deleteResult = confirmDeleteButtonDidTap
+            .withLatestFrom(profile) { ($0, $1) }
+            .flatMap { [positiveStatementRepository] positiveStatementId, profile in
+                return positiveStatementRepository
+                    .deletePositiveStatement(
+                        positiveStatementId: positiveStatementId,
+                        userId: profile.id)
+                    .asResult()
+            }
+            .catch { Just(.failure($0)) }
+            .share()
+
+        deleteResult
+            .values()
+            .sink { _ in }
+            .store(in: &cancellable)
     }
 }
 

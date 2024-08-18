@@ -261,6 +261,31 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         XCTAssertEqual(showAlertPrimaryActionStyleRecords.results, [.value(.destructive)])
         XCTAssertEqual(showAlertSecondaryActionStyleRecords.results, [.value(.cancel)])
     }
+
+    func test_ifAUserTapsBottomMenu_asDelete_andTapsDeleteButton__itShouldCallDeletePositiveStatement() {
+        let userId = "userId"
+        userRepository.getUserProfile_result = Just(Profile(id: userId, name: "", email: "", imageUrl: nil)).setFailureType(to: Error.self).asFuture()
+
+        // onAppear (to get userProfile)
+        viewModel.inputs.onAppear.send()
+        // User taps positive statment menu button
+        let positiveStatementId = "positiveStatementId"
+        viewModel.inputs.positiveStatementMenuButtonDidTap.send(positiveStatementId)
+        // User taps delete bottom menu
+        viewModel.inputs.bottomMenuDidTap.send(.delete)
+        // Wait for 10ms
+        scheduler.advance(by: .milliseconds(10))
+        // User taps delete button
+        viewModel.outputs.showAlert?.primaryAction?.action?()
+
+        // It should call getUserProfile only once
+        XCTAssertEqual(userRepository.getUserProfile_calledCount, 1)
+        // It should call deletePositiveStatement
+        XCTAssertEqual(positiveStatementRepository.deletePositiveStatement_calledCount, 1)
+        // It should pass userId and positiveStatementId
+        XCTAssertEqual(positiveStatementRepository.deletePositiveStatement_userId, userId)
+        XCTAssertEqual(positiveStatementRepository.deletePositiveStatement_positiveStatementId, positiveStatementId)
+    }
 }
 
 private class MockPositiveStatementListRouter: MockRouter, PositiveStatementListRouter {

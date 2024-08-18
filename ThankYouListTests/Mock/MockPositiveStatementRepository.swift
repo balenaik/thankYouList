@@ -30,8 +30,14 @@ class MockPositiveStatementRepository: PositiveStatementRepository {
         return createPositiveStatement_result
     }
 
+    var deletePositiveStatement_calledCount = 0
+    var deletePositiveStatement_positiveStatementId: String?
+    var deletePositiveStatement_userId: String?
     var deletePositiveStatement_result = Just(()).setFailureType(to: Error.self).asFuture()
     func deletePositiveStatement(positiveStatementId: String, userId: String) -> Future<Void, any Error> {
+        deletePositiveStatement_positiveStatementId = positiveStatementId
+        deletePositiveStatement_userId = userId
+        deletePositiveStatement_calledCount += 1
         return deletePositiveStatement_result
     }
 }

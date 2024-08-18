@@ -120,5 +120,6 @@ extension PositiveStatementListViewModel {
         @Published var isAddButtonDisabled = true
         @Published var showBottomMenu = false
         @Published var bottomMenuList = [PositiveStatementTapMenu]()
+        @Published var showAlert: AlertItem?
     }
 }

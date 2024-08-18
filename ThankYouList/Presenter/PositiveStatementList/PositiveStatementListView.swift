@@ -56,6 +56,7 @@ struct PositiveStatementListView: View {
         .flexibleHeightBottomHalfSheet(
             isPresented: $viewModelOutputs.showBottomMenu,
             sheetContent: bottomMenu)
+        .alert(item: $viewModelOutputs.showAlert) { alertItem in alertItem.toAlert }
         .onAppear { viewModelInputs.onAppear.send() }
     }
 

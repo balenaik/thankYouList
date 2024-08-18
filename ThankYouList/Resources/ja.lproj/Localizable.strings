@@ -88,6 +88,8 @@
 "positive_statement_list_error_message" = "ポジティブメッセージを読み込めません。しばらくしてからやりなおしてください。";
 "positive_statement_empty_title" = "ポジティブメッセージを追加しよう";
 "positive_statement_list_add_button_text" = "ポジティブメッセージを追加";
+"positive_statement_list_confirm_delete_title" = "ポジティブメッセージを削除";
+"positive_statement_list_confirm_delete_message" = "本当にこのポジティブメッセージを削除してよろしいですか?";
 
 "add_positive_statement_title" = "あなたの理想の未来はどんな状態ですか？";
 "add_positive_statement_description" = "あなたの理想の未来、またはなりたい自分の姿をイメージしましょう。\nそして「私は〜ます。」「私は〜です。」という形で、あなたが現在すでにそうであるかのように言葉にしてみましょう。";

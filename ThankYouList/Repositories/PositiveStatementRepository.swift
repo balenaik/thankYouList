@@ -15,6 +15,7 @@ private let createdDateKey = "createdDate"
 protocol PositiveStatementRepository {
     func subscribePositiveStatements(userId: String) -> AnyPublisher<[PositiveStatementModel], Error>
     func createPositiveStatement(positiveStatement: String, userId: String) -> Future<Void, Error>
+    func deletePositiveStatement(positiveStatementId: String, userId: String) -> Future<Void, Error>
 }
 
 struct DefaultPositiveStatementRepository: PositiveStatementRepository {
@@ -73,6 +74,23 @@ struct DefaultPositiveStatementRepository: PositiveStatementRepository {
                 .document(userId)
                 .collection(FirestoreConst.positiveStatementsCollection)
                 .addDocument(data: positiveStatementCreate.dictionary) { error in
+                    if let error = error {
+                        promise(.failure(error))
+                        return
+                    }
+                    promise(.success(()))
+                }
+        }
+    }
+
+    func deletePositiveStatement(positiveStatementId: String, userId: String) -> Future<Void, Error> {
+        return Future<Void, Error> { promise in
+            firestore
+                .collection(FirestoreConst.usersCollecion)
+                .document(userId)
+                .collection(FirestoreConst.positiveStatementsCollection)
+                .document(positiveStatementId)
+                .delete { error in
                     if let error = error {
                         promise(.failure(error))
                         return

@@ -230,6 +230,37 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         // It shoud hide bottom menu
         XCTAssertEqual(showBottomMenuRecords.results, [.value(false)])
     }
+
+    func test_ifAUserTapsBottomMenu_asDelete__itShouldShowAlert() {
+        let showAlertTitleRecords = TestRecord(publisher: viewModel.outputs.$showAlert.map(\.?.title).eraseToAnyPublisher())
+        let showAlertMessageRecords = TestRecord(publisher: viewModel.outputs.$showAlert.map(\.?.message).eraseToAnyPublisher())
+        let showAlertPrimaryActionTitleRecords = TestRecord(publisher: viewModel.outputs.$showAlert.map(\.?.primaryAction?.title).eraseToAnyPublisher())
+        let showAlertPrimaryActionStyleRecords = TestRecord(publisher: viewModel.outputs.$showAlert.map(\.?.primaryAction?.style).eraseToAnyPublisher())
+        let showAlertSecondaryActionTitleRecords = TestRecord(publisher: viewModel.outputs.$showAlert.map(\.?.secondaryAction?.title).eraseToAnyPublisher())
+        let showAlertSecondaryActionStyleRecords = TestRecord(publisher: viewModel.outputs.$showAlert.map(\.?.secondaryAction?.style).eraseToAnyPublisher())
+        showAlertTitleRecords.clearResult()
+        showAlertMessageRecords.clearResult()
+        showAlertPrimaryActionTitleRecords.clearResult()
+        showAlertPrimaryActionStyleRecords.clearResult()
+        showAlertSecondaryActionTitleRecords.clearResult()
+        showAlertSecondaryActionStyleRecords.clearResult()
+
+        // User taps positive statment menu button
+        viewModel.inputs.positiveStatementMenuButtonDidTap.send("")
+        // User taps delete bottom menu
+        viewModel.inputs.bottomMenuDidTap.send(.delete)
+
+        // Wait for 10ms
+        scheduler.advance(by: .milliseconds(10))
+
+        // It should show alert
+        XCTAssertEqual(showAlertTitleRecords.results, [.value(R.string.localizable.positive_statement_list_confirm_delete_title())])
+        XCTAssertEqual(showAlertMessageRecords.results, [.value(R.string.localizable.positive_statement_list_confirm_delete_message())])
+        XCTAssertEqual(showAlertPrimaryActionTitleRecords.results, [.value(R.string.localizable.delete())])
+        XCTAssertEqual(showAlertSecondaryActionTitleRecords.results, [.value(R.string.localizable.cancel())])
+        XCTAssertEqual(showAlertPrimaryActionStyleRecords.results, [.value(.destructive)])
+        XCTAssertEqual(showAlertSecondaryActionStyleRecords.results, [.value(.cancel)])
+    }
 }
 
 private class MockPositiveStatementListRouter: MockRouter, PositiveStatementListRouter {

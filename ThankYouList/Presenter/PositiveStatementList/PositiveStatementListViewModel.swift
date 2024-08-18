@@ -107,6 +107,32 @@ private extension PositiveStatementListViewModel {
                 inputs.bottomMenuDidTap.map { _ in false }
             )
             .assign(to: &outputs.$showBottomMenu)
+
+        let bottomMenuDidTap = inputs.bottomMenuDidTap
+            .withLatestFrom(inputs.positiveStatementMenuButtonDidTap) { ($0, $1) }
+            .share()
+
+        bottomMenuDidTap
+            .filter { menuType, _ in menuType == .delete }
+            .flatMap { [outputs, scheduler] menuInfo in
+                // Wait until bottom menu gets hidden, otherwise the alert won't be shown
+                outputs.$showBottomMenu.filter { !$0 }.first().map { _ in menuInfo }
+                    .delay(for: .milliseconds(10), scheduler: scheduler)
+            }
+            .map { _, positiveStatementId in
+                let deleteAction = AlertAction(title: R.string.localizable.delete(),
+                                               style: .destructive) {
+                }
+                let cancelAction = AlertAction(title: R.string.localizable.cancel(),
+                                               style: .cancel)
+                return AlertItem(
+                    title: R.string.localizable.positive_statement_list_confirm_delete_title(),
+                    message: R.string.localizable.positive_statement_list_confirm_delete_message(),
+                    primaryAction: deleteAction,
+                    secondaryAction: cancelAction
+                )
+            }
+            .assign(to: &outputs.$showAlert)
     }
 }
 

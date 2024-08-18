@@ -8,6 +8,7 @@
 
 import XCTest
 import Combine
+import CombineSchedulers
 @testable import ThankYouList
 
 final class PositiveStatementListViewModelTests: XCTestCase {
@@ -16,16 +17,19 @@ final class PositiveStatementListViewModelTests: XCTestCase {
     private var userRepository: MockUserRepository!
     private var positiveStatementRepository: MockPositiveStatementRepository!
     private var router: MockPositiveStatementListRouter!
+    private var scheduler: TestSchedulerOf<DispatchQueue>!
 
     override func setUp() {
         userRepository = MockUserRepository()
         positiveStatementRepository = MockPositiveStatementRepository()
         router = MockPositiveStatementListRouter()
+        scheduler = DispatchQueue.test
 
         viewModel = PositiveStatementListViewModel(
             userRepository: userRepository,
             positiveStatementRepository: positiveStatementRepository,
-            router: router)
+            router: router,
+            scheduler: scheduler.eraseToAnyScheduler())
     }
 
     func test_ifAUserOpensTheScreen_multipleTimes__itShouldCallGetUserProfile_onlyOnce() {

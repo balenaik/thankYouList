@@ -7,6 +7,7 @@
 //
 
 import Combine
+import CombineSchedulers
 import Foundation
 
 private let maxPositiveStatementCount = 10
@@ -26,15 +27,18 @@ class PositiveStatementListViewModel: ObservableObject {
     private let userRepository: UserRepository
     private let positiveStatementRepository: PositiveStatementRepository
     private let router: PositiveStatementListRouter?
-    
+    private let scheduler: AnySchedulerOf<DispatchQueue>
+
     init(
         userRepository: UserRepository,
         positiveStatementRepository: PositiveStatementRepository,
-        router: PositiveStatementListRouter?
+        router: PositiveStatementListRouter?,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.userRepository = userRepository
         self.positiveStatementRepository = positiveStatementRepository
         self.router = router
+        self.scheduler = scheduler
         bind()
     }
 

@@ -12,8 +12,6 @@ private let textFieldMinLine = 2
 private let textFieldPlaceHolderOpacity = CGFloat(0.25)
 private let textFieldCornerRadius = CGFloat(8)
 
-private let characterCounterTextFontSize = CGFloat(13)
-
 private let doneButtonCornerRadius = CGFloat(16)
 private let doneButtonDisabledOpacity = CGFloat(0.38)
 private let doneButtonPressedOpacity = CGFloat(0.7)
@@ -81,7 +79,7 @@ struct AddPositiveStatementView: View {
                 }
 
             Text(viewModel.outputs.characterCounterText.value)
-                .font(.regularAvenir(ofSize: characterCounterTextFontSize))
+                .font(.regularAvenir(ofSize: ViewConst.fontSize13))
                 .foregroundStyle(viewModel.outputs.characterCounterColor.value.swiftUIColor)
                 .frame(maxWidth: .infinity, alignment: .trailing)
         }

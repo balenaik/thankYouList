@@ -19,6 +19,7 @@ enum ViewConst {
     static let spacing24 = CGFloat(24)
     static let spacing80 = CGFloat(80)
 
+    static let fontSize13 = CGFloat(13)
     static let fontSize16 = CGFloat(16)
     static let fontSize17 = CGFloat(17)
     static let fontSize24 = CGFloat(24)

@@ -155,6 +155,14 @@ private extension PositiveStatementListViewModel {
             .values()
             .sink { _ in }
             .store(in: &cancellable)
+
+        deleteResult
+            .errors()
+            .map { _ in
+                AlertItem(title: R.string.localizable.failedToDelete(), message: nil)
+            }
+            .receive(on: scheduler)
+            .assign(to: &outputs.$showAlert)
     }
 }
 

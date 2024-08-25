@@ -286,6 +286,29 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         XCTAssertEqual(positiveStatementRepository.deletePositiveStatement_userId, userId)
         XCTAssertEqual(positiveStatementRepository.deletePositiveStatement_positiveStatementId, positiveStatementId)
     }
+
+    func test_ifAUserTapsTapsDeleteButtonOnTheAlert_andDeleteFails__itShouldShowAnAlert() {
+        let showAlertTitleRecords = TestRecord(publisher: viewModel.outputs.$showAlert.map(\.?.title).eraseToAnyPublisher())
+
+        // Delete API fails
+        positiveStatementRepository.deletePositiveStatement_result = Fail(error: NSError()).asFuture()
+        // onAppear (to get userProfile)
+        userRepository.getUserProfile_result = Just(Profile(id: "", name: "", email: "", imageUrl: nil)).setFailureType(to: Error.self).asFuture()
+        viewModel.inputs.onAppear.send()
+        // User taps positive statment menu button
+        viewModel.inputs.positiveStatementMenuButtonDidTap.send("")
+        // User taps delete bottom menu
+        viewModel.inputs.bottomMenuDidTap.send(.delete)
+        // Wait for 10ms
+        scheduler.advance(by: .milliseconds(10))
+        showAlertTitleRecords.clearResult()
+        // User taps delete button
+        viewModel.outputs.showAlert?.primaryAction?.action?()
+        scheduler.run()
+
+        // It should show an alert
+        XCTAssertEqual(showAlertTitleRecords.results, [.value(R.string.localizable.failedToDelete())])
+    }
 }
 
 private class MockPositiveStatementListRouter: MockRouter, PositiveStatementListRouter {

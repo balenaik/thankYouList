@@ -8,10 +8,7 @@
 
 import SwiftUI
 
-private let descriptionFontSize = CGFloat(16)
-
 private let textFieldMinLine = 2
-private let textFieldFontSize = CGFloat(16)
 private let textFieldPlaceHolderOpacity = CGFloat(0.25)
 private let textFieldCornerRadius = CGFloat(8)
 
@@ -65,7 +62,7 @@ struct AddPositiveStatementView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             Text(R.string.localizable.add_positive_statement_description)
-                .font(.regularAvenir(ofSize: descriptionFontSize))
+                .font(.regularAvenir(ofSize: ViewConst.fontSize16))
                 .fixedSize(horizontal: false, vertical: true) // To fix text trancate issue on iOS 15
                 .padding(.vertical, ViewConst.spacing4)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -75,7 +72,7 @@ struct AddPositiveStatementView: View {
     var textFieldView: some View {
         VStack {
             textField(R.string.localizable.add_positive_statement_textfield_placeholder(), text: $viewModel.bindings.textFieldText)
-                .font(.regularAvenir(ofSize: textFieldFontSize))
+                .font(.regularAvenir(ofSize: ViewConst.fontSize16))
                 .padding(.all, ViewConst.spacing12)
                 .background(Color.white)
                 .cornerRadius(textFieldCornerRadius)

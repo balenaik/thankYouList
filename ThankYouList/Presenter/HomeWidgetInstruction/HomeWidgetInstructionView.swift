@@ -11,8 +11,6 @@ import SwiftUI
 private let imageWidth = CGFloat(150)
 private let imageHeight = CGFloat(300)
 
-private let descriptionFontSize = CGFloat(16)
-
 struct HomeWidgetInstructionView: View {
 
     // MARK: - ViewModel
@@ -52,7 +50,7 @@ struct HomeWidgetInstructionView: View {
                 .padding(.vertical, ViewConst.spacing24)
 
             Text(viewModelOutputs.description)
-                .font(.regularAvenir(ofSize: descriptionFontSize))
+                .font(.regularAvenir(ofSize: ViewConst.fontSize16))
                 .foregroundStyle(Color.text)
                 .multilineTextAlignment(.center)
                 .padding(.vertical, ViewConst.spacing12)

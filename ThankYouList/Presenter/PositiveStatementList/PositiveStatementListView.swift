@@ -8,15 +8,12 @@
 
 import SwiftUI
 
-private let descriptionFontSize = CGFloat(16)
-
 private let widgetSetupHintButtonFontSize = CGFloat(14)
 private let widgetSetupHintBulbIconOpacity = CGFloat(0.9)
 private let widgetSetupHintRightArrowIconOpacity = CGFloat(0.5)
 private let widgetSetupHintButtonCornerRadius = CGFloat(8)
 
 private let positiveStatementsSectionCornerRadius = CGFloat(12)
-private let positiveStatementFontSize = CGFloat(16)
 private let positiveStatementRowDotsIconOpacity = CGFloat(0.5)
 
 private let emptyViewImageSize = CGFloat(120)
@@ -78,7 +75,7 @@ struct PositiveStatementListView: View {
         Section {
             VStack(spacing: 0) {
                 Text(R.string.localizable.positive_statement_list_description)
-                    .font(.regularAvenir(ofSize: descriptionFontSize))
+                    .font(.regularAvenir(ofSize: ViewConst.fontSize16))
                     .foregroundStyle(Color.text)
                     .padding(.horizontal, ViewConst.spacing20)
                     .padding(.top, ViewConst.spacing4)
@@ -136,7 +133,7 @@ struct PositiveStatementListView: View {
     private func positiveStatementRow(_ positiveStatement: PositiveStatementModel) -> some View {
         HStack {
             Text(positiveStatement.value)
-                .font(.regularAvenir(ofSize: positiveStatementFontSize))
+                .font(.regularAvenir(ofSize: ViewConst.fontSize16))
 
             Spacer()
 

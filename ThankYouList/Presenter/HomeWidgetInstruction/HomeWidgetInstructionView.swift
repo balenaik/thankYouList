@@ -8,8 +8,6 @@
 
 import SwiftUI
 
-private let titleFontSize = CGFloat(24)
-
 private let imageWidth = CGFloat(150)
 private let imageHeight = CGFloat(300)
 
@@ -45,7 +43,7 @@ struct HomeWidgetInstructionView: View {
             Spacer(minLength: 0)
 
             Text(R.string.localizable.home_widget_instruction_title)
-                .font(.boldAvenir(ofSize: titleFontSize))
+                .font(.boldAvenir(ofSize: ViewConst.fontSize24))
                 .foregroundStyle(Color.text)
 
             Image(viewModelOutputs.imageName)

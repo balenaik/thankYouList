@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-private let titleFontSize = CGFloat(24)
 private let descriptionFontSize = CGFloat(16)
 
 private let textFieldMinLine = 2
@@ -60,7 +59,7 @@ struct AddPositiveStatementView: View {
     var titleDescriptionView: some View {
         VStack(spacing: 0) {
             Text(R.string.localizable.add_positive_statement_title)
-                .font(.boldAvenir(ofSize: titleFontSize))
+                .font(.boldAvenir(ofSize: ViewConst.fontSize24))
                 .fixedSize(horizontal: false, vertical: true) // To fix text trancate when TextField grows up
                 .padding(.vertical, ViewConst.spacing8)
                 .frame(maxWidth: .infinity, alignment: .leading)

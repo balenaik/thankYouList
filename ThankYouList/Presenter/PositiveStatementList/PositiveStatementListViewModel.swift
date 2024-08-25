@@ -114,7 +114,7 @@ private extension PositiveStatementListViewModel {
             .withLatestFrom(inputs.positiveStatementMenuButtonDidTap) { ($0, $1) }
             .share()
 
-        let confirmDeleteButtonDidTap = PassthroughSubject<String, Error>()
+        let confirmDeleteButtonDidTap = PassthroughSubject<String, Never>()
 
         bottomMenuDidTap
             .filter { menuType, _ in menuType == .delete }
@@ -140,7 +140,7 @@ private extension PositiveStatementListViewModel {
             .assign(to: &outputs.$showAlert)
 
         let deleteResult = confirmDeleteButtonDidTap
-            .withLatestFrom(profile) { ($0, $1) }
+            .withLatestFrom(profile.catch { _ in Empty<Profile, Never>() }) { ($0, $1) }
             .flatMap { [positiveStatementRepository] positiveStatementId, profile in
                 return positiveStatementRepository
                     .deletePositiveStatement(
@@ -148,7 +148,6 @@ private extension PositiveStatementListViewModel {
                         userId: profile.id)
                     .asResult()
             }
-            .catch { Just(.failure($0)) }
             .share()
 
         deleteResult

@@ -114,7 +114,7 @@ extension AddPositiveStatementViewModel {
         let doneButtonDidTap = PassthroughSubject<Void, Never>()
     }
 
-    class Outputs {
+    class Outputs: ObservableObject {
         let closeKeyboard = PassthroughSubject<Void, Never>()
         let characterCounterText = CurrentValueSubject<String, Never>("")
         let characterCounterColor = CurrentValueSubject<ThemeColor, Never>(.text)

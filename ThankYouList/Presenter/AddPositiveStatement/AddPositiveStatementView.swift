@@ -17,7 +17,15 @@ private let doneButtonDisabledOpacity = CGFloat(0.38)
 private let doneButtonPressedOpacity = CGFloat(0.7)
 
 struct AddPositiveStatementView: View {
-    @StateObject var viewModel: AddPositiveStatementViewModel
+    private let viewModelInputs: AddPositiveStatementViewModel.Inputs
+    @StateObject private var viewModelOutputs: AddPositiveStatementViewModel.Outputs
+    @StateObject private var viewModelBindings: AddPositiveStatementViewModel.Bindings
+
+    init(viewModel: AddPositiveStatementViewModel) {
+        viewModelInputs = viewModel.inputs
+        _viewModelOutputs = StateObject(wrappedValue: viewModel.outputs)
+        _viewModelBindings = StateObject(wrappedValue: viewModel.bindings)
+    }
 
     @State private var isProcessing = false
 
@@ -25,17 +33,17 @@ struct AddPositiveStatementView: View {
         NavigationView {
             contentView
                 .screenBackground(Color.defaultBackground)
-                .cancelButtonToolbar { viewModel.inputs.cancelButtonDidTap.send() }
+                .cancelButtonToolbar { viewModelInputs.cancelButtonDidTap.send() }
         }
         .interactiveDismissDisabled(true)
-        .onReceive(viewModel.outputs.closeKeyboard) { _ in
+        .onReceive(viewModelOutputs.closeKeyboard) { _ in
             UIApplication.shared.sendAction(
                 #selector(UIResponder.resignFirstResponder),
                 to: nil,
                 from: nil,
                 for: nil)
         }
-        .onReceive(viewModel.bindings.$isProcessing) { isProcessing in
+        .onReceive(viewModelBindings.$isProcessing) { isProcessing in
             self.isProcessing = isProcessing
         }
         .proccessingOverlay(isProcessing: $isProcessing)
@@ -69,18 +77,18 @@ struct AddPositiveStatementView: View {
 
     var textFieldView: some View {
         VStack {
-            textField(R.string.localizable.add_positive_statement_textfield_placeholder(), text: $viewModel.bindings.textFieldText)
+            textField(R.string.localizable.add_positive_statement_textfield_placeholder(), text: $viewModelBindings.textFieldText)
                 .font(.regularAvenir(ofSize: ViewConst.fontSize16))
                 .padding(.all, ViewConst.spacing12)
                 .background(Color.white)
                 .cornerRadius(textFieldCornerRadius)
-                .onChange(of: viewModel.bindings.textFieldText) { text in
-                    viewModel.inputs.textFieldTextDidChange.send(text)
+                .onChange(of: viewModelBindings.textFieldText) { text in
+                    viewModelInputs.textFieldTextDidChange.send(text)
                 }
 
-            Text(viewModel.outputs.characterCounterText.value)
+            Text(viewModelOutputs.characterCounterText.value)
                 .font(.regularAvenir(ofSize: ViewConst.fontSize13))
-                .foregroundStyle(viewModel.outputs.characterCounterColor.value.swiftUIColor)
+                .foregroundStyle(viewModelOutputs.characterCounterColor.value.swiftUIColor)
                 .frame(maxWidth: .infinity, alignment: .trailing)
         }
     }
@@ -110,9 +118,9 @@ struct AddPositiveStatementView: View {
 
     var doneButton: some View {
         Button(R.string.localizable.done()) {
-            viewModel.inputs.doneButtonDidTap.send()
+            viewModelInputs.doneButtonDidTap.send()
         }
-        .disabled(viewModel.outputs.isDoneButtonDisabled.value)
+        .disabled(viewModelOutputs.isDoneButtonDisabled.value)
         .buttonStyle(PrimaryButtonStyle())
     }
 }

@@ -27,8 +27,6 @@ struct AddPositiveStatementView: View {
         _viewModelBindings = StateObject(wrappedValue: viewModel.bindings)
     }
 
-    @State private var isProcessing = false
-
     var body: some View {
         NavigationView {
             contentView
@@ -43,10 +41,7 @@ struct AddPositiveStatementView: View {
                 from: nil,
                 for: nil)
         }
-        .onReceive(viewModelBindings.$isProcessing) { isProcessing in
-            self.isProcessing = isProcessing
-        }
-        .proccessingOverlay(isProcessing: $isProcessing)
+        .proccessingOverlay(isProcessing: $viewModelBindings.isProcessing)
     }
 
     var contentView: some View {

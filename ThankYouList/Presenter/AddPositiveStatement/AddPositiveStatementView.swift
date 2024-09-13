@@ -30,6 +30,7 @@ struct AddPositiveStatementView: View {
     var body: some View {
         NavigationView {
             contentView
+                .offsetDetectableScrollView(offsetSubject: viewModelInputs.scrollViewOffsetDidChange)
                 .screenBackground(Color.defaultBackground)
                 .cancelButtonToolbar { viewModelInputs.cancelButtonDidTap.send() }
         }

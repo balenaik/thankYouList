@@ -7,6 +7,7 @@
 //
 
 import Combine
+import Foundation
 
 private let positiveStatementMaxCount = 100
 
@@ -112,6 +113,7 @@ extension AddPositiveStatementViewModel {
         let textFieldTextDidChange = PassthroughSubject<String, Never>()
         let cancelButtonDidTap = PassthroughSubject<Void, Never>()
         let doneButtonDidTap = PassthroughSubject<Void, Never>()
+        let scrollViewOffsetDidChange = CurrentValueSubject<CGFloat, Never>(0)
     }
 
     class Outputs: ObservableObject {

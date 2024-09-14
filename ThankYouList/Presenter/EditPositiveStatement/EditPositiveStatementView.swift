@@ -8,6 +8,8 @@
 
 import SwiftUI
 
+private let textFieldCornerRadius = CGFloat(8)
+
 struct EditPositiveStatementView: View {
     private let viewModelInputs: EditPositiveStatementViewModel.Inputs
     @StateObject private var viewModelOutputs: EditPositiveStatementViewModel.Outputs
@@ -42,6 +44,7 @@ struct EditPositiveStatementView: View {
     private var contentView: some View {
         VStack(spacing: ViewConst.spacing16) {
             titleDescriptionView
+            textFieldView
             Spacer()
         }
         .padding(.horizontal, ViewConst.spacing24)
@@ -60,6 +63,19 @@ struct EditPositiveStatementView: View {
                 .fixedSize(horizontal: false, vertical: true) // To fix text trancate issue on iOS 15
                 .padding(.vertical, ViewConst.spacing4)
                 .frame(maxWidth: .infinity, alignment: .leading)
+        }
+    }
+
+    private var textFieldView: some View {
+        VStack {
+            textField(R.string.localizable.edit_positive_statement_textfield_placeholder(), text: $viewModelBindings.textFieldText)
+                .font(.regularAvenir(ofSize: ViewConst.fontSize16))
+                .padding(.all, ViewConst.spacing12)
+                .background(Color.white)
+                .cornerRadius(textFieldCornerRadius)
+                .onChange(of: viewModelBindings.textFieldText) { text in
+                    viewModelInputs.textFieldTextDidChange.send(text)
+                }
         }
     }
 }

@@ -73,7 +73,7 @@ struct AddPositiveStatementView: View {
         }
     }
 
-    var textFieldView: some View {
+    private var textFieldView: some View {
         VStack {
             textField(R.string.localizable.add_positive_statement_textfield_placeholder(), text: $viewModelBindings.textFieldText)
                 .font(.regularAvenir(ofSize: ViewConst.fontSize16))

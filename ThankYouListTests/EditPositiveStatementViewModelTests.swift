@@ -189,6 +189,19 @@ final class EditPositiveStatementViewModelTests: XCTestCase {
             .value(.redAccent200)
         ])
     }
+
+    func test_ifAUserTapsDoneButton__itShouldCloseKeyboard() {
+        let closeKeyboardRecords = TestRecord(
+            publisher: viewModel.outputs.closeKeyboard.map { "" }.eraseToAnyPublisher()) // Void cannot be compared
+
+        // Taps done button
+        viewModel.inputs.doneButtonDidTap.send()
+
+        // Should close keyboard
+        XCTAssertEqual(closeKeyboardRecords.results, [
+            (.value(""))
+        ])
+    }
 }
 
 private class MockEditPositiveStatementRouter: MockRouter, EditPositiveStatementRouter {

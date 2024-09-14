@@ -80,6 +80,10 @@ private extension EditPositiveStatementViewModel {
         inputs.cancelButtonDidTap
             .sink { [router] in router?.dismiss() }
             .store(in: &cancellable)
+
+        inputs.doneButtonDidTap
+            .subscribe(outputs.closeKeyboard)
+            .store(in: &cancellable)
     }
 }
 

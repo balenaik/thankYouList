@@ -47,6 +47,7 @@ struct EditPositiveStatementView: View {
         VStack(spacing: ViewConst.spacing16) {
             titleDescriptionView
             textFieldView
+            doneButton
             Spacer()
         }
         .padding(.horizontal, ViewConst.spacing24)
@@ -107,6 +108,13 @@ struct EditPositiveStatementView: View {
             // iOS 15 or lower doesn't support multiline textField
             TextField(placeHolder, text: text)
         }
+    }
+
+    private var doneButton: some View {
+        Button(R.string.localizable.done()) {
+            viewModelInputs.doneButtonDidTap.send()
+        }
+        .buttonStyle(PrimaryButtonStyle())
     }
 }
 

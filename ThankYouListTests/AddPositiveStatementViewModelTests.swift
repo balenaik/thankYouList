@@ -298,6 +298,70 @@ final class AddPositiveStatementViewModelTests: XCTestCase {
             (.value(""))
         ])
     }
+
+    func test_ifAUserScrollsTheScrollView_moreThanNavBarVisibleOffset__itShouldSetTitleOnNavBarTitle() {
+        let navigationBarTitleRecords = TestRecord(
+            publisher: viewModel.outputs.$navigationBarTitle.eraseToAnyPublisher()
+        )
+        navigationBarTitleRecords.clearResult()
+
+        // Scrolls the scrollView more than NavBar visible offset
+        viewModel.inputs.scrollViewOffsetDidChange.send(ViewConst.swiftUINavigationTitleVisibleOffset + 1)
+
+        // It should set title
+        XCTAssertEqual(navigationBarTitleRecords.results, [.value(R.string.localizable.add_positive_statement_title())])
+        navigationBarTitleRecords.clearResult()
+    }
+
+    func test_ifAUserScrollsTheScrollView_equalToOrLessThanNavBarVisibleOffset__itShouldSetEmptyOnNavBarTitle() {
+        let navigationBarTitleRecords = TestRecord(
+            publisher: viewModel.outputs.$navigationBarTitle.eraseToAnyPublisher()
+        )
+
+        // Scrolls the scrollView more than NavBar visible offset first
+        viewModel.inputs.scrollViewOffsetDidChange.send(ViewConst.swiftUINavigationTitleVisibleOffset + 10)
+        navigationBarTitleRecords.clearResult()
+
+        // Scrolls the scrollView equal to NavBar visible offset
+        viewModel.inputs.scrollViewOffsetDidChange.send(ViewConst.swiftUINavigationTitleVisibleOffset)
+
+        // It should set empty title
+        XCTAssertEqual(navigationBarTitleRecords.results, [.value("")])
+        navigationBarTitleRecords.clearResult()
+    }
+
+    func test_ifAUserScrollsTheScrollView__itShouldSetNavBarTitle_byRemovingDuplicates() {
+        let navigationBarTitleRecords = TestRecord(
+            publisher: viewModel.outputs.$navigationBarTitle.eraseToAnyPublisher()
+        )
+        navigationBarTitleRecords.clearResult()
+
+        // Scrolls the scrollView more than NavBar visible offset first
+        viewModel.inputs.scrollViewOffsetDidChange.send(ViewConst.swiftUINavigationTitleVisibleOffset + 10)
+
+        // It should set title
+        XCTAssertEqual(navigationBarTitleRecords.results, [.value(R.string.localizable.add_positive_statement_title())])
+        navigationBarTitleRecords.clearResult()
+
+        // Scrolls the scrollView more
+        viewModel.inputs.scrollViewOffsetDidChange.send(ViewConst.swiftUINavigationTitleVisibleOffset + 11)
+
+        // It should not set title twice
+        XCTAssertTrue(navigationBarTitleRecords.results.isEmpty)
+
+        // Scrolls the scrollView equal to NavBar visible offset
+        viewModel.inputs.scrollViewOffsetDidChange.send(ViewConst.swiftUINavigationTitleVisibleOffset)
+
+        // It should set empty title
+        XCTAssertEqual(navigationBarTitleRecords.results, [.value("")])
+        navigationBarTitleRecords.clearResult()
+
+        // Scrolls more
+        viewModel.inputs.scrollViewOffsetDidChange.send(ViewConst.swiftUINavigationTitleVisibleOffset - 10)
+
+        // It should not set title twice
+        XCTAssertTrue(navigationBarTitleRecords.results.isEmpty)
+    }
 }
 
 private class MockAddPositiveStatementRouter: MockRouter, AddPositiveStatementRouter {

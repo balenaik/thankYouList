@@ -38,6 +38,15 @@ class AddPositiveStatementViewModel: ObservableObject {
 
 private extension AddPositiveStatementViewModel {
     func bind() {
+        inputs.scrollViewOffsetDidChange
+            .map {
+                $0 > ViewConst.swiftUINavigationTitleVisibleOffset
+                ? R.string.localizable.add_positive_statement_title()
+                : ""
+            }
+            .removeDuplicates()
+            .assign(to: &outputs.$navigationBarTitle)
+
         inputs.textFieldTextDidChange
             .compactMap { text in
                 // Don't allow a line with only newline character
@@ -121,6 +130,7 @@ extension AddPositiveStatementViewModel {
         let characterCounterText = CurrentValueSubject<String, Never>("")
         let characterCounterColor = CurrentValueSubject<ThemeColor, Never>(.text)
         let isDoneButtonDisabled = CurrentValueSubject<Bool, Never>(true)
+        @Published var navigationBarTitle = ""
     }
 
     class Bindings: ObservableObject {

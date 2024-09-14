@@ -49,11 +49,12 @@ extension EditPositiveStatementViewModel {
         let scrollViewOffsetDidChange = CurrentValueSubject<CGFloat, Never>(0)
     }
 
-    class Outputs {
+    class Outputs: ObservableObject {
         let closeKeyboard = PassthroughSubject<Void, Never>()
         let characterCounterText = CurrentValueSubject<String, Never>("")
         let characterCounterColor = CurrentValueSubject<ThemeColor, Never>(.text)
         let isDoneButtonDisabled = CurrentValueSubject<Bool, Never>(true)
+        @Published var navigationBarTitle = ""
     }
 
     class Bindings: ObservableObject {

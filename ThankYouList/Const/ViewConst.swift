@@ -11,6 +11,8 @@ import Foundation
 enum ViewConst {
     static let skeletonViewFadeTime = TimeInterval(0.25)
 
+    static let swiftUINavigationTitleVisibleOffset = CGFloat(18)
+
     static let spacing4 = CGFloat(4)
     static let spacing8 = CGFloat(8)
     static let spacing12 = CGFloat(12)

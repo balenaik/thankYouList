@@ -33,6 +33,7 @@ struct AddPositiveStatementView: View {
                 .offsetDetectableScrollView(offsetSubject: viewModelInputs.scrollViewOffsetDidChange)
                 .screenBackground(Color.defaultBackground)
                 .cancelButtonToolbar { viewModelInputs.cancelButtonDidTap.send() }
+                .navigationBarTitleDisplayMode(.inline)
         }
         .interactiveDismissDisabled(true)
         .onReceive(viewModelOutputs.closeKeyboard) { _ in

@@ -68,6 +68,15 @@ private extension EditPositiveStatementViewModel {
             .subscribe(outputs.characterCounterText)
             .store(in: &cancellable)
 
+        bindings.$textFieldText
+            .map {
+                $0.count > positiveStatementMaxCount
+                ? ThemeColor.redAccent200
+                : ThemeColor.text
+            }
+            .subscribe(outputs.characterCounterColor)
+            .store(in: &cancellable)
+
         inputs.cancelButtonDidTap
             .sink { [router] in router?.dismiss() }
             .store(in: &cancellable)

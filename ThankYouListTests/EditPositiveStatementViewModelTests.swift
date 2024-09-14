@@ -156,6 +156,39 @@ final class EditPositiveStatementViewModelTests: XCTestCase {
             .value(R.string.localizable.edit_positive_statement_character_count_text("21", maxCountString))
         ])
     }
+
+    func test_ifTextFieldTextUpdated_withLessThanOrEqualTo100Characters__itShouldUpdateCharacterCounterColorAsTextColor__andWithMoreThan100Characters__itShouldUpdateColorAsRedAccent200() {
+        let characterCounterColorRecords = TestRecord(
+            publisher: viewModel.outputs.characterCounterColor.eraseToAnyPublisher())
+        characterCounterColorRecords.clearResult() // Remove the initial record
+
+        // when textFieldText character count is 1, the color should be .text
+        viewModel.bindings.textFieldText = "a"
+        XCTAssertEqual(characterCounterColorRecords.results, [
+            .value(.text)
+        ])
+        characterCounterColorRecords.clearResult()
+
+        // when textFieldText character count is 99, the color should be .text
+        viewModel.bindings.textFieldText = "99characters......................................................................................"
+        XCTAssertEqual(characterCounterColorRecords.results, [
+            .value(.text)
+        ])
+        characterCounterColorRecords.clearResult()
+
+        // when textFieldText character count is 100, the color should be .text
+        viewModel.bindings.textFieldText = "100characters......................................................................................"
+        XCTAssertEqual(characterCounterColorRecords.results, [
+            .value(.text)
+        ])
+        characterCounterColorRecords.clearResult()
+
+        // when textFieldText character count is 101, the color should be .redAccent200
+        viewModel.bindings.textFieldText = "101characters........................................................................................."
+        XCTAssertEqual(characterCounterColorRecords.results, [
+            .value(.redAccent200)
+        ])
+    }
 }
 
 private class MockEditPositiveStatementRouter: MockRouter, EditPositiveStatementRouter {

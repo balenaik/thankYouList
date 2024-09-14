@@ -38,6 +38,14 @@ class EditPositiveStatementViewModel: ObservableObject {
 
 private extension EditPositiveStatementViewModel {
     func bind() {
+        inputs.scrollViewOffsetDidChange
+            .map {
+                $0 > ViewConst.swiftUINavigationTitleVisibleOffset
+                ? R.string.localizable.edit_positive_statement_title()
+                : ""
+            }
+            .removeDuplicates()
+            .assign(to: &outputs.$navigationBarTitle)
     }
 }
 

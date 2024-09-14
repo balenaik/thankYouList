@@ -98,6 +98,8 @@
 "add_positive_statement_character_count_text" = "%@/%@ characters";
 "add_positive_statement_add_error" = "Failed to add"; // TODO: Need to consider the wording later
 
+"edit_positive_statement_title" = "What does your ideal future look like?";
+
 "home_widget_instruction_title" = "How to add Widget";
 "home_widget_instruction_page1_description" = "Tap and hold any blank area on the home screen until the app icons start jiggling.";
 "home_widget_instruction_page2_description" = "Press the \"+\" button on the top left corner";

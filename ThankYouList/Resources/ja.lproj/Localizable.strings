@@ -97,6 +97,8 @@
 "add_positive_statement_character_count_text" = "%@/%@ 文字";
 "add_positive_statement_add_error" = "追加できませんでした"; // TODO: Need to consider the wording later
 
+"edit_positive_statement_title" = "あなたの理想の未来はどんな状態ですか？";
+
 "home_widget_instruction_title" = "ウィジェットの追加方法";
 "home_widget_instruction_page1_description" = "ホーム画面の空いている場所を長押しし、\nアプリアイコンが揺れ始めるまで待ちます。";
 "home_widget_instruction_page2_description" = "画面左上の「＋」ボタンをタップします。";

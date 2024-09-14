@@ -154,6 +154,7 @@
 		A8F064C12C7ACF8E006C6EE9 /* EditPositiveStatementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064C02C7ACF8E006C6EE9 /* EditPositiveStatementView.swift */; };
 		A8F064C32C7AD0BA006C6EE9 /* EditPositiveStatementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064C22C7AD0BA006C6EE9 /* EditPositiveStatementViewModel.swift */; };
 		A8F064C72C944A83006C6EE9 /* View+ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064C62C944A83006C6EE9 /* View+ScrollView.swift */; };
+		A8F064C92C957ABA006C6EE9 /* EditPositiveStatementViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064C82C957ABA006C6EE9 /* EditPositiveStatementViewModelTests.swift */; };
 		A8F06BB91F55396F00A90170 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */; };
 		A8F2619A2B43FA0500A65C0A /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A8F261992B43FA0500A65C0A /* CombineCocoa */; };
 		A8F2619C2B476FAE00A65C0A /* MockRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F2619B2B476FAE00A65C0A /* MockRouter.swift */; };
@@ -323,6 +324,7 @@
 		A8F064C02C7ACF8E006C6EE9 /* EditPositiveStatementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPositiveStatementView.swift; sourceTree = "<group>"; };
 		A8F064C22C7AD0BA006C6EE9 /* EditPositiveStatementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPositiveStatementViewModel.swift; sourceTree = "<group>"; };
 		A8F064C62C944A83006C6EE9 /* View+ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ScrollView.swift"; sourceTree = "<group>"; };
+		A8F064C82C957ABA006C6EE9 /* EditPositiveStatementViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPositiveStatementViewModelTests.swift; sourceTree = "<group>"; };
 		A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8F2619B2B476FAE00A65C0A /* MockRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRouter.swift; sourceTree = "<group>"; };
 		A8F2700F2BD0883F00227009 /* AnyPublisher+Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyPublisher+Operators.swift"; sourceTree = "<group>"; };
@@ -638,6 +640,7 @@
 				A863F1252BABDE3F00F79314 /* AddPositiveStatementViewModelTests.swift */,
 				A84635B72AD270210030A358 /* CalendarViewModelTests.swift */,
 				A892354B29D731730093A92F /* ConfirmDeleteAccountViewModelTests.swift */,
+				A8F064C82C957ABA006C6EE9 /* EditPositiveStatementViewModelTests.swift */,
 				A8ADC15F2C54EC1300830B39 /* HomeWidgetInstructionViewModelTests.swift */,
 				A87EE43C2C1E8B0E00CCB997 /* PositiveStatementListViewModelTests.swift */,
 			);
@@ -1187,6 +1190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A84635B82AD270210030A358 /* CalendarViewModelTests.swift in Sources */,
+				A8F064C92C957ABA006C6EE9 /* EditPositiveStatementViewModelTests.swift in Sources */,
 				A84635BC2AD2711D0030A358 /* MockThankYouRepository.swift in Sources */,
 				A8A1E20A2B2F08E60083C3FF /* TestRecord.swift in Sources */,
 				A8F2619C2B476FAE00A65C0A /* MockRouter.swift in Sources */,

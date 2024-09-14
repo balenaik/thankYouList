@@ -24,6 +24,7 @@ final class EditPositiveStatementViewModelTests: XCTestCase {
         positiveStatementRepository = MockPositiveStatementRepository()
 
         viewModel = EditPositiveStatementViewModel(
+            positiveStatementId: "",
             userRepository: userRepository,
             positiveStatementRepository: positiveStatementRepository,
             router: router)

@@ -121,6 +121,7 @@ struct EditPositiveStatementView: View {
 #Preview {
     EditPositiveStatementView(
         viewModel: EditPositiveStatementViewModel(
+            positiveStatementId: "",
             userRepository: DefaultUserRepository(),
             positiveStatementRepository: DefaultPositiveStatementRepository(),
             router: nil))

@@ -21,14 +21,17 @@ class EditPositiveStatementViewModel: ObservableObject {
     let outputs = Outputs()
     @Published var bindings = Bindings()
 
+    private let positiveStatementId: String
     private var cancellable = Set<AnyCancellable>()
     private let userRepository: UserRepository
     private let positiveStatementRepository: PositiveStatementRepository
     private let router: EditPositiveStatementRouter?
 
-    init(userRepository: UserRepository,
+    init(positiveStatementId: String,
+         userRepository: UserRepository,
          positiveStatementRepository: PositiveStatementRepository,
          router: EditPositiveStatementRouter?) {
+        self.positiveStatementId = positiveStatementId
         self.router = router
         self.userRepository = userRepository
         self.positiveStatementRepository = positiveStatementRepository

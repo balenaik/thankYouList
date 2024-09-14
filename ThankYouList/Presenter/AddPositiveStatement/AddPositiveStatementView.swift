@@ -40,6 +40,7 @@ struct AddPositiveStatementView: View {
                 from: nil,
                 for: nil)
         }
+        .alert(item: $viewModelOutputs.showAlert) { alertItem in alertItem.toAlert }
         .proccessingOverlay(isProcessing: $viewModelOutputs.isProcessing)
     }
 

@@ -90,10 +90,9 @@ private extension AddPositiveStatementViewModel {
             .subscribe(outputs.closeKeyboard)
             .store(in: &cancellable)
 
-        inputs.doneButtonDidTap
+        let addPositiveStatementResult = inputs.doneButtonDidTap
             .handleEvents(receiveOutput: { [outputs] in outputs.isProcessing = true })
             .map { [bindings] in bindings.textFieldText }
-            .setFailureType(to: Error.self)
             .flatMap { [userRepository, positiveStatementRepository] positiveStatement in
                 userRepository.getUserProfile().map { ($0, positiveStatement) }
                     .flatMap { [positiveStatementRepository] userProfile, positiveStatement in
@@ -105,15 +104,21 @@ private extension AddPositiveStatementViewModel {
                     .asResult()
             }
             .handleEvents(receiveOutput: { [outputs] _ in outputs.isProcessing = false })
-            .sink(receiveCompletion: { _ in }, receiveValue: { [router] result in
-                switch result {
-                case .success:
-                    router?.dismiss()
-                case .failure:
-                    router?.presentAlert(title: R.string.localizable.add_positive_statement_add_error())
-                }
-            })
+            .share()
+
+        addPositiveStatementResult
+            .values()
+            .sink { [router] in
+                router?.dismiss()
+            }
             .store(in: &cancellable)
+
+        addPositiveStatementResult
+            .errors()
+            .map { _ in
+                AlertItem(title: R.string.localizable.add_positive_statement_add_error(), message: nil)
+            }
+            .assign(to: &outputs.$showAlert)
     }
 }
 
@@ -132,6 +137,7 @@ extension AddPositiveStatementViewModel {
         let isDoneButtonDisabled = CurrentValueSubject<Bool, Never>(true)
         @Published var navigationBarTitle = ""
         @Published var isProcessing = false
+        @Published var showAlert: AlertItem?
     }
 
     class Bindings: ObservableObject {

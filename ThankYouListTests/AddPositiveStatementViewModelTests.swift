@@ -205,8 +205,12 @@ final class AddPositiveStatementViewModelTests: XCTestCase {
 
     func test_ifAUserTapsDoneButton_andGetUserProfileThrowsAnError__itShouldShowAlert_andShouldNotCreatePositiveStatement_andShouldNotDismissTheView__andIfUserTapsDoneButtonAgain__itShouldCallGetUserProfileAgain_shouldShowAlertAgain_andShouldUpdateIsProcessingStatus() {
 
+        let showAlertTitleRecorder = TestRecord(publisher: viewModel.outputs.$showAlert.map(\.?.title).eraseToAnyPublisher())
+        let showAlertMessageRecorder = TestRecord(publisher: viewModel.outputs.$showAlert.map(\.?.message).eraseToAnyPublisher())
         let isProcessingRecorder = TestRecord(publisher: viewModel.outputs.$isProcessing.eraseToAnyPublisher())
-        isProcessingRecorder.clearResult() // Remove the initial value
+        showAlertTitleRecorder.clearResult()
+        showAlertMessageRecorder.clearResult()
+        isProcessingRecorder.clearResult()
 
         // Setup UserProfile as throwing an error
         userRepository.getUserProfile_result = Fail(error: NSError()).asFuture()
@@ -215,9 +219,10 @@ final class AddPositiveStatementViewModelTests: XCTestCase {
         viewModel.inputs.doneButtonDidTap.send()
 
         // Should show an error alert
-        XCTAssertEqual(router.presentAlert_title, R.string.localizable.add_positive_statement_add_error())
-        XCTAssertNil(router.presentAlert_message)
-        XCTAssertEqual(router.presentAlert_calledCount, 1)
+        XCTAssertEqual(showAlertTitleRecorder.results, [ .value(R.string.localizable.add_positive_statement_add_error())])
+        XCTAssertEqual(showAlertMessageRecorder.results, [.value(nil)])
+        showAlertTitleRecorder.clearResult()
+        showAlertMessageRecorder.clearResult()
 
         // Should not create Positive Statement
         XCTAssertEqual(
@@ -236,9 +241,8 @@ final class AddPositiveStatementViewModelTests: XCTestCase {
         XCTAssertEqual(userRepository.getUserProfile_calledCount, 2)
 
         // Should show an error alert again
-        XCTAssertEqual(router.presentAlert_title, R.string.localizable.add_positive_statement_add_error())
-        XCTAssertNil(router.presentAlert_message)
-        XCTAssertEqual(router.presentAlert_calledCount, 2)
+        XCTAssertEqual(showAlertTitleRecorder.results, [ .value(R.string.localizable.add_positive_statement_add_error())])
+        XCTAssertEqual(showAlertMessageRecorder.results, [.value(nil)])
 
         // Should show and hide isProcessing status again
         XCTAssertEqual(isProcessingRecorder.results, [.value(true), .value(false)])
@@ -246,8 +250,12 @@ final class AddPositiveStatementViewModelTests: XCTestCase {
 
     func test_ifAUserTapsDoneButton_andCreatePositiveStatementThrowsAnError__itShouldShowAlert_andShouldNotDismissTheView__andIfUserTapsDoneButtonAgain__itShouldCallCreatePositiveStatmentAgain_shouldShowAlertAgain_andShouldUpdateIsProcessingStatus() {
 
+        let showAlertTitleRecorder = TestRecord(publisher: viewModel.outputs.$showAlert.map(\.?.title).eraseToAnyPublisher())
+        let showAlertMessageRecorder = TestRecord(publisher: viewModel.outputs.$showAlert.map(\.?.message).eraseToAnyPublisher())
         let isProcessingRecorder = TestRecord(publisher: viewModel.outputs.$isProcessing.eraseToAnyPublisher())
-        isProcessingRecorder.clearResult() // Remove the initial value
+        showAlertTitleRecorder.clearResult()
+        showAlertMessageRecorder.clearResult()
+        isProcessingRecorder.clearResult()
 
         // Setup UserProfile as succeed
         let userProfile = Profile(id: "", name: "", email: "", imageUrl: nil)
@@ -260,9 +268,10 @@ final class AddPositiveStatementViewModelTests: XCTestCase {
         viewModel.inputs.doneButtonDidTap.send()
 
         // Should show an error alert
-        XCTAssertEqual(router.presentAlert_title, R.string.localizable.add_positive_statement_add_error())
-        XCTAssertNil(router.presentAlert_message)
-        XCTAssertEqual(router.presentAlert_calledCount, 1)
+        XCTAssertEqual(showAlertTitleRecorder.results, [ .value(R.string.localizable.add_positive_statement_add_error())])
+        XCTAssertEqual(showAlertMessageRecorder.results, [.value(nil)])
+        showAlertTitleRecorder.clearResult()
+        showAlertMessageRecorder.clearResult()
 
         // Should not dismiss view
         XCTAssertEqual(router.dismiss_calledCount, 0)
@@ -278,9 +287,8 @@ final class AddPositiveStatementViewModelTests: XCTestCase {
         XCTAssertEqual(positiveStatementRepository.createPositiveStatement_calledCount, 2)
 
         // Should show an error alert again
-        XCTAssertEqual(router.presentAlert_title, R.string.localizable.add_positive_statement_add_error())
-        XCTAssertNil(router.presentAlert_message)
-        XCTAssertEqual(router.presentAlert_calledCount, 2)
+        XCTAssertEqual(showAlertTitleRecorder.results, [ .value(R.string.localizable.add_positive_statement_add_error())])
+        XCTAssertEqual(showAlertMessageRecorder.results, [.value(nil)])
 
         // Should show and hide isProcessing status again
         XCTAssertEqual(isProcessingRecorder.results, [.value(true), .value(false)])

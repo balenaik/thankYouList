@@ -44,7 +44,7 @@ struct AddPositiveStatementView: View {
                 from: nil,
                 for: nil)
         }
-        .proccessingOverlay(isProcessing: $viewModelBindings.isProcessing)
+        .proccessingOverlay(isProcessing: $viewModelOutputs.isProcessing)
     }
 
     var contentView: some View {

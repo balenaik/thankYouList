@@ -91,7 +91,7 @@ private extension AddPositiveStatementViewModel {
             .store(in: &cancellable)
 
         inputs.doneButtonDidTap
-            .handleEvents(receiveOutput: { [bindings] in bindings.isProcessing = true })
+            .handleEvents(receiveOutput: { [outputs] in outputs.isProcessing = true })
             .map { [bindings] in bindings.textFieldText }
             .setFailureType(to: Error.self)
             .flatMap { [userRepository, positiveStatementRepository] positiveStatement in
@@ -104,7 +104,7 @@ private extension AddPositiveStatementViewModel {
                     }
                     .asResult()
             }
-            .handleEvents(receiveOutput: { [bindings] _ in bindings.isProcessing = false })
+            .handleEvents(receiveOutput: { [outputs] _ in outputs.isProcessing = false })
             .sink(receiveCompletion: { _ in }, receiveValue: { [router] result in
                 switch result {
                 case .success:
@@ -131,10 +131,10 @@ extension AddPositiveStatementViewModel {
         let characterCounterColor = CurrentValueSubject<ThemeColor, Never>(.text)
         let isDoneButtonDisabled = CurrentValueSubject<Bool, Never>(true)
         @Published var navigationBarTitle = ""
+        @Published var isProcessing = false
     }
 
     class Bindings: ObservableObject {
         @Published var textFieldText = ""
-        @Published var isProcessing = false
     }
 }

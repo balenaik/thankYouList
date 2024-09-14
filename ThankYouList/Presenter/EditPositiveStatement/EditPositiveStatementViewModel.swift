@@ -55,10 +55,10 @@ extension EditPositiveStatementViewModel {
         let characterCounterColor = CurrentValueSubject<ThemeColor, Never>(.text)
         let isDoneButtonDisabled = CurrentValueSubject<Bool, Never>(true)
         @Published var navigationBarTitle = ""
+        @Published var isProcessing = false
     }
 
     class Bindings: ObservableObject {
         @Published var textFieldText = ""
-        @Published var isProcessing = false
     }
 }

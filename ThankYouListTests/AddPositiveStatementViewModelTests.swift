@@ -168,7 +168,7 @@ final class AddPositiveStatementViewModelTests: XCTestCase {
 
     func test_ifAUserTapsDoneButton__itShouldCreatePositiveStatement_withPassingTheTextFieldValue_andUserIdFromGetUserProfile__andIfAllSucceeded__itShouldDismissTheView_andShouldUpdateIsProcessingStatus() {
 
-        let isProcessingRecorder = TestRecord(publisher: viewModel.bindings.$isProcessing.eraseToAnyPublisher())
+        let isProcessingRecorder = TestRecord(publisher: viewModel.outputs.$isProcessing.eraseToAnyPublisher())
         isProcessingRecorder.clearResult() // Remove the initial value
 
         // Setup UserProfile
@@ -205,7 +205,7 @@ final class AddPositiveStatementViewModelTests: XCTestCase {
 
     func test_ifAUserTapsDoneButton_andGetUserProfileThrowsAnError__itShouldShowAlert_andShouldNotCreatePositiveStatement_andShouldNotDismissTheView__andIfUserTapsDoneButtonAgain__itShouldCallGetUserProfileAgain_shouldShowAlertAgain_andShouldUpdateIsProcessingStatus() {
 
-        let isProcessingRecorder = TestRecord(publisher: viewModel.bindings.$isProcessing.eraseToAnyPublisher())
+        let isProcessingRecorder = TestRecord(publisher: viewModel.outputs.$isProcessing.eraseToAnyPublisher())
         isProcessingRecorder.clearResult() // Remove the initial value
 
         // Setup UserProfile as throwing an error
@@ -246,7 +246,7 @@ final class AddPositiveStatementViewModelTests: XCTestCase {
 
     func test_ifAUserTapsDoneButton_andCreatePositiveStatementThrowsAnError__itShouldShowAlert_andShouldNotDismissTheView__andIfUserTapsDoneButtonAgain__itShouldCallCreatePositiveStatmentAgain_shouldShowAlertAgain_andShouldUpdateIsProcessingStatus() {
 
-        let isProcessingRecorder = TestRecord(publisher: viewModel.bindings.$isProcessing.eraseToAnyPublisher())
+        let isProcessingRecorder = TestRecord(publisher: viewModel.outputs.$isProcessing.eraseToAnyPublisher())
         isProcessingRecorder.clearResult() // Remove the initial value
 
         // Setup UserProfile as succeed

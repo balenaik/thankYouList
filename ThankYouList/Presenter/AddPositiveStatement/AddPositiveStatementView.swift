@@ -57,7 +57,7 @@ struct AddPositiveStatementView: View {
         .padding(.horizontal, ViewConst.spacing24)
     }
 
-    var titleDescriptionView: some View {
+    private var titleDescriptionView: some View {
         VStack(spacing: 0) {
             Text(R.string.localizable.add_positive_statement_title)
                 .font(.boldAvenir(ofSize: ViewConst.fontSize24))

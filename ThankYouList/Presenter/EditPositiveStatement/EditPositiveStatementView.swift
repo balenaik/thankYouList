@@ -41,8 +41,26 @@ struct EditPositiveStatementView: View {
 
     private var contentView: some View {
         VStack(spacing: ViewConst.spacing16) {
+            titleDescriptionView
+            Spacer()
         }
         .padding(.horizontal, ViewConst.spacing24)
+    }
+
+    private var titleDescriptionView: some View {
+        VStack(spacing: 0) {
+            Text(R.string.localizable.edit_positive_statement_title)
+                .font(.boldAvenir(ofSize: ViewConst.fontSize24))
+                .fixedSize(horizontal: false, vertical: true) // To fix text trancate when TextField grows up
+                .padding(.vertical, ViewConst.spacing8)
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+            Text(R.string.localizable.edit_positive_statement_description)
+                .font(.regularAvenir(ofSize: ViewConst.fontSize16))
+                .fixedSize(horizontal: false, vertical: true) // To fix text trancate issue on iOS 15
+                .padding(.vertical, ViewConst.spacing4)
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
     }
 }
 

@@ -47,7 +47,7 @@ struct AddPositiveStatementView: View {
         .proccessingOverlay(isProcessing: $viewModelOutputs.isProcessing)
     }
 
-    var contentView: some View {
+    private var contentView: some View {
         VStack(spacing: ViewConst.spacing16) {
             titleDescriptionView
             textFieldView

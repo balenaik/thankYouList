@@ -151,6 +151,7 @@
 		A8E6CD14296BA31A0042AA81 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD13296BA31A0042AA81 /* Coordinator.swift */; };
 		A8E6CD16296BAEB10042AA81 /* MainTabbarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD15296BAEB10042AA81 /* MainTabbarCoordinator.swift */; };
 		A8E6CD18296BF3100042AA81 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD17296BF3100042AA81 /* LoginCoordinator.swift */; };
+		A8F064C12C7ACF8E006C6EE9 /* EditPositiveStatementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064C02C7ACF8E006C6EE9 /* EditPositiveStatementView.swift */; };
 		A8F064C32C7AD0BA006C6EE9 /* EditPositiveStatementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064C22C7AD0BA006C6EE9 /* EditPositiveStatementViewModel.swift */; };
 		A8F064C72C944A83006C6EE9 /* View+ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064C62C944A83006C6EE9 /* View+ScrollView.swift */; };
 		A8F06BB91F55396F00A90170 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */; };
@@ -319,6 +320,7 @@
 		A8E6CD13296BA31A0042AA81 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		A8E6CD15296BAEB10042AA81 /* MainTabbarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarCoordinator.swift; sourceTree = "<group>"; };
 		A8E6CD17296BF3100042AA81 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		A8F064C02C7ACF8E006C6EE9 /* EditPositiveStatementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPositiveStatementView.swift; sourceTree = "<group>"; };
 		A8F064C22C7AD0BA006C6EE9 /* EditPositiveStatementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPositiveStatementViewModel.swift; sourceTree = "<group>"; };
 		A8F064C62C944A83006C6EE9 /* View+ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ScrollView.swift"; sourceTree = "<group>"; };
 		A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -736,6 +738,7 @@
 		A8F064BF2C7ACF6F006C6EE9 /* EditPositiveStatement */ = {
 			isa = PBXGroup;
 			children = (
+				A8F064C02C7ACF8E006C6EE9 /* EditPositiveStatementView.swift */,
 				A8F064C22C7AD0BA006C6EE9 /* EditPositiveStatementViewModel.swift */,
 			);
 			path = EditPositiveStatement;
@@ -1081,6 +1084,7 @@
 				A83A36242973D4B300AD2790 /* CalendarCoordinator.swift in Sources */,
 				A895A56F297CCAAC0081E08F /* Publisher+Operators.swift in Sources */,
 				A8E6CD0B29601E150042AA81 /* Color+SetColor.swift in Sources */,
+				A8F064C12C7ACF8E006C6EE9 /* EditPositiveStatementView.swift in Sources */,
 				A8A06863244F444400839D14 /* MyPageProfileCell.swift in Sources */,
 				A8ADC1572C43B45200830B39 /* Color+Blend.swift in Sources */,
 				A83A36202972830A00AD2790 /* Router.swift in Sources */,

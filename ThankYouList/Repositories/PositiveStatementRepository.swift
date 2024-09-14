@@ -12,8 +12,13 @@ import FirebaseFirestore
 private let encryptedValueKey = "encryptedValue"
 private let createdDateKey = "createdDate"
 
+enum PositiveStatementRepositoryError: Error {
+    case documentNotFound
+}
+
 protocol PositiveStatementRepository {
     func subscribePositiveStatements(userId: String) -> AnyPublisher<[PositiveStatementModel], Error>
+    func getPositiveStatement(positiveStatementId: String, userId: String) -> Future<PositiveStatementModel, Error>
     func createPositiveStatement(positiveStatement: String, userId: String) -> Future<Void, Error>
     func deletePositiveStatement(positiveStatementId: String, userId: String) -> Future<Void, Error>
 }
@@ -57,6 +62,40 @@ struct DefaultPositiveStatementRepository: PositiveStatementRepository {
             return AnyCancellable {
                 snapshotListener.remove()
             }
+        }
+    }
+
+    func getPositiveStatement(positiveStatementId: String, userId: String) -> Future<PositiveStatementModel, Error> {
+        let userId16string = String(userId.prefix(16))
+        return Future<PositiveStatementModel, Error> { promise in
+            firestore
+                .collection(FirestoreConst.usersCollecion)
+                .document(userId)
+                .collection(FirestoreConst.positiveStatementsCollection)
+                .document(positiveStatementId)
+                .getDocument { document, error in
+                    if let error = error {
+                        promise(.failure(error))
+                        return
+                    }
+                    guard let document,
+                          let encryptedValue = document.data()?[encryptedValueKey] as? String,
+                          let createdDate = document.data()?[createdDateKey] as? Timestamp
+                    else {
+                        promise(.failure(PositiveStatementRepositoryError.documentNotFound))
+                        return
+                    }
+                    let decryptedValue = Crypto().decryptString(
+                        encryptText: encryptedValue,
+                        key: userId16string
+                    )
+                    let positiveStatement = PositiveStatementModel(
+                        id: document.documentID,
+                        value: decryptedValue,
+                        createdDate: createdDate.dateValue()
+                    )
+                    promise(.success(positiveStatement))
+                }
         }
     }
 

@@ -7,6 +7,8 @@
 //
 
 import Combine
+import Foundation
+
 @testable import ThankYouList
 
 class MockPositiveStatementRepository: PositiveStatementRepository {
@@ -17,6 +19,11 @@ class MockPositiveStatementRepository: PositiveStatementRepository {
         subscribePositiveStatements_calledCount += 1
         subscribePositiveStatements_userId = userId
         return subscribePositiveStatements_result
+    }
+
+    var getPositiveStatement_result = Just(PositiveStatementModel(id: "", value: "", createdDate: Date())).setFailureType(to: Error.self).asFuture()
+    func getPositiveStatement(positiveStatementId: String, userId: String) -> Future<ThankYouList.PositiveStatementModel, any Error> {
+        getPositiveStatement_result
     }
 
     var createPositiveStatement_calledCount = 0

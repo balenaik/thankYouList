@@ -92,6 +92,14 @@ final class EditPositiveStatementViewModelTests: XCTestCase {
         // It should not set title twice
         XCTAssertTrue(navigationBarTitleRecords.results.isEmpty)
     }
+
+    func test_ifAUserTapsCancelButton__itShouldDismissView() {
+        // Taps cancel button
+        viewModel.inputs.cancelButtonDidTap.send()
+
+        // Should not call router.dismiss
+        XCTAssertEqual(router.dismiss_calledCount, 1)
+    }
 }
 
 private class MockEditPositiveStatementRouter: MockRouter, EditPositiveStatementRouter {

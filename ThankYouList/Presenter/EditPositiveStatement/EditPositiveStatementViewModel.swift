@@ -46,6 +46,10 @@ private extension EditPositiveStatementViewModel {
             }
             .removeDuplicates()
             .assign(to: &outputs.$navigationBarTitle)
+
+        inputs.cancelButtonDidTap
+            .sink { [router] in router?.dismiss() }
+            .store(in: &cancellable)
     }
 }
 

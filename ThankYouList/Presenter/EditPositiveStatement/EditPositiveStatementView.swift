@@ -76,6 +76,10 @@ struct EditPositiveStatementView: View {
                 .onChange(of: viewModelBindings.textFieldText) { text in
                     viewModelInputs.textFieldTextDidChange.send(text)
                 }
+
+            Text(viewModelOutputs.characterCounterText.value)
+                .font(.regularAvenir(ofSize: ViewConst.fontSize13))
+                .frame(maxWidth: .infinity, alignment: .trailing)
         }
     }
 }

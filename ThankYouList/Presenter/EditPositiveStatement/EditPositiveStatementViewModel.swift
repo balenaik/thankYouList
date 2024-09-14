@@ -58,6 +58,16 @@ private extension EditPositiveStatementViewModel {
             .sendEvent((), to: outputs.closeKeyboard)
             .assign(to: &bindings.$textFieldText)
 
+        bindings.$textFieldText
+            .map {
+                R.string.localizable
+                    .edit_positive_statement_character_count_text(
+                        String($0.count),
+                        String(positiveStatementMaxCount))
+            }
+            .subscribe(outputs.characterCounterText)
+            .store(in: &cancellable)
+
         inputs.cancelButtonDidTap
             .sink { [router] in router?.dismiss() }
             .store(in: &cancellable)

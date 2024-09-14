@@ -92,7 +92,7 @@ struct AddPositiveStatementView: View {
     }
 
     @ViewBuilder
-    func textField(_ placeHolder: String, text: Binding<String>) -> some View {
+    private func textField(_ placeHolder: String, text: Binding<String>) -> some View {
         if #available(iOS 16.0, *) {
             ZStack {
                 // Prepare custom placeholder rather than build-in placeholder

@@ -8,6 +8,8 @@
 
 import SwiftUI
 
+private let textFieldMinLine = 2
+private let textFieldPlaceHolderOpacity = CGFloat(0.25)
 private let textFieldCornerRadius = CGFloat(8)
 
 struct EditPositiveStatementView: View {
@@ -80,6 +82,29 @@ struct EditPositiveStatementView: View {
             Text(viewModelOutputs.characterCounterText.value)
                 .font(.regularAvenir(ofSize: ViewConst.fontSize13))
                 .frame(maxWidth: .infinity, alignment: .trailing)
+        }
+    }
+
+    @ViewBuilder
+    private func textField(_ placeHolder: String, text: Binding<String>) -> some View {
+        if #available(iOS 16.0, *) {
+            ZStack {
+                // Prepare custom placeholder rather than build-in placeholder
+                // in order to show multiline placeholder
+                TextField("", text: text, axis: .vertical)
+                    .lineLimit(textFieldMinLine...)
+                if text.wrappedValue.isEmpty {
+                    HStack {
+                        Text(placeHolder)
+                            .opacity(textFieldPlaceHolderOpacity)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .allowsHitTesting(false)
+                    }
+                }
+            }
+        } else {
+            // iOS 15 or lower doesn't support multiline textField
+            TextField(placeHolder, text: text)
         }
     }
 }

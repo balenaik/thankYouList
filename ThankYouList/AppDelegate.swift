@@ -77,6 +77,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 private extension AppDelegate {
     func setupNavigationBar() {
         // Setup NavigationBar in SwiftUI
+        UINavigationBar.appearance().titleTextAttributes = [
+            .font : UIFont.boldAvenir(ofSize: 17)
+        ]
         UINavigationBar.appearance().largeTitleTextAttributes = [
             .font : UIFont.boldAvenir(ofSize: 32)
         ]

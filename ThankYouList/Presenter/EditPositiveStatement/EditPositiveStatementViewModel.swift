@@ -47,6 +47,17 @@ private extension EditPositiveStatementViewModel {
             .removeDuplicates()
             .assign(to: &outputs.$navigationBarTitle)
 
+        inputs.textFieldTextDidChange
+            .compactMap { text in
+                // Don't allow a line with only newline character
+                guard text.suffix(2).allSatisfy({ $0.isNewline }) else {
+                    return nil
+                }
+                return String(text.dropLast())
+            }
+            .sendEvent((), to: outputs.closeKeyboard)
+            .assign(to: &bindings.$textFieldText)
+
         inputs.cancelButtonDidTap
             .sink { [router] in router?.dismiss() }
             .store(in: &cancellable)

@@ -155,6 +155,15 @@
 		A8F064C32C7AD0BA006C6EE9 /* EditPositiveStatementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064C22C7AD0BA006C6EE9 /* EditPositiveStatementViewModel.swift */; };
 		A8F064C72C944A83006C6EE9 /* View+ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064C62C944A83006C6EE9 /* View+ScrollView.swift */; };
 		A8F064C92C957ABA006C6EE9 /* EditPositiveStatementViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064C82C957ABA006C6EE9 /* EditPositiveStatementViewModelTests.swift */; };
+		A8F064D02C9F9F8A006C6EE9 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8F064CF2C9F9F8A006C6EE9 /* WidgetKit.framework */; };
+		A8F064D22C9F9F8A006C6EE9 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8F064D12C9F9F8A006C6EE9 /* SwiftUI.framework */; };
+		A8F064D52C9F9F8A006C6EE9 /* PositiveStatementWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064D42C9F9F8A006C6EE9 /* PositiveStatementWidgetBundle.swift */; };
+		A8F064D72C9F9F8A006C6EE9 /* PositiveStatementWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064D62C9F9F8A006C6EE9 /* PositiveStatementWidget.swift */; };
+		A8F064D92C9F9F8B006C6EE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8F064D82C9F9F8B006C6EE9 /* Assets.xcassets */; };
+		A8F064DD2C9F9F8B006C6EE9 /* PositiveStatementWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A8F064CE2C9F9F89006C6EE9 /* PositiveStatementWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A8F064E42CA04586006C6EE9 /* PositiveStatementProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064E22CA04500006C6EE9 /* PositiveStatementProvider.swift */; };
+		A8F064E72CA046C2006C6EE9 /* PositiveStatementWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064E52CA046AC006C6EE9 /* PositiveStatementWidgetView.swift */; };
+		A8F064EA2CA221E1006C6EE9 /* PositiveStatementEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064E82CA221D4006C6EE9 /* PositiveStatementEntry.swift */; };
 		A8F06BB91F55396F00A90170 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */; };
 		A8F2619A2B43FA0500A65C0A /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A8F261992B43FA0500A65C0A /* CombineCocoa */; };
 		A8F2619C2B476FAE00A65C0A /* MockRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F2619B2B476FAE00A65C0A /* MockRouter.swift */; };
@@ -171,7 +180,28 @@
 			remoteGlobalIDString = A8831CC21E9CFE6B00F3CA0A;
 			remoteInfo = ThankYouList;
 		};
+		A8F064DB2C9F9F8B006C6EE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A8831CBB1E9CFE6B00F3CA0A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A8F064CD2C9F9F89006C6EE9;
+			remoteInfo = PositiveStatementWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A8F064E12C9F9F8B006C6EE9 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A8F064DD2C9F9F8B006C6EE9 /* PositiveStatementWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		14D49C15FD4089235E28B5ED /* Pods_ThankYouList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThankYouList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -325,6 +355,16 @@
 		A8F064C22C7AD0BA006C6EE9 /* EditPositiveStatementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPositiveStatementViewModel.swift; sourceTree = "<group>"; };
 		A8F064C62C944A83006C6EE9 /* View+ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ScrollView.swift"; sourceTree = "<group>"; };
 		A8F064C82C957ABA006C6EE9 /* EditPositiveStatementViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPositiveStatementViewModelTests.swift; sourceTree = "<group>"; };
+		A8F064CE2C9F9F89006C6EE9 /* PositiveStatementWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PositiveStatementWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8F064CF2C9F9F8A006C6EE9 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		A8F064D12C9F9F8A006C6EE9 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		A8F064D42C9F9F8A006C6EE9 /* PositiveStatementWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementWidgetBundle.swift; sourceTree = "<group>"; };
+		A8F064D62C9F9F8A006C6EE9 /* PositiveStatementWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementWidget.swift; sourceTree = "<group>"; };
+		A8F064D82C9F9F8B006C6EE9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A8F064DA2C9F9F8B006C6EE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8F064E22CA04500006C6EE9 /* PositiveStatementProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementProvider.swift; sourceTree = "<group>"; };
+		A8F064E52CA046AC006C6EE9 /* PositiveStatementWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementWidgetView.swift; sourceTree = "<group>"; };
+		A8F064E82CA221D4006C6EE9 /* PositiveStatementEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementEntry.swift; sourceTree = "<group>"; };
 		A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8F2619B2B476FAE00A65C0A /* MockRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRouter.swift; sourceTree = "<group>"; };
 		A8F2700F2BD0883F00227009 /* AnyPublisher+Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyPublisher+Operators.swift"; sourceTree = "<group>"; };
@@ -353,6 +393,15 @@
 				A892355A29D818500093A92F /* EntwineTest in Frameworks */,
 				A8F2619A2B43FA0500A65C0A /* CombineCocoa in Frameworks */,
 				888DB934A4AE8CBBD75F7D39 /* libPods-ThankYouListTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8F064CB2C9F9F89006C6EE9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8F064D22C9F9F8A006C6EE9 /* SwiftUI.framework in Frameworks */,
+				A8F064D02C9F9F8A006C6EE9 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,6 +640,7 @@
 				A892354A29D731730093A92F /* ThankYouListTests */,
 				A8831CC41E9CFE6B00F3CA0A /* Products */,
 				A8831CC51E9CFE6B00F3CA0A /* ThankYouList */,
+				A8F064D32C9F9F8A006C6EE9 /* PositiveStatementWidget */,
 				21D7F665A4A556DF37EC30AD /* Pods */,
 				D9B61224EE9861DF0D778DEA /* Frameworks */,
 			);
@@ -601,6 +651,7 @@
 			children = (
 				A8831CC31E9CFE6B00F3CA0A /* ThankYouList.app */,
 				A892354929D731720093A92F /* ThankYouListTests.xctest */,
+				A8F064CE2C9F9F89006C6EE9 /* PositiveStatementWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -747,6 +798,20 @@
 			path = EditPositiveStatement;
 			sourceTree = "<group>";
 		};
+		A8F064D32C9F9F8A006C6EE9 /* PositiveStatementWidget */ = {
+			isa = PBXGroup;
+			children = (
+				A8F064E82CA221D4006C6EE9 /* PositiveStatementEntry.swift */,
+				A8F064E22CA04500006C6EE9 /* PositiveStatementProvider.swift */,
+				A8F064D42C9F9F8A006C6EE9 /* PositiveStatementWidgetBundle.swift */,
+				A8F064D62C9F9F8A006C6EE9 /* PositiveStatementWidget.swift */,
+				A8F064E52CA046AC006C6EE9 /* PositiveStatementWidgetView.swift */,
+				A8F064D82C9F9F8B006C6EE9 /* Assets.xcassets */,
+				A8F064DA2C9F9F8B006C6EE9 /* Info.plist */,
+			);
+			path = PositiveStatementWidget;
+			sourceTree = "<group>";
+		};
 		A8F407C829575416007FDF2D /* ConfirmDeleteAccount */ = {
 			isa = PBXGroup;
 			children = (
@@ -774,6 +839,8 @@
 			children = (
 				14D49C15FD4089235E28B5ED /* Pods_ThankYouList.framework */,
 				C9E50183A58E3BE5286274D4 /* libPods-ThankYouListTests.a */,
+				A8F064CF2C9F9F8A006C6EE9 /* WidgetKit.framework */,
+				A8F064D12C9F9F8A006C6EE9 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -791,11 +858,12 @@
 				A8831CC01E9CFE6B00F3CA0A /* Frameworks */,
 				A8831CC11E9CFE6B00F3CA0A /* Resources */,
 				D46E638CB34C7D224BCD3B6F /* [CP] Embed Pods Frameworks */,
+				A8F064E12C9F9F8B006C6EE9 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				A8C563062B5B6C7B0047ED4C /* PBXTargetDependency */,
+				A8F064DC2C9F9F8B006C6EE9 /* PBXTargetDependency */,
 			);
 			name = ThankYouList;
 			packageProductDependencies = (
@@ -830,13 +898,30 @@
 			productReference = A892354929D731720093A92F /* ThankYouListTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		A8F064CD2C9F9F89006C6EE9 /* PositiveStatementWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A8F064DE2C9F9F8B006C6EE9 /* Build configuration list for PBXNativeTarget "PositiveStatementWidgetExtension" */;
+			buildPhases = (
+				A8F064CA2C9F9F89006C6EE9 /* Sources */,
+				A8F064CB2C9F9F89006C6EE9 /* Frameworks */,
+				A8F064CC2C9F9F89006C6EE9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PositiveStatementWidgetExtension;
+			productName = PositiveStatementWidgetExtension;
+			productReference = A8F064CE2C9F9F89006C6EE9 /* PositiveStatementWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		A8831CBB1E9CFE6B00F3CA0A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1410;
+				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Aika Yamada";
 				TargetAttributes = {
@@ -853,6 +938,9 @@
 					A892354829D731720093A92F = {
 						CreatedOnToolsVersion = 14.1;
 						TestTargetID = A8831CC21E9CFE6B00F3CA0A;
+					};
+					A8F064CD2C9F9F89006C6EE9 = {
+						CreatedOnToolsVersion = 15.4;
 					};
 				};
 			};
@@ -879,6 +967,7 @@
 			targets = (
 				A8831CC21E9CFE6B00F3CA0A /* ThankYouList */,
 				A892354829D731720093A92F /* ThankYouListTests */,
+				A8F064CD2C9F9F89006C6EE9 /* PositiveStatementWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -918,6 +1007,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8F064CC2C9F9F89006C6EE9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8F064D92C9F9F8B006C6EE9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1206,6 +1303,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A8F064CA2C9F9F89006C6EE9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8F064EA2CA221E1006C6EE9 /* PositiveStatementEntry.swift in Sources */,
+				A8F064D72C9F9F8A006C6EE9 /* PositiveStatementWidget.swift in Sources */,
+				A8F064E72CA046C2006C6EE9 /* PositiveStatementWidgetView.swift in Sources */,
+				A8F064E42CA04586006C6EE9 /* PositiveStatementProvider.swift in Sources */,
+				A8F064D52C9F9F8A006C6EE9 /* PositiveStatementWidgetBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1213,6 +1322,11 @@
 			isa = PBXTargetDependency;
 			target = A8831CC21E9CFE6B00F3CA0A /* ThankYouList */;
 			targetProxy = A892354D29D731730093A92F /* PBXContainerItemProxy */;
+		};
+		A8F064DC2C9F9F8B006C6EE9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A8F064CD2C9F9F89006C6EE9 /* PositiveStatementWidgetExtension */;
+			targetProxy = A8F064DB2C9F9F8B006C6EE9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1350,6 +1464,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BA00FC82559EE1AEA8CE9577 /* Pods-ThankYouList.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ThankYouList/Resources/ThankYouList.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1413,6 +1528,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A015AC112826D3ABF5A416EC /* Pods-ThankYouList.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ThankYouList/Resources/ThankYouList.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
@@ -1493,6 +1609,88 @@
 			};
 			name = Release;
 		};
+		A8F064DF2C9F9F8B006C6EE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Aika Yamada (3N9YMP34Z6)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6JDKJKDJ28;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PositiveStatementWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PositiveStatementWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Aika Yamada. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.balenaik.ThankYouList.PositiveStatementWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A8F064E02C9F9F8B006C6EE9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution: Aika Yamada (6JDKJKDJ28)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6JDKJKDJ28;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PositiveStatementWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PositiveStatementWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Aika Yamada. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.balenaik.ThankYouList.PositiveStatementWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1519,6 +1717,15 @@
 			buildConfigurations = (
 				A892355029D731730093A92F /* Debug */,
 				A892355129D731730093A92F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A8F064DE2C9F9F8B006C6EE9 /* Build configuration list for PBXNativeTarget "PositiveStatementWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8F064DF2C9F9F8B006C6EE9 /* Debug */,
+				A8F064E02C9F9F8B006C6EE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

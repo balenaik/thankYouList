@@ -1,6 +1,6 @@
 //
 //  PositiveStatementProvider.swift
-//  ThankYouListTests
+//  PositiveStatementWidget
 //
 //  Created by Aika Yamada on 2024/09/22.
 //  Copyright © 2024 Aika Yamada. All rights reserved.

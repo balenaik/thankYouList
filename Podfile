@@ -2,7 +2,6 @@
  platform :ios, '14.0'
 
 target 'ThankYouList' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
   # Pods for ThankYouList
@@ -35,6 +34,12 @@ target 'ThankYouList' do
   # FloatingPanel
   pod 'FloatingPanel', '2.5.5'
 
+end
+
+target 'PositiveStatementWidgetExtension' do
+  use_frameworks!
+  pod 'Firebase/Core', '10.19.0'
+  pod 'Firebase/Auth', '10.19.0'
 end
 
 target 'ThankYouListTests' do

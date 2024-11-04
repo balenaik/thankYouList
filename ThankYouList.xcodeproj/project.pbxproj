@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08422BAFB4F52C22BCFC653B /* Pods_PositiveStatementWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9406CBDCC3FD0D492485FE /* Pods_PositiveStatementWidgetExtension.framework */; };
 		888DB934A4AE8CBBD75F7D39 /* libPods-ThankYouListTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E50183A58E3BE5286274D4 /* libPods-ThankYouListTests.a */; };
 		A808C616220FACF6004162E4 /* SmallListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A808C615220FACF6004162E4 /* SmallListView.swift */; };
 		A808C618220FAD06004162E4 /* SmallListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A808C617220FAD06004162E4 /* SmallListView.xib */; };
@@ -166,6 +167,7 @@
 		A8F064EA2CA221E1006C6EE9 /* PositiveStatementEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064E82CA221D4006C6EE9 /* PositiveStatementEntry.swift */; };
 		A8F064F02CCE3179006C6EE9 /* AppConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064EF2CCE3179006C6EE9 /* AppConst.swift */; };
 		A8F064F42CCE327D006C6EE9 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064F22CCE3279006C6EE9 /* Const.swift */; };
+		A8F064F62CCE3344006C6EE9 /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8F064F52CCE3344006C6EE9 /* FirebaseAuth.framework */; };
 		A8F06BB91F55396F00A90170 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */; };
 		A8F2619A2B43FA0500A65C0A /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A8F261992B43FA0500A65C0A /* CombineCocoa */; };
 		A8F2619C2B476FAE00A65C0A /* MockRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F2619B2B476FAE00A65C0A /* MockRouter.swift */; };
@@ -208,6 +210,7 @@
 /* Begin PBXFileReference section */
 		14D49C15FD4089235E28B5ED /* Pods_ThankYouList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThankYouList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		497D645982F8305FDC379821 /* Pods-ThankYouListTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouListTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouListTests/Pods-ThankYouListTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4BCEAF9D99FAF8171993083A /* Pods-PositiveStatementWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PositiveStatementWidgetExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PositiveStatementWidgetExtension/Pods-PositiveStatementWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		60AC734479A45E3CB2416DB5 /* Pods-ThankYouListTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouListTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouListTests/Pods-ThankYouListTests.release.xcconfig"; sourceTree = "<group>"; };
 		A015AC112826D3ABF5A416EC /* Pods-ThankYouList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.release.xcconfig"; sourceTree = "<group>"; };
 		A808C615220FACF6004162E4 /* SmallListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallListView.swift; sourceTree = "<group>"; };
@@ -369,13 +372,16 @@
 		A8F064E82CA221D4006C6EE9 /* PositiveStatementEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementEntry.swift; sourceTree = "<group>"; };
 		A8F064EF2CCE3179006C6EE9 /* AppConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConst.swift; sourceTree = "<group>"; };
 		A8F064F22CCE3279006C6EE9 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		A8F064F52CCE3344006C6EE9 /* FirebaseAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8F2619B2B476FAE00A65C0A /* MockRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRouter.swift; sourceTree = "<group>"; };
 		A8F2700F2BD0883F00227009 /* AnyPublisher+Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyPublisher+Operators.swift"; sourceTree = "<group>"; };
 		A8F407C92957DBF6007FDF2D /* ConfirmDeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDeleteAccountView.swift; sourceTree = "<group>"; };
 		A8FF6A1F2829C40400CF816F /* BottomHalfSheetDatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomHalfSheetDatePickerViewController.swift; sourceTree = "<group>"; };
+		AA9406CBDCC3FD0D492485FE /* Pods_PositiveStatementWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PositiveStatementWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA00FC82559EE1AEA8CE9577 /* Pods-ThankYouList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.debug.xcconfig"; sourceTree = "<group>"; };
 		C9E50183A58E3BE5286274D4 /* libPods-ThankYouListTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ThankYouListTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCC93B23C4B6C482736879EC /* Pods-PositiveStatementWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PositiveStatementWidgetExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-PositiveStatementWidgetExtension/Pods-PositiveStatementWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -404,8 +410,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8F064F62CCE3344006C6EE9 /* FirebaseAuth.framework in Frameworks */,
 				A8F064D22C9F9F8A006C6EE9 /* SwiftUI.framework in Frameworks */,
 				A8F064D02C9F9F8A006C6EE9 /* WidgetKit.framework in Frameworks */,
+				08422BAFB4F52C22BCFC653B /* Pods_PositiveStatementWidgetExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +427,8 @@
 				A015AC112826D3ABF5A416EC /* Pods-ThankYouList.release.xcconfig */,
 				497D645982F8305FDC379821 /* Pods-ThankYouListTests.debug.xcconfig */,
 				60AC734479A45E3CB2416DB5 /* Pods-ThankYouListTests.release.xcconfig */,
+				4BCEAF9D99FAF8171993083A /* Pods-PositiveStatementWidgetExtension.debug.xcconfig */,
+				FCC93B23C4B6C482736879EC /* Pods-PositiveStatementWidgetExtension.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -851,10 +861,12 @@
 		D9B61224EE9861DF0D778DEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A8F064F52CCE3344006C6EE9 /* FirebaseAuth.framework */,
 				14D49C15FD4089235E28B5ED /* Pods_ThankYouList.framework */,
 				C9E50183A58E3BE5286274D4 /* libPods-ThankYouListTests.a */,
 				A8F064CF2C9F9F8A006C6EE9 /* WidgetKit.framework */,
 				A8F064D12C9F9F8A006C6EE9 /* SwiftUI.framework */,
+				AA9406CBDCC3FD0D492485FE /* Pods_PositiveStatementWidgetExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -916,6 +928,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A8F064DE2C9F9F8B006C6EE9 /* Build configuration list for PBXNativeTarget "PositiveStatementWidgetExtension" */;
 			buildPhases = (
+				11B204FB7718005EDF59A23A /* [CP] Check Pods Manifest.lock */,
 				A8F064CA2C9F9F89006C6EE9 /* Sources */,
 				A8F064CB2C9F9F89006C6EE9 /* Frameworks */,
 				A8F064CC2C9F9F89006C6EE9 /* Resources */,
@@ -1035,6 +1048,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		11B204FB7718005EDF59A23A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PositiveStatementWidgetExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		16D046CD44A3E97563048322 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1627,6 +1662,7 @@
 		};
 		A8F064DF2C9F9F8B006C6EE9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4BCEAF9D99FAF8171993083A /* Pods-PositiveStatementWidgetExtension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1669,6 +1705,7 @@
 		};
 		A8F064E02C9F9F8B006C6EE9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FCC93B23C4B6C482736879EC /* Pods-PositiveStatementWidgetExtension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

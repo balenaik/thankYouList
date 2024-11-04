@@ -371,6 +371,7 @@
 		A8F064E22CA04500006C6EE9 /* PositiveStatementProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementProvider.swift; sourceTree = "<group>"; };
 		A8F064E52CA046AC006C6EE9 /* PositiveStatementWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementWidgetView.swift; sourceTree = "<group>"; };
 		A8F064E82CA221D4006C6EE9 /* PositiveStatementEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementEntry.swift; sourceTree = "<group>"; };
+		A8F064EE2CCDC6C7006C6EE9 /* PositiveStatementWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PositiveStatementWidgetExtension.entitlements; sourceTree = "<group>"; };
 		A8F064EF2CCE3179006C6EE9 /* AppConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConst.swift; sourceTree = "<group>"; };
 		A8F064F22CCE3279006C6EE9 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		A8F064F52CCE3344006C6EE9 /* FirebaseAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -752,6 +753,7 @@
 				A8851EA226FC1522008B2D7A /* imageLaunchScreen.png */,
 				A8831CCD1E9CFE6B00F3CA0A /* Assets.xcassets */,
 				A810D8DB2346211E008F2E74 /* Colors.xcassets */,
+				A8F064EE2CCDC6C7006C6EE9 /* PositiveStatementWidgetExtension.entitlements */,
 				A824150B205CDF5800172587 /* ThankYouList.entitlements */,
 				A8AFE4CE22DB81960045C707 /* GoogleService-Info.plist */,
 				A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */,
@@ -1674,6 +1676,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ThankYouList/Resources/PositiveStatementWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Aika Yamada (3N9YMP34Z6)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1717,6 +1720,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ThankYouList/Resources/PositiveStatementWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution: Aika Yamada (6JDKJKDJ28)";
 				CODE_SIGN_STYLE = Automatic;

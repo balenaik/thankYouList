@@ -168,6 +168,7 @@
 		A8F064F02CCE3179006C6EE9 /* AppConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064EF2CCE3179006C6EE9 /* AppConst.swift */; };
 		A8F064F42CCE327D006C6EE9 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064F22CCE3279006C6EE9 /* Const.swift */; };
 		A8F064F62CCE3344006C6EE9 /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8F064F52CCE3344006C6EE9 /* FirebaseAuth.framework */; };
+		A8F064F92CD88FE8006C6EE9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8AFE4CE22DB81960045C707 /* GoogleService-Info.plist */; };
 		A8F06BB91F55396F00A90170 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */; };
 		A8F2619A2B43FA0500A65C0A /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A8F261992B43FA0500A65C0A /* CombineCocoa */; };
 		A8F2619C2B476FAE00A65C0A /* MockRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F2619B2B476FAE00A65C0A /* MockRouter.swift */; };
@@ -1042,6 +1043,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8F064D92C9F9F8B006C6EE9 /* Assets.xcassets in Resources */,
+				A8F064F92CD88FE8006C6EE9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

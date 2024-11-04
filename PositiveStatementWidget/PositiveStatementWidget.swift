@@ -6,12 +6,18 @@
 //  Copyright © 2024 Aika Yamada. All rights reserved.
 //
 
+import Firebase
 import WidgetKit
 import SwiftUI
 
 private let kind: String = "PositiveStatementWidget"
 
 struct PositiveStatementWidget: Widget {
+
+    init() {
+        setupFirebase()
+    }
+
     var body: some WidgetConfiguration {
         StaticConfiguration(
             kind: kind,
@@ -26,6 +32,20 @@ struct PositiveStatementWidget: Widget {
             }
             .configurationDisplayName("My Widget")
             .description("This is an example widget.")
+    }
+}
+
+private extension PositiveStatementWidget {
+    func setupFirebase() {
+        do {
+            FirebaseApp.configure()
+            try Auth.auth().useUserAccessGroup(
+                "\(Const.teamId).\(Const.appAccessGroupName)"
+            )
+        } catch let error as NSError {
+            // TODO: Log error on Crashlytics
+            print("Error setting user access group: %@", error)
+        }
     }
 }
 

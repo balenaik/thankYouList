@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
+        setupFirebase()
         setupNavigationBar()
         setupListView()
         reAuthenticateToProvider()
@@ -75,6 +76,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 private extension AppDelegate {
+    func setupFirebase() {
+        do {
+            try Auth.auth().useUserAccessGroup(
+                "\(AppConst.teamId).\(AppConst.appAccessGroupName)"
+            )
+        } catch let error as NSError {
+            // TODO: Log error on Crashlytics
+            print("Error setting user access group: %@", error)
+        }
+    }
+
     func setupNavigationBar() {
         // Setup NavigationBar in SwiftUI
         UINavigationBar.appearance().titleTextAttributes = [

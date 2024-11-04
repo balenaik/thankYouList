@@ -22,7 +22,6 @@ struct PositiveStatementWidget: Widget {
                 } else {
                     PositiveStatementWidgetView(entry: entry)
                         .padding()
-                        .background()
                 }
             }
             .configurationDisplayName("My Widget")
@@ -30,9 +29,11 @@ struct PositiveStatementWidget: Widget {
     }
 }
 
-#Preview(as: .systemSmall) {
-    PositiveStatementWidget()
-} timeline: {
-    PositiveStatementEntry(date: .now, emoji: "😀")
-    PositiveStatementEntry(date: .now, emoji: "🤩")
+struct PositiveStatementWidget_Previews: PreviewProvider {
+    static var previews: some View {
+        PositiveStatementWidgetView(
+            entry: PositiveStatementEntry(date: .now, emoji: "😀")
+        )
+        .previewContext(WidgetPreviewContext(family: .systemSmall))
+    }
 }

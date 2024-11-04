@@ -1688,7 +1688,7 @@
 				INFOPLIST_FILE = PositiveStatementWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PositiveStatementWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Aika Yamada. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1732,7 +1732,7 @@
 				INFOPLIST_FILE = PositiveStatementWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PositiveStatementWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Aika Yamada. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

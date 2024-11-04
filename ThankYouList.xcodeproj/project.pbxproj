@@ -164,6 +164,8 @@
 		A8F064E42CA04586006C6EE9 /* PositiveStatementProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064E22CA04500006C6EE9 /* PositiveStatementProvider.swift */; };
 		A8F064E72CA046C2006C6EE9 /* PositiveStatementWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064E52CA046AC006C6EE9 /* PositiveStatementWidgetView.swift */; };
 		A8F064EA2CA221E1006C6EE9 /* PositiveStatementEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064E82CA221D4006C6EE9 /* PositiveStatementEntry.swift */; };
+		A8F064F02CCE3179006C6EE9 /* AppConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064EF2CCE3179006C6EE9 /* AppConst.swift */; };
+		A8F064F42CCE327D006C6EE9 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064F22CCE3279006C6EE9 /* Const.swift */; };
 		A8F06BB91F55396F00A90170 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */; };
 		A8F2619A2B43FA0500A65C0A /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A8F261992B43FA0500A65C0A /* CombineCocoa */; };
 		A8F2619C2B476FAE00A65C0A /* MockRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F2619B2B476FAE00A65C0A /* MockRouter.swift */; };
@@ -365,6 +367,8 @@
 		A8F064E22CA04500006C6EE9 /* PositiveStatementProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementProvider.swift; sourceTree = "<group>"; };
 		A8F064E52CA046AC006C6EE9 /* PositiveStatementWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementWidgetView.swift; sourceTree = "<group>"; };
 		A8F064E82CA221D4006C6EE9 /* PositiveStatementEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementEntry.swift; sourceTree = "<group>"; };
+		A8F064EF2CCE3179006C6EE9 /* AppConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConst.swift; sourceTree = "<group>"; };
+		A8F064F22CCE3279006C6EE9 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8F2619B2B476FAE00A65C0A /* MockRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRouter.swift; sourceTree = "<group>"; };
 		A8F2700F2BD0883F00227009 /* AnyPublisher+Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyPublisher+Operators.swift"; sourceTree = "<group>"; };
@@ -557,6 +561,7 @@
 			isa = PBXGroup;
 			children = (
 				A80BBB96245889A600CB032B /* AnalyticsConst.swift */,
+				A8F064EF2CCE3179006C6EE9 /* AppConst.swift */,
 				A831BD422741617C003B5394 /* FirestoreConst.swift */,
 				A820DE5321C5432500E7F3DF /* NotificationConst.swift */,
 				A895BF5B2C1D4F410080C753 /* SFSymbolConst.swift */,
@@ -801,6 +806,7 @@
 		A8F064D32C9F9F8A006C6EE9 /* PositiveStatementWidget */ = {
 			isa = PBXGroup;
 			children = (
+				A8F064F12CCE326E006C6EE9 /* Const */,
 				A8F064E82CA221D4006C6EE9 /* PositiveStatementEntry.swift */,
 				A8F064E22CA04500006C6EE9 /* PositiveStatementProvider.swift */,
 				A8F064D42C9F9F8A006C6EE9 /* PositiveStatementWidgetBundle.swift */,
@@ -810,6 +816,14 @@
 				A8F064DA2C9F9F8B006C6EE9 /* Info.plist */,
 			);
 			path = PositiveStatementWidget;
+			sourceTree = "<group>";
+		};
+		A8F064F12CCE326E006C6EE9 /* Const */ = {
+			isa = PBXGroup;
+			children = (
+				A8F064F22CCE3279006C6EE9 /* Const.swift */,
+			);
+			path = Const;
 			sourceTree = "<group>";
 		};
 		A8F407C829575416007FDF2D /* ConfirmDeleteAccount */ = {
@@ -1186,6 +1200,7 @@
 				A8E6CD0B29601E150042AA81 /* Color+SetColor.swift in Sources */,
 				A8F064C12C7ACF8E006C6EE9 /* EditPositiveStatementView.swift in Sources */,
 				A8A06863244F444400839D14 /* MyPageProfileCell.swift in Sources */,
+				A8F064F02CCE3179006C6EE9 /* AppConst.swift in Sources */,
 				A8ADC1572C43B45200830B39 /* Color+Blend.swift in Sources */,
 				A83A36202972830A00AD2790 /* Router.swift in Sources */,
 				A83A361E2972615900AD2790 /* AddThankYouCoordinator.swift in Sources */,
@@ -1312,6 +1327,7 @@
 				A8F064E72CA046C2006C6EE9 /* PositiveStatementWidgetView.swift in Sources */,
 				A8F064E42CA04586006C6EE9 /* PositiveStatementProvider.swift in Sources */,
 				A8F064D52C9F9F8A006C6EE9 /* PositiveStatementWidgetBundle.swift in Sources */,
+				A8F064F42CCE327D006C6EE9 /* Const.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

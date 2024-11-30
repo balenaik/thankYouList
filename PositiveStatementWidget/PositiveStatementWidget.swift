@@ -52,7 +52,7 @@ private extension PositiveStatementWidget {
 struct PositiveStatementWidget_Previews: PreviewProvider {
     static var previews: some View {
         PositiveStatementWidgetView(
-            entry: PositiveStatementEntry(date: .now, emoji: "😀")
+            entry: PositiveStatementEntry(date: Date(), positiveStatement: "Preview")
         )
         .previewContext(WidgetPreviewContext(family: .systemSmall))
     }

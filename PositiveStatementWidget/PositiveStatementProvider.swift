@@ -10,11 +10,11 @@ import WidgetKit
 
 struct PositiveStatementProvider: TimelineProvider {
     func placeholder(in context: Context) -> PositiveStatementEntry {
-        PositiveStatementEntry(date: Date(), emoji: "😀")
+        PositiveStatementEntry(date: Date(), positiveStatement: "Placeholder")
     }
 
     func getSnapshot(in context: Context, completion: @escaping (PositiveStatementEntry) -> ()) {
-        let entry = PositiveStatementEntry(date: Date(), emoji: "😀")
+        let entry = PositiveStatementEntry(date: Date(), positiveStatement: "from getSnapshot")
         completion(entry)
     }
 
@@ -25,7 +25,7 @@ struct PositiveStatementProvider: TimelineProvider {
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = PositiveStatementEntry(date: entryDate, emoji: "😀")
+            let entry = PositiveStatementEntry(date: entryDate, positiveStatement: "from getTimeline")
             entries.append(entry)
         }
 

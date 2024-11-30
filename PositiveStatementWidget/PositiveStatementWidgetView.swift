@@ -16,8 +16,8 @@ struct PositiveStatementWidgetView : View {
             Text("Time:")
             Text(entry.date, style: .time)
 
-            Text("Emoji:")
-            Text(entry.emoji)
+            Text("PositiveStatement:")
+            Text(entry.positiveStatement)
         }
     }
 }

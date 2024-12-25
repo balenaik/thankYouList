@@ -32,7 +32,6 @@
 		A824150F205CE28C00172587 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824150E205CE28C00172587 /* LoginViewController.swift */; };
 		A82BBF4F27071321007E8CD9 /* TapAnimationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82BBF4E27071321007E8CD9 /* TapAnimationButton.swift */; };
 		A82BBF78270C4FC4007E8CD9 /* UIFont+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82BBF77270C4FC4007E8CD9 /* UIFont+Theme.swift */; };
-		A831BD432741617C003B5394 /* FirestoreConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A831BD422741617C003B5394 /* FirestoreConst.swift */; };
 		A8384FE42BC0DED6003EF718 /* View+Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8384FE32BC0DED6003EF718 /* View+Toolbar.swift */; };
 		A83A361A296C537B00AD2790 /* ThankYouListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83A3619296C537B00AD2790 /* ThankYouListCoordinator.swift */; };
 		A83A361C296CE98600AD2790 /* MyPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83A361B296CE98600AD2790 /* MyPageCoordinator.swift */; };
@@ -149,6 +148,7 @@
 		A8DF481F2D1BA57C008290FA /* SharedResources.h in Headers */ = {isa = PBXBuildFile; fileRef = A8DF480F2D1BA57C008290FA /* SharedResources.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A8DF48222D1BA57C008290FA /* SharedResources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8DF480D2D1BA57C008290FA /* SharedResources.framework */; };
 		A8DF48232D1BA57C008290FA /* SharedResources.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A8DF480D2D1BA57C008290FA /* SharedResources.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A8DF482C2D1BA918008290FA /* FirestoreConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A831BD422741617C003B5394 /* FirestoreConst.swift */; };
 		A8E6CD07295C7D050042AA81 /* ConfirmDeleteAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD06295C7D050042AA81 /* ConfirmDeleteAccountViewModel.swift */; };
 		A8E6CD0929601D870042AA81 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD0829601D870042AA81 /* Color+Theme.swift */; };
 		A8E6CD0B29601E150042AA81 /* Color+SetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD0A29601E150042AA81 /* Color+SetColor.swift */; };
@@ -633,7 +633,6 @@
 			children = (
 				A80BBB96245889A600CB032B /* AnalyticsConst.swift */,
 				A8F064EF2CCE3179006C6EE9 /* AppConst.swift */,
-				A831BD422741617C003B5394 /* FirestoreConst.swift */,
 				A820DE5321C5432500E7F3DF /* NotificationConst.swift */,
 				A895BF5B2C1D4F410080C753 /* SFSymbolConst.swift */,
 				A8DABBD527173FA20086B2E8 /* ViewConst.swift */,
@@ -863,6 +862,7 @@
 		A8DF480E2D1BA57C008290FA /* SharedResources */ = {
 			isa = PBXGroup;
 			children = (
+				A8DF482B2D1BA8FA008290FA /* Constants */,
 				A8DF480F2D1BA57C008290FA /* SharedResources.h */,
 				A8DF48102D1BA57C008290FA /* SharedResources.docc */,
 			);
@@ -875,6 +875,14 @@
 				A8DF481D2D1BA57C008290FA /* SharedResourcesTests.swift */,
 			);
 			path = SharedResourcesTests;
+			sourceTree = "<group>";
+		};
+		A8DF482B2D1BA8FA008290FA /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				A831BD422741617C003B5394 /* FirestoreConst.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		A8E6CD102965B2D20042AA81 /* Repositories */ = {
@@ -1450,7 +1458,6 @@
 				A8114B0B23017DB70024975A /* ListScrollIndicatorMovableIcon.swift in Sources */,
 				A84635B32ABE83550030A358 /* Date+Compare.swift in Sources */,
 				A8A85A9925A60DF500182B99 /* UIButton+BackgroundColor.swift in Sources */,
-				A831BD432741617C003B5394 /* FirestoreConst.swift in Sources */,
 				A8E6CD14296BA31A0042AA81 /* Coordinator.swift in Sources */,
 				A8C59B76243CC86100FF79EA /* R.generated.swift in Sources */,
 				A8C563102B5CAC6F0047ED4C /* PositiveStatementListViewModel.swift in Sources */,
@@ -1515,6 +1522,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8DF48112D1BA57C008290FA /* SharedResources.docc in Sources */,
+				A8DF482C2D1BA918008290FA /* FirestoreConst.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

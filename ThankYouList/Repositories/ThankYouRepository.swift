@@ -8,6 +8,7 @@
 
 import Combine
 import FirebaseFirestore
+import SharedResources
 
 protocol ThankYouRepository {
     func loadThankYou(thankYouId: String) -> ThankYouData?

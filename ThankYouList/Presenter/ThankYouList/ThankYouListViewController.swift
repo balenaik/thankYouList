@@ -12,6 +12,7 @@ import FirebaseAuth
 import Firebase
 import SkeletonView
 import FloatingPanel
+import SharedResources
 
 private let skeletonedThankYouCellCount = 3
 

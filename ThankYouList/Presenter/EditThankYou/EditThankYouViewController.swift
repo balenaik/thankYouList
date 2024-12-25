@@ -11,6 +11,7 @@ import UIKit
 import FirebaseFirestore
 import FirebaseAuth
 import Firebase
+import SharedResources
 
 private let textViewSideMargin = CGFloat(12)
 private let textViewTopBottomMargin = CGFloat(12)

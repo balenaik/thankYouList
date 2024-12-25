@@ -8,6 +8,7 @@
 
 import Combine
 import FirebaseFirestore
+import SharedResources
 
 private let encryptedValueKey = "encryptedValue"
 private let createdDateKey = "createdDate"

@@ -713,12 +713,12 @@
 		A8831CBA1E9CFE6B00F3CA0A = {
 			isa = PBXGroup;
 			children = (
-				A892354A29D731730093A92F /* ThankYouListTests */,
-				A8DF481C2D1BA57C008290FA /* SharedResourcesTests */,
 				A8831CC41E9CFE6B00F3CA0A /* Products */,
 				A8831CC51E9CFE6B00F3CA0A /* ThankYouList */,
 				A8F064D32C9F9F8A006C6EE9 /* PositiveStatementWidget */,
 				A8DF480E2D1BA57C008290FA /* SharedResources */,
+				A892354A29D731730093A92F /* ThankYouListTests */,
+				A8DF481C2D1BA57C008290FA /* SharedResourcesTests */,
 				21D7F665A4A556DF37EC30AD /* Pods */,
 				D9B61224EE9861DF0D778DEA /* Frameworks */,
 			);

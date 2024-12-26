@@ -6,14 +6,11 @@
 //  Copyright © 2018 Aika Yamada. All rights reserved.
 //
 
-import Foundation
-
-import Foundation
 import CoreFoundation
-import Security
-
-import RNCryptor
 import CryptoSwift
+import Foundation
+import RNCryptor
+import Security
 
 class CryptoManager {
     func encryptString(plainText: String, key: String) -> String {

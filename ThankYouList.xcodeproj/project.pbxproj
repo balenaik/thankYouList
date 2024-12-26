@@ -748,7 +748,6 @@
 				A8E6CD102965B2D20042AA81 /* Repositories */,
 				A8B6EE8F2201E49C00908D51 /* Resources */,
 				A8114AF522DB97410024975A /* Supports */,
-				A89AF9E62106905500FF6893 /* Crypto.swift */,
 			);
 			path = ThankYouList;
 			sourceTree = "<group>";
@@ -863,6 +862,7 @@
 			isa = PBXGroup;
 			children = (
 				A8DF482B2D1BA8FA008290FA /* Constants */,
+				A8DF482D2D1CF243008290FA /* Supports */,
 				A8DF480F2D1BA57C008290FA /* SharedResources.h */,
 				A8DF48102D1BA57C008290FA /* SharedResources.docc */,
 			);
@@ -883,6 +883,14 @@
 				A831BD422741617C003B5394 /* FirestoreConst.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		A8DF482D2D1CF243008290FA /* Supports */ = {
+			isa = PBXGroup;
+			children = (
+				A89AF9E62106905500FF6893 /* Crypto.swift */,
+			);
+			path = Supports;
 			sourceTree = "<group>";
 		};
 		A8E6CD102965B2D20042AA81 /* Repositories */ = {

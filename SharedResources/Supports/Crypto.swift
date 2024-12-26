@@ -16,7 +16,6 @@ import RNCryptor
 import CryptoSwift
 
 class Crypto {
-    
     func encryptString(plainText: String, key: String) -> String {
         let encrypt = try! plainText.aesEncrypt(key)
         return encrypt

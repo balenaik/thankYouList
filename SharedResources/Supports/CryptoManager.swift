@@ -1,5 +1,5 @@
 //
-//  Crypto.swift
+//  CryptoManager.swift
 //  ThankYouList
 //
 //  Created by Aika Yamada on 2018/07/24.
@@ -15,7 +15,7 @@ import Security
 import RNCryptor
 import CryptoSwift
 
-class Crypto {
+class CryptoManager {
     func encryptString(plainText: String, key: String) -> String {
         let encrypt = try! plainText.aesEncrypt(key)
         return encrypt
@@ -34,16 +34,14 @@ extension String {
         let aes = try AES(key: key.bytes, blockMode: ECB(), padding: .pkcs5)
         let encrypted = try! aes.encrypt(Array(data!))
         let encryptedData = Data(encrypted)
-        print("encryption")
         return encryptedData.base64EncodedString()
     }
-    
+
     func aesDecrypt(_ key: String) throws -> String {
         let data = Data(base64Encoded: self)!
         let aes = try AES(key: key.bytes, blockMode: ECB(), padding: .pkcs5)
         let decrypted = try! aes.decrypt([UInt8](data))
         let decryptedData = Data(decrypted)
         return String(bytes: decryptedData.bytes, encoding: .utf8) ?? "Could not decrypt"
-        
     }
 }

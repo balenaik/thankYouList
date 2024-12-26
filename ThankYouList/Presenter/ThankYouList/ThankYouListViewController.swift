@@ -105,7 +105,7 @@ private extension ThankYouListViewController {
                 if diff.type == .added {
                     let thankYouData = ThankYouData(dictionary: diff.document.data())
                     guard var newThankYouData = thankYouData else { break }
-                    let decryptedValue = Crypto().decryptString(encryptText: newThankYouData.encryptedValue, key: uid16string)
+                    let decryptedValue = CryptoManager().decryptString(encryptText: newThankYouData.encryptedValue, key: uid16string)
                     newThankYouData.id = diff.document.documentID
                     newThankYouData.value = decryptedValue
                     let thankYouDataIds: [String] = self.thankYouDataSingleton.thankYouList.map{$0.id}
@@ -127,7 +127,7 @@ private extension ThankYouListViewController {
                 if diff.type == .modified {
                     let thankYouData = ThankYouData(dictionary: diff.document.data())
                     guard var editedThankYouData = thankYouData else { break }
-                    let decryptedValue = Crypto().decryptString(encryptText: editedThankYouData.encryptedValue, key: uid16string)
+                    let decryptedValue = CryptoManager().decryptString(encryptText: editedThankYouData.encryptedValue, key: uid16string)
                     editedThankYouData.id = diff.document.documentID
                     editedThankYouData.value = decryptedValue
                     for (index, thankYouData) in self.thankYouDataSingleton.thankYouList.enumerated() {

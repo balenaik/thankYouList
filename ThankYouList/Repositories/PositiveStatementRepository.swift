@@ -50,7 +50,7 @@ struct DefaultPositiveStatementRepository: PositiveStatementRepository {
                             let data = document.data()
                             guard let encryptedValue = data[encryptedValueKey] as? String,
                                   let createdDate = data[createdDateKey] as? Timestamp else { return nil }
-                            let decryptedValue = Crypto().decryptString(
+                            let decryptedValue = CryptoManager().decryptString(
                                 encryptText: encryptedValue,
                                 key: userId16string)
                             return PositiveStatementModel(
@@ -86,7 +86,7 @@ struct DefaultPositiveStatementRepository: PositiveStatementRepository {
                         promise(.failure(PositiveStatementRepositoryError.documentNotFound))
                         return
                     }
-                    let decryptedValue = Crypto().decryptString(
+                    let decryptedValue = CryptoManager().decryptString(
                         encryptText: encryptedValue,
                         key: userId16string
                     )
@@ -102,7 +102,7 @@ struct DefaultPositiveStatementRepository: PositiveStatementRepository {
 
     func createPositiveStatement(positiveStatement: String, userId: String) -> Future<Void, Error> {
         let userId16string = String(userId.prefix(16))
-        let encryptedValue = Crypto().encryptString(
+        let encryptedValue = CryptoManager().encryptString(
             plainText: positiveStatement,
             key: userId16string)
         let positiveStatementCreate = PositiveStatementCreateModel(

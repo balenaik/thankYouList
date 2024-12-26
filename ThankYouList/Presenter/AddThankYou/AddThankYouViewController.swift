@@ -92,7 +92,7 @@ extension AddThankYouViewController {
         }
         guard let userId = Auth.auth().currentUser?.uid else { return }
         let userId16string = String(userId.prefix(16))
-        let encryptedValue = Crypto().encryptString(plainText: thankYouTextView.text,
+        let encryptedValue = CryptoManager().encryptString(plainText: thankYouTextView.text,
                                                     key: userId16string)
         let thankYouData = ThankYouData(id: "",
                                         value: "",

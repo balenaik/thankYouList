@@ -12,13 +12,15 @@ import Foundation
 import RNCryptor
 import Security
 
-class CryptoManager {
-    func encryptString(plainText: String, key: String) -> String {
+public class CryptoManager {
+    public init() {}
+
+    public func encryptString(plainText: String, key: String) -> String {
         let encrypt = try! plainText.aesEncrypt(key)
         return encrypt
     }
     
-    func decryptString(encryptText: String, key: String) -> String {
+    public func decryptString(encryptText: String, key: String) -> String {
         let decrypt = try! encryptText.aesDecrypt(key)
         return decrypt
     }

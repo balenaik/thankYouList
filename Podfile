@@ -21,10 +21,6 @@ target 'ThankYouList' do
   # R.swift
   pod 'R.swift', '7.2.4'
 
-  # Crypto
-  pod 'RNCryptor', '~> 5.0'
-  pod 'CryptoSwift'
-
   # SkeletonView
   pod 'SkeletonView', '1.25.1'
 
@@ -38,8 +34,18 @@ end
 
 target 'PositiveStatementWidgetExtension' do
   use_frameworks!
+
+  # Firebase
   pod 'Firebase/Core', '10.19.0'
   pod 'Firebase/Auth', '10.19.0'
+end
+
+target 'SharedResources' do
+  use_frameworks!
+
+  # Crypto
+  pod 'RNCryptor', '~> 5.0'
+  pod 'CryptoSwift'
 end
 
 target 'ThankYouListTests' do

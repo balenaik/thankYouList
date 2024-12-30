@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		08422BAFB4F52C22BCFC653B /* Pods_PositiveStatementWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9406CBDCC3FD0D492485FE /* Pods_PositiveStatementWidgetExtension.framework */; };
+		80EEE49631B581DF051DEC55 /* Pods_SharedResources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A160D9FA9DA4B3BA6C4EEF8 /* Pods_SharedResources.framework */; };
 		888DB934A4AE8CBBD75F7D39 /* libPods-ThankYouListTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E50183A58E3BE5286274D4 /* libPods-ThankYouListTests.a */; };
 		A808C616220FACF6004162E4 /* SmallListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A808C615220FACF6004162E4 /* SmallListView.swift */; };
 		A808C618220FAD06004162E4 /* SmallListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A808C617220FAD06004162E4 /* SmallListView.xib */; };
@@ -97,7 +98,6 @@
 		A895A573298FA6B60081E08F /* ReplaySubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A895A572298FA6B60081E08F /* ReplaySubject.swift */; };
 		A895A575298FA6E10081E08F /* ReplaySubjectSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = A895A574298FA6E10081E08F /* ReplaySubjectSubscription.swift */; };
 		A895BF5C2C1D4F410080C753 /* SFSymbolConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A895BF5B2C1D4F410080C753 /* SFSymbolConst.swift */; };
-		A89AF9E72106905500FF6893 /* CryptoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AF9E62106905500FF6893 /* CryptoManager.swift */; };
 		A89D114C2BAFFD6A00C026E6 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89D114B2BAFFD6A00C026E6 /* ThemeColor.swift */; };
 		A8A06863244F444400839D14 /* MyPageProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A06861244F444300839D14 /* MyPageProfileCell.swift */; };
 		A8A06864244F444400839D14 /* MyPageProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8A06862244F444300839D14 /* MyPageProfileCell.xib */; };
@@ -149,6 +149,7 @@
 		A8DF48222D1BA57C008290FA /* SharedResources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8DF480D2D1BA57C008290FA /* SharedResources.framework */; };
 		A8DF48232D1BA57C008290FA /* SharedResources.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A8DF480D2D1BA57C008290FA /* SharedResources.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A8DF482C2D1BA918008290FA /* FirestoreConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A831BD422741617C003B5394 /* FirestoreConst.swift */; };
+		A8DF482E2D1CF3EA008290FA /* CryptoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AF9E62106905500FF6893 /* CryptoManager.swift */; };
 		A8E6CD07295C7D050042AA81 /* ConfirmDeleteAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD06295C7D050042AA81 /* ConfirmDeleteAccountViewModel.swift */; };
 		A8E6CD0929601D870042AA81 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD0829601D870042AA81 /* Color+Theme.swift */; };
 		A8E6CD0B29601E150042AA81 /* Color+SetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD0A29601E150042AA81 /* Color+SetColor.swift */; };
@@ -247,10 +248,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0E2E1E2EA8C99961349F55EC /* Pods-SharedResources.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedResources.release.xcconfig"; path = "Pods/Target Support Files/Pods-SharedResources/Pods-SharedResources.release.xcconfig"; sourceTree = "<group>"; };
 		14D49C15FD4089235E28B5ED /* Pods_ThankYouList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThankYouList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		46FB60FAEBD2A9487293EBF5 /* Pods-SharedResources.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedResources.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SharedResources/Pods-SharedResources.debug.xcconfig"; sourceTree = "<group>"; };
 		497D645982F8305FDC379821 /* Pods-ThankYouListTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouListTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouListTests/Pods-ThankYouListTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4BCEAF9D99FAF8171993083A /* Pods-PositiveStatementWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PositiveStatementWidgetExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PositiveStatementWidgetExtension/Pods-PositiveStatementWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		60AC734479A45E3CB2416DB5 /* Pods-ThankYouListTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouListTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouListTests/Pods-ThankYouListTests.release.xcconfig"; sourceTree = "<group>"; };
+		6A160D9FA9DA4B3BA6C4EEF8 /* Pods_SharedResources.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SharedResources.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A015AC112826D3ABF5A416EC /* Pods-ThankYouList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.release.xcconfig"; sourceTree = "<group>"; };
 		A808C615220FACF6004162E4 /* SmallListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallListView.swift; sourceTree = "<group>"; };
 		A808C617220FAD06004162E4 /* SmallListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallListView.xib; sourceTree = "<group>"; };
@@ -456,6 +460,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80EEE49631B581DF051DEC55 /* Pods_SharedResources.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +495,8 @@
 				60AC734479A45E3CB2416DB5 /* Pods-ThankYouListTests.release.xcconfig */,
 				4BCEAF9D99FAF8171993083A /* Pods-PositiveStatementWidgetExtension.debug.xcconfig */,
 				FCC93B23C4B6C482736879EC /* Pods-PositiveStatementWidgetExtension.release.xcconfig */,
+				46FB60FAEBD2A9487293EBF5 /* Pods-SharedResources.debug.xcconfig */,
+				0E2E1E2EA8C99961349F55EC /* Pods-SharedResources.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -966,6 +973,7 @@
 				A8F064CF2C9F9F8A006C6EE9 /* WidgetKit.framework */,
 				A8F064D12C9F9F8A006C6EE9 /* SwiftUI.framework */,
 				AA9406CBDCC3FD0D492485FE /* Pods_PositiveStatementWidgetExtension.framework */,
+				6A160D9FA9DA4B3BA6C4EEF8 /* Pods_SharedResources.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1040,6 +1048,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A8DF48292D1BA57C008290FA /* Build configuration list for PBXNativeTarget "SharedResources" */;
 			buildPhases = (
+				609C07A12A91EABBBAB8FE8F /* [CP] Check Pods Manifest.lock */,
 				A8DF48082D1BA57C008290FA /* Headers */,
 				A8DF48092D1BA57C008290FA /* Sources */,
 				A8DF480A2D1BA57C008290FA /* Frameworks */,
@@ -1283,6 +1292,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		609C07A12A91EABBBAB8FE8F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SharedResources-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A8C59B74243CC7AD00FF79EA /* Generate R.generated */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -1313,7 +1344,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-ThankYouList/Pods-ThankYouList-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseAppCheckInterop/FirebaseAppCheckInterop.framework",
@@ -1334,7 +1364,6 @@
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift-framework/RswiftResources.framework",
-				"${BUILT_PRODUCTS_DIR}/RNCryptor/RNCryptor.framework",
 				"${BUILT_PRODUCTS_DIR}/RecaptchaInterop/RecaptchaInterop.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
@@ -1343,12 +1372,13 @@
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RNCryptor/RNCryptor.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppAuth.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseAppCheckInterop.framework",
@@ -1369,7 +1399,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RswiftResources.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCryptor.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RecaptchaInterop.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
@@ -1378,6 +1407,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCryptor.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1435,7 +1466,6 @@
 				A8114B10230180EF0024975A /* ListScrollIndicator.swift in Sources */,
 				A8B24C502C6969F300AFBE28 /* FlexibleHeightBottomHalfSheet.swift in Sources */,
 				A85323D22BCC86AA0038D5B9 /* PositiveStatementModel.swift in Sources */,
-				A89AF9E72106905500FF6893 /* CryptoManager.swift in Sources */,
 				A8C563122B5CAD190047ED4C /* PositiveStatementListCoordinator.swift in Sources */,
 				A8F064C32C7AD0BA006C6EE9 /* EditPositiveStatementViewModel.swift in Sources */,
 				A84FDB5C21DBB8DF00593326 /* AddThankYouViewController.swift in Sources */,
@@ -1529,6 +1559,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8DF482E2D1CF3EA008290FA /* CryptoManager.swift in Sources */,
 				A8DF48112D1BA57C008290FA /* SharedResources.docc in Sources */,
 				A8DF482C2D1BA918008290FA /* FirestoreConst.swift in Sources */,
 			);
@@ -1866,6 +1897,7 @@
 		};
 		A8DF48252D1BA57C008290FA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 46FB60FAEBD2A9487293EBF5 /* Pods-SharedResources.debug.xcconfig */;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -1923,6 +1955,7 @@
 		};
 		A8DF48262D1BA57C008290FA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E2E1E2EA8C99961349F55EC /* Pods-SharedResources.release.xcconfig */;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;

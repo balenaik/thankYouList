@@ -38,6 +38,7 @@ target 'PositiveStatementWidgetExtension' do
   # Firebase
   pod 'Firebase/Core', '10.19.0'
   pod 'Firebase/Auth', '10.19.0'
+  pod 'Firebase/Firestore', '10.19.0'
 end
 
 target 'SharedResources' do

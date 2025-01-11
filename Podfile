@@ -4,7 +4,7 @@
 target 'ThankYouList' do
   use_frameworks!
 
-  # Pods for ThankYouList
+  # Calendar
   pod 'JTAppleCalendar', '~> 7.0'
 
   # Firebase

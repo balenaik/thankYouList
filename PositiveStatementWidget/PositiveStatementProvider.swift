@@ -6,9 +6,15 @@
 //  Copyright © 2024 Aika Yamada. All rights reserved.
 //
 
+import Combine
 import WidgetKit
 
-struct PositiveStatementProvider: TimelineProvider {
+// Using a class instead of a struct to store AnyCancellable instances, which
+// cannot be managed in a struct due to value semantics.
+class PositiveStatementProvider: TimelineProvider {
+    private let positiveStatementManager = PositiveStatementWidgetManager()
+    private var cancellables = Set<AnyCancellable>()
+
     func placeholder(in context: Context) -> PositiveStatementEntry {
         PositiveStatementEntry(date: Date(), positiveStatement: "Placeholder")
     }
@@ -19,17 +25,12 @@ struct PositiveStatementProvider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [PositiveStatementEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = PositiveStatementEntry(date: entryDate, positiveStatement: "from getTimeline")
-            entries.append(entry)
-        }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
+        positiveStatementManager
+            .getPositiveStatementEntries()
+            .sink(receiveCompletion: { _ in }, receiveValue: { entries in
+                let timeline = Timeline(entries: entries, policy: .atEnd)
+                completion(timeline)
+            })
+            .store(in: &cancellables)
     }
 }

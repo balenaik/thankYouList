@@ -506,6 +506,7 @@
 		A806DBD62D3366920065F6B3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A8F064E82CA221D4006C6EE9 /* PositiveStatementEntry.swift */,
 				A806DBD72D336CBE0065F6B3 /* PositiveStatementWidgetError.swift */,
 			);
 			path = Models;
@@ -933,7 +934,6 @@
 			isa = PBXGroup;
 			children = (
 				A8F064F12CCE326E006C6EE9 /* Const */,
-				A8F064E82CA221D4006C6EE9 /* PositiveStatementEntry.swift */,
 				A806DBD62D3366920065F6B3 /* Models */,
 				A8F064E22CA04500006C6EE9 /* PositiveStatementProvider.swift */,
 				A8F064D42C9F9F8A006C6EE9 /* PositiveStatementWidgetBundle.swift */,

@@ -178,6 +178,7 @@
 		A8F064F42CCE327D006C6EE9 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064F22CCE3279006C6EE9 /* Const.swift */; };
 		A8F064F62CCE3344006C6EE9 /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8F064F52CCE3344006C6EE9 /* FirebaseAuth.framework */; };
 		A8F064F92CD88FE8006C6EE9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8AFE4CE22DB81960045C707 /* GoogleService-Info.plist */; };
+		A8F064FC2CFAECFD006C6EE9 /* PositiveStatementWidgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064FA2CFAECEE006C6EE9 /* PositiveStatementWidgetManager.swift */; };
 		A8F06BB91F55396F00A90170 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */; };
 		A8F2619A2B43FA0500A65C0A /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A8F261992B43FA0500A65C0A /* CombineCocoa */; };
 		A8F2619C2B476FAE00A65C0A /* MockRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F2619B2B476FAE00A65C0A /* MockRouter.swift */; };
@@ -425,6 +426,7 @@
 		A8F064EF2CCE3179006C6EE9 /* AppConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConst.swift; sourceTree = "<group>"; };
 		A8F064F22CCE3279006C6EE9 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		A8F064F52CCE3344006C6EE9 /* FirebaseAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8F064FA2CFAECEE006C6EE9 /* PositiveStatementWidgetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementWidgetManager.swift; sourceTree = "<group>"; };
 		A8F064FE2CFAF6BD006C6EE9 /* Publisher+Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Operators.swift"; sourceTree = "<group>"; };
 		A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8F2619B2B476FAE00A65C0A /* MockRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRouter.swift; sourceTree = "<group>"; };
@@ -503,6 +505,14 @@
 				0E2E1E2EA8C99961349F55EC /* Pods-SharedResources.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		A806DBD52D33663B0065F6B3 /* Supports */ = {
+			isa = PBXGroup;
+			children = (
+				A8F064FA2CFAECEE006C6EE9 /* PositiveStatementWidgetManager.swift */,
+			);
+			path = Supports;
 			sourceTree = "<group>";
 		};
 		A806DBD62D3366920065F6B3 /* Models */ = {
@@ -938,6 +948,7 @@
 			children = (
 				A8F064F12CCE326E006C6EE9 /* Const */,
 				A806DBD62D3366920065F6B3 /* Models */,
+				A806DBD52D33663B0065F6B3 /* Supports */,
 				A8F064E22CA04500006C6EE9 /* PositiveStatementProvider.swift */,
 				A8F064D42C9F9F8A006C6EE9 /* PositiveStatementWidgetBundle.swift */,
 				A8F064D62C9F9F8A006C6EE9 /* PositiveStatementWidget.swift */,
@@ -1603,6 +1614,7 @@
 				A8F064EA2CA221E1006C6EE9 /* PositiveStatementEntry.swift in Sources */,
 				A8F064D72C9F9F8A006C6EE9 /* PositiveStatementWidget.swift in Sources */,
 				A8F064E72CA046C2006C6EE9 /* PositiveStatementWidgetView.swift in Sources */,
+				A8F064FC2CFAECFD006C6EE9 /* PositiveStatementWidgetManager.swift in Sources */,
 				A8F064E42CA04586006C6EE9 /* PositiveStatementProvider.swift in Sources */,
 				A8F064D52C9F9F8A006C6EE9 /* PositiveStatementWidgetBundle.swift in Sources */,
 				A806DBD82D336CBE0065F6B3 /* PositiveStatementWidgetError.swift in Sources */,

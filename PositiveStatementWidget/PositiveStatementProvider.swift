@@ -26,11 +26,32 @@ class PositiveStatementProvider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         positiveStatementManager
-            .getPositiveStatementEntries()
-            .sink(receiveCompletion: { _ in }, receiveValue: { entries in
+            .getPositiveStatements()
+            .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] statements in
+                let entries = self?.createTimelineEntries(positiveStatements: statements) ?? []
                 let timeline = Timeline(entries: entries, policy: .atEnd)
                 completion(timeline)
             })
             .store(in: &cancellables)
+    }
+}
+
+private extension PositiveStatementProvider {
+    func createTimelineEntries(positiveStatements: [String]) -> [PositiveStatementEntry] {
+        var entries = [PositiveStatementEntry]()
+        var displayDate = Date()
+
+        for statement in positiveStatements {
+            let entry = PositiveStatementEntry(
+                date: displayDate,
+                positiveStatement: statement
+            )
+
+            entries.append(entry)
+
+            displayDate = Calendar.current.date(byAdding: .minute, value: 1, to: displayDate) ?? displayDate
+        }
+
+        return entries
     }
 }

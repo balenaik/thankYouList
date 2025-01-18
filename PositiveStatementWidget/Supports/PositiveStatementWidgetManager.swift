@@ -21,7 +21,7 @@ struct PositiveStatementWidgetManager {
         self.firestore = firestore
     }
 
-    func getPositiveStatementEntries() -> Future<[PositiveStatementEntry], Error> {
+    func getPositiveStatements() -> Future<[String], Error> {
         guard let currentUser = Auth.auth().currentUser else {
             return Fail(error: PositiveStatementWidgetError.currentUserNotExist)
                 .asFuture()
@@ -29,7 +29,7 @@ struct PositiveStatementWidgetManager {
         let userId = currentUser.uid
         let userId16string = String(userId.prefix(16))
 
-        return Future<[PositiveStatementEntry], Error> { promise in
+        return Future<[String], Error> { promise in
             firestore
                 .collection(FirestoreConst.usersCollecion)
                 .document(userId)
@@ -44,9 +44,7 @@ struct PositiveStatementWidgetManager {
                         return
                     }
 
-                    var entries = [PositiveStatementEntry]()
-                    var displayDate = Date()
-
+                    var statements = [String]()
                     for document in documents {
                         guard let encryptedValue = document.data()[encryptedValueKey] as? String else {
                             break
@@ -56,16 +54,10 @@ struct PositiveStatementWidgetManager {
                             encryptText: encryptedValue,
                             key: userId16string
                         )
-                        let positiveStatement = PositiveStatementEntry(
-                            date: displayDate,
-                            positiveStatement: decryptedValue
-                        )
 
-                        entries.append(positiveStatement)
-
-                        displayDate = Calendar.current.date(byAdding: .minute, value: 1, to: displayDate) ?? displayDate
+                        statements.append(decryptedValue)
                     }
-                    promise(.success(entries))
+                    promise(.success(statements))
                 }
         }
     }

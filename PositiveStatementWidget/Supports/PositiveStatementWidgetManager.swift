@@ -22,7 +22,7 @@ struct PositiveStatementWidgetManager {
     }
 
     func getPositiveStatements() -> Future<[String], Error> {
-        guard let currentUser = Auth.auth().currentUser else {
+        guard let currentUser = getAndUpdateCurrentUser() else {
             return Fail(error: PositiveStatementWidgetError.currentUserNotExist)
                 .asFuture()
         }
@@ -60,5 +60,26 @@ struct PositiveStatementWidgetManager {
                     promise(.success(statements))
                 }
         }
+    }
+}
+
+private extension PositiveStatementWidgetManager {
+    // currentUser sometimes doesn't reflect the user on the main app if the user signs in/out.
+    // so we need to manually load the user from the main app and update the currentUser here.
+    // https://stackoverflow.com/a/66561134
+    func getAndUpdateCurrentUser() -> User? {
+        let firebaseAuth = Auth.auth()
+
+        let currentUserOnWidget = firebaseAuth.currentUser
+        let currentUserOnMainApp = try? firebaseAuth.getStoredUser(forAccessGroup: AppConst.teamIdAndAccessGroup)
+
+        guard let currentUserOnMainApp else {
+            try? firebaseAuth.signOut()
+            return nil
+        }
+        if currentUserOnMainApp.uid != currentUserOnWidget?.uid {
+            firebaseAuth.updateCurrentUser(currentUserOnMainApp)
+        }
+        return currentUserOnMainApp
     }
 }

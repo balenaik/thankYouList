@@ -79,9 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 private extension AppDelegate {
     func setupFirebase() {
         do {
-            try Auth.auth().useUserAccessGroup(
-                "\(AppConst.teamId).\(AppConst.appAccessGroupName)"
-            )
+            try Auth.auth().useUserAccessGroup(AppConst.teamIdAndAccessGroup)
         } catch let error as NSError {
             // TODO: Log error on Crashlytics
             print("Error setting user access group: %@", error)

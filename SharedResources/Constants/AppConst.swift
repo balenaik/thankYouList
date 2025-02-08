@@ -6,7 +6,7 @@
 //  Copyright © 2024 Aika Yamada. All rights reserved.
 //
 
-enum AppConst {
-    static let teamId = "6JDKJKDJ28"
-    static let appAccessGroupName = "com.balenaik.ThankYouList"
+public enum AppConst {
+    public static let teamId = "6JDKJKDJ28"
+    public static let appAccessGroupName = "com.balenaik.ThankYouList"
 }

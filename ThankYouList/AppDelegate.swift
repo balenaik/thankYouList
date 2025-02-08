@@ -10,6 +10,7 @@ import UIKit
 import Combine
 import Firebase
 import FBSDKCoreKit
+import SharedResources
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

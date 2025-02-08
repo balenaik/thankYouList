@@ -8,6 +8,7 @@
 
 import Firebase
 import WidgetKit
+import SharedResources
 import SwiftUI
 
 private let kind: String = "PositiveStatementWidget"
@@ -40,7 +41,7 @@ private extension PositiveStatementWidget {
         do {
             FirebaseApp.configure()
             try Auth.auth().useUserAccessGroup(
-                "\(Const.teamId).\(Const.appAccessGroupName)"
+                "\(AppConst.teamId).\(AppConst.appAccessGroupName)"
             )
         } catch let error as NSError {
             // TODO: Log error on Crashlytics

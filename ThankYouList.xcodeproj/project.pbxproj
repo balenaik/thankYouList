@@ -12,6 +12,7 @@
 		888DB934A4AE8CBBD75F7D39 /* libPods-ThankYouListTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E50183A58E3BE5286274D4 /* libPods-ThankYouListTests.a */; };
 		A806DBD82D336CBE0065F6B3 /* PositiveStatementWidgetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A806DBD72D336CBE0065F6B3 /* PositiveStatementWidgetError.swift */; };
 		A806DBD92D33971F0065F6B3 /* Publisher+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064FE2CFAF6BD006C6EE9 /* Publisher+Operators.swift */; };
+		A806DBDA2D576D950065F6B3 /* AppConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064EF2CCE3179006C6EE9 /* AppConst.swift */; };
 		A808C616220FACF6004162E4 /* SmallListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A808C615220FACF6004162E4 /* SmallListView.swift */; };
 		A808C618220FAD06004162E4 /* SmallListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A808C617220FAD06004162E4 /* SmallListView.xib */; };
 		A80BBB97245889A600CB032B /* AnalyticsConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80BBB96245889A600CB032B /* AnalyticsConst.swift */; };
@@ -174,8 +175,6 @@
 		A8F064E42CA04586006C6EE9 /* PositiveStatementProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064E22CA04500006C6EE9 /* PositiveStatementProvider.swift */; };
 		A8F064E72CA046C2006C6EE9 /* PositiveStatementWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064E52CA046AC006C6EE9 /* PositiveStatementWidgetView.swift */; };
 		A8F064EA2CA221E1006C6EE9 /* PositiveStatementEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064E82CA221D4006C6EE9 /* PositiveStatementEntry.swift */; };
-		A8F064F02CCE3179006C6EE9 /* AppConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064EF2CCE3179006C6EE9 /* AppConst.swift */; };
-		A8F064F42CCE327D006C6EE9 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064F22CCE3279006C6EE9 /* Const.swift */; };
 		A8F064F62CCE3344006C6EE9 /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8F064F52CCE3344006C6EE9 /* FirebaseAuth.framework */; };
 		A8F064F92CD88FE8006C6EE9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8AFE4CE22DB81960045C707 /* GoogleService-Info.plist */; };
 		A8F064FC2CFAECFD006C6EE9 /* PositiveStatementWidgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064FA2CFAECEE006C6EE9 /* PositiveStatementWidgetManager.swift */; };
@@ -424,7 +423,6 @@
 		A8F064E82CA221D4006C6EE9 /* PositiveStatementEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementEntry.swift; sourceTree = "<group>"; };
 		A8F064EE2CCDC6C7006C6EE9 /* PositiveStatementWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PositiveStatementWidgetExtension.entitlements; sourceTree = "<group>"; };
 		A8F064EF2CCE3179006C6EE9 /* AppConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConst.swift; sourceTree = "<group>"; };
-		A8F064F22CCE3279006C6EE9 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		A8F064F52CCE3344006C6EE9 /* FirebaseAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8F064FA2CFAECEE006C6EE9 /* PositiveStatementWidgetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementWidgetManager.swift; sourceTree = "<group>"; };
 		A8F064FE2CFAF6BD006C6EE9 /* Publisher+Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Operators.swift"; sourceTree = "<group>"; };
@@ -662,7 +660,6 @@
 			isa = PBXGroup;
 			children = (
 				A80BBB96245889A600CB032B /* AnalyticsConst.swift */,
-				A8F064EF2CCE3179006C6EE9 /* AppConst.swift */,
 				A820DE5321C5432500E7F3DF /* NotificationConst.swift */,
 				A895BF5B2C1D4F410080C753 /* SFSymbolConst.swift */,
 				A8DABBD527173FA20086B2E8 /* ViewConst.swift */,
@@ -911,6 +908,7 @@
 		A8DF482B2D1BA8FA008290FA /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				A8F064EF2CCE3179006C6EE9 /* AppConst.swift */,
 				A831BD422741617C003B5394 /* FirestoreConst.swift */,
 			);
 			path = Constants;
@@ -946,7 +944,6 @@
 		A8F064D32C9F9F8A006C6EE9 /* PositiveStatementWidget */ = {
 			isa = PBXGroup;
 			children = (
-				A8F064F12CCE326E006C6EE9 /* Const */,
 				A806DBD62D3366920065F6B3 /* Models */,
 				A806DBD52D33663B0065F6B3 /* Supports */,
 				A8F064E22CA04500006C6EE9 /* PositiveStatementProvider.swift */,
@@ -957,14 +954,6 @@
 				A8F064DA2C9F9F8B006C6EE9 /* Info.plist */,
 			);
 			path = PositiveStatementWidget;
-			sourceTree = "<group>";
-		};
-		A8F064F12CCE326E006C6EE9 /* Const */ = {
-			isa = PBXGroup;
-			children = (
-				A8F064F22CCE3279006C6EE9 /* Const.swift */,
-			);
-			path = Const;
 			sourceTree = "<group>";
 		};
 		A8F064FD2CFAF6AE006C6EE9 /* Extensions */ = {
@@ -1472,7 +1461,6 @@
 				A8E6CD0B29601E150042AA81 /* Color+SetColor.swift in Sources */,
 				A8F064C12C7ACF8E006C6EE9 /* EditPositiveStatementView.swift in Sources */,
 				A8A06863244F444400839D14 /* MyPageProfileCell.swift in Sources */,
-				A8F064F02CCE3179006C6EE9 /* AppConst.swift in Sources */,
 				A8ADC1572C43B45200830B39 /* Color+Blend.swift in Sources */,
 				A83A36202972830A00AD2790 /* Router.swift in Sources */,
 				A83A361E2972615900AD2790 /* AddThankYouCoordinator.swift in Sources */,
@@ -1596,6 +1584,7 @@
 				A8DF482E2D1CF3EA008290FA /* CryptoManager.swift in Sources */,
 				A8DF48112D1BA57C008290FA /* SharedResources.docc in Sources */,
 				A8DF482C2D1BA918008290FA /* FirestoreConst.swift in Sources */,
+				A806DBDA2D576D950065F6B3 /* AppConst.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1618,7 +1607,6 @@
 				A8F064E42CA04586006C6EE9 /* PositiveStatementProvider.swift in Sources */,
 				A8F064D52C9F9F8A006C6EE9 /* PositiveStatementWidgetBundle.swift in Sources */,
 				A806DBD82D336CBE0065F6B3 /* PositiveStatementWidgetError.swift in Sources */,
-				A8F064F42CCE327D006C6EE9 /* Const.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

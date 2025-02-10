@@ -51,7 +51,7 @@ private extension PositiveStatementWidget {
 struct PositiveStatementWidget_Previews: PreviewProvider {
     static var previews: some View {
         PositiveStatementWidgetView(
-            entry: PositiveStatementEntry(date: Date(), positiveStatement: "Preview")
+            entry: PositiveStatementEntry(date: Date(), content: .positiveStatement("Preview"))
         )
         .previewContext(WidgetPreviewContext(family: .systemSmall))
     }

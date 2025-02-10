@@ -16,11 +16,11 @@ class PositiveStatementProvider: TimelineProvider {
     private var cancellables = Set<AnyCancellable>()
 
     func placeholder(in context: Context) -> PositiveStatementEntry {
-        PositiveStatementEntry(date: Date(), positiveStatement: "Placeholder")
+        PositiveStatementEntry(date: Date(), content: .positiveStatement("Placeholder"))
     }
 
     func getSnapshot(in context: Context, completion: @escaping (PositiveStatementEntry) -> ()) {
-        let entry = PositiveStatementEntry(date: Date(), positiveStatement: "from getSnapshot")
+        let entry = PositiveStatementEntry(date: Date(), content: .positiveStatement("from getSnapshot"))
         completion(entry)
     }
 
@@ -44,7 +44,7 @@ private extension PositiveStatementProvider {
         for statement in positiveStatements {
             let entry = PositiveStatementEntry(
                 date: displayDate,
-                positiveStatement: statement
+                content: .positiveStatement(statement)
             )
 
             entries.append(entry)

@@ -16,8 +16,13 @@ struct PositiveStatementWidgetView : View {
             Text("Time:")
             Text(entry.date, style: .time)
 
-            Text("PositiveStatement:")
-            Text(entry.positiveStatement)
+            switch entry.content {
+            case .positiveStatement(let statement):
+                Text("PositiveStatement:")
+                Text(statement)
+            case .errorMessage(let errorMessage):
+                Text(errorMessage)
+            }
         }
     }
 }

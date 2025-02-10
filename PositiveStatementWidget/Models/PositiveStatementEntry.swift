@@ -10,5 +10,10 @@ import WidgetKit
 
 struct PositiveStatementEntry: TimelineEntry {
     let date: Date
-    let positiveStatement: String
+    let content: PositiveStatementContentType
+}
+
+enum PositiveStatementContentType {
+    case positiveStatement(String)
+    case errorMessage(String)
 }

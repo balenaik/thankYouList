@@ -18,9 +18,6 @@ target 'ThankYouList' do
   pod 'FBSDKLoginKit', '~> 6.5.0'
   pod 'GoogleSignIn', '7.0.0'
 
-  # R.swift
-  pod 'R.swift', '7.2.4'
-
   # SkeletonView
   pod 'SkeletonView', '1.25.1'
 

@@ -95,6 +95,8 @@
 		A892354C29D731730093A92F /* ConfirmDeleteAccountViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A892354B29D731730093A92F /* ConfirmDeleteAccountViewModelTests.swift */; };
 		A892355429D73E3D0093A92F /* MockUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A892355329D73E3D0093A92F /* MockUserRepository.swift */; };
 		A892355A29D818500093A92F /* EntwineTest in Frameworks */ = {isa = PBXBuildFile; productRef = A892355929D818500093A92F /* EntwineTest */; };
+		A893A1762D5F150400E01848 /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = A893A1752D5F150400E01848 /* RswiftLibrary */; };
+		A893A1782D5F150400E01848 /* rswift in Frameworks */ = {isa = PBXBuildFile; productRef = A893A1772D5F150400E01848 /* rswift */; };
 		A8959E8F245952260080C05A /* Array+Nullable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8959E8E245952260080C05A /* Array+Nullable.swift */; };
 		A895A56F297CCAAC0081E08F /* Publisher+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A895A56E297CCAAC0081E08F /* Publisher+Operators.swift */; };
 		A895A571297D77C20081E08F /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A895A570297D77C20081E08F /* AlertItem.swift */; };
@@ -133,7 +135,6 @@
 		A8C563152B764D810047ED4C /* AddPositiveStatementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C563142B764D810047ED4C /* AddPositiveStatementView.swift */; };
 		A8C563172B7653F00047ED4C /* AddPositiveStatementCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C563162B7653F00047ED4C /* AddPositiveStatementCoordinator.swift */; };
 		A8C563192B7D73A70047ED4C /* View+Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C563182B7D73A70047ED4C /* View+Background.swift */; };
-		A8C59B76243CC86100FF79EA /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C59B75243CC86100FF79EA /* R.generated.swift */; };
 		A8C59B79243CD32200FF79EA /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8C59B78243CD32200FF79EA /* MyPage.storyboard */; };
 		A8C59B7B243CD35D00FF79EA /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C59B7A243CD35D00FF79EA /* MyPageViewController.swift */; };
 		A8C59B7D243CD72300FF79EA /* UIViewController+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C59B7C243CD72300FF79EA /* UIViewController+Setup.swift */; };
@@ -381,7 +382,6 @@
 		A8C563142B764D810047ED4C /* AddPositiveStatementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPositiveStatementView.swift; sourceTree = "<group>"; };
 		A8C563162B7653F00047ED4C /* AddPositiveStatementCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPositiveStatementCoordinator.swift; sourceTree = "<group>"; };
 		A8C563182B7D73A70047ED4C /* View+Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Background.swift"; sourceTree = "<group>"; };
-		A8C59B75243CC86100FF79EA /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		A8C59B78243CD32200FF79EA /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
 		A8C59B7A243CD35D00FF79EA /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		A8C59B7C243CD72300FF79EA /* UIViewController+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Setup.swift"; sourceTree = "<group>"; };
@@ -446,7 +446,9 @@
 				A8A1E2072B0AC1590083C3FF /* CombineSchedulers in Frameworks */,
 				A88217272B41029800BD8BFD /* CombineCocoa in Frameworks */,
 				A864849B2160F5BF0049D90A /* Pods_ThankYouList.framework in Frameworks */,
+				A893A1782D5F150400E01848 /* rswift in Frameworks */,
 				A8574DD12BDF489B0073AA61 /* Lottie in Frameworks */,
+				A893A1762D5F150400E01848 /* RswiftLibrary in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,7 +767,6 @@
 		A8831CC51E9CFE6B00F3CA0A /* ThankYouList */ = {
 			isa = PBXGroup;
 			children = (
-				A8C59B75243CC86100FF79EA /* R.generated.swift */,
 				A8831CC61E9CFE6B00F3CA0A /* AppDelegate.swift */,
 				A820DE5221C5430B00E7F3DF /* Const */,
 				A84635B62AD25A040030A358 /* DataStores */,
@@ -1019,7 +1020,6 @@
 			buildConfigurationList = A8831CD51E9CFE6B00F3CA0A /* Build configuration list for PBXNativeTarget "ThankYouList" */;
 			buildPhases = (
 				4A818A52C71909CB7AAB9067 /* [CP] Check Pods Manifest.lock */,
-				A8C59B74243CC7AD00FF79EA /* Generate R.generated */,
 				A8831CBF1E9CFE6B00F3CA0A /* Sources */,
 				A8831CC01E9CFE6B00F3CA0A /* Frameworks */,
 				A8831CC11E9CFE6B00F3CA0A /* Resources */,
@@ -1030,6 +1030,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A893A17E2D5F181E00E01848 /* PBXTargetDependency */,
 				A8F064DC2C9F9F8B006C6EE9 /* PBXTargetDependency */,
 				A8DF48212D1BA57C008290FA /* PBXTargetDependency */,
 			);
@@ -1038,6 +1039,8 @@
 				A8A1E2062B0AC1590083C3FF /* CombineSchedulers */,
 				A88217262B41029800BD8BFD /* CombineCocoa */,
 				A8574DD02BDF489B0073AA61 /* Lottie */,
+				A893A1752D5F150400E01848 /* RswiftLibrary */,
+				A893A1772D5F150400E01848 /* rswift */,
 			);
 			productName = ThankYouList;
 			productReference = A8831CC31E9CFE6B00F3CA0A /* ThankYouList.app */;
@@ -1174,6 +1177,7 @@
 				A8A1E2052B0AC1590083C3FF /* XCRemoteSwiftPackageReference "combine-schedulers" */,
 				A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa" */,
 				A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */,
 			);
 			productRefGroup = A8831CC41E9CFE6B00F3CA0A /* Products */;
 			projectDirPath = "";
@@ -1336,27 +1340,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A8C59B74243CC7AD00FF79EA /* Generate R.generated */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$TEMP_DIR/rswift-lastrun",
-			);
-			name = "Generate R.generated";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$SRCROOT/R.generated.swift",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
-		};
 		D46E638CB34C7D224BCD3B6F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1385,7 +1368,6 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
-				"${BUILT_PRODUCTS_DIR}/R.swift-framework/RswiftResources.framework",
 				"${BUILT_PRODUCTS_DIR}/RecaptchaInterop/RecaptchaInterop.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
@@ -1420,7 +1402,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RswiftResources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RecaptchaInterop.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
@@ -1518,7 +1499,6 @@
 				A84635B32ABE83550030A358 /* Date+Compare.swift in Sources */,
 				A8A85A9925A60DF500182B99 /* UIButton+BackgroundColor.swift in Sources */,
 				A8E6CD14296BA31A0042AA81 /* Coordinator.swift in Sources */,
-				A8C59B76243CC86100FF79EA /* R.generated.swift in Sources */,
 				A8C563102B5CAC6F0047ED4C /* PositiveStatementListViewModel.swift in Sources */,
 				A87EE43F2C28143900CCB997 /* ViewLifecycleAwareHostingController.swift in Sources */,
 				A83A361C296CE98600AD2790 /* MyPageCoordinator.swift in Sources */,
@@ -1617,6 +1597,10 @@
 			isa = PBXTargetDependency;
 			target = A8831CC21E9CFE6B00F3CA0A /* ThankYouList */;
 			targetProxy = A892354D29D731730093A92F /* PBXContainerItemProxy */;
+		};
+		A893A17E2D5F181E00E01848 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = A893A17D2D5F181E00E01848 /* RswiftGenerateInternalResources */;
 		};
 		A8DF48192D1BA57C008290FA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2271,6 +2255,14 @@
 				kind = branch;
 			};
 		};
+		A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mac-cain13/R.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.2.4;
+			};
+		};
 		A8A1E2052B0AC1590083C3FF /* XCRemoteSwiftPackageReference "combine-schedulers" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/combine-schedulers";
@@ -2296,6 +2288,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A892355829D818500093A92F /* XCRemoteSwiftPackageReference "Entwine" */;
 			productName = EntwineTest;
+		};
+		A893A1752D5F150400E01848 /* RswiftLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
+			productName = RswiftLibrary;
+		};
+		A893A1772D5F150400E01848 /* rswift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
+			productName = rswift;
+		};
+		A893A17D2D5F181E00E01848 /* RswiftGenerateInternalResources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
+			productName = "plugin:RswiftGenerateInternalResources";
 		};
 		A8A1E2062B0AC1590083C3FF /* CombineSchedulers */ = {
 			isa = XCSwiftPackageProductDependency;

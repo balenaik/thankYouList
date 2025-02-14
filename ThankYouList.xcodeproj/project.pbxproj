@@ -821,6 +821,15 @@
 			path = Mock;
 			sourceTree = "<group>";
 		};
+		A893A1892D5FBCF700E01848 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A8F064DA2C9F9F8B006C6EE9 /* Info.plist */,
+				A8F064D82C9F9F8B006C6EE9 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		A8A1E2082B2EA7550083C3FF /* Supports */ = {
 			isa = PBXGroup;
 			children = (
@@ -950,13 +959,12 @@
 			isa = PBXGroup;
 			children = (
 				A806DBD62D3366920065F6B3 /* Models */,
+				A893A1892D5FBCF700E01848 /* Resources */,
 				A806DBD52D33663B0065F6B3 /* Supports */,
 				A8F064E22CA04500006C6EE9 /* PositiveStatementProvider.swift */,
 				A8F064D42C9F9F8A006C6EE9 /* PositiveStatementWidgetBundle.swift */,
 				A8F064D62C9F9F8A006C6EE9 /* PositiveStatementWidget.swift */,
 				A8F064E52CA046AC006C6EE9 /* PositiveStatementWidgetView.swift */,
-				A8F064D82C9F9F8B006C6EE9 /* Assets.xcassets */,
-				A8F064DA2C9F9F8B006C6EE9 /* Info.plist */,
 			);
 			path = PositiveStatementWidget;
 			sourceTree = "<group>";
@@ -2119,7 +2127,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PositiveStatementWidget/Info.plist;
+				INFOPLIST_FILE = PositiveStatementWidget/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PositiveStatementWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Aika Yamada. All rights reserved.";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -2163,7 +2171,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PositiveStatementWidget/Info.plist;
+				INFOPLIST_FILE = PositiveStatementWidget/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PositiveStatementWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Aika Yamada. All rights reserved.";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;

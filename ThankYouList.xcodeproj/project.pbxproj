@@ -97,6 +97,8 @@
 		A892355A29D818500093A92F /* EntwineTest in Frameworks */ = {isa = PBXBuildFile; productRef = A892355929D818500093A92F /* EntwineTest */; };
 		A893A1762D5F150400E01848 /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = A893A1752D5F150400E01848 /* RswiftLibrary */; };
 		A893A1782D5F150400E01848 /* rswift in Frameworks */ = {isa = PBXBuildFile; productRef = A893A1772D5F150400E01848 /* rswift */; };
+		A893A17A2D5F175600E01848 /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = A893A1792D5F175600E01848 /* RswiftLibrary */; };
+		A893A17C2D5F17DA00E01848 /* rswift in Frameworks */ = {isa = PBXBuildFile; productRef = A893A17B2D5F17DA00E01848 /* rswift */; };
 		A8959E8F245952260080C05A /* Array+Nullable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8959E8E245952260080C05A /* Array+Nullable.swift */; };
 		A895A56F297CCAAC0081E08F /* Publisher+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A895A56E297CCAAC0081E08F /* Publisher+Operators.swift */; };
 		A895A571297D77C20081E08F /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A895A570297D77C20081E08F /* AlertItem.swift */; };
@@ -482,10 +484,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A893A17A2D5F175600E01848 /* RswiftLibrary in Frameworks */,
 				A8F064F62CCE3344006C6EE9 /* FirebaseAuth.framework in Frameworks */,
 				A8F064D22C9F9F8A006C6EE9 /* SwiftUI.framework in Frameworks */,
 				A8F064D02C9F9F8A006C6EE9 /* WidgetKit.framework in Frameworks */,
 				08422BAFB4F52C22BCFC653B /* Pods_PositiveStatementWidgetExtension.framework in Frameworks */,
+				A893A17C2D5F17DA00E01848 /* rswift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1119,8 +1123,13 @@
 			buildRules = (
 			);
 			dependencies = (
+				A893A1802D5F182400E01848 /* PBXTargetDependency */,
 			);
 			name = PositiveStatementWidgetExtension;
+			packageProductDependencies = (
+				A893A1792D5F175600E01848 /* RswiftLibrary */,
+				A893A17B2D5F17DA00E01848 /* rswift */,
+			);
 			productName = PositiveStatementWidgetExtension;
 			productReference = A8F064CE2C9F9F89006C6EE9 /* PositiveStatementWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -1601,6 +1610,10 @@
 		A893A17E2D5F181E00E01848 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = A893A17D2D5F181E00E01848 /* RswiftGenerateInternalResources */;
+		};
+		A893A1802D5F182400E01848 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = A893A17F2D5F182400E01848 /* RswiftGenerateInternalResources */;
 		};
 		A8DF48192D1BA57C008290FA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2299,7 +2312,22 @@
 			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
 			productName = rswift;
 		};
+		A893A1792D5F175600E01848 /* RswiftLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
+			productName = RswiftLibrary;
+		};
+		A893A17B2D5F17DA00E01848 /* rswift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
+			productName = rswift;
+		};
 		A893A17D2D5F181E00E01848 /* RswiftGenerateInternalResources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
+			productName = "plugin:RswiftGenerateInternalResources";
+		};
+		A893A17F2D5F182400E01848 /* RswiftGenerateInternalResources */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
 			productName = "plugin:RswiftGenerateInternalResources";

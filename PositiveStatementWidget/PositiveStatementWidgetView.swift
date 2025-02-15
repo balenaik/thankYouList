@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct PositiveStatementWidgetView : View {
+struct PositiveStatementWidgetView: View {
     var entry: PositiveStatementProvider.Entry
 
     var body: some View {

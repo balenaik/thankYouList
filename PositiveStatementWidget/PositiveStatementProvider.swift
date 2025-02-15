@@ -27,11 +27,26 @@ class PositiveStatementProvider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         positiveStatementManager
             .getPositiveStatements()
-            .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] statements in
-                let entries = self?.createTimelineEntries(positiveStatements: statements) ?? []
-                let timeline = Timeline(entries: entries, policy: .atEnd)
-                completion(timeline)
-            })
+            .sink(
+                receiveCompletion: { result in
+                    switch result {
+                    case .failure(let error):
+                        let errorType = error as? PositiveStatementWidgetError ?? .dataNotFound
+                        let timeline = Timeline(
+                            entries: [PositiveStatementEntry(date: Date(), content: .errorMessage(errorType.errorMessage))],
+                            policy: .never
+                        )
+                        completion(timeline)
+                    case .finished:
+                        return
+                    }
+                },
+                receiveValue: { [weak self] statements in
+                    let entries = self?.createTimelineEntries(positiveStatements: statements) ?? []
+                    let timeline = Timeline(entries: entries, policy: .atEnd)
+                    completion(timeline)
+                }
+            )
             .store(in: &cancellables)
     }
 }

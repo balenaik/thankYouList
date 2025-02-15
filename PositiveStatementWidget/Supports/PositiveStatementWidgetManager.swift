@@ -39,7 +39,8 @@ struct PositiveStatementWidgetManager {
                         promise(.failure(error))
                         return
                     }
-                    guard let documents = snapshot?.documents else {
+                    guard let documents = snapshot?.documents,
+                          !documents.isEmpty else {
                         promise(.failure(PositiveStatementWidgetError.dataNotFound))
                         return
                     }

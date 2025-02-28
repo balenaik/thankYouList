@@ -15,11 +15,13 @@ import SharedResources
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
-
+    private let window = UIWindow(frame: UIScreen.main.bounds)
     private let userRepository: UserRepository = DefaultUserRepository()
+    private lazy var appCoordinator = AppCoordinator(
+        window: window,
+        userRepository: userRepository)
     private var cancellable = Set<AnyCancellable>()
-    
+
     override init() {
         super.init()
         FirebaseApp.configure()
@@ -34,11 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupListView()
         reAuthenticateToProvider()
 
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        self.window = window
-        let appCoordinator = AppCoordinator(
-            window: window,
-            userRepository: DefaultUserRepository())
         appCoordinator.start()
         
         return true

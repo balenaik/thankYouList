@@ -100,6 +100,7 @@
 		A893A17A2D5F175600E01848 /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = A893A1792D5F175600E01848 /* RswiftLibrary */; };
 		A893A17C2D5F17DA00E01848 /* rswift in Frameworks */ = {isa = PBXBuildFile; productRef = A893A17B2D5F17DA00E01848 /* rswift */; };
 		A893A1972D6D32C500E01848 /* DeeplinkDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = A893A1962D6D32C500E01848 /* DeeplinkDestination.swift */; };
+		A893A19B2D6D349D00E01848 /* NavigationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A893A19A2D6D349D00E01848 /* NavigationError.swift */; };
 		A8959E8F245952260080C05A /* Array+Nullable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8959E8E245952260080C05A /* Array+Nullable.swift */; };
 		A895A56F297CCAAC0081E08F /* Publisher+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A895A56E297CCAAC0081E08F /* Publisher+Operators.swift */; };
 		A895A571297D77C20081E08F /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A895A570297D77C20081E08F /* AlertItem.swift */; };
@@ -347,6 +348,7 @@
 		A892354B29D731730093A92F /* ConfirmDeleteAccountViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDeleteAccountViewModelTests.swift; sourceTree = "<group>"; };
 		A892355329D73E3D0093A92F /* MockUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserRepository.swift; sourceTree = "<group>"; };
 		A893A1962D6D32C500E01848 /* DeeplinkDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkDestination.swift; sourceTree = "<group>"; };
+		A893A19A2D6D349D00E01848 /* NavigationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationError.swift; sourceTree = "<group>"; };
 		A8959E8E245952260080C05A /* Array+Nullable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Nullable.swift"; sourceTree = "<group>"; };
 		A895A56E297CCAAC0081E08F /* Publisher+Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Operators.swift"; sourceTree = "<group>"; };
 		A895A570297D77C20081E08F /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
@@ -541,6 +543,7 @@
 				A85323D12BCC86AA0038D5B9 /* PositiveStatementModel.swift */,
 				A8A068652450A15900839D14 /* Profile.swift */,
 				A85D9D001EA64AF900945E6E /* ThankYouData.swift */,
+				A893A19A2D6D349D00E01848 /* NavigationError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1494,6 +1497,7 @@
 				A8F064C72C944A83006C6EE9 /* View+ScrollView.swift in Sources */,
 				A80BBB97245889A600CB032B /* AnalyticsConst.swift in Sources */,
 				A8E6CD0D29615BE00042AA81 /* Font+Theme.swift in Sources */,
+				A893A19B2D6D349D00E01848 /* NavigationError.swift in Sources */,
 				A8A0FE61205E005D0048AB33 /* UIColor+SetColor.swift in Sources */,
 				A8851ECC27014FE1008B2D7A /* CenterRoundedTabBar.swift in Sources */,
 				A8FF6A202829C40500CF816F /* BottomHalfSheetDatePickerViewController.swift in Sources */,

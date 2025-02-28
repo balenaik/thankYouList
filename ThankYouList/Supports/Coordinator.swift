@@ -65,3 +65,23 @@ class AppCoordinator: Coordinator {
         window.makeKeyAndVisible()
     }
 }
+
+// MARK: - Deeplink Navigation
+extension AppCoordinator {
+    func handleDeeplink(url: URL) throws {
+        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+              let host = components.host else {
+            throw NavigationError.urlHostNotExist
+        }
+
+        switch DeeplinkDestination(rawValue: host) {
+        case .positiveStatements:
+            navigateToPositiveStatements()
+        default:
+            throw NavigationError.destinationNotDefined
+        }
+    }
+
+    private func navigateToPositiveStatements() {
+    }
+}

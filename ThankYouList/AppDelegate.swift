@@ -66,6 +66,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     @available(iOS 9.0, *)
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
         -> Bool {
+            if handleDeeplink(url: url) {
+                return true
+            }
             return ApplicationDelegate.shared.application(application,
                                                           open: url,
                                                           sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
@@ -102,6 +105,15 @@ private extension AppDelegate {
         userRepository.reAuthenticateToProviderIfNeeded()
             .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
             .store(in: &cancellable)
+    }
+
+    func handleDeeplink(url: URL) -> Bool {
+        do {
+            try appCoordinator.handleDeeplink(url: url)
+            return true
+        } catch {
+            return false
+        }
     }
 }
 

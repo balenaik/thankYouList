@@ -20,4 +20,17 @@ extension UIViewController {
             return self
         }
     }
+
+    func dismissUntil(viewControllerType type: UIViewController.Type, completion: (() -> Void)? = nil) {
+        var currentViewController: UIViewController? = self
+
+        while let presentingViewController = currentViewController?.presentingViewController {
+            currentViewController = presentingViewController
+            if presentingViewController.isKind(of: type) {
+                break
+            }
+        }
+
+        currentViewController?.dismiss(animated: true, completion: completion)
+    }
 }

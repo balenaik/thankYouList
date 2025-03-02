@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 enum RoutingType {
     case push(navigationController: UINavigationController)
@@ -83,5 +84,28 @@ extension AppCoordinator {
     }
 
     private func navigateToPositiveStatements() {
+        let visibleViewController = { [weak self] in
+            self?.window.rootViewController?.getVisibleViewController()
+        }
+
+        if !userRepository.isLoggedIn()
+            || visibleViewController() is UIHostingController<PositiveStatementListView> {
+            return
+        }
+
+        if visibleViewController() == nil {
+            start()
+        }
+
+        visibleViewController()?.dismissUntil(
+            viewControllerType: MainTabBarController.self,
+            completion: {
+                guard let vc = visibleViewController() else { return }
+
+                let coordinator = MyPageCoordinator(presentingViewController: vc)
+                coordinator.start()
+                coordinator.pushToPositiveStatementList()
+            }
+        )
     }
 }

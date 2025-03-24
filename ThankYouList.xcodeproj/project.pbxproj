@@ -99,9 +99,9 @@
 		A893A1782D5F150400E01848 /* rswift in Frameworks */ = {isa = PBXBuildFile; productRef = A893A1772D5F150400E01848 /* rswift */; };
 		A893A17A2D5F175600E01848 /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = A893A1792D5F175600E01848 /* RswiftLibrary */; };
 		A893A17C2D5F17DA00E01848 /* rswift in Frameworks */ = {isa = PBXBuildFile; productRef = A893A17B2D5F17DA00E01848 /* rswift */; };
-		A893A1972D6D32C500E01848 /* DeeplinkDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = A893A1962D6D32C500E01848 /* DeeplinkDestination.swift */; };
 		A893A19B2D6D349D00E01848 /* NavigationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A893A19A2D6D349D00E01848 /* NavigationError.swift */; };
 		A893A19D2D6EC9BF00E01848 /* UIViewController+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A893A19C2D6EC9BF00E01848 /* UIViewController+ViewController.swift */; };
+		A893A1A32D816D8B00E01848 /* DeeplinkDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = A893A1962D6D32C500E01848 /* DeeplinkDestination.swift */; };
 		A8959E8F245952260080C05A /* Array+Nullable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8959E8E245952260080C05A /* Array+Nullable.swift */; };
 		A895A56F297CCAAC0081E08F /* Publisher+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A895A56E297CCAAC0081E08F /* Publisher+Operators.swift */; };
 		A895A571297D77C20081E08F /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A895A570297D77C20081E08F /* AlertItem.swift */; };
@@ -540,7 +540,6 @@
 				A8BFB8BB2B53C23E00C3DE65 /* AlertAction.swift */,
 				A895A570297D77C20081E08F /* AlertItem.swift */,
 				A84635BD2AFF02820030A358 /* CalendarConfiguration.swift */,
-				A893A1962D6D32C500E01848 /* DeeplinkDestination.swift */,
 				A85323CF2BCA11A50038D5B9 /* PositiveStatementCreateModel.swift */,
 				A85323D12BCC86AA0038D5B9 /* PositiveStatementModel.swift */,
 				A8A068652450A15900839D14 /* Profile.swift */,
@@ -839,6 +838,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		A893A1A02D816D7400E01848 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A893A1962D6D32C500E01848 /* DeeplinkDestination.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		A8A1E2082B2EA7550083C3FF /* Supports */ = {
 			isa = PBXGroup;
 			children = (
@@ -913,6 +920,7 @@
 			children = (
 				A8DF482B2D1BA8FA008290FA /* Constants */,
 				A8F064FD2CFAF6AE006C6EE9 /* Extensions */,
+				A893A1A02D816D7400E01848 /* Models */,
 				A8DF482D2D1CF243008290FA /* Supports */,
 				A8DF480F2D1BA57C008290FA /* SharedResources.h */,
 				A8DF48102D1BA57C008290FA /* SharedResources.docc */,
@@ -1548,7 +1556,6 @@
 				A8959E8F245952260080C05A /* Array+Nullable.swift in Sources */,
 				A8851E9C26FA752B008B2D7A /* LoginContinueButton.swift in Sources */,
 				A8F407CA2957DBF6007FDF2D /* ConfirmDeleteAccountView.swift in Sources */,
-				A893A1972D6D32C500E01848 /* DeeplinkDestination.swift in Sources */,
 				A8DB2FBA1F5D41540055E8A4 /* CalendarViewController.swift in Sources */,
 				A810D8E62348365B008F2E74 /* LocalizableExtensions.swift in Sources */,
 				A8C59B7B243CD35D00FF79EA /* MyPageViewController.swift in Sources */,
@@ -1591,6 +1598,7 @@
 			files = (
 				A806DBD92D33971F0065F6B3 /* Publisher+Operators.swift in Sources */,
 				A8DF482E2D1CF3EA008290FA /* CryptoManager.swift in Sources */,
+				A893A1A32D816D8B00E01848 /* DeeplinkDestination.swift in Sources */,
 				A8DF48112D1BA57C008290FA /* SharedResources.docc in Sources */,
 				A8DF482C2D1BA918008290FA /* FirestoreConst.swift in Sources */,
 				A806DBDA2D576D950065F6B3 /* AppConst.swift in Sources */,

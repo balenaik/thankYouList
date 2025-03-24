@@ -1,11 +1,11 @@
 //
 //  DeeplinkDestination.swift
-//  ThankYouList
+//  SharedResources
 //
 //  Created by Aika Yamada on 2025/02/25.
 //  Copyright © 2025 Aika Yamada. All rights reserved.
 //
 
-enum DeeplinkDestination: String {
+public enum DeeplinkDestination: String {
     case positiveStatements
 }

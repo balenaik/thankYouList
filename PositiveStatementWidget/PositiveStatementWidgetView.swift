@@ -14,8 +14,6 @@ struct PositiveStatementWidgetView: View {
 
     var body: some View {
         VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
 
             switch entry.content {
             case .positiveStatement(let statement):

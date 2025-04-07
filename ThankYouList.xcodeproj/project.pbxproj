@@ -45,6 +45,7 @@
 		A83A36242973D4B300AD2790 /* CalendarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83A36232973D4B300AD2790 /* CalendarCoordinator.swift */; };
 		A83A36262973DFB000AD2790 /* ConfirmDeleteAccountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83A36252973DFB000AD2790 /* ConfirmDeleteAccountCoordinator.swift */; };
 		A83D5F891F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */; };
+		A8424BA92DA26A83006D1B76 /* View+Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8424BA72DA26A65006D1B76 /* View+Background.swift */; };
 		A8424BAF2DA26BD3006D1B76 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD0829601D870042AA81 /* Color+Theme.swift */; };
 		A84635AF2AA3F4270030A358 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635AE2AA3F4270030A358 /* CalendarViewModel.swift */; };
 		A84635B12AB9D08B0030A358 /* InMemoryDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635B02AB9D08B0030A358 /* InMemoryDataStore.swift */; };
@@ -298,6 +299,7 @@
 		A83A36232973D4B300AD2790 /* CalendarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCoordinator.swift; sourceTree = "<group>"; };
 		A83A36252973DFB000AD2790 /* ConfirmDeleteAccountCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDeleteAccountCoordinator.swift; sourceTree = "<group>"; };
 		A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+RuntimeAttribute.swift"; sourceTree = "<group>"; };
+		A8424BA72DA26A65006D1B76 /* View+Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Background.swift"; sourceTree = "<group>"; };
 		A84635AE2AA3F4270030A358 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		A84635B02AB9D08B0030A358 /* InMemoryDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryDataStore.swift; sourceTree = "<group>"; };
 		A84635B22ABE83550030A358 /* Date+Compare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Compare.swift"; sourceTree = "<group>"; };
@@ -713,6 +715,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		A8424BA42DA26A3A006D1B76 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A8424BA72DA26A65006D1B76 /* View+Background.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		A84635B62AD25A040030A358 /* DataStores */ = {
 			isa = PBXGroup;
 			children = (
@@ -971,6 +981,7 @@
 		A8F064D32C9F9F8A006C6EE9 /* PositiveStatementWidget */ = {
 			isa = PBXGroup;
 			children = (
+				A8424BA42DA26A3A006D1B76 /* Extensions */,
 				A806DBD62D3366920065F6B3 /* Models */,
 				A893A1892D5FBCF700E01848 /* Resources */,
 				A806DBD52D33663B0065F6B3 /* Supports */,
@@ -1619,6 +1630,7 @@
 				A8F064FC2CFAECFD006C6EE9 /* PositiveStatementWidgetManager.swift in Sources */,
 				A8F064E42CA04586006C6EE9 /* PositiveStatementProvider.swift in Sources */,
 				A8F064D52C9F9F8A006C6EE9 /* PositiveStatementWidgetBundle.swift in Sources */,
+				A8424BA92DA26A83006D1B76 /* View+Background.swift in Sources */,
 				A806DBD82D336CBE0065F6B3 /* PositiveStatementWidgetError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,8 @@
 import Combine
 import WidgetKit
 
+private let statementRefreshIntervalInHours = 4
+
 // Using a class instead of a struct to store AnyCancellable instances, which
 // cannot be managed in a struct due to value semantics.
 class PositiveStatementProvider: TimelineProvider {
@@ -64,7 +66,11 @@ private extension PositiveStatementProvider {
 
             entries.append(entry)
 
-            displayDate = Calendar.current.date(byAdding: .minute, value: 1, to: displayDate) ?? displayDate
+            displayDate = Calendar.current.date(
+                byAdding: .hour,
+                value: statementRefreshIntervalInHours,
+                to: displayDate
+            ) ?? displayDate
         }
 
         return entries

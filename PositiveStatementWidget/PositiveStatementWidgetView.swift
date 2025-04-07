@@ -6,6 +6,7 @@
 //  Copyright © 2024 Aika Yamada. All rights reserved.
 //
 
+import SharedResources
 import SwiftUI
 
 struct PositiveStatementWidgetView: View {
@@ -24,5 +25,6 @@ struct PositiveStatementWidgetView: View {
                 Text(errorMessage)
             }
         }
+        .widgetBackground(color: .primary200)
     }
 }

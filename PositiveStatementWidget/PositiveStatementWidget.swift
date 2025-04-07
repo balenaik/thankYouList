@@ -23,13 +23,7 @@ struct PositiveStatementWidget: Widget {
         StaticConfiguration(
             kind: kind,
             provider: PositiveStatementProvider()) { entry in
-                if #available(iOS 17.0, *) {
-                    PositiveStatementWidgetView(entry: entry)
-                        .containerBackground(.fill.tertiary, for: .widget)
-                } else {
-                    PositiveStatementWidgetView(entry: entry)
-                        .padding()
-                }
+                PositiveStatementWidgetView(entry: entry)
             }
             .configurationDisplayName("My Widget")
             .description("This is an example widget.")

@@ -47,6 +47,7 @@
 		A83D5F891F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */; };
 		A8424BA92DA26A83006D1B76 /* View+Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8424BA72DA26A65006D1B76 /* View+Background.swift */; };
 		A8424BAF2DA26BD3006D1B76 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD0829601D870042AA81 /* Color+Theme.swift */; };
+		A8424BB22DA38C02006D1B76 /* Font+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD0C29615BE00042AA81 /* Font+Theme.swift */; };
 		A84635AF2AA3F4270030A358 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635AE2AA3F4270030A358 /* CalendarViewModel.swift */; };
 		A84635B12AB9D08B0030A358 /* InMemoryDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635B02AB9D08B0030A358 /* InMemoryDataStore.swift */; };
 		A84635B32ABE83550030A358 /* Date+Compare.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635B22ABE83550030A358 /* Date+Compare.swift */; };
@@ -162,7 +163,6 @@
 		A8DF482C2D1BA918008290FA /* FirestoreConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A831BD422741617C003B5394 /* FirestoreConst.swift */; };
 		A8DF482E2D1CF3EA008290FA /* CryptoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AF9E62106905500FF6893 /* CryptoManager.swift */; };
 		A8E6CD07295C7D050042AA81 /* ConfirmDeleteAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD06295C7D050042AA81 /* ConfirmDeleteAccountViewModel.swift */; };
-		A8E6CD0D29615BE00042AA81 /* Font+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD0C29615BE00042AA81 /* Font+Theme.swift */; };
 		A8E6CD0F296513000042AA81 /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD0E296513000042AA81 /* String+Validation.swift */; };
 		A8E6CD122965B2F20042AA81 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD112965B2F20042AA81 /* UserRepository.swift */; };
 		A8E6CD14296BA31A0042AA81 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD13296BA31A0042AA81 /* Coordinator.swift */; };
@@ -705,7 +705,6 @@
 				A8A85A9825A60DF400182B99 /* UIButton+BackgroundColor.swift */,
 				A8A85ABF25A60E8500182B99 /* UIImage+FromUIColor.swift */,
 				A82BBF77270C4FC4007E8CD9 /* UIFont+Theme.swift */,
-				A8E6CD0C29615BE00042AA81 /* Font+Theme.swift */,
 				A895A56E297CCAAC0081E08F /* Publisher+Operators.swift */,
 				A8F2700F2BD0883F00227009 /* AnyPublisher+Operators.swift */,
 				A8C563182B7D73A70047ED4C /* View+Background.swift */,
@@ -997,6 +996,7 @@
 			isa = PBXGroup;
 			children = (
 				A8E6CD0829601D870042AA81 /* Color+Theme.swift */,
+				A8E6CD0C29615BE00042AA81 /* Font+Theme.swift */,
 				A8F064FE2CFAF6BD006C6EE9 /* Publisher+Operators.swift */,
 			);
 			path = Extensions;
@@ -1515,7 +1515,6 @@
 				A893A19D2D6EC9BF00E01848 /* UIViewController+ViewController.swift in Sources */,
 				A8F064C72C944A83006C6EE9 /* View+ScrollView.swift in Sources */,
 				A80BBB97245889A600CB032B /* AnalyticsConst.swift in Sources */,
-				A8E6CD0D29615BE00042AA81 /* Font+Theme.swift in Sources */,
 				A893A19B2D6D349D00E01848 /* NavigationError.swift in Sources */,
 				A8A0FE61205E005D0048AB33 /* UIColor+SetColor.swift in Sources */,
 				A8851ECC27014FE1008B2D7A /* CenterRoundedTabBar.swift in Sources */,
@@ -1602,6 +1601,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8424BB22DA38C02006D1B76 /* Font+Theme.swift in Sources */,
 				A806DBD92D33971F0065F6B3 /* Publisher+Operators.swift in Sources */,
 				A8DF482E2D1CF3EA008290FA /* CryptoManager.swift in Sources */,
 				A8424BAF2DA26BD3006D1B76 /* Color+Theme.swift in Sources */,

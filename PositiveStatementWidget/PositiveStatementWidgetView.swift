@@ -17,7 +17,6 @@ struct PositiveStatementWidgetView: View {
 
             switch entry.content {
             case .positiveStatement(let statement):
-                Text("PositiveStatement:")
                 Text(statement)
             case .errorMessage(let errorMessage):
                 Text(errorMessage)

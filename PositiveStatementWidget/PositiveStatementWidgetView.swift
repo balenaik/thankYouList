@@ -13,15 +13,18 @@ struct PositiveStatementWidgetView: View {
     var entry: PositiveStatementProvider.Entry
 
     var body: some View {
-        VStack {
+        statementText
+            .widgetBackground(color: .primary200)
+    }
 
-            switch entry.content {
-            case .positiveStatement(let statement):
-                Text(statement)
-            case .errorMessage(let errorMessage):
-                Text(errorMessage)
-            }
+    private var statementText: some View {
+        Text(statement)
+    }
+
+    private var statement: String {
+        switch entry.content {
+        case .positiveStatement(let statement): statement
+        case .errorMessage(let errorMessage): errorMessage
         }
-        .widgetBackground(color: .primary200)
     }
 }

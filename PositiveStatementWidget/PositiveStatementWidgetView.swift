@@ -19,6 +19,8 @@ struct PositiveStatementWidgetView: View {
 
     private var statementText: some View {
         Text(statement)
+            .font(.regularAvenir(ofSize: 16))
+            .foregroundColor(.text)
     }
 
     private var statement: String {

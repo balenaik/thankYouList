@@ -21,11 +21,13 @@ struct PositiveStatementWidgetView: View {
         Text(statement)
             .font(.regularAvenir(ofSize: 16))
             .foregroundColor(.text)
+            .showsSkeleton(entry.content.shouldShowSkeleton)
     }
 
     private var statement: String {
         switch entry.content {
         case .positiveStatement(let statement): statement
+        case .loading: "Loading...." // Dummy text for skeleton
         case .errorMessage(let errorMessage): errorMessage
         }
     }

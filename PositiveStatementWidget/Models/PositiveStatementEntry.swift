@@ -15,5 +15,13 @@ struct PositiveStatementEntry: TimelineEntry {
 
 enum PositiveStatementContentType {
     case positiveStatement(String)
+    case loading
     case errorMessage(String)
+
+    var shouldShowSkeleton: Bool {
+        switch self {
+        case .loading: true
+        default: false
+        }
+    }
 }

@@ -18,7 +18,7 @@ class PositiveStatementProvider: TimelineProvider {
     private var cancellables = Set<AnyCancellable>()
 
     func placeholder(in context: Context) -> PositiveStatementEntry {
-        PositiveStatementEntry(date: Date(), content: .positiveStatement("Placeholder"))
+        PositiveStatementEntry(date: Date(), content: .loading)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (PositiveStatementEntry) -> ()) {

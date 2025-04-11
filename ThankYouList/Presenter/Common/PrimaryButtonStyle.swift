@@ -6,6 +6,7 @@
 //  Copyright © 2024 Aika Yamada. All rights reserved.
 //
 
+import SharedResources
 import SwiftUI
 
 private let cornerRadius = CGFloat(16)

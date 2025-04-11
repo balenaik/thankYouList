@@ -8,6 +8,7 @@
 
 import Combine
 import Foundation
+import SharedResources
 
 private let positiveStatementMaxCount = 100
 

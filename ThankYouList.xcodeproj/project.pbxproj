@@ -49,6 +49,7 @@
 		A8424BAF2DA26BD3006D1B76 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD0829601D870042AA81 /* Color+Theme.swift */; };
 		A8424BB22DA38C02006D1B76 /* Font+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD0C29615BE00042AA81 /* Font+Theme.swift */; };
 		A8424BB92DA7BBC9006D1B76 /* View+Skeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8424BB52DA7BBBE006D1B76 /* View+Skeleton.swift */; };
+		A8424BBA2DA9089F006D1B76 /* ViewConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DABBD527173FA20086B2E8 /* ViewConst.swift */; };
 		A84635AF2AA3F4270030A358 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635AE2AA3F4270030A358 /* CalendarViewModel.swift */; };
 		A84635B12AB9D08B0030A358 /* InMemoryDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635B02AB9D08B0030A358 /* InMemoryDataStore.swift */; };
 		A84635B32ABE83550030A358 /* Date+Compare.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635B22ABE83550030A358 /* Date+Compare.swift */; };
@@ -152,7 +153,6 @@
 		A8C9736C2BD9BA6B004A8A30 /* MockPositiveStatementRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C9736B2BD9BA6B004A8A30 /* MockPositiveStatementRepository.swift */; };
 		A8D41E1C21E0E07B00A77B48 /* SettingDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */; };
 		A8D5DFE82450A4FD00F30205 /* UIImageView+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D5DFE72450A4FD00F30205 /* UIImageView+URL.swift */; };
-		A8DABBD627173FA20086B2E8 /* ViewConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DABBD527173FA20086B2E8 /* ViewConst.swift */; };
 		A8DABC24271ACE4E0086B2E8 /* BottomHalfSheetMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DABC23271ACE4E0086B2E8 /* BottomHalfSheetMenuViewController.swift */; };
 		A8DB2FBA1F5D41540055E8A4 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DB2FB91F5D41540055E8A4 /* CalendarViewController.swift */; };
 		A8DF48112D1BA57C008290FA /* SharedResources.docc in Sources */ = {isa = PBXBuildFile; fileRef = A8DF48102D1BA57C008290FA /* SharedResources.docc */; };
@@ -677,7 +677,6 @@
 				A80BBB96245889A600CB032B /* AnalyticsConst.swift */,
 				A820DE5321C5432500E7F3DF /* NotificationConst.swift */,
 				A895BF5B2C1D4F410080C753 /* SFSymbolConst.swift */,
-				A8DABBD527173FA20086B2E8 /* ViewConst.swift */,
 			);
 			path = Const;
 			sourceTree = "<group>";
@@ -949,6 +948,7 @@
 			children = (
 				A8F064EF2CCE3179006C6EE9 /* AppConst.swift */,
 				A831BD422741617C003B5394 /* FirestoreConst.swift */,
+				A8DABBD527173FA20086B2E8 /* ViewConst.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1506,7 +1506,6 @@
 				A8E6CD18296BF3100042AA81 /* LoginCoordinator.swift in Sources */,
 				A8B6EE8E2201E41D00908D51 /* String+ToDate.swift in Sources */,
 				A824150F205CE28C00172587 /* LoginViewController.swift in Sources */,
-				A8DABBD627173FA20086B2E8 /* ViewConst.swift in Sources */,
 				A84635BE2AFF02820030A358 /* CalendarConfiguration.swift in Sources */,
 				A892354429D008E60093A92F /* AppleAuthenticationManager.swift in Sources */,
 				A8114B10230180EF0024975A /* ListScrollIndicator.swift in Sources */,
@@ -1611,6 +1610,7 @@
 				A893A1A32D816D8B00E01848 /* DeeplinkDestination.swift in Sources */,
 				A8DF48112D1BA57C008290FA /* SharedResources.docc in Sources */,
 				A8DF482C2D1BA918008290FA /* FirestoreConst.swift in Sources */,
+				A8424BBA2DA9089F006D1B76 /* ViewConst.swift in Sources */,
 				A806DBDA2D576D950065F6B3 /* AppConst.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

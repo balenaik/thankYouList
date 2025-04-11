@@ -8,6 +8,7 @@
 
 import Foundation
 import FloatingPanel
+import SharedResources
 
 private let navigationBarTopMargin = CGFloat(16)
 

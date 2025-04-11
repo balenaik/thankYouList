@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SharedResources
 import SkeletonView
 
 private let thankYouViewCornerRadius = CGFloat(8)

@@ -14,6 +14,7 @@ struct PositiveStatementWidgetView: View {
 
     var body: some View {
         statementText
+            .padding(ViewConst.spacing12)
             .widgetBackground(color: .primary200)
     }
 

@@ -82,7 +82,7 @@ private extension PositiveStatementProvider {
         var entries = [PositiveStatementEntry]()
         var displayDate = Date()
 
-        for statement in positiveStatements {
+        for statement in positiveStatements.shuffled() {
             let entry = PositiveStatementEntry(
                 date: displayDate,
                 content: .positiveStatement(statement)

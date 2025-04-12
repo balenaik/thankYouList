@@ -22,8 +22,32 @@ class PositiveStatementProvider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (PositiveStatementEntry) -> ()) {
-        let entry = PositiveStatementEntry(date: Date(), content: .positiveStatement("from getSnapshot"))
-        completion(entry)
+        // TODO: Localize it after R.swift supports Strings catalogs
+        let sampleStatement = "Today I am grateful to be alive and filled with happiness."
+        positiveStatementManager
+            .getPositiveStatements()
+            .sink(
+                receiveCompletion: { result in
+                    switch result {
+                    case .failure:
+                        let entry = PositiveStatementEntry(
+                            date: Date(),
+                            content: .positiveStatement(sampleStatement)
+                        )
+                        completion(entry)
+                    case .finished:
+                        return
+                    }
+                },
+                receiveValue: { statements in
+                    let entry = PositiveStatementEntry(
+                        date: Date(),
+                        content: .positiveStatement(statements.first ?? sampleStatement)
+                    )
+                    completion(entry)
+                }
+            )
+            .store(in: &cancellables)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {

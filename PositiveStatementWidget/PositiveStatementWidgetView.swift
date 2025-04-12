@@ -16,6 +16,7 @@ struct PositiveStatementWidgetView: View {
         statementText
             .padding(ViewConst.spacing12)
             .widgetBackground(color: .primary200)
+            .widgetURL(URL(string: "\(AppConst.deeplinkPrefix)\(DeeplinkDestination.positiveStatements.rawValue)"))
     }
 
     private var statementText: some View {

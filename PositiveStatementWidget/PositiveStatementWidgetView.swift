@@ -21,7 +21,7 @@ struct PositiveStatementWidgetView: View {
 
     private var statementText: some View {
         Text(statement)
-            .font(.regularAvenir(ofSize: 16))
+            .font(.regularAvenir(ofSize: ViewConst.fontSize16))
             .foregroundColor(.text)
             .showsSkeleton(entry.content.shouldShowSkeleton)
     }

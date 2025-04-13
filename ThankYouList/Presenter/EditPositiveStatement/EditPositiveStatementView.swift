@@ -41,6 +41,7 @@ struct EditPositiveStatementView: View {
                 from: nil,
                 for: nil)
         }
+        .onAppear { viewModelInputs.onAppear.send() }
         .proccessingOverlay(isProcessing: $viewModelOutputs.isProcessing)
     }
 

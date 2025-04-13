@@ -93,6 +93,7 @@ private extension EditPositiveStatementViewModel {
 
 extension EditPositiveStatementViewModel {
     class Inputs {
+        let onAppear = PassthroughSubject<Void, Never>()
         let textFieldTextDidChange = PassthroughSubject<String, Never>()
         let cancelButtonDidTap = PassthroughSubject<Void, Never>()
         let doneButtonDidTap = PassthroughSubject<Void, Never>()

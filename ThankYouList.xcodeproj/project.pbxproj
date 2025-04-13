@@ -171,6 +171,7 @@
 		A8E6CD18296BF3100042AA81 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD17296BF3100042AA81 /* LoginCoordinator.swift */; };
 		A8F064C12C7ACF8E006C6EE9 /* EditPositiveStatementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064C02C7ACF8E006C6EE9 /* EditPositiveStatementView.swift */; };
 		A8F064C32C7AD0BA006C6EE9 /* EditPositiveStatementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064C22C7AD0BA006C6EE9 /* EditPositiveStatementViewModel.swift */; };
+		A8F064C52C7B10BF006C6EE9 /* EditPositiveStatementCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064C42C7B10BF006C6EE9 /* EditPositiveStatementCoordinator.swift */; };
 		A8F064C72C944A83006C6EE9 /* View+ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064C62C944A83006C6EE9 /* View+ScrollView.swift */; };
 		A8F064C92C957ABA006C6EE9 /* EditPositiveStatementViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064C82C957ABA006C6EE9 /* EditPositiveStatementViewModelTests.swift */; };
 		A8F064D02C9F9F8A006C6EE9 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8F064CF2C9F9F8A006C6EE9 /* WidgetKit.framework */; };
@@ -419,6 +420,7 @@
 		A8E6CD17296BF3100042AA81 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		A8F064C02C7ACF8E006C6EE9 /* EditPositiveStatementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPositiveStatementView.swift; sourceTree = "<group>"; };
 		A8F064C22C7AD0BA006C6EE9 /* EditPositiveStatementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPositiveStatementViewModel.swift; sourceTree = "<group>"; };
+		A8F064C42C7B10BF006C6EE9 /* EditPositiveStatementCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPositiveStatementCoordinator.swift; sourceTree = "<group>"; };
 		A8F064C62C944A83006C6EE9 /* View+ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ScrollView.swift"; sourceTree = "<group>"; };
 		A8F064C82C957ABA006C6EE9 /* EditPositiveStatementViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPositiveStatementViewModelTests.swift; sourceTree = "<group>"; };
 		A8F064CE2C9F9F89006C6EE9 /* PositiveStatementWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PositiveStatementWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -976,6 +978,7 @@
 			children = (
 				A8F064C02C7ACF8E006C6EE9 /* EditPositiveStatementView.swift */,
 				A8F064C22C7AD0BA006C6EE9 /* EditPositiveStatementViewModel.swift */,
+				A8F064C42C7B10BF006C6EE9 /* EditPositiveStatementCoordinator.swift */,
 			);
 			path = EditPositiveStatement;
 			sourceTree = "<group>";
@@ -1502,6 +1505,7 @@
 				A8ADC1622C5EE26200830B39 /* PositiveStatementTapMenu.swift in Sources */,
 				A8574DD62BE2FB240073AA61 /* LottieView.swift in Sources */,
 				A895A575298FA6E10081E08F /* ReplaySubjectSubscription.swift in Sources */,
+				A8F064C52C7B10BF006C6EE9 /* EditPositiveStatementCoordinator.swift in Sources */,
 				A84FDB6021DC37EA00593326 /* SettingHeaderView.swift in Sources */,
 				A8E6CD18296BF3100042AA81 /* LoginCoordinator.swift in Sources */,
 				A8B6EE8E2201E41D00908D51 /* String+ToDate.swift in Sources */,

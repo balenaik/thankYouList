@@ -23,6 +23,7 @@ struct PositiveStatementWidgetView: View {
         Text(statement)
             .font(.regularAvenir(ofSize: ViewConst.fontSize16))
             .foregroundColor(.text)
+            .multilineTextAlignment(.center)
             .showsSkeleton(entry.content.shouldShowSkeleton)
     }
 

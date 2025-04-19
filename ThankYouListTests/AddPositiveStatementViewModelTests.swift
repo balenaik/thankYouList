@@ -9,6 +9,7 @@
 import XCTest
 import Combine
 import CombineSchedulers
+import SharedResources
 @testable import ThankYouList
 
 final class AddPositiveStatementViewModelTests: XCTestCase {

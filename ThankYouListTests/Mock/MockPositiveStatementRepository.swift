@@ -21,9 +21,15 @@ class MockPositiveStatementRepository: PositiveStatementRepository {
         return subscribePositiveStatements_result
     }
 
+    var getPositiveStatement_calledCount = 0
+    var getPositiveStatement_positiveStatementId: String?
+    var getPositiveStatement_userId: String?
     var getPositiveStatement_result = Just(PositiveStatementModel(id: "", value: "", createdDate: Date())).setFailureType(to: Error.self).asFuture()
     func getPositiveStatement(positiveStatementId: String, userId: String) -> Future<ThankYouList.PositiveStatementModel, any Error> {
-        getPositiveStatement_result
+        getPositiveStatement_calledCount += 1
+        getPositiveStatement_positiveStatementId = positiveStatementId
+        getPositiveStatement_userId = userId
+        return getPositiveStatement_result
     }
 
     var createPositiveStatement_calledCount = 0

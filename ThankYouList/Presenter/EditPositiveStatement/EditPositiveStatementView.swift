@@ -18,6 +18,8 @@ struct EditPositiveStatementView: View {
     @StateObject private var viewModelOutputs: EditPositiveStatementViewModel.Outputs
     @StateObject private var viewModelBindings: EditPositiveStatementViewModel.Bindings
 
+    @FocusState private var isTextFieldFocused: Bool
+
     init(viewModel: EditPositiveStatementViewModel) {
         viewModelInputs = viewModel.inputs
         _viewModelOutputs = StateObject(wrappedValue: viewModel.outputs)
@@ -41,7 +43,10 @@ struct EditPositiveStatementView: View {
                 from: nil,
                 for: nil)
         }
-        .onAppear { viewModelInputs.onAppear.send() }
+        .onAppear {
+            viewModelInputs.onAppear.send()
+            isTextFieldFocused = true
+        }
         .proccessingOverlay(isProcessing: $viewModelOutputs.isProcessing)
     }
 
@@ -74,6 +79,7 @@ struct EditPositiveStatementView: View {
     private var textFieldView: some View {
         VStack {
             textField(R.string.localizable.edit_positive_statement_textfield_placeholder(), text: $viewModelBindings.textFieldText)
+                .focused($isTextFieldFocused)
                 .font(.regularAvenir(ofSize: ViewConst.fontSize16))
                 .padding(.all, ViewConst.spacing12)
                 .background(Color.white)

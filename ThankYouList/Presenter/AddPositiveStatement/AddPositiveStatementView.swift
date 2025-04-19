@@ -18,6 +18,8 @@ struct AddPositiveStatementView: View {
     @StateObject private var viewModelOutputs: AddPositiveStatementViewModel.Outputs
     @StateObject private var viewModelBindings: AddPositiveStatementViewModel.Bindings
 
+    @FocusState private var isTextFieldFocused: Bool
+
     init(viewModel: AddPositiveStatementViewModel) {
         viewModelInputs = viewModel.inputs
         _viewModelOutputs = StateObject(wrappedValue: viewModel.outputs)
@@ -41,6 +43,7 @@ struct AddPositiveStatementView: View {
                 from: nil,
                 for: nil)
         }
+        .onAppear { isTextFieldFocused = true }
         .alert(item: $viewModelOutputs.showAlert) { alertItem in alertItem.toAlert }
         .proccessingOverlay(isProcessing: $viewModelOutputs.isProcessing)
     }
@@ -74,6 +77,7 @@ struct AddPositiveStatementView: View {
     private var textFieldView: some View {
         VStack {
             textField(R.string.localizable.add_positive_statement_textfield_placeholder(), text: $viewModelBindings.textFieldText)
+                .focused($isTextFieldFocused)
                 .font(.regularAvenir(ofSize: ViewConst.fontSize16))
                 .padding(.all, ViewConst.spacing12)
                 .background(Color.white)

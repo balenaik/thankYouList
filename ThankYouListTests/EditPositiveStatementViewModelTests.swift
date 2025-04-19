@@ -24,11 +24,16 @@ final class EditPositiveStatementViewModelTests: XCTestCase {
         userRepository = MockUserRepository()
         positiveStatementRepository = MockPositiveStatementRepository()
 
+        setupViewModel(positiveStatementId: "")
+    }
+
+    private func setupViewModel(positiveStatementId: String) {
         viewModel = EditPositiveStatementViewModel(
-            positiveStatementId: "",
+            positiveStatementId: positiveStatementId,
             userRepository: userRepository,
             positiveStatementRepository: positiveStatementRepository,
-            router: router)
+            router: router
+        )
     }
 
     func test_ifAUserScrollsTheScrollView_moreThanNavBarVisibleOffset__itShouldSetTitleOnNavBarTitle() {

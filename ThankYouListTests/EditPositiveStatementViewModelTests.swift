@@ -209,6 +209,57 @@ final class EditPositiveStatementViewModelTests: XCTestCase {
             (.value(""))
         ])
     }
+
+    func test_ifAUserOepnsTheScreen__itShouldCallGetUserProfile() {
+        // Open the screen
+        viewModel.inputs.onAppear.send()
+
+        // Should call getUserProfile
+        XCTAssertEqual(userRepository.getUserProfile_calledCount, 1)
+    }
+
+    func test_ifAUserOepnsTheScreen__itShouldCallGetPositiveStatement_withPositiveStatementId_andUserId() {
+        let positiveStatementId = "positiveStatementId"
+        let userId = "userId"
+
+        userRepository.getUserProfile_result = Just(.init(id: userId, name: "", email: "", imageUrl: nil)).setFailureType(to: Error.self).asFuture()
+        setupViewModel(positiveStatementId: positiveStatementId)
+
+        // Open the screen
+        viewModel.inputs.onAppear.send()
+
+        // Should call getPositiveStatement
+        XCTAssertEqual(positiveStatementRepository.getPositiveStatement_calledCount, 1)
+        // Parameters should be the same as prepared
+        XCTAssertEqual(
+            positiveStatementRepository.getPositiveStatement_positiveStatementId,
+            positiveStatementId
+        )
+        XCTAssertEqual(
+            positiveStatementRepository.getPositiveStatement_userId,
+            userId
+        )
+    }
+
+    func test_ifAUserOepnsTheScreen__itShouldUpdateTextFieldText() {
+        let textFieldTextRecords = TestRecord(
+            publisher: viewModel.bindings.$textFieldText.eraseToAnyPublisher())
+        textFieldTextRecords.clearResult() // Remove the initial record
+
+        let positiveStatement = "Positive statement"
+        positiveStatementRepository.getPositiveStatement_result = Just(
+            .init(
+                id: "",
+                value: positiveStatement,
+                createdDate: Date())
+        ).setFailureType(to: Error.self).asFuture()
+
+        // Open the screen
+        viewModel.inputs.onAppear.send()
+
+        // Should update textFieldText
+        XCTAssertEqual(textFieldTextRecords.results, [.value(positiveStatement)])
+    }
 }
 
 private class MockEditPositiveStatementRouter: MockRouter, EditPositiveStatementRouter {

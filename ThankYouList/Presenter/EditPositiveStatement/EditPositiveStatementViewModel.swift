@@ -51,6 +51,31 @@ private extension EditPositiveStatementViewModel {
             .removeDuplicates()
             .assign(to: &outputs.$navigationBarTitle)
 
+        let profile = inputs.onAppear
+            .first()
+            .flatMap { [userRepository] in
+                userRepository.getUserProfile()
+            }
+            .shareReplay(1)
+
+        let positiveStatement = profile
+            .withUnretained(self)
+            .flatMap { owner, profile in
+                owner.positiveStatementRepository
+                    .getPositiveStatement(
+                        positiveStatementId: owner.positiveStatementId,
+                        userId: profile.id
+                    )
+                    .asResult()
+            }
+            .catch { Just(.failure($0)) }
+            .share()
+
+        positiveStatement
+            .values()
+            .map { $0.value }
+            .assign(to: &bindings.$textFieldText)
+
         inputs.textFieldTextDidChange
             .compactMap { text in
                 // Don't allow a line with only newline character

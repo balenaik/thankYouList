@@ -260,6 +260,54 @@ final class EditPositiveStatementViewModelTests: XCTestCase {
         // Should update textFieldText
         XCTAssertEqual(textFieldTextRecords.results, [.value(positiveStatement)])
     }
+
+    func test_ifAUserOepnsTheScreen_andGetUserProfileFails__itShouldShowErrorAlert() {
+        let showAlertTitleRecords = TestRecord(publisher: viewModel.outputs.$showAlert.map(\.?.title).eraseToAnyPublisher())
+        let showAlertMessageRecords = TestRecord(publisher: viewModel.outputs.$showAlert.map(\.?.message).eraseToAnyPublisher())
+        let showAlertPrimaryActionTitleRecords = TestRecord(publisher: viewModel.outputs.$showAlert.map(\.?.primaryAction?.title).eraseToAnyPublisher())
+        showAlertTitleRecords.clearResult()
+        showAlertMessageRecords.clearResult()
+        showAlertPrimaryActionTitleRecords.clearResult()
+
+        // GetUserProfile call fails
+        userRepository.getUserProfile_result = Fail(error: UserRepositoryError.authProviderNotFound).asFuture()
+
+        // Open the screen
+        viewModel.inputs.onAppear.send()
+
+        // Should show error alert
+        XCTAssertEqual(showAlertTitleRecords.results, [.value(R.string.localizable.edit_positive_statement_edit_error())])
+        XCTAssertEqual(showAlertMessageRecords.results, [.value(nil)])
+        XCTAssertEqual(showAlertPrimaryActionTitleRecords.results, [.value(R.string.localizable.ok())])
+    }
+
+    func test_ifAUserOpensTheScreen_getUserProfileFails_andTheUserTapsOK__itShouldDismissTheScreen() {
+        // GetUserProfile call fails
+        userRepository.getUserProfile_result = Fail(error: UserRepositoryError.authProviderNotFound).asFuture()
+
+        // Open the screen
+        viewModel.inputs.onAppear.send()
+
+        // Taps OK
+        viewModel.outputs.showAlert?.primaryAction?.action?()
+
+        // Should dismiss the screen
+        XCTAssertEqual(router.dismiss_calledCount, 1)
+    }
+
+    func test_ifAUserOepnsTheScreen_andGetPositiveStatementFails__itShouldShowErrorAlert() {
+        let showAlertTitleRecords = TestRecord(publisher: viewModel.outputs.$showAlert.map(\.?.title).eraseToAnyPublisher())
+        showAlertTitleRecords.clearResult()
+
+        // GetUserProfile call fails
+        userRepository.getUserProfile_result = Fail(error: UserRepositoryError.authProviderNotFound).asFuture()
+
+        // Open the screen
+        viewModel.inputs.onAppear.send()
+
+        // Should show error alert
+        XCTAssertEqual(showAlertTitleRecords.results, [.value(R.string.localizable.edit_positive_statement_edit_error())])
+    }
 }
 
 private class MockEditPositiveStatementRouter: MockRouter, EditPositiveStatementRouter {

@@ -76,6 +76,22 @@ private extension EditPositiveStatementViewModel {
             .map { $0.value }
             .assign(to: &bindings.$textFieldText)
 
+        positiveStatement
+            .errors()
+            .map { [router] _ in
+                AlertItem(
+                    title: R.string.localizable.edit_positive_statement_edit_error(),
+                    message: nil,
+                    primaryAction: .init(
+                        title: R.string.localizable.ok(),
+                        action: {
+                            router?.dismiss()
+                        }
+                    )
+                )
+            }
+            .assign(to: &outputs.$showAlert)
+
         inputs.textFieldTextDidChange
             .compactMap { text in
                 // Don't allow a line with only newline character

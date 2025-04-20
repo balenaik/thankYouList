@@ -132,6 +132,7 @@ extension EditPositiveStatementViewModel {
         let isDoneButtonDisabled = CurrentValueSubject<Bool, Never>(true)
         @Published var navigationBarTitle = ""
         @Published var isProcessing = false
+        @Published var showAlert: AlertItem?
     }
 
     class Bindings: ObservableObject {

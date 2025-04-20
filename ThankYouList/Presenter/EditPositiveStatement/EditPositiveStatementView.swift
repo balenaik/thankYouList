@@ -47,6 +47,7 @@ struct EditPositiveStatementView: View {
             viewModelInputs.onAppear.send()
             isTextFieldFocused = true
         }
+        .alert(item: $viewModelOutputs.showAlert) { alertItem in alertItem.toAlert }
         .proccessingOverlay(isProcessing: $viewModelOutputs.isProcessing)
     }
 

@@ -79,6 +79,7 @@ private extension AddPositiveStatementViewModel {
             .store(in: &cancellable)
 
         bindings.$textFieldText
+            .removeDuplicates()
             .map { $0.isEmpty || $0.count > positiveStatementMaxCount }
             .subscribe(outputs.isDoneButtonDisabled)
             .store(in: &cancellable)

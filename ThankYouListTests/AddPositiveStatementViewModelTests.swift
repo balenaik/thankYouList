@@ -124,17 +124,22 @@ final class AddPositiveStatementViewModelTests: XCTestCase {
             publisher: viewModel.outputs.isDoneButtonDisabled.eraseToAnyPublisher())
         isDoneButtonDisabledRecords.clearResult() // Remove the initial record
 
-        // when textFieldText character count is 0, done button should be disabled
-        viewModel.bindings.textFieldText = ""
-        XCTAssertEqual(isDoneButtonDisabledRecords.results, [
-            .value(true)
-        ])
-        isDoneButtonDisabledRecords.clearResult()
-
         // when textFieldText character count is 1, done button should be enabled
         viewModel.bindings.textFieldText = "a"
         XCTAssertEqual(isDoneButtonDisabledRecords.results, [
             .value(false)
+        ])
+        isDoneButtonDisabledRecords.clearResult()
+
+        // when textFieldText character hasn't changed from the last input, isDoneButtonDisabled shouldn't output another result
+        viewModel.bindings.textFieldText = "a"
+        XCTAssertTrue(isDoneButtonDisabledRecords.results.isEmpty)
+        isDoneButtonDisabledRecords.clearResult()
+
+        // when textFieldText character count is 0, done button should be disabled
+        viewModel.bindings.textFieldText = ""
+        XCTAssertEqual(isDoneButtonDisabledRecords.results, [
+            .value(true)
         ])
         isDoneButtonDisabledRecords.clearResult()
 

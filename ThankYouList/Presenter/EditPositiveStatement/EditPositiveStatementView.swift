@@ -123,6 +123,7 @@ struct EditPositiveStatementView: View {
         Button(R.string.localizable.done()) {
             viewModelInputs.doneButtonDidTap.send()
         }
+        .disabled(viewModelOutputs.isDoneButtonDisabled.value)
         .buttonStyle(PrimaryButtonStyle())
     }
 }

@@ -124,6 +124,7 @@ private extension EditPositiveStatementViewModel {
 
         bindings.$textFieldText
             .removeDuplicates()
+            .dropFirst(2) // Skip initial empty value & original statement
             .map { $0.isEmpty || $0.count > positiveStatementMaxCount }
             .subscribe(outputs.isDoneButtonDisabled)
             .store(in: &cancellable)

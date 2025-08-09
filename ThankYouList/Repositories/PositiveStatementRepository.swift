@@ -21,6 +21,7 @@ protocol PositiveStatementRepository {
     func subscribePositiveStatements(userId: String) -> AnyPublisher<[PositiveStatementModel], Error>
     func getPositiveStatement(positiveStatementId: String, userId: String) -> Future<PositiveStatementModel, Error>
     func createPositiveStatement(positiveStatement: String, userId: String) -> Future<Void, Error>
+    func updatePositiveStatement(positiveStatementId: String, positiveStatement: String, userId: String) -> Future<Void, Error>
     func deletePositiveStatement(positiveStatementId: String, userId: String) -> Future<Void, Error>
 }
 
@@ -114,6 +115,30 @@ struct DefaultPositiveStatementRepository: PositiveStatementRepository {
                 .document(userId)
                 .collection(FirestoreConst.positiveStatementsCollection)
                 .addDocument(data: positiveStatementCreate.dictionary) { error in
+                    if let error = error {
+                        promise(.failure(error))
+                        return
+                    }
+                    promise(.success(()))
+                }
+        }
+    }
+
+    func updatePositiveStatement(positiveStatementId: String, positiveStatement: String, userId: String) -> Future<Void, any Error> {
+        let userId16string = String(userId.prefix(16))
+        let encryptedValue = CryptoManager().encryptString(
+            plainText: positiveStatement,
+            key: userId16string)
+        let positiveStatementUpdate = PositiveStatementUpdateModel(
+            encryptedValue: encryptedValue,
+            createdDate: Date())
+        return Future<Void, Error> { promise in
+            firestore
+                .collection(FirestoreConst.usersCollecion)
+                .document(userId)
+                .collection(FirestoreConst.positiveStatementsCollection)
+                .document(positiveStatementId)
+                .updateData(positiveStatementUpdate.dictionary) { error in
                     if let error = error {
                         promise(.failure(error))
                         return

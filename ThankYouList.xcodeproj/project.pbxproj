@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		08422BAFB4F52C22BCFC653B /* Pods_PositiveStatementWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9406CBDCC3FD0D492485FE /* Pods_PositiveStatementWidgetExtension.framework */; };
 		80EEE49631B581DF051DEC55 /* Pods_SharedResources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A160D9FA9DA4B3BA6C4EEF8 /* Pods_SharedResources.framework */; };
 		888DB934A4AE8CBBD75F7D39 /* libPods-ThankYouListTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E50183A58E3BE5286274D4 /* libPods-ThankYouListTests.a */; };
 		A806DBD82D336CBE0065F6B3 /* PositiveStatementWidgetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A806DBD72D336CBE0065F6B3 /* PositiveStatementWidgetError.swift */; };
@@ -44,6 +43,12 @@
 		A83A362229737D2000AD2790 /* EditThankYouCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83A362129737D2000AD2790 /* EditThankYouCoordinator.swift */; };
 		A83A36242973D4B300AD2790 /* CalendarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83A36232973D4B300AD2790 /* CalendarCoordinator.swift */; };
 		A83A36262973DFB000AD2790 /* ConfirmDeleteAccountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83A36252973DFB000AD2790 /* ConfirmDeleteAccountCoordinator.swift */; };
+		A83C32A92E47395000DA1421 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A83C32A82E47395000DA1421 /* FirebaseAuth */; };
+		A83C32AB2E47395000DA1421 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = A83C32AA2E47395000DA1421 /* FirebaseDatabase */; };
+		A83C32AD2E47395000DA1421 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A83C32AC2E47395000DA1421 /* FirebaseFirestore */; };
+		A83C32B72E4739C700DA1421 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A83C32B62E4739C700DA1421 /* FirebaseAuth */; };
+		A83C32BB2E4739DB00DA1421 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A83C32BA2E4739DB00DA1421 /* FirebaseFirestore */; };
+		A83C32C12E473BC500DA1421 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = A83C32C02E473BC500DA1421 /* FirebaseAnalytics */; };
 		A83D5F891F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */; };
 		A8424BA92DA26A83006D1B76 /* View+Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8424BA72DA26A65006D1B76 /* View+Background.swift */; };
 		A8424BAF2DA26BD3006D1B76 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD0829601D870042AA81 /* Color+Theme.swift */; };
@@ -183,7 +188,6 @@
 		A8F064E42CA04586006C6EE9 /* PositiveStatementProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064E22CA04500006C6EE9 /* PositiveStatementProvider.swift */; };
 		A8F064E72CA046C2006C6EE9 /* PositiveStatementWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064E52CA046AC006C6EE9 /* PositiveStatementWidgetView.swift */; };
 		A8F064EA2CA221E1006C6EE9 /* PositiveStatementEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064E82CA221D4006C6EE9 /* PositiveStatementEntry.swift */; };
-		A8F064F62CCE3344006C6EE9 /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8F064F52CCE3344006C6EE9 /* FirebaseAuth.framework */; };
 		A8F064F92CD88FE8006C6EE9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8AFE4CE22DB81960045C707 /* GoogleService-Info.plist */; };
 		A8F064FC2CFAECFD006C6EE9 /* PositiveStatementWidgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064FA2CFAECEE006C6EE9 /* PositiveStatementWidgetManager.swift */; };
 		A8F06BB91F55396F00A90170 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */; };
@@ -262,7 +266,6 @@
 		14D49C15FD4089235E28B5ED /* Pods_ThankYouList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThankYouList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46FB60FAEBD2A9487293EBF5 /* Pods-SharedResources.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedResources.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SharedResources/Pods-SharedResources.debug.xcconfig"; sourceTree = "<group>"; };
 		497D645982F8305FDC379821 /* Pods-ThankYouListTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouListTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouListTests/Pods-ThankYouListTests.debug.xcconfig"; sourceTree = "<group>"; };
-		4BCEAF9D99FAF8171993083A /* Pods-PositiveStatementWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PositiveStatementWidgetExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PositiveStatementWidgetExtension/Pods-PositiveStatementWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		60AC734479A45E3CB2416DB5 /* Pods-ThankYouListTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouListTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouListTests/Pods-ThankYouListTests.release.xcconfig"; sourceTree = "<group>"; };
 		6A160D9FA9DA4B3BA6C4EEF8 /* Pods_SharedResources.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SharedResources.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A015AC112826D3ABF5A416EC /* Pods-ThankYouList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.release.xcconfig"; sourceTree = "<group>"; };
@@ -443,10 +446,8 @@
 		A8F2700F2BD0883F00227009 /* AnyPublisher+Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyPublisher+Operators.swift"; sourceTree = "<group>"; };
 		A8F407C92957DBF6007FDF2D /* ConfirmDeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDeleteAccountView.swift; sourceTree = "<group>"; };
 		A8FF6A1F2829C40400CF816F /* BottomHalfSheetDatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomHalfSheetDatePickerViewController.swift; sourceTree = "<group>"; };
-		AA9406CBDCC3FD0D492485FE /* Pods_PositiveStatementWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PositiveStatementWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA00FC82559EE1AEA8CE9577 /* Pods-ThankYouList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.debug.xcconfig"; sourceTree = "<group>"; };
 		C9E50183A58E3BE5286274D4 /* libPods-ThankYouListTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ThankYouListTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FCC93B23C4B6C482736879EC /* Pods-PositiveStatementWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PositiveStatementWidgetExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-PositiveStatementWidgetExtension/Pods-PositiveStatementWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -457,10 +458,14 @@
 				A8DF48222D1BA57C008290FA /* SharedResources.framework in Frameworks */,
 				A8A1E2072B0AC1590083C3FF /* CombineSchedulers in Frameworks */,
 				A88217272B41029800BD8BFD /* CombineCocoa in Frameworks */,
+				A83C32AD2E47395000DA1421 /* FirebaseFirestore in Frameworks */,
 				A864849B2160F5BF0049D90A /* Pods_ThankYouList.framework in Frameworks */,
 				A893A1782D5F150400E01848 /* rswift in Frameworks */,
+				A83C32C12E473BC500DA1421 /* FirebaseAnalytics in Frameworks */,
 				A8574DD12BDF489B0073AA61 /* Lottie in Frameworks */,
+				A83C32AB2E47395000DA1421 /* FirebaseDatabase in Frameworks */,
 				A893A1762D5F150400E01848 /* RswiftLibrary in Frameworks */,
+				A83C32A92E47395000DA1421 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,10 +500,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A893A17A2D5F175600E01848 /* RswiftLibrary in Frameworks */,
-				A8F064F62CCE3344006C6EE9 /* FirebaseAuth.framework in Frameworks */,
 				A8F064D22C9F9F8A006C6EE9 /* SwiftUI.framework in Frameworks */,
 				A8F064D02C9F9F8A006C6EE9 /* WidgetKit.framework in Frameworks */,
-				08422BAFB4F52C22BCFC653B /* Pods_PositiveStatementWidgetExtension.framework in Frameworks */,
+				A83C32BB2E4739DB00DA1421 /* FirebaseFirestore in Frameworks */,
+				A83C32B72E4739C700DA1421 /* FirebaseAuth in Frameworks */,
 				A893A17C2D5F17DA00E01848 /* rswift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -513,8 +518,6 @@
 				A015AC112826D3ABF5A416EC /* Pods-ThankYouList.release.xcconfig */,
 				497D645982F8305FDC379821 /* Pods-ThankYouListTests.debug.xcconfig */,
 				60AC734479A45E3CB2416DB5 /* Pods-ThankYouListTests.release.xcconfig */,
-				4BCEAF9D99FAF8171993083A /* Pods-PositiveStatementWidgetExtension.debug.xcconfig */,
-				FCC93B23C4B6C482736879EC /* Pods-PositiveStatementWidgetExtension.release.xcconfig */,
 				46FB60FAEBD2A9487293EBF5 /* Pods-SharedResources.debug.xcconfig */,
 				0E2E1E2EA8C99961349F55EC /* Pods-SharedResources.release.xcconfig */,
 			);
@@ -1038,7 +1041,6 @@
 				C9E50183A58E3BE5286274D4 /* libPods-ThankYouListTests.a */,
 				A8F064CF2C9F9F8A006C6EE9 /* WidgetKit.framework */,
 				A8F064D12C9F9F8A006C6EE9 /* SwiftUI.framework */,
-				AA9406CBDCC3FD0D492485FE /* Pods_PositiveStatementWidgetExtension.framework */,
 				6A160D9FA9DA4B3BA6C4EEF8 /* Pods_SharedResources.framework */,
 			);
 			name = Frameworks;
@@ -1084,6 +1086,10 @@
 				A8574DD02BDF489B0073AA61 /* Lottie */,
 				A893A1752D5F150400E01848 /* RswiftLibrary */,
 				A893A1772D5F150400E01848 /* rswift */,
+				A83C32A82E47395000DA1421 /* FirebaseAuth */,
+				A83C32AA2E47395000DA1421 /* FirebaseDatabase */,
+				A83C32AC2E47395000DA1421 /* FirebaseFirestore */,
+				A83C32C02E473BC500DA1421 /* FirebaseAnalytics */,
 			);
 			productName = ThankYouList;
 			productReference = A8831CC31E9CFE6B00F3CA0A /* ThankYouList.app */;
@@ -1154,7 +1160,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A8F064DE2C9F9F8B006C6EE9 /* Build configuration list for PBXNativeTarget "PositiveStatementWidgetExtension" */;
 			buildPhases = (
-				11B204FB7718005EDF59A23A /* [CP] Check Pods Manifest.lock */,
 				A8F064CA2C9F9F89006C6EE9 /* Sources */,
 				A8F064CB2C9F9F89006C6EE9 /* Frameworks */,
 				A8F064CC2C9F9F89006C6EE9 /* Resources */,
@@ -1162,12 +1167,13 @@
 			buildRules = (
 			);
 			dependencies = (
-				A893A1802D5F182400E01848 /* PBXTargetDependency */,
 			);
 			name = PositiveStatementWidgetExtension;
 			packageProductDependencies = (
 				A893A1792D5F175600E01848 /* RswiftLibrary */,
 				A893A17B2D5F17DA00E01848 /* rswift */,
+				A83C32B62E4739C700DA1421 /* FirebaseAuth */,
+				A83C32BA2E4739DB00DA1421 /* FirebaseFirestore */,
 			);
 			productName = PositiveStatementWidgetExtension;
 			productReference = A8F064CE2C9F9F89006C6EE9 /* PositiveStatementWidgetExtension.appex */;
@@ -1223,9 +1229,10 @@
 			packageReferences = (
 				A892355829D818500093A92F /* XCRemoteSwiftPackageReference "Entwine" */,
 				A8A1E2052B0AC1590083C3FF /* XCRemoteSwiftPackageReference "combine-schedulers" */,
-				A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa" */,
-				A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm" */,
-				A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */,
+				A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa.git" */,
+				A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm.git" */,
+				A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift.git" */,
+				A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
 			);
 			productRefGroup = A8831CC41E9CFE6B00F3CA0A /* Products */;
 			projectDirPath = "";
@@ -1304,28 +1311,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		11B204FB7718005EDF59A23A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PositiveStatementWidgetExtension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		16D046CD44A3E97563048322 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1396,68 +1381,30 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ThankYouList/Pods-ThankYouList-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseAppCheckInterop/FirebaseAppCheckInterop.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseAuth/FirebaseAuth.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCoreExtension/FirebaseCoreExtension.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCoreInternal/FirebaseCoreInternal.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseDatabase/FirebaseDatabase.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseFirestore/FirebaseFirestore.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseFirestoreInternal/FirebaseFirestoreInternal.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseSharedSwift/FirebaseSharedSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/FloatingPanel/FloatingPanel.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMAppAuth/GTMAppAuth.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleSignIn/GoogleSignIn.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
-				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
-				"${BUILT_PRODUCTS_DIR}/RecaptchaInterop/RecaptchaInterop.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
-				"${BUILT_PRODUCTS_DIR}/abseil/absl.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RNCryptor/RNCryptor.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppAuth.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseAppCheckInterop.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseAuth.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreInternal.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseDatabase.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseFirestore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseFirestoreInternal.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseSharedSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FloatingPanel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMAppAuth.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleSignIn.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RecaptchaInterop.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/absl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCryptor.framework",
 			);
@@ -1653,11 +1600,7 @@
 		};
 		A893A17E2D5F181E00E01848 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			productRef = A893A17D2D5F181E00E01848 /* RswiftGenerateInternalResources */;
-		};
-		A893A1802D5F182400E01848 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = A893A17F2D5F182400E01848 /* RswiftGenerateInternalResources */;
+			productRef = A893A17D2D5F181E00E01848 /* plugin:RswiftGenerateInternalResources */;
 		};
 		A8DF48192D1BA57C008290FA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2146,7 +2089,6 @@
 		};
 		A8F064DF2C9F9F8B006C6EE9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4BCEAF9D99FAF8171993083A /* Pods-PositiveStatementWidgetExtension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2193,7 +2135,6 @@
 		};
 		A8F064E02C9F9F8B006C6EE9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FCC93B23C4B6C482736879EC /* Pods-PositiveStatementWidgetExtension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2296,7 +2237,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+		A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = exactVersion;
+				version = 10.19.0;
+			};
+		};
+		A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
 			requirement = {
@@ -2304,7 +2253,7 @@
 				version = 4.4.3;
 			};
 		};
-		A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa" */ = {
+		A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CombineCommunity/CombineCocoa.git";
 			requirement = {
@@ -2320,7 +2269,7 @@
 				kind = branch;
 			};
 		};
-		A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */ = {
+		A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mac-cain13/R.swift.git";
 			requirement = {
@@ -2339,14 +2288,44 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A83C32A82E47395000DA1421 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			productName = FirebaseAuth;
+		};
+		A83C32AA2E47395000DA1421 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			productName = FirebaseDatabase;
+		};
+		A83C32AC2E47395000DA1421 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			productName = FirebaseFirestore;
+		};
+		A83C32B62E4739C700DA1421 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			productName = FirebaseAuth;
+		};
+		A83C32BA2E4739DB00DA1421 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			productName = FirebaseFirestore;
+		};
+		A83C32C02E473BC500DA1421 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			productName = FirebaseAnalytics;
+		};
 		A8574DD02BDF489B0073AA61 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			package = A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm.git" */;
 			productName = Lottie;
 		};
 		A88217262B41029800BD8BFD /* CombineCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa" */;
+			package = A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa.git" */;
 			productName = CombineCocoa;
 		};
 		A892355929D818500093A92F /* EntwineTest */ = {
@@ -2356,32 +2335,27 @@
 		};
 		A893A1752D5F150400E01848 /* RswiftLibrary */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
+			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift.git" */;
 			productName = RswiftLibrary;
 		};
 		A893A1772D5F150400E01848 /* rswift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
+			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift.git" */;
 			productName = rswift;
 		};
 		A893A1792D5F175600E01848 /* RswiftLibrary */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
+			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift.git" */;
 			productName = RswiftLibrary;
 		};
 		A893A17B2D5F17DA00E01848 /* rswift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
+			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift.git" */;
 			productName = rswift;
 		};
-		A893A17D2D5F181E00E01848 /* RswiftGenerateInternalResources */ = {
+		A893A17D2D5F181E00E01848 /* plugin:RswiftGenerateInternalResources */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
-			productName = "plugin:RswiftGenerateInternalResources";
-		};
-		A893A17F2D5F182400E01848 /* RswiftGenerateInternalResources */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
+			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift.git" */;
 			productName = "plugin:RswiftGenerateInternalResources";
 		};
 		A8A1E2062B0AC1590083C3FF /* CombineSchedulers */ = {
@@ -2391,7 +2365,7 @@
 		};
 		A8F261992B43FA0500A65C0A /* CombineCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa" */;
+			package = A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa.git" */;
 			productName = CombineCocoa;
 		};
 /* End XCSwiftPackageProductDependency section */

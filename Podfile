@@ -7,12 +7,6 @@ target 'ThankYouList' do
   # Calendar
   pod 'JTAppleCalendar', '~> 7.0'
 
-  # Firebase
-  pod 'Firebase/Core', '10.19.0'
-  pod 'Firebase/Database', '10.19.0'
-  pod 'Firebase/Auth', '10.19.0'
-  pod 'Firebase/Firestore', '10.19.0'
-
   # Auth
   pod 'FBSDKCoreKit', '~> 6.5.0'
   pod 'FBSDKLoginKit', '~> 6.5.0'
@@ -27,15 +21,6 @@ target 'ThankYouList' do
   # FloatingPanel
   pod 'FloatingPanel', '2.5.5'
 
-end
-
-target 'PositiveStatementWidgetExtension' do
-  use_frameworks!
-
-  # Firebase
-  pod 'Firebase/Core', '10.19.0'
-  pod 'Firebase/Auth', '10.19.0'
-  pod 'Firebase/Firestore', '10.19.0'
 end
 
 target 'SharedResources' do

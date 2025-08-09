@@ -6,7 +6,7 @@
 //  Copyright © 2023 Aika Yamada. All rights reserved.
 //
 
-import Firebase
+import FirebaseAnalytics
 
 protocol AnalyticsManager {
     func logEvent(eventName: String, userId: String, targetDate: Date?)

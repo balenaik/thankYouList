@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		80EEE49631B581DF051DEC55 /* Pods_SharedResources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A160D9FA9DA4B3BA6C4EEF8 /* Pods_SharedResources.framework */; };
 		888DB934A4AE8CBBD75F7D39 /* libPods-ThankYouListTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E50183A58E3BE5286274D4 /* libPods-ThankYouListTests.a */; };
+		A80500A62DD70C260082245A /* PositiveStatementUpdateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80500A52DD70C260082245A /* PositiveStatementUpdateModel.swift */; };
 		A806DBD82D336CBE0065F6B3 /* PositiveStatementWidgetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A806DBD72D336CBE0065F6B3 /* PositiveStatementWidgetError.swift */; };
 		A806DBD92D33971F0065F6B3 /* Publisher+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064FE2CFAF6BD006C6EE9 /* Publisher+Operators.swift */; };
 		A806DBDA2D576D950065F6B3 /* AppConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064EF2CCE3179006C6EE9 /* AppConst.swift */; };
@@ -269,6 +270,7 @@
 		60AC734479A45E3CB2416DB5 /* Pods-ThankYouListTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouListTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouListTests/Pods-ThankYouListTests.release.xcconfig"; sourceTree = "<group>"; };
 		6A160D9FA9DA4B3BA6C4EEF8 /* Pods_SharedResources.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SharedResources.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A015AC112826D3ABF5A416EC /* Pods-ThankYouList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.release.xcconfig"; sourceTree = "<group>"; };
+		A80500A52DD70C260082245A /* PositiveStatementUpdateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementUpdateModel.swift; sourceTree = "<group>"; };
 		A806DBD72D336CBE0065F6B3 /* PositiveStatementWidgetError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementWidgetError.swift; sourceTree = "<group>"; };
 		A808C615220FACF6004162E4 /* SmallListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallListView.swift; sourceTree = "<group>"; };
 		A808C617220FAD06004162E4 /* SmallListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallListView.xib; sourceTree = "<group>"; };
@@ -549,6 +551,7 @@
 				A84635BD2AFF02820030A358 /* CalendarConfiguration.swift */,
 				A85323CF2BCA11A50038D5B9 /* PositiveStatementCreateModel.swift */,
 				A85323D12BCC86AA0038D5B9 /* PositiveStatementModel.swift */,
+				A80500A52DD70C260082245A /* PositiveStatementUpdateModel.swift */,
 				A8A068652450A15900839D14 /* Profile.swift */,
 				A85D9D001EA64AF900945E6E /* ThankYouData.swift */,
 				A893A19A2D6D349D00E01848 /* NavigationError.swift */,
@@ -1502,6 +1505,7 @@
 				A895A571297D77C20081E08F /* AlertItem.swift in Sources */,
 				A8ADC15E2C43D0A800830B39 /* HomeWidgetInstructionViewModel.swift in Sources */,
 				A80EAE5821F4C0B4006B02E8 /* UIView+Highlight.swift in Sources */,
+				A80500A62DD70C260082245A /* PositiveStatementUpdateModel.swift in Sources */,
 				A883EE5929EB6DCE002DCBCA /* AnalyticsManager.swift in Sources */,
 				A851944C272BFACE003631EE /* BottomHalfSheetMenuItemView.swift in Sources */,
 				A8E6CD122965B2F20042AA81 /* UserRepository.swift in Sources */,

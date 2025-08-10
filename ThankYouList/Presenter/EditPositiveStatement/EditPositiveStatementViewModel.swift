@@ -136,6 +136,38 @@ private extension EditPositiveStatementViewModel {
         inputs.doneButtonDidTap
             .subscribe(outputs.closeKeyboard)
             .store(in: &cancellable)
+
+        let editPositiveStatementResult = inputs.doneButtonDidTap
+            .handleEvents(receiveOutput: { [outputs] in outputs.isProcessing = true })
+            .map { [bindings] in bindings.textFieldText }
+            .withUnretained(self)
+            .flatMap { [userRepository, positiveStatementRepository] owner, positiveStatement in
+                userRepository.getUserProfile().map { ($0, positiveStatement) }
+                    .flatMap { userProfile, positiveStatement in
+                        positiveStatementRepository
+                            .updatePositiveStatement(
+                                positiveStatementId: owner.positiveStatementId,
+                                positiveStatement: positiveStatement,
+                                userId: userProfile.id)
+                    }
+                    .asResult()
+            }
+            .handleEvents(receiveOutput: { [outputs] _ in outputs.isProcessing = false })
+            .share()
+
+        editPositiveStatementResult
+            .values()
+            .sink { [router] in
+                router?.dismiss()
+            }
+            .store(in: &cancellable)
+
+        editPositiveStatementResult
+            .errors()
+            .map { _ in
+                AlertItem(title: R.string.localizable.edit_positive_statement_edit_error(), message: nil)
+            }
+            .assign(to: &outputs.$showAlert)
     }
 }
 

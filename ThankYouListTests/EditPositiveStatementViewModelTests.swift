@@ -357,6 +357,141 @@ final class EditPositiveStatementViewModelTests: XCTestCase {
             .value(true)
         ])
     }
+
+    func test_ifAUserTapsDoneButton__itShouldUpdatePositiveStatement_withPassingTheTextFieldValue_andUserIdFromGetUserProfile__andIfAllSucceeded__itShouldDismissTheView_andShouldUpdateIsProcessingStatus() {
+
+        let positiveStatementId = "positiveStatementId"
+        setupViewModel(positiveStatementId: positiveStatementId)
+
+        let isProcessingRecorder = TestRecord(publisher: viewModel.outputs.$isProcessing.eraseToAnyPublisher())
+        isProcessingRecorder.clearResult() // Remove the initial value
+
+        // Setup UserProfile
+        let userProfile = Profile(id: "This is User ID", name: "", email: "", imageUrl: nil)
+        userRepository.getUserProfile_result = Just(userProfile).setFailureType(to: Error.self).asFuture()
+
+        // Setup updatePositiveStatement response as succeed
+        positiveStatementRepository.updatePositiveStatement_result = Just(())
+            .setFailureType(to: Error.self).asFuture()
+
+        // Input textField
+        viewModel.bindings.textFieldText = "Update Positive Statement"
+
+        // Taps done button
+        viewModel.inputs.doneButtonDidTap.send()
+
+        // Should update Positive Statement
+        XCTAssertEqual(
+            positiveStatementRepository.updatePositiveStatement_calledCount,
+            1)
+        // Should pass positiveStatementId
+        XCTAssertEqual(
+            positiveStatementRepository.updatePositiveStatement_positiveStatementId,
+            positiveStatementId)
+        // Should pass positiveStatement from textField
+        XCTAssertEqual(
+            positiveStatementRepository.updatePositiveStatement_positiveStatement,
+            viewModel.bindings.textFieldText)
+        // Should pass userId from GetUserProfile
+        XCTAssertEqual(
+            positiveStatementRepository.updatePositiveStatement_userId,
+            userProfile.id)
+        // Should dismiss view
+        XCTAssertEqual(router.dismiss_calledCount, 1)
+        // Should show and hide isProcessing status
+        XCTAssertEqual(isProcessingRecorder.results, [.value(true), .value(false)])
+    }
+
+    func test_ifAUserTapsDoneButton_andGetUserProfileThrowsAnError__itShouldShowAlert_andShouldNotUpdatePositiveStatement_andShouldNotDismissTheView__andIfUserTapsDoneButtonAgain__itShouldCallGetUserProfileAgain_shouldShowAlertAgain_andShouldUpdateIsProcessingStatus() {
+
+        let showAlertTitleRecorder = TestRecord(publisher: viewModel.outputs.$showAlert.map(\.?.title).eraseToAnyPublisher())
+        let showAlertMessageRecorder = TestRecord(publisher: viewModel.outputs.$showAlert.map(\.?.message).eraseToAnyPublisher())
+        let isProcessingRecorder = TestRecord(publisher: viewModel.outputs.$isProcessing.eraseToAnyPublisher())
+        showAlertTitleRecorder.clearResult()
+        showAlertMessageRecorder.clearResult()
+        isProcessingRecorder.clearResult()
+
+        // Setup UserProfile as throwing an error
+        userRepository.getUserProfile_result = Fail(error: NSError()).asFuture()
+
+        // Taps done button
+        viewModel.inputs.doneButtonDidTap.send()
+
+        // Should show an error alert
+        XCTAssertEqual(showAlertTitleRecorder.results, [ .value(R.string.localizable.edit_positive_statement_edit_error())])
+        XCTAssertEqual(showAlertMessageRecorder.results, [.value(nil)])
+        showAlertTitleRecorder.clearResult()
+        showAlertMessageRecorder.clearResult()
+
+        // Should not update Positive Statement
+        XCTAssertEqual(
+            positiveStatementRepository.updatePositiveStatement_calledCount,
+            0)
+        // Should not dismiss view
+        XCTAssertEqual(router.dismiss_calledCount, 0)
+        // Should show and hide isProcessing status
+        XCTAssertEqual(isProcessingRecorder.results, [.value(true), .value(false)])
+        isProcessingRecorder.clearResult()
+
+        // Taps done button again
+        viewModel.inputs.doneButtonDidTap.send()
+
+        // Should call userRepository.getUserProfile again
+        XCTAssertEqual(userRepository.getUserProfile_calledCount, 2)
+
+        // Should show an error alert again
+        XCTAssertEqual(showAlertTitleRecorder.results, [ .value(R.string.localizable.edit_positive_statement_edit_error())])
+        XCTAssertEqual(showAlertMessageRecorder.results, [.value(nil)])
+
+        // Should show and hide isProcessing status again
+        XCTAssertEqual(isProcessingRecorder.results, [.value(true), .value(false)])
+    }
+
+    func test_ifAUserTapsDoneButton_andUpdatePositiveStatementThrowsAnError__itShouldShowAlert_andShouldNotDismissTheView__andIfUserTapsDoneButtonAgain__itShouldCallUpdatePositiveStatmentAgain_shouldShowAlertAgain_andShouldUpdateIsProcessingStatus() {
+
+        let showAlertTitleRecorder = TestRecord(publisher: viewModel.outputs.$showAlert.map(\.?.title).eraseToAnyPublisher())
+        let showAlertMessageRecorder = TestRecord(publisher: viewModel.outputs.$showAlert.map(\.?.message).eraseToAnyPublisher())
+        let isProcessingRecorder = TestRecord(publisher: viewModel.outputs.$isProcessing.eraseToAnyPublisher())
+        showAlertTitleRecorder.clearResult()
+        showAlertMessageRecorder.clearResult()
+        isProcessingRecorder.clearResult()
+
+        // Setup UserProfile as succeed
+        let userProfile = Profile(id: "", name: "", email: "", imageUrl: nil)
+        userRepository.getUserProfile_result = Just(userProfile).setFailureType(to: Error.self).asFuture()
+
+        // Setup updatePositiveStatement response as throwing an error
+        positiveStatementRepository.updatePositiveStatement_result = Fail(error: NSError()).asFuture()
+
+        // Taps done button
+        viewModel.inputs.doneButtonDidTap.send()
+
+        // Should show an error alert
+        XCTAssertEqual(showAlertTitleRecorder.results, [ .value(R.string.localizable.edit_positive_statement_edit_error())])
+        XCTAssertEqual(showAlertMessageRecorder.results, [.value(nil)])
+        showAlertTitleRecorder.clearResult()
+        showAlertMessageRecorder.clearResult()
+
+        // Should not dismiss view
+        XCTAssertEqual(router.dismiss_calledCount, 0)
+
+        // Should show and hide isProcessing status
+        XCTAssertEqual(isProcessingRecorder.results, [.value(true), .value(false)])
+        isProcessingRecorder.clearResult()
+
+        // Taps done button again
+        viewModel.inputs.doneButtonDidTap.send()
+
+        // Should call userRepository.getUserProfile again
+        XCTAssertEqual(positiveStatementRepository.updatePositiveStatement_calledCount, 2)
+
+        // Should show an error alert again
+        XCTAssertEqual(showAlertTitleRecorder.results, [ .value(R.string.localizable.edit_positive_statement_edit_error())])
+        XCTAssertEqual(showAlertMessageRecorder.results, [.value(nil)])
+
+        // Should show and hide isProcessing status again
+        XCTAssertEqual(isProcessingRecorder.results, [.value(true), .value(false)])
+    }
 }
 
 private class MockEditPositiveStatementRouter: MockRouter, EditPositiveStatementRouter {

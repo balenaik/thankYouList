@@ -11,4 +11,5 @@ public enum AppConst {
     public static let appAccessGroupName = "com.balenaik.ThankYouList"
     public static let teamIdAndAccessGroup = "\(AppConst.teamId).\(AppConst.appAccessGroupName)"
     public static let deeplinkPrefix = "thankyoulist://"
+    public static let positiveStatementWidgetKind: String = "PositiveStatementWidget"
 }

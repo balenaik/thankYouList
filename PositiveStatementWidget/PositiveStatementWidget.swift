@@ -11,8 +11,6 @@ import WidgetKit
 import SharedResources
 import SwiftUI
 
-private let kind: String = "PositiveStatementWidget"
-
 struct PositiveStatementWidget: Widget {
 
     init() {
@@ -21,7 +19,7 @@ struct PositiveStatementWidget: Widget {
 
     var body: some WidgetConfiguration {
         StaticConfiguration(
-            kind: kind,
+            kind: AppConst.positiveStatementWidgetKind,
             provider: PositiveStatementProvider()) { entry in
                 PositiveStatementWidgetView(entry: entry)
             }

@@ -7,10 +7,10 @@
 //
 
 import Foundation
-import UIKit
 import Firebase
 import MessageUI
 import SharedResources
+import UIKit
 import WidgetKit
 
 private let feedbackTo = "balenaik+thankyoulist-feedback@gmail.com"

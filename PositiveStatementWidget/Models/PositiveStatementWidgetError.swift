@@ -13,12 +13,11 @@ enum PositiveStatementWidgetError: Error {
 
 extension PositiveStatementWidgetError {
     var errorMessage: String {
-        // TODO: Localize them after R.swift supports Strings catalogs
         switch self {
         case .currentUserNotExist:
-            return "Please log in"
+            return String(localized: "error_not_logged_in")
         case .dataNotFound:
-            return "Please add Positive Statement"
+            return String(localized: "error_data_not_found")
         }
     }
 }

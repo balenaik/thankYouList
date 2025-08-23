@@ -22,8 +22,7 @@ class PositiveStatementProvider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (PositiveStatementEntry) -> ()) {
-        // TODO: Localize it after R.swift supports Strings catalogs
-        let sampleStatement = "Today I am grateful to be alive and filled with happiness."
+        let sampleStatement = String(localized: "sample_statement")
         positiveStatementManager
             .getPositiveStatements()
             .sink(

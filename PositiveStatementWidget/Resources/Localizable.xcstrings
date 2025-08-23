@@ -1,6 +1,23 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "sample_statement" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today I am grateful to be alive and filled with happiness."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "私は笑顔で毎日を楽しめる。"
+          }
+        }
+      }
+    },
     "widget_description" : {
       "extractionState" : "manual",
       "localizations" : {

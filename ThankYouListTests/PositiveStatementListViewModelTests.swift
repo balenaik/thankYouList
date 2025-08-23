@@ -333,6 +333,20 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         // It should not show an alert
         XCTAssertTrue(showAlertTitleRecords.results.isEmpty)
     }
+
+    func test_ifAUserTapsTapsEditButtonOnTheAlert__itShouldPresentEditPositiveStatement() {
+        let positiveStatementId = "positiveStatementId"
+        // User taps positive statment menu button
+        viewModel.inputs.positiveStatementMenuButtonDidTap.send(positiveStatementId)
+        // User taps edit bottom menu
+        viewModel.inputs.bottomMenuDidTap.send(.edit)
+        // Wait for 10ms
+        scheduler.advance(by: .milliseconds(10))
+
+        // It should present EditPositiveStatement
+        XCTAssertEqual(router.presentEditPositiveStatement_calledCount, 1)
+        XCTAssertEqual(router.presentEditPositiveStatement_positiveStatementId, positiveStatementId)
+    }
 }
 
 private class MockPositiveStatementListRouter: MockRouter, PositiveStatementListRouter {

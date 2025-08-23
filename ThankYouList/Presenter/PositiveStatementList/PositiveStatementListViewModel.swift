@@ -163,6 +163,13 @@ private extension PositiveStatementListViewModel {
             }
             .receive(on: scheduler)
             .assign(to: &outputs.$showAlert)
+
+        bottomMenuDidTap
+            .filter { menuType, _ in menuType == .edit }
+            .sink { [router] _, positiveStatementId in
+                router?.presentEditPositiveStatement(positiveStatementId: positiveStatementId)
+            }
+            .store(in: &cancellable)
     }
 }
 

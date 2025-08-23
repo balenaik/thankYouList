@@ -145,6 +145,7 @@
 		A8B6EE932205900D00908D51 /* ListSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8B6EE922205900D00908D51 /* ListSectionHeaderView.xib */; };
 		A8B6EE952205902100908D51 /* ListSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6EE942205902100908D51 /* ListSectionHeaderView.swift */; };
 		A8BFB8BC2B53C23E00C3DE65 /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BFB8BB2B53C23E00C3DE65 /* AlertAction.swift */; };
+		A8C306BD2E4AA6130083AA6B /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A8C306BC2E4AA6130083AA6B /* Localizable.xcstrings */; };
 		A8C5630E2B5BFF8F0047ED4C /* PositiveStatementListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C5630D2B5BFF8F0047ED4C /* PositiveStatementListView.swift */; };
 		A8C563102B5CAC6F0047ED4C /* PositiveStatementListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C5630F2B5CAC6F0047ED4C /* PositiveStatementListViewModel.swift */; };
 		A8C563122B5CAD190047ED4C /* PositiveStatementListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C563112B5CAD190047ED4C /* PositiveStatementListCoordinator.swift */; };
@@ -393,6 +394,7 @@
 		A8B6EE922205900D00908D51 /* ListSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListSectionHeaderView.xib; sourceTree = "<group>"; };
 		A8B6EE942205902100908D51 /* ListSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSectionHeaderView.swift; sourceTree = "<group>"; };
 		A8BFB8BB2B53C23E00C3DE65 /* AlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
+		A8C306BC2E4AA6130083AA6B /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		A8C5630D2B5BFF8F0047ED4C /* PositiveStatementListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementListView.swift; sourceTree = "<group>"; };
 		A8C5630F2B5CAC6F0047ED4C /* PositiveStatementListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementListViewModel.swift; sourceTree = "<group>"; };
 		A8C563112B5CAD190047ED4C /* PositiveStatementListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementListCoordinator.swift; sourceTree = "<group>"; };
@@ -848,6 +850,7 @@
 			isa = PBXGroup;
 			children = (
 				A8F064DA2C9F9F8B006C6EE9 /* Info.plist */,
+				A8C306BC2E4AA6130083AA6B /* Localizable.xcstrings */,
 				A8F064D82C9F9F8B006C6EE9 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -1308,6 +1311,7 @@
 			files = (
 				A8F064D92C9F9F8B006C6EE9 /* Assets.xcassets in Resources */,
 				A8F064F92CD88FE8006C6EE9 /* GoogleService-Info.plist in Resources */,
+				A8C306BD2E4AA6130083AA6B /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1697,6 +1701,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				"SWIFT_INCLUDE_PATHS[arch=*]" = "${SRCROOT}";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -1751,6 +1756,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				"SWIFT_INCLUDE_PATHS[arch=*]" = "${SRCROOT}";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.2;

@@ -1,0 +1,41 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "widget_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inspires you with your own positive statements right on your Home Screen."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "あなたを元気づけるポジティブな言葉がホーム画面に表示されます"
+          }
+        }
+      }
+    },
+    "widget_title" : {
+      "comment" : "Widget Title",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Positive Statement"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ポジティブメッセージ"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

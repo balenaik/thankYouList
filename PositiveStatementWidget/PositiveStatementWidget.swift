@@ -23,8 +23,8 @@ struct PositiveStatementWidget: Widget {
             provider: PositiveStatementProvider()) { entry in
                 PositiveStatementWidgetView(entry: entry)
             }
-            .configurationDisplayName("My Widget")
-            .description("This is an example widget.")
+            .configurationDisplayName(String(localized: "widget_title"))
+            .description(String(localized: "widget_description"))
     }
 }
 

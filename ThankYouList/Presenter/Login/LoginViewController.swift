@@ -6,13 +6,13 @@
 //  Copyright © 2018 Aika Yamada. All rights reserved.
 //
 
-import UIKit
-import Firebase
+import AuthenticationServices
 import FBSDKCoreKit
 import FBSDKLoginKit
+import Firebase
 import GoogleSignIn
-import AuthenticationServices
 import SharedResources
+import UIKit
 import WidgetKit
 
 private let appleProviderId = "apple.com"

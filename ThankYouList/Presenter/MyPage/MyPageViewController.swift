@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 import Firebase
 import MessageUI
+import SharedResources
+import WidgetKit
 
 private let feedbackTo = "balenaik+thankyoulist-feedback@gmail.com"
 private let feedbackSubject = "Thank You List Feedback"
@@ -135,6 +137,7 @@ private extension MyPageViewController {
     func logout() {
         do {
             try Auth.auth().signOut()
+            WidgetCenter.shared.reloadTimelines(ofKind: AppConst.positiveStatementWidgetKind)
             self.showLoginViewController()
         } catch let error as NSError {
             print(error.localizedDescription)

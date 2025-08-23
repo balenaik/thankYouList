@@ -53,6 +53,15 @@ extension PositiveStatementListCoordinator: PositiveStatementListRouter {
         coordinator.start()
     }
 
+    func presentEditPositiveStatement(positiveStatementId: String) {
+        guard let viewController = viewController else { return }
+        let coordinator = EditPositiveStatementCoordinator(
+            positiveStatementId: positiveStatementId,
+            presentingViewController: viewController
+        )
+        coordinator.start()
+    }
+
     func presentHomeWidgetInstruction() {
         guard let viewController = viewController else { return }
         let coordinator = HomeWidgetInstructionCoordinator(

@@ -15,6 +15,7 @@ private let maxPositiveStatementCount = 10
 protocol PositiveStatementListRouter: Router {
     func popToPreviousScreen()
     func presentAddPositiveStatement()
+    func presentEditPositiveStatement(positiveStatementId: String)
     func presentHomeWidgetInstruction()
 }
 

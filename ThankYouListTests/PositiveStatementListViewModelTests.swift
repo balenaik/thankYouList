@@ -346,6 +346,13 @@ private class MockPositiveStatementListRouter: MockRouter, PositiveStatementList
         presentAddPositiveStatement_calledCount += 1
     }
 
+    var presentEditPositiveStatement_calledCount = 0
+    var presentEditPositiveStatement_positiveStatementId: String?
+    func presentEditPositiveStatement(positiveStatementId: String) {
+        presentEditPositiveStatement_calledCount += 1
+        presentEditPositiveStatement_positiveStatementId = positiveStatementId
+    }
+
     var presentHomeWidgetInstruction_calledCount = 0
     func presentHomeWidgetInstruction() {
         presentHomeWidgetInstruction_calledCount += 1

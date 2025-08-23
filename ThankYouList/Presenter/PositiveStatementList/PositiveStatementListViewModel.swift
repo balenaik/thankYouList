@@ -112,6 +112,11 @@ private extension PositiveStatementListViewModel {
             .assign(to: &outputs.$showBottomMenu)
 
         let bottomMenuDidTap = inputs.bottomMenuDidTap
+            .flatMap { [outputs, scheduler] menuInfo in
+                // Wait until bottom menu gets hidden, otherwise the alert won't be shown
+                outputs.$showBottomMenu.filter { !$0 }.first().map { _ in menuInfo }
+                    .delay(for: .milliseconds(10), scheduler: scheduler)
+            }
             .withLatestFrom(inputs.positiveStatementMenuButtonDidTap) { ($0, $1) }
             .share()
 
@@ -119,11 +124,6 @@ private extension PositiveStatementListViewModel {
 
         bottomMenuDidTap
             .filter { menuType, _ in menuType == .delete }
-            .flatMap { [outputs, scheduler] menuInfo in
-                // Wait until bottom menu gets hidden, otherwise the alert won't be shown
-                outputs.$showBottomMenu.filter { !$0 }.first().map { _ in menuInfo }
-                    .delay(for: .milliseconds(10), scheduler: scheduler)
-            }
             .map { _, positiveStatementId in
                 let deleteAction = AlertAction(title: R.string.localizable.delete(),
                                                style: .destructive) {

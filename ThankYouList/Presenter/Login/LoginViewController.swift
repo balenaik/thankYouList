@@ -12,6 +12,8 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import GoogleSignIn
 import AuthenticationServices
+import SharedResources
+import WidgetKit
 
 private let appleProviderId = "apple.com"
 
@@ -110,6 +112,7 @@ private extension LoginViewController {
             if let email = email {
                 self?.updateUserEmail(email: email)
             }
+            WidgetCenter.shared.reloadTimelines(ofKind: AppConst.positiveStatementWidgetKind)
             self?.router?.switchToMainTabBar()
         }
     }

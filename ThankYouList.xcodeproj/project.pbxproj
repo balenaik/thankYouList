@@ -171,6 +171,7 @@
 		A8E6CD14296BA31A0042AA81 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD13296BA31A0042AA81 /* Coordinator.swift */; };
 		A8E6CD16296BAEB10042AA81 /* MainTabbarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD15296BAEB10042AA81 /* MainTabbarCoordinator.swift */; };
 		A8E6CD18296BF3100042AA81 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD17296BF3100042AA81 /* LoginCoordinator.swift */; };
+		A8E88DC92E5B43B7004C0E64 /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = A8E88DC82E5B43B7004C0E64 /* RswiftLibrary */; };
 		A8F064C12C7ACF8E006C6EE9 /* EditPositiveStatementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064C02C7ACF8E006C6EE9 /* EditPositiveStatementView.swift */; };
 		A8F064C32C7AD0BA006C6EE9 /* EditPositiveStatementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064C22C7AD0BA006C6EE9 /* EditPositiveStatementViewModel.swift */; };
 		A8F064C52C7B10BF006C6EE9 /* EditPositiveStatementCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064C42C7B10BF006C6EE9 /* EditPositiveStatementCoordinator.swift */; };
@@ -456,11 +457,10 @@
 				A88217272B41029800BD8BFD /* CombineCocoa in Frameworks */,
 				A83C32AD2E47395000DA1421 /* FirebaseFirestore in Frameworks */,
 				A864849B2160F5BF0049D90A /* Pods_ThankYouList.framework in Frameworks */,
-				A893A1782D5F150400E01848 /* rswift in Frameworks */,
+				A8E88DC92E5B43B7004C0E64 /* RswiftLibrary in Frameworks */,
 				A83C32C12E473BC500DA1421 /* FirebaseAnalytics in Frameworks */,
 				A8574DD12BDF489B0073AA61 /* Lottie in Frameworks */,
 				A83C32AB2E47395000DA1421 /* FirebaseDatabase in Frameworks */,
-				A893A1762D5F150400E01848 /* RswiftLibrary in Frameworks */,
 				A83C32A92E47395000DA1421 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -494,12 +494,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A893A17A2D5F175600E01848 /* RswiftLibrary in Frameworks */,
 				A8F064D22C9F9F8A006C6EE9 /* SwiftUI.framework in Frameworks */,
 				A8F064D02C9F9F8A006C6EE9 /* WidgetKit.framework in Frameworks */,
 				A83C32BB2E4739DB00DA1421 /* FirebaseFirestore in Frameworks */,
 				A83C32B72E4739C700DA1421 /* FirebaseAuth in Frameworks */,
-				A893A17C2D5F17DA00E01848 /* rswift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1078,12 +1076,11 @@
 				A8A1E2062B0AC1590083C3FF /* CombineSchedulers */,
 				A88217262B41029800BD8BFD /* CombineCocoa */,
 				A8574DD02BDF489B0073AA61 /* Lottie */,
-				A893A1752D5F150400E01848 /* RswiftLibrary */,
-				A893A1772D5F150400E01848 /* rswift */,
 				A83C32A82E47395000DA1421 /* FirebaseAuth */,
 				A83C32AA2E47395000DA1421 /* FirebaseDatabase */,
 				A83C32AC2E47395000DA1421 /* FirebaseFirestore */,
 				A83C32C02E473BC500DA1421 /* FirebaseAnalytics */,
+				A8E88DC82E5B43B7004C0E64 /* RswiftLibrary */,
 			);
 			productName = ThankYouList;
 			productReference = A8831CC31E9CFE6B00F3CA0A /* ThankYouList.app */;
@@ -1163,8 +1160,6 @@
 			);
 			name = PositiveStatementWidgetExtension;
 			packageProductDependencies = (
-				A893A1792D5F175600E01848 /* RswiftLibrary */,
-				A893A17B2D5F17DA00E01848 /* rswift */,
 				A83C32B62E4739C700DA1421 /* FirebaseAuth */,
 				A83C32BA2E4739DB00DA1421 /* FirebaseFirestore */,
 			);
@@ -2246,8 +2241,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mac-cain13/R.swift.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.2.4;
+				kind = exactVersion;
+				version = 7.8.0;
 			};
 		};
 		A8A1E2052B0AC1590083C3FF /* XCRemoteSwiftPackageReference "combine-schedulers" */ = {
@@ -2306,26 +2301,6 @@
 			package = A892355829D818500093A92F /* XCRemoteSwiftPackageReference "Entwine" */;
 			productName = EntwineTest;
 		};
-		A893A1752D5F150400E01848 /* RswiftLibrary */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
-			productName = RswiftLibrary;
-		};
-		A893A1772D5F150400E01848 /* rswift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
-			productName = rswift;
-		};
-		A893A1792D5F175600E01848 /* RswiftLibrary */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
-			productName = RswiftLibrary;
-		};
-		A893A17B2D5F17DA00E01848 /* rswift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
-			productName = rswift;
-		};
 		A893A17D2D5F181E00E01848 /* RswiftGenerateInternalResources */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
@@ -2335,6 +2310,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A8A1E2052B0AC1590083C3FF /* XCRemoteSwiftPackageReference "combine-schedulers" */;
 			productName = CombineSchedulers;
+		};
+		A8E88DC82E5B43B7004C0E64 /* RswiftLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
+			productName = RswiftLibrary;
 		};
 		A8F261992B43FA0500A65C0A /* CombineCocoa */ = {
 			isa = XCSwiftPackageProductDependency;

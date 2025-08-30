@@ -7,6 +7,7 @@
 //
 
 import Firebase
+import FirebaseAuth
 import WidgetKit
 import SharedResources
 import SwiftUI

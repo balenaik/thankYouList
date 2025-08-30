@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseAuth
 import MessageUI
 import SharedResources
 import UIKit

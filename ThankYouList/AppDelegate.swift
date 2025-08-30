@@ -9,6 +9,7 @@
 import UIKit
 import Combine
 import Firebase
+import FirebaseAuth
 import FBSDKCoreKit
 import SharedResources
 

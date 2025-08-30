@@ -7,7 +7,7 @@
 //
 
 import Combine
-import Firebase
+import FirebaseAuth
 import FirebaseFirestore
 import SharedResources
 

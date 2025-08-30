@@ -10,12 +10,11 @@ import AuthenticationServices
 import FBSDKCoreKit
 import FBSDKLoginKit
 import Firebase
+import FirebaseAuth
 import GoogleSignIn
 import SharedResources
 import UIKit
 import WidgetKit
-
-private let appleProviderId = "apple.com"
 
 protocol LoginRouter {
     func switchToMainTabBar()
@@ -140,7 +139,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 return
             }
             // Initialize a Firebase credential.
-            let credential = OAuthProvider.credential(withProviderID: appleProviderId,
+            let credential = OAuthProvider.credential(providerID: .apple,
                                                       idToken: idTokenString,
                                                       rawNonce: nonce)
             var name: String?

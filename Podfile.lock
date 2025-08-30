@@ -26,7 +26,6 @@ PODS:
     - GTMSessionFetcher/Core (< 4.0, >= 1.5)
   - GTMSessionFetcher/Core (3.2.0)
   - JTAppleCalendar (7.1.8)
-  - R.swift (7.2.4)
   - RNCryptor (5.1.0)
   - SDWebImage (5.7.3):
     - SDWebImage/Core (= 5.7.3)
@@ -40,7 +39,6 @@ DEPENDENCIES:
   - FloatingPanel (= 2.5.5)
   - GoogleSignIn (= 7.0.0)
   - JTAppleCalendar (~> 7.0)
-  - R.swift (= 7.2.4)
   - RNCryptor (~> 5.0)
   - SDWebImage (~> 5.0)
   - SkeletonView (= 1.25.1)
@@ -56,7 +54,6 @@ SPEC REPOS:
     - GTMAppAuth
     - GTMSessionFetcher
     - JTAppleCalendar
-    - R.swift
     - RNCryptor
     - SDWebImage
     - SkeletonView
@@ -71,11 +68,10 @@ SPEC CHECKSUMS:
   GTMAppAuth: 99fb010047ba3973b7026e45393f51f27ab965ae
   GTMSessionFetcher: 41b9ef0b4c08a6db4b7eb51a21ae5183ec99a2c8
   JTAppleCalendar: b7fb40852f5f319fe55c8ec3861f1de0edc99cc8
-  R.swift: 681bb9135f482e7a81d9d27445b837fef5467e11
   RNCryptor: a369134686cd2ad391323cc856b62e591193ba79
   SDWebImage: 97351f6582ceca541ea294ba66a1fcb342a331c2
   SkeletonView: 77079530e1348a72f48b79ae30dcb966c1b18b6a
 
-PODFILE CHECKSUM: be56295c3e95d328cd58c6e79f47628ecd5c413d
+PODFILE CHECKSUM: 485260740a20c3dedbafff725ece40aa86d9e2fe
 
 COCOAPODS: 1.14.3

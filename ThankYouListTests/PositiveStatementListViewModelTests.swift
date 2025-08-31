@@ -18,18 +18,22 @@ final class PositiveStatementListViewModelTests: XCTestCase {
     private var positiveStatementRepository: MockPositiveStatementRepository!
     private var router: MockPositiveStatementListRouter!
     private var scheduler: TestSchedulerOf<DispatchQueue>!
+    private var analyticsManager: MockAnalyticsManager!
 
     override func setUp() {
         userRepository = MockUserRepository()
         positiveStatementRepository = MockPositiveStatementRepository()
         router = MockPositiveStatementListRouter()
         scheduler = DispatchQueue.test
+        analyticsManager = MockAnalyticsManager()
 
         viewModel = PositiveStatementListViewModel(
             userRepository: userRepository,
             positiveStatementRepository: positiveStatementRepository,
             router: router,
-            scheduler: scheduler.eraseToAnyScheduler())
+            scheduler: scheduler.eraseToAnyScheduler(),
+            analyticsManager: analyticsManager
+        )
     }
 
     func test_ifAUserOpensTheScreen_multipleTimes__itShouldCallGetUserProfile_onlyOnce() {
@@ -346,6 +350,12 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         // It should present EditPositiveStatement
         XCTAssertEqual(router.presentEditPositiveStatement_calledCount, 1)
         XCTAssertEqual(router.presentEditPositiveStatement_positiveStatementId, positiveStatementId)
+    }
+
+    func test_onAppear__itShouldSendLog() {
+        viewModel.inputs.onAppear.send()
+        XCTAssertEqual(analyticsManager.loggedEvent.count, 1)
+        XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.openPositiveStatementList)
     }
 }
 

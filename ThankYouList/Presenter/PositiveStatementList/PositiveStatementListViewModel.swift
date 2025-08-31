@@ -29,17 +29,20 @@ class PositiveStatementListViewModel: ObservableObject {
     private let positiveStatementRepository: PositiveStatementRepository
     private let router: PositiveStatementListRouter?
     private let scheduler: AnySchedulerOf<DispatchQueue>
+    private let analyticsManager: AnalyticsManager
 
     init(
         userRepository: UserRepository,
         positiveStatementRepository: PositiveStatementRepository,
         router: PositiveStatementListRouter?,
-        scheduler: AnySchedulerOf<DispatchQueue> = .main
+        scheduler: AnySchedulerOf<DispatchQueue> = .main,
+        analyticsManager: AnalyticsManager
     ) {
         self.userRepository = userRepository
         self.positiveStatementRepository = positiveStatementRepository
         self.router = router
         self.scheduler = scheduler
+        self.analyticsManager = analyticsManager
         bind()
     }
 
@@ -87,6 +90,12 @@ private extension PositiveStatementListViewModel {
             .values()
             .map { $0.count >= maxPositiveStatementCount }
             .assign(to: &outputs.$isAddButtonDisabled)
+
+        inputs.onAppear
+            .sink { [analyticsManager] in
+                analyticsManager.logEvent(eventName: AnalyticsEventConst.openPositiveStatementList)
+            }
+            .store(in: &cancellable)
 
         inputs.addButtonDidTap
             .sink { [router] in

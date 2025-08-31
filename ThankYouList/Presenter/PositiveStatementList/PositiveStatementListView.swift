@@ -240,6 +240,8 @@ private extension PositiveStatementListView {
     let viewModel = PositiveStatementListViewModel(
         userRepository: DefaultUserRepository(),
         positiveStatementRepository: DefaultPositiveStatementRepository(),
-        router: nil)
+        router: nil,
+        analyticsManager: DefaultAnalyticsManager()
+    )
     return PositiveStatementListView(viewModel: viewModel)
 }

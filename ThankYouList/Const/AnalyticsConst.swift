@@ -17,6 +17,7 @@ enum AnalyticsEventConst {
     static let startDraggingListScrollIndicatorMovableIcon = "start_dragging_scroll_indicator"
     static let calendarSmallListViewFullScreen = "calendar_small_list_view_full_screen"
     static let scrollCalendar = "scroll_calendar"
+    static let openPositiveStatementList = "open_positive_statement_list"
 }
 
 enum AnalyticsParameterConst {

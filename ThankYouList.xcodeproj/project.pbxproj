@@ -171,6 +171,7 @@
 		A8E6CD14296BA31A0042AA81 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD13296BA31A0042AA81 /* Coordinator.swift */; };
 		A8E6CD16296BAEB10042AA81 /* MainTabbarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD15296BAEB10042AA81 /* MainTabbarCoordinator.swift */; };
 		A8E6CD18296BF3100042AA81 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD17296BF3100042AA81 /* LoginCoordinator.swift */; };
+		A8E88DBD2E5B2E5E004C0E64 /* SharedResources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8DF480D2D1BA57C008290FA /* SharedResources.framework */; };
 		A8E88DC92E5B43B7004C0E64 /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = A8E88DC82E5B43B7004C0E64 /* RswiftLibrary */; };
 		A8F064C12C7ACF8E006C6EE9 /* EditPositiveStatementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064C02C7ACF8E006C6EE9 /* EditPositiveStatementView.swift */; };
 		A8F064C32C7AD0BA006C6EE9 /* EditPositiveStatementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064C22C7AD0BA006C6EE9 /* EditPositiveStatementViewModel.swift */; };
@@ -219,6 +220,13 @@
 			remoteInfo = ThankYouList;
 		};
 		A8DF48202D1BA57C008290FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A8831CBB1E9CFE6B00F3CA0A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A8DF480C2D1BA57C008290FA;
+			remoteInfo = SharedResources;
+		};
+		A8E88DBF2E5B2E5E004C0E64 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A8831CBB1E9CFE6B00F3CA0A /* Project object */;
 			proxyType = 1;
@@ -494,6 +502,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8E88DBD2E5B2E5E004C0E64 /* SharedResources.framework in Frameworks */,
 				A8F064D22C9F9F8A006C6EE9 /* SwiftUI.framework in Frameworks */,
 				A8F064D02C9F9F8A006C6EE9 /* WidgetKit.framework in Frameworks */,
 				A83C32BB2E4739DB00DA1421 /* FirebaseFirestore in Frameworks */,
@@ -1157,6 +1166,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A8E88DC02E5B2E5E004C0E64 /* PBXTargetDependency */,
 			);
 			name = PositiveStatementWidgetExtension;
 			packageProductDependencies = (
@@ -1584,6 +1594,11 @@
 			isa = PBXTargetDependency;
 			target = A8DF480C2D1BA57C008290FA /* SharedResources */;
 			targetProxy = A8DF48202D1BA57C008290FA /* PBXContainerItemProxy */;
+		};
+		A8E88DC02E5B2E5E004C0E64 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A8DF480C2D1BA57C008290FA /* SharedResources */;
+			targetProxy = A8E88DBF2E5B2E5E004C0E64 /* PBXContainerItemProxy */;
 		};
 		A8F064DC2C9F9F8B006C6EE9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

@@ -30,7 +30,11 @@ class HomeWidgetInstructionCoordinator: Coordinator {
     }
 
     func start() {
-        let viewModel = HomeWidgetInstructionViewModel(page: page, router: self)
+        let viewModel = HomeWidgetInstructionViewModel(
+            page: page,
+            router: self,
+            analyticsManager: DefaultAnalyticsManager()
+        )
         let hostingController = UIHostingController(
             rootView: HomeWidgetInstructionView(viewModel: viewModel)
         )

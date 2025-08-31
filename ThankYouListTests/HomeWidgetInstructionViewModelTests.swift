@@ -15,16 +15,20 @@ final class HomeWidgetInstructionViewModelTests: XCTestCase {
 
     private var viewModel: HomeWidgetInstructionViewModel!
     private var router: MockHomeWidgetInstructionRouter!
+    private var analyticsManager: MockAnalyticsManager!
 
     override func setUp() {
         router = MockHomeWidgetInstructionRouter()
+        analyticsManager = MockAnalyticsManager()
         setupViewModel(page: .page1)
     }
 
     private func setupViewModel(page: HomeWidgetinstructionPage) {
         viewModel = HomeWidgetInstructionViewModel(
             page: page,
-            router: router)
+            router: router,
+            analyticsManager: analyticsManager
+        )
     }
 
     func test_ifTheUserOpensTheScreen_onPage1__itShouldShowImageForPage1() {
@@ -192,6 +196,12 @@ final class HomeWidgetInstructionViewModelTests: XCTestCase {
 
         // It should dismiss view
         XCTAssertEqual(router.dismiss_calledCount, 1)
+    }
+
+    func test_ifTheUserOpensTheScreen__itShouldLogEvent() {
+        viewModel.inputs.onAppear.send()
+        XCTAssertEqual(analyticsManager.loggedEvent.count, 1)
+        XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.openHomeWidgetInstruction)
     }
 }
 

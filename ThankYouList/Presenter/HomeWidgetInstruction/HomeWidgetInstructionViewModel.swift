@@ -63,10 +63,16 @@ class HomeWidgetInstructionViewModel: ObservableObject {
     private var cancellable = Set<AnyCancellable>()
     private let page: HomeWidgetinstructionPage
     private let router: HomeWidgetinstructionRouter?
+    private let analyticsManager: AnalyticsManager
 
-    init(page: HomeWidgetinstructionPage, router: HomeWidgetinstructionRouter?) {
+    init(
+        page: HomeWidgetinstructionPage,
+        router: HomeWidgetinstructionRouter?,
+        analyticsManager: AnalyticsManager
+    ) {
         self.page = page
         self.router = router
+        self.analyticsManager = analyticsManager
         bind()
     }
 }
@@ -79,6 +85,12 @@ private extension HomeWidgetInstructionViewModel {
                 outputs.imageName = page.imageName
                 outputs.description = page.description
                 outputs.bottomButtonTitle = page.bottomButtonTitle
+            }
+            .store(in: &cancellable)
+
+        inputs.onAppear
+            .sink { [analyticsManager] in
+                analyticsManager.logEvent(eventName: AnalyticsEventConst.openHomeWidgetInstruction)
             }
             .store(in: &cancellable)
 

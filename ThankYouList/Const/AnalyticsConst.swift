@@ -18,6 +18,7 @@ enum AnalyticsEventConst {
     static let calendarSmallListViewFullScreen = "calendar_small_list_view_full_screen"
     static let scrollCalendar = "scroll_calendar"
     static let openPositiveStatementList = "open_positive_statement_list"
+    static let openHomeWidgetInstruction = "open_home_widget_instruction"
 }
 
 enum AnalyticsParameterConst {

@@ -180,7 +180,6 @@ private extension EditThankYouViewController {
                     return
                 }
                 self.analyticsManager.logEvent(eventName: AnalyticsEventConst.editThankYou,
-                                               userId: userId,
                                                targetDate: editThankYouData.date)
                 self.dismiss(animated: true, completion: nil)
             }

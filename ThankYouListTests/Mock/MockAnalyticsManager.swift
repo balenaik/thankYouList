@@ -12,15 +12,19 @@ import Foundation
 class MockAnalyticsManager: AnalyticsManager {
     struct AnalyticsEvent {
         let eventName: String
-        let userId: String
         let targetDate: Date?
     }
 
     var loggedEvent = [AnalyticsEvent]()
-    func logEvent(eventName: String, userId: String, targetDate: Date?) {
+    func logEvent(eventName: String, targetDate: Date?) {
         loggedEvent.append(AnalyticsEvent(
             eventName: eventName,
-            userId: userId,
-            targetDate: targetDate))
+            targetDate: targetDate
+        ))
+    }
+
+    var setUserId_userId: String?
+    func setUserId(userId: String?) {
+        setUserId_userId = userId
     }
 }

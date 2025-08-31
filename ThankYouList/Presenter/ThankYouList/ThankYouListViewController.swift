@@ -224,7 +224,6 @@ private extension ThankYouListViewController {
                 if let thankYouData = self.thankYouDataSingleton.thankYouList.first(where: { $0.id == thankYouId }) {
                     self.analyticsManager.logEvent(
                         eventName: AnalyticsEventConst.deleteThankYou,
-                        userId: userId,
                         targetDate: thankYouData.date)
                 }
             })
@@ -328,10 +327,9 @@ extension ThankYouListViewController: UITableViewDelegate {
 // MARK: - ListScrollIndicatorDelegate
 extension ThankYouListViewController: ListScrollIndicatorDelegate {
     func listScrollIndicatorDidBeginDraggingMovableIcon(_ indicator: ListScrollIndicator) {
-        guard let user = Auth.auth().currentUser else { return }
         analyticsManager.logEvent(
-            eventName: AnalyticsEventConst.startDraggingListScrollIndicatorMovableIcon,
-            userId: user.uid)
+            eventName: AnalyticsEventConst.startDraggingListScrollIndicatorMovableIcon
+        )
     }
 }
 

@@ -94,8 +94,7 @@ private extension MyPageViewController {
     }
 
     func logEvent() {
-        guard let user = Auth.auth().currentUser else { return }
-        analyticsManager.logEvent(eventName: AnalyticsEventConst.showMyPage, userId: user.uid)
+        analyticsManager.logEvent(eventName: AnalyticsEventConst.showMyPage)
     }
 
     func showRating() {

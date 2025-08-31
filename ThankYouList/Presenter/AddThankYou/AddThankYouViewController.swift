@@ -163,7 +163,6 @@ private extension AddThankYouViewController {
                     return
                 }
                 self.analyticsManager.logEvent(eventName: AnalyticsEventConst.addThankYou,
-                                               userId: userId,
                                                targetDate: thankYouData.date)
                 self.router?.dismiss()
             }

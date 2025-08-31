@@ -76,17 +76,10 @@ private extension CalendarViewModel {
             .store(in: &cancellables)
 
         inputs.calendarDidScrollToMonth
-            .setFailureType(to: Error.self)
-            .flatMap { [userRepository] newDate in
-                userRepository.getUserProfile()
-                    .map { ($0.id, newDate) }
-            }
-            .sink(receiveCompletion: { _ in },
-                  receiveValue: { [analyticsManager] userId, newDate in
+            .sink { [analyticsManager] newDate in
                 analyticsManager.logEvent(eventName: AnalyticsEventConst.scrollCalendar,
-                                          userId: userId,
                                           targetDate: newDate)
-            })
+            }
             .store(in: &cancellables)
 
         inputs.userIconDidTap
@@ -150,10 +143,7 @@ private extension CalendarViewModel {
                         return thankYouRepository.deleteThankYou(
                             thankYouId: thankYouId,
                             userId: profile.id)
-                        .map { _ in
-                            (userId: profile.id,
-                             deletedThankYou: deletingThankYou)
-                        }
+                        .map { _ in deletingThankYou }
                     }
                     .asResult()
             }
@@ -162,10 +152,9 @@ private extension CalendarViewModel {
 
         deleteResult
             .values()
-            .sink { [analyticsManager] userId, deletedThankYou in
+            .sink { [analyticsManager] deletedThankYou in
                 analyticsManager.logEvent(
                     eventName: AnalyticsEventConst.deleteThankYou,
-                    userId: userId,
                     targetDate: deletedThankYou?.date)
             }
             .store(in: &cancellables)

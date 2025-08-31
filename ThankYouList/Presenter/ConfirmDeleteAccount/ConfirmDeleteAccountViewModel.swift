@@ -96,10 +96,8 @@ private extension ConfirmDeleteAccountViewModel {
 
         deleteAccountResult
             .values()
-            .flatMap { _ in profile.values() }
-            .handleEvents(receiveOutput: { [analyticsManager] profile in
-                analyticsManager.logEvent(eventName: AnalyticsEventConst.deleteAccount,
-                                          userId: profile.id)
+            .handleEvents(receiveOutput: { [analyticsManager] in
+                analyticsManager.logEvent(eventName: AnalyticsEventConst.deleteAccount)
             })
             .map { _ in
                 AlertItem(

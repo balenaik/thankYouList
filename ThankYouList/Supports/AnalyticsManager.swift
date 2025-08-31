@@ -10,6 +10,7 @@ import FirebaseAnalytics
 
 protocol AnalyticsManager {
     func logEvent(eventName: String, userId: String, targetDate: Date?)
+    func setUserId(userId: String?)
 }
 
 extension AnalyticsManager {
@@ -25,5 +26,9 @@ struct DefaultAnalyticsManager: AnalyticsManager {
             parameters[AnalyticsParameterConst.targetDate] = targetDate.toThankYouDateString()
         }
         Analytics.logEvent(eventName, parameters: parameters)
+    }
+
+    func setUserId(userId: String?) {
+        Analytics.setUserID(userId)
     }
 }

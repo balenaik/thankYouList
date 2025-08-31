@@ -33,4 +33,9 @@ class MockUserRepository: UserRepository {
     func deleteAccount() -> Future<Void, Error> {
         deleteAccount_result
     }
+
+    var observeAuthenticationChanges_result = Just(nil as String?).setFailureType(to: Error.self).eraseToAnyPublisher()
+    func observeAuthenticationChanges() -> AnyPublisher<String?, Error> {
+        observeAuthenticationChanges_result
+    }
 }

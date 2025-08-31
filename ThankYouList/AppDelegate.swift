@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private lazy var appCoordinator = AppCoordinator(
         window: window,
         userRepository: userRepository)
+    private let analyticsManager: AnalyticsManager = DefaultAnalyticsManager()
     private var cancellable = Set<AnyCancellable>()
 
     override init() {
@@ -36,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupNavigationBar()
         setupListView()
         reAuthenticateToProvider()
+        observeAuthenticationChanges()
 
         appCoordinator.start()
         
@@ -104,6 +106,15 @@ private extension AppDelegate {
     func reAuthenticateToProvider() {
         userRepository.reAuthenticateToProviderIfNeeded()
             .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
+            .store(in: &cancellable)
+    }
+
+    func observeAuthenticationChanges() {
+        userRepository.observeAuthenticationChanges()
+            .catch { _ in Just(nil) }
+            .sink { [analyticsManager] userId in
+                analyticsManager.setUserId(userId: userId)
+            }
             .store(in: &cancellable)
     }
 

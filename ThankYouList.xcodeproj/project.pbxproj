@@ -153,6 +153,8 @@
 		A8C90AE02302ECA3008C6A4A /* ListScrollIndicatorTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C90ADF2302ECA3008C6A4A /* ListScrollIndicatorTitleView.swift */; };
 		A8C90AE22302ECCA008C6A4A /* ListScrollIndicatorTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8C90AE12302ECCA008C6A4A /* ListScrollIndicatorTitleView.xib */; };
 		A8C9736C2BD9BA6B004A8A30 /* MockPositiveStatementRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C9736B2BD9BA6B004A8A30 /* MockPositiveStatementRepository.swift */; };
+		A8CA1E872E65E7FC001D4495 /* WidgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CA1E862E65E7F9001D4495 /* WidgetManager.swift */; };
+		A8CA1E8D2E65E954001D4495 /* MockWidgetManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CA1E8C2E65E951001D4495 /* MockWidgetManger.swift */; };
 		A8D41E1C21E0E07B00A77B48 /* SettingDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */; };
 		A8D5DFE82450A4FD00F30205 /* UIImageView+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D5DFE72450A4FD00F30205 /* UIImageView+URL.swift */; };
 		A8DABC24271ACE4E0086B2E8 /* BottomHalfSheetMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DABC23271ACE4E0086B2E8 /* BottomHalfSheetMenuViewController.swift */; };
@@ -409,6 +411,8 @@
 		A8C90ADF2302ECA3008C6A4A /* ListScrollIndicatorTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListScrollIndicatorTitleView.swift; sourceTree = "<group>"; };
 		A8C90AE12302ECCA008C6A4A /* ListScrollIndicatorTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListScrollIndicatorTitleView.xib; sourceTree = "<group>"; };
 		A8C9736B2BD9BA6B004A8A30 /* MockPositiveStatementRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPositiveStatementRepository.swift; sourceTree = "<group>"; };
+		A8CA1E862E65E7F9001D4495 /* WidgetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetManager.swift; sourceTree = "<group>"; };
+		A8CA1E8C2E65E951001D4495 /* MockWidgetManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWidgetManger.swift; sourceTree = "<group>"; };
 		A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDateView.swift; sourceTree = "<group>"; };
 		A8D5DFE72450A4FD00F30205 /* UIImageView+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+URL.swift"; sourceTree = "<group>"; };
 		A8DABBD527173FA20086B2E8 /* ViewConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConst.swift; sourceTree = "<group>"; };
@@ -567,6 +571,7 @@
 				A895A572298FA6B60081E08F /* ReplaySubject.swift */,
 				A895A574298FA6E10081E08F /* ReplaySubjectSubscription.swift */,
 				A89D114B2BAFFD6A00C026E6 /* ThemeColor.swift */,
+				A8CA1E862E65E7F9001D4495 /* WidgetManager.swift */,
 			);
 			path = Supports;
 			sourceTree = "<group>";
@@ -838,6 +843,7 @@
 				A84635BB2AD2711D0030A358 /* MockThankYouRepository.swift */,
 				A892355329D73E3D0093A92F /* MockUserRepository.swift */,
 				A8F2619B2B476FAE00A65C0A /* MockRouter.swift */,
+				A8CA1E8C2E65E951001D4495 /* MockWidgetManger.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -1474,6 +1480,7 @@
 				A87EE43F2C28143900CCB997 /* ViewLifecycleAwareHostingController.swift in Sources */,
 				A83A361C296CE98600AD2790 /* MyPageCoordinator.swift in Sources */,
 				A8574DCE2BDF47410073AA61 /* ProcessingOverlayView.swift in Sources */,
+				A8CA1E872E65E7FC001D4495 /* WidgetManager.swift in Sources */,
 				A86F419E24548797005D929A /* MyPageTableItem.swift in Sources */,
 				A8B6EE952205902100908D51 /* ListSectionHeaderView.swift in Sources */,
 				A895A571297D77C20081E08F /* AlertItem.swift in Sources */,
@@ -1517,6 +1524,7 @@
 				A8A1E20A2B2F08E60083C3FF /* TestRecord.swift in Sources */,
 				A8F2619C2B476FAE00A65C0A /* MockRouter.swift in Sources */,
 				A892355429D73E3D0093A92F /* MockUserRepository.swift in Sources */,
+				A8CA1E8D2E65E954001D4495 /* MockWidgetManger.swift in Sources */,
 				A890D3B929D823A30066D098 /* TestScheduler+Observer.swift in Sources */,
 				A883EE5B29F03524002DCBCA /* MockAnalyticsManager.swift in Sources */,
 				A87EE43D2C1E8B0E00CCB997 /* PositiveStatementListViewModelTests.swift in Sources */,

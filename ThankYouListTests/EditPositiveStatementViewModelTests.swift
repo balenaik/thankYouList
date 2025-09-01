@@ -17,12 +17,14 @@ final class EditPositiveStatementViewModelTests: XCTestCase {
     private var viewModel: EditPositiveStatementViewModel!
     private var userRepository: MockUserRepository!
     private var positiveStatementRepository: MockPositiveStatementRepository!
+    private var analyticsManager: MockAnalyticsManager!
     private var router: MockEditPositiveStatementRouter!
 
     override func setUp() {
         router = MockEditPositiveStatementRouter()
         userRepository = MockUserRepository()
         positiveStatementRepository = MockPositiveStatementRepository()
+        analyticsManager = MockAnalyticsManager()
 
         setupViewModel(positiveStatementId: "")
     }
@@ -32,6 +34,7 @@ final class EditPositiveStatementViewModelTests: XCTestCase {
             positiveStatementId: positiveStatementId,
             userRepository: userRepository,
             positiveStatementRepository: positiveStatementRepository,
+            analyticsManager: analyticsManager,
             router: router
         )
     }
@@ -400,6 +403,9 @@ final class EditPositiveStatementViewModelTests: XCTestCase {
         XCTAssertEqual(router.dismiss_calledCount, 1)
         // Should show and hide isProcessing status
         XCTAssertEqual(isProcessingRecorder.results, [.value(true), .value(false)])
+        // Should send analytics event
+        XCTAssertEqual(analyticsManager.loggedEvent.count, 1)
+        XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.editPositiveStatment)
     }
 
     func test_ifAUserTapsDoneButton_andGetUserProfileThrowsAnError__itShouldShowAlert_andShouldNotUpdatePositiveStatement_andShouldNotDismissTheView__andIfUserTapsDoneButtonAgain__itShouldCallGetUserProfileAgain_shouldShowAlertAgain_andShouldUpdateIsProcessingStatus() {

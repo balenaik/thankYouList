@@ -134,5 +134,6 @@ struct EditPositiveStatementView: View {
             positiveStatementId: "",
             userRepository: DefaultUserRepository(),
             positiveStatementRepository: DefaultPositiveStatementRepository(),
+            analyticsManager: DefaultAnalyticsManager(),
             router: nil))
 }

@@ -21,6 +21,7 @@ enum AnalyticsEventConst {
     static let openHomeWidgetInstruction = "open_home_widget_instruction"
     static let addPositiveStatment = "add_positive_statement"
     static let editPositiveStatment = "edit_positive_statement"
+    static let deletePositiveStatment = "delete_positive_statement"
 }
 
 enum AnalyticsParameterConst {

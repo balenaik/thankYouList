@@ -162,7 +162,9 @@ private extension PositiveStatementListViewModel {
 
         deleteResult
             .values()
-            .sink { _ in }
+            .sink { [analyticsManager] _ in
+                analyticsManager.logEvent(eventName: AnalyticsEventConst.deletePositiveStatment)
+            }
             .store(in: &cancellable)
 
         deleteResult

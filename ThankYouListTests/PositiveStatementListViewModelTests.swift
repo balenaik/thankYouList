@@ -289,6 +289,9 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         // It should pass userId and positiveStatementId
         XCTAssertEqual(positiveStatementRepository.deletePositiveStatement_userId, userId)
         XCTAssertEqual(positiveStatementRepository.deletePositiveStatement_positiveStatementId, positiveStatementId)
+        // It shoujld send analytics event
+        XCTAssertEqual(analyticsManager.loggedEvent.count, 1)
+        XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.deletePositiveStatment)
     }
 
     func test_ifAUserTapsTapsDeleteButtonOnTheAlert_andDeleteFails__itShouldShowAnAlert() {

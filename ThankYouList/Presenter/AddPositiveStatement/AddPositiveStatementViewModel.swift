@@ -25,14 +25,17 @@ class AddPositiveStatementViewModel: ObservableObject {
     private var cancellable = Set<AnyCancellable>()
     private let userRepository: UserRepository
     private let positiveStatementRepository: PositiveStatementRepository
+    private let analyticsManager: AnalyticsManager
     private let router: AddPositiveStatementRouter?
 
     init(userRepository: UserRepository,
          positiveStatementRepository: PositiveStatementRepository,
+         analyticsManager: AnalyticsManager,
          router: AddPositiveStatementRouter?) {
         self.router = router
         self.userRepository = userRepository
         self.positiveStatementRepository = positiveStatementRepository
+        self.analyticsManager = analyticsManager
         bind()
     }
 }
@@ -110,6 +113,9 @@ private extension AddPositiveStatementViewModel {
 
         addPositiveStatementResult
             .values()
+            .handleEvents(receiveOutput: { [analyticsManager] in
+                analyticsManager.logEvent(eventName: AnalyticsEventConst.addPositiveStatment)
+            })
             .sink { [router] in
                 router?.dismiss()
             }

@@ -20,6 +20,7 @@ class AddPositiveStatementCoordinator: Coordinator {
         let viewModel = AddPositiveStatementViewModel(
             userRepository: DefaultUserRepository(),
             positiveStatementRepository: DefaultPositiveStatementRepository(),
+            analyticsManager: DefaultAnalyticsManager(),
             router: self)
         let view = UIHostingController(
             rootView: AddPositiveStatementView(viewModel: viewModel)

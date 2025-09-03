@@ -26,16 +26,19 @@ class AddPositiveStatementViewModel: ObservableObject {
     private let userRepository: UserRepository
     private let positiveStatementRepository: PositiveStatementRepository
     private let analyticsManager: AnalyticsManager
+    private let widgetManager: WidgetManager
     private let router: AddPositiveStatementRouter?
 
     init(userRepository: UserRepository,
          positiveStatementRepository: PositiveStatementRepository,
          analyticsManager: AnalyticsManager,
+         widgetManager: WidgetManager,
          router: AddPositiveStatementRouter?) {
         self.router = router
         self.userRepository = userRepository
         self.positiveStatementRepository = positiveStatementRepository
         self.analyticsManager = analyticsManager
+        self.widgetManager = widgetManager
         bind()
     }
 }
@@ -113,8 +116,9 @@ private extension AddPositiveStatementViewModel {
 
         addPositiveStatementResult
             .values()
-            .handleEvents(receiveOutput: { [analyticsManager] in
+            .handleEvents(receiveOutput: { [analyticsManager, widgetManager] in
                 analyticsManager.logEvent(eventName: AnalyticsEventConst.addPositiveStatment)
+                widgetManager.reloadPositiveStatementWidget()
             })
             .sink { [router] in
                 router?.dismiss()

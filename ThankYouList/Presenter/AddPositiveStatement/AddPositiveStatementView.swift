@@ -131,5 +131,6 @@ struct AddPositiveStatementView: View {
             userRepository: DefaultUserRepository(),
             positiveStatementRepository: DefaultPositiveStatementRepository(),
             analyticsManager: DefaultAnalyticsManager(),
+            widgetManager: DefaultWidgetManager(),
             router: nil))
 }

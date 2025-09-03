@@ -24,6 +24,7 @@ class EditPositiveStatementCoordinator: Coordinator {
             userRepository: DefaultUserRepository(),
             positiveStatementRepository: DefaultPositiveStatementRepository(),
             analyticsManager: DefaultAnalyticsManager(),
+            widgetManager: DefaultWidgetManager(),
             router: self)
         let view = UIHostingController(
             rootView: EditPositiveStatementView(viewModel: viewModel)

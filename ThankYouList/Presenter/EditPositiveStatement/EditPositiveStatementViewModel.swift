@@ -27,18 +27,21 @@ class EditPositiveStatementViewModel: ObservableObject {
     private let userRepository: UserRepository
     private let positiveStatementRepository: PositiveStatementRepository
     private let analyticsManager: AnalyticsManager
+    private let widgetManager: WidgetManager
     private let router: EditPositiveStatementRouter?
 
     init(positiveStatementId: String,
          userRepository: UserRepository,
          positiveStatementRepository: PositiveStatementRepository,
          analyticsManager: AnalyticsManager,
+         widgetManager: WidgetManager,
          router: EditPositiveStatementRouter?) {
         self.positiveStatementId = positiveStatementId
         self.router = router
         self.userRepository = userRepository
         self.positiveStatementRepository = positiveStatementRepository
         self.analyticsManager = analyticsManager
+        self.widgetManager = widgetManager
         bind()
     }
 }
@@ -160,8 +163,9 @@ private extension EditPositiveStatementViewModel {
 
         editPositiveStatementResult
             .values()
-            .handleEvents(receiveOutput: { [analyticsManager] in
+            .handleEvents(receiveOutput: { [analyticsManager, widgetManager] in
                 analyticsManager.logEvent(eventName: AnalyticsEventConst.editPositiveStatment)
+                widgetManager.reloadPositiveStatementWidget()
             })
             .sink { [router] in
                 router?.dismiss()

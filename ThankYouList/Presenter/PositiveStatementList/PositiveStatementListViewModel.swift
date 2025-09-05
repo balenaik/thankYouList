@@ -30,19 +30,22 @@ class PositiveStatementListViewModel: ObservableObject {
     private let router: PositiveStatementListRouter?
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private let analyticsManager: AnalyticsManager
+    private let widgetManager: WidgetManager
 
     init(
         userRepository: UserRepository,
         positiveStatementRepository: PositiveStatementRepository,
         router: PositiveStatementListRouter?,
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
-        analyticsManager: AnalyticsManager
+        analyticsManager: AnalyticsManager,
+        widgetManager: WidgetManager
     ) {
         self.userRepository = userRepository
         self.positiveStatementRepository = positiveStatementRepository
         self.router = router
         self.scheduler = scheduler
         self.analyticsManager = analyticsManager
+        self.widgetManager = widgetManager
         bind()
     }
 
@@ -162,8 +165,9 @@ private extension PositiveStatementListViewModel {
 
         deleteResult
             .values()
-            .sink { [analyticsManager] _ in
+            .sink { [analyticsManager, widgetManager] _ in
                 analyticsManager.logEvent(eventName: AnalyticsEventConst.deletePositiveStatment)
+                widgetManager.reloadPositiveStatementWidget()
             }
             .store(in: &cancellable)
 

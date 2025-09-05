@@ -19,6 +19,7 @@ final class PositiveStatementListViewModelTests: XCTestCase {
     private var router: MockPositiveStatementListRouter!
     private var scheduler: TestSchedulerOf<DispatchQueue>!
     private var analyticsManager: MockAnalyticsManager!
+    private var widgetManager: MockWidgetManager!
 
     override func setUp() {
         userRepository = MockUserRepository()
@@ -26,13 +27,15 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         router = MockPositiveStatementListRouter()
         scheduler = DispatchQueue.test
         analyticsManager = MockAnalyticsManager()
+        widgetManager = MockWidgetManager()
 
         viewModel = PositiveStatementListViewModel(
             userRepository: userRepository,
             positiveStatementRepository: positiveStatementRepository,
             router: router,
             scheduler: scheduler.eraseToAnyScheduler(),
-            analyticsManager: analyticsManager
+            analyticsManager: analyticsManager,
+            widgetManager: widgetManager
         )
     }
 
@@ -272,6 +275,7 @@ final class PositiveStatementListViewModelTests: XCTestCase {
 
         // onAppear (to get userProfile)
         viewModel.inputs.onAppear.send()
+        analyticsManager.loggedEvent = []
         // User taps positive statment menu button
         let positiveStatementId = "positiveStatementId"
         viewModel.inputs.positiveStatementMenuButtonDidTap.send(positiveStatementId)
@@ -292,6 +296,8 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         // It shoujld send analytics event
         XCTAssertEqual(analyticsManager.loggedEvent.count, 1)
         XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.deletePositiveStatment)
+        // Should reload widget
+        XCTAssertEqual(widgetManager.reloadPositiveStatementWidget_calledCount, 1)
     }
 
     func test_ifAUserTapsTapsDeleteButtonOnTheAlert_andDeleteFails__itShouldShowAnAlert() {

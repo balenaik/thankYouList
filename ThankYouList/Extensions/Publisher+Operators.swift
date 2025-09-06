@@ -14,8 +14,23 @@ extension Publisher {
         _ other: Source,
         resultSelector: @escaping (Output, Source.Output) -> Result)
     -> AnyPublisher<Result, Failure> where Source.Failure == Failure {
-        Publishers.CombineLatest(self.map { ($0, UUID()) },
-                                 other)
+        Publishers.CombineLatest(self.map { ($0, UUID()) }.map { (value: $0, date: Date()) },
+                                 other.map { (value: $0, date: Date()) })
+            .scan(nil as ((Self.Output, UUID)?, Source.Output)?, { accumulator, value in
+                if accumulator == nil,
+                   value.0.date < value.1.date {
+                    // When the first events come in the order of self -> other,
+                    // we want to prevent sending a new event
+                    return (nil, value.1.value)
+                } else {
+                    return (value.0.value, value.1.value)
+                }
+            })
+            .compactMap { event -> ((Self.Output, UUID), Source.Output)? in
+                guard let event = event,
+                      let selfEvent = event.0 else { return nil }
+                return (selfEvent, event.1)
+            }
             .removeDuplicates(by: { prev, current in
                 prev.0.1 == current.0.1
             })
@@ -70,26 +85,16 @@ extension Publisher {
         }.eraseToAnyPublisher()
     }
 
-    func asFuture() -> Future<Output, Failure> {
-        return Future { promise in
-            var ticket: AnyCancellable?
-            ticket = self.sink(
-                receiveCompletion: {
-                    ticket?.cancel()
-                    ticket = nil
-                    switch $0 {
-                    case let .failure(error):
-                        promise(.failure(error))
-                    case .finished:
-                        break
-                    }
-                },
-                receiveValue: {
-                    ticket?.cancel()
-                    ticket = nil
-                    promise(.success($0))
-                }
-            )
+    func sendEvent<S>(_ output: S, to subject: PassthroughSubject<S, Never>) -> Publishers.HandleEvents<Self> {
+        handleEvents(receiveOutput: { _ in subject.send(output) })
+    }
+
+    func withUnretained<T: AnyObject>(_ object: T) -> Publishers.CompactMap<Self, (T, Self.Output)> {
+        compactMap { [weak object] output in
+            guard let object = object else {
+                return nil
+            }
+            return (object, output)
         }
     }
 }

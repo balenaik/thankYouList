@@ -39,7 +39,8 @@ extension MyPageCoordinator: MyPageRouter {
     }
 
     func switchToLogin() {
-        guard let window = UIApplication.shared.windows.first(where: \.isKeyWindow) else {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = windowScene.windows.first else {
             return
         }
         let loginCoordinator = LoginCoordinator(window: window)
@@ -60,6 +61,12 @@ extension MyPageCoordinator: MyPageRouter {
     func presentConfirmDeleteAccount() {
         guard let viewController = viewController else { return }
         let coordinator = ConfirmDeleteAccountCoordinator(presentingViewController: viewController)
+        coordinator.start()
+    }
+
+    func pushToPositiveStatementList() {
+        guard let navigationController = viewController as? UINavigationController else { return }
+        let coordinator = PositiveStatementListCoordinator(navigationController: navigationController)
         coordinator.start()
     }
 

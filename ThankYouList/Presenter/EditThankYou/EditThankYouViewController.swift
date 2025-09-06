@@ -11,6 +11,7 @@ import UIKit
 import FirebaseFirestore
 import FirebaseAuth
 import Firebase
+import SharedResources
 
 private let textViewSideMargin = CGFloat(12)
 private let textViewTopBottomMargin = CGFloat(12)
@@ -30,7 +31,6 @@ class EditThankYouViewController: UIViewController {
     // MARK: - Properties
     var editingThankYouId: String?
     private var editingThankYou: ThankYouData?
-    private var delegate = UIApplication.shared.delegate as! AppDelegate
     private var isPosting = false
     private var selectedDate = Date() {
         didSet {
@@ -96,7 +96,7 @@ extension EditThankYouViewController {
         }
         guard let userId = Auth.auth().currentUser?.uid else { return }
         let userId16string = String(userId.prefix(16))
-        let encryptedValue = Crypto().encryptString(plainText: thankYouTextView.text,
+        let encryptedValue = CryptoManager().encryptString(plainText: thankYouTextView.text,
                                                     key: userId16string)
         let thankYouData = ThankYouData(id: "",
                                         value: "",
@@ -131,8 +131,8 @@ private extension EditThankYouViewController {
     }
 
     func setupEditThankYouData() {
-        guard let editingThankYou = GlobalThankYouData.sharedInstance
-                .thankYouDataList.first(where: { $0.id == editingThankYouId }) else {
+        guard let editingThankYou = DefaultInMemoryDataStore.shared
+                .thankYouList.first(where: { $0.id == editingThankYouId }) else {
             router?.dismiss()
             return
         }
@@ -180,7 +180,6 @@ private extension EditThankYouViewController {
                     return
                 }
                 self.analyticsManager.logEvent(eventName: AnalyticsEventConst.editThankYou,
-                                               userId: userId,
                                                targetDate: editThankYouData.date)
                 self.dismiss(animated: true, completion: nil)
             }
@@ -195,11 +194,11 @@ private extension EditThankYouViewController {
     }
 
     func showDiscardAlert() {
-        let discardAction = UIAlertAction(title: R.string.localizable.discard(),
-                                          style: .destructive) { [weak self] _ in
+        let discardAction = AlertAction(title: R.string.localizable.discard(),
+                                        style: .destructive) { [weak self] in
             self?.router?.dismiss()
         }
-        let cancelAction = UIAlertAction(
+        let cancelAction = AlertAction(
             title: R.string.localizable.edit_thank_you_discard_cancel(),
             style: .cancel)
         router?.presentAlert(title: R.string.localizable.edit_thank_you_discard_title(),

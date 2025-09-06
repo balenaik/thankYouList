@@ -6,14 +6,15 @@
 //  Copyright © 2018 Aika Yamada. All rights reserved.
 //
 
-import UIKit
-import Firebase
+import AuthenticationServices
 import FBSDKCoreKit
 import FBSDKLoginKit
+import Firebase
+import FirebaseAuth
 import GoogleSignIn
-import AuthenticationServices
-
-private let appleProviderId = "apple.com"
+import SharedResources
+import UIKit
+import WidgetKit
 
 protocol LoginRouter {
     func switchToMainTabBar()
@@ -55,10 +56,9 @@ extension LoginViewController {
     
     @IBAction func tapGoogleLoginButton(_ sender: Any) {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-        let configuration = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = GIDConfiguration(clientID: clientID)
 
-        GIDSignIn.sharedInstance.signIn(with: configuration,
-                                        presenting: self) { [weak self] (user, error) in
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] (result, error) in
             guard let self = self else { return }
             if let error = error {
                 print(error.localizedDescription)
@@ -66,12 +66,13 @@ extension LoginViewController {
                                     message: R.string.localizable.error_authenticate())
                 return
             }
-            guard let auth = user?.authentication,
-                  let idToken = auth.idToken else { return }
-            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                           accessToken: auth.accessToken)
+            guard let idToken = result?.user.idToken,
+                  let accessToken = result?.user.accessToken else { return }
+            let credential = GoogleAuthProvider.credential(
+                withIDToken: idToken.tokenString,
+                accessToken: accessToken.tokenString)
             self.signIn(credential: credential,
-                        email: user?.profile?.email)
+                        email: result?.user.profile?.email)
         }
     }
 
@@ -110,6 +111,7 @@ private extension LoginViewController {
             if let email = email {
                 self?.updateUserEmail(email: email)
             }
+            WidgetCenter.shared.reloadTimelines(ofKind: AppConst.positiveStatementWidgetKind)
             self?.router?.switchToMainTabBar()
         }
     }
@@ -137,7 +139,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 return
             }
             // Initialize a Firebase credential.
-            let credential = OAuthProvider.credential(withProviderID: appleProviderId,
+            let credential = OAuthProvider.credential(providerID: .apple,
                                                       idToken: idTokenString,
                                                       rawNonce: nonce)
             var name: String?

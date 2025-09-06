@@ -28,6 +28,7 @@ protocol UserRepository {
     func getUserProfile() -> Future<Profile, Error>
     func reAuthenticateToProviderIfNeeded() -> Future<Void, Error>
     func deleteAccount() -> Future<Void, Error>
+    func observeAuthenticationChanges() -> AnyPublisher<String?, Error>
 }
 
 struct DefaultUserRepository: UserRepository {
@@ -82,6 +83,17 @@ struct DefaultUserRepository: UserRepository {
             .eraseToAnyPublisher()
             .asFuture()
     }
+
+    func observeAuthenticationChanges() -> AnyPublisher<String?, Error> {
+        AnyPublisher.create { subscriber in
+            let listner = Auth.auth().addStateDidChangeListener { _, user in
+                subscriber.onNext(user?.uid)
+            }
+            return AnyCancellable {
+                Auth.auth().removeStateDidChangeListener(listner)
+            }
+        }
+    }
 }
 
 private extension DefaultUserRepository {
@@ -99,14 +111,15 @@ private extension DefaultUserRepository {
         let authCredential: AuthCredential
         switch provider {
         case .google:
-            let authentication = GIDSignIn.sharedInstance.currentUser?.authentication
-            guard let idToken = authentication?.idToken,
-                  let accessToken = authentication?.accessToken else {
+            guard let currentUser = GIDSignIn.sharedInstance.currentUser,
+                  let idToken = currentUser.idToken else {
                 return Fail(error: UserRepositoryError.tokenNotFound)
                     .asFuture()
             }
-            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                           accessToken: accessToken)
+            let accessToken = currentUser.accessToken
+            let credential = GoogleAuthProvider.credential(
+                withIDToken: idToken.tokenString,
+                accessToken: accessToken.tokenString)
             authCredential = credential
         case .facebook:
             guard let tokenString = AccessToken.current?.tokenString else {

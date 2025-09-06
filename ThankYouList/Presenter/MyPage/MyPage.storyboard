@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4wp-4j-dO9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4wp-4j-dO9">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -52,7 +52,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="j4Q-6b-AdV">
-                        <barButtonItem key="leftBarButtonItem" image="icCancel" id="iik-xr-Wxb">
+                        <barButtonItem key="leftBarButtonItem" image="icClose24" id="iik-xr-Wxb">
                             <connections>
                                 <action selector="tapClose:" destination="4wp-4j-dO9" id="DUw-fV-KJk"/>
                             </connections>
@@ -69,7 +69,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icCancel" width="21" height="21"/>
+        <image name="icClose24" width="24" height="24"/>
         <namedColor name="defaultBackground">
             <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

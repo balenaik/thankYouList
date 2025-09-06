@@ -66,7 +66,7 @@ final class ConfirmDeleteAccountViewModelTests: XCTestCase {
         }
         scheduler.schedule(after: 20) {
             XCTAssertEqual(self.router.dismiss_calledCount, 0)
-            self.viewModel.bindings.alertItem?.okAction()
+            self.viewModel.bindings.alertItem?.primaryAction?.action?()
         }
 
         scheduler.resume()
@@ -153,7 +153,7 @@ final class ConfirmDeleteAccountViewModelTests: XCTestCase {
         }
         scheduler.schedule(after: 30) {
             XCTAssertEqual(self.router.switchToLogin_calledCount, 0)
-            self.viewModel.bindings.alertItem?.okAction()
+            self.viewModel.bindings.alertItem?.primaryAction?.action?()
         }
 
         scheduler.resume()
@@ -171,9 +171,8 @@ final class ConfirmDeleteAccountViewModelTests: XCTestCase {
 
     func test_ifTheUserOpensTheScreen_whenHisEmailIsRegistered_inputHisEmailOnTextField_tapDeleteButton_andDeleteSucceeded__itShouldPostAnalyticsEvent() {
         let userEmail = "user@email.com"
-        let userId = "userId"
         userRepository.getUserProfile_result =
-            Just(Profile(id: userId, name: "", email: userEmail, imageUrl: nil))
+            Just(Profile(id: "userId", name: "", email: userEmail, imageUrl: nil))
             .setFailureType(to: Error.self).asFuture()
         userRepository.deleteAccount_result = Just(())
             .setFailureType(to: Error.self).asFuture()
@@ -188,8 +187,8 @@ final class ConfirmDeleteAccountViewModelTests: XCTestCase {
 
         scheduler.resume()
 
-        XCTAssertEqual(analyticsManager.logEvent_eventName, AnalyticsEventConst.deleteAccount)
-        XCTAssertEqual(analyticsManager.logEvent_userId, userId)
+        XCTAssertEqual(analyticsManager.loggedEvent.count, 1)
+        XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.deleteAccount)
     }
 
     func test_ifTheUserOpensTheScreen_whenHisEmailIsRegistered_inputHisEmailOnTextField_tapDeleteButton_andDeleteFailed__itShouldShowAlert() {
@@ -282,7 +281,6 @@ private extension TestSequence {
 }
 
 private class MockConfirmDeleteAccouuntRouter: ConfirmDeleteAccountRouter {
-
     var dismiss_calledCount = 0
     func dismiss() {
         dismiss_calledCount += 1
@@ -292,5 +290,4 @@ private class MockConfirmDeleteAccouuntRouter: ConfirmDeleteAccountRouter {
     func switchToLogin() {
         switchToLogin_calledCount += 1
     }
-
 }

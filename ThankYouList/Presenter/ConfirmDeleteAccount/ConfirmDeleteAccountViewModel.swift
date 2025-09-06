@@ -60,7 +60,7 @@ private extension ConfirmDeleteAccountViewModel {
             .map { _ in AlertItem(
                 title: R.string.localizable.confirm_delete_account_error_title(),
                 message: R.string.localizable.confirm_delete_account_error_message(),
-                okAction: { router?.dismiss() })
+                primaryAction: .init(title: R.string.localizable.ok(), action: { router?.dismiss() }))
             }
             .assign(to: \.alertItem, on: bindings)
             .store(in: &cancellable)
@@ -96,16 +96,17 @@ private extension ConfirmDeleteAccountViewModel {
 
         deleteAccountResult
             .values()
-            .flatMap { _ in profile.values() }
-            .handleEvents(receiveOutput: { [analyticsManager] profile in
-                analyticsManager.logEvent(eventName: AnalyticsEventConst.deleteAccount,
-                                          userId: profile.id)
+            .handleEvents(receiveOutput: { [analyticsManager] in
+                analyticsManager.logEvent(eventName: AnalyticsEventConst.deleteAccount)
             })
             .map { _ in
-                AlertItem(title: R.string.localizable.confirm_delete_account_completed_title(),
-                          message: nil) {
-                    router?.switchToLogin()
-                }
+                AlertItem(
+                    title: R.string.localizable.confirm_delete_account_completed_title(),
+                    message: nil,
+                    primaryAction: .init(title: R.string.localizable.ok(), action: {
+                        router?.switchToLogin()
+                    })
+                )
             }
             .assign(to: \.alertItem, on: bindings)
             .store(in: &cancellable)

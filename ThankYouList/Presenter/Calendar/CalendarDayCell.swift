@@ -31,7 +31,7 @@ class CalendarDayCell: JTAppleCell {
 
 // MARK: - Public
 extension CalendarDayCell {
-    func bind(cellState: CellState, thankYouCount: Int) {
+    func bind(cellState: CellState, thankYouCount: Int, isSelected: Bool) {
         var dateLabelColor: UIColor
         switch cellState.dateBelongsTo {
         case .thisMonth:
@@ -39,16 +39,13 @@ extension CalendarDayCell {
         default:
             dateLabelColor = .black26
         }
-        if Calendar.current.isDateInToday(cellState.date) {
+        if Calendar(identifier: .gregorian).isDateInToday(cellState.date) {
             dateLabelColor = .primary900
         }
         dateLabel.text = cellState.text
         dateLabel.textColor = dateLabelColor
 
         bindThankYouCount(count: thankYouCount)
-    }
-
-    func bindSelection(isSelected: Bool) {
         selectedView.isHidden = !isSelected
     }
 }
@@ -56,22 +53,9 @@ extension CalendarDayCell {
 // MARK: - Private
 private extension CalendarDayCell {
     func bindThankYouCount(count: Int) {
-        oneDotView.isHidden = true
-        twoDotsView.isHidden = true
-        threeDotsView.isHidden = true
-        dotsAndPlusView.isHidden = true
-
-        switch count {
-        case 0:
-            break
-        case 1:
-            oneDotView.isHidden = false
-        case 2:
-            twoDotsView.isHidden = false
-        case 3:
-            threeDotsView.isHidden = false
-        default:
-            dotsAndPlusView.isHidden = false
-        }
+        oneDotView.isHidden = count != 1
+        twoDotsView.isHidden = count != 2
+        threeDotsView.isHidden = count != 3
+        dotsAndPlusView.isHidden = count < 4
     }
 }

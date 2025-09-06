@@ -13,6 +13,10 @@ extension UIColor {
         return UIColor(colorWithHexValue: 0xfcb5b5)
     }
 
+    static var primary100: UIColor {
+        return UIColor(colorWithHexValue: 0xfee9e9)
+    }
+
     class var primary200: UIColor {
         return UIColor(colorWithHexValue: 0xfedada)
     }

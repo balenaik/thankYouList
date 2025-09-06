@@ -26,60 +26,42 @@ struct ConfirmDeleteAccountView: View {
 
     var body: some View {
         NavigationView {
-            ZStack {
-                Color.defaultBackground
-                    .ignoresSafeArea()
+            VStack {
+                Spacer()
+                    .frame(height: topSpacerHeight)
 
-                VStack {
-                    Spacer()
-                        .frame(height: topSpacerHeight)
+                Text(R.string.localizable.confirm_delete_account_description)
+                    .font(.regularAvenir(ofSize: 16))
+                    .foregroundColor(.text)
+                    .padding(.horizontal, componentsSideMargin)
+                    .padding(.vertical, componentsVerticalMargin)
 
-                    Text(R.string.localizable.confirm_delete_account_description)
-                        .font(.regularAvenir(ofSize: 16))
-                        .foregroundColor(.text)
-                        .padding(.horizontal, componentsSideMargin)
-                        .padding(.vertical, componentsVerticalMargin)
+                TextField(viewModel.outputs.emailTextFieldPlaceHolder.value,
+                          text: $viewModel.bindings.emailTextFieldText)
+                .font(.regularAvenir(ofSize: 16))
+                .padding(.all, textFieldPadding)
+                .background(Color.white)
+                .cornerRadius(componentsCornerRadius)
+                .padding(.horizontal, componentsSideMargin)
+                .padding(.vertical, componentsVerticalMargin)
 
-                    TextField(viewModel.outputs.emailTextFieldPlaceHolder.value,
-                              text: $viewModel.bindings.emailTextFieldText)
-                        .font(.regularAvenir(ofSize: 16))
-                        .padding(.all, textFieldPadding)
-                        .background(Color.white)
-                        .cornerRadius(componentsCornerRadius)
-                        .padding(.horizontal, componentsSideMargin)
-                        .padding(.vertical, componentsVerticalMargin)
-
-                    Button(R.string.localizable.confirm_delete_account_delete_account()) {
-                        viewModel.inputs.deleteAccountButtonDidTap.send(())
-                    }
-                    .disabled(viewModel.outputs.isDeleteAccountButtonDisabled)
-                    .buttonStyle(DeleteAccountButtonStyle())
-
-                    Button(R.string.localizable.cancel()) {
-                        viewModel.inputs.cancelButtonDidTap.send(())
-                    }
-                    .buttonStyle(CancelButtonStyle())
-
-                    Spacer()
+                Button(R.string.localizable.confirm_delete_account_delete_account()) {
+                    viewModel.inputs.deleteAccountButtonDidTap.send(())
                 }
-                .navigationBarTitle(R.string.localizable.confirm_delete_account_title())
-                .toolbar {
-                    ToolbarItem(placement: .cancellationAction) {
-                        Button(action: {
-                            viewModel.inputs.cancelButtonDidTap.send(())
-                        }) {
-                            Image(R.image.icCancel)
-                                .foregroundColor(.text)
-                        }
-                    }
+                .disabled(viewModel.outputs.isDeleteAccountButtonDisabled)
+                .buttonStyle(DeleteAccountButtonStyle())
+
+                Button(R.string.localizable.cancel()) {
+                    viewModel.inputs.cancelButtonDidTap.send(())
                 }
-                .alert(item: $alertItem) { alertItem in
-                    Alert(title: Text(alertItem.title),
-                          message: Text(alertItem.message ?? ""),
-                          dismissButton: .default(Text(R.string.localizable.ok()),
-                                                  action: alertItem.okAction))
-                }
+                .buttonStyle(CancelButtonStyle())
+
+                Spacer()
             }
+            .navigationBarTitle(R.string.localizable.confirm_delete_account_title())
+            .cancelButtonToolbar { viewModel.inputs.cancelButtonDidTap.send() }
+            .alert(item: $alertItem) { alertItem in alertItem.toAlert }
+            .screenBackground(Color.defaultBackground)
         }
         .accentColor(.text) // Remove this when finish supporting iOS 14.x
         .onReceive(viewModel.bindings.$alertItem) { alertItem in

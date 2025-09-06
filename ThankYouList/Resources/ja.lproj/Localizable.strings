@@ -46,6 +46,7 @@
 "calendar_tabbar_title" = "calendar";
 
 "mypage_title" = "アカウント";
+"mypage_positive_statements" = "ポジティブメッセージ";
 "mypage_rate" = "Thank You Listを評価する";
 "mypage_feedback" = "フィードバック";
 "mypage_privacy_policy" = "プライバシーポリシー";
@@ -73,9 +74,36 @@
 "error" = "エラー";
 "error_authenticate" = "認証に失敗しました。";
 "try_again_later_message" = "問題が発生しました。もう一度お試しください。";
+"something_went_wrong_title" = "問題が発生しました";
 
 "date_format_thankyou_date" = "yyyy/MM/dd";
 "date_format_year_month" = "yyyy/MM";
 "date_format_month_year" = "yyyy年 MMMM";
 
 "privacy_policy_url" = "https://thank-you-list-dc0da.firebaseapp.com/ja.html";
+
+"positive_statement_list_title" = "ポジティブメッセージ";
+"positive_statement_list_description" = "あなたを元気づけるポジティブな言葉を追加しましょう。あなたの言葉はホーム画面のウィジェットに表示されます。最大10個まで追加できます。";
+"positive_statement_list_widget_setup_hint_text" = "ホーム画面にウィジェットを追加するには？";
+"positive_statement_list_error_message" = "ポジティブメッセージを読み込めません。しばらくしてからやりなおしてください。";
+"positive_statement_empty_title" = "ポジティブメッセージを追加しよう";
+"positive_statement_list_add_button_text" = "ポジティブメッセージを追加";
+"positive_statement_list_confirm_delete_title" = "ポジティブメッセージを削除";
+"positive_statement_list_confirm_delete_message" = "本当にこのポジティブメッセージを削除してよろしいですか?";
+
+"add_positive_statement_title" = "あなたの理想の未来はどんな状態ですか？";
+"add_positive_statement_description" = "あなたの理想の未来、またはなりたい自分の姿をイメージしましょう。\nそして「私は〜ます。」「私は〜です。」という形で、あなたが現在すでにそうであるかのように言葉にしてみましょう。";
+"add_positive_statement_textfield_placeholder" = "私は今日も生きていることに感謝し、幸せで満たされています。";
+"add_positive_statement_character_count_text" = "%@/%@ 文字";
+"add_positive_statement_add_error" = "追加できませんでした"; // TODO: Need to consider the wording later
+
+"edit_positive_statement_title" = "あなたの理想の未来はどんな状態ですか？";
+"edit_positive_statement_description" = "あなたの理想の未来、またはなりたい自分の姿をイメージしましょう。\nそして「私は〜ます。」「私は〜です。」という形で、あなたが現在すでにそうであるかのように言葉にしてみましょう。";
+"edit_positive_statement_textfield_placeholder" = "私は今日も生きていることに感謝し、幸せで満たされています。";
+"edit_positive_statement_character_count_text" = "%@/%@ 文字";
+"edit_positive_statement_edit_error" = "編集できませんでした"; // TODO: Need to consider the wording later
+
+"home_widget_instruction_title" = "ウィジェットの追加方法";
+"home_widget_instruction_page1_description" = "ホーム画面の空いている場所を長押しし、\nアプリアイコンが揺れ始めるまで待ちます。";
+"home_widget_instruction_page2_description" = "画面左上の「＋」ボタンをタップします。";
+"home_widget_instruction_page3_description" = "「Thank You List」を検索し、ウィジェットをホーム画面に移動すれば準備完了です！";

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SharedResources
 import UIKit
 
 private let sectionLabelSkeletonColor = UIColor.white

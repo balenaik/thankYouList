@@ -1,0 +1,15 @@
+//
+//  AppConst.swift
+//  ThankYouList
+//
+//  Created by Aika Yamada on 2024/10/27.
+//  Copyright © 2024 Aika Yamada. All rights reserved.
+//
+
+public enum AppConst {
+    public static let teamId = "6JDKJKDJ28"
+    public static let appAccessGroupName = "com.balenaik.ThankYouList"
+    public static let teamIdAndAccessGroup = "\(AppConst.teamId).\(AppConst.appAccessGroupName)"
+    public static let deeplinkPrefix = "thankyoulist://"
+    public static let positiveStatementWidgetKind: String = "PositiveStatementWidget"
+}

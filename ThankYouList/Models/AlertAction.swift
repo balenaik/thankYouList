@@ -6,6 +6,7 @@
 //  Copyright © 2024 Aika Yamada. All rights reserved.
 //
 
+import SwiftUI
 import UIKit
 
 class AlertAction {
@@ -41,6 +42,14 @@ extension AlertAction {
         UIAlertAction(title: title,
                       style: style.uiAlertActionStyle,
                       handler: { _ in self.action?() })
+    }
+
+    var toAlertButton: Alert.Button {
+        switch style {
+        case .normal: .default(Text(title), action: action ?? {})
+        case .cancel: .cancel(Text(title), action: action ?? {})
+        case .destructive: .destructive(Text(title), action: action ?? {})
+        }
     }
 }
 

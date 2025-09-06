@@ -85,30 +85,16 @@ extension Publisher {
         }.eraseToAnyPublisher()
     }
 
-    func asFuture() -> Future<Output, Failure> {
-        return Future { promise in
-            var ticket: AnyCancellable?
-            ticket = self.sink(
-                receiveCompletion: {
-                    ticket?.cancel()
-                    ticket = nil
-                    switch $0 {
-                    case let .failure(error):
-                        promise(.failure(error))
-                    case .finished:
-                        break
-                    }
-                },
-                receiveValue: {
-                    ticket?.cancel()
-                    ticket = nil
-                    promise(.success($0))
-                }
-            )
-        }
-    }
-
     func sendEvent<S>(_ output: S, to subject: PassthroughSubject<S, Never>) -> Publishers.HandleEvents<Self> {
         handleEvents(receiveOutput: { _ in subject.send(output) })
+    }
+
+    func withUnretained<T: AnyObject>(_ object: T) -> Publishers.CompactMap<Self, (T, Self.Output)> {
+        compactMap { [weak object] output in
+            guard let object = object else {
+                return nil
+            }
+            return (object, output)
+        }
     }
 }

@@ -7,9 +7,11 @@
 //
 
 import Foundation
-import UIKit
-import Firebase
+import FirebaseAuth
 import MessageUI
+import SharedResources
+import UIKit
+import WidgetKit
 
 private let feedbackTo = "balenaik+thankyoulist-feedback@gmail.com"
 private let feedbackSubject = "Thank You List Feedback"
@@ -20,6 +22,7 @@ protocol MyPageRouter: Router {
     func openAppStoreReview()
     func presentPrivacyPolicy()
     func presentConfirmDeleteAccount()
+    func pushToPositiveStatementList()
     func openDefaultMailAppIfAvailable(to: String, subject: String) -> Bool
     func openGmailAppIfAvailable(to: String, subject: String) -> Bool
 }
@@ -41,6 +44,11 @@ class MyPageViewController: UIViewController {
         loadMyProfile()
         logEvent()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
 }
 
 // MARK: - IBActions
@@ -59,6 +67,7 @@ private extension MyPageViewController {
 
     func setupTableItems() {
         let myInfoSection = [TableItem(item: .myInformation, style: .profieInfo)]
+        let settingSection = [TableItem(item: .positiveStatements, style: .button)]
         let additionalSection = [
             TableItem(item: .rate, style: .button),
             TableItem(item: .feedback, style: .button),
@@ -66,7 +75,13 @@ private extension MyPageViewController {
         ]
         let logoutSection = [TableItem(item: .logout, style: .button)]
         let deleteAccountSection = [TableItem(item: .deleteAccount, style: .button)]
-        tableItems.append(contentsOf: [myInfoSection, additionalSection, logoutSection, deleteAccountSection])
+        tableItems.append(contentsOf: [
+            myInfoSection,
+            settingSection,
+            additionalSection,
+            logoutSection,
+            deleteAccountSection
+        ])
     }
 
     func loadMyProfile() {
@@ -79,8 +94,7 @@ private extension MyPageViewController {
     }
 
     func logEvent() {
-        guard let user = Auth.auth().currentUser else { return }
-        analyticsManager.logEvent(eventName: AnalyticsEventConst.showMyPage, userId: user.uid)
+        analyticsManager.logEvent(eventName: AnalyticsEventConst.showMyPage)
     }
 
     func showRating() {
@@ -122,6 +136,7 @@ private extension MyPageViewController {
     func logout() {
         do {
             try Auth.auth().signOut()
+            WidgetCenter.shared.reloadTimelines(ofKind: AppConst.positiveStatementWidgetKind)
             self.showLoginViewController()
         } catch let error as NSError {
             print(error.localizedDescription)
@@ -197,6 +212,8 @@ extension MyPageViewController: UITableViewDelegate {
             return
         }
         switch item.item {
+        case .positiveStatements:
+            router?.pushToPositiveStatementList()
         case .rate:
             showRating()
         case .feedback:

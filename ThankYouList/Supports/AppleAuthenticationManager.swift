@@ -40,7 +40,7 @@ class AppleAuthenticationManager: NSObject, ASAuthorizationControllerDelegate {
                     throw AppleAuthenticationError.tokenNotFound
                 }
                 return OAuthProvider.credential(
-                    withProviderID: AuthProvider.apple.rawValue,
+                    providerID: .apple,
                     idToken: tokenString,
                     rawNonce: self?.currentNonce ?? ""
                 )

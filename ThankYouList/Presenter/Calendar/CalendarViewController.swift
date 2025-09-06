@@ -8,7 +8,6 @@
 
 import UIKit
 import JTAppleCalendar
-import FirebaseAuth
 import Combine
 import CombineCocoa
 import FloatingPanel
@@ -337,11 +336,9 @@ extension CalendarViewController: UITableViewDataSource, UITableViewDelegate {
 // MARK: - SmallListViewDelegate
 extension CalendarViewController: SmallListViewDelegate {
     func smallListViewBecomeFullScreen(_ view: SmallListView) {
-        guard let user = Auth.auth().currentUser,
-            let selectedDate = calendarView.selectedDates.getSafely(at: 0) else { return }
+        guard let selectedDate = calendarView.selectedDates.getSafely(at: 0) else { return }
         analyticsManager.logEvent(
             eventName: AnalyticsEventConst.calendarSmallListViewFullScreen,
-            userId: user.uid,
             targetDate: selectedDate)
     }
 }

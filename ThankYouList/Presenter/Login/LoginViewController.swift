@@ -6,14 +6,15 @@
 //  Copyright © 2018 Aika Yamada. All rights reserved.
 //
 
-import UIKit
-import Firebase
+import AuthenticationServices
 import FBSDKCoreKit
 import FBSDKLoginKit
+import Firebase
+import FirebaseAuth
 import GoogleSignIn
-import AuthenticationServices
-
-private let appleProviderId = "apple.com"
+import SharedResources
+import UIKit
+import WidgetKit
 
 protocol LoginRouter {
     func switchToMainTabBar()
@@ -110,6 +111,7 @@ private extension LoginViewController {
             if let email = email {
                 self?.updateUserEmail(email: email)
             }
+            WidgetCenter.shared.reloadTimelines(ofKind: AppConst.positiveStatementWidgetKind)
             self?.router?.switchToMainTabBar()
         }
     }
@@ -137,7 +139,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 return
             }
             // Initialize a Firebase credential.
-            let credential = OAuthProvider.credential(withProviderID: appleProviderId,
+            let credential = OAuthProvider.credential(providerID: .apple,
                                                       idToken: idTokenString,
                                                       rawNonce: nonce)
             var name: String?

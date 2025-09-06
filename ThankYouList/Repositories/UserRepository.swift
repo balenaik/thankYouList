@@ -28,6 +28,7 @@ protocol UserRepository {
     func getUserProfile() -> Future<Profile, Error>
     func reAuthenticateToProviderIfNeeded() -> Future<Void, Error>
     func deleteAccount() -> Future<Void, Error>
+    func observeAuthenticationChanges() -> AnyPublisher<String?, Error>
 }
 
 struct DefaultUserRepository: UserRepository {
@@ -81,6 +82,17 @@ struct DefaultUserRepository: UserRepository {
             }
             .eraseToAnyPublisher()
             .asFuture()
+    }
+
+    func observeAuthenticationChanges() -> AnyPublisher<String?, Error> {
+        AnyPublisher.create { subscriber in
+            let listner = Auth.auth().addStateDidChangeListener { _, user in
+                subscriber.onNext(user?.uid)
+            }
+            return AnyCancellable {
+                Auth.auth().removeStateDidChangeListener(listner)
+            }
+        }
     }
 }
 

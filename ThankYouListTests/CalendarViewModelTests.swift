@@ -119,17 +119,13 @@ final class CalendarViewModelTests: XCTestCase {
         ])
     }
 
-    func test_ifUserScrollsCalendar__itShouldSendAnalyticsEvent_withUserId_andTheScrolledDate() {
-        let userId = "userId"
-        userRepository.getUserProfile_result = Just(Profile(id: userId, name: "", email: "", imageUrl: nil)).setFailureType(to: Error.self).asFuture()
-
+    func test_ifUserScrollsCalendar__itShouldSendAnalyticsEvent_withTheScrolledDate() {
         // Scrolls calendar
         let date = Date(timeIntervalSince1970: 1234566)
         viewModel.inputs.calendarDidScrollToMonth.send(date)
 
         XCTAssertEqual(analyticsManager.loggedEvent.count, 1)
         XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.scrollCalendar)
-        XCTAssertEqual(analyticsManager.loggedEvent.first?.userId, userId)
         XCTAssertEqual(analyticsManager.loggedEvent.first?.targetDate, date)
     }
 
@@ -273,7 +269,6 @@ final class CalendarViewModelTests: XCTestCase {
         // Should send analytics
         XCTAssertEqual(analyticsManager.loggedEvent.count, 1)
         XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.deleteThankYou)
-        XCTAssertEqual(analyticsManager.loggedEvent.first?.userId, userId)
         XCTAssertEqual(analyticsManager.loggedEvent.first?.targetDate, thankYouDate)
 
         // Should not present alert twice

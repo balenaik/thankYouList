@@ -12,6 +12,7 @@ import FirebaseAuth
 import Firebase
 import SkeletonView
 import FloatingPanel
+import SharedResources
 
 private let skeletonedThankYouCellCount = 3
 
@@ -40,7 +41,7 @@ class ThankYouListViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var scrollIndicator: ListScrollIndicator!
-    @IBOutlet private weak var emptyView: EmptyView!
+    @IBOutlet private weak var emptyView: ThankYouEmptyView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,7 +105,7 @@ private extension ThankYouListViewController {
                 if diff.type == .added {
                     let thankYouData = ThankYouData(dictionary: diff.document.data())
                     guard var newThankYouData = thankYouData else { break }
-                    let decryptedValue = Crypto().decryptString(encryptText: newThankYouData.encryptedValue, key: uid16string)
+                    let decryptedValue = CryptoManager().decryptString(encryptText: newThankYouData.encryptedValue, key: uid16string)
                     newThankYouData.id = diff.document.documentID
                     newThankYouData.value = decryptedValue
                     let thankYouDataIds: [String] = self.thankYouDataSingleton.thankYouList.map{$0.id}
@@ -126,7 +127,7 @@ private extension ThankYouListViewController {
                 if diff.type == .modified {
                     let thankYouData = ThankYouData(dictionary: diff.document.data())
                     guard var editedThankYouData = thankYouData else { break }
-                    let decryptedValue = Crypto().decryptString(encryptText: editedThankYouData.encryptedValue, key: uid16string)
+                    let decryptedValue = CryptoManager().decryptString(encryptText: editedThankYouData.encryptedValue, key: uid16string)
                     editedThankYouData.id = diff.document.documentID
                     editedThankYouData.value = decryptedValue
                     for (index, thankYouData) in self.thankYouDataSingleton.thankYouList.enumerated() {
@@ -223,7 +224,6 @@ private extension ThankYouListViewController {
                 if let thankYouData = self.thankYouDataSingleton.thankYouList.first(where: { $0.id == thankYouId }) {
                     self.analyticsManager.logEvent(
                         eventName: AnalyticsEventConst.deleteThankYou,
-                        userId: userId,
                         targetDate: thankYouData.date)
                 }
             })
@@ -327,10 +327,9 @@ extension ThankYouListViewController: UITableViewDelegate {
 // MARK: - ListScrollIndicatorDelegate
 extension ThankYouListViewController: ListScrollIndicatorDelegate {
     func listScrollIndicatorDidBeginDraggingMovableIcon(_ indicator: ListScrollIndicator) {
-        guard let user = Auth.auth().currentUser else { return }
         analyticsManager.logEvent(
-            eventName: AnalyticsEventConst.startDraggingListScrollIndicatorMovableIcon,
-            userId: user.uid)
+            eventName: AnalyticsEventConst.startDraggingListScrollIndicatorMovableIcon
+        )
     }
 }
 

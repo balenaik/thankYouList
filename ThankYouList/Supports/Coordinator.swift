@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SharedResources
+import SwiftUI
 
 enum RoutingType {
     case push(navigationController: UINavigationController)
@@ -63,5 +65,48 @@ class AppCoordinator: Coordinator {
         }
 
         window.makeKeyAndVisible()
+    }
+}
+
+// MARK: - Deeplink Navigation
+extension AppCoordinator {
+    func handleDeeplink(url: URL) throws {
+        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+              let host = components.host else {
+            throw NavigationError.urlHostNotExist
+        }
+
+        switch DeeplinkDestination(rawValue: host) {
+        case .positiveStatements:
+            navigateToPositiveStatements()
+        default:
+            throw NavigationError.destinationNotDefined
+        }
+    }
+
+    private func navigateToPositiveStatements() {
+        let visibleViewController = { [weak self] in
+            self?.window.rootViewController?.getVisibleViewController()
+        }
+
+        if !userRepository.isLoggedIn()
+            || visibleViewController() is UIHostingController<PositiveStatementListView> {
+            return
+        }
+
+        if visibleViewController() == nil {
+            start()
+        }
+
+        visibleViewController()?.dismissUntil(
+            viewControllerType: MainTabBarController.self,
+            completion: {
+                guard let vc = visibleViewController() else { return }
+
+                let coordinator = MyPageCoordinator(presentingViewController: vc)
+                coordinator.start()
+                coordinator.pushToPositiveStatementList()
+            }
+        )
     }
 }

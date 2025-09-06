@@ -9,33 +9,36 @@
 import UIKit
 import Combine
 import Firebase
+import FirebaseAuth
 import FBSDKCoreKit
+import SharedResources
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
-
+    private let window = UIWindow(frame: UIScreen.main.bounds)
     private let userRepository: UserRepository = DefaultUserRepository()
+    private lazy var appCoordinator = AppCoordinator(
+        window: window,
+        userRepository: userRepository)
+    private let analyticsManager: AnalyticsManager = DefaultAnalyticsManager()
     private var cancellable = Set<AnyCancellable>()
-    
+
     override init() {
         super.init()
         FirebaseApp.configure()
     }
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
+        setupFirebase()
         setupNavigationBar()
+        setupListView()
         reAuthenticateToProvider()
+        observeAuthenticationChanges()
 
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        self.window = window
-        let appCoordinator = AppCoordinator(
-            window: window,
-            userRepository: DefaultUserRepository())
         appCoordinator.start()
         
         return true
@@ -62,10 +65,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-    
-    @available(iOS 9.0, *)
+
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
         -> Bool {
+            if handleDeeplink(url: url) {
+                return true
+            }
             return ApplicationDelegate.shared.application(application,
                                                           open: url,
                                                           sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
@@ -74,17 +79,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 private extension AppDelegate {
+    func setupFirebase() {
+        do {
+            try Auth.auth().useUserAccessGroup(AppConst.teamIdAndAccessGroup)
+        } catch let error as NSError {
+            // TODO: Log error on Crashlytics
+            print("Error setting user access group: %@", error)
+        }
+    }
+
     func setupNavigationBar() {
         // Setup NavigationBar in SwiftUI
+        UINavigationBar.appearance().titleTextAttributes = [
+            .font : UIFont.boldAvenir(ofSize: 17)
+        ]
         UINavigationBar.appearance().largeTitleTextAttributes = [
             .font : UIFont.boldAvenir(ofSize: 32)
         ]
+    }
+
+    func setupListView() {
+        // Setup SwiftUI ListView background color for iOS 15
+        UITableView.appearance().backgroundColor = .clear
     }
 
     func reAuthenticateToProvider() {
         userRepository.reAuthenticateToProviderIfNeeded()
             .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
             .store(in: &cancellable)
+    }
+
+    func observeAuthenticationChanges() {
+        userRepository.observeAuthenticationChanges()
+            .catch { _ in Just(nil) }
+            .sink { [analyticsManager] userId in
+                analyticsManager.setUserId(userId: userId)
+            }
+            .store(in: &cancellable)
+    }
+
+    func handleDeeplink(url: URL) -> Bool {
+        do {
+            try appCoordinator.handleDeeplink(url: url)
+            return true
+        } catch {
+            return false
+        }
     }
 }
 

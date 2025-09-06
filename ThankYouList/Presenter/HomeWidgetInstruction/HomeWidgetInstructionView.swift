@@ -1,0 +1,69 @@
+//
+//  HomeWidgetInstructionView.swift
+//  ThankYouList
+//
+//  Created by Aika Yamada on 2024/07/14.
+//  Copyright © 2024 Aika Yamada. All rights reserved.
+//
+
+import SharedResources
+import SwiftUI
+
+private let imageWidth = CGFloat(150)
+private let imageHeight = CGFloat(300)
+
+struct HomeWidgetInstructionView: View {
+
+    // MARK: - ViewModel
+
+    private let viewModelInputs: HomeWidgetInstructionViewModel.Inputs
+    @StateObject private var viewModelOutputs: HomeWidgetInstructionViewModel.Outputs
+
+    init(viewModel: HomeWidgetInstructionViewModel) {
+        viewModelInputs = viewModel.inputs
+        _viewModelOutputs = StateObject(wrappedValue: viewModel.outputs)
+    }
+
+    // MARK: - Body
+
+    var body: some View {
+        NavigationView {
+            contentView
+                .screenBackground(Color.defaultBackground)
+                .cancelButtonToolbar {
+                    viewModelInputs.cancelButtonDidTap.send()
+                }
+        }
+        .onAppear { viewModelInputs.onAppear.send() }
+    }
+
+    private var contentView: some View {
+        VStack(spacing: 0) {
+            Spacer(minLength: 0)
+
+            Text(R.string.localizable.home_widget_instruction_title)
+                .font(.boldAvenir(ofSize: ViewConst.fontSize24))
+                .foregroundStyle(Color.text)
+
+            Image(viewModelOutputs.imageName)
+                .resizable()
+                .frame(width: imageWidth, height: imageHeight)
+                .padding(.vertical, ViewConst.spacing24)
+
+            Text(viewModelOutputs.description)
+                .font(.regularAvenir(ofSize: ViewConst.fontSize16))
+                .foregroundStyle(Color.text)
+                .multilineTextAlignment(.center)
+                .padding(.vertical, ViewConst.spacing12)
+
+            Spacer(minLength: 0)
+
+            Button(viewModelOutputs.bottomButtonTitle) {
+                viewModelInputs.bottomButtomDidTap.send()
+            }
+            .buttonStyle(PrimaryButtonStyle())
+            .padding(.vertical, ViewConst.spacing16)
+        }
+        .padding(.horizontal, ViewConst.spacing20)
+    }
+}

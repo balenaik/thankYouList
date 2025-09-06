@@ -1,5 +1,5 @@
 //
-//  MockWidgetManger.swift
+//  MockWidgetManager.swift
 //  ThankYouList
 //
 //  Created by Aika Yamada on 2025/09/01.

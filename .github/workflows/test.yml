@@ -12,8 +12,13 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Build
-      run: swift build -v
-
-    - name: Run tests
-      run: swift test -v
+    - name: Install CocoaPods dependencies
+      run: bundle exec pod install
+    
+    - name: Build and test with Xcode
+      run: |
+          xcodebuild -workspace ThankYouList.xcworkspace \
+                     -scheme ThankYouListTests \
+                     -sdk iphonesimulator \
+                     -destination 'platform=iOS Simulator,name=iPhone 14' \
+                     build test

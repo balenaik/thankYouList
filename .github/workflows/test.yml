@@ -12,6 +12,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Select Xcode
+      run: sudo xcode-select -switch /Applications/Xcode_16.4.app
+
     - name: Install Bundler dependencies
       run: bundle install
 

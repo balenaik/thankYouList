@@ -33,3 +33,6 @@ fastlane/metadata
 # Build App(Fastlane)
 *.app.dSYM.zip
 *.ipa
+
+# Node Modules
+node_modules/

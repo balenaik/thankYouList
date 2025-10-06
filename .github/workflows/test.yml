@@ -16,7 +16,9 @@ jobs:
       run: sudo xcode-select -switch /Applications/Xcode_16.4.app
 
     - name: Workaround for simulator connection issues
-      run: xcrun simctl list > /dev/null
+      run: |
+         xcrun simctl list > /dev/null
+         xcodebuild -downloadPlatform iOS -buildVersion 17.4
 
     - name: Install Bundler dependencies
       run: bundle install

@@ -15,6 +15,9 @@ jobs:
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode_16.4.app
 
+    - name: Workaround for simulator connection issues
+      run: xcrun simctl list > /dev/null
+
     - name: Install Bundler dependencies
       run: bundle install
 

@@ -19,6 +19,9 @@ jobs:
       run: |
          xcrun simctl list > /dev/null
          xcodebuild -downloadPlatform iOS -buildVersion 17.4
+    
+    - name: List available simulators
+      run: xcrun simctl list devices available
 
     - name: Install Bundler dependencies
       run: bundle install

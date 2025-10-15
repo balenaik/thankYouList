@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "FEAF6CC2-B0F9-4FBC-AC98-0EF0C5A17BFD",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:ThankYouList.xcodeproj",
+        "identifier" : "A892354829D731720093A92F",
+        "name" : "ThankYouListTests"
+      }
+    }
+  ],
+  "version" : 1
+}

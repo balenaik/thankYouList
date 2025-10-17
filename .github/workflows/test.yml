@@ -32,7 +32,7 @@ jobs:
     - name: Build and test with Xcode
       run: |
           xcodebuild -workspace ThankYouList.xcworkspace \
-                     -scheme ThankYouList \
+                     -scheme ThankYouListTests \
                      -sdk iphonesimulator \
                      -destination 'platform=iOS Simulator,OS=18.5,name=iPhone 16' \
                      build

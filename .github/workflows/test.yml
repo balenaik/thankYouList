@@ -23,6 +23,9 @@ jobs:
     - name: List available simulators
       run: xcrun simctl list devices available
 
+    - name: Use dummy GoogleService-Info.plist
+      run: cp .github/ci/GoogleService-Info-dummy.plist ThankYouList/Resources/GoogleService-Info.plist
+
     - name: Install Bundler dependencies
       run: bundle install
 

@@ -35,4 +35,5 @@ jobs:
                      -scheme ThankYouListTests \
                      -sdk iphonesimulator \
                      -destination 'platform=iOS Simulator,OS=18.5,name=iPhone 16' \
+                     -skipPackagePluginValidation \
                      build

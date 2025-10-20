@@ -26,6 +26,9 @@ jobs:
     - name: Use dummy GoogleService-Info.plist
       run: cp .github/ci/GoogleService-Info-dummy.plist ThankYouList/Resources/GoogleService-Info.plist
 
+    - name: Allow plugin execution for Rswift
+      run: defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidatation -bool YES
+
     - name: Install Bundler dependencies
       run: bundle install
 

@@ -15,14 +15,6 @@ jobs:
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode_16.4.app
 
-    - name: Workaround for simulator connection issues
-      run: |
-         xcrun simctl list > /dev/null
-         xcodebuild -downloadPlatform iOS -buildVersion 17.4
-    
-    - name: List available simulators
-      run: xcrun simctl list devices available
-
     - name: Use dummy GoogleService-Info.plist
       run: cp .github/ci/GoogleService-Info-dummy.plist ThankYouList/Resources/GoogleService-Info.plist
 

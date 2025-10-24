@@ -28,6 +28,8 @@ jobs:
       run: bundle exec pod install
     
     - name: Build and test with Xcode
+      env:
+        CI: "true"
       run: |
           xcodebuild -workspace ThankYouList.xcworkspace \
                      -scheme ThankYouListTests \

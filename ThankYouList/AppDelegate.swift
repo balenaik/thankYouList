@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     override init() {
         super.init()
-        FirebaseApp.configure()
+        safeConfigureFirebase()
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -79,10 +79,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 private extension AppDelegate {
+    func safeConfigureFirebase() {
+        #if DEBUG
+        guard ProcessInfo.processInfo.environment["CI"]?.boolValue != true else {
+            // In case of CI test, don't configure FirebaseApp
+            return
+        }
+        #endif
+        FirebaseApp.configure()
+    }
+
     func setupFirebase() {
         do {
             try Auth.auth().useUserAccessGroup(AppConst.teamIdAndAccessGroup)
         } catch let error as NSError {
+            // Crashlytics.crashlytics().record(error: error)
             // TODO: Log error on Crashlytics
             print("Error setting user access group: %@", error)
         }

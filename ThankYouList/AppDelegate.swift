@@ -80,12 +80,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 private extension AppDelegate {
     func safeConfigureFirebase() {
-        #if DEBUG
-        guard ProcessInfo.processInfo.environment["CI"]?.boolValue != true else {
+        if ProcessInfo.processInfo.environment["CI"] == "true" {
             // In case of CI test, don't configure FirebaseApp
             return
         }
-        #endif
         FirebaseApp.configure()
     }
 

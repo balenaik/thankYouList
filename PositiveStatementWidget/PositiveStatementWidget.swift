@@ -32,12 +32,20 @@ struct PositiveStatementWidget: Widget {
 private extension PositiveStatementWidget {
     func setupFirebase() {
         do {
-            FirebaseApp.configure()
+            safeConfigureFirebase()
             try Auth.auth().useUserAccessGroup(AppConst.teamIdAndAccessGroup)
         } catch let error as NSError {
             // TODO: Log error on Crashlytics
             print("Error setting user access group: %@", error)
         }
+    }
+
+    func safeConfigureFirebase() {
+        if ProcessInfo.processInfo.environment["CI"] == "true" {
+            // In case of CI test, don't configure FirebaseApp
+            return
+        }
+        FirebaseApp.configure()
     }
 }
 

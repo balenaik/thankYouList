@@ -31,9 +31,9 @@ jobs:
       env:
         CI: "true"
       run: |
+          export CI=true
           xcodebuild -workspace ThankYouList.xcworkspace \
                      -scheme ThankYouListTests \
                      -destination 'platform=iOS Simulator,OS=18.5,name=iPhone 16' \
                      -skipPackagePluginValidation \
-                     build test \
-                     -testEnvironmentVariables CI=true
+                     build test

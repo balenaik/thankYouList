@@ -80,14 +80,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 private extension AppDelegate {
     func safeConfigureFirebase() {
-        let ciEnv = ProcessInfo.processInfo.environment["CI"]
-        print("🔥 CI environment:", ciEnv ?? "nil")
-
-        if ciEnv == "true" {
-            // In case of CI test, don't configure FirebaseApp
-            return
-        }
+    #if CI_TEST
+        print("🔥 Skipping Firebase setup for CI")
+    #else
         FirebaseApp.configure()
+    #endif
     }
 
     func setupFirebase() {

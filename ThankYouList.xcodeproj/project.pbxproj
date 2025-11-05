@@ -133,7 +133,6 @@
 		A8ADC15E2C43D0A800830B39 /* HomeWidgetInstructionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ADC15D2C43D0A800830B39 /* HomeWidgetInstructionViewModel.swift */; };
 		A8ADC1602C54EC1300830B39 /* HomeWidgetInstructionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ADC15F2C54EC1300830B39 /* HomeWidgetInstructionViewModelTests.swift */; };
 		A8ADC1622C5EE26200830B39 /* PositiveStatementTapMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ADC1612C5EE26200830B39 /* PositiveStatementTapMenu.swift */; };
-		A8AFE4CF22DB81960045C707 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8AFE4CE22DB81960045C707 /* GoogleService-Info.plist */; };
 		A8B24C502C6969F300AFBE28 /* FlexibleHeightBottomHalfSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B24C4F2C6969F300AFBE28 /* FlexibleHeightBottomHalfSheet.swift */; };
 		A8B6EE8E2201E41D00908D51 /* String+ToDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6EE8D2201E41D00908D51 /* String+ToDate.swift */; };
 		A8B6EE9122055CE900908D51 /* Date+ToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6EE9022055CE900908D51 /* Date+ToString.swift */; };
@@ -167,6 +166,7 @@
 		A8DF48232D1BA57C008290FA /* SharedResources.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A8DF480D2D1BA57C008290FA /* SharedResources.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A8DF482C2D1BA918008290FA /* FirestoreConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A831BD422741617C003B5394 /* FirestoreConst.swift */; };
 		A8DF482E2D1CF3EA008290FA /* CryptoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AF9E62106905500FF6893 /* CryptoManager.swift */; };
+		A8E08E8D2EB63EEE00FA0BC9 /* GoogleService-Info-Staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8E08E8B2EB63EEE00FA0BC9 /* GoogleService-Info-Staging.plist */; };
 		A8E6CD07295C7D050042AA81 /* ConfirmDeleteAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD06295C7D050042AA81 /* ConfirmDeleteAccountViewModel.swift */; };
 		A8E6CD0F296513000042AA81 /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD0E296513000042AA81 /* String+Validation.swift */; };
 		A8E6CD122965B2F20042AA81 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD112965B2F20042AA81 /* UserRepository.swift */; };
@@ -423,6 +423,7 @@
 		A8DF48102D1BA57C008290FA /* SharedResources.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = SharedResources.docc; sourceTree = "<group>"; };
 		A8DF48162D1BA57C008290FA /* SharedResourcesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SharedResourcesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8DF481D2D1BA57C008290FA /* SharedResourcesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedResourcesTests.swift; sourceTree = "<group>"; };
+		A8E08E8B2EB63EEE00FA0BC9 /* GoogleService-Info-Staging.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Staging.plist"; sourceTree = "<group>"; };
 		A8E6CD06295C7D050042AA81 /* ConfirmDeleteAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDeleteAccountViewModel.swift; sourceTree = "<group>"; };
 		A8E6CD0829601D870042AA81 /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Theme.swift"; sourceTree = "<group>"; };
 		A8E6CD0C29615BE00042AA81 /* Font+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Theme.swift"; sourceTree = "<group>"; };
@@ -894,6 +895,7 @@
 				A8F064EE2CCDC6C7006C6EE9 /* PositiveStatementWidgetExtension.entitlements */,
 				A824150B205CDF5800172587 /* ThankYouList.entitlements */,
 				A8AFE4CE22DB81960045C707 /* GoogleService-Info.plist */,
+				A8E08E8B2EB63EEE00FA0BC9 /* GoogleService-Info-Staging.plist */,
 				A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */,
 				A8831CD21E9CFE6B00F3CA0A /* Info.plist */,
 				A8AC1BCE1FAE00B600D1B25B /* Localizable.strings */,
@@ -1075,6 +1077,7 @@
 				A8831CBF1E9CFE6B00F3CA0A /* Sources */,
 				A8831CC01E9CFE6B00F3CA0A /* Frameworks */,
 				A8831CC11E9CFE6B00F3CA0A /* Resources */,
+				A8E08E962EBA2DBC00FA0BC9 /* Setup GoogleService-Info */,
 				D46E638CB34C7D224BCD3B6F /* [CP] Embed Pods Frameworks */,
 				A8F064E12C9F9F8B006C6EE9 /* Embed Foundation Extensions */,
 				A8DF48242D1BA57C008290FA /* Embed Frameworks */,
@@ -1256,7 +1259,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8AFE4CF22DB81960045C707 /* GoogleService-Info.plist in Resources */,
 				A881350E2131432C00BE8F48 /* EmptyView.xib in Resources */,
 				A8851EA326FC1522008B2D7A /* imageLaunchScreen.png in Resources */,
 				A84FDB5E21DC365F00593326 /* SettingHeaderView.xib in Resources */,
@@ -1307,6 +1309,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8E08E8D2EB63EEE00FA0BC9 /* GoogleService-Info-Staging.plist in Resources */,
 				A8F064D92C9F9F8B006C6EE9 /* Assets.xcassets in Resources */,
 				A8F064F92CD88FE8006C6EE9 /* GoogleService-Info.plist in Resources */,
 				A8C306BD2E4AA6130083AA6B /* Localizable.xcstrings in Resources */,
@@ -1355,6 +1358,24 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		A8E08E962EBA2DBC00FA0BC9 /* Setup GoogleService-Info */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Setup GoogleService-Info";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PROD_PLIST=\"${SRCROOT}/ThankYouList/Resources/GoogleService-Info.plist\"\nSTAGING_PLIST=\"${SRCROOT}/ThankYouList/Resources/GoogleService-Info-Staging.plist\"\n\nif [ \"${CONFIGURATION}\" == \"Debug-Staging\" ]; then\n    echo \"Using STAGING Firebase config\"\n    cp \"$STAGING_PLIST\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\nelse\n    echo \"Using PROD Firebase config\"\n    cp \"$PROD_PLIST\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\nfi\n";
 		};
 		D46E638CB34C7D224BCD3B6F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

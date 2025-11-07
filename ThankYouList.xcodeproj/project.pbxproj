@@ -166,7 +166,7 @@
 		A8DF48232D1BA57C008290FA /* SharedResources.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A8DF480D2D1BA57C008290FA /* SharedResources.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A8DF482C2D1BA918008290FA /* FirestoreConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A831BD422741617C003B5394 /* FirestoreConst.swift */; };
 		A8DF482E2D1CF3EA008290FA /* CryptoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AF9E62106905500FF6893 /* CryptoManager.swift */; };
-		A8E08E8D2EB63EEE00FA0BC9 /* GoogleService-Info-Staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8E08E8B2EB63EEE00FA0BC9 /* GoogleService-Info-Staging.plist */; };
+		A8E08EB92EBCD0BF00FA0BC9 /* GoogleService-Info-Staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8E08EB82EBCD0BF00FA0BC9 /* GoogleService-Info-Staging.plist */; };
 		A8E6CD07295C7D050042AA81 /* ConfirmDeleteAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD06295C7D050042AA81 /* ConfirmDeleteAccountViewModel.swift */; };
 		A8E6CD0F296513000042AA81 /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD0E296513000042AA81 /* String+Validation.swift */; };
 		A8E6CD122965B2F20042AA81 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6CD112965B2F20042AA81 /* UserRepository.swift */; };
@@ -273,6 +273,8 @@
 		0E2E1E2EA8C99961349F55EC /* Pods-SharedResources.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedResources.release.xcconfig"; path = "Pods/Target Support Files/Pods-SharedResources/Pods-SharedResources.release.xcconfig"; sourceTree = "<group>"; };
 		14D49C15FD4089235E28B5ED /* Pods_ThankYouList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThankYouList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46FB60FAEBD2A9487293EBF5 /* Pods-SharedResources.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedResources.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SharedResources/Pods-SharedResources.debug.xcconfig"; sourceTree = "<group>"; };
+		533D4D63A35AFC348819BF53 /* Pods-ThankYouList.debug-staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.debug-staging.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.debug-staging.xcconfig"; sourceTree = "<group>"; };
+		608830B85E8796C3668921CC /* Pods-SharedResources.debug-staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedResources.debug-staging.xcconfig"; path = "Pods/Target Support Files/Pods-SharedResources/Pods-SharedResources.debug-staging.xcconfig"; sourceTree = "<group>"; };
 		6A160D9FA9DA4B3BA6C4EEF8 /* Pods_SharedResources.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SharedResources.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A015AC112826D3ABF5A416EC /* Pods-ThankYouList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.release.xcconfig"; sourceTree = "<group>"; };
 		A80500A52DD70C260082245A /* PositiveStatementUpdateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementUpdateModel.swift; sourceTree = "<group>"; };
@@ -423,7 +425,7 @@
 		A8DF48102D1BA57C008290FA /* SharedResources.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = SharedResources.docc; sourceTree = "<group>"; };
 		A8DF48162D1BA57C008290FA /* SharedResourcesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SharedResourcesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8DF481D2D1BA57C008290FA /* SharedResourcesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedResourcesTests.swift; sourceTree = "<group>"; };
-		A8E08E8B2EB63EEE00FA0BC9 /* GoogleService-Info-Staging.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Staging.plist"; sourceTree = "<group>"; };
+		A8E08EB82EBCD0BF00FA0BC9 /* GoogleService-Info-Staging.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Staging.plist"; sourceTree = "<group>"; };
 		A8E6CD06295C7D050042AA81 /* ConfirmDeleteAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDeleteAccountViewModel.swift; sourceTree = "<group>"; };
 		A8E6CD0829601D870042AA81 /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Theme.swift"; sourceTree = "<group>"; };
 		A8E6CD0C29615BE00042AA81 /* Font+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Theme.swift"; sourceTree = "<group>"; };
@@ -525,6 +527,8 @@
 				A015AC112826D3ABF5A416EC /* Pods-ThankYouList.release.xcconfig */,
 				46FB60FAEBD2A9487293EBF5 /* Pods-SharedResources.debug.xcconfig */,
 				0E2E1E2EA8C99961349F55EC /* Pods-SharedResources.release.xcconfig */,
+				608830B85E8796C3668921CC /* Pods-SharedResources.debug-staging.xcconfig */,
+				533D4D63A35AFC348819BF53 /* Pods-ThankYouList.debug-staging.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -895,7 +899,7 @@
 				A8F064EE2CCDC6C7006C6EE9 /* PositiveStatementWidgetExtension.entitlements */,
 				A824150B205CDF5800172587 /* ThankYouList.entitlements */,
 				A8AFE4CE22DB81960045C707 /* GoogleService-Info.plist */,
-				A8E08E8B2EB63EEE00FA0BC9 /* GoogleService-Info-Staging.plist */,
+				A8E08EB82EBCD0BF00FA0BC9 /* GoogleService-Info-Staging.plist */,
 				A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */,
 				A8831CD21E9CFE6B00F3CA0A /* Info.plist */,
 				A8AC1BCE1FAE00B600D1B25B /* Localizable.strings */,
@@ -1265,6 +1269,7 @@
 				A808C618220FAD06004162E4 /* SmallListView.xib in Resources */,
 				A80EAE5C21FD5FA6006B02E8 /* ThankYouCell.xib in Resources */,
 				A8C90AE22302ECCA008C6A4A /* ListScrollIndicatorTitleView.xib in Resources */,
+				A8E08EB92EBCD0BF00FA0BC9 /* GoogleService-Info-Staging.plist in Resources */,
 				A8AC1BD01FAE00B600D1B25B /* Localizable.strings in Resources */,
 				A8F06BB91F55396F00A90170 /* LaunchScreen.storyboard in Resources */,
 				A8114AFF22E448690024975A /* AddThankYou.storyboard in Resources */,
@@ -1309,7 +1314,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8E08E8D2EB63EEE00FA0BC9 /* GoogleService-Info-Staging.plist in Resources */,
 				A8F064D92C9F9F8B006C6EE9 /* Assets.xcassets in Resources */,
 				A8F064F92CD88FE8006C6EE9 /* GoogleService-Info.plist in Resources */,
 				A8C306BD2E4AA6130083AA6B /* Localizable.xcstrings in Resources */,
@@ -2166,7 +2170,7 @@
 		};
 		A8E08E902EB63F3C00FA0BC9 /* Debug-Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BA00FC82559EE1AEA8CE9577 /* Pods-ThankYouList.debug.xcconfig */;
+			baseConfigurationReference = 533D4D63A35AFC348819BF53 /* Pods-ThankYouList.debug-staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_DISPLAY_NAME = "Thank You List Staging";
@@ -2305,7 +2309,7 @@
 		};
 		A8E08E932EB63F3C00FA0BC9 /* Debug-Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 46FB60FAEBD2A9487293EBF5 /* Pods-SharedResources.debug.xcconfig */;
+			baseConfigurationReference = 608830B85E8796C3668921CC /* Pods-SharedResources.debug-staging.xcconfig */;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;

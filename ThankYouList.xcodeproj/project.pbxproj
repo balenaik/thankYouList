@@ -189,7 +189,6 @@
 		A8F064E42CA04586006C6EE9 /* PositiveStatementProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064E22CA04500006C6EE9 /* PositiveStatementProvider.swift */; };
 		A8F064E72CA046C2006C6EE9 /* PositiveStatementWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064E52CA046AC006C6EE9 /* PositiveStatementWidgetView.swift */; };
 		A8F064EA2CA221E1006C6EE9 /* PositiveStatementEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064E82CA221D4006C6EE9 /* PositiveStatementEntry.swift */; };
-		A8F064F92CD88FE8006C6EE9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8AFE4CE22DB81960045C707 /* GoogleService-Info.plist */; };
 		A8F064FC2CFAECFD006C6EE9 /* PositiveStatementWidgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064FA2CFAECEE006C6EE9 /* PositiveStatementWidgetManager.swift */; };
 		A8F06BB91F55396F00A90170 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8F06BB81F55396F00A90170 /* LaunchScreen.storyboard */; };
 		A8F2619A2B43FA0500A65C0A /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A8F261992B43FA0500A65C0A /* CombineCocoa */; };
@@ -1316,7 +1315,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8F064D92C9F9F8B006C6EE9 /* Assets.xcassets in Resources */,
-				A8F064F92CD88FE8006C6EE9 /* GoogleService-Info.plist in Resources */,
 				A8C306BD2E4AA6130083AA6B /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1381,6 +1379,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "PROD_PLIST=\"${SRCROOT}/ThankYouList/Resources/GoogleService-Info.plist\"\nSTAGING_PLIST=\"${SRCROOT}/ThankYouList/Resources/GoogleService-Info-Staging.plist\"\n\nif [ \"${CONFIGURATION}\" == \"Debug-Staging\" ]; then\n    echo \"Using STAGING Firebase config\"\n    cp \"$STAGING_PLIST\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\nelse\n    echo \"Using PROD Firebase config\"\n    cp \"$PROD_PLIST\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\nfi\n";
+		};
+		A8E08EC22EBF848D00FA0BC9 /* Setup GoogleService-Info */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/ThankYouList/Resources/GoogleService-Info-Staging.plist",
+				"$(SRCROOT)/ThankYouList/Resources/GoogleService-Info.plist",
+			);
+			name = "Setup GoogleService-Info";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(PRODUCT_NAME).appex/GoogleService-Info.plist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PROD_PLIST=\"${SRCROOT}/ThankYouList/Resources/GoogleService-Info.plist\"\nSTAGING_PLIST=\"${SRCROOT}/ThankYouList/Resources/GoogleService-Info-Staging.plist\"\n\nif [ \"${CONFIGURATION}\" == \"Debug-Staging\" ]; then\n    echo \"Using STAGING Firebase config\"\n    cp \"$STAGING_PLIST\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.appex/GoogleService-Info.plist\"\nelse\n    echo \"Using PROD Firebase config\"\n    cp \"$PROD_PLIST\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.appex/GoogleService-Info.plist\"\nfi\n";
 		};
 		D46E638CB34C7D224BCD3B6F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

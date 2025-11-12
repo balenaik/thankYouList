@@ -2251,7 +2251,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(MAIN_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.balenaik.ThankYouList";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development com.balenaik.ThankYouList";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development com.balenaik.ThankYouList.staging";
 				SWIFT_VERSION = 5.0;
 			};
 			name = "Debug-Staging";
@@ -2321,7 +2321,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(MAIN_BUNDLE_ID).PositiveStatementWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development com.balenaik.ThankYouList.PositiveStatementWidget";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development com.balenaik.ThankYouList.staging.PositiveStatementWidget";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

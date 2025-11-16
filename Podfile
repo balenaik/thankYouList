@@ -28,7 +28,6 @@ target 'SharedResources' do
 
   # Crypto
   pod 'RNCryptor', '~> 5.0'
-  pod 'CryptoSwift'
 end
 
 post_install do | installer |

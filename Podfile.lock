@@ -5,7 +5,6 @@ PODS:
   - AppAuth/Core (1.6.2)
   - AppAuth/ExternalUserAgent (1.6.2):
     - AppAuth/Core
-  - CryptoSwift (1.3.1)
   - FBSDKCoreKit (6.5.1):
     - FBSDKCoreKit/Basics (= 6.5.1)
     - FBSDKCoreKit/Core (= 6.5.1)
@@ -33,7 +32,6 @@ PODS:
   - SkeletonView (1.25.1)
 
 DEPENDENCIES:
-  - CryptoSwift
   - FBSDKCoreKit (~> 6.5.0)
   - FBSDKLoginKit (~> 6.5.0)
   - FloatingPanel (= 2.5.5)
@@ -46,7 +44,6 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AppAuth
-    - CryptoSwift
     - FBSDKCoreKit
     - FBSDKLoginKit
     - FloatingPanel
@@ -60,7 +57,6 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AppAuth: 3bb1d1cd9340bd09f5ed189fb00b1cc28e1e8570
-  CryptoSwift: f12f037f6d0fcd6d48c96db0071b653de64e6c4d
   FBSDKCoreKit: 3ecb604427e115bd90ff7fc62ee1e30ebd12285b
   FBSDKLoginKit: 8b2bc5fa30ea269e9d7208a1165c0a668c0ae826
   FloatingPanel: a27e7827e0f710fa6236fe2596dd1b5484cb4fc1
@@ -72,6 +68,6 @@ SPEC CHECKSUMS:
   SDWebImage: 97351f6582ceca541ea294ba66a1fcb342a331c2
   SkeletonView: 77079530e1348a72f48b79ae30dcb966c1b18b6a
 
-PODFILE CHECKSUM: 485260740a20c3dedbafff725ece40aa86d9e2fe
+PODFILE CHECKSUM: eabe91dbbcc70ce761174762691a1ab0d9954752
 
 COCOAPODS: 1.14.3

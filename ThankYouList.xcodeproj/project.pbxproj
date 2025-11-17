@@ -1242,11 +1242,11 @@
 			packageReferences = (
 				A892355829D818500093A92F /* XCRemoteSwiftPackageReference "Entwine" */,
 				A8A1E2052B0AC1590083C3FF /* XCRemoteSwiftPackageReference "combine-schedulers" */,
-				A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa.git" */,
-				A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm.git" */,
-				A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift.git" */,
-				A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
-				A8CF39AB2EC8A7B5004B7CED /* XCRemoteSwiftPackageReference "CryptoSwift.git" */,
+				A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa" */,
+				A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */,
+				A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				A8CF39AB2EC8A7B5004B7CED /* XCRemoteSwiftPackageReference "CryptoSwift" */,
 			);
 			productRefGroup = A8831CC41E9CFE6B00F3CA0A /* Products */;
 			projectDirPath = "";
@@ -1632,7 +1632,7 @@
 		};
 		A893A17E2D5F181E00E01848 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			productRef = A893A17D2D5F181E00E01848 /* plugin:RswiftGenerateInternalResources */;
+			productRef = A893A17D2D5F181E00E01848 /* RswiftGenerateInternalResources */;
 		};
 		A8DF48192D1BA57C008290FA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1950,7 +1950,7 @@
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -2009,7 +2009,7 @@
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -2337,7 +2337,7 @@
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -2581,7 +2581,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
+		A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -2589,7 +2589,7 @@
 				version = 12.2.0;
 			};
 		};
-		A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm.git" */ = {
+		A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
 			requirement = {
@@ -2597,7 +2597,7 @@
 				version = 4.4.3;
 			};
 		};
-		A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa.git" */ = {
+		A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CombineCommunity/CombineCocoa.git";
 			requirement = {
@@ -2613,7 +2613,7 @@
 				kind = branch;
 			};
 		};
-		A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift.git" */ = {
+		A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mac-cain13/R.swift.git";
 			requirement = {
@@ -2629,7 +2629,7 @@
 				version = 1.0.0;
 			};
 		};
-		A8CF39AB2EC8A7B5004B7CED /* XCRemoteSwiftPackageReference "CryptoSwift.git" */ = {
+		A8CF39AB2EC8A7B5004B7CED /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift.git";
 			requirement = {
@@ -2642,42 +2642,42 @@
 /* Begin XCSwiftPackageProductDependency section */
 		A83C32A82E47395000DA1421 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
 		A83C32AA2E47395000DA1421 /* FirebaseDatabase */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDatabase;
 		};
 		A83C32AC2E47395000DA1421 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
 		};
 		A83C32B62E4739C700DA1421 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
 		A83C32BA2E4739DB00DA1421 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
 		};
 		A83C32C02E473BC500DA1421 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
 		A8574DD02BDF489B0073AA61 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm.git" */;
+			package = A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm" */;
 			productName = Lottie;
 		};
 		A88217262B41029800BD8BFD /* CombineCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa.git" */;
+			package = A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa" */;
 			productName = CombineCocoa;
 		};
 		A892355929D818500093A92F /* EntwineTest */ = {
@@ -2685,9 +2685,9 @@
 			package = A892355829D818500093A92F /* XCRemoteSwiftPackageReference "Entwine" */;
 			productName = EntwineTest;
 		};
-		A893A17D2D5F181E00E01848 /* plugin:RswiftGenerateInternalResources */ = {
+		A893A17D2D5F181E00E01848 /* RswiftGenerateInternalResources */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift.git" */;
+			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
 			productName = "plugin:RswiftGenerateInternalResources";
 		};
 		A8A1E2062B0AC1590083C3FF /* CombineSchedulers */ = {
@@ -2697,17 +2697,17 @@
 		};
 		A8CF39AC2EC8A7B5004B7CED /* CryptoSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A8CF39AB2EC8A7B5004B7CED /* XCRemoteSwiftPackageReference "CryptoSwift.git" */;
+			package = A8CF39AB2EC8A7B5004B7CED /* XCRemoteSwiftPackageReference "CryptoSwift" */;
 			productName = CryptoSwift;
 		};
 		A8E88DC82E5B43B7004C0E64 /* RswiftLibrary */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift.git" */;
+			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
 			productName = RswiftLibrary;
 		};
 		A8F261992B43FA0500A65C0A /* CombineCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa.git" */;
+			package = A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa" */;
 			productName = CombineCocoa;
 		};
 /* End XCSwiftPackageProductDependency section */

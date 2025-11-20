@@ -5,7 +5,6 @@ PODS:
   - AppAuth/Core (1.6.2)
   - AppAuth/ExternalUserAgent (1.6.2):
     - AppAuth/Core
-  - CryptoSwift (1.3.1)
   - FBSDKCoreKit (6.5.1):
     - FBSDKCoreKit/Basics (= 6.5.1)
     - FBSDKCoreKit/Core (= 6.5.1)
@@ -26,27 +25,23 @@ PODS:
     - GTMSessionFetcher/Core (< 4.0, >= 1.5)
   - GTMSessionFetcher/Core (3.2.0)
   - JTAppleCalendar (7.1.8)
-  - RNCryptor (5.1.0)
   - SDWebImage (5.7.3):
     - SDWebImage/Core (= 5.7.3)
   - SDWebImage/Core (5.7.3)
   - SkeletonView (1.25.1)
 
 DEPENDENCIES:
-  - CryptoSwift
   - FBSDKCoreKit (~> 6.5.0)
   - FBSDKLoginKit (~> 6.5.0)
   - FloatingPanel (= 2.5.5)
   - GoogleSignIn (= 7.0.0)
   - JTAppleCalendar (~> 7.0)
-  - RNCryptor (~> 5.0)
   - SDWebImage (~> 5.0)
   - SkeletonView (= 1.25.1)
 
 SPEC REPOS:
   trunk:
     - AppAuth
-    - CryptoSwift
     - FBSDKCoreKit
     - FBSDKLoginKit
     - FloatingPanel
@@ -54,13 +49,11 @@ SPEC REPOS:
     - GTMAppAuth
     - GTMSessionFetcher
     - JTAppleCalendar
-    - RNCryptor
     - SDWebImage
     - SkeletonView
 
 SPEC CHECKSUMS:
   AppAuth: 3bb1d1cd9340bd09f5ed189fb00b1cc28e1e8570
-  CryptoSwift: f12f037f6d0fcd6d48c96db0071b653de64e6c4d
   FBSDKCoreKit: 3ecb604427e115bd90ff7fc62ee1e30ebd12285b
   FBSDKLoginKit: 8b2bc5fa30ea269e9d7208a1165c0a668c0ae826
   FloatingPanel: a27e7827e0f710fa6236fe2596dd1b5484cb4fc1
@@ -68,10 +61,9 @@ SPEC CHECKSUMS:
   GTMAppAuth: 99fb010047ba3973b7026e45393f51f27ab965ae
   GTMSessionFetcher: 41b9ef0b4c08a6db4b7eb51a21ae5183ec99a2c8
   JTAppleCalendar: b7fb40852f5f319fe55c8ec3861f1de0edc99cc8
-  RNCryptor: a369134686cd2ad391323cc856b62e591193ba79
   SDWebImage: 97351f6582ceca541ea294ba66a1fcb342a331c2
   SkeletonView: 77079530e1348a72f48b79ae30dcb966c1b18b6a
 
-PODFILE CHECKSUM: 485260740a20c3dedbafff725ece40aa86d9e2fe
+PODFILE CHECKSUM: 6c45523d6f7214486a45554b9360514d893c2737
 
 COCOAPODS: 1.14.3

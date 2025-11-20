@@ -1,5 +1,6 @@
 # Secret Data
 GoogleService-Info.plist
+GoogleService-Info-Staging.plist
 SecretData.swift
 
 .firebaserc
@@ -33,3 +34,6 @@ fastlane/metadata
 # Build App(Fastlane)
 *.app.dSYM.zip
 *.ipa
+
+# Node Modules
+node_modules/

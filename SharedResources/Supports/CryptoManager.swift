@@ -41,6 +41,6 @@ extension String {
         let aes = try AES(key: key.bytes, blockMode: ECB(), padding: .pkcs5)
         let decrypted = try! aes.decrypt([UInt8](data))
         let decryptedData = Data(decrypted)
-        return String(bytes: decryptedData.bytes, encoding: .utf8) ?? "Could not decrypt"
+        return String(bytes: decryptedData, encoding: .utf8) ?? "Could not decrypt"
     }
 }

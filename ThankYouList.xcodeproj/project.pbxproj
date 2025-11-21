@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		80EEE49631B581DF051DEC55 /* Pods_SharedResources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A160D9FA9DA4B3BA6C4EEF8 /* Pods_SharedResources.framework */; };
 		A80500A62DD70C260082245A /* PositiveStatementUpdateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80500A52DD70C260082245A /* PositiveStatementUpdateModel.swift */; };
 		A806DBD82D336CBE0065F6B3 /* PositiveStatementWidgetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A806DBD72D336CBE0065F6B3 /* PositiveStatementWidgetError.swift */; };
 		A806DBD92D33971F0065F6B3 /* Publisher+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F064FE2CFAF6BD006C6EE9 /* Publisher+Operators.swift */; };
@@ -154,6 +153,8 @@
 		A8C9736C2BD9BA6B004A8A30 /* MockPositiveStatementRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C9736B2BD9BA6B004A8A30 /* MockPositiveStatementRepository.swift */; };
 		A8CA1E872E65E7FC001D4495 /* WidgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CA1E862E65E7F9001D4495 /* WidgetManager.swift */; };
 		A8CA1E8D2E65E954001D4495 /* MockWidgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CA1E8C2E65E951001D4495 /* MockWidgetManager.swift */; };
+		A8CF39AD2EC8A7B5004B7CED /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A8CF39AC2EC8A7B5004B7CED /* CryptoSwift */; };
+		A8CF39B82ECB512C004B7CED /* RNCryptor in Frameworks */ = {isa = PBXBuildFile; productRef = A8CF39B72ECB512C004B7CED /* RNCryptor */; };
 		A8D41E1C21E0E07B00A77B48 /* SettingDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */; };
 		A8D5DFE82450A4FD00F30205 /* UIImageView+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D5DFE72450A4FD00F30205 /* UIImageView+URL.swift */; };
 		A8DABC24271ACE4E0086B2E8 /* BottomHalfSheetMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DABC23271ACE4E0086B2E8 /* BottomHalfSheetMenuViewController.swift */; };
@@ -269,12 +270,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0E2E1E2EA8C99961349F55EC /* Pods-SharedResources.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedResources.release.xcconfig"; path = "Pods/Target Support Files/Pods-SharedResources/Pods-SharedResources.release.xcconfig"; sourceTree = "<group>"; };
 		14D49C15FD4089235E28B5ED /* Pods_ThankYouList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThankYouList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		46FB60FAEBD2A9487293EBF5 /* Pods-SharedResources.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedResources.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SharedResources/Pods-SharedResources.debug.xcconfig"; sourceTree = "<group>"; };
 		533D4D63A35AFC348819BF53 /* Pods-ThankYouList.debug-staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.debug-staging.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.debug-staging.xcconfig"; sourceTree = "<group>"; };
-		608830B85E8796C3668921CC /* Pods-SharedResources.debug-staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedResources.debug-staging.xcconfig"; path = "Pods/Target Support Files/Pods-SharedResources/Pods-SharedResources.debug-staging.xcconfig"; sourceTree = "<group>"; };
-		6A160D9FA9DA4B3BA6C4EEF8 /* Pods_SharedResources.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SharedResources.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A015AC112826D3ABF5A416EC /* Pods-ThankYouList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.release.xcconfig"; sourceTree = "<group>"; };
 		A80500A52DD70C260082245A /* PositiveStatementUpdateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementUpdateModel.swift; sourceTree = "<group>"; };
 		A806DBD72D336CBE0065F6B3 /* PositiveStatementWidgetError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementWidgetError.swift; sourceTree = "<group>"; };
@@ -492,7 +489,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80EEE49631B581DF051DEC55 /* Pods_SharedResources.framework in Frameworks */,
+				A8CF39AD2EC8A7B5004B7CED /* CryptoSwift in Frameworks */,
+				A8CF39B82ECB512C004B7CED /* RNCryptor in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,9 +522,6 @@
 			children = (
 				BA00FC82559EE1AEA8CE9577 /* Pods-ThankYouList.debug.xcconfig */,
 				A015AC112826D3ABF5A416EC /* Pods-ThankYouList.release.xcconfig */,
-				46FB60FAEBD2A9487293EBF5 /* Pods-SharedResources.debug.xcconfig */,
-				0E2E1E2EA8C99961349F55EC /* Pods-SharedResources.release.xcconfig */,
-				608830B85E8796C3668921CC /* Pods-SharedResources.debug-staging.xcconfig */,
 				533D4D63A35AFC348819BF53 /* Pods-ThankYouList.debug-staging.xcconfig */,
 			);
 			name = Pods;
@@ -1053,7 +1048,6 @@
 				14D49C15FD4089235E28B5ED /* Pods_ThankYouList.framework */,
 				A8F064CF2C9F9F8A006C6EE9 /* WidgetKit.framework */,
 				A8F064D12C9F9F8A006C6EE9 /* SwiftUI.framework */,
-				6A160D9FA9DA4B3BA6C4EEF8 /* Pods_SharedResources.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1133,7 +1127,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A8DF48292D1BA57C008290FA /* Build configuration list for PBXNativeTarget "SharedResources" */;
 			buildPhases = (
-				609C07A12A91EABBBAB8FE8F /* [CP] Check Pods Manifest.lock */,
 				A8DF48082D1BA57C008290FA /* Headers */,
 				A8DF48092D1BA57C008290FA /* Sources */,
 				A8DF480A2D1BA57C008290FA /* Frameworks */,
@@ -1240,10 +1233,12 @@
 			packageReferences = (
 				A892355829D818500093A92F /* XCRemoteSwiftPackageReference "Entwine" */,
 				A8A1E2052B0AC1590083C3FF /* XCRemoteSwiftPackageReference "combine-schedulers" */,
-				A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa" */,
-				A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm" */,
-				A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */,
-				A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa.git" */,
+				A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm.git" */,
+				A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift.git" */,
+				A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
+				A8CF39AB2EC8A7B5004B7CED /* XCRemoteSwiftPackageReference "CryptoSwift.git" */,
+				A8CF39B62ECB512C004B7CED /* XCRemoteSwiftPackageReference "RNCryptor.git" */,
 			);
 			productRefGroup = A8831CC41E9CFE6B00F3CA0A /* Products */;
 			projectDirPath = "";
@@ -1340,28 +1335,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		609C07A12A91EABBBAB8FE8F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SharedResources-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		A8E08E962EBA2DBC00FA0BC9 /* Setup GoogleService-Info */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1418,8 +1391,6 @@
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
-				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RNCryptor/RNCryptor.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1433,8 +1404,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCryptor.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1631,7 +1600,7 @@
 		};
 		A893A17E2D5F181E00E01848 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			productRef = A893A17D2D5F181E00E01848 /* RswiftGenerateInternalResources */;
+			productRef = A893A17D2D5F181E00E01848 /* plugin:RswiftGenerateInternalResources */;
 		};
 		A8DF48192D1BA57C008290FA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1945,11 +1914,10 @@
 		};
 		A8DF48252D1BA57C008290FA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 46FB60FAEBD2A9487293EBF5 /* Pods-SharedResources.debug.xcconfig */;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -2004,11 +1972,10 @@
 		};
 		A8DF48262D1BA57C008290FA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0E2E1E2EA8C99961349F55EC /* Pods-SharedResources.release.xcconfig */;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -2332,11 +2299,10 @@
 		};
 		A8E08E932EB63F3C00FA0BC9 /* Debug-Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 608830B85E8796C3668921CC /* Pods-SharedResources.debug-staging.xcconfig */;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -2580,7 +2546,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -2588,7 +2554,7 @@
 				version = 12.2.0;
 			};
 		};
-		A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+		A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
 			requirement = {
@@ -2596,7 +2562,7 @@
 				version = 4.4.3;
 			};
 		};
-		A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa" */ = {
+		A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CombineCommunity/CombineCocoa.git";
 			requirement = {
@@ -2612,7 +2578,7 @@
 				kind = branch;
 			};
 		};
-		A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */ = {
+		A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mac-cain13/R.swift.git";
 			requirement = {
@@ -2628,47 +2594,63 @@
 				version = 1.0.0;
 			};
 		};
+		A8CF39AB2EC8A7B5004B7CED /* XCRemoteSwiftPackageReference "CryptoSwift.git" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.9.0;
+			};
+		};
+		A8CF39B62ECB512C004B7CED /* XCRemoteSwiftPackageReference "RNCryptor.git" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RNCryptor/RNCryptor.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		A83C32A82E47395000DA1421 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseAuth;
 		};
 		A83C32AA2E47395000DA1421 /* FirebaseDatabase */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseDatabase;
 		};
 		A83C32AC2E47395000DA1421 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseFirestore;
 		};
 		A83C32B62E4739C700DA1421 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseAuth;
 		};
 		A83C32BA2E4739DB00DA1421 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseFirestore;
 		};
 		A83C32C02E473BC500DA1421 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseAnalytics;
 		};
 		A8574DD02BDF489B0073AA61 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			package = A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm.git" */;
 			productName = Lottie;
 		};
 		A88217262B41029800BD8BFD /* CombineCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa" */;
+			package = A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa.git" */;
 			productName = CombineCocoa;
 		};
 		A892355929D818500093A92F /* EntwineTest */ = {
@@ -2676,9 +2658,9 @@
 			package = A892355829D818500093A92F /* XCRemoteSwiftPackageReference "Entwine" */;
 			productName = EntwineTest;
 		};
-		A893A17D2D5F181E00E01848 /* RswiftGenerateInternalResources */ = {
+		A893A17D2D5F181E00E01848 /* plugin:RswiftGenerateInternalResources */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
+			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift.git" */;
 			productName = "plugin:RswiftGenerateInternalResources";
 		};
 		A8A1E2062B0AC1590083C3FF /* CombineSchedulers */ = {
@@ -2686,14 +2668,24 @@
 			package = A8A1E2052B0AC1590083C3FF /* XCRemoteSwiftPackageReference "combine-schedulers" */;
 			productName = CombineSchedulers;
 		};
+		A8CF39AC2EC8A7B5004B7CED /* CryptoSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A8CF39AB2EC8A7B5004B7CED /* XCRemoteSwiftPackageReference "CryptoSwift.git" */;
+			productName = CryptoSwift;
+		};
+		A8CF39B72ECB512C004B7CED /* RNCryptor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A8CF39B62ECB512C004B7CED /* XCRemoteSwiftPackageReference "RNCryptor.git" */;
+			productName = RNCryptor;
+		};
 		A8E88DC82E5B43B7004C0E64 /* RswiftLibrary */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
+			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift.git" */;
 			productName = RswiftLibrary;
 		};
 		A8F261992B43FA0500A65C0A /* CombineCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa" */;
+			package = A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa.git" */;
 			productName = CombineCocoa;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -23,14 +23,6 @@ target 'ThankYouList' do
 
 end
 
-target 'SharedResources' do
-  use_frameworks!
-
-  # Crypto
-  pod 'RNCryptor', '~> 5.0'
-  pod 'CryptoSwift'
-end
-
 post_install do | installer |
     installer.pods_project.targets.each do |target|
         target.build_configurations.each do |config|

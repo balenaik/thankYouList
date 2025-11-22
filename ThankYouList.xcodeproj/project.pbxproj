@@ -62,7 +62,6 @@
 		A84635BA2AD270B40030A358 /* MockInMemoryDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635B92AD270B40030A358 /* MockInMemoryDataStore.swift */; };
 		A84635BC2AD2711D0030A358 /* MockThankYouRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635BB2AD2711D0030A358 /* MockThankYouRepository.swift */; };
 		A84635BE2AFF02820030A358 /* CalendarConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84635BD2AFF02820030A358 /* CalendarConfiguration.swift */; };
-		A84DD76A2EABA9AF00CDFD39 /* String+Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84DD7692EABA9A700CDFD39 /* String+Bool.swift */; };
 		A84FDB5C21DBB8DF00593326 /* AddThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84FDB5B21DBB8DF00593326 /* AddThankYouViewController.swift */; };
 		A84FDB5E21DC365F00593326 /* SettingHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84FDB5D21DC365F00593326 /* SettingHeaderView.xib */; };
 		A84FDB6021DC37EA00593326 /* SettingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84FDB5F21DC37E900593326 /* SettingHeaderView.swift */; };
@@ -321,7 +320,6 @@
 		A84635BB2AD2711D0030A358 /* MockThankYouRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockThankYouRepository.swift; sourceTree = "<group>"; };
 		A84635BD2AFF02820030A358 /* CalendarConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarConfiguration.swift; sourceTree = "<group>"; };
 		A84DD75C2E9FDE5300CDFD39 /* ThankYouListTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ThankYouListTestPlan.xctestplan; sourceTree = "<group>"; };
-		A84DD7692EABA9A700CDFD39 /* String+Bool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Bool.swift"; sourceTree = "<group>"; };
 		A84FDB5B21DBB8DF00593326 /* AddThankYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThankYouViewController.swift; sourceTree = "<group>"; };
 		A84FDB5D21DC365F00593326 /* SettingHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingHeaderView.xib; sourceTree = "<group>"; };
 		A84FDB5F21DC37E900593326 /* SettingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHeaderView.swift; sourceTree = "<group>"; };
@@ -704,7 +702,6 @@
 				A83D5F881F5E961800E13FD8 /* CALayer+RuntimeAttribute.swift */,
 				A80EAE5721F4C0B4006B02E8 /* UIView+Highlight.swift */,
 				A86F419B24547DE6005D929A /* UIView+IBInspectable.swift */,
-				A84DD7692EABA9A700CDFD39 /* String+Bool.swift */,
 				A810D8E323483125008F2E74 /* String+Localizable.swift */,
 				A892354129C0BF460093A92F /* String+Nonce.swift */,
 				A8B6EE8D2201E41D00908D51 /* String+ToDate.swift */,
@@ -1238,12 +1235,12 @@
 			packageReferences = (
 				A892355829D818500093A92F /* XCRemoteSwiftPackageReference "Entwine" */,
 				A8A1E2052B0AC1590083C3FF /* XCRemoteSwiftPackageReference "combine-schedulers" */,
-				A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa.git" */,
-				A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm.git" */,
-				A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift.git" */,
-				A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
-				A8CF39AB2EC8A7B5004B7CED /* XCRemoteSwiftPackageReference "CryptoSwift.git" */,
-				A8CF39B62ECB512C004B7CED /* XCRemoteSwiftPackageReference "RNCryptor.git" */,
+				A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa" */,
+				A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */,
+				A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				A8CF39AB2EC8A7B5004B7CED /* XCRemoteSwiftPackageReference "CryptoSwift" */,
+				A8CF39B62ECB512C004B7CED /* XCRemoteSwiftPackageReference "RNCryptor" */,
 			);
 			productRefGroup = A8831CC41E9CFE6B00F3CA0A /* Products */;
 			projectDirPath = "";
@@ -1484,7 +1481,6 @@
 				A892354229C0BF460093A92F /* String+Nonce.swift in Sources */,
 				A895A573298FA6B60081E08F /* ReplaySubject.swift in Sources */,
 				A8E6CD16296BAEB10042AA81 /* MainTabbarCoordinator.swift in Sources */,
-				A84DD76A2EABA9AF00CDFD39 /* String+Bool.swift in Sources */,
 				A84635AF2AA3F4270030A358 /* CalendarViewModel.swift in Sources */,
 				A8519453272F3C44003631EE /* ThankYouCellTapMenu.swift in Sources */,
 				A8775598282C5C5C003141B0 /* UIColor+Modification.swift in Sources */,
@@ -1606,7 +1602,7 @@
 		};
 		A893A17E2D5F181E00E01848 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			productRef = A893A17D2D5F181E00E01848 /* plugin:RswiftGenerateInternalResources */;
+			productRef = A893A17D2D5F181E00E01848 /* RswiftGenerateInternalResources */;
 		};
 		A8DF48192D1BA57C008290FA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2558,7 +2554,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
+		A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -2566,7 +2562,7 @@
 				version = 12.2.0;
 			};
 		};
-		A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm.git" */ = {
+		A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
 			requirement = {
@@ -2574,7 +2570,7 @@
 				version = 4.4.3;
 			};
 		};
-		A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa.git" */ = {
+		A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CombineCommunity/CombineCocoa.git";
 			requirement = {
@@ -2590,7 +2586,7 @@
 				kind = branch;
 			};
 		};
-		A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift.git" */ = {
+		A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mac-cain13/R.swift.git";
 			requirement = {
@@ -2606,7 +2602,7 @@
 				version = 1.0.0;
 			};
 		};
-		A8CF39AB2EC8A7B5004B7CED /* XCRemoteSwiftPackageReference "CryptoSwift.git" */ = {
+		A8CF39AB2EC8A7B5004B7CED /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift.git";
 			requirement = {
@@ -2614,7 +2610,7 @@
 				version = 1.9.0;
 			};
 		};
-		A8CF39B62ECB512C004B7CED /* XCRemoteSwiftPackageReference "RNCryptor.git" */ = {
+		A8CF39B62ECB512C004B7CED /* XCRemoteSwiftPackageReference "RNCryptor" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RNCryptor/RNCryptor.git";
 			requirement = {
@@ -2627,42 +2623,42 @@
 /* Begin XCSwiftPackageProductDependency section */
 		A83C32A82E47395000DA1421 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
 		A83C32AA2E47395000DA1421 /* FirebaseDatabase */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDatabase;
 		};
 		A83C32AC2E47395000DA1421 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
 		};
 		A83C32B62E4739C700DA1421 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
 		A83C32BA2E4739DB00DA1421 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
 		};
 		A83C32C02E473BC500DA1421 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
 		A8574DD02BDF489B0073AA61 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm.git" */;
+			package = A8574DCF2BDF489B0073AA61 /* XCRemoteSwiftPackageReference "lottie-spm" */;
 			productName = Lottie;
 		};
 		A88217262B41029800BD8BFD /* CombineCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa.git" */;
+			package = A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa" */;
 			productName = CombineCocoa;
 		};
 		A892355929D818500093A92F /* EntwineTest */ = {
@@ -2670,9 +2666,9 @@
 			package = A892355829D818500093A92F /* XCRemoteSwiftPackageReference "Entwine" */;
 			productName = EntwineTest;
 		};
-		A893A17D2D5F181E00E01848 /* plugin:RswiftGenerateInternalResources */ = {
+		A893A17D2D5F181E00E01848 /* RswiftGenerateInternalResources */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift.git" */;
+			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
 			productName = "plugin:RswiftGenerateInternalResources";
 		};
 		A8A1E2062B0AC1590083C3FF /* CombineSchedulers */ = {
@@ -2682,22 +2678,22 @@
 		};
 		A8CF39AC2EC8A7B5004B7CED /* CryptoSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A8CF39AB2EC8A7B5004B7CED /* XCRemoteSwiftPackageReference "CryptoSwift.git" */;
+			package = A8CF39AB2EC8A7B5004B7CED /* XCRemoteSwiftPackageReference "CryptoSwift" */;
 			productName = CryptoSwift;
 		};
 		A8CF39B72ECB512C004B7CED /* RNCryptor */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A8CF39B62ECB512C004B7CED /* XCRemoteSwiftPackageReference "RNCryptor.git" */;
+			package = A8CF39B62ECB512C004B7CED /* XCRemoteSwiftPackageReference "RNCryptor" */;
 			productName = RNCryptor;
 		};
 		A8E88DC82E5B43B7004C0E64 /* RswiftLibrary */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift.git" */;
+			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
 			productName = RswiftLibrary;
 		};
 		A8F261992B43FA0500A65C0A /* CombineCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa.git" */;
+			package = A88217252B41029700BD8BFD /* XCRemoteSwiftPackageReference "CombineCocoa" */;
 			productName = CombineCocoa;
 		};
 /* End XCSwiftPackageProductDependency section */

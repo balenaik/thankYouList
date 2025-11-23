@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     override init() {
         super.init()
-        safeConfigureFirebase()
+        FirebaseApp.configure()
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -79,14 +79,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 private extension AppDelegate {
-    func safeConfigureFirebase() {
-    #if CI_TEST
-        print("🔥 Skipping Firebase setup for CI")
-    #else
-        FirebaseApp.configure()
-    #endif
-    }
-
     func setupFirebase() {
         do {
             try Auth.auth().useUserAccessGroup(AppConst.teamIdAndAccessGroup)

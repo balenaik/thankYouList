@@ -25,13 +25,9 @@ jobs:
       run: bundle exec pod install
     
     - name: Build and test with Xcode
-      env:
-        CI: "true"
       run: |
-          export CI=true
           xcodebuild -workspace ThankYouList.xcworkspace \
                      -scheme ThankYouListTests \
                      -destination 'platform=iOS Simulator,OS=18.5,name=iPhone 16' \
                      -skipPackagePluginValidation \
-                     build test \
-                     OTHER_SWIFT_FLAGS="-D CI_TEST"
+                     build test

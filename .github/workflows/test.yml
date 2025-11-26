@@ -17,6 +17,9 @@ jobs:
 
     - name: Allow plugin execution for Rswift
       run: defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidatation -bool YES
+    
+    - name: List available simulators
+      run: xcrun simctl list devices available
 
     - name: Install Bundler dependencies
       run: bundle install

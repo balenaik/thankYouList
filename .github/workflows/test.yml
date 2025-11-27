@@ -15,6 +15,9 @@ jobs:
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode_26.1.app
 
+    - name: Download iOS Platform
+      run: xcodebuild -downloadPlatform iOS
+
     - name: Allow plugin execution for Rswift
       run: defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidatation -bool YES
     

@@ -24,6 +24,9 @@ jobs:
     - name: List available simulators
       run: xcrun simctl list devices available
 
+    - name: Prepare staging plist
+      run: echo "$STAGING_GOOGLESERVICE_INFO_BASE64" | base64 --decode > ThankYouList/Resources/GoogleService-Info-Staging.plist
+
     - name: Install Bundler dependencies
       run: bundle install
 

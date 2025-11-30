@@ -34,6 +34,7 @@ jobs:
       run: |
           xcodebuild -workspace ThankYouList.xcworkspace \
                      -scheme ThankYouListTests \
+                     -configuration Debug-Staging \
                      -destination 'platform=iOS Simulator,OS=26.0.1,name=iPhone 16' \
                      -skipPackagePluginValidation \
                      build test

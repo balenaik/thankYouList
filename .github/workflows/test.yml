@@ -27,7 +27,7 @@ jobs:
     - name: Check decoded plist content
       run: |
         echo "$STAGING_GOOGLESERVICE_INFO_BASE64"
-        echo "$STAGING_GOOGLESERVICE_INFO_BASE64_test"
+        echo "Length: ${#STAGING_GOOGLESERVICE_INFO_BASE64}"
         echo "----- BEGIN FILE -----"
         cat ThankYouList/Resources/GoogleService-Info-Staging.plist
         echo "----- END FILE -----"

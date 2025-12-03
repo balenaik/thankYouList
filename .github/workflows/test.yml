@@ -24,6 +24,14 @@ jobs:
     - name: Prepare staging plist
       run: echo "$STAGING_GOOGLESERVICE_INFO_BASE64" | base64 --decode > ThankYouList/Resources/GoogleService-Info-Staging.plist
 
+    - name: Check decoded plist content
+      run: |
+        echo "$STAGING_GOOGLESERVICE_INFO_BASE64"
+        echo "$STAGING_GOOGLESERVICE_INFO_BASE64_test"
+        echo "----- BEGIN FILE -----"
+        cat ThankYouList/Resources/GoogleService-Info-Staging.plist
+        echo "----- END FILE -----"
+
     - name: Check plist size
       run: ls -l ThankYouList/Resources/
 

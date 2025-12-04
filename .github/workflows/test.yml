@@ -22,12 +22,12 @@ jobs:
       run: defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidatation -bool YES
 
     - name: Prepare staging plist
-      run: echo "$STAGING_GOOGLESERVICE_INFO_BASE64" | base64 --decode > ThankYouList/Resources/GoogleService-Info-Staging.plist
+      run: echo "${{ secrets.STAGING_GOOGLESERVICE_INFO_BASE64 }}" | base64 --decode > ThankYouList/Resources/GoogleService-Info-Staging.plist
 
     - name: Check decoded plist content
       run: |
-        echo "$STAGING_GOOGLESERVICE_INFO_BASE64"
-        echo "Length: ${#STAGING_GOOGLESERVICE_INFO_BASE64}"
+        echo "${{ secrets.STAGING_GOOGLESERVICE_INFO_BASE64 }}"
+        echo "Length: ${{ secrets.STAGING_GOOGLESERVICE_INFO_BASE64 }}"
         echo "----- BEGIN FILE -----"
         cat ThankYouList/Resources/GoogleService-Info-Staging.plist
         echo "----- END FILE -----"

@@ -197,6 +197,7 @@
 		A8F270102BD0883F00227009 /* AnyPublisher+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F2700F2BD0883F00227009 /* AnyPublisher+Operators.swift */; };
 		A8F407CA2957DBF6007FDF2D /* ConfirmDeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F407C92957DBF6007FDF2D /* ConfirmDeleteAccountView.swift */; };
 		A8FF6A202829C40500CF816F /* BottomHalfSheetDatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FF6A1F2829C40400CF816F /* BottomHalfSheetDatePickerViewController.swift */; };
+		B14B864AC9A1A02899546BFA /* Pods_ThankYouListTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3BC047F41CC8EE35977190 /* Pods_ThankYouListTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -270,7 +271,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1104C85EA140D2810A351E90 /* Pods-ThankYouListTests.debug-staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouListTests.debug-staging.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouListTests/Pods-ThankYouListTests.debug-staging.xcconfig"; sourceTree = "<group>"; };
 		14D49C15FD4089235E28B5ED /* Pods_ThankYouList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThankYouList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E3BC047F41CC8EE35977190 /* Pods_ThankYouListTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThankYouListTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		533D4D63A35AFC348819BF53 /* Pods-ThankYouList.debug-staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.debug-staging.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.debug-staging.xcconfig"; sourceTree = "<group>"; };
 		A015AC112826D3ABF5A416EC /* Pods-ThankYouList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.release.xcconfig"; sourceTree = "<group>"; };
 		A80500A52DD70C260082245A /* PositiveStatementUpdateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveStatementUpdateModel.swift; sourceTree = "<group>"; };
@@ -456,6 +459,8 @@
 		A8F2700F2BD0883F00227009 /* AnyPublisher+Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyPublisher+Operators.swift"; sourceTree = "<group>"; };
 		A8F407C92957DBF6007FDF2D /* ConfirmDeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDeleteAccountView.swift; sourceTree = "<group>"; };
 		A8FF6A1F2829C40400CF816F /* BottomHalfSheetDatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomHalfSheetDatePickerViewController.swift; sourceTree = "<group>"; };
+		B361967DEC7EB5F27668DA33 /* Pods-ThankYouListTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouListTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouListTests/Pods-ThankYouListTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B4570CC0E2C8632811B9CE39 /* Pods-ThankYouListTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouListTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouListTests/Pods-ThankYouListTests.release.xcconfig"; sourceTree = "<group>"; };
 		BA00FC82559EE1AEA8CE9577 /* Pods-ThankYouList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThankYouList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThankYouList/Pods-ThankYouList.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -483,6 +488,7 @@
 			files = (
 				A892355A29D818500093A92F /* EntwineTest in Frameworks */,
 				A8F2619A2B43FA0500A65C0A /* CombineCocoa in Frameworks */,
+				B14B864AC9A1A02899546BFA /* Pods_ThankYouListTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +530,9 @@
 				BA00FC82559EE1AEA8CE9577 /* Pods-ThankYouList.debug.xcconfig */,
 				A015AC112826D3ABF5A416EC /* Pods-ThankYouList.release.xcconfig */,
 				533D4D63A35AFC348819BF53 /* Pods-ThankYouList.debug-staging.xcconfig */,
+				B361967DEC7EB5F27668DA33 /* Pods-ThankYouListTests.debug.xcconfig */,
+				1104C85EA140D2810A351E90 /* Pods-ThankYouListTests.debug-staging.xcconfig */,
+				B4570CC0E2C8632811B9CE39 /* Pods-ThankYouListTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1050,6 +1059,7 @@
 				14D49C15FD4089235E28B5ED /* Pods_ThankYouList.framework */,
 				A8F064CF2C9F9F8A006C6EE9 /* WidgetKit.framework */,
 				A8F064D12C9F9F8A006C6EE9 /* SwiftUI.framework */,
+				3E3BC047F41CC8EE35977190 /* Pods_ThankYouListTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1107,6 +1117,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A892354F29D731730093A92F /* Build configuration list for PBXNativeTarget "ThankYouListTests" */;
 			buildPhases = (
+				CCF3F60B3514846A9C817A33 /* [CP] Check Pods Manifest.lock */,
 				A892354529D731720093A92F /* Sources */,
 				A892354629D731720093A92F /* Frameworks */,
 				A892354729D731720093A92F /* Resources */,
@@ -1376,6 +1387,28 @@
 			shellPath = /bin/sh;
 			shellScript = "PROD_PLIST=\"${SRCROOT}/ThankYouList/Resources/GoogleService-Info.plist\"\nSTAGING_PLIST=\"${SRCROOT}/ThankYouList/Resources/GoogleService-Info-Staging.plist\"\n\nif [ \"${CONFIGURATION}\" == \"Debug-Staging\" ]; then\n    echo \"Using STAGING Firebase config\"\n    cp \"$STAGING_PLIST\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.appex/GoogleService-Info.plist\"\nelse\n    echo \"Using PROD Firebase config\"\n    cp \"$PROD_PLIST\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.appex/GoogleService-Info.plist\"\nfi\n";
 		};
+		CCF3F60B3514846A9C817A33 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ThankYouListTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D46E638CB34C7D224BCD3B6F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1602,7 +1635,7 @@
 		};
 		A893A17E2D5F181E00E01848 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			productRef = A893A17D2D5F181E00E01848 /* RswiftGenerateInternalResources */;
+			productRef = A893A17D2D5F181E00E01848 /* plugin:RswiftGenerateInternalResources */;
 		};
 		A8DF48192D1BA57C008290FA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1861,6 +1894,7 @@
 		};
 		A892355029D731730093A92F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B361967DEC7EB5F27668DA33 /* Pods-ThankYouListTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1892,6 +1926,7 @@
 		};
 		A892355129D731730093A92F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4570CC0E2C8632811B9CE39 /* Pods-ThankYouListTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -2233,6 +2268,7 @@
 		};
 		A8E08E912EB63F3C00FA0BC9 /* Debug-Staging */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1104C85EA140D2810A351E90 /* Pods-ThankYouListTests.debug-staging.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -2666,7 +2702,7 @@
 			package = A892355829D818500093A92F /* XCRemoteSwiftPackageReference "Entwine" */;
 			productName = EntwineTest;
 		};
-		A893A17D2D5F181E00E01848 /* RswiftGenerateInternalResources */ = {
+		A893A17D2D5F181E00E01848 /* plugin:RswiftGenerateInternalResources */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */;
 			productName = "plugin:RswiftGenerateInternalResources";

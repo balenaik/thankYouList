@@ -21,6 +21,9 @@ target 'ThankYouList' do
   # FloatingPanel
   pod 'FloatingPanel', '2.5.5'
 
+  target 'ThankYouListTests' do
+      inherit! :search_paths
+    end
 end
 
 post_install do | installer |

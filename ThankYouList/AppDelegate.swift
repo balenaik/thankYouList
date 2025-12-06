@@ -83,6 +83,7 @@ private extension AppDelegate {
         do {
             try Auth.auth().useUserAccessGroup(AppConst.teamIdAndAccessGroup)
         } catch let error as NSError {
+            // Crashlytics.crashlytics().record(error: error)
             // TODO: Log error on Crashlytics
             print("Error setting user access group: %@", error)
         }

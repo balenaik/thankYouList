@@ -38,22 +38,6 @@ class LoginViewController: UIViewController {
 
 // MARK: - IB Actions
 extension LoginViewController {
-    @IBAction func tapFacebookLoginButton(_ sender: Any) {
-        let loginManager = LoginManager()
-        loginManager.logIn(permissions: ["email"], from: self) { [weak self] loginResult, _ in
-            guard let self = self else { return }
-            guard let accessTokenString = AccessToken.current?.tokenString else {
-                return
-            }
-            GraphRequest(graphPath: "me",
-                         parameters: ["fields" : "email"]).start { _, result, _ in
-                let dict = result as? [String: String]
-                let credential = FacebookAuthProvider.credential(withAccessToken: accessTokenString)
-                self.signIn(credential: credential, email: dict?["email"])
-            }
-        }
-    }
-    
     @IBAction func tapGoogleLoginButton(_ sender: Any) {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
         GIDSignIn.sharedInstance.configuration = GIDConfiguration(clientID: clientID)

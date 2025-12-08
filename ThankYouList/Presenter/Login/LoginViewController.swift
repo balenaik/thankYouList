@@ -22,7 +22,6 @@ protocol LoginRouter {
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet weak var facebookLoginButton: LoginContinueButton!
     @IBOutlet weak var googleLoginButton: LoginContinueButton!
     @IBOutlet weak var appleLoginButton: LoginContinueButton!
 
@@ -76,7 +75,6 @@ extension LoginViewController {
 // MARK: - Private Methods
 private extension LoginViewController {
     func setupView() {
-        facebookLoginButton.setTitle(R.string.localizable.login_continue_with_facebook(), for: .normal)
         googleLoginButton.setTitle(R.string.localizable.login_continue_with_google(), for: .normal)
         appleLoginButton.setTitle(R.string.localizable.login_continue_with_apple(), for: .normal)
     }

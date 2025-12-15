@@ -7,8 +7,6 @@
 //
 
 import AuthenticationServices
-import FBSDKCoreKit
-import FBSDKLoginKit
 import Firebase
 import FirebaseAuth
 import GoogleSignIn

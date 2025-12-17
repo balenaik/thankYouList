@@ -8,8 +8,6 @@ target 'ThankYouList' do
   pod 'JTAppleCalendar', '~> 7.0'
 
   # Auth
-  pod 'FBSDKCoreKit', '~> 6.5.0'
-  pod 'FBSDKLoginKit', '~> 6.5.0'
   pod 'GoogleSignIn', '7.0.0'
 
   # SkeletonView

@@ -10,7 +10,6 @@ import UIKit
 import Combine
 import Firebase
 import FirebaseAuth
-import FBSDKCoreKit
 import SharedResources
 
 @UIApplicationMain
@@ -30,8 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
-        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
         setupFirebase()
         setupNavigationBar()
@@ -68,13 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
         -> Bool {
-            if handleDeeplink(url: url) {
-                return true
-            }
-            return ApplicationDelegate.shared.application(application,
-                                                          open: url,
-                                                          sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
-                                                          annotation: [:])
+            handleDeeplink(url: url)
     }
 }
 

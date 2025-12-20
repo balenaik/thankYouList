@@ -9,7 +9,6 @@
 import FirebaseAuth
 import Combine
 import GoogleSignIn
-import FBSDKCoreKit
 
 enum UserRepositoryError: Error {
     case currentUserNotExist
@@ -18,7 +17,6 @@ enum UserRepositoryError: Error {
 }
 
 enum AuthProvider: String {
-    case facebook = "facebook.com"
     case google = "google.com"
     case apple = "apple.com"
 }
@@ -120,13 +118,6 @@ private extension DefaultUserRepository {
             let credential = GoogleAuthProvider.credential(
                 withIDToken: idToken.tokenString,
                 accessToken: accessToken.tokenString)
-            authCredential = credential
-        case .facebook:
-            guard let tokenString = AccessToken.current?.tokenString else {
-                return Fail(error: UserRepositoryError.tokenNotFound)
-                    .asFuture()
-            }
-            let credential = FacebookAuthProvider.credential(withAccessToken: tokenString)
             authCredential = credential
         case .apple:
             return appleAuthenticationManager

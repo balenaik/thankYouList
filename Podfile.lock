@@ -5,16 +5,6 @@ PODS:
   - AppAuth/Core (1.6.2)
   - AppAuth/ExternalUserAgent (1.6.2):
     - AppAuth/Core
-  - FBSDKCoreKit (6.5.1):
-    - FBSDKCoreKit/Basics (= 6.5.1)
-    - FBSDKCoreKit/Core (= 6.5.1)
-  - FBSDKCoreKit/Basics (6.5.1)
-  - FBSDKCoreKit/Core (6.5.1):
-    - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (6.5.1):
-    - FBSDKLoginKit/Login (= 6.5.1)
-  - FBSDKLoginKit/Login (6.5.1):
-    - FBSDKCoreKit (~> 6.5.1)
   - FloatingPanel (2.5.5)
   - GoogleSignIn (7.0.0):
     - AppAuth (~> 1.5)
@@ -31,8 +21,6 @@ PODS:
   - SkeletonView (1.25.1)
 
 DEPENDENCIES:
-  - FBSDKCoreKit (~> 6.5.0)
-  - FBSDKLoginKit (~> 6.5.0)
   - FloatingPanel (= 2.5.5)
   - GoogleSignIn (= 7.0.0)
   - JTAppleCalendar (~> 7.0)
@@ -42,8 +30,6 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AppAuth
-    - FBSDKCoreKit
-    - FBSDKLoginKit
     - FloatingPanel
     - GoogleSignIn
     - GTMAppAuth
@@ -54,8 +40,6 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AppAuth: 3bb1d1cd9340bd09f5ed189fb00b1cc28e1e8570
-  FBSDKCoreKit: 3ecb604427e115bd90ff7fc62ee1e30ebd12285b
-  FBSDKLoginKit: 8b2bc5fa30ea269e9d7208a1165c0a668c0ae826
   FloatingPanel: a27e7827e0f710fa6236fe2596dd1b5484cb4fc1
   GoogleSignIn: b232380cf495a429b8095d3178a8d5855b42e842
   GTMAppAuth: 99fb010047ba3973b7026e45393f51f27ab965ae
@@ -64,6 +48,6 @@ SPEC CHECKSUMS:
   SDWebImage: 97351f6582ceca541ea294ba66a1fcb342a331c2
   SkeletonView: 77079530e1348a72f48b79ae30dcb966c1b18b6a
 
-PODFILE CHECKSUM: ae4a056fce3579c205180a032a8bc4f381d3c49a
+PODFILE CHECKSUM: d6317a3fd26d48bf638c3868c5d0dab5a84f0e54
 
 COCOAPODS: 1.14.3

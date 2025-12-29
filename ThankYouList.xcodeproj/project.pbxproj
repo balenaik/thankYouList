@@ -156,6 +156,7 @@
 		A8CF39AD2EC8A7B5004B7CED /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A8CF39AC2EC8A7B5004B7CED /* CryptoSwift */; };
 		A8CF39B82ECB512C004B7CED /* RNCryptor in Frameworks */ = {isa = PBXBuildFile; productRef = A8CF39B72ECB512C004B7CED /* RNCryptor */; };
 		A8CF3AE62EFD2E5A004B7CED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8CF3AE52EFD2E5A004B7CED /* GoogleService-Info.plist */; };
+		A8CF3B072F00FF73004B7CED /* DotLottie in Frameworks */ = {isa = PBXBuildFile; productRef = A8CF3B062F00FF73004B7CED /* DotLottie */; };
 		A8D41E1C21E0E07B00A77B48 /* SettingDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */; };
 		A8D5DFE82450A4FD00F30205 /* UIImageView+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D5DFE72450A4FD00F30205 /* UIImageView+URL.swift */; };
 		A8DABC24271ACE4E0086B2E8 /* BottomHalfSheetMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DABC23271ACE4E0086B2E8 /* BottomHalfSheetMenuViewController.swift */; };
@@ -471,6 +472,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8CF3B072F00FF73004B7CED /* DotLottie in Frameworks */,
 				A8DF48222D1BA57C008290FA /* SharedResources.framework in Frameworks */,
 				A8A1E2072B0AC1590083C3FF /* CombineSchedulers in Frameworks */,
 				A88217272B41029800BD8BFD /* CombineCocoa in Frameworks */,
@@ -1111,6 +1113,7 @@
 				A83C32AC2E47395000DA1421 /* FirebaseFirestore */,
 				A83C32C02E473BC500DA1421 /* FirebaseAnalytics */,
 				A8E88DC82E5B43B7004C0E64 /* RswiftLibrary */,
+				A8CF3B062F00FF73004B7CED /* DotLottie */,
 			);
 			productName = ThankYouList;
 			productReference = A8831CC31E9CFE6B00F3CA0A /* ThankYouList.app */;
@@ -1255,6 +1258,7 @@
 				A83C32A72E47395000DA1421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				A8CF39AB2EC8A7B5004B7CED /* XCRemoteSwiftPackageReference "CryptoSwift" */,
 				A8CF39B62ECB512C004B7CED /* XCRemoteSwiftPackageReference "RNCryptor" */,
+				A8CF3B052F00FF73004B7CED /* XCRemoteSwiftPackageReference "dotlottie-ios" */,
 			);
 			productRefGroup = A8831CC41E9CFE6B00F3CA0A /* Products */;
 			projectDirPath = "";
@@ -2654,6 +2658,14 @@
 				version = 5.2.0;
 			};
 		};
+		A8CF3B052F00FF73004B7CED /* XCRemoteSwiftPackageReference "dotlottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LottieFiles/dotlottie-ios";
+			requirement = {
+				kind = exactVersion;
+				version = 0.11.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2721,6 +2733,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A8CF39B62ECB512C004B7CED /* XCRemoteSwiftPackageReference "RNCryptor" */;
 			productName = RNCryptor;
+		};
+		A8CF3B062F00FF73004B7CED /* DotLottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A8CF3B052F00FF73004B7CED /* XCRemoteSwiftPackageReference "dotlottie-ios" */;
+			productName = DotLottie;
 		};
 		A8E88DC82E5B43B7004C0E64 /* RswiftLibrary */ = {
 			isa = XCSwiftPackageProductDependency;

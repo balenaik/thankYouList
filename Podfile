@@ -8,8 +8,6 @@ target 'ThankYouList' do
   pod 'JTAppleCalendar', '~> 7.0'
 
   # Auth
-  pod 'FBSDKCoreKit', '~> 6.5.0'
-  pod 'FBSDKLoginKit', '~> 6.5.0'
   pod 'GoogleSignIn', '7.0.0'
 
   # SkeletonView
@@ -21,14 +19,9 @@ target 'ThankYouList' do
   # FloatingPanel
   pod 'FloatingPanel', '2.5.5'
 
-end
-
-target 'SharedResources' do
-  use_frameworks!
-
-  # Crypto
-  pod 'RNCryptor', '~> 5.0'
-  pod 'CryptoSwift'
+  target 'ThankYouListTests' do
+      inherit! :search_paths
+    end
 end
 
 post_install do | installer |

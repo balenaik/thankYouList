@@ -1,6 +1,8 @@
-git_url("https://github.com/balenaik/thankyoulist_provisioning.git")
+git_url("git@github.com:balenaik/thankyoulist_provisioning.git")
 
 app_identifier([
 	"com.balenaik.ThankYouList",
-	"com.balenaik.ThankYouList.PositiveStatementWidget"
+	"com.balenaik.ThankYouList.staging",
+	"com.balenaik.ThankYouList.PositiveStatementWidget",
+	"com.balenaik.ThankYouList.staging.PositiveStatementWidget"
 ])

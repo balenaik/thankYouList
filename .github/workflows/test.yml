@@ -1,0 +1,37 @@
+name: Run Test
+
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Select Xcode
+      run: sudo xcode-select -switch /Applications/Xcode_26.1.app
+
+    - name: Allow plugin execution for Rswift
+      run: defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidatation -bool YES
+
+    - name: Prepare staging plist
+      run: echo "${{ secrets.STAGING_GOOGLESERVICE_INFO_BASE64 }}" | base64 --decode > ThankYouList/Resources/GoogleService-Info-Staging.plist
+
+    - name: Install Bundler dependencies
+      run: bundle install
+
+    - name: Install CocoaPods dependencies
+      run: bundle exec pod install
+    
+    - name: Build and test with Xcode
+      run: |
+          xcodebuild -workspace ThankYouList.xcworkspace \
+                     -scheme ThankYouListTests \
+                     -configuration Debug-Staging \
+                     -destination 'platform=iOS Simulator,OS=26.0.1,name=iPhone 16' \
+                     -skipPackagePluginValidation \
+                     build test

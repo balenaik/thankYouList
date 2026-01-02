@@ -157,6 +157,7 @@
 		A8CF39B82ECB512C004B7CED /* RNCryptor in Frameworks */ = {isa = PBXBuildFile; productRef = A8CF39B72ECB512C004B7CED /* RNCryptor */; };
 		A8CF3AE62EFD2E5A004B7CED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8CF3AE52EFD2E5A004B7CED /* GoogleService-Info.plist */; };
 		A8CF3B072F00FF73004B7CED /* DotLottie in Frameworks */ = {isa = PBXBuildFile; productRef = A8CF3B062F00FF73004B7CED /* DotLottie */; };
+		A8CF3B312F079289004B7CED /* positiveStatementOnboarding.lottie in Resources */ = {isa = PBXBuildFile; fileRef = A8CF3B302F079288004B7CED /* positiveStatementOnboarding.lottie */; };
 		A8D41E1C21E0E07B00A77B48 /* SettingDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */; };
 		A8D5DFE82450A4FD00F30205 /* UIImageView+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D5DFE72450A4FD00F30205 /* UIImageView+URL.swift */; };
 		A8DABC24271ACE4E0086B2E8 /* BottomHalfSheetMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DABC23271ACE4E0086B2E8 /* BottomHalfSheetMenuViewController.swift */; };
@@ -418,6 +419,7 @@
 		A8CA1E862E65E7F9001D4495 /* WidgetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetManager.swift; sourceTree = "<group>"; };
 		A8CA1E8C2E65E951001D4495 /* MockWidgetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWidgetManager.swift; sourceTree = "<group>"; };
 		A8CF3AE52EFD2E5A004B7CED /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A8CF3B302F079288004B7CED /* positiveStatementOnboarding.lottie */ = {isa = PBXFileReference; lastKnownFileType = file; path = positiveStatementOnboarding.lottie; sourceTree = "<group>"; };
 		A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDateView.swift; sourceTree = "<group>"; };
 		A8D5DFE72450A4FD00F30205 /* UIImageView+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+URL.swift"; sourceTree = "<group>"; };
 		A8DABBD527173FA20086B2E8 /* ViewConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConst.swift; sourceTree = "<group>"; };
@@ -759,6 +761,7 @@
 		A8574DD22BDF562E0073AA61 /* LottieFiles */ = {
 			isa = PBXGroup;
 			children = (
+				A8CF3B302F079288004B7CED /* positiveStatementOnboarding.lottie */,
 				A87AD1352BE46AE1007FF79A /* processingCircle.json */,
 			);
 			path = LottieFiles;
@@ -1282,6 +1285,7 @@
 				A8851EA326FC1522008B2D7A /* imageLaunchScreen.png in Resources */,
 				A84FDB5E21DC365F00593326 /* SettingHeaderView.xib in Resources */,
 				A808C618220FAD06004162E4 /* SmallListView.xib in Resources */,
+				A8CF3B312F079289004B7CED /* positiveStatementOnboarding.lottie in Resources */,
 				A80EAE5C21FD5FA6006B02E8 /* ThankYouCell.xib in Resources */,
 				A8C90AE22302ECCA008C6A4A /* ListScrollIndicatorTitleView.xib in Resources */,
 				A8E08EB92EBCD0BF00FA0BC9 /* GoogleService-Info-Staging.plist in Resources */,

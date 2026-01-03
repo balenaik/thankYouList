@@ -203,5 +203,6 @@ extension PositiveStatementListViewModel {
         @Published var showBottomMenu = false
         @Published var bottomMenuList = [PositiveStatementTapMenu]()
         @Published var showAlert: AlertItem?
+        @Published var showOnboardingSheet: Bool = false
     }
 }

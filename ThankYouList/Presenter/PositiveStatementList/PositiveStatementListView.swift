@@ -54,6 +54,9 @@ struct PositiveStatementListView: View {
         .flexibleHeightBottomHalfSheet(
             isPresented: $viewModelOutputs.showBottomMenu,
             sheetContent: bottomMenu)
+        .sheet(isPresented: $viewModelOutputs.showOnboardingSheet) {
+            onboardingSheet
+        }
         .alert(item: $viewModelOutputs.showAlert) { alertItem in alertItem.toAlert }
         .onAppear { viewModelInputs.onAppear.send() }
     }
@@ -230,6 +233,15 @@ private extension PositiveStatementListView {
             return configuration.label
                .foregroundColor(.text)
                .background(configuration.isPressed ? Color.highlight : Color.white)
+        }
+    }
+}
+
+// MARK: - Onboarding
+
+private extension PositiveStatementListView {
+    var onboardingSheet: some View {
+        VStack {
         }
     }
 }

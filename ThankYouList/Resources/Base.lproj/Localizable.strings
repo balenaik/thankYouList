@@ -90,6 +90,9 @@
 "positive_statement_list_add_button_text" = "Add a Posiitive Statement";
 "positive_statement_list_confirm_delete_title" = "Delete Positive Statement";
 "positive_statement_list_confirm_delete_message" = "Are you sure you want to delete this positive statement?";
+"positive_statement_list_onboarding_sheet_title" = "Turn Intentions Into Words";
+"positive_statement_list_onboarding_sheet_description" = "Describe your ideal future in a positive statement. It will live on your Home Screen as a widget.";
+"positive_statement_list_onboarding_sheet_button" = "Write a Positive Statement";
 
 "add_positive_statement_title" = "What does your ideal future look like?";
 "add_positive_statement_description" = "Imagine your ideal future or the person you want to become. Then, express it in the form of \"I am...\" or \"I will...\" as if you are already that way. Let's put it into words.";

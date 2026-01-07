@@ -118,7 +118,7 @@ struct PositiveStatementListView: View {
                 .foregroundStyle(Color.text.opacity(widgetSetupHintRightArrowIconOpacity))
         }
         .padding(.horizontal, ViewConst.spacing12)
-        .background(Color.primary100)
+        .background(Color.primary200)
         .clipShape(RoundedRectangle(cornerRadius: widgetSetupHintButtonCornerRadius, style: .circular))
         .onTapGesture {
             viewModelInputs.widgetHintButtonDidTap.send()

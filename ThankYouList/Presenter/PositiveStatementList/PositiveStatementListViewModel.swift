@@ -100,7 +100,11 @@ private extension PositiveStatementListViewModel {
             }
             .store(in: &cancellable)
 
-        inputs.addButtonDidTap
+        Publishers
+            .Merge(
+                inputs.addButtonDidTap,
+                inputs.onboardingAddButtonDidTap
+            )
             .sink { [router] in
                 router?.presentAddPositiveStatement()
             }
@@ -195,6 +199,7 @@ extension PositiveStatementListViewModel {
         let widgetHintButtonDidTap = PassthroughSubject<Void, Never>()
         let positiveStatementMenuButtonDidTap = PassthroughSubject<String, Never>()
         let bottomMenuDidTap = PassthroughSubject<PositiveStatementTapMenu, Never>()
+        let onboardingAddButtonDidTap = PassthroughSubject<Void, Never>()
     }
 
     class Outputs: ObservableObject {

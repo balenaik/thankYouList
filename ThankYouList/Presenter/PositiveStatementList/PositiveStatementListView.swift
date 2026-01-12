@@ -268,6 +268,7 @@ private extension PositiveStatementListView {
             Spacer()
 
             Button {
+                viewModelInputs.onboardingAddButtonDidTap.send()
             } label: {
                 Text(R.string.localizable.positive_statement_list_onboarding_sheet_button)
             }

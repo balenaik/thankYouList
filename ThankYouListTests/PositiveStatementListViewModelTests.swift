@@ -197,6 +197,14 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         XCTAssertEqual(router.presentAddPositiveStatement_calledCount, 1)
     }
 
+    func test_ifAUserTapsOnboardingAddButton__itShouldPresentAddPositiveStatement() {
+        // Taps onboarding add button
+        viewModel.inputs.onboardingAddButtonDidTap.send()
+
+        // It should present AddPositiveStatement
+        XCTAssertEqual(router.presentAddPositiveStatement_calledCount, 1)
+    }
+
     func test_ifAUserTapsWidgetHintButton__itShouldPresentHomeWidgetInstruction() {
         // Taps widget hint button
         viewModel.inputs.widgetHintButtonDidTap.send()

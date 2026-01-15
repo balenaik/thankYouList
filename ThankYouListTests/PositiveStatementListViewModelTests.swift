@@ -20,6 +20,7 @@ final class PositiveStatementListViewModelTests: XCTestCase {
     private var scheduler: TestSchedulerOf<DispatchQueue>!
     private var analyticsManager: MockAnalyticsManager!
     private var widgetManager: MockWidgetManager!
+    private var userDefaultDataStore: UserDefaultsDataStore!
 
     override func setUp() {
         userRepository = MockUserRepository()
@@ -28,6 +29,7 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         scheduler = DispatchQueue.test
         analyticsManager = MockAnalyticsManager()
         widgetManager = MockWidgetManager()
+        userDefaultDataStore = MockUserDefaultsDataStore()
 
         viewModel = PositiveStatementListViewModel(
             userRepository: userRepository,
@@ -35,7 +37,8 @@ final class PositiveStatementListViewModelTests: XCTestCase {
             router: router,
             scheduler: scheduler.eraseToAnyScheduler(),
             analyticsManager: analyticsManager,
-            widgetManager: widgetManager
+            widgetManager: widgetManager,
+            userDefaultsDataStore: userDefaultDataStore
         )
     }
 

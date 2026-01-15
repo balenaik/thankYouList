@@ -288,7 +288,8 @@ private extension PositiveStatementListView {
         positiveStatementRepository: DefaultPositiveStatementRepository(),
         router: nil,
         analyticsManager: DefaultAnalyticsManager(),
-        widgetManager: DefaultWidgetManager()
+        widgetManager: DefaultWidgetManager(),
+        userDefaultsDataStore: DefaultUserDefaultsDataStore()
     )
     return PositiveStatementListView(viewModel: viewModel)
 }

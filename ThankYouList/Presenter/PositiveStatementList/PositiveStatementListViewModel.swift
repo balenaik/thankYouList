@@ -31,6 +31,7 @@ class PositiveStatementListViewModel: ObservableObject {
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private let analyticsManager: AnalyticsManager
     private let widgetManager: WidgetManager
+    private var userDefaultsDataStore: UserDefaultsDataStore
 
     init(
         userRepository: UserRepository,
@@ -38,7 +39,8 @@ class PositiveStatementListViewModel: ObservableObject {
         router: PositiveStatementListRouter?,
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
         analyticsManager: AnalyticsManager,
-        widgetManager: WidgetManager
+        widgetManager: WidgetManager,
+        userDefaultsDataStore: UserDefaultsDataStore
     ) {
         self.userRepository = userRepository
         self.positiveStatementRepository = positiveStatementRepository
@@ -46,6 +48,7 @@ class PositiveStatementListViewModel: ObservableObject {
         self.scheduler = scheduler
         self.analyticsManager = analyticsManager
         self.widgetManager = widgetManager
+        self.userDefaultsDataStore = userDefaultsDataStore
         bind()
     }
 

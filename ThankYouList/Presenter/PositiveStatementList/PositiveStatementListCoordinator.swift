@@ -26,7 +26,8 @@ class PositiveStatementListCoordinator: Coordinator {
             positiveStatementRepository: DefaultPositiveStatementRepository(),
             router: self,
             analyticsManager: DefaultAnalyticsManager(),
-            widgetManager: DefaultWidgetManager()
+            widgetManager: DefaultWidgetManager(),
+            userDefaultsDataStore: DefaultUserDefaultsDataStore()
         )
         let view = ViewLifecycleAwareHostingController(
             rootView: PositiveStatementListView(viewModel: viewModel)

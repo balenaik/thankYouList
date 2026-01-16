@@ -97,6 +97,14 @@ private extension PositiveStatementListViewModel {
             .map { $0.count >= maxPositiveStatementCount }
             .assign(to: &outputs.$isAddButtonDisabled)
 
+        positiveStatements
+            .values()
+            .map { [userDefaultsDataStore] statements in
+                statements.isEmpty
+                && !userDefaultsDataStore.hasSeenPositiveStatementOnboarding
+            }
+            .assign(to: &outputs.$showOnboardingSheet)
+
         inputs.onAppear
             .sink { [analyticsManager] in
                 analyticsManager.logEvent(eventName: AnalyticsEventConst.openPositiveStatementList)

@@ -377,6 +377,54 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         XCTAssertEqual(analyticsManager.loggedEvent.count, 1)
         XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.openPositiveStatementList)
     }
+
+    func test_ifAUserOpensTheScreen_postitiveStatementsIsEmpty_andHasSeenPositiveStatementOnboardingFalse__itShouldShowOnboardingSheet() {
+        positiveStatementRepository.subscribePositiveStatements_result = Just([])
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+        userDefaultDataStore.hasSeenPositiveStatementOnboarding = false
+
+        let showOnboardingSheetRecords = TestRecord(publisher: viewModel.outputs.$showOnboardingSheet.eraseToAnyPublisher())
+        showOnboardingSheetRecords.clearResult()
+
+        viewModel.inputs.onAppear.send()
+
+        XCTAssertEqual(showOnboardingSheetRecords.results, [
+            .value(true)
+        ])
+    }
+
+    func test_ifAUserOpensTheScreen_postitiveStatementsIsNotEmpty_andHasSeenPositiveStatementOnboardingFalse__itShouldNotShowOnboardingSheet() {
+        positiveStatementRepository.subscribePositiveStatements_result = Just([PositiveStatementModel(id: "id", value: "value", createdDate: Date())])
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+        userDefaultDataStore.hasSeenPositiveStatementOnboarding = false
+
+        let showOnboardingSheetRecords = TestRecord(publisher: viewModel.outputs.$showOnboardingSheet.eraseToAnyPublisher())
+        showOnboardingSheetRecords.clearResult()
+
+        viewModel.inputs.onAppear.send()
+
+        XCTAssertEqual(showOnboardingSheetRecords.results, [
+            .value(false)
+        ])
+    }
+
+    func test_ifAUserOpensTheScreen_postitiveStatementsIsEmpty_andHasSeenPositiveStatementOnboardingTrue__itShouldNotShowOnboardingSheet() {
+        positiveStatementRepository.subscribePositiveStatements_result = Just([])
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+        userDefaultDataStore.hasSeenPositiveStatementOnboarding = true
+
+        let showOnboardingSheetRecords = TestRecord(publisher: viewModel.outputs.$showOnboardingSheet.eraseToAnyPublisher())
+        showOnboardingSheetRecords.clearResult()
+
+        viewModel.inputs.onAppear.send()
+
+        XCTAssertEqual(showOnboardingSheetRecords.results, [
+            .value(false)
+        ])
+    }
 }
 
 private class MockPositiveStatementListRouter: MockRouter, PositiveStatementListRouter {

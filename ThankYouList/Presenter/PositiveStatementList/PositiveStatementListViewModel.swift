@@ -105,6 +105,16 @@ private extension PositiveStatementListViewModel {
             }
             .assign(to: &outputs.$showOnboardingSheet)
 
+        Publishers
+            .Merge(
+                outputs.$showOnboardingSheet.filter { $0 }.map { _ in },
+                positiveStatements.values().filter { !$0.isEmpty }.map { _ in }
+            )
+            .sink { [weak self] in
+                self?.userDefaultsDataStore.hasSeenPositiveStatementOnboarding = true
+            }
+            .store(in: &cancellable)
+
         inputs.onAppear
             .sink { [analyticsManager] in
                 analyticsManager.logEvent(eventName: AnalyticsEventConst.openPositiveStatementList)

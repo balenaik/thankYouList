@@ -425,6 +425,25 @@ final class PositiveStatementListViewModelTests: XCTestCase {
             .value(false)
         ])
     }
+
+    func test_ifTheOnboardingSheetIsShown__itShouldMarkHasSeenPositiveStatementOnboardingAsTrue() {
+        userDefaultDataStore.hasSeenPositiveStatementOnboarding = false
+
+        viewModel.outputs.showOnboardingSheet = true
+
+        XCTAssertTrue(userDefaultDataStore.hasSeenPositiveStatementOnboarding)
+    }
+
+    func test_ifAUserOpensTheScreen_postitiveStatementsIsNotEmpty__itShouldMarkHasSeenPositiveStatementOnboardingAsTrue() {
+        positiveStatementRepository.subscribePositiveStatements_result = Just([PositiveStatementModel(id: "id", value: "value", createdDate: Date())])
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+        userDefaultDataStore.hasSeenPositiveStatementOnboarding = false
+
+        viewModel.inputs.onAppear.send()
+
+        XCTAssertTrue(userDefaultDataStore.hasSeenPositiveStatementOnboarding)
+    }
 }
 
 private class MockPositiveStatementListRouter: MockRouter, PositiveStatementListRouter {

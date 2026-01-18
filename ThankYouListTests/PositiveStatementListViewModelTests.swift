@@ -378,7 +378,7 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.openPositiveStatementList)
     }
 
-    func test_ifAUserOpensTheScreen_postitiveStatementsIsEmpty_andHasSeenPositiveStatementOnboardingFalse__itShouldShowOnboardingSheet() {
+    func test_ifAUserOpensTheScreen_positiveStatementsIsEmpty_andHasSeenPositiveStatementOnboardingFalse__itShouldShowOnboardingSheet() {
         positiveStatementRepository.subscribePositiveStatements_result = Just([])
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
@@ -394,7 +394,7 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         ])
     }
 
-    func test_ifAUserOpensTheScreen_postitiveStatementsIsNotEmpty_andHasSeenPositiveStatementOnboardingFalse__itShouldNotShowOnboardingSheet() {
+    func test_ifAUserOpensTheScreen_positiveStatementsIsNotEmpty_andHasSeenPositiveStatementOnboardingFalse__itShouldNotShowOnboardingSheet() {
         positiveStatementRepository.subscribePositiveStatements_result = Just([PositiveStatementModel(id: "id", value: "value", createdDate: Date())])
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
@@ -410,7 +410,7 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         ])
     }
 
-    func test_ifAUserOpensTheScreen_postitiveStatementsIsEmpty_andHasSeenPositiveStatementOnboardingTrue__itShouldNotShowOnboardingSheet() {
+    func test_ifAUserOpensTheScreen_positiveStatementsIsEmpty_andHasSeenPositiveStatementOnboardingTrue__itShouldNotShowOnboardingSheet() {
         positiveStatementRepository.subscribePositiveStatements_result = Just([])
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
@@ -434,7 +434,7 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         XCTAssertTrue(userDefaultDataStore.hasSeenPositiveStatementOnboarding)
     }
 
-    func test_ifAUserOpensTheScreen_postitiveStatementsIsNotEmpty__itShouldMarkHasSeenPositiveStatementOnboardingAsTrue() {
+    func test_ifAUserOpensTheScreen_positiveStatementsIsNotEmpty__itShouldMarkHasSeenPositiveStatementOnboardingAsTrue() {
         positiveStatementRepository.subscribePositiveStatements_result = Just([PositiveStatementModel(id: "id", value: "value", createdDate: Date())])
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()

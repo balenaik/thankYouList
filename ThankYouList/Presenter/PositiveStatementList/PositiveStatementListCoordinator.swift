@@ -26,7 +26,8 @@ class PositiveStatementListCoordinator: Coordinator {
             positiveStatementRepository: DefaultPositiveStatementRepository(),
             router: self,
             analyticsManager: DefaultAnalyticsManager(),
-            widgetManager: DefaultWidgetManager()
+            widgetManager: DefaultWidgetManager(),
+            userDefaultsDataStore: DefaultUserDefaultsDataStore()
         )
         let view = ViewLifecycleAwareHostingController(
             rootView: PositiveStatementListView(viewModel: viewModel)
@@ -51,6 +52,8 @@ extension PositiveStatementListCoordinator: PositiveStatementListRouter {
 
     func presentAddPositiveStatement() {
         guard let viewController = viewController else { return }
+        // Dismiss presented View if existed (i.e. onboarding half-sheet)
+        viewController.presentedViewController?.dismiss(animated: true)
         let coordinator = AddPositiveStatementCoordinator(presentingViewController: viewController)
         coordinator.start()
     }

@@ -89,6 +89,10 @@
 "positive_statement_list_add_button_text" = "ポジティブメッセージを追加";
 "positive_statement_list_confirm_delete_title" = "ポジティブメッセージを削除";
 "positive_statement_list_confirm_delete_message" = "本当にこのポジティブメッセージを削除してよろしいですか?";
+"positive_statement_list_onboarding_sheet_title" = "未来への想いを\n言葉にする";
+"positive_statement_list_onboarding_sheet_description" = "理想の未来や、なりたい自分を
+ポジティブな言葉で表現してみましょう。\nその言葉は、ホーム画面のウィジェットとして表示されます。";
+"positive_statement_list_onboarding_sheet_button" = "ポジティブな言葉を書いてみる";
 
 "add_positive_statement_title" = "あなたの理想の未来はどんな状態ですか？";
 "add_positive_statement_description" = "あなたの理想の未来、またはなりたい自分の姿をイメージしましょう。\nそして「私は〜ます。」「私は〜です。」という形で、あなたが現在すでにそうであるかのように言葉にしてみましょう。";

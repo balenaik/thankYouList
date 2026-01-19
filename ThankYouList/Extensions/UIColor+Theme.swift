@@ -26,7 +26,7 @@ extension UIColor {
     }
 
     class var primary900: UIColor {
-        return UIColor(colorWithHexValue: 0xfa8d8d)
+        return UIColor(colorWithHexValue: 0xf57c7c)
     }
 
     class var defaultBackground: UIColor {

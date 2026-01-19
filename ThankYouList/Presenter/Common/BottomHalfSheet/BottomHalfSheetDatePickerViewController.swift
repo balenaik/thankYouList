@@ -99,8 +99,8 @@ private extension BottomHalfSheetDatePickerViewController {
         let doneButton = UIButton()
         view.addSubview(doneButton)
         doneButton.setTitle(R.string.localizable.done(), for: .normal)
-        doneButton.setBackgroundColor(color: .primary500, for: .normal)
-        doneButton.setBackgroundColor(color: UIColor.primary500.darken(), for: .highlighted)
+        doneButton.setBackgroundColor(color: .primary900, for: .normal)
+        doneButton.setBackgroundColor(color: UIColor.primary900.darken(), for: .highlighted)
         doneButton.layer.cornerRadius = doneButtonCornerRadius
         doneButton.titleLabel?.font = UIFont.boldAvenir(ofSize: ViewConst.fontSize17)
         doneButton.clipsToBounds = true

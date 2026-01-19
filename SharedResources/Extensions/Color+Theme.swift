@@ -26,7 +26,7 @@ extension Color {
     }
 
     public static var primary900: Color {
-        return Color(hex: 0xfa8d8d)
+        return Color(hex: 0xf57c7c)
     }
 
     public static var defaultBackground: Color {

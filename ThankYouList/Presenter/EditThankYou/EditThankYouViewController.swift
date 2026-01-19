@@ -17,8 +17,8 @@ private let textViewSideMargin = CGFloat(12)
 private let textViewTopBottomMargin = CGFloat(12)
 private let textViewMinHeight = CGFloat(120)
 
-private let doneButtonEnabledBgColor = UIColor.primary
-private let doneButtonDisabledBgColor = UIColor.primary.withAlphaComponent(0.38)
+private let doneButtonEnabledBgColor = UIColor.primary900
+private let doneButtonDisabledBgColor = UIColor.primary900.withAlphaComponent(0.38)
 
 private let rowComponentCornerRadius = CGFloat(16)
 

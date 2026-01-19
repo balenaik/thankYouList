@@ -19,10 +19,12 @@ public enum ViewConst {
     public static let spacing16 = CGFloat(16)
     public static let spacing20 = CGFloat(20)
     public static let spacing24 = CGFloat(24)
+    public static let spacing28 = CGFloat(28)
     public static let spacing80 = CGFloat(80)
 
     public static let fontSize13 = CGFloat(13)
     public static let fontSize16 = CGFloat(16)
     public static let fontSize17 = CGFloat(17)
     public static let fontSize24 = CGFloat(24)
+    public static let fontSize28 = CGFloat(28)
 }

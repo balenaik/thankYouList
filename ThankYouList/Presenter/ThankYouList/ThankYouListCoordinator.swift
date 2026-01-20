@@ -22,6 +22,10 @@ class ThankYouListCoordinator: Coordinator {
             return
         }
         viewController.router = self
+        let viewModel = ThankYouListViewModel(
+            router: self
+        )
+        viewController.viewModel = viewModel
         routingType.navigationController?.pushViewController(viewController, animated: false)
     }
 }

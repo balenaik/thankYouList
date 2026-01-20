@@ -6,6 +6,7 @@
 //  Copyright © 2017 Aika Yamada. All rights reserved.
 //
 
+import Combine
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
@@ -36,17 +37,23 @@ class ThankYouListViewController: UIViewController {
     private var sections = [Section]()
     private var estimatedRowHeights = [String : CGFloat]()
     private var hasLoadedThankYouList = false
+    private var cancellables = Set<AnyCancellable>()
 
     var router: ThankYouListRouter?
+    var viewModel: ThankYouListViewModel!
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var scrollIndicator: ListScrollIndicator!
     @IBOutlet private weak var emptyView: ThankYouEmptyView!
+    @IBOutlet private weak var userIcon: UIBarButtonItem!
+
+    // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupNavigationBar()
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,10 +62,17 @@ class ThankYouListViewController: UIViewController {
     }
 }
 
-// MARK: - IBActions
-extension ThankYouListViewController {
-    @IBAction func tapUserIcon(_ sender: Any) {
-        router?.presentMyPage()
+// MARK: - Binding
+
+private extension ThankYouListViewController {
+    func bind() {
+        bindInputs()
+    }
+
+    func bindInputs() {
+        userIcon.tapPublisher
+            .subscribe(viewModel.inputs.userIconDidTap)
+            .store(in: &cancellables)
     }
 }
 

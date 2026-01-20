@@ -160,6 +160,8 @@
 		A8CF3B312F079289004B7CED /* positiveStatementOnboarding.lottie in Resources */ = {isa = PBXBuildFile; fileRef = A8CF3B302F079288004B7CED /* positiveStatementOnboarding.lottie */; };
 		A8CF3BA82F1290F6004B7CED /* UserDefaultsDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CF3BA62F1290EF004B7CED /* UserDefaultsDataStore.swift */; };
 		A8CF3BBA2F137599004B7CED /* MockUserDefaultsDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CF3BB82F137593004B7CED /* MockUserDefaultsDataStore.swift */; };
+		A8CF3C012F1EE56A004B7CED /* ThankYouListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CF3BFF2F1EE55C004B7CED /* ThankYouListViewModel.swift */; };
+		A8CF3C0B2F20385B004B7CED /* ThankYouListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CF3C092F203853004B7CED /* ThankYouListViewModelTests.swift */; };
 		A8D41E1C21E0E07B00A77B48 /* SettingDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */; };
 		A8D5DFE82450A4FD00F30205 /* UIImageView+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D5DFE72450A4FD00F30205 /* UIImageView+URL.swift */; };
 		A8DABC24271ACE4E0086B2E8 /* BottomHalfSheetMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DABC23271ACE4E0086B2E8 /* BottomHalfSheetMenuViewController.swift */; };
@@ -424,6 +426,8 @@
 		A8CF3B302F079288004B7CED /* positiveStatementOnboarding.lottie */ = {isa = PBXFileReference; lastKnownFileType = file; path = positiveStatementOnboarding.lottie; sourceTree = "<group>"; };
 		A8CF3BA62F1290EF004B7CED /* UserDefaultsDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDataStore.swift; sourceTree = "<group>"; };
 		A8CF3BB82F137593004B7CED /* MockUserDefaultsDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserDefaultsDataStore.swift; sourceTree = "<group>"; };
+		A8CF3BFF2F1EE55C004B7CED /* ThankYouListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouListViewModel.swift; sourceTree = "<group>"; };
+		A8CF3C092F203853004B7CED /* ThankYouListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouListViewModelTests.swift; sourceTree = "<group>"; };
 		A8D41E1B21E0E07B00A77B48 /* SettingDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDateView.swift; sourceTree = "<group>"; };
 		A8D5DFE72450A4FD00F30205 /* UIImageView+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+URL.swift"; sourceTree = "<group>"; };
 		A8DABBD527173FA20086B2E8 /* ViewConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConst.swift; sourceTree = "<group>"; };
@@ -626,6 +630,7 @@
 				A80EAE5B21FD5FA6006B02E8 /* ThankYouCell.xib */,
 				A80EAE5921FD5F87006B02E8 /* ThankYouCell.swift */,
 				A8831CC81E9CFE6B00F3CA0A /* ThankYouListViewController.swift */,
+				A8CF3BFF2F1EE55C004B7CED /* ThankYouListViewModel.swift */,
 				A8114AF822E435960024975A /* ThankYouList.storyboard */,
 				A83A3619296C537B00AD2790 /* ThankYouListCoordinator.swift */,
 			);
@@ -851,6 +856,7 @@
 				A8F064C82C957ABA006C6EE9 /* EditPositiveStatementViewModelTests.swift */,
 				A8ADC15F2C54EC1300830B39 /* HomeWidgetInstructionViewModelTests.swift */,
 				A87EE43C2C1E8B0E00CCB997 /* PositiveStatementListViewModelTests.swift */,
+				A8CF3C092F203853004B7CED /* ThankYouListViewModelTests.swift */,
 				A84DD75C2E9FDE5300CDFD39 /* ThankYouListTestPlan.xctestplan */,
 			);
 			path = ThankYouListTests;
@@ -1529,6 +1535,7 @@
 				A892354229C0BF460093A92F /* String+Nonce.swift in Sources */,
 				A895A573298FA6B60081E08F /* ReplaySubject.swift in Sources */,
 				A8E6CD16296BAEB10042AA81 /* MainTabbarCoordinator.swift in Sources */,
+				A8CF3C012F1EE56A004B7CED /* ThankYouListViewModel.swift in Sources */,
 				A84635AF2AA3F4270030A358 /* CalendarViewModel.swift in Sources */,
 				A8519453272F3C44003631EE /* ThankYouCellTapMenu.swift in Sources */,
 				A8775598282C5C5C003141B0 /* UIColor+Modification.swift in Sources */,
@@ -1589,6 +1596,7 @@
 				A8A1E20A2B2F08E60083C3FF /* TestRecord.swift in Sources */,
 				A8F2619C2B476FAE00A65C0A /* MockRouter.swift in Sources */,
 				A892355429D73E3D0093A92F /* MockUserRepository.swift in Sources */,
+				A8CF3C0B2F20385B004B7CED /* ThankYouListViewModelTests.swift in Sources */,
 				A8CA1E8D2E65E954001D4495 /* MockWidgetManager.swift in Sources */,
 				A890D3B929D823A30066D098 /* TestScheduler+Observer.swift in Sources */,
 				A883EE5B29F03524002DCBCA /* MockAnalyticsManager.swift in Sources */,

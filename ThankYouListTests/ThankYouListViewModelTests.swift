@@ -14,14 +14,20 @@ import CombineSchedulers
 final class ThankYouListViewModelTests: XCTestCase {
 
     private var viewModel: ThankYouListViewModel!
+    private var userRepository: MockUserRepository!
+    private var thankYouRepository: MockThankYouRepository!
     private var router: MockThankYouListRouter!
 
     private var scheduler: TestSchedulerOf<DispatchQueue>!
 
     override func setUp() {
+        userRepository = MockUserRepository()
+        thankYouRepository = MockThankYouRepository()
         router = MockThankYouListRouter()
         scheduler = DispatchQueue.test
         viewModel = ThankYouListViewModel(
+            userRepository: userRepository,
+            thankYouRepository: thankYouRepository,
             router: router,
             scheduler: scheduler.eraseToAnyScheduler()
         )
@@ -31,6 +37,53 @@ final class ThankYouListViewModelTests: XCTestCase {
         viewModel.inputs.userIconDidTap.send()
         scheduler.advance(by: .milliseconds(100))
         XCTAssertEqual(router.presentMyPage_calledCount, 1)
+    }
+
+    func test_ifUserTapsBottomHalfSheetMenu_thatHasNilRawValue__itShouldNotEitherPresentEditThankYouOrPresentAlert() {
+        viewModel.inputs.bottomHalfSheetMenuDidTap.send(
+            .init(title: "", image: nil, rawValue: nil, id: "123")
+        )
+        scheduler.advance(by: .milliseconds(100))
+        XCTAssertEqual(router.presentEditThankYou_calledCount, 0)
+        XCTAssertEqual(router.presentAlert_calledCount, 0)
+    }
+
+    func test_ifUserTapsBottomHalfSheetMenu_thatHasNotExistingThankYouCellTapMenuRawValue__itShouldNotEitherPresentEditThankYouOrPresentAlert() {
+        viewModel.inputs.bottomHalfSheetMenuDidTap.send(
+            .init(title: "", image: nil, rawValue: 2, id: "123")
+        )
+        scheduler.advance(by: .milliseconds(100))
+        XCTAssertEqual(router.presentEditThankYou_calledCount, 0)
+        XCTAssertEqual(router.presentAlert_calledCount, 0)
+    }
+
+    func test_ifUserTapsBottomHalfSheetMenu_thatHasAvailableRawValue_andNilId__itShouldNotEitherPresentEditThankYouOrPresentAlert() {
+        viewModel.inputs.bottomHalfSheetMenuDidTap.send(
+            .init(title: "",
+                  image: nil,
+                  rawValue: ThankYouCellTapMenu.edit.rawValue,
+                  id: nil)
+        )
+        scheduler.advance(by: .milliseconds(100))
+        XCTAssertEqual(router.presentEditThankYou_calledCount, 0)
+        XCTAssertEqual(router.presentAlert_calledCount, 0)
+    }
+
+    func test_ifUserTapsBottomHalfSheetMenu_thatHasEditValue__itShouldDismissPresentedView_andPresentEditThankYou_withPassedThankYouId() {
+        let dismissPresentedViewRecords = TestRecord(
+            publisher: viewModel.outputs.dismissPresentedView.map { "" }.eraseToAnyPublisher())
+
+        let thankYouId = "thank you id"
+        viewModel.inputs.bottomHalfSheetMenuDidTap.send(
+            .init(title: "",
+                  image: nil,
+                  rawValue: ThankYouCellTapMenu.edit.rawValue,
+                  id: thankYouId)
+        )
+        scheduler.advance(by: .milliseconds(100))
+        XCTAssertEqual(dismissPresentedViewRecords.results, [.value("")])
+        XCTAssertEqual(router.presentEditThankYou_calledCount, 1)
+        XCTAssertEqual(router.presentEditThankYou_thankYouId, thankYouId)
     }
 }
 

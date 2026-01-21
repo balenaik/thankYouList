@@ -66,7 +66,18 @@ class ThankYouListViewController: UIViewController {
 
 private extension ThankYouListViewController {
     func bind() {
+        bindOutputs()
         bindInputs()
+    }
+
+    func bindOutputs() {
+        viewModel.outputs
+            .dismissPresentedView
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.presentedViewController?.dismiss(animated: true, completion: nil)
+            }
+            .store(in: &cancellables)
     }
 
     func bindInputs() {
@@ -203,10 +214,6 @@ private extension ThankYouListViewController {
         }
     }
 
-    func presentEditThankYouViewController(thankYouId: String) {
-        router?.presentEditThankYou(thankYouId: thankYouId)
-    }
-
     func showDeleteConfirmationAlert(thankYouId: String) {
         let deleteAction = AlertAction(title: R.string.localizable.delete(),
                                        style: .destructive) { [weak self] in
@@ -241,19 +248,6 @@ private extension ThankYouListViewController {
                         targetDate: thankYouData.date)
                 }
             })
-    }
-
-    func handleMenuTapAction(item: BottomHalfSheetMenuItem) {
-        guard let itemRawValue = item.rawValue,
-              let cellMenu = ThankYouCellTapMenu(rawValue: itemRawValue),
-              let thankYouId = item.id else { return }
-        presentedViewController?.dismiss(animated: true, completion: nil)
-        switch cellMenu {
-        case .edit:
-            presentEditThankYouViewController(thankYouId: thankYouId)
-        case .delete:
-            showDeleteConfirmationAlert(thankYouId: thankYouId)
-        }
     }
 }
     
@@ -356,9 +350,7 @@ extension ThankYouListViewController: ThankYouCellDelegate {
             return
         }
         bottomHalfSheetMenuViewController.itemDidTap
-            .sink { [weak self] item in
-                self?.handleMenuTapAction(item: item)
-            }
+            .subscribe(viewModel.inputs.bottomHalfSheetMenuDidTap)
             .store(in: &bottomHalfSheetMenuViewController.cancellables)
 
         present(floatingPanelViewController, animated: true, completion: nil)

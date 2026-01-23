@@ -9,10 +9,6 @@
 import Foundation
 import Firebase
 
-protocol DocumentSeriarizable {
-    init?(dictionary: [String : Any])
-}
-
 struct ThankYouData {
     var id: String
     var value: String
@@ -30,7 +26,7 @@ struct ThankYouData {
 }
 
 
-extension ThankYouData: DocumentSeriarizable {
+extension ThankYouData {
     init?(dictionary: [String : Any]) {
         guard let encryptedValue = dictionary["encryptedValue"] as? String,
               let dateString = dictionary["date"] as? String,

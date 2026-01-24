@@ -27,8 +27,12 @@ class ThankYouListViewController: UIViewController {
     struct Section {
         /// yyyy/MM (String)
         var sectionDateString: String
-        var displayDateString: String
         var thankYouList: [ThankYouData]
+
+        var headerTitle: String {
+            sectionDateString.toDate(format: R.string.localizable.date_format_year_month())?
+                .toYearMonthString() ?? ""
+        }
     }
 
     private var db = Firestore.firestore()
@@ -192,10 +196,7 @@ private extension ThankYouListViewController {
             sections[index].thankYouList.append(thankYouData)
             sections[index].thankYouList.sort(by: {$0.date > $1.date})
         } else {
-            guard let dateYearMonth = dateYearMonthString.toDate(
-                format: R.string.localizable.date_format_year_month()) else { return }
             let newSection = Section(sectionDateString: dateYearMonthString,
-                                     displayDateString: dateYearMonth.toYearMonthString(),
                                      thankYouList: [thankYouData])
             sections.append(newSection)
             sections.sort(by: {$0.sectionDateString > $1.sectionDateString})
@@ -270,7 +271,7 @@ extension ThankYouListViewController: UITableViewDataSource {
         }
         if let section = sections.getSafely(at: indexPath.section),
            let thankYouData = section.thankYouList.getSafely(at: indexPath.row) {
-            scrollIndicator.bind(title: section.displayDateString)
+            scrollIndicator.bind(title: section.headerTitle)
             cell.bind(thankYouData: thankYouData)
         }
         cell.delegate = self
@@ -291,7 +292,7 @@ extension ThankYouListViewController: UITableViewDelegate {
             return header
         }
         if let sct = sections.getSafely(at: section) {
-            header.bind(sectionString: sct.displayDateString)
+            header.bind(sectionString: sct.headerTitle)
         }
         return header
     }

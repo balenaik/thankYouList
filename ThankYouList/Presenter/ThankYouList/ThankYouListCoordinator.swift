@@ -22,6 +22,8 @@ class ThankYouListCoordinator: Coordinator {
             return
         }
         let viewModel = ThankYouListViewModel(
+            userRepository: DefaultUserRepository(),
+            thankYouRepository: DefaultThankYouRepository(),
             router: self
         )
         viewController.viewModel = viewModel

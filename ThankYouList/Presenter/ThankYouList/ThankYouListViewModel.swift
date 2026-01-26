@@ -21,11 +21,19 @@ class ThankYouListViewModel: ObservableObject {
     let outputs = Outputs()
 
     private var cancellables = Set<AnyCancellable>()
+    private let userRepository: UserRepository
+    private let thankYouRepository: ThankYouRepository
     private let router: ThankYouListRouter?
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
-    init(router: ThankYouListRouter,
-         scheduler: AnySchedulerOf<DispatchQueue> = .main) {
+    init(
+        userRepository: UserRepository,
+        thankYouRepository: ThankYouRepository,
+        router: ThankYouListRouter,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
+    ) {
+        self.userRepository = userRepository
+        self.thankYouRepository = thankYouRepository
         self.router = router
         self.scheduler = scheduler
         bind()
@@ -64,12 +72,15 @@ private extension ThankYouListViewModel {
             }
             .store(in: &cancellables)
 
+        let deleteAction = PassthroughSubject<String, Never>()
+
         didTapMenu
             .filter { $0.menu == .delete }
             .receive(on: scheduler)
             .sink { [router] menuItem in
                 let deleteAction = AlertAction(title: R.string.localizable.delete(),
                                                style: .destructive) {
+                    deleteAction.send(menuItem.thankYouId)
                 }
                 let cancelAction = AlertAction(title: R.string.localizable.cancel(),
                                                style: .cancel)
@@ -79,6 +90,26 @@ private extension ThankYouListViewModel {
                     actions: [deleteAction, cancelAction]
                 )
             }
+            .store(in: &cancellables)
+
+        let deleteResult = deleteAction
+            .flatMap { [userRepository, thankYouRepository] thankYouId in
+                userRepository.getUserProfile()
+                    .flatMap { [thankYouRepository] profile in
+                        let deletingThankYou = thankYouRepository.loadThankYou(thankYouId: thankYouId)
+                        return thankYouRepository.deleteThankYou(
+                            thankYouId: thankYouId,
+                            userId: profile.id)
+                        .map { _ in deletingThankYou }
+                    }
+                    .asResult()
+            }
+            .eraseToAnyPublisher()
+            .share()
+
+        deleteResult
+            .values()
+            .sink { _ in }
             .store(in: &cancellables)
     }
 }

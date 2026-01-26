@@ -17,11 +17,6 @@ import SharedResources
 
 private let skeletonedThankYouCellCount = 3
 
-protocol ThankYouListRouter: Router {
-    func presentMyPage()
-    func presentEditThankYou(thankYouId: String)
-}
-
 class ThankYouListViewController: UIViewController {
 
     struct Section {
@@ -43,7 +38,6 @@ class ThankYouListViewController: UIViewController {
     private var hasLoadedThankYouList = false
     private var cancellables = Set<AnyCancellable>()
 
-    var router: ThankYouListRouter?
     var viewModel: ThankYouListViewModel!
 
     @IBOutlet private weak var tableView: UITableView!

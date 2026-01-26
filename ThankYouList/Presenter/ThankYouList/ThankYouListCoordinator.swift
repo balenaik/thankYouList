@@ -21,7 +21,6 @@ class ThankYouListCoordinator: Coordinator {
         guard let viewController = R.storyboard.thankYouList.instantiateInitialViewController() else {
             return
         }
-        viewController.router = self
         let viewModel = ThankYouListViewModel(
             router: self
         )

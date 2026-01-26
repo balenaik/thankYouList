@@ -10,6 +10,11 @@ import Combine
 import CombineSchedulers
 import Foundation
 
+protocol ThankYouListRouter: Router {
+    func presentMyPage()
+    func presentEditThankYou(thankYouId: String)
+}
+
 class ThankYouListViewModel: ObservableObject {
 
     let inputs = Inputs()

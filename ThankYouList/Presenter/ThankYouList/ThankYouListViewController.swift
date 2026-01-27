@@ -19,13 +19,12 @@ private let skeletonedThankYouCellCount = 3
 
 class ThankYouListViewController: UIViewController {
 
-    struct Section {
-        /// yyyy/MM (String)
-        var sectionDateString: String
-        var thankYouList: [ThankYouData]
+    struct ListSection: Equatable {
+        var yearMonthKey: String
+        var items: [ThankYouData]
 
         var headerTitle: String {
-            sectionDateString.toDate(format: R.string.localizable.date_format_year_month())?
+            yearMonthKey.toDate(format: R.string.localizable.date_format_year_month())?
                 .toYearMonthString() ?? ""
         }
     }
@@ -33,7 +32,7 @@ class ThankYouListViewController: UIViewController {
     private var db = Firestore.firestore()
     private let analyticsManager = DefaultAnalyticsManager()
     private var thankYouDataSingleton = DefaultInMemoryDataStore.shared
-    private var sections = [Section]()
+    private var sections = [ListSection]()
     private var estimatedRowHeights = [String : CGFloat]()
     private var hasLoadedThankYouList = false
     private var cancellables = Set<AnyCancellable>()
@@ -185,26 +184,26 @@ private extension ThankYouListViewController {
     private func addThankYouDataToSection(thankYouData: ThankYouData) {
         /// Crop only year and month (yyyy/MM) from thank you date
         let dateYearMonthString = String(thankYouData.date.toThankYouDateString().prefix(7))
-        let sectionIndex = sections.firstIndex(where: { $0.sectionDateString == dateYearMonthString })
+        let sectionIndex = sections.firstIndex(where: { $0.yearMonthKey == dateYearMonthString })
         if let index = sectionIndex {
-            sections[index].thankYouList.append(thankYouData)
-            sections[index].thankYouList.sort(by: {$0.date > $1.date})
+            sections[index].items.append(thankYouData)
+            sections[index].items.sort(by: { $0.date > $1.date })
         } else {
-            let newSection = Section(sectionDateString: dateYearMonthString,
-                                     thankYouList: [thankYouData])
+            let newSection = ListSection(yearMonthKey: dateYearMonthString,
+                                         items: [thankYouData])
             sections.append(newSection)
-            sections.sort(by: {$0.sectionDateString > $1.sectionDateString})
+            sections.sort(by: { $0.yearMonthKey > $1.yearMonthKey })
         }
     }
     
     private func deleteThankYouDataFromSection(thankYouData: ThankYouData) {
         /// Crop only year and month (yyyy/MM) from thank you date
         let dateYearMonthString = String(thankYouData.date.toThankYouDateString().prefix(7))
-        guard let sectionIndex = sections.firstIndex(where: {$0.sectionDateString == dateYearMonthString}),
-            let thankYouIndex = sections[sectionIndex].thankYouList
+        guard let sectionIndex = sections.firstIndex(where: { $0.yearMonthKey == dateYearMonthString }),
+            let thankYouIndex = sections[sectionIndex].items
                 .firstIndex(where: {$0.id == thankYouData.id}) else { return }
-        sections[sectionIndex].thankYouList.remove(at: thankYouIndex)
-        if sections[sectionIndex].thankYouList.count == 0 {
+        sections[sectionIndex].items.remove(at: thankYouIndex)
+        if sections[sectionIndex].items.count == 0 {
             sections.remove(at: sectionIndex)
         }
     }
@@ -254,7 +253,7 @@ extension ThankYouListViewController: UITableViewDataSource {
         guard hasLoadedThankYouList else {
             return skeletonedThankYouCellCount
         }
-        return sections.getSafely(at: section)?.thankYouList.count ?? 0
+        return sections.getSafely(at: section)?.items.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -264,7 +263,7 @@ extension ThankYouListViewController: UITableViewDataSource {
             return cell
         }
         if let section = sections.getSafely(at: indexPath.section),
-           let thankYouData = section.thankYouList.getSafely(at: indexPath.row) {
+           let thankYouData = section.items.getSafely(at: indexPath.row) {
             scrollIndicator.bind(title: section.headerTitle)
             cell.bind(thankYouData: thankYouData)
         }
@@ -299,7 +298,7 @@ extension ThankYouListViewController: UITableViewDelegate {
         guard hasLoadedThankYouList else {
             return tableView.estimatedRowHeight
         }
-        guard let thankYouId = sections.getSafely(at: indexPath.section)?.thankYouList.getSafely(at: indexPath.row)?.id,
+        guard let thankYouId = sections.getSafely(at: indexPath.section)?.items.getSafely(at: indexPath.row)?.id,
               let height = estimatedRowHeights[thankYouId] else {
             return tableView.estimatedRowHeight
         }
@@ -309,7 +308,7 @@ extension ThankYouListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard hasLoadedThankYouList else { return }
         cell.contentView.updateConstraintsIfNeeded()
-        if let thankYouId =  sections.getSafely(at: indexPath.section)?.thankYouList.getSafely(at: indexPath.row)?.id {
+        if let thankYouId =  sections.getSafely(at: indexPath.section)?.items.getSafely(at: indexPath.row)?.id {
             estimatedRowHeights[thankYouId] = cell.frame.size.height
         }
     }

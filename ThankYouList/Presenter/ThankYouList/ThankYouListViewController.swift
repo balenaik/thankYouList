@@ -24,7 +24,7 @@ class ThankYouListViewController: UIViewController {
         var items: [ThankYouData]
 
         var headerTitle: String {
-            yearMonthKey.toDate(format: R.string.localizable.date_format_year_month())?
+            yearMonthKey.toDate(format: Date.listYearMonthKeyFormat)?
                 .toYearMonthString() ?? ""
         }
     }
@@ -183,7 +183,7 @@ private extension ThankYouListViewController {
     
     private func addThankYouDataToSection(thankYouData: ThankYouData) {
         /// Crop only year and month (yyyy/MM) from thank you date
-        let dateYearMonthString = String(thankYouData.date.toThankYouDateString().prefix(7))
+        let dateYearMonthString = thankYouData.date.toString(format: Date.listYearMonthKeyFormat)
         let sectionIndex = sections.firstIndex(where: { $0.yearMonthKey == dateYearMonthString })
         if let index = sectionIndex {
             sections[index].items.append(thankYouData)
@@ -198,7 +198,7 @@ private extension ThankYouListViewController {
     
     private func deleteThankYouDataFromSection(thankYouData: ThankYouData) {
         /// Crop only year and month (yyyy/MM) from thank you date
-        let dateYearMonthString = String(thankYouData.date.toThankYouDateString().prefix(7))
+        let dateYearMonthString = thankYouData.date.toString(format: Date.listYearMonthKeyFormat)
         guard let sectionIndex = sections.firstIndex(where: { $0.yearMonthKey == dateYearMonthString }),
             let thankYouIndex = sections[sectionIndex].items
                 .firstIndex(where: {$0.id == thankYouData.id}) else { return }

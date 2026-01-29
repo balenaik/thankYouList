@@ -9,6 +9,15 @@
 import Foundation
 
 extension Date {
+    static let listYearMonthKeyFormat = "yyyyMM"
+
+    /// Returns formatted date string with specified format
+    func toString(format: String) -> String {
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .gregorian)
+        formatter.dateFormat = format
+        return formatter.string(from: self)
+    }
 
     /// Returns year/month/date
     /// -  2020/01/02

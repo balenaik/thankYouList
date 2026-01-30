@@ -15,7 +15,7 @@ protocol ThankYouRepository {
     func deleteThankYou(thankYouId: String, userId: String) -> Future<Void, Error>
 }
 
-struct DefaultThankYouRepository: ThankYouRepository {
+class DefaultThankYouRepository: ThankYouRepository {
 
     let firestore: Firestore
     let inMemoryDataStore: InMemoryDataStore

@@ -10,6 +10,10 @@ import Combine
 import FirebaseFirestore
 import SharedResources
 
+enum ThankYouRepositoryError: Error {
+    case selfNotFound
+}
+
 enum ThankYouListChange {
     case added(ThankYouData)
     case updated(from: ThankYouData, to: ThankYouData)
@@ -35,6 +39,19 @@ class DefaultThankYouRepository: ThankYouRepository {
 
     func subscribeThankYouList(userId: String) -> AnyPublisher<ThankYouListChange, Error> {
         return AnyPublisher<ThankYouListChange, Error>.create { [weak self] subscriber in
+            guard let self else {
+                subscriber.onError(ThankYouRepositoryError.selfNotFound)
+                return AnyCancellable {}
+            }
+            let snapshotListener = self.firestore
+                .collection(FirestoreConst.usersCollecion)
+                .document(userId)
+                .collection(FirestoreConst.thankYouListCollection)
+                .addSnapshotListener { snapshot, error in
+                }
+            return AnyCancellable {
+                snapshotListener.remove()
+            }
         }
     }
 

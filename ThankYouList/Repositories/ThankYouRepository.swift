@@ -10,7 +10,14 @@ import Combine
 import FirebaseFirestore
 import SharedResources
 
+enum ThankYouListChange {
+    case added(ThankYouData)
+    case updated(from: ThankYouData, to: ThankYouData)
+    case removed(ThankYouData)
+}
+
 protocol ThankYouRepository {
+    func subscribeThankYouList(userId: String) -> AnyPublisher<ThankYouListChange, Error>
     func loadThankYou(thankYouId: String) -> ThankYouData?
     func deleteThankYou(thankYouId: String, userId: String) -> Future<Void, Error>
 }
@@ -24,6 +31,11 @@ class DefaultThankYouRepository: ThankYouRepository {
          inMemoryDataStore: InMemoryDataStore = DefaultInMemoryDataStore.shared) {
         self.firestore = firestore
         self.inMemoryDataStore = inMemoryDataStore
+    }
+
+    func subscribeThankYouList(userId: String) -> AnyPublisher<ThankYouListChange, Error> {
+        return AnyPublisher<ThankYouListChange, Error>.create { [weak self] subscriber in
+        }
     }
 
     func loadThankYou(thankYouId: String) -> ThankYouData? {

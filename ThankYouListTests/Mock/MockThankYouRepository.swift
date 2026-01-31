@@ -7,9 +7,15 @@
 //
 
 import Combine
+import Foundation
 @testable import ThankYouList
 
 class MockThankYouRepository: ThankYouRepository {
+    var subscribeThankYouList_result: AnyPublisher<ThankYouList.ThankYouListChange, Error> = Just(.added(ThankYouData(id: "", value: "", encryptedValue: "", date: Date(), createTime: Date()))).setFailureType(to: Error.self).eraseToAnyPublisher()
+    func subscribeThankYouList(userId: String) -> AnyPublisher<ThankYouList.ThankYouListChange, any Error> {
+        subscribeThankYouList_result
+    }
+    
     var loadThankYou_result: ThankYouData?
     var loadThankYou_thankYouId: String?
     func loadThankYou(thankYouId: String) -> ThankYouData? {

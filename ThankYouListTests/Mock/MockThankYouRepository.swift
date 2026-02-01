@@ -11,8 +11,8 @@ import Foundation
 @testable import ThankYouList
 
 class MockThankYouRepository: ThankYouRepository {
-    var subscribeThankYouList_result: AnyPublisher<ThankYouList.ThankYouListChange, Error> = Just(.added(ThankYouData(id: "", value: "", encryptedValue: "", date: Date(), createTime: Date()))).setFailureType(to: Error.self).eraseToAnyPublisher()
-    func subscribeThankYouList(userId: String) -> AnyPublisher<ThankYouList.ThankYouListChange, any Error> {
+    var subscribeThankYouList_result: AnyPublisher<ThankYouListChange, Never> = Just(.added(ThankYouData(id: "", value: "", encryptedValue: "", date: Date(), createTime: Date()))).eraseToAnyPublisher()
+    func subscribeThankYouList(userId: String) -> AnyPublisher<ThankYouListChange, Never> {
         subscribeThankYouList_result
     }
     

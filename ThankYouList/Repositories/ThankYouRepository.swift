@@ -12,16 +12,18 @@ import SharedResources
 
 enum ThankYouRepositoryError: Error {
     case selfNotFound
+    case snapshotNotFound
 }
 
 enum ThankYouListChange {
     case added(ThankYouData)
     case updated(from: ThankYouData, to: ThankYouData)
     case removed(ThankYouData)
+    case error(Error)
 }
 
 protocol ThankYouRepository {
-    func subscribeThankYouList(userId: String) -> AnyPublisher<ThankYouListChange, Error>
+    func subscribeThankYouList(userId: String) -> AnyPublisher<ThankYouListChange, Never>
     func loadThankYou(thankYouId: String) -> ThankYouData?
     func deleteThankYou(thankYouId: String, userId: String) -> Future<Void, Error>
 }
@@ -37,10 +39,10 @@ class DefaultThankYouRepository: ThankYouRepository {
         self.inMemoryDataStore = inMemoryDataStore
     }
 
-    func subscribeThankYouList(userId: String) -> AnyPublisher<ThankYouListChange, Error> {
-        return AnyPublisher<ThankYouListChange, Error>.create { [weak self] subscriber in
+    func subscribeThankYouList(userId: String) -> AnyPublisher<ThankYouListChange, Never> {
+        return AnyPublisher<ThankYouListChange, Never>.create { [weak self] subscriber in
             guard let self else {
-                subscriber.onError(ThankYouRepositoryError.selfNotFound)
+                subscriber.onNext(.error(ThankYouRepositoryError.selfNotFound))
                 return AnyCancellable {}
             }
             let snapshotListener = self.firestore
@@ -48,6 +50,14 @@ class DefaultThankYouRepository: ThankYouRepository {
                 .document(userId)
                 .collection(FirestoreConst.thankYouListCollection)
                 .addSnapshotListener { snapshot, error in
+                    if let error = error {
+                        subscriber.onNext(.error(error))
+                        return
+                    }
+                    guard let snapshot else {
+                        subscriber.onNext(.error(ThankYouRepositoryError.snapshotNotFound))
+                        return
+                    }
                 }
             return AnyCancellable {
                 snapshotListener.remove()

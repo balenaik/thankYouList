@@ -12,7 +12,7 @@ import SharedResources
 
 private let encryptedValueKey = "encryptedValue"
 private let dateKey = "date"
-private let createdDateKey = "createdDate"
+private let createTimeKey = "createTime"
 
 enum ThankYouRepositoryError: Error {
     case selfNotFound
@@ -77,6 +77,22 @@ class DefaultThankYouRepository: ThankYouRepository {
                             }
                             self.inMemoryDataStore.thankYouList.append(thankYouData)
                             subscriber.onNext(.added(thankYouData))
+                        case .modified:
+                            let editedThankYouData = ThankYouData(
+                                id: change.document.documentID,
+                                userId: userId,
+                                dictionary: change.document.data()
+                            )
+                            guard let editedThankYouData,
+                                  let index = self.inMemoryDataStore.thankYouList.firstIndex(where: { $0.id == editedThankYouData.id }) else {
+                                return
+                            }
+                            let oldThankYouData = self.inMemoryDataStore.thankYouList[index]
+                            self.inMemoryDataStore.thankYouList[index] = editedThankYouData
+                            subscriber.onNext(.updated(
+                                from: oldThankYouData,
+                                to: editedThankYouData
+                            ))
                         default: break
                         }
                     }
@@ -114,7 +130,7 @@ private extension ThankYouData {
         guard let encryptedValue = dictionary[encryptedValueKey] as? String,
               let dateString = dictionary[dateKey] as? String,
               let date = dateString.toDate(format: R.string.localizable.date_format_thankyou_date()),
-              let createTime = dictionary[createdDateKey] as? Timestamp else {
+              let createTime = dictionary[createTimeKey] as? Timestamp else {
             return nil
         }
         let userId16string = String(userId.prefix(16))

@@ -10,6 +10,10 @@ import Combine
 import FirebaseFirestore
 import SharedResources
 
+private let encryptedValueKey = "encryptedValue"
+private let dateKey = "date"
+private let createdDateKey = "createdDate"
+
 enum ThankYouRepositoryError: Error {
     case selfNotFound
     case snapshotNotFound
@@ -31,7 +35,7 @@ protocol ThankYouRepository {
 class DefaultThankYouRepository: ThankYouRepository {
 
     let firestore: Firestore
-    let inMemoryDataStore: InMemoryDataStore
+    var inMemoryDataStore: InMemoryDataStore
 
     init(firestore: Firestore = Firestore.firestore(),
          inMemoryDataStore: InMemoryDataStore = DefaultInMemoryDataStore.shared) {
@@ -57,6 +61,24 @@ class DefaultThankYouRepository: ThankYouRepository {
                     guard let snapshot else {
                         subscriber.onNext(.error(ThankYouRepositoryError.snapshotNotFound))
                         return
+                    }
+                    let currentInMemoryThankYouList = self.inMemoryDataStore.thankYouList
+                    snapshot.documentChanges.forEach { change in
+                        switch change.type {
+                        case .added:
+                            let thankYouData = ThankYouData(
+                                id: change.document.documentID,
+                                userId: userId,
+                                dictionary: change.document.data()
+                            )
+                            guard let thankYouData,
+                                  !currentInMemoryThankYouList.map(\.id).contains(thankYouData.id) else {
+                                return
+                            }
+                            self.inMemoryDataStore.thankYouList.append(thankYouData)
+                            subscriber.onNext(.added(thankYouData))
+                        default: break
+                        }
                     }
                 }
             return AnyCancellable {
@@ -84,5 +106,25 @@ class DefaultThankYouRepository: ThankYouRepository {
                     promise(.success(()))
                 })
         }
+    }
+}
+
+private extension ThankYouData {
+    init?(id: String, userId: String, dictionary: [String : Any]) {
+        guard let encryptedValue = dictionary[encryptedValueKey] as? String,
+              let dateString = dictionary[dateKey] as? String,
+              let date = dateString.toDate(format: R.string.localizable.date_format_thankyou_date()),
+              let createTime = dictionary[createdDateKey] as? Timestamp else {
+            return nil
+        }
+        let userId16string = String(userId.prefix(16))
+        let decryptedValue = CryptoManager().decryptString(encryptText: encryptedValue, key: userId16string)
+        self.init(
+            id: id,
+            value: decryptedValue,
+            encryptedValue: encryptedValue,
+            date: date,
+            createTime: createTime.dateValue()
+        )
     }
 }

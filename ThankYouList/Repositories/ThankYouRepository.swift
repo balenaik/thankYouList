@@ -62,7 +62,6 @@ class DefaultThankYouRepository: ThankYouRepository {
                         subscriber.onNext(.error(ThankYouRepositoryError.snapshotNotFound))
                         return
                     }
-                    let currentInMemoryThankYouList = self.inMemoryDataStore.thankYouList
                     snapshot.documentChanges.forEach { change in
                         switch change.type {
                         case .added:
@@ -72,7 +71,7 @@ class DefaultThankYouRepository: ThankYouRepository {
                                 dictionary: change.document.data()
                             )
                             guard let thankYouData,
-                                  !currentInMemoryThankYouList.map(\.id).contains(thankYouData.id) else {
+                                  !self.inMemoryDataStore.thankYouList.map(\.id).contains(thankYouData.id) else {
                                 return
                             }
                             self.inMemoryDataStore.thankYouList.append(thankYouData)
@@ -93,7 +92,13 @@ class DefaultThankYouRepository: ThankYouRepository {
                                 from: oldThankYouData,
                                 to: editedThankYouData
                             ))
-                        default: break
+                        case .removed:
+                            let removedThankYouId = change.document.documentID
+                            guard let index = self.inMemoryDataStore.thankYouList.firstIndex(where: { $0.id == removedThankYouId }) else {
+                                return
+                            }
+                            let removedThankYouData = self.inMemoryDataStore.thankYouList.remove(at: index)
+                            subscriber.onNext(.removed(removedThankYouData))
                         }
                     }
                 }

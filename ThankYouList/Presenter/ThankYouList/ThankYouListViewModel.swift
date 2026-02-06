@@ -43,6 +43,22 @@ class ThankYouListViewModel: ObservableObject {
 private extension ThankYouListViewModel {
     func bind() {
         bindCardTapAction()
+
+        inputs.viewDidLoad
+            .flatMap { [userRepository] in
+                userRepository.getUserProfile().map(\.id)
+            }
+            .flatMap { [thankYouRepository] userId in
+                thankYouRepository.subscribeThankYouList(userId: userId)
+            }
+            .catch { error in Just(.error(error)) }
+            .scan([ThankYouListViewController.ListSection]()) { [weak self] list, result in
+                var newList = list
+                return newList
+            }
+            .subscribe(outputs.listSections)
+            .store(in: &cancellables)
+
         inputs.userIconDidTap
             .receive(on: scheduler)
             .sink { [router] in
@@ -116,11 +132,13 @@ private extension ThankYouListViewModel {
 
 extension ThankYouListViewModel {
     class Inputs {
+        let viewDidLoad = PassthroughSubject<Void, Never>()
         let userIconDidTap = PassthroughSubject<Void, Never>()
         let bottomHalfSheetMenuDidTap = PassthroughSubject<BottomHalfSheetMenuItem, Never>()
     }
 
     class Outputs {
+        let listSections = CurrentValueSubject<[ThankYouListViewController.ListSection], Never>([])
         let dismissPresentedView = PassthroughSubject<Void, Never>()
     }
 }

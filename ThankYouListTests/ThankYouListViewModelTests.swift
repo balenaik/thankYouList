@@ -33,6 +33,27 @@ final class ThankYouListViewModelTests: XCTestCase {
         )
     }
 
+    func test_ifAUserOpensTheScreen__itShouldCallGetUserProfile() {
+        // Open the screen once
+        viewModel.inputs.viewDidLoad.send()
+        // It should call getUserProfile once
+        XCTAssertEqual(userRepository.getUserProfile_calledCount, 1)
+    }
+
+    func test_ifAUserOpensTheScreen__itShouldSubscribeThankYouList_andPassUserId() {
+        // Set a mock result to return userId on getUserProfile
+        let userId = "userId"
+        userRepository.getUserProfile_result = Just(Profile(id: userId, name: "", email: "", imageUrl: nil)).setFailureType(to: Error.self).asFuture()
+
+        // Open the screen
+        viewModel.inputs.viewDidLoad.send()
+
+        // It should call subscribeThankYouList
+        XCTAssertEqual(thankYouRepository.subscribeThankYouList_calledCount, 1)
+        // It should pass userId
+        XCTAssertEqual(thankYouRepository.subscribeThankYouList_userId, userId)
+    }
+
     func test_ifUserTapsUserIcon__itShouldShowMyPage() {
         viewModel.inputs.userIconDidTap.send()
         scheduler.advance(by: .milliseconds(100))

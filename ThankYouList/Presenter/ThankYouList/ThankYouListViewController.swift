@@ -51,6 +51,7 @@ class ThankYouListViewController: UIViewController {
         setupView()
         setupNavigationBar()
         bind()
+        viewModel.inputs.viewDidLoad.send()
     }
     
     override func viewWillAppear(_ animated: Bool) {

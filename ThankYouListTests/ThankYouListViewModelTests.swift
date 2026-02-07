@@ -54,6 +54,32 @@ final class ThankYouListViewModelTests: XCTestCase {
         XCTAssertEqual(thankYouRepository.subscribeThankYouList_userId, userId)
     }
 
+    func test_ifAUserOpensTheScreen_andGetUserProfileFails__itShouldPresentErrorAlert() {
+        // Set an error result on getUserProfile
+        userRepository.getUserProfile_result = Fail(error: UserRepositoryError.currentUserNotExist).asFuture()
+
+        // Open the screen
+        viewModel.inputs.viewDidLoad.send()
+
+        // It should present an error alert
+        XCTAssertEqual(router.presentAlert_calledCount, 1)
+        XCTAssertEqual(router.presentAlert_title, R.string.localizable.thank_you_list_load_error_title())
+        XCTAssertEqual(router.presentAlert_message, R.string.localizable.thank_you_list_load_error_message())
+    }
+
+    func test_ifAUserOpensTheScreen_andSubscribeThankYouListEmitsError__itShouldPresentErrorAlert() {
+        // Set subscribeThankYouList to emit an error case
+        thankYouRepository.subscribeThankYouList_result = Just(.error(ThankYouRepositoryError.snapshotNotFound)).eraseToAnyPublisher()
+
+        // Open the screen
+        viewModel.inputs.viewDidLoad.send()
+
+        // It should present an error alert
+        XCTAssertEqual(router.presentAlert_calledCount, 1)
+        XCTAssertEqual(router.presentAlert_title, R.string.localizable.thank_you_list_load_error_title())
+        XCTAssertEqual(router.presentAlert_message, R.string.localizable.thank_you_list_load_error_message())
+    }
+
     func test_ifUserTapsUserIcon__itShouldShowMyPage() {
         viewModel.inputs.userIconDidTap.send()
         scheduler.advance(by: .milliseconds(100))

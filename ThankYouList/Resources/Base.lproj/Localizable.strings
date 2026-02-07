@@ -17,6 +17,9 @@
 "thank_you_list_empty_view_title" = "Welcome Aboard";
 "thank_you_list_empty_view_description" = "This is your Thank You List.\nLet's start adding the grateful thoughts!";
 
+"thank_you_list_load_error_title" = "Unable to Load Thank You List";
+"thank_you_list_load_error_message" = "Something went wrong. Please try again later.";
+
 "add_thank_you_title" = "Add Thank You";
 "add_thank_you_text_view_placeholder" = "What are you thankful for?";
 "add_thank_you_discard_title" = "Discard Thank You?";

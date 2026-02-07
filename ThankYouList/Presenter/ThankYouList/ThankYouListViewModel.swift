@@ -54,6 +54,14 @@ private extension ThankYouListViewModel {
             .catch { error in Just(.error(error)) }
             .scan([ThankYouListViewController.ListSection]()) { [weak self] list, result in
                 var newList = list
+                switch result {
+                case .error:
+                    self?.router?.presentAlert(
+                        title: R.string.localizable.thank_you_list_load_error_title(),
+                        message: R.string.localizable.thank_you_list_load_error_message()
+                    )
+                default: break
+                }
                 return newList
             }
             .subscribe(outputs.listSections)

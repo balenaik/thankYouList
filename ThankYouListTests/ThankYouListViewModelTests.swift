@@ -80,6 +80,103 @@ final class ThankYouListViewModelTests: XCTestCase {
         XCTAssertEqual(router.presentAlert_message, R.string.localizable.thank_you_list_load_error_message())
     }
 
+    func test_ifSubscribeThankYouListEmitsAdded_withEmptyList__itShouldAddThankYouToList() {
+        let listSectionsRecords = TestRecord(publisher: viewModel.outputs.listSections.eraseToAnyPublisher())
+        listSectionsRecords.clearResult()
+
+        let thankYouRelay = PassthroughSubject<ThankYouListChange, Never>()
+        thankYouRepository.subscribeThankYouList_result = thankYouRelay.eraseToAnyPublisher()
+
+        // Open the screen
+        viewModel.inputs.viewDidLoad.send()
+
+        // Emit added event
+        let date = Date(timeIntervalSince1970: 123)
+        let thankYou = ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: date, createTime: Date())
+        thankYouRelay.send(.added(thankYou))
+
+        // It should add thank you to list
+        XCTAssertEqual(listSectionsRecords.results.count, 1)
+        XCTAssertEqual(listSectionsRecords.results, [.value([.init(yearMonthKey: date.toString(format: Date.listYearMonthKeyFormat), items: [thankYou])])])
+    }
+
+    func test_ifSubscribeThankYouListEmitsAdded_toExistingSection__itShouldInsertInSortedOrder() {
+        let listSectionsRecords = TestRecord(publisher: viewModel.outputs.listSections.eraseToAnyPublisher())
+        listSectionsRecords.clearResult()
+
+        let thankYouRelay = PassthroughSubject<ThankYouListChange, Never>()
+        thankYouRepository.subscribeThankYouList_result = thankYouRelay.eraseToAnyPublisher()
+
+        // Open the screen
+        viewModel.inputs.viewDidLoad.send()
+
+        // Add first thank you
+        let date1 = Date(timeIntervalSince1970: 100)
+        let thankYou1 = ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: date1, createTime: Date())
+        thankYouRelay.send(.added(thankYou1))
+
+        // Add second thank you (newer date)
+        let date2 = Date(timeIntervalSince1970: 200)
+        let thankYou2 = ThankYouData(id: "id2", value: "value2", encryptedValue: "", date: date2, createTime: Date())
+        thankYouRelay.send(.added(thankYou2))
+
+        // Add third thank you (older date)
+        let date3 = Date(timeIntervalSince1970: 50)
+        let thankYou3 = ThankYouData(id: "id3", value: "value3", encryptedValue: "", date: date3, createTime: Date())
+        thankYouRelay.send(.added(thankYou3))
+
+        // It should maintain sorted order (newest first)
+        let dateKey = date1.toString(format: Date.listYearMonthKeyFormat)
+        XCTAssertEqual(listSectionsRecords.results, [
+            .value([.init(yearMonthKey: dateKey, items: [thankYou1])]),
+            .value([.init(yearMonthKey: dateKey, items: [thankYou2, thankYou1])]),
+            .value([.init(yearMonthKey: dateKey, items: [thankYou2, thankYou1, thankYou3])]),
+        ])
+    }
+
+    func test_ifSubscribeThankYouListEmitsAdded_withDifferentMonths__itShouldCreateMultipleSectionsInSortedOrder() {
+        let listSectionsRecords = TestRecord(publisher: viewModel.outputs.listSections.eraseToAnyPublisher())
+        listSectionsRecords.clearResult()
+
+        let thankYouRelay = PassthroughSubject<ThankYouListChange, Never>()
+        thankYouRepository.subscribeThankYouList_result = thankYouRelay.eraseToAnyPublisher()
+
+        // Open the screen
+        viewModel.inputs.viewDidLoad.send()
+
+        // Add thank you in January 2021
+        let date1 = Date(timeIntervalSince1970: 1609459200) // 2021-01-01
+        let thankYou1 = ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: date1, createTime: Date())
+        thankYouRelay.send(.added(thankYou1))
+
+        // Add thank you in March 2021 - should create new section
+        let date2 = Date(timeIntervalSince1970: 1614556800) // 2021-03-01
+        let thankYou2 = ThankYouData(id: "id2", value: "value2", encryptedValue: "", date: date2, createTime: Date())
+        thankYouRelay.send(.added(thankYou2))
+
+        // Add thank you in February 2021 - should insert between them
+        let date3 = Date(timeIntervalSince1970: 1612137600) // 2021-02-01
+        let thankYou3 = ThankYouData(id: "id3", value: "value3", encryptedValue: "", date: date3, createTime: Date())
+        thankYouRelay.send(.added(thankYou3))
+
+        // It should create 3 sections sorted by month (newest first)
+        let dateKey1 = date1.toString(format: Date.listYearMonthKeyFormat)
+        let dateKey2 = date2.toString(format: Date.listYearMonthKeyFormat)
+        let dateKey3 = date3.toString(format: Date.listYearMonthKeyFormat)
+        XCTAssertEqual(listSectionsRecords.results, [
+            .value([.init(yearMonthKey: dateKey1, items: [thankYou1])]),
+            .value([
+                .init(yearMonthKey: dateKey2, items: [thankYou2]),
+                .init(yearMonthKey: dateKey1, items: [thankYou1])
+            ]),
+            .value([
+                .init(yearMonthKey: dateKey2, items: [thankYou2]),
+                .init(yearMonthKey: dateKey3, items: [thankYou3]),
+                .init(yearMonthKey: dateKey1, items: [thankYou1])
+            ]),
+        ])
+    }
+
     func test_ifUserTapsUserIcon__itShouldShowMyPage() {
         viewModel.inputs.userIconDidTap.send()
         scheduler.advance(by: .milliseconds(100))

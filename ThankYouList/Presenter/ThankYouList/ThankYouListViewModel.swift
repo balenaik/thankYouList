@@ -55,6 +55,8 @@ private extension ThankYouListViewModel {
             .scan([ThankYouListViewController.ListSection]()) { [weak self] list, result in
                 var newList = list
                 switch result {
+                case .added(let thankYouData):
+                    self?.addThankYouToList(thankYouData: thankYouData, to: &newList)
                 case .error:
                     self?.router?.presentAlert(
                         title: R.string.localizable.thank_you_list_load_error_title(),
@@ -135,6 +137,24 @@ private extension ThankYouListViewModel {
             .values()
             .sink { _ in }
             .store(in: &cancellables)
+    }
+}
+
+private extension ThankYouListViewModel {
+    func addThankYouToList(
+        thankYouData: ThankYouData,
+        to listSections: inout [ThankYouListViewController.ListSection]
+    ) {
+        let dateKey = thankYouData.date.toString(format: Date.listYearMonthKeyFormat)
+        if let sectionIndex = listSections.firstIndex(where: { $0.yearMonthKey == dateKey }) {
+            let sectionItems = listSections[sectionIndex].items
+            let insertIndex = sectionItems.firstIndex(where: { $0.date < thankYouData.date }) ?? sectionItems.count
+            listSections[sectionIndex].items.insert(thankYouData, at: insertIndex)
+        } else {
+            let insertIndex = listSections.firstIndex(where: { $0.yearMonthKey < dateKey })
+            ?? listSections.count
+            listSections.insert(.init(yearMonthKey: dateKey, items: [thankYouData]), at: insertIndex)
+        }
     }
 }
 

@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-struct ThankYouData {
+struct ThankYouData: Equatable {
     var id: String
     var value: String
     var encryptedValue: String

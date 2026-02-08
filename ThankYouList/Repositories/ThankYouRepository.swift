@@ -113,8 +113,8 @@ class DefaultThankYouRepository: ThankYouRepository {
     }
 
     func deleteThankYou(thankYouId: String, userId: String) -> Future<Void, Error> {
-        Future<Void, Error> { promise in
-            firestore
+        Future<Void, Error> { [weak self] promise in
+            self?.firestore
                 .collection(FirestoreConst.usersCollecion)
                 .document(userId)
                 .collection(FirestoreConst.thankYouListCollection)

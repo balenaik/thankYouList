@@ -57,6 +57,8 @@ private extension ThankYouListViewModel {
                 switch result {
                 case .added(let thankYouData):
                     self?.addThankYouToList(thankYouData: thankYouData, to: &newList)
+                case .removed(let removedThankYou):
+                    self?.removeThankYouFromList(thankYouData: removedThankYou, from: &newList)
                 case .error:
                     self?.router?.presentAlert(
                         title: R.string.localizable.thank_you_list_load_error_title(),
@@ -154,6 +156,21 @@ private extension ThankYouListViewModel {
             let insertIndex = listSections.firstIndex(where: { $0.yearMonthKey < dateKey })
             ?? listSections.count
             listSections.insert(.init(yearMonthKey: dateKey, items: [thankYouData]), at: insertIndex)
+        }
+    }
+
+    func removeThankYouFromList(
+        thankYouData: ThankYouData,
+        from listSections: inout [ThankYouListViewController.ListSection]
+    ) {
+        let dateKey = thankYouData.date.toString(format: Date.listYearMonthKeyFormat)
+        guard let sectionIndex = listSections.firstIndex(where: { $0.yearMonthKey == dateKey }),
+              let thankYouIndex = listSections[sectionIndex].items.firstIndex(where: { $0.id == thankYouData.id }) else {
+            return
+        }
+        listSections[sectionIndex].items.remove(at: thankYouIndex)
+        if listSections[sectionIndex].items.isEmpty {
+            listSections.remove(at: sectionIndex)
         }
     }
 }

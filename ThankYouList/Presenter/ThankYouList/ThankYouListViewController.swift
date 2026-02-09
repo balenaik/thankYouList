@@ -125,28 +125,6 @@ private extension ThankYouListViewController {
                 return
             }
             for diff in snapShot.documentChanges {
-                if diff.type == .added {
-                    let thankYouData = ThankYouData(dictionary: diff.document.data())
-                    guard var newThankYouData = thankYouData else { break }
-                    let decryptedValue = CryptoManager().decryptString(encryptText: newThankYouData.encryptedValue, key: uid16string)
-                    newThankYouData.id = diff.document.documentID
-                    newThankYouData.value = decryptedValue
-                    let thankYouDataIds: [String] = self.thankYouDataSingleton.thankYouList.map{$0.id}
-                    if !thankYouDataIds.contains(newThankYouData.id) {
-                        self.thankYouDataSingleton.thankYouList.append(newThankYouData)
-                        self.addThankYouDataToSection(thankYouData: newThankYouData)
-                    }
-                }
-                if diff.type == .removed {
-                    let removedDataId = diff.document.documentID
-                    for (index, thankYouData) in self.thankYouDataSingleton.thankYouList.enumerated() {
-                        if thankYouData.id == removedDataId {
-                            self.thankYouDataSingleton.thankYouList.remove(at: index)
-                            self.deleteThankYouDataFromSection(thankYouData: thankYouData)
-                            break
-                        }
-                    }
-                }
                 if diff.type == .modified {
                     let thankYouData = ThankYouData(dictionary: diff.document.data())
                     guard var editedThankYouData = thankYouData else { break }
@@ -183,30 +161,9 @@ private extension ThankYouListViewController {
     }
     
     private func addThankYouDataToSection(thankYouData: ThankYouData) {
-        /// Crop only year and month (yyyy/MM) from thank you date
-        let dateYearMonthString = thankYouData.date.toString(format: Date.listYearMonthKeyFormat)
-        let sectionIndex = sections.firstIndex(where: { $0.yearMonthKey == dateYearMonthString })
-        if let index = sectionIndex {
-            sections[index].items.append(thankYouData)
-            sections[index].items.sort(by: { $0.date > $1.date })
-        } else {
-            let newSection = ListSection(yearMonthKey: dateYearMonthString,
-                                         items: [thankYouData])
-            sections.append(newSection)
-            sections.sort(by: { $0.yearMonthKey > $1.yearMonthKey })
-        }
     }
     
     private func deleteThankYouDataFromSection(thankYouData: ThankYouData) {
-        /// Crop only year and month (yyyy/MM) from thank you date
-        let dateYearMonthString = thankYouData.date.toString(format: Date.listYearMonthKeyFormat)
-        guard let sectionIndex = sections.firstIndex(where: { $0.yearMonthKey == dateYearMonthString }),
-            let thankYouIndex = sections[sectionIndex].items
-                .firstIndex(where: {$0.id == thankYouData.id}) else { return }
-        sections[sectionIndex].items.remove(at: thankYouIndex)
-        if sections[sectionIndex].items.count == 0 {
-            sections.remove(at: sectionIndex)
-        }
     }
 
     func showDeleteConfirmationAlert(thankYouId: String) {

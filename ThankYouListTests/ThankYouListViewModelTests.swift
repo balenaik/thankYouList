@@ -177,6 +177,115 @@ final class ThankYouListViewModelTests: XCTestCase {
         ])
     }
 
+    func test_ifSubscribeThankYouListEmitsRemoved__itShouldRemoveThankYouFromList() {
+        let listSectionsRecords = TestRecord(publisher: viewModel.outputs.listSections.eraseToAnyPublisher())
+        listSectionsRecords.clearResult()
+
+        let thankYouRelay = PassthroughSubject<ThankYouListChange, Never>()
+        thankYouRepository.subscribeThankYouList_result = thankYouRelay.eraseToAnyPublisher()
+
+        // Open the screen
+        viewModel.inputs.viewDidLoad.send()
+
+        // Add thank yous
+        let thankYou1 = ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: Date(timeIntervalSince1970: 100), createTime: Date())
+        let date2 = Date(timeIntervalSince1970: 200)
+        let thankYou2 = ThankYouData(id: "id2", value: "value2", encryptedValue: "", date: date2, createTime: Date())
+        thankYouRelay.send(.added(thankYou1))
+        thankYouRelay.send(.added(thankYou2))
+        listSectionsRecords.clearResult()
+
+        // Remove thankYou1
+        thankYouRelay.send(.removed(thankYou1))
+
+        // It should remove thankYou1 from list
+        let dateKey = date2.toString(format: Date.listYearMonthKeyFormat)
+        XCTAssertEqual(listSectionsRecords.results, [
+            .value([.init(yearMonthKey: dateKey, items: [thankYou2])])
+        ])
+    }
+
+    func test_ifSubscribeThankYouListEmitsRemoved_andSectionBecomesEmpty__itShouldRemoveSection() {
+        let listSectionsRecords = TestRecord(publisher: viewModel.outputs.listSections.eraseToAnyPublisher())
+        listSectionsRecords.clearResult()
+
+        let thankYouRelay = PassthroughSubject<ThankYouListChange, Never>()
+        thankYouRepository.subscribeThankYouList_result = thankYouRelay.eraseToAnyPublisher()
+
+        // Open the screen
+        viewModel.inputs.viewDidLoad.send()
+
+        // Add single thank you
+        let date = Date(timeIntervalSince1970: 100)
+        let thankYou = ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: date, createTime: Date())
+        thankYouRelay.send(.added(thankYou))
+        listSectionsRecords.clearResult()
+
+        // Remove the only thank you
+        thankYouRelay.send(.removed(thankYou))
+
+        // It should remove the entire section
+        XCTAssertEqual(listSectionsRecords.results, [
+            .value([])
+        ])
+    }
+
+    func test_ifSubscribeThankYouListEmitsRemoved_fromMultipleSections__itShouldOnlyRemoveFromCorrectSection() {
+        let listSectionsRecords = TestRecord(publisher: viewModel.outputs.listSections.eraseToAnyPublisher())
+        listSectionsRecords.clearResult()
+
+        let thankYouRelay = PassthroughSubject<ThankYouListChange, Never>()
+        thankYouRepository.subscribeThankYouList_result = thankYouRelay.eraseToAnyPublisher()
+
+        // Open the screen
+        viewModel.inputs.viewDidLoad.send()
+
+        // Add thank yous in different months
+        let date1 = Date(timeIntervalSince1970: 1609459200) // 2021-01-01
+        let date2 = Date(timeIntervalSince1970: 1614556800) // 2021-03-01
+        let thankYou1 = ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: date1, createTime: Date())
+        let thankYou2 = ThankYouData(id: "id2", value: "value2", encryptedValue: "", date: date2, createTime: Date())
+        thankYouRelay.send(.added(thankYou1))
+        thankYouRelay.send(.added(thankYou2))
+        listSectionsRecords.clearResult()
+
+        // Remove thankYou1 from January section
+        thankYouRelay.send(.removed(thankYou1))
+
+        // It should remove January section but keep March section
+        let dateKey2 = date2.toString(format: Date.listYearMonthKeyFormat)
+        XCTAssertEqual(listSectionsRecords.results, [
+            .value([.init(yearMonthKey: dateKey2, items: [thankYou2])])
+        ])
+    }
+
+    func test_ifSubscribeThankYouListEmitsRemoved_withNonExistentId__itShouldNotChangeList() {
+        let listSectionsRecords = TestRecord(publisher: viewModel.outputs.listSections.eraseToAnyPublisher())
+        listSectionsRecords.clearResult()
+
+        let thankYouRelay = PassthroughSubject<ThankYouListChange, Never>()
+        thankYouRepository.subscribeThankYouList_result = thankYouRelay.eraseToAnyPublisher()
+
+        // Open the screen
+        viewModel.inputs.viewDidLoad.send()
+
+        // Add thank you
+        let date = Date(timeIntervalSince1970: 100)
+        let thankYou = ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: date, createTime: Date())
+        thankYouRelay.send(.added(thankYou))
+        listSectionsRecords.clearResult()
+
+        // Try to remove non-existent thank you
+        let nonExistentThankYou = ThankYouData(id: "non-existent-id", value: "value", encryptedValue: "", date: date, createTime: Date())
+        thankYouRelay.send(.removed(nonExistentThankYou))
+
+        // List should remain unchanged
+        let dateKey = date.toString(format: Date.listYearMonthKeyFormat)
+        XCTAssertEqual(listSectionsRecords.results, [
+            .value([.init(yearMonthKey: dateKey, items: [thankYou])])
+        ])
+    }
+
     func test_ifUserTapsUserIcon__itShouldShowMyPage() {
         viewModel.inputs.userIconDidTap.send()
         scheduler.advance(by: .milliseconds(100))

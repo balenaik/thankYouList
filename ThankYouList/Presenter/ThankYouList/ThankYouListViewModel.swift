@@ -57,6 +57,9 @@ private extension ThankYouListViewModel {
                 switch result {
                 case .added(let thankYouData):
                     self?.addThankYouToList(thankYouData: thankYouData, to: &newList)
+                case .updated(let oldThankYou, let newThankYou):
+                    self?.removeThankYouFromList(thankYouData: oldThankYou, from: &newList)
+                    self?.addThankYouToList(thankYouData: newThankYou, to: &newList)
                 case .removed(let removedThankYou):
                     self?.removeThankYouFromList(thankYouData: removedThankYou, from: &newList)
                 case .error:
@@ -64,7 +67,6 @@ private extension ThankYouListViewModel {
                         title: R.string.localizable.thank_you_list_load_error_title(),
                         message: R.string.localizable.thank_you_list_load_error_message()
                     )
-                default: break
                 }
                 return newList
             }

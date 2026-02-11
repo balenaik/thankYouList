@@ -124,24 +124,6 @@ private extension ThankYouListViewController {
                 self.hasLoadedThankYouList = true
                 return
             }
-            for diff in snapShot.documentChanges {
-                if diff.type == .modified {
-                    let thankYouData = ThankYouData(dictionary: diff.document.data())
-                    guard var editedThankYouData = thankYouData else { break }
-                    let decryptedValue = CryptoManager().decryptString(encryptText: editedThankYouData.encryptedValue, key: uid16string)
-                    editedThankYouData.id = diff.document.documentID
-                    editedThankYouData.value = decryptedValue
-                    for (index, thankYouData) in self.thankYouDataSingleton.thankYouList.enumerated() {
-                        if editedThankYouData.id == thankYouData.id {
-                            self.thankYouDataSingleton.thankYouList.remove(at: index)
-                            self.deleteThankYouDataFromSection(thankYouData: thankYouData)
-                            break
-                        }
-                    }
-                    self.thankYouDataSingleton.thankYouList.append(editedThankYouData)
-                    self.addThankYouDataToSection(thankYouData: editedThankYouData)
-                }
-            }
             DispatchQueue.main.async {
                 if self.thankYouDataSingleton.thankYouList.count == 0 {
                     self.emptyView.isHidden = false
@@ -158,12 +140,6 @@ private extension ThankYouListViewController {
     
     private func postNotificationThankYouListUpdated() {
         NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: NotificationConst.THANK_YOU_LIST_UPDATED), object: nil, userInfo: nil))
-    }
-    
-    private func addThankYouDataToSection(thankYouData: ThankYouData) {
-    }
-    
-    private func deleteThankYouDataFromSection(thankYouData: ThankYouData) {
     }
 
     func showDeleteConfirmationAlert(thankYouId: String) {

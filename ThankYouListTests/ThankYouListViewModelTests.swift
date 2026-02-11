@@ -286,6 +286,127 @@ final class ThankYouListViewModelTests: XCTestCase {
         ])
     }
 
+    func test_ifSubscribeThankYouListEmitsUpdated_withSameDate__itShouldUpdateThankYouInPlace() {
+        let listSectionsRecords = TestRecord(publisher: viewModel.outputs.listSections.eraseToAnyPublisher())
+        listSectionsRecords.clearResult()
+
+        let thankYouRelay = PassthroughSubject<ThankYouListChange, Never>()
+        thankYouRepository.subscribeThankYouList_result = thankYouRelay.eraseToAnyPublisher()
+
+        // Open the screen
+        viewModel.inputs.viewDidLoad.send()
+
+        // Add thank you
+        let date = Date(timeIntervalSince1970: 100)
+        let thankYou = ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: date, createTime: Date())
+        thankYouRelay.send(.added(thankYou))
+        listSectionsRecords.clearResult()
+
+        // Update thank you with same date
+        let updatedThankYou = ThankYouData(id: "id1", value: "updated value", encryptedValue: "", date: date, createTime: Date())
+        thankYouRelay.send(.updated(from: thankYou, to: updatedThankYou))
+
+        // It should update the thank you in list
+        let dateKey = date.toString(format: Date.listYearMonthKeyFormat)
+        XCTAssertEqual(listSectionsRecords.results, [
+            .value([.init(yearMonthKey: dateKey, items: [updatedThankYou])])
+        ])
+    }
+
+    func test_ifSubscribeThankYouListEmitsUpdated_withDifferentDateInSameSection__itShouldReorderWithinSection() {
+        let listSectionsRecords = TestRecord(publisher: viewModel.outputs.listSections.eraseToAnyPublisher())
+        listSectionsRecords.clearResult()
+
+        let thankYouRelay = PassthroughSubject<ThankYouListChange, Never>()
+        thankYouRepository.subscribeThankYouList_result = thankYouRelay.eraseToAnyPublisher()
+
+        // Open the screen
+        viewModel.inputs.viewDidLoad.send()
+
+        // Add two thank yous in same section
+        let date1 = Date(timeIntervalSince1970: 100)
+        let date2 = Date(timeIntervalSince1970: 200)
+        let thankYou1 = ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: date1, createTime: Date())
+        let thankYou2 = ThankYouData(id: "id2", value: "value2", encryptedValue: "", date: date2, createTime: Date())
+        thankYouRelay.send(.added(thankYou1))
+        thankYouRelay.send(.added(thankYou2))
+        listSectionsRecords.clearResult()
+
+        // Update thankYou1 to have a newer date (should move to top)
+        let newDate = Date(timeIntervalSince1970: 300)
+        let updatedThankYou1 = ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: newDate, createTime: Date())
+        thankYouRelay.send(.updated(from: thankYou1, to: updatedThankYou1))
+
+        // It should reorder - updatedThankYou1 should now be first
+        let dateKey = date1.toString(format: Date.listYearMonthKeyFormat)
+        XCTAssertEqual(listSectionsRecords.results, [
+            .value([.init(yearMonthKey: dateKey, items: [updatedThankYou1, thankYou2])])
+        ])
+    }
+
+    func test_ifSubscribeThankYouListEmitsUpdated_withDifferentMonth__itShouldMoveToNewSection() {
+        let listSectionsRecords = TestRecord(publisher: viewModel.outputs.listSections.eraseToAnyPublisher())
+        listSectionsRecords.clearResult()
+
+        let thankYouRelay = PassthroughSubject<ThankYouListChange, Never>()
+        thankYouRepository.subscribeThankYouList_result = thankYouRelay.eraseToAnyPublisher()
+
+        // Open the screen
+        viewModel.inputs.viewDidLoad.send()
+
+        // Add thank you in January 2021
+        let date1 = Date(timeIntervalSince1970: 1609459200) // 2021-01-01
+        let thankYou = ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: date1, createTime: Date())
+        thankYouRelay.send(.added(thankYou))
+        listSectionsRecords.clearResult()
+
+        // Update thank you to March 2021
+        let newDate = Date(timeIntervalSince1970: 1614556800) // 2021-03-01
+        let updatedThankYou = ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: newDate, createTime: Date())
+        thankYouRelay.send(.updated(from: thankYou, to: updatedThankYou))
+
+        // It should move to new section (January section should be removed)
+        let newDateKey = newDate.toString(format: Date.listYearMonthKeyFormat)
+        XCTAssertEqual(listSectionsRecords.results, [
+            .value([.init(yearMonthKey: newDateKey, items: [updatedThankYou])])
+        ])
+    }
+
+    func test_ifSubscribeThankYouListEmitsUpdated_withDifferentMonth_andOldSectionHasOtherItems__itShouldKeepOldSection() {
+        let listSectionsRecords = TestRecord(publisher: viewModel.outputs.listSections.eraseToAnyPublisher())
+        listSectionsRecords.clearResult()
+
+        let thankYouRelay = PassthroughSubject<ThankYouListChange, Never>()
+        thankYouRepository.subscribeThankYouList_result = thankYouRelay.eraseToAnyPublisher()
+
+        // Open the screen
+        viewModel.inputs.viewDidLoad.send()
+
+        // Add two thank yous in January 2021
+        let date1 = Date(timeIntervalSince1970: 1609459200) // 2021-01-01
+        let date2 = Date(timeIntervalSince1970: 1609545600) // 2021-01-02
+        let thankYou1 = ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: date1, createTime: Date())
+        let thankYou2 = ThankYouData(id: "id2", value: "value2", encryptedValue: "", date: date2, createTime: Date())
+        thankYouRelay.send(.added(thankYou1))
+        thankYouRelay.send(.added(thankYou2))
+        listSectionsRecords.clearResult()
+
+        // Update thankYou1 to March 2021
+        let newDate = Date(timeIntervalSince1970: 1614556800) // 2021-03-01
+        let updatedThankYou1 = ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: newDate, createTime: Date())
+        thankYouRelay.send(.updated(from: thankYou1, to: updatedThankYou1))
+
+        // It should create new section for March and keep January with thankYou2
+        let oldDateKey = date1.toString(format: Date.listYearMonthKeyFormat)
+        let newDateKey = newDate.toString(format: Date.listYearMonthKeyFormat)
+        XCTAssertEqual(listSectionsRecords.results, [
+            .value([
+                .init(yearMonthKey: newDateKey, items: [updatedThankYou1]),
+                .init(yearMonthKey: oldDateKey, items: [thankYou2])
+            ])
+        ])
+    }
+
     func test_ifUserTapsUserIcon__itShouldShowMyPage() {
         viewModel.inputs.userIconDidTap.send()
         scheduler.advance(by: .milliseconds(100))

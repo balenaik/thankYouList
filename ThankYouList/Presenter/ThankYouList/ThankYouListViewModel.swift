@@ -70,6 +70,7 @@ private extension ThankYouListViewModel {
                 }
                 return newList
             }
+            .sendEvent(false, to: outputs.shouldShowSkeleton)
             .subscribe(outputs.listSections)
             .store(in: &cancellables)
 
@@ -186,6 +187,7 @@ extension ThankYouListViewModel {
 
     class Outputs {
         let listSections = CurrentValueSubject<[ThankYouListViewController.ListSection], Never>([])
+        let shouldShowSkeleton = CurrentValueSubject<Bool, Never>(true)
         let dismissPresentedView = PassthroughSubject<Void, Never>()
     }
 }

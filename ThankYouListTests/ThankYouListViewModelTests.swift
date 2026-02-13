@@ -407,6 +407,64 @@ final class ThankYouListViewModelTests: XCTestCase {
         ])
     }
 
+    func test_whenViewModelIsInitialized__shouldShowSkeletonShouldBeTrue() {
+        let shouldShowSkeletonRecords = TestRecord(publisher: viewModel.outputs.shouldShowSkeleton.eraseToAnyPublisher())
+        // Initially should show skeleton
+        XCTAssertEqual(shouldShowSkeletonRecords.results, [.value(true)])
+    }
+
+    func test_ifAUserOpensTheScreen_andDataLoads__shouldShowSkeletonShouldBeFalse() {
+        let shouldShowSkeletonRecords = TestRecord(publisher: viewModel.outputs.shouldShowSkeleton.eraseToAnyPublisher())
+        shouldShowSkeletonRecords.clearResult()
+
+        let thankYouRelay = PassthroughSubject<ThankYouListChange, Never>()
+        thankYouRepository.subscribeThankYouList_result = thankYouRelay.eraseToAnyPublisher()
+
+        // Open the screen
+        viewModel.inputs.viewDidLoad.send()
+
+        // Still showing skeleton (no data emitted yet)
+        XCTAssertTrue(viewModel.outputs.shouldShowSkeleton.value)
+
+        // Data arrives
+        let thankYou = ThankYouData(id: "id", value: "value", encryptedValue: "", date: Date(), createTime: Date())
+        thankYouRelay.send(.added(thankYou))
+
+        // Skeleton should be hidden
+        XCTAssertEqual(shouldShowSkeletonRecords.results, [.value(false)])
+    }
+
+    func test_ifAUserOpensTheScreen_andEmptyListLoads__shouldShowSkeletonShouldBeFalse() {
+        let shouldShowSkeletonRecords = TestRecord(publisher: viewModel.outputs.shouldShowSkeleton.eraseToAnyPublisher())
+        shouldShowSkeletonRecords.clearResult()
+
+        let thankYouRelay = PassthroughSubject<ThankYouListChange, Never>()
+        thankYouRepository.subscribeThankYouList_result = thankYouRelay.eraseToAnyPublisher()
+
+        // Open the screen
+        viewModel.inputs.viewDidLoad.send()
+
+        // Emit removed event (simulating empty list after initial load)
+        let thankYou = ThankYouData(id: "id", value: "value", encryptedValue: "", date: Date(), createTime: Date())
+        thankYouRelay.send(.removed(thankYou))
+
+        // Skeleton should be hidden even though list is empty
+        XCTAssertEqual(shouldShowSkeletonRecords.results, [.value(false)])
+    }
+
+    func test_ifAUserOpensTheScreen_andErrorOccurs__shouldShowSkeletonShouldBeFalse() {
+        let shouldShowSkeletonRecords = TestRecord(publisher: viewModel.outputs.shouldShowSkeleton.eraseToAnyPublisher())
+        shouldShowSkeletonRecords.clearResult()
+
+        thankYouRepository.subscribeThankYouList_result = Just(.error(ThankYouRepositoryError.snapshotNotFound)).eraseToAnyPublisher()
+
+        // Open the screen
+        viewModel.inputs.viewDidLoad.send()
+
+        // Skeleton should be hidden even on error
+        XCTAssertEqual(shouldShowSkeletonRecords.results, [.value(false)])
+    }
+
     func test_ifUserTapsUserIcon__itShouldShowMyPage() {
         viewModel.inputs.userIconDidTap.send()
         scheduler.advance(by: .milliseconds(100))

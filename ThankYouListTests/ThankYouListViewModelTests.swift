@@ -407,6 +407,122 @@ final class ThankYouListViewModelTests: XCTestCase {
         ])
     }
 
+    func test_whenListSectionsChanges__reloadTableViewShouldEmitAfterDebounce() {
+        let reloadTableViewRecords = TestRecord(publisher: viewModel.outputs.reloadTableView.map { "" }.eraseToAnyPublisher())
+
+        // Directly send to listSections
+        let date = Date(timeIntervalSince1970: 100)
+        let section = ThankYouListViewController.ListSection(
+            yearMonthKey: date.toString(format: Date.listYearMonthKeyFormat),
+            items: [ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: date, createTime: Date())]
+        )
+        viewModel.outputs.listSections.send([section])
+
+        // Should not emit immediately (debounced)
+        XCTAssertEqual(reloadTableViewRecords.results, [])
+
+        // Advance scheduler by debounce duration
+        scheduler.advance(by: .milliseconds(500))
+
+        // Should emit after debounce
+        XCTAssertEqual(reloadTableViewRecords.results, [.value("")])
+    }
+
+    func test_whenListSectionsChangesMultipleTimes__reloadTableViewShouldOnlyEmitOnceAfterDebounce() {
+        let reloadTableViewRecords = TestRecord(publisher: viewModel.outputs.reloadTableView.map { "" }.eraseToAnyPublisher())
+
+        // Send multiple changes rapidly
+        let date1 = Date(timeIntervalSince1970: 100)
+        let date2 = Date(timeIntervalSince1970: 200)
+        let date3 = Date(timeIntervalSince1970: 300)
+
+        let section1 = ThankYouListViewController.ListSection(
+            yearMonthKey: date1.toString(format: Date.listYearMonthKeyFormat),
+            items: [ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: date1, createTime: Date())]
+        )
+        viewModel.outputs.listSections.send([section1])
+        scheduler.advance(by: .milliseconds(100))
+
+        let section2 = ThankYouListViewController.ListSection(
+            yearMonthKey: date2.toString(format: Date.listYearMonthKeyFormat),
+            items: [
+                ThankYouData(id: "id2", value: "value2", encryptedValue: "", date: date2, createTime: Date()),
+                ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: date1, createTime: Date())
+            ]
+        )
+        viewModel.outputs.listSections.send([section2])
+        scheduler.advance(by: .milliseconds(100))
+
+        let section3 = ThankYouListViewController.ListSection(
+            yearMonthKey: date3.toString(format: Date.listYearMonthKeyFormat),
+            items: [
+                ThankYouData(id: "id3", value: "value3", encryptedValue: "", date: date3, createTime: Date()),
+                ThankYouData(id: "id2", value: "value2", encryptedValue: "", date: date2, createTime: Date()),
+                ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: date1, createTime: Date())
+            ]
+        )
+        viewModel.outputs.listSections.send([section3])
+
+        // Should not emit yet (within debounce window)
+        XCTAssertEqual(reloadTableViewRecords.results, [])
+
+        // Advance scheduler to complete debounce
+        scheduler.advance(by: .milliseconds(500))
+
+        // Should emit only once (latest value after debounce)
+        XCTAssertEqual(reloadTableViewRecords.results, [.value("")])
+    }
+
+    func test_whenListSectionsEmitsSameValueTwice__reloadTableViewShouldOnlyEmitOnce() {
+        let reloadTableViewRecords = TestRecord(publisher: viewModel.outputs.reloadTableView.map { "" }.eraseToAnyPublisher())
+
+        // Send same section twice
+        let date = Date(timeIntervalSince1970: 100)
+        let section = ThankYouListViewController.ListSection(
+            yearMonthKey: date.toString(format: Date.listYearMonthKeyFormat),
+            items: [ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: date, createTime: Date())]
+        )
+
+        viewModel.outputs.listSections.send([section])
+        scheduler.advance(by: .milliseconds(500))
+        reloadTableViewRecords.clearResult()
+
+        // Send same section again
+        viewModel.outputs.listSections.send([section])
+        scheduler.advance(by: .milliseconds(500))
+
+        // Should not emit because the list didn't actually change (duplicate was filtered)
+        XCTAssertEqual(reloadTableViewRecords.results, [])
+    }
+
+    func test_whenListSectionsChangesAfterDebouncePeriod__reloadTableViewShouldEmitMultipleTimes() {
+        let reloadTableViewRecords = TestRecord(publisher: viewModel.outputs.reloadTableView.map { "" }.eraseToAnyPublisher())
+
+        // Send first section
+        let date1 = Date(timeIntervalSince1970: 100)
+        let section1 = ThankYouListViewController.ListSection(
+            yearMonthKey: date1.toString(format: Date.listYearMonthKeyFormat),
+            items: [ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: date1, createTime: Date())]
+        )
+        viewModel.outputs.listSections.send([section1])
+        scheduler.advance(by: .milliseconds(500))
+
+        // Send second section after debounce period
+        let date2 = Date(timeIntervalSince1970: 200)
+        let section2 = ThankYouListViewController.ListSection(
+            yearMonthKey: date2.toString(format: Date.listYearMonthKeyFormat),
+            items: [
+                ThankYouData(id: "id2", value: "value2", encryptedValue: "", date: date2, createTime: Date()),
+                ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: date1, createTime: Date())
+            ]
+        )
+        viewModel.outputs.listSections.send([section2])
+        scheduler.advance(by: .milliseconds(500))
+
+        // Should emit twice (once per debounce window)
+        XCTAssertEqual(reloadTableViewRecords.results, [.value(""), .value("")])
+    }
+
     func test_whenViewModelIsInitialized__shouldShowSkeletonShouldBeTrue() {
         let shouldShowSkeletonRecords = TestRecord(publisher: viewModel.outputs.shouldShowSkeleton.eraseToAnyPublisher())
         // Initially should show skeleton

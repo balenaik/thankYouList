@@ -69,6 +69,14 @@ private extension ThankYouListViewController {
 
     func bindOutputs() {
         viewModel.outputs
+            .reloadTableView
+            .receive(on: DispatchQueue.main)
+            .sink { [tableView] in
+                tableView?.reloadData()
+            }
+            .store(in: &cancellables)
+
+        viewModel.outputs
             .dismissPresentedView
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
@@ -120,7 +128,6 @@ private extension ThankYouListViewController {
                     self.emptyView.isHidden = true
                 }
                 self.postNotificationThankYouListUpdated()
-                self.tableView.reloadData()
                 self.scrollIndicator.updatedContent()
             }
         }

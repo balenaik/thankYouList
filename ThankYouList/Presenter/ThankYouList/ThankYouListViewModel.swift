@@ -74,6 +74,14 @@ private extension ThankYouListViewModel {
             .subscribe(outputs.listSections)
             .store(in: &cancellables)
 
+        outputs.listSections
+            .dropFirst()
+            .removeDuplicates(by: { $0 == $1 })
+            .map { _ in }
+            .debounce(for: .milliseconds(500), scheduler: scheduler)
+            .subscribe(outputs.reloadTableView)
+            .store(in: &cancellables)
+
         inputs.userIconDidTap
             .receive(on: scheduler)
             .sink { [router] in
@@ -188,6 +196,7 @@ extension ThankYouListViewModel {
     class Outputs {
         let listSections = CurrentValueSubject<[ThankYouListViewController.ListSection], Never>([])
         let shouldShowSkeleton = CurrentValueSubject<Bool, Never>(true)
+        let reloadTableView = PassthroughSubject<Void, Never>()
         let dismissPresentedView = PassthroughSubject<Void, Never>()
     }
 }

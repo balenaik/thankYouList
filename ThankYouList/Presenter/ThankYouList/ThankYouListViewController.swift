@@ -136,42 +136,6 @@ private extension ThankYouListViewController {
     private func postNotificationThankYouListUpdated() {
         NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: NotificationConst.THANK_YOU_LIST_UPDATED), object: nil, userInfo: nil))
     }
-
-    func showDeleteConfirmationAlert(thankYouId: String) {
-        let deleteAction = AlertAction(title: R.string.localizable.delete(),
-                                       style: .destructive) { [weak self] in
-            self?.deleteThankYou(thankYouId: thankYouId)
-        }
-        let cancelAction = AlertAction(title: R.string.localizable.cancel(),
-                                       style: .cancel)
-        router?.presentAlert(title: R.string.localizable.deleteThankYou(),
-                             message: R.string.localizable.areYouSureYouWantToDeleteThisThankYou(),
-                             actions: [deleteAction, cancelAction])
-    }
-
-    func deleteThankYou(thankYouId: String) {
-        guard let userId = Auth.auth().currentUser?.uid else {
-            showErrorAlert(title: nil, message: R.string.localizable.failedToDelete())
-            return
-        }
-        db.collection(FirestoreConst.usersCollecion)
-            .document(userId)
-            .collection(FirestoreConst.thankYouListCollection)
-            .document(thankYouId)
-            .delete(completion: { [weak self] error in
-                guard let self = self else { return }
-                if let error = error {
-                    debugPrint(error)
-                    self.showErrorAlert(title: nil, message: R.string.localizable.failedToDelete())
-                    return
-                }
-                if let thankYouData = self.thankYouDataSingleton.thankYouList.first(where: { $0.id == thankYouId }) {
-                    self.analyticsManager.logEvent(
-                        eventName: AnalyticsEventConst.deleteThankYou,
-                        targetDate: thankYouData.date)
-                }
-            })
-    }
 }
     
     

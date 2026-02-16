@@ -147,8 +147,12 @@ private extension ThankYouListViewModel {
             .share()
 
         deleteResult
-            .values()
-            .sink { _ in }
+            .errors()
+            .receive(on: scheduler)
+            .sink { [router] _ in
+                router?.presentAlert(title: nil,
+                                     message: R.string.localizable.failedToDelete())
+            }
             .store(in: &cancellables)
     }
 }

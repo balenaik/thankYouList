@@ -77,6 +77,13 @@ private extension ThankYouListViewController {
             .store(in: &cancellables)
 
         viewModel.outputs
+            .showEmptyView
+            .receive(on: DispatchQueue.main)
+            .map { !$0 }
+            .assign(to: \.isHidden, on: emptyView)
+            .store(in: &cancellables)
+
+        viewModel.outputs
             .dismissPresentedView
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
@@ -122,11 +129,6 @@ private extension ThankYouListViewController {
         db.collection("users").document(uid).collection("thankYouList").addSnapshotListener { [weak self] (querySnapshot, error) in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                if self.thankYouDataSingleton.thankYouList.count == 0 {
-                    self.emptyView.isHidden = false
-                } else {
-                    self.emptyView.isHidden = true
-                }
                 self.postNotificationThankYouListUpdated()
                 self.scrollIndicator.updatedContent()
             }

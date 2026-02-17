@@ -629,6 +629,120 @@ final class ThankYouListViewModelTests: XCTestCase {
         XCTAssertEqual(listSectionsRecords.results, [])
     }
 
+    func test_whenViewModelIsInitialized__showEmptyViewShouldBeFalse() {
+        let showEmptyViewRecords = TestRecord(publisher: viewModel.outputs.showEmptyView.eraseToAnyPublisher())
+
+        // Initial state should be false (not empty yet, just not loaded)
+        XCTAssertEqual(showEmptyViewRecords.results, [.value(false)])
+    }
+
+    func test_whenListSectionsHasItems__showEmptyViewShouldBeFalse() {
+        let showEmptyViewRecords = TestRecord(publisher: viewModel.outputs.showEmptyView.eraseToAnyPublisher())
+        showEmptyViewRecords.clearResult()
+
+        // Add items to list
+        let date = Date(timeIntervalSince1970: 100)
+        viewModel.outputs.listSections.send([.init(
+            yearMonthKey: date.toString(format: Date.listYearMonthKeyFormat),
+            items: [ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: date, createTime: Date())]
+        )])
+
+        // showEmptyView should be false (list has items)
+        XCTAssertEqual(showEmptyViewRecords.results, [.value(false)])
+    }
+
+    func test_whenFirstEmissionIsEmpty__showEmptyViewShouldBeTrue() {
+        let showEmptyViewRecords = TestRecord(publisher: viewModel.outputs.showEmptyView.eraseToAnyPublisher())
+        showEmptyViewRecords.clearResult()
+
+        // Send empty list (simulating empty list after loading)
+        viewModel.outputs.listSections.send([])
+
+        // showEmptyView should emit true (first real emission after dropFirst)
+        XCTAssertEqual(showEmptyViewRecords.results, [.value(true)])
+    }
+
+    func test_whenListSectionsBecomesEmpty__showEmptyViewShouldBeTrue() {
+        let showEmptyViewRecords = TestRecord(publisher: viewModel.outputs.showEmptyView.eraseToAnyPublisher())
+        showEmptyViewRecords.clearResult()
+
+        // Add items to list
+        let date = Date(timeIntervalSince1970: 100)
+        viewModel.outputs.listSections.send([.init(
+            yearMonthKey: date.toString(format: Date.listYearMonthKeyFormat),
+            items: [ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: date, createTime: Date())]
+        )])
+
+        // showEmptyView should be false (list is not empty)
+        XCTAssertEqual(showEmptyViewRecords.results, [.value(false)])
+        showEmptyViewRecords.clearResult()
+
+        // Make list empty
+        viewModel.outputs.listSections.send([])
+
+        // showEmptyView should be true (list is now empty)
+        XCTAssertEqual(showEmptyViewRecords.results, [.value(true)])
+    }
+
+    func test_whenListSectionsChangesFromEmptyToNotEmpty__showEmptyViewShouldBeFalse() {
+        let showEmptyViewRecords = TestRecord(publisher: viewModel.outputs.showEmptyView.eraseToAnyPublisher())
+        showEmptyViewRecords.clearResult()
+
+        // Send empty list
+        viewModel.outputs.listSections.send([])
+        XCTAssertEqual(showEmptyViewRecords.results, [.value(true)])
+        showEmptyViewRecords.clearResult()
+
+        // Add items to list
+        let date = Date(timeIntervalSince1970: 100)
+        viewModel.outputs.listSections.send([.init(
+            yearMonthKey: date.toString(format: Date.listYearMonthKeyFormat),
+            items: [ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: date, createTime: Date())]
+        )])
+
+        // showEmptyView should be false (list now has items)
+        XCTAssertEqual(showEmptyViewRecords.results, [.value(false)])
+    }
+
+    func test_whenListSectionsStaysEmpty__showEmptyViewShouldStayTrue() {
+        let showEmptyViewRecords = TestRecord(publisher: viewModel.outputs.showEmptyView.eraseToAnyPublisher())
+        showEmptyViewRecords.clearResult()
+
+        // Send empty list
+        viewModel.outputs.listSections.send([])
+        XCTAssertEqual(showEmptyViewRecords.results, [.value(true)])
+        showEmptyViewRecords.clearResult()
+
+        // Send empty list again
+        viewModel.outputs.listSections.send([])
+
+        // showEmptyView should not emit again (removed by removeDuplicates)
+        XCTAssertEqual(showEmptyViewRecords.results, [])
+    }
+
+    func test_whenListSectionsStaysNonEmpty__showEmptyViewShouldNotEmitDuplicateFalse() {
+        let showEmptyViewRecords = TestRecord(publisher: viewModel.outputs.showEmptyView.eraseToAnyPublisher())
+        showEmptyViewRecords.clearResult()
+
+        // First non-empty list -> emits false
+        let date1 = Date(timeIntervalSince1970: 100)
+        viewModel.outputs.listSections.send([.init(
+            yearMonthKey: date1.toString(format: Date.listYearMonthKeyFormat),
+            items: [ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: date1, createTime: Date())]
+        )])
+        XCTAssertEqual(showEmptyViewRecords.results, [.value(false)])
+        showEmptyViewRecords.clearResult()
+
+        // Another non-empty list -> still false, should be removed by removeDuplicates()
+        let date2 = Date(timeIntervalSince1970: 200)
+        viewModel.outputs.listSections.send([.init(
+            yearMonthKey: date2.toString(format: Date.listYearMonthKeyFormat),
+            items: [ThankYouData(id: "id2", value: "value2", encryptedValue: "", date: date2, createTime: Date())]
+        )])
+
+        XCTAssertEqual(showEmptyViewRecords.results, [])
+    }
+
     func test_ifUserTapsUserIcon__itShouldShowMyPage() {
         viewModel.inputs.userIconDidTap.send()
         scheduler.advance(by: .milliseconds(100))

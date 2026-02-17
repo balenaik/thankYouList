@@ -55,6 +55,8 @@ private extension ThankYouListViewModel {
             .scan([ThankYouListViewController.ListSection]()) { [weak self] list, result in
                 var newList = list
                 switch result {
+                case .initial:
+                    break
                 case .added(let thankYouData):
                     self?.addThankYouToList(thankYouData: thankYouData, to: &newList)
                 case .updated(let oldThankYou, let newThankYou):
@@ -70,6 +72,7 @@ private extension ThankYouListViewModel {
                 }
                 return newList
             }
+            .removeDuplicates()
             .sendEvent(false, to: outputs.shouldShowSkeleton)
             .subscribe(outputs.listSections)
             .store(in: &cancellables)

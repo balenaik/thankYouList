@@ -279,11 +279,9 @@ final class ThankYouListViewModelTests: XCTestCase {
         let nonExistentThankYou = ThankYouData(id: "non-existent-id", value: "value", encryptedValue: "", date: date, createTime: Date())
         thankYouRelay.send(.removed(nonExistentThankYou))
 
-        // List should remain unchanged
+        // List should remain unchanged -> No new record
         let dateKey = date.toString(format: Date.listYearMonthKeyFormat)
-        XCTAssertEqual(listSectionsRecords.results, [
-            .value([.init(yearMonthKey: dateKey, items: [thankYou])])
-        ])
+        XCTAssertTrue(listSectionsRecords.results.isEmpty)
     }
 
     func test_ifSubscribeThankYouListEmitsUpdated_withSameDate__itShouldUpdateThankYouInPlace() {
@@ -579,6 +577,56 @@ final class ThankYouListViewModelTests: XCTestCase {
 
         // Skeleton should be hidden even on error
         XCTAssertEqual(shouldShowSkeletonRecords.results, [.value(false)])
+    }
+
+    func test_ifSubscribeThankYouListEmitsInitial_withEmptyList__itShouldEmitEmptyListOnce_andHideSkeleton() {
+        let listSectionsRecords = TestRecord(publisher: viewModel.outputs.listSections.eraseToAnyPublisher())
+        listSectionsRecords.clearResult()
+
+        let shouldShowSkeletonRecords = TestRecord(publisher: viewModel.outputs.shouldShowSkeleton.eraseToAnyPublisher())
+        shouldShowSkeletonRecords.clearResult()
+
+        let thankYouRelay = PassthroughSubject<ThankYouListChange, Never>()
+        thankYouRepository.subscribeThankYouList_result = thankYouRelay.eraseToAnyPublisher()
+
+        // Open the screen
+        viewModel.inputs.viewDidLoad.send()
+
+        // Emit initial
+        thankYouRelay.send(.initial)
+
+        // .initial does not mutate list (still empty), but first emission flows through
+        XCTAssertEqual(listSectionsRecords.results, [.value([])])
+        // Skeleton should be hidden after first stream emission
+        XCTAssertEqual(shouldShowSkeletonRecords.results, [.value(false)])
+    }
+
+    func test_ifSubscribeThankYouListEmitsInitial_afterAdded__itShouldNotEmitListSectionsAgain_dueToRemoveDuplicates() {
+        let listSectionsRecords = TestRecord(publisher: viewModel.outputs.listSections.eraseToAnyPublisher())
+        listSectionsRecords.clearResult()
+
+        let thankYouRelay = PassthroughSubject<ThankYouListChange, Never>()
+        thankYouRepository.subscribeThankYouList_result = thankYouRelay.eraseToAnyPublisher()
+
+        // Open the screen
+        viewModel.inputs.viewDidLoad.send()
+
+        // Add one item
+        let date = Date(timeIntervalSince1970: 123)
+        let thankYou = ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: date, createTime: Date())
+        thankYouRelay.send(.added(thankYou))
+
+        let dateKey = date.toString(format: Date.listYearMonthKeyFormat)
+        XCTAssertEqual(listSectionsRecords.results, [
+            .value([.init(yearMonthKey: dateKey, items: [thankYou])])
+        ])
+
+        listSectionsRecords.clearResult()
+
+        // Emit initial again -> scan returns same list, removeDuplicates should suppress
+        thankYouRelay.send(.initial)
+
+        XCTAssertEqual(listSectionsRecords.results, [])
     }
 
     func test_ifUserTapsUserIcon__itShouldShowMyPage() {

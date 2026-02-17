@@ -20,6 +20,7 @@ enum ThankYouRepositoryError: Error {
 }
 
 enum ThankYouListChange {
+    case initial
     case added(ThankYouData)
     case updated(from: ThankYouData, to: ThankYouData)
     case removed(ThankYouData)
@@ -62,6 +63,7 @@ class DefaultThankYouRepository: ThankYouRepository {
                         subscriber.onNext(.error(ThankYouRepositoryError.snapshotNotFound))
                         return
                     }
+                    subscriber.onNext(.initial)
                     snapshot.documentChanges.forEach { change in
                         switch change.type {
                         case .added:

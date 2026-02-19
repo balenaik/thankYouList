@@ -23,17 +23,20 @@ class ThankYouListViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     private let userRepository: UserRepository
     private let thankYouRepository: ThankYouRepository
+    private let notificationCenterProtocol: NotificationCenterProtocol
     private let router: ThankYouListRouter?
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     init(
         userRepository: UserRepository,
         thankYouRepository: ThankYouRepository,
+        notificationCenterProtocol: NotificationCenterProtocol,
         router: ThankYouListRouter,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.userRepository = userRepository
         self.thankYouRepository = thankYouRepository
+        self.notificationCenterProtocol = notificationCenterProtocol
         self.router = router
         self.scheduler = scheduler
         bind()

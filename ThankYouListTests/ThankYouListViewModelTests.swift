@@ -16,6 +16,7 @@ final class ThankYouListViewModelTests: XCTestCase {
     private var viewModel: ThankYouListViewModel!
     private var userRepository: MockUserRepository!
     private var thankYouRepository: MockThankYouRepository!
+    private var notificationCenter: MockNotificationCenter!
     private var router: MockThankYouListRouter!
 
     private var scheduler: TestSchedulerOf<DispatchQueue>!
@@ -23,11 +24,13 @@ final class ThankYouListViewModelTests: XCTestCase {
     override func setUp() {
         userRepository = MockUserRepository()
         thankYouRepository = MockThankYouRepository()
+        notificationCenter = MockNotificationCenter()
         router = MockThankYouListRouter()
         scheduler = DispatchQueue.test
         viewModel = ThankYouListViewModel(
             userRepository: userRepository,
             thankYouRepository: thankYouRepository,
+            notificationCenterProtocol: notificationCenter,
             router: router,
             scheduler: scheduler.eraseToAnyScheduler()
         )

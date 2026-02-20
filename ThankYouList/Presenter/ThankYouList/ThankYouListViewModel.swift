@@ -85,6 +85,11 @@ private extension ThankYouListViewModel {
             .removeDuplicates(by: { $0 == $1 })
             .map { _ in }
             .debounce(for: .milliseconds(500), scheduler: scheduler)
+            .handleEvents(receiveOutput: { [notificationCenterProtocol] in
+                notificationCenterProtocol.post(Notification(
+                    name: Notification.Name(rawValue: NotificationConst.THANK_YOU_LIST_UPDATED)
+                ))
+            })
             .subscribe(outputs.reloadTableView)
             .store(in: &cancellables)
 

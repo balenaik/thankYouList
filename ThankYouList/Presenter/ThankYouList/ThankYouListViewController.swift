@@ -129,14 +129,9 @@ private extension ThankYouListViewController {
         db.collection("users").document(uid).collection("thankYouList").addSnapshotListener { [weak self] (querySnapshot, error) in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                self.postNotificationThankYouListUpdated()
                 self.scrollIndicator.updatedContent()
             }
         }
-    }
-    
-    private func postNotificationThankYouListUpdated() {
-        NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: NotificationConst.THANK_YOU_LIST_UPDATED), object: nil, userInfo: nil))
     }
 }
     

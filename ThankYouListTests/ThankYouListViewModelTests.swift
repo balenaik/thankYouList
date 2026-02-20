@@ -746,6 +746,78 @@ final class ThankYouListViewModelTests: XCTestCase {
         XCTAssertEqual(showEmptyViewRecords.results, [])
     }
 
+    func test_whenListSectionsChanges__itShouldPostThankYouListUpdatedNotification_afterDebounce() {
+        // Subscribe to reloadTableView to create demand (make the subscription in VM work)
+        _ = viewModel.outputs.reloadTableView.sink { _ in }
+
+        let date = Date(timeIntervalSince1970: 100)
+        let section = ThankYouListViewController.ListSection(
+            yearMonthKey: date.toString(format: Date.listYearMonthKeyFormat),
+            items: [ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: date, createTime: Date())]
+        )
+        viewModel.outputs.listSections.send([section])
+
+        // Should not post before debounce completes
+        XCTAssertEqual(notificationCenter.post_calledCount, 0)
+
+        // Advance scheduler past debounce duration
+        scheduler.advance(by: .milliseconds(500))
+
+        // Should post exactly once with the correct notification name
+        XCTAssertEqual(notificationCenter.post_calledCount, 1)
+        XCTAssertEqual(
+            notificationCenter.post_notifications.first?.name,
+            Notification.Name(rawValue: NotificationConst.THANK_YOU_LIST_UPDATED)
+        )
+    }
+
+    func test_whenListSectionsChangesMultipleTimes_withinDebounceWindow__itShouldPostNotificationOnlyOnce() {
+        // Subscribe to reloadTableView to create demand (make the subscription in VM work)
+        _ = viewModel.outputs.reloadTableView.sink { _ in }
+
+        let date1 = Date(timeIntervalSince1970: 100)
+        let date2 = Date(timeIntervalSince1970: 200)
+
+        let section1 = ThankYouListViewController.ListSection(
+            yearMonthKey: date1.toString(format: Date.listYearMonthKeyFormat),
+            items: [ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: date1, createTime: Date())]
+        )
+        let section2 = ThankYouListViewController.ListSection(
+            yearMonthKey: date2.toString(format: Date.listYearMonthKeyFormat),
+            items: [ThankYouData(id: "id2", value: "value2", encryptedValue: "", date: date2, createTime: Date())]
+        )
+
+        viewModel.outputs.listSections.send([section1])
+        scheduler.advance(by: .milliseconds(100))
+        viewModel.outputs.listSections.send([section2])
+        scheduler.advance(by: .milliseconds(500))
+
+        // Debounce should collapse rapid changes into a single notification
+        XCTAssertEqual(notificationCenter.post_calledCount, 1)
+    }
+
+    func test_whenListSectionsEmitsSameValue__itShouldNotPostNotificationAgain() {
+        // Subscribe to reloadTableView to create demand (make the subscription in VM work)
+        _ = viewModel.outputs.reloadTableView.sink { _ in }
+
+        let date = Date(timeIntervalSince1970: 100)
+        let section = ThankYouListViewController.ListSection(
+            yearMonthKey: date.toString(format: Date.listYearMonthKeyFormat),
+            items: [ThankYouData(id: "id1", value: "value1", encryptedValue: "", date: date, createTime: Date())]
+        )
+
+        viewModel.outputs.listSections.send([section])
+        scheduler.advance(by: .milliseconds(500))
+        XCTAssertEqual(notificationCenter.post_calledCount, 1)
+
+        // Send the same value again
+        viewModel.outputs.listSections.send([section])
+        scheduler.advance(by: .milliseconds(500))
+
+        // removeDuplicates should suppress the second notification
+        XCTAssertEqual(notificationCenter.post_calledCount, 1)
+    }
+
     func test_ifUserTapsUserIcon__itShouldShowMyPage() {
         viewModel.inputs.userIconDidTap.send()
         scheduler.advance(by: .milliseconds(100))

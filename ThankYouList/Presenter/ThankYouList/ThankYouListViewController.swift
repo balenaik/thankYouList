@@ -129,7 +129,7 @@ private extension ThankYouListViewController {
         db.collection("users").document(uid).collection("thankYouList").addSnapshotListener { [weak self] (querySnapshot, error) in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                self.scrollIndicator.updatedContent()
+                self.scrollIndicator.didUpdateContent()
             }
         }
     }

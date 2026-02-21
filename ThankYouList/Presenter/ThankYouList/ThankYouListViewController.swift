@@ -8,9 +8,6 @@
 
 import Combine
 import UIKit
-import FirebaseFirestore
-import FirebaseAuth
-import Firebase
 import SkeletonView
 import FloatingPanel
 import SharedResources
@@ -29,7 +26,6 @@ class ThankYouListViewController: UIViewController {
         }
     }
 
-    private var db = Firestore.firestore()
     private let analyticsManager = DefaultAnalyticsManager()
     private var thankYouDataSingleton = DefaultInMemoryDataStore.shared
     private var sections = [ListSection]()
@@ -71,8 +67,9 @@ private extension ThankYouListViewController {
         viewModel.outputs
             .reloadTableView
             .receive(on: DispatchQueue.main)
-            .sink { [tableView] in
+            .sink { [tableView, scrollIndicator] in
                 tableView?.reloadData()
+                scrollIndicator?.didUpdateContent()
             }
             .store(in: &cancellables)
 
@@ -107,7 +104,6 @@ private extension ThankYouListViewController {
 
         thankYouDataSingleton.thankYouList = []
         sections = []
-        loadAndCheckForUpdates()
 
         tableView.estimatedRowHeight = 40
         tableView.rowHeight = UITableView.automaticDimension
@@ -119,19 +115,7 @@ private extension ThankYouListViewController {
         emptyView.isHidden = true
         scrollIndicator.setup(scrollView: tableView)
         scrollIndicator.delegate = self
-    }
 
-    private func loadAndCheckForUpdates() {
-        guard let uid = Auth.auth().currentUser?.uid else {
-            print("Not login? error")
-            return
-        }
-        db.collection("users").document(uid).collection("thankYouList").addSnapshotListener { [weak self] (querySnapshot, error) in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.scrollIndicator.didUpdateContent()
-            }
-        }
     }
 }
     

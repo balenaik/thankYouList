@@ -27,8 +27,6 @@ class ThankYouListViewController: UIViewController {
     }
 
     private let analyticsManager = DefaultAnalyticsManager()
-    private var thankYouDataSingleton = DefaultInMemoryDataStore.shared
-    private var sections = [ListSection]()
     private var estimatedRowHeights = [String : CGFloat]()
     private var cancellables = Set<AnyCancellable>()
 
@@ -102,9 +100,6 @@ private extension ThankYouListViewController {
         navigationItem.title = R.string.localizable.list_navigationbar_title()
         tabBarItem.title = R.string.localizable.calendar_tabbar_title()
 
-        thankYouDataSingleton.thankYouList = []
-        sections = []
-
         tableView.estimatedRowHeight = 40
         tableView.rowHeight = UITableView.automaticDimension
         tableView.register(R.nib.thankYouCell)
@@ -127,7 +122,7 @@ extension ThankYouListViewController: UITableViewDataSource {
         if viewModel.outputs.shouldShowSkeleton.value {
             return skeletonedThankYouCellCount
         }
-        return sections.getSafely(at: section)?.items.count ?? 0
+        return viewModel.outputs.listSections.value.getSafely(at: section)?.items.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -136,7 +131,7 @@ extension ThankYouListViewController: UITableViewDataSource {
             cell.showLoadingSkeleton()
             return cell
         }
-        if let section = sections.getSafely(at: indexPath.section),
+        if let section = viewModel.outputs.listSections.value.getSafely(at: indexPath.section),
            let thankYouData = section.items.getSafely(at: indexPath.row) {
             scrollIndicator.bind(title: section.headerTitle)
             cell.bind(thankYouData: thankYouData)
@@ -148,7 +143,7 @@ extension ThankYouListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.outputs.shouldShowSkeleton.value
         ? 1
-        : sections.count
+        : viewModel.outputs.listSections.value.count
     }
 }
 
@@ -160,7 +155,7 @@ extension ThankYouListViewController: UITableViewDelegate {
             header.showLoadingSkeleton()
             return header
         }
-        if let sct = sections.getSafely(at: section) {
+        if let sct = viewModel.outputs.listSections.value.getSafely(at: section) {
             header.bind(sectionString: sct.headerTitle)
         }
         return header
@@ -174,7 +169,7 @@ extension ThankYouListViewController: UITableViewDelegate {
         if viewModel.outputs.shouldShowSkeleton.value {
             return tableView.estimatedRowHeight
         }
-        guard let thankYouId = sections.getSafely(at: indexPath.section)?.items.getSafely(at: indexPath.row)?.id,
+        guard let thankYouId = viewModel.outputs.listSections.value.getSafely(at: indexPath.section)?.items.getSafely(at: indexPath.row)?.id,
               let height = estimatedRowHeights[thankYouId] else {
             return tableView.estimatedRowHeight
         }
@@ -184,7 +179,7 @@ extension ThankYouListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if viewModel.outputs.shouldShowSkeleton.value { return }
         cell.contentView.updateConstraintsIfNeeded()
-        if let thankYouId =  sections.getSafely(at: indexPath.section)?.items.getSafely(at: indexPath.row)?.id {
+        if let thankYouId =  viewModel.outputs.listSections.value.getSafely(at: indexPath.section)?.items.getSafely(at: indexPath.row)?.id {
             estimatedRowHeights[thankYouId] = cell.frame.size.height
         }
     }

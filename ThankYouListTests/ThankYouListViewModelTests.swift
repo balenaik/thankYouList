@@ -16,6 +16,7 @@ final class ThankYouListViewModelTests: XCTestCase {
     private var viewModel: ThankYouListViewModel!
     private var userRepository: MockUserRepository!
     private var thankYouRepository: MockThankYouRepository!
+    private var analyticsManager: MockAnalyticsManager!
     private var notificationCenter: MockNotificationCenter!
     private var router: MockThankYouListRouter!
 
@@ -24,12 +25,14 @@ final class ThankYouListViewModelTests: XCTestCase {
     override func setUp() {
         userRepository = MockUserRepository()
         thankYouRepository = MockThankYouRepository()
+        analyticsManager = MockAnalyticsManager()
         notificationCenter = MockNotificationCenter()
         router = MockThankYouListRouter()
         scheduler = DispatchQueue.test
         viewModel = ThankYouListViewModel(
             userRepository: userRepository,
             thankYouRepository: thankYouRepository,
+            analyticsManager: analyticsManager,
             notificationCenterProtocol: notificationCenter,
             router: router,
             scheduler: scheduler.eraseToAnyScheduler()
@@ -926,7 +929,7 @@ final class ThankYouListViewModelTests: XCTestCase {
         XCTAssertEqual(thankYouRepository.deleteThankYou_calledCount, 2)
     }
 
-    func test_ifUserTapsBottomHalfSheetMenu_thatHasDeleteValue_tapsDeleteButton_andDeleteSucceeded__itShouldNotPresentAlertTwice() {
+    func test_ifUserTapsBottomHalfSheetMenu_thatHasDeleteValue_tapsDeleteButton_andDeleteSucceeded__itShouldSendAnalytics_withUserId_andTheThankYouDate_andShouldNotPresentAlertTwice() {
 
         let userId = "userId"
         userRepository.getUserProfile_result = Just(Profile(id: userId, name: "", email: "", imageUrl: nil)).setFailureType(to: Error.self).asFuture()
@@ -955,11 +958,16 @@ final class ThankYouListViewModelTests: XCTestCase {
         XCTAssertEqual(thankYouRepository.deleteThankYou_thankYouId, thankYouId)
         XCTAssertEqual(thankYouRepository.deleteThankYou_userId, userId)
 
+        // Should send analytics
+        XCTAssertEqual(analyticsManager.loggedEvent.count, 1)
+        XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.deleteThankYou)
+        XCTAssertEqual(analyticsManager.loggedEvent.first?.targetDate, thankYouDate)
+
         // Should not present alert twice
         XCTAssertEqual(router.presentAlert_calledCount, 1)
     }
 
-    func test_ifUserTapsBottomHalfSheetMenu_thatHasDeleteValue_tapsDeleteButton_andDeleteFailed__itShouldPresentAlert() {
+    func test_ifUserTapsBottomHalfSheetMenu_thatHasDeleteValue_tapsDeleteButton_andDeleteFailed__itShouldPresentAlert_andShouldNotSendAnalytics() {
 
         userRepository.getUserProfile_result = Just(Profile(id: "userId", name: "", email: "", imageUrl: nil)).setFailureType(to: Error.self).asFuture()
 
@@ -990,6 +998,9 @@ final class ThankYouListViewModelTests: XCTestCase {
         // Should present alert
         XCTAssertEqual(router.presentAlert_calledCount, 1)
         XCTAssertEqual(router.presentAlert_message, R.string.localizable.failedToDelete())
+
+        // Should not send analytics
+        XCTAssertEqual(analyticsManager.loggedEvent.count, 0)
     }
 }
 

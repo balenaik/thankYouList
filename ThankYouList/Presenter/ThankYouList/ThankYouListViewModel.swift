@@ -23,6 +23,7 @@ class ThankYouListViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     private let userRepository: UserRepository
     private let thankYouRepository: ThankYouRepository
+    private let analyticsManager: AnalyticsManager
     private let notificationCenterProtocol: NotificationCenterProtocol
     private let router: ThankYouListRouter?
     private let scheduler: AnySchedulerOf<DispatchQueue>
@@ -30,12 +31,14 @@ class ThankYouListViewModel: ObservableObject {
     init(
         userRepository: UserRepository,
         thankYouRepository: ThankYouRepository,
+        analyticsManager: AnalyticsManager,
         notificationCenterProtocol: NotificationCenterProtocol,
         router: ThankYouListRouter,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.userRepository = userRepository
         self.thankYouRepository = thankYouRepository
+        self.analyticsManager = analyticsManager
         self.notificationCenterProtocol = notificationCenterProtocol
         self.router = router
         self.scheduler = scheduler
@@ -163,6 +166,16 @@ private extension ThankYouListViewModel {
             }
             .eraseToAnyPublisher()
             .share()
+
+        deleteResult
+            .values()
+            .sink { [analyticsManager] deletedThankYou in
+                analyticsManager.logEvent(
+                    eventName: AnalyticsEventConst.deleteThankYou,
+                    targetDate: deletedThankYou?.date
+                )
+            }
+            .store(in: &cancellables)
 
         deleteResult
             .errors()

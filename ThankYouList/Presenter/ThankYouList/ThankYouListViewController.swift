@@ -26,7 +26,6 @@ class ThankYouListViewController: UIViewController {
         }
     }
 
-    private let analyticsManager = DefaultAnalyticsManager()
     private var estimatedRowHeights = [String : CGFloat]()
     private var cancellables = Set<AnyCancellable>()
 
@@ -200,9 +199,7 @@ extension ThankYouListViewController: UITableViewDelegate {
 // MARK: - ListScrollIndicatorDelegate
 extension ThankYouListViewController: ListScrollIndicatorDelegate {
     func listScrollIndicatorDidBeginDraggingMovableIcon(_ indicator: ListScrollIndicator) {
-        analyticsManager.logEvent(
-            eventName: AnalyticsEventConst.startDraggingListScrollIndicatorMovableIcon
-        )
+        viewModel.inputs.listScrollIndicatorDidBeginDragging.send()
     }
 }
 

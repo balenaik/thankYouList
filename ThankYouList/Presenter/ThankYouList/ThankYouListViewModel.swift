@@ -109,6 +109,14 @@ private extension ThankYouListViewModel {
                 router?.presentMyPage()
             }
             .store(in: &cancellables)
+
+        inputs.listScrollIndicatorDidBeginDragging
+            .sink { [analyticsManager] in
+                analyticsManager.logEvent(
+                    eventName: AnalyticsEventConst.startDraggingListScrollIndicatorMovableIcon
+                )
+            }
+            .store(in: &cancellables)
     }
 
     func bindCardTapAction() {
@@ -226,6 +234,7 @@ extension ThankYouListViewModel {
         let viewDidLoad = PassthroughSubject<Void, Never>()
         let userIconDidTap = PassthroughSubject<Void, Never>()
         let bottomHalfSheetMenuDidTap = PassthroughSubject<BottomHalfSheetMenuItem, Never>()
+        let listScrollIndicatorDidBeginDragging = PassthroughSubject<Void, Never>()
     }
 
     class Outputs {

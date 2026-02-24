@@ -821,6 +821,13 @@ final class ThankYouListViewModelTests: XCTestCase {
         XCTAssertEqual(notificationCenter.post_calledCount, 1)
     }
 
+    func test_ifListScrollIndicatorBeginsDragging__itShouldSendAnalytics() {
+        viewModel.inputs.listScrollIndicatorDidBeginDragging.send()
+
+        XCTAssertEqual(analyticsManager.loggedEvent.count, 1)
+        XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.startDraggingListScrollIndicatorMovableIcon)
+    }
+
     func test_ifUserTapsUserIcon__itShouldShowMyPage() {
         viewModel.inputs.userIconDidTap.send()
         scheduler.advance(by: .milliseconds(100))

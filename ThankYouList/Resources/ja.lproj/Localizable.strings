@@ -17,6 +17,9 @@
 "thank_you_list_empty_view_title" = "Thank You Listへようこそ";
 "thank_you_list_empty_view_description" = "ここにThank Youが表示されます。\nさっそく作成しましょう！";
 
+"thank_you_list_load_error_title" = "Thank You Listの読み込みに失敗しました";
+"thank_you_list_load_error_message" = "後でもう一度お試しください。";
+
 "add_thank_you_title" = "Thank Youを作成";
 "add_thank_you_text_view_placeholder" = "ありがとうの気持ちを書こう";
 "add_thank_you_discard_title" = "Thank Youを破棄しますか？";
@@ -76,7 +79,6 @@
 "something_went_wrong_title" = "問題が発生しました";
 
 "date_format_thankyou_date" = "yyyy/MM/dd";
-"date_format_year_month" = "yyyy/MM";
 "date_format_month_year" = "yyyy年 MMMM";
 
 "privacy_policy_url" = "https://thank-you-list-dc0da.firebaseapp.com/ja.html";

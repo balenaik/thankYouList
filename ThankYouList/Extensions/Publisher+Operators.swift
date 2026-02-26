@@ -89,6 +89,9 @@ extension Publisher {
         handleEvents(receiveOutput: { _ in subject.send(output) })
     }
 
+    func sendEvent<S>(_ output: S, to subject: CurrentValueSubject<S, Never>) -> Publishers.HandleEvents<Self> {
+        handleEvents(receiveOutput: { _ in subject.send(output) })
+    }
     func withUnretained<T: AnyObject>(_ object: T) -> Publishers.CompactMap<Self, (T, Self.Output)> {
         compactMap { [weak object] output in
             guard let object = object else {

@@ -21,7 +21,14 @@ class ThankYouListCoordinator: Coordinator {
         guard let viewController = R.storyboard.thankYouList.instantiateInitialViewController() else {
             return
         }
-        viewController.router = self
+        let viewModel = ThankYouListViewModel(
+            userRepository: DefaultUserRepository(),
+            thankYouRepository: DefaultThankYouRepository(),
+            analyticsManager: DefaultAnalyticsManager(),
+            notificationCenterProtocol: NotificationCenter.default,
+            router: self
+        )
+        viewController.viewModel = viewModel
         routingType.navigationController?.pushViewController(viewController, animated: false)
     }
 }

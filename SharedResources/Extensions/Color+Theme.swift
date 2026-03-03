@@ -33,6 +33,10 @@ extension Color {
         return Color(hex: 0xfffbe4)
     }
 
+    public static var yellow200: Color {
+        return Color(hex: 0xfde68a)
+    }
+
     public static var defaultBackground: Color {
         return Color(hex: 0xf5f5f5)
     }

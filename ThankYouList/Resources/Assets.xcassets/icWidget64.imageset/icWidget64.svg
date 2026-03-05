@@ -6,11 +6,11 @@
 >
   <!-- Top-left -->
   <rect x="4" y="4" width="26" height="26" rx="6"
-        fill="#78350f" fill-opacity="0.05"/>
+        fill="#78350f" fill-opacity="0.10"/>
 
   <!-- Top-right (card with heart) -->
   <rect x="34" y="4" width="26" height="26" rx="6"
-        fill="#FFFFFF" stroke="#E5E5E5"/>
+        fill="#FFFFFF" stroke="#D1D1D1"/>
 
   <!-- Heart -->
   <path
@@ -33,10 +33,10 @@
 
   <!-- Bottom-left -->
   <rect x="4" y="34" width="26" height="26" rx="6"
-        fill="#78350f" fill-opacity="0.05"/>
+        fill="#78350f" fill-opacity="0.10"/>
 
   <!-- Bottom-right -->
   <rect x="34" y="34" width="26" height="26" rx="6"
-        fill="#78350f" fill-opacity="0.05"/>
+        fill="#78350f" fill-opacity="0.10"/>
 
 </svg>

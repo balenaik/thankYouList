@@ -15,6 +15,7 @@ private let bannerBorderWidth = CGFloat(1)
 class ThankYouListBannerView: UIView {
 
     @IBOutlet private weak var cardView: UIView!
+    @IBOutlet private weak var actionButton: UIButton!
 
     class func instanceFromNib() -> ThankYouListBannerView {
         let view = R.nib.thankYouListBannerView.firstView(withOwner: nil)!
@@ -26,5 +27,10 @@ class ThankYouListBannerView: UIView {
         cardView.layer.cornerRadius = bannerCornerRadius
         cardView.layer.borderColor = bannerBorderColor.cgColor
         cardView.layer.borderWidth = bannerBorderWidth
+
+        // Remove default content insets added by UIButton.Configuration that cannot be overridden in XIB
+        var config = actionButton.configuration
+        config?.contentInsets = .zero
+        actionButton.configuration = config
     }
 }

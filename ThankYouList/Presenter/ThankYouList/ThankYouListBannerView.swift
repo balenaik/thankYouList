@@ -15,7 +15,9 @@ private let bannerBorderWidth = CGFloat(1)
 class ThankYouListBannerView: UIView {
 
     @IBOutlet private weak var cardView: UIView!
+    @IBOutlet private weak var textLabel: UILabel!
     @IBOutlet private weak var actionButton: UIButton!
+    @IBOutlet private weak var iconImageView: UIImageView!
 
     class func instanceFromNib() -> ThankYouListBannerView {
         let view = R.nib.thankYouListBannerView.firstView(withOwner: nil)!
@@ -32,5 +34,11 @@ class ThankYouListBannerView: UIView {
         var config = actionButton.configuration
         config?.contentInsets = .zero
         actionButton.configuration = config
+    }
+
+    func bind(banner: Banner) {
+        textLabel.text = banner.text
+        actionButton.titleLabel?.text = banner.buttonText
+        iconImageView.image = banner.image
     }
 }

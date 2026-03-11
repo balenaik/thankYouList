@@ -84,6 +84,21 @@ private extension ThankYouListViewController {
                 self?.presentedViewController?.dismiss(animated: true, completion: nil)
             }
             .store(in: &cancellables)
+
+        viewModel.outputs
+            .showBanner
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] banner in
+                guard let self else { return }
+                let bannerView = ThankYouListBannerView.instanceFromNib()
+                bannerView.bind(banner: banner)
+
+                self.tableView.tableHeaderView = bannerView
+                NSLayoutConstraint.activate([
+                    bannerView.widthAnchor.constraint(equalTo: self.tableView.widthAnchor)
+                ])
+            }
+            .store(in: &cancellables)
     }
 
     func bindInputs() {

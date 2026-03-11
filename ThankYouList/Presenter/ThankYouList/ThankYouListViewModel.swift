@@ -243,5 +243,6 @@ extension ThankYouListViewModel {
         let reloadTableView = PassthroughSubject<Void, Never>()
         let showEmptyView = CurrentValueSubject<Bool, Never>(false)
         let dismissPresentedView = PassthroughSubject<Void, Never>()
+        let showBanner = PassthroughSubject<Banner, Never>()
     }
 }

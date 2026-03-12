@@ -244,5 +244,6 @@ extension ThankYouListViewModel {
         let showEmptyView = CurrentValueSubject<Bool, Never>(false)
         let dismissPresentedView = PassthroughSubject<Void, Never>()
         let showBanner = PassthroughSubject<Banner, Never>()
+        let hideBanner = PassthroughSubject<Void, Never>()
     }
 }

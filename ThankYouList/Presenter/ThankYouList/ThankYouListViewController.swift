@@ -99,6 +99,14 @@ private extension ThankYouListViewController {
                 ])
             }
             .store(in: &cancellables)
+
+        viewModel.outputs
+            .hideBanner
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.tableView.tableHeaderView = nil
+            }
+            .store(in: &cancellables)
     }
 
     func bindInputs() {

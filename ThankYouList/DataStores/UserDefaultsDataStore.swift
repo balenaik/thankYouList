@@ -10,6 +10,7 @@ import Foundation
 
 protocol UserDefaultsDataStore {
     var hasSeenPositiveStatementOnboarding: Bool { get set }
+    var hasDismissedPositiveStatementBannerOnThankYouList: Bool { get set }
 }
 
 final class DefaultUserDefaultsDataStore: UserDefaultsDataStore {
@@ -22,6 +23,11 @@ final class DefaultUserDefaultsDataStore: UserDefaultsDataStore {
     var hasSeenPositiveStatementOnboarding: Bool {
         get { get(UserDefaultsKeys.hasSeenPositiveStatementOnboarding) }
         set { set(newValue, for: UserDefaultsKeys.hasSeenPositiveStatementOnboarding) }
+    }
+
+    var hasDismissedPositiveStatementBannerOnThankYouList: Bool {
+        get { get(UserDefaultsKeys.hasDismissedPositiveStatementBannerOnThankYouList) }
+        set { set(newValue, for: UserDefaultsKeys.hasDismissedPositiveStatementBannerOnThankYouList) }
     }
 }
 
@@ -43,6 +49,11 @@ private struct UserDefaultsKey<Value> {
 private enum UserDefaultsKeys {
     static let hasSeenPositiveStatementOnboarding = UserDefaultsKey<Bool>(
         key: "hasSeenPositiveStatementOnboarding",
+        defaultValue: false
+    )
+
+    static let hasDismissedPositiveStatementBannerOnThankYouList = UserDefaultsKey<Bool>(
+        key: "hasDismissedPositiveStatementBannerOnThankYouList",
         defaultValue: false
     )
 }

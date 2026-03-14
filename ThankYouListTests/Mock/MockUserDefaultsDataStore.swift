@@ -10,4 +10,5 @@
 
 class MockUserDefaultsDataStore: UserDefaultsDataStore {
     var hasSeenPositiveStatementOnboarding = false
+    var hasDismissedPositiveStatementBannerOnThankYouList = false
 }

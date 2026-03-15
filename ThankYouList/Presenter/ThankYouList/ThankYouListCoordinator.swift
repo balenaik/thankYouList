@@ -24,6 +24,7 @@ class ThankYouListCoordinator: Coordinator {
         let viewModel = ThankYouListViewModel(
             userRepository: DefaultUserRepository(),
             thankYouRepository: DefaultThankYouRepository(),
+            userDefaultsDataStore: DefaultUserDefaultsDataStore(),
             analyticsManager: DefaultAnalyticsManager(),
             notificationCenterProtocol: NotificationCenter.default,
             router: self

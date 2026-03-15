@@ -23,6 +23,7 @@ class ThankYouListViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     private let userRepository: UserRepository
     private let thankYouRepository: ThankYouRepository
+    private var userDefaultsDataStore: UserDefaultsDataStore
     private let analyticsManager: AnalyticsManager
     private let notificationCenterProtocol: NotificationCenterProtocol
     private let router: ThankYouListRouter?
@@ -31,6 +32,7 @@ class ThankYouListViewModel: ObservableObject {
     init(
         userRepository: UserRepository,
         thankYouRepository: ThankYouRepository,
+        userDefaultsDataStore: UserDefaultsDataStore,
         analyticsManager: AnalyticsManager,
         notificationCenterProtocol: NotificationCenterProtocol,
         router: ThankYouListRouter,
@@ -38,6 +40,7 @@ class ThankYouListViewModel: ObservableObject {
     ) {
         self.userRepository = userRepository
         self.thankYouRepository = thankYouRepository
+        self.userDefaultsDataStore = userDefaultsDataStore
         self.analyticsManager = analyticsManager
         self.notificationCenterProtocol = notificationCenterProtocol
         self.router = router

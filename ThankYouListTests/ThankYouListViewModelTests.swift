@@ -16,6 +16,7 @@ final class ThankYouListViewModelTests: XCTestCase {
     private var viewModel: ThankYouListViewModel!
     private var userRepository: MockUserRepository!
     private var thankYouRepository: MockThankYouRepository!
+    private var userDefaultsDataStore: MockUserDefaultsDataStore!
     private var analyticsManager: MockAnalyticsManager!
     private var notificationCenter: MockNotificationCenter!
     private var router: MockThankYouListRouter!
@@ -25,6 +26,7 @@ final class ThankYouListViewModelTests: XCTestCase {
     override func setUp() {
         userRepository = MockUserRepository()
         thankYouRepository = MockThankYouRepository()
+        userDefaultsDataStore = MockUserDefaultsDataStore()
         analyticsManager = MockAnalyticsManager()
         notificationCenter = MockNotificationCenter()
         router = MockThankYouListRouter()
@@ -32,6 +34,7 @@ final class ThankYouListViewModelTests: XCTestCase {
         viewModel = ThankYouListViewModel(
             userRepository: userRepository,
             thankYouRepository: thankYouRepository,
+            userDefaultsDataStore: userDefaultsDataStore,
             analyticsManager: analyticsManager,
             notificationCenterProtocol: notificationCenter,
             router: router,

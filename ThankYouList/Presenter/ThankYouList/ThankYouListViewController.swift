@@ -48,6 +48,7 @@ class ThankYouListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel.inputs.viewWillAppear.send()
         self.tableView.reloadData()
     }
 }

@@ -36,9 +36,9 @@ class ThankYouListBannerView: UIView {
         actionButton.configuration = config
     }
 
-    func bind(banner: Banner) {
-        textLabel.text = banner.text
-        actionButton.titleLabel?.text = banner.buttonText
-        iconImageView.image = banner.image
+    func bind(bannerType: BannerType) {
+        textLabel.text = bannerType.text
+        actionButton.titleLabel?.text = bannerType.buttonText
+        iconImageView.image = bannerType.image
     }
 }

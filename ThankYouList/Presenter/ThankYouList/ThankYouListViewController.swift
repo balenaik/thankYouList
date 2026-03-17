@@ -89,10 +89,10 @@ private extension ThankYouListViewController {
         viewModel.outputs
             .showBanner
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] banner in
+            .sink { [weak self] bannerType in
                 guard let self else { return }
                 let bannerView = ThankYouListBannerView.instanceFromNib()
-                bannerView.bind(banner: banner)
+                bannerView.bind(bannerType: bannerType)
 
                 self.tableView.tableHeaderView = bannerView
                 NSLayoutConstraint.activate([

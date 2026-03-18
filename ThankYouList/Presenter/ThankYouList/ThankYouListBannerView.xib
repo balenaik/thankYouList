@@ -77,6 +77,7 @@
             <connections>
                 <outlet property="actionButton" destination="yW2-99-OOH" id="n3N-kI-09q"/>
                 <outlet property="cardView" destination="TEV-Ca-SGD" id="Rhd-PV-1k1"/>
+                <outlet property="closeButton" destination="MnF-6i-NWE" id="fu2-tf-hAG"/>
                 <outlet property="iconImageView" destination="cYU-Oy-iPf" id="wPu-cj-n3N"/>
                 <outlet property="textLabel" destination="OpW-c9-HhD" id="tDq-gX-9n2"/>
             </connections>

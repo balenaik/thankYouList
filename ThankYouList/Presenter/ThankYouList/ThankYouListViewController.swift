@@ -90,14 +90,7 @@ private extension ThankYouListViewController {
             .showBanner
             .receive(on: DispatchQueue.main)
             .sink { [weak self] bannerType in
-                guard let self else { return }
-                let bannerView = ThankYouListBannerView.instanceFromNib()
-                bannerView.bind(bannerType: bannerType)
-
-                self.tableView.tableHeaderView = bannerView
-                NSLayoutConstraint.activate([
-                    bannerView.widthAnchor.constraint(equalTo: self.tableView.widthAnchor)
-                ])
+                self?.showBanner(bannerType: bannerType)
             }
             .store(in: &cancellables)
 
@@ -133,7 +126,20 @@ private extension ThankYouListViewController {
         emptyView.isHidden = true
         scrollIndicator.setup(scrollView: tableView)
         scrollIndicator.delegate = self
+    }
 
+    func showBanner(bannerType: BannerType) {
+        let bannerView = ThankYouListBannerView.instanceFromNib()
+        bannerView.bind(bannerType: bannerType)
+        bannerView.closeButtonDidTap
+            .map { bannerType }
+            .subscribe(viewModel.inputs.bannerCloseButtonDidTap)
+            .store(in: &cancellables)
+
+        tableView.tableHeaderView = bannerView
+        NSLayoutConstraint.activate([
+            bannerView.widthAnchor.constraint(equalTo: tableView.widthAnchor)
+        ])
     }
 }
     

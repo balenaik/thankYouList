@@ -6,6 +6,7 @@
 //  Copyright © 2026 Aika Yamada. All rights reserved.
 //
 
+import Combine
 import UIKit
 
 private let bannerCornerRadius = CGFloat(16)
@@ -18,6 +19,11 @@ class ThankYouListBannerView: UIView {
     @IBOutlet private weak var textLabel: UILabel!
     @IBOutlet private weak var actionButton: UIButton!
     @IBOutlet private weak var iconImageView: UIImageView!
+    @IBOutlet private weak var closeButton: UIButton!
+
+    var closeButtonDidTap: AnyPublisher<Void, Never> {
+        closeButton.tapPublisher
+    }
 
     class func instanceFromNib() -> ThankYouListBannerView {
         let view = R.nib.thankYouListBannerView.firstView(withOwner: nil)!

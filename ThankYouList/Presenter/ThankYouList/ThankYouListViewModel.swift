@@ -239,6 +239,7 @@ extension ThankYouListViewModel {
         let userIconDidTap = PassthroughSubject<Void, Never>()
         let bottomHalfSheetMenuDidTap = PassthroughSubject<BottomHalfSheetMenuItem, Never>()
         let listScrollIndicatorDidBeginDragging = PassthroughSubject<Void, Never>()
+        let bannerCloseButtonDidTap = PassthroughSubject<BannerType, Never>()
     }
 
     class Outputs {

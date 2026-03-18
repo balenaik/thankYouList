@@ -131,6 +131,12 @@ private extension ThankYouListViewController {
     func showBanner(bannerType: BannerType) {
         let bannerView = ThankYouListBannerView.instanceFromNib()
         bannerView.bind(bannerType: bannerType)
+
+        bannerView.actionButtonDidTap
+            .map { bannerType }
+            .subscribe(viewModel.inputs.bannerActionButtonDidTap)
+            .store(in: &cancellables)
+
         bannerView.closeButtonDidTap
             .map { bannerType }
             .subscribe(viewModel.inputs.bannerCloseButtonDidTap)

@@ -21,6 +21,10 @@ class ThankYouListBannerView: UIView {
     @IBOutlet private weak var iconImageView: UIImageView!
     @IBOutlet private weak var closeButton: UIButton!
 
+    var actionButtonDidTap: AnyPublisher<Void, Never> {
+        actionButton.tapPublisher
+    }
+
     var closeButtonDidTap: AnyPublisher<Void, Never> {
         closeButton.tapPublisher
     }

@@ -13,6 +13,7 @@ import Foundation
 protocol ThankYouListRouter: Router {
     func presentMyPage()
     func presentEditThankYou(thankYouId: String)
+    func presentPositiveStatementList()
 }
 
 class ThankYouListViewModel: ObservableObject {

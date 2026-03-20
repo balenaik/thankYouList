@@ -1026,4 +1026,9 @@ private class MockThankYouListRouter: MockRouter, ThankYouListRouter {
         presentEditThankYou_thankYouId = thankYouId
         presentEditThankYou_calledCount += 1
     }
+
+    var presentPositiveStatementList_calledCount = 0
+    func presentPositiveStatementList() {
+        presentPositiveStatementList_calledCount += 1
+    }
 }

@@ -146,6 +146,11 @@ private extension ThankYouListViewController {
         NSLayoutConstraint.activate([
             bannerView.widthAnchor.constraint(equalTo: tableView.widthAnchor)
         ])
+        tableView.layoutIfNeeded()
+        // Reassigning forces UITableView's setter to re-read the header's updated frame.
+        // Without this, the tableView may hold a stale frame from the initial assignment,
+        // causing a gap between the banner and the content in some cases (e.g. re-showing the banner).
+        tableView.tableHeaderView = tableView.tableHeaderView
     }
 }
     

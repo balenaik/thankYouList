@@ -53,6 +53,7 @@ class ThankYouListViewModel: ObservableObject {
 private extension ThankYouListViewModel {
     func bind() {
         bindCardTapAction()
+        bindBanner()
 
         inputs.viewDidLoad
             .flatMap { [userRepository] in
@@ -196,6 +197,26 @@ private extension ThankYouListViewModel {
                 router?.presentAlert(title: nil,
                                      message: R.string.localizable.failedToDelete())
             }
+            .store(in: &cancellables)
+    }
+
+    func bindBanner() {
+        let shouldShowPositiveStatementBanner = Publishers
+            .Merge(
+                inputs.viewWillAppear,
+                notificationCenterProtocol.publisher(for: UserDefaults.didChangeNotification).map { _ in }
+            )
+            .map { [userDefaultsDataStore] in
+                !userDefaultsDataStore.hasSeenPositiveStatementOnboarding
+                && !userDefaultsDataStore.hasDismissedPositiveStatementBannerOnThankYouList
+            }
+            .removeDuplicates()
+            .share()
+
+        shouldShowPositiveStatementBanner
+            .filter { $0 }
+            .map { _ in BannerType.positiveStatementPromotion }
+            .subscribe(outputs.showBanner)
             .store(in: &cancellables)
     }
 }

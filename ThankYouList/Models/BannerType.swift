@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum BannerType {
+enum BannerType: Equatable {
     case positiveStatementPromotion
 }
 

@@ -1022,6 +1022,8 @@ final class ThankYouListViewModelTests: XCTestCase {
         viewModel.inputs.viewWillAppear.send()
 
         XCTAssertEqual(showBannerRecords.results, [.value(.positiveStatementPromotion)])
+        XCTAssertEqual(analyticsManager.loggedEvent.count, 1)
+        XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.showPositiveStatementBanner)
     }
 
     func test_ifViewWillAppear_andHasSeenPositiveStatementOnboardingIsTrue__showBannerShouldNotEmit() {
@@ -1033,6 +1035,7 @@ final class ThankYouListViewModelTests: XCTestCase {
         viewModel.inputs.viewWillAppear.send()
 
         XCTAssertTrue(showBannerRecords.results.isEmpty)
+        XCTAssertTrue(analyticsManager.loggedEvent.isEmpty)
     }
 
     func test_ifViewWillAppear_andHasDismissedPositiveStatementBannerIsTrue__showBannerShouldNotEmit() {
@@ -1044,6 +1047,7 @@ final class ThankYouListViewModelTests: XCTestCase {
         viewModel.inputs.viewWillAppear.send()
 
         XCTAssertTrue(showBannerRecords.results.isEmpty)
+        XCTAssertTrue(analyticsManager.loggedEvent.isEmpty)
     }
 
     func test_ifUserDefaultsDidChangeNotification_andBothFlagsAreFalse__showBannerShouldEmitPositiveStatementPromotion() {
@@ -1055,6 +1059,8 @@ final class ThankYouListViewModelTests: XCTestCase {
         notificationCenter.publisher_response.send(Notification(name: UserDefaults.didChangeNotification))
 
         XCTAssertEqual(showBannerRecords.results, [.value(.positiveStatementPromotion)])
+        XCTAssertEqual(analyticsManager.loggedEvent.count, 1)
+        XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.showPositiveStatementBanner)
     }
 
     func test_ifUserDefaultsDidChangeNotification_andHasSeenPositiveStatementOnboardingIsTrue__showBannerShouldNotEmit() {
@@ -1066,6 +1072,7 @@ final class ThankYouListViewModelTests: XCTestCase {
         notificationCenter.publisher_response.send(Notification(name: UserDefaults.didChangeNotification))
 
         XCTAssertTrue(showBannerRecords.results.isEmpty)
+        XCTAssertTrue(analyticsManager.loggedEvent.isEmpty)
     }
 
     func test_ifViewWillAppearFiredTwice_withSameFlags__showBannerShouldEmitOnlyOnce() {
@@ -1079,6 +1086,7 @@ final class ThankYouListViewModelTests: XCTestCase {
 
         // removeDuplicates should suppress the second emission
         XCTAssertEqual(showBannerRecords.results, [.value(.positiveStatementPromotion)])
+        XCTAssertEqual(analyticsManager.loggedEvent.filter { $0.eventName == AnalyticsEventConst.showPositiveStatementBanner }.count, 1)
     }
 
     func test_ifNotificationFires_afterBannerAlreadyShown_withSameFlags__showBannerShouldNotEmitAgain() {

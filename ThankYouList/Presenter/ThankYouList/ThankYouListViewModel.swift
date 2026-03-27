@@ -215,6 +215,9 @@ private extension ThankYouListViewModel {
 
         shouldShowPositiveStatementBanner
             .filter { $0 }
+            .handleEvents(receiveOutput: { [analyticsManager] _ in
+                analyticsManager.logEvent(eventName: AnalyticsEventConst.showPositiveStatementBanner)
+            })
             .map { _ in BannerType.positiveStatementPromotion }
             .subscribe(outputs.showBanner)
             .store(in: &cancellables)

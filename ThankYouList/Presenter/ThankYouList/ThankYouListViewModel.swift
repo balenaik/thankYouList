@@ -221,6 +221,12 @@ private extension ThankYouListViewModel {
             .map { _ in BannerType.positiveStatementPromotion }
             .subscribe(outputs.showBanner)
             .store(in: &cancellables)
+
+        shouldShowPositiveStatementBanner
+            .filter { !$0 }
+            .map { _ in }
+            .subscribe(outputs.hideBanner)
+            .store(in: &cancellables)
     }
 }
 

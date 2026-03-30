@@ -1190,6 +1190,12 @@ final class ThankYouListViewModelTests: XCTestCase {
 
         XCTAssertEqual(hideBannerRecords.results, [.value("")])
     }
+
+    func test_ifBannerActionButtonDidTap_withPositiveStatementPromotion__itShouldCallPresentPositiveStatementList() {
+        viewModel.inputs.bannerActionButtonDidTap.send(.positiveStatementPromotion)
+
+        XCTAssertEqual(router.presentPositiveStatementList_calledCount, 1)
+    }
 }
 
 private class MockThankYouListRouter: MockRouter, ThankYouListRouter {

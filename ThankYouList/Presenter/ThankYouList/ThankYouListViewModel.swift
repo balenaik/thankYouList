@@ -227,6 +227,15 @@ private extension ThankYouListViewModel {
             .map { _ in }
             .subscribe(outputs.hideBanner)
             .store(in: &cancellables)
+
+        inputs.bannerActionButtonDidTap
+            .sink { [router] bannerType in
+                switch bannerType {
+                case .positiveStatementPromotion:
+                    router?.presentPositiveStatementList()
+                }
+            }
+            .store(in: &cancellables)
     }
 }
 

@@ -229,6 +229,12 @@ private extension ThankYouListViewModel {
             .store(in: &cancellables)
 
         inputs.bannerActionButtonDidTap
+            .handleEvents(receiveOutput: { [analyticsManager] bannerType in
+                switch bannerType {
+                case .positiveStatementPromotion:
+                    analyticsManager.logEvent(eventName: AnalyticsEventConst.tapTryNowPositiveStatementBanner)
+                }
+            })
             .sink { [router] bannerType in
                 switch bannerType {
                 case .positiveStatementPromotion:

@@ -242,6 +242,15 @@ private extension ThankYouListViewModel {
                 }
             }
             .store(in: &cancellables)
+
+        inputs.bannerCloseButtonDidTap
+            .sink { [weak self] bannerType in
+                switch bannerType {
+                case .positiveStatementPromotion:
+                    self?.userDefaultsDataStore.hasDismissedPositiveStatementBannerOnThankYouList = true
+                }
+            }
+            .store(in: &cancellables)
     }
 }
 

@@ -244,6 +244,12 @@ private extension ThankYouListViewModel {
             .store(in: &cancellables)
 
         inputs.bannerCloseButtonDidTap
+            .handleEvents(receiveOutput: { [analyticsManager] bannerType in
+                switch bannerType {
+                case .positiveStatementPromotion:
+                    analyticsManager.logEvent(eventName: AnalyticsEventConst.tapDismissPositiveStatementBanner)
+                }
+            })
             .sink { [weak self] bannerType in
                 switch bannerType {
                 case .positiveStatementPromotion:

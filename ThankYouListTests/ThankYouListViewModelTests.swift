@@ -1211,6 +1211,13 @@ final class ThankYouListViewModelTests: XCTestCase {
 
         XCTAssertTrue(userDefaultsDataStore.hasDismissedPositiveStatementBannerOnThankYouList)
     }
+
+    func test_ifBannerCloseButtonDidTap_withPositiveStatementPromotion__itShouldLogTapDismissPositiveStatementBannerEvent() {
+        viewModel.inputs.bannerCloseButtonDidTap.send(.positiveStatementPromotion)
+
+        XCTAssertEqual(analyticsManager.loggedEvent.count, 1)
+        XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.tapDismissPositiveStatementBanner)
+    }
 }
 
 private class MockThankYouListRouter: MockRouter, ThankYouListRouter {

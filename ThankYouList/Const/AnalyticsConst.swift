@@ -23,6 +23,7 @@ enum AnalyticsEventConst {
     static let editPositiveStatment = "edit_positive_statement"
     static let deletePositiveStatment = "delete_positive_statement"
     static let showPositiveStatementBanner = "show_positive_statement_banner"
+    static let tapDismissPositiveStatementBanner = "tap_dismiss_positive_statement_banner"
     static let tapTryNowPositiveStatementBanner = "tap_try_now_positive_statement_banner"
 }
 

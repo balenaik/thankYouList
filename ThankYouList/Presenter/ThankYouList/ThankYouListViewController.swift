@@ -28,6 +28,7 @@ class ThankYouListViewController: UIViewController {
 
     private var estimatedRowHeights = [String : CGFloat]()
     private var cancellables = Set<AnyCancellable>()
+    private var bannerCancellables = Set<AnyCancellable>()
 
     var viewModel: ThankYouListViewModel!
 
@@ -98,6 +99,7 @@ private extension ThankYouListViewController {
             .hideBanner
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
+                self?.bannerCancellables.removeAll()
                 self?.tableView.tableHeaderView = nil
             }
             .store(in: &cancellables)
@@ -129,18 +131,20 @@ private extension ThankYouListViewController {
     }
 
     func showBanner(bannerType: BannerType) {
+        bannerCancellables.removeAll()
+
         let bannerView = ThankYouListBannerView.instanceFromNib()
         bannerView.bind(bannerType: bannerType)
 
         bannerView.actionButtonDidTap
             .map { bannerType }
             .subscribe(viewModel.inputs.bannerActionButtonDidTap)
-            .store(in: &cancellables)
+            .store(in: &bannerCancellables)
 
         bannerView.closeButtonDidTap
             .map { bannerType }
             .subscribe(viewModel.inputs.bannerCloseButtonDidTap)
-            .store(in: &cancellables)
+            .store(in: &bannerCancellables)
 
         tableView.tableHeaderView = bannerView
         NSLayoutConstraint.activate([

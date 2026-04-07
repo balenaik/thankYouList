@@ -28,6 +28,7 @@ class ThankYouListViewController: UIViewController {
 
     private var estimatedRowHeights = [String : CGFloat]()
     private var cancellables = Set<AnyCancellable>()
+    private var bannerCancellables = Set<AnyCancellable>()
 
     var viewModel: ThankYouListViewModel!
 
@@ -48,6 +49,7 @@ class ThankYouListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel.inputs.viewWillAppear.send()
         self.tableView.reloadData()
     }
 }
@@ -84,6 +86,23 @@ private extension ThankYouListViewController {
                 self?.presentedViewController?.dismiss(animated: true, completion: nil)
             }
             .store(in: &cancellables)
+
+        viewModel.outputs
+            .showBanner
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] bannerType in
+                self?.showBanner(bannerType: bannerType)
+            }
+            .store(in: &cancellables)
+
+        viewModel.outputs
+            .hideBanner
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.bannerCancellables.removeAll()
+                self?.tableView.tableHeaderView = nil
+            }
+            .store(in: &cancellables)
     }
 
     func bindInputs() {
@@ -109,7 +128,33 @@ private extension ThankYouListViewController {
         emptyView.isHidden = true
         scrollIndicator.setup(scrollView: tableView)
         scrollIndicator.delegate = self
+    }
 
+    func showBanner(bannerType: BannerType) {
+        bannerCancellables.removeAll()
+
+        let bannerView = ThankYouListBannerView.instanceFromNib()
+        bannerView.bind(bannerType: bannerType)
+
+        bannerView.actionButtonDidTap
+            .map { bannerType }
+            .subscribe(viewModel.inputs.bannerActionButtonDidTap)
+            .store(in: &bannerCancellables)
+
+        bannerView.closeButtonDidTap
+            .map { bannerType }
+            .subscribe(viewModel.inputs.bannerCloseButtonDidTap)
+            .store(in: &bannerCancellables)
+
+        tableView.tableHeaderView = bannerView
+        NSLayoutConstraint.activate([
+            bannerView.widthAnchor.constraint(equalTo: tableView.widthAnchor)
+        ])
+        tableView.layoutIfNeeded()
+        // Reassigning forces UITableView's setter to re-read the header's updated frame.
+        // Without this, the tableView may hold a stale frame from the initial assignment,
+        // causing a gap between the banner and the content in some cases (e.g. re-showing the banner).
+        tableView.tableHeaderView = tableView.tableHeaderView
     }
 }
     

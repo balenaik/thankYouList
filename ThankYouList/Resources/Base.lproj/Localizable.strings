@@ -84,6 +84,9 @@
 
 "privacy_policy_url" = "https://thank-you-list-dc0da.firebaseapp.com/en.html";
 
+"positive_statement_promotion_banner_text" = "Write a positive statement and see it on your Home Screen";
+"positive_statement_promotion_banner_button_text" = "Try now";
+
 "positive_statement_list_title" = "Positive Statements";
 "positive_statement_list_description" = "Add your uplifting positive statements. Your statements will be shown on iOS Home Widgets. You can add up to 10 positive statements.";
 "positive_statement_list_widget_setup_hint_text" = "How to add a widget on Home Screen?";

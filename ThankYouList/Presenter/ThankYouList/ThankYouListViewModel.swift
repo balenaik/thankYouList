@@ -13,6 +13,7 @@ import Foundation
 protocol ThankYouListRouter: Router {
     func presentMyPage()
     func presentEditThankYou(thankYouId: String)
+    func presentPositiveStatementList()
 }
 
 class ThankYouListViewModel: ObservableObject {
@@ -23,6 +24,7 @@ class ThankYouListViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     private let userRepository: UserRepository
     private let thankYouRepository: ThankYouRepository
+    private var userDefaultsDataStore: UserDefaultsDataStore
     private let analyticsManager: AnalyticsManager
     private let notificationCenterProtocol: NotificationCenterProtocol
     private let router: ThankYouListRouter?
@@ -31,6 +33,7 @@ class ThankYouListViewModel: ObservableObject {
     init(
         userRepository: UserRepository,
         thankYouRepository: ThankYouRepository,
+        userDefaultsDataStore: UserDefaultsDataStore,
         analyticsManager: AnalyticsManager,
         notificationCenterProtocol: NotificationCenterProtocol,
         router: ThankYouListRouter,
@@ -38,6 +41,7 @@ class ThankYouListViewModel: ObservableObject {
     ) {
         self.userRepository = userRepository
         self.thankYouRepository = thankYouRepository
+        self.userDefaultsDataStore = userDefaultsDataStore
         self.analyticsManager = analyticsManager
         self.notificationCenterProtocol = notificationCenterProtocol
         self.router = router
@@ -49,6 +53,7 @@ class ThankYouListViewModel: ObservableObject {
 private extension ThankYouListViewModel {
     func bind() {
         bindCardTapAction()
+        bindBanner()
 
         inputs.viewDidLoad
             .flatMap { [userRepository] in
@@ -194,6 +199,65 @@ private extension ThankYouListViewModel {
             }
             .store(in: &cancellables)
     }
+
+    func bindBanner() {
+        let shouldShowPositiveStatementBanner = Publishers
+            .Merge(
+                inputs.viewWillAppear,
+                notificationCenterProtocol.publisher(for: UserDefaults.didChangeNotification).map { _ in }
+            )
+            .map { [userDefaultsDataStore] in
+                !userDefaultsDataStore.hasSeenPositiveStatementOnboarding
+                && !userDefaultsDataStore.hasDismissedPositiveStatementBannerOnThankYouList
+            }
+            .removeDuplicates()
+            .share()
+
+        shouldShowPositiveStatementBanner
+            .filter { $0 }
+            .handleEvents(receiveOutput: { [analyticsManager] _ in
+                analyticsManager.logEvent(eventName: AnalyticsEventConst.showPositiveStatementBanner)
+            })
+            .map { _ in BannerType.positiveStatementPromotion }
+            .subscribe(outputs.showBanner)
+            .store(in: &cancellables)
+
+        shouldShowPositiveStatementBanner
+            .filter { !$0 }
+            .map { _ in }
+            .subscribe(outputs.hideBanner)
+            .store(in: &cancellables)
+
+        inputs.bannerActionButtonDidTap
+            .handleEvents(receiveOutput: { [analyticsManager] bannerType in
+                switch bannerType {
+                case .positiveStatementPromotion:
+                    analyticsManager.logEvent(eventName: AnalyticsEventConst.tapTryNowPositiveStatementBanner)
+                }
+            })
+            .sink { [router] bannerType in
+                switch bannerType {
+                case .positiveStatementPromotion:
+                    router?.presentPositiveStatementList()
+                }
+            }
+            .store(in: &cancellables)
+
+        inputs.bannerCloseButtonDidTap
+            .handleEvents(receiveOutput: { [analyticsManager] bannerType in
+                switch bannerType {
+                case .positiveStatementPromotion:
+                    analyticsManager.logEvent(eventName: AnalyticsEventConst.tapDismissPositiveStatementBanner)
+                }
+            })
+            .sink { [weak self] bannerType in
+                switch bannerType {
+                case .positiveStatementPromotion:
+                    self?.userDefaultsDataStore.hasDismissedPositiveStatementBannerOnThankYouList = true
+                }
+            }
+            .store(in: &cancellables)
+    }
 }
 
 private extension ThankYouListViewModel {
@@ -232,9 +296,12 @@ private extension ThankYouListViewModel {
 extension ThankYouListViewModel {
     class Inputs {
         let viewDidLoad = PassthroughSubject<Void, Never>()
+        let viewWillAppear = PassthroughSubject<Void, Never>()
         let userIconDidTap = PassthroughSubject<Void, Never>()
         let bottomHalfSheetMenuDidTap = PassthroughSubject<BottomHalfSheetMenuItem, Never>()
         let listScrollIndicatorDidBeginDragging = PassthroughSubject<Void, Never>()
+        let bannerActionButtonDidTap = PassthroughSubject<BannerType, Never>()
+        let bannerCloseButtonDidTap = PassthroughSubject<BannerType, Never>()
     }
 
     class Outputs {
@@ -243,5 +310,7 @@ extension ThankYouListViewModel {
         let reloadTableView = PassthroughSubject<Void, Never>()
         let showEmptyView = CurrentValueSubject<Bool, Never>(false)
         let dismissPresentedView = PassthroughSubject<Void, Never>()
+        let showBanner = PassthroughSubject<BannerType, Never>()
+        let hideBanner = PassthroughSubject<Void, Never>()
     }
 }

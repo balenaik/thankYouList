@@ -16,6 +16,7 @@ final class ThankYouListViewModelTests: XCTestCase {
     private var viewModel: ThankYouListViewModel!
     private var userRepository: MockUserRepository!
     private var thankYouRepository: MockThankYouRepository!
+    private var userDefaultsDataStore: MockUserDefaultsDataStore!
     private var analyticsManager: MockAnalyticsManager!
     private var notificationCenter: MockNotificationCenter!
     private var router: MockThankYouListRouter!
@@ -25,6 +26,7 @@ final class ThankYouListViewModelTests: XCTestCase {
     override func setUp() {
         userRepository = MockUserRepository()
         thankYouRepository = MockThankYouRepository()
+        userDefaultsDataStore = MockUserDefaultsDataStore()
         analyticsManager = MockAnalyticsManager()
         notificationCenter = MockNotificationCenter()
         router = MockThankYouListRouter()
@@ -32,6 +34,7 @@ final class ThankYouListViewModelTests: XCTestCase {
         viewModel = ThankYouListViewModel(
             userRepository: userRepository,
             thankYouRepository: thankYouRepository,
+            userDefaultsDataStore: userDefaultsDataStore,
             analyticsManager: analyticsManager,
             notificationCenterProtocol: notificationCenter,
             router: router,
@@ -1009,6 +1012,212 @@ final class ThankYouListViewModelTests: XCTestCase {
         // Should not send analytics
         XCTAssertEqual(analyticsManager.loggedEvent.count, 0)
     }
+
+    func test_ifViewWillAppear_andBothFlagsAreFalse__showBannerShouldEmitPositiveStatementPromotion() {
+        let showBannerRecords = TestRecord(publisher: viewModel.outputs.showBanner.eraseToAnyPublisher())
+
+        userDefaultsDataStore.hasSeenPositiveStatementOnboarding = false
+        userDefaultsDataStore.hasDismissedPositiveStatementBannerOnThankYouList = false
+
+        viewModel.inputs.viewWillAppear.send()
+
+        XCTAssertEqual(showBannerRecords.results, [.value(.positiveStatementPromotion)])
+        XCTAssertEqual(analyticsManager.loggedEvent.count, 1)
+        XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.showPositiveStatementBanner)
+    }
+
+    func test_ifViewWillAppear_andHasSeenPositiveStatementOnboardingIsTrue__showBannerShouldNotEmit() {
+        let showBannerRecords = TestRecord(publisher: viewModel.outputs.showBanner.eraseToAnyPublisher())
+
+        userDefaultsDataStore.hasSeenPositiveStatementOnboarding = true
+        userDefaultsDataStore.hasDismissedPositiveStatementBannerOnThankYouList = false
+
+        viewModel.inputs.viewWillAppear.send()
+
+        XCTAssertTrue(showBannerRecords.results.isEmpty)
+        XCTAssertTrue(analyticsManager.loggedEvent.isEmpty)
+    }
+
+    func test_ifViewWillAppear_andHasDismissedPositiveStatementBannerIsTrue__showBannerShouldNotEmit() {
+        let showBannerRecords = TestRecord(publisher: viewModel.outputs.showBanner.eraseToAnyPublisher())
+
+        userDefaultsDataStore.hasSeenPositiveStatementOnboarding = false
+        userDefaultsDataStore.hasDismissedPositiveStatementBannerOnThankYouList = true
+
+        viewModel.inputs.viewWillAppear.send()
+
+        XCTAssertTrue(showBannerRecords.results.isEmpty)
+        XCTAssertTrue(analyticsManager.loggedEvent.isEmpty)
+    }
+
+    func test_ifUserDefaultsDidChangeNotification_andBothFlagsAreFalse__showBannerShouldEmitPositiveStatementPromotion() {
+        let showBannerRecords = TestRecord(publisher: viewModel.outputs.showBanner.eraseToAnyPublisher())
+
+        userDefaultsDataStore.hasSeenPositiveStatementOnboarding = false
+        userDefaultsDataStore.hasDismissedPositiveStatementBannerOnThankYouList = false
+
+        notificationCenter.publisher_response.send(Notification(name: UserDefaults.didChangeNotification))
+
+        XCTAssertEqual(showBannerRecords.results, [.value(.positiveStatementPromotion)])
+        XCTAssertEqual(analyticsManager.loggedEvent.count, 1)
+        XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.showPositiveStatementBanner)
+    }
+
+    func test_ifUserDefaultsDidChangeNotification_andHasSeenPositiveStatementOnboardingIsTrue__showBannerShouldNotEmit() {
+        let showBannerRecords = TestRecord(publisher: viewModel.outputs.showBanner.eraseToAnyPublisher())
+
+        userDefaultsDataStore.hasSeenPositiveStatementOnboarding = true
+        userDefaultsDataStore.hasDismissedPositiveStatementBannerOnThankYouList = false
+
+        notificationCenter.publisher_response.send(Notification(name: UserDefaults.didChangeNotification))
+
+        XCTAssertTrue(showBannerRecords.results.isEmpty)
+        XCTAssertTrue(analyticsManager.loggedEvent.isEmpty)
+    }
+
+    func test_ifViewWillAppearFiredTwice_withSameFlags__showBannerShouldEmitOnlyOnce() {
+        let showBannerRecords = TestRecord(publisher: viewModel.outputs.showBanner.eraseToAnyPublisher())
+
+        userDefaultsDataStore.hasSeenPositiveStatementOnboarding = false
+        userDefaultsDataStore.hasDismissedPositiveStatementBannerOnThankYouList = false
+
+        viewModel.inputs.viewWillAppear.send()
+        viewModel.inputs.viewWillAppear.send()
+
+        // removeDuplicates should suppress the second emission
+        XCTAssertEqual(showBannerRecords.results, [.value(.positiveStatementPromotion)])
+        XCTAssertEqual(analyticsManager.loggedEvent.filter { $0.eventName == AnalyticsEventConst.showPositiveStatementBanner }.count, 1)
+    }
+
+    func test_ifNotificationFires_afterBannerAlreadyShown_withSameFlags__showBannerShouldNotEmitAgain() {
+        let showBannerRecords = TestRecord(publisher: viewModel.outputs.showBanner.eraseToAnyPublisher())
+
+        userDefaultsDataStore.hasSeenPositiveStatementOnboarding = false
+        userDefaultsDataStore.hasDismissedPositiveStatementBannerOnThankYouList = false
+
+        // First trigger — should emit
+        viewModel.inputs.viewWillAppear.send()
+        XCTAssertEqual(showBannerRecords.results.count, 1)
+        showBannerRecords.clearResult()
+
+        // Notification fires but flags are unchanged (same computed value: true)
+        notificationCenter.publisher_response.send(Notification(name: UserDefaults.didChangeNotification))
+
+        // removeDuplicates should suppress the repeated emission
+        XCTAssertTrue(showBannerRecords.results.isEmpty)
+    }
+
+    func test_ifViewWillAppear_thenFlagBecomesTrue_thenFalseAgain_viaNotification__showBannerShouldEmitAgain() {
+        let showBannerRecords = TestRecord(publisher: viewModel.outputs.showBanner.eraseToAnyPublisher())
+
+        userDefaultsDataStore.hasSeenPositiveStatementOnboarding = false
+        userDefaultsDataStore.hasDismissedPositiveStatementBannerOnThankYouList = false
+
+        // First appearance — banner should show
+        viewModel.inputs.viewWillAppear.send()
+        XCTAssertEqual(showBannerRecords.results.count, 1)
+        showBannerRecords.clearResult()
+
+        // Simulate dismissed flag turning true → state changes to false
+        userDefaultsDataStore.hasDismissedPositiveStatementBannerOnThankYouList = true
+        notificationCenter.publisher_response.send(Notification(name: UserDefaults.didChangeNotification))
+        showBannerRecords.clearResult()
+
+        // Flag reset to false → banner should show again
+        userDefaultsDataStore.hasDismissedPositiveStatementBannerOnThankYouList = false
+        notificationCenter.publisher_response.send(Notification(name: UserDefaults.didChangeNotification))
+
+        XCTAssertEqual(showBannerRecords.results, [.value(.positiveStatementPromotion)])
+    }
+
+    func test_ifViewWillAppear_andBothFlagsAreFalse__hideBannerShouldNotEmit() {
+        let hideBannerRecords = TestRecord(publisher: viewModel.outputs.hideBanner.map { "" }.eraseToAnyPublisher())
+
+        userDefaultsDataStore.hasSeenPositiveStatementOnboarding = false
+        userDefaultsDataStore.hasDismissedPositiveStatementBannerOnThankYouList = false
+
+        viewModel.inputs.viewWillAppear.send()
+
+        XCTAssertTrue(hideBannerRecords.results.isEmpty)
+    }
+
+    func test_ifViewWillAppear_andHasSeenPositiveStatementOnboardingIsTrue__hideBannerShouldEmit() {
+        let hideBannerRecords = TestRecord(publisher: viewModel.outputs.hideBanner.map { "" }.eraseToAnyPublisher())
+
+        userDefaultsDataStore.hasSeenPositiveStatementOnboarding = true
+        userDefaultsDataStore.hasDismissedPositiveStatementBannerOnThankYouList = false
+
+        viewModel.inputs.viewWillAppear.send()
+
+        XCTAssertEqual(hideBannerRecords.results, [.value("")])
+    }
+
+    func test_ifViewWillAppear_andHasDismissedPositiveStatementBannerIsTrue__hideBannerShouldEmit() {
+        let hideBannerRecords = TestRecord(publisher: viewModel.outputs.hideBanner.map { "" }.eraseToAnyPublisher())
+
+        userDefaultsDataStore.hasSeenPositiveStatementOnboarding = false
+        userDefaultsDataStore.hasDismissedPositiveStatementBannerOnThankYouList = true
+
+        viewModel.inputs.viewWillAppear.send()
+
+        XCTAssertEqual(hideBannerRecords.results, [.value("")])
+    }
+
+    func test_ifUserDefaultsDidChangeNotification_andHasSeenPositiveStatementOnboardingIsTrue__hideBannerShouldEmit() {
+        let hideBannerRecords = TestRecord(publisher: viewModel.outputs.hideBanner.map { "" }.eraseToAnyPublisher())
+
+        userDefaultsDataStore.hasSeenPositiveStatementOnboarding = true
+        userDefaultsDataStore.hasDismissedPositiveStatementBannerOnThankYouList = false
+
+        notificationCenter.publisher_response.send(Notification(name: UserDefaults.didChangeNotification))
+
+        XCTAssertEqual(hideBannerRecords.results, [.value("")])
+    }
+
+    func test_ifViewWillAppear_bannerShown_thenFlagBecomesTrue_viaNotification__hideBannerShouldEmit() {
+        let hideBannerRecords = TestRecord(publisher: viewModel.outputs.hideBanner.map { "" }.eraseToAnyPublisher())
+
+        userDefaultsDataStore.hasSeenPositiveStatementOnboarding = false
+        userDefaultsDataStore.hasDismissedPositiveStatementBannerOnThankYouList = false
+
+        // Banner is shown first
+        viewModel.inputs.viewWillAppear.send()
+        XCTAssertTrue(hideBannerRecords.results.isEmpty)
+
+        // Flag becomes true → banner should hide
+        userDefaultsDataStore.hasDismissedPositiveStatementBannerOnThankYouList = true
+        notificationCenter.publisher_response.send(Notification(name: UserDefaults.didChangeNotification))
+
+        XCTAssertEqual(hideBannerRecords.results, [.value("")])
+    }
+
+    func test_ifBannerActionButtonDidTap_withPositiveStatementPromotion__itShouldCallPresentPositiveStatementList() {
+        viewModel.inputs.bannerActionButtonDidTap.send(.positiveStatementPromotion)
+
+        XCTAssertEqual(router.presentPositiveStatementList_calledCount, 1)
+    }
+
+    func test_ifBannerActionButtonDidTap_withPositiveStatementPromotion__itShouldLogTapTryNowPositiveStatementBannerEvent() {
+        viewModel.inputs.bannerActionButtonDidTap.send(.positiveStatementPromotion)
+
+        XCTAssertEqual(analyticsManager.loggedEvent.count, 1)
+        XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.tapTryNowPositiveStatementBanner)
+    }
+
+    func test_ifBannerCloseButtonDidTap_withPositiveStatementPromotion__itShouldSetHasDismissedPositiveStatementBannerToTrue() {
+        userDefaultsDataStore.hasDismissedPositiveStatementBannerOnThankYouList = false
+
+        viewModel.inputs.bannerCloseButtonDidTap.send(.positiveStatementPromotion)
+
+        XCTAssertTrue(userDefaultsDataStore.hasDismissedPositiveStatementBannerOnThankYouList)
+    }
+
+    func test_ifBannerCloseButtonDidTap_withPositiveStatementPromotion__itShouldLogTapDismissPositiveStatementBannerEvent() {
+        viewModel.inputs.bannerCloseButtonDidTap.send(.positiveStatementPromotion)
+
+        XCTAssertEqual(analyticsManager.loggedEvent.count, 1)
+        XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.tapDismissPositiveStatementBanner)
+    }
 }
 
 private class MockThankYouListRouter: MockRouter, ThankYouListRouter {
@@ -1022,5 +1231,10 @@ private class MockThankYouListRouter: MockRouter, ThankYouListRouter {
     func presentEditThankYou(thankYouId: String) {
         presentEditThankYou_thankYouId = thankYouId
         presentEditThankYou_calledCount += 1
+    }
+
+    var presentPositiveStatementList_calledCount = 0
+    func presentPositiveStatementList() {
+        presentPositiveStatementList_calledCount += 1
     }
 }

@@ -1,0 +1,42 @@
+<svg
+  width="64"
+  height="64"
+  viewBox="0 0 64 64"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- Top-left -->
+  <rect x="4" y="4" width="26" height="26" rx="6"
+        fill="#78350f" fill-opacity="0.10"/>
+
+  <!-- Top-right (card with heart) -->
+  <rect x="34" y="4" width="26" height="26" rx="6"
+        fill="#FFFFFF" stroke="#D1D1D1"/>
+
+  <!-- Heart -->
+  <path
+    d="M47 20.5
+       l-1.2-1.1
+       c-3.2-2.9-5.2-4.9-5.2-7.4
+       0-2 1.6-3.6 3.6-3.6
+       1.2 0 2.3.6 2.8 1.5
+       .5-.9 1.6-1.5 2.8-1.5
+       2 0 3.6 1.6 3.6 3.6
+       0 2.5-2 4.5-5.2 7.4
+       L47 20.5z"
+    fill="#F57C7C"
+    transform="scale(0.55) translate(50 10)"
+  />
+
+  <!-- Text lines -->
+  <rect x="38" y="20" width="18" height="2" rx="1" fill="#D6D6D6"/>
+  <rect x="41" y="24" width="12" height="2" rx="1" fill="#D6D6D6"/>
+
+  <!-- Bottom-left -->
+  <rect x="4" y="34" width="26" height="26" rx="6"
+        fill="#78350f" fill-opacity="0.10"/>
+
+  <!-- Bottom-right -->
+  <rect x="34" y="34" width="26" height="26" rx="6"
+        fill="#78350f" fill-opacity="0.10"/>
+
+</svg>

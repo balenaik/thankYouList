@@ -24,6 +24,7 @@ class ThankYouListCoordinator: Coordinator {
         let viewModel = ThankYouListViewModel(
             userRepository: DefaultUserRepository(),
             thankYouRepository: DefaultThankYouRepository(),
+            userDefaultsDataStore: DefaultUserDefaultsDataStore(),
             analyticsManager: DefaultAnalyticsManager(),
             notificationCenterProtocol: NotificationCenter.default,
             router: self
@@ -45,5 +46,12 @@ extension ThankYouListCoordinator: ThankYouListRouter {
         let coordinator = EditThankYouCoordinator(thankYouId: thankYouId,
                                                   presentingViewController: viewController)
         coordinator.start()
+    }
+
+    func presentPositiveStatementList() {
+        guard let viewController = viewController else { return }
+        let coordinator = MyPageCoordinator(presentingViewController: viewController)
+        coordinator.start()
+        coordinator.pushToPositiveStatementList()
     }
 }

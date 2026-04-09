@@ -31,6 +31,7 @@ class PositiveStatementListViewModel: ObservableObject {
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private let analyticsManager: AnalyticsManager
     private let widgetManager: WidgetManager
+    private var userDefaultsDataStore: UserDefaultsDataStore
 
     init(
         userRepository: UserRepository,
@@ -38,7 +39,8 @@ class PositiveStatementListViewModel: ObservableObject {
         router: PositiveStatementListRouter?,
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
         analyticsManager: AnalyticsManager,
-        widgetManager: WidgetManager
+        widgetManager: WidgetManager,
+        userDefaultsDataStore: UserDefaultsDataStore
     ) {
         self.userRepository = userRepository
         self.positiveStatementRepository = positiveStatementRepository
@@ -46,6 +48,7 @@ class PositiveStatementListViewModel: ObservableObject {
         self.scheduler = scheduler
         self.analyticsManager = analyticsManager
         self.widgetManager = widgetManager
+        self.userDefaultsDataStore = userDefaultsDataStore
         bind()
     }
 
@@ -94,13 +97,35 @@ private extension PositiveStatementListViewModel {
             .map { $0.count >= maxPositiveStatementCount }
             .assign(to: &outputs.$isAddButtonDisabled)
 
+        positiveStatements
+            .values()
+            .map { [userDefaultsDataStore] statements in
+                statements.isEmpty
+                && !userDefaultsDataStore.hasSeenPositiveStatementOnboarding
+            }
+            .assign(to: &outputs.$showOnboardingSheet)
+
+        Publishers
+            .Merge(
+                outputs.$showOnboardingSheet.filter { $0 }.map { _ in },
+                positiveStatements.values().filter { !$0.isEmpty }.map { _ in }
+            )
+            .sink { [weak self] in
+                self?.userDefaultsDataStore.hasSeenPositiveStatementOnboarding = true
+            }
+            .store(in: &cancellable)
+
         inputs.onAppear
             .sink { [analyticsManager] in
                 analyticsManager.logEvent(eventName: AnalyticsEventConst.openPositiveStatementList)
             }
             .store(in: &cancellable)
 
-        inputs.addButtonDidTap
+        Publishers
+            .Merge(
+                inputs.addButtonDidTap,
+                inputs.onboardingAddButtonDidTap
+            )
             .sink { [router] in
                 router?.presentAddPositiveStatement()
             }
@@ -195,6 +220,7 @@ extension PositiveStatementListViewModel {
         let widgetHintButtonDidTap = PassthroughSubject<Void, Never>()
         let positiveStatementMenuButtonDidTap = PassthroughSubject<String, Never>()
         let bottomMenuDidTap = PassthroughSubject<PositiveStatementTapMenu, Never>()
+        let onboardingAddButtonDidTap = PassthroughSubject<Void, Never>()
     }
 
     class Outputs: ObservableObject {
@@ -203,5 +229,6 @@ extension PositiveStatementListViewModel {
         @Published var showBottomMenu = false
         @Published var bottomMenuList = [PositiveStatementTapMenu]()
         @Published var showAlert: AlertItem?
+        @Published var showOnboardingSheet = false
     }
 }

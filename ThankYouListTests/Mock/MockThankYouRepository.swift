@@ -7,9 +7,19 @@
 //
 
 import Combine
+import Foundation
 @testable import ThankYouList
 
 class MockThankYouRepository: ThankYouRepository {
+    var subscribeThankYouList_result: AnyPublisher<ThankYouListChange, Never> = Just(.added(ThankYouData(id: "", value: "", encryptedValue: "", date: Date(), createTime: Date()))).eraseToAnyPublisher()
+    var subscribeThankYouList_userId: String?
+    var subscribeThankYouList_calledCount = 0
+    func subscribeThankYouList(userId: String) -> AnyPublisher<ThankYouListChange, Never> {
+        subscribeThankYouList_userId = userId
+        subscribeThankYouList_calledCount += 1
+        return subscribeThankYouList_result
+    }
+
     var loadThankYou_result: ThankYouData?
     var loadThankYou_thankYouId: String?
     func loadThankYou(thankYouId: String) -> ThankYouData? {

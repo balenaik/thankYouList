@@ -6,59 +6,109 @@
 //  Copyright © 2017 Aika Yamada. All rights reserved.
 //
 
+import Combine
 import UIKit
-import FirebaseFirestore
-import FirebaseAuth
-import Firebase
 import SkeletonView
 import FloatingPanel
 import SharedResources
 
 private let skeletonedThankYouCellCount = 3
 
-protocol ThankYouListRouter: Router {
-    func presentMyPage()
-    func presentEditThankYou(thankYouId: String)
-}
-
 class ThankYouListViewController: UIViewController {
 
-    struct Section {
-        /// yyyy/MM (String)
-        var sectionDateString: String
-        var displayDateString: String
-        var thankYouList: [ThankYouData]
+    struct ListSection: Equatable {
+        var yearMonthKey: String
+        var items: [ThankYouData]
+
+        var headerTitle: String {
+            yearMonthKey.toDate(format: Date.listYearMonthKeyFormat)?
+                .toYearMonthString() ?? ""
+        }
     }
 
-    private var db = Firestore.firestore()
-    private let analyticsManager = DefaultAnalyticsManager()
-    private var thankYouDataSingleton = DefaultInMemoryDataStore.shared
-    private var sections = [Section]()
     private var estimatedRowHeights = [String : CGFloat]()
-    private var hasLoadedThankYouList = false
+    private var cancellables = Set<AnyCancellable>()
+    private var bannerCancellables = Set<AnyCancellable>()
 
-    var router: ThankYouListRouter?
+    var viewModel: ThankYouListViewModel!
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var scrollIndicator: ListScrollIndicator!
     @IBOutlet private weak var emptyView: ThankYouEmptyView!
+    @IBOutlet private weak var userIcon: UIBarButtonItem!
+
+    // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupNavigationBar()
+        bind()
+        viewModel.inputs.viewDidLoad.send()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel.inputs.viewWillAppear.send()
         self.tableView.reloadData()
     }
 }
 
-// MARK: - IBActions
-extension ThankYouListViewController {
-    @IBAction func tapUserIcon(_ sender: Any) {
-        router?.presentMyPage()
+// MARK: - Binding
+
+private extension ThankYouListViewController {
+    func bind() {
+        bindOutputs()
+        bindInputs()
+    }
+
+    func bindOutputs() {
+        viewModel.outputs
+            .reloadTableView
+            .receive(on: DispatchQueue.main)
+            .sink { [tableView, scrollIndicator] in
+                tableView?.reloadData()
+                scrollIndicator?.didUpdateContent()
+            }
+            .store(in: &cancellables)
+
+        viewModel.outputs
+            .showEmptyView
+            .receive(on: DispatchQueue.main)
+            .map { !$0 }
+            .assign(to: \.isHidden, on: emptyView)
+            .store(in: &cancellables)
+
+        viewModel.outputs
+            .dismissPresentedView
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.presentedViewController?.dismiss(animated: true, completion: nil)
+            }
+            .store(in: &cancellables)
+
+        viewModel.outputs
+            .showBanner
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] bannerType in
+                self?.showBanner(bannerType: bannerType)
+            }
+            .store(in: &cancellables)
+
+        viewModel.outputs
+            .hideBanner
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.bannerCancellables.removeAll()
+                self?.tableView.tableHeaderView = nil
+            }
+            .store(in: &cancellables)
+    }
+
+    func bindInputs() {
+        userIcon.tapPublisher
+            .subscribe(viewModel.inputs.userIconDidTap)
+            .store(in: &cancellables)
     }
 }
 
@@ -67,10 +117,6 @@ private extension ThankYouListViewController {
     func setupView() {
         navigationItem.title = R.string.localizable.list_navigationbar_title()
         tabBarItem.title = R.string.localizable.calendar_tabbar_title()
-
-        thankYouDataSingleton.thankYouList = []
-        sections = []
-        loadAndCheckForUpdates()
 
         tableView.estimatedRowHeight = 40
         tableView.rowHeight = UITableView.automaticDimension
@@ -84,162 +130,31 @@ private extension ThankYouListViewController {
         scrollIndicator.delegate = self
     }
 
-    private func loadAndCheckForUpdates() {
-        guard let uid = Auth.auth().currentUser?.uid else {
-            print("Not login? error")
-            return
-        }
-       let uid16string = String(uid.prefix(16))
-        db.collection("users").document(uid).collection("thankYouList").addSnapshotListener { [weak self] (querySnapshot, error) in
-            guard let self = self else { return }
-            if let error = error {
-                print(error.localizedDescription)
-                self.hasLoadedThankYouList = true
-                return
-            }
-            guard let snapShot = querySnapshot else {
-                self.hasLoadedThankYouList = true
-                return
-            }
-            for diff in snapShot.documentChanges {
-                if diff.type == .added {
-                    let thankYouData = ThankYouData(dictionary: diff.document.data())
-                    guard var newThankYouData = thankYouData else { break }
-                    let decryptedValue = CryptoManager().decryptString(encryptText: newThankYouData.encryptedValue, key: uid16string)
-                    newThankYouData.id = diff.document.documentID
-                    newThankYouData.value = decryptedValue
-                    let thankYouDataIds: [String] = self.thankYouDataSingleton.thankYouList.map{$0.id}
-                    if !thankYouDataIds.contains(newThankYouData.id) {
-                        self.thankYouDataSingleton.thankYouList.append(newThankYouData)
-                        self.addThankYouDataToSection(thankYouData: newThankYouData)
-                    }
-                }
-                if diff.type == .removed {
-                    let removedDataId = diff.document.documentID
-                    for (index, thankYouData) in self.thankYouDataSingleton.thankYouList.enumerated() {
-                        if thankYouData.id == removedDataId {
-                            self.thankYouDataSingleton.thankYouList.remove(at: index)
-                            self.deleteThankYouDataFromSection(thankYouData: thankYouData)
-                            break
-                        }
-                    }
-                }
-                if diff.type == .modified {
-                    let thankYouData = ThankYouData(dictionary: diff.document.data())
-                    guard var editedThankYouData = thankYouData else { break }
-                    let decryptedValue = CryptoManager().decryptString(encryptText: editedThankYouData.encryptedValue, key: uid16string)
-                    editedThankYouData.id = diff.document.documentID
-                    editedThankYouData.value = decryptedValue
-                    for (index, thankYouData) in self.thankYouDataSingleton.thankYouList.enumerated() {
-                        if editedThankYouData.id == thankYouData.id {
-                            self.thankYouDataSingleton.thankYouList.remove(at: index)
-                            self.deleteThankYouDataFromSection(thankYouData: thankYouData)
-                            break
-                        }
-                    }
-                    self.thankYouDataSingleton.thankYouList.append(editedThankYouData)
-                    self.addThankYouDataToSection(thankYouData: editedThankYouData)
-                }
-            }
-            DispatchQueue.main.async {
-                if self.thankYouDataSingleton.thankYouList.count == 0 {
-                    self.emptyView.isHidden = false
-                } else {
-                    self.emptyView.isHidden = true
-                }
-                self.hasLoadedThankYouList = true
-                self.postNotificationThankYouListUpdated()
-                self.tableView.reloadData()
-                self.scrollIndicator.updatedContent()
-            }
-        }
-    }
-    
-    private func postNotificationThankYouListUpdated() {
-        NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: NotificationConst.THANK_YOU_LIST_UPDATED), object: nil, userInfo: nil))
-    }
-    
-    private func addThankYouDataToSection(thankYouData: ThankYouData) {
-        /// Crop only year and month (yyyy/MM) from thank you date
-        let dateYearMonthString = String(thankYouData.date.toThankYouDateString().prefix(7))
-        let sectionIndex = sections.firstIndex(where: { $0.sectionDateString == dateYearMonthString })
-        if let index = sectionIndex {
-            sections[index].thankYouList.append(thankYouData)
-            sections[index].thankYouList.sort(by: {$0.date > $1.date})
-        } else {
-            guard let dateYearMonth = dateYearMonthString.toDate(
-                format: R.string.localizable.date_format_year_month()) else { return }
-            let newSection = Section(sectionDateString: dateYearMonthString,
-                                     displayDateString: dateYearMonth.toYearMonthString(),
-                                     thankYouList: [thankYouData])
-            sections.append(newSection)
-            sections.sort(by: {$0.sectionDateString > $1.sectionDateString})
-        }
-    }
-    
-    private func deleteThankYouDataFromSection(thankYouData: ThankYouData) {
-        /// Crop only year and month (yyyy/MM) from thank you date
-        let dateYearMonthString = String(thankYouData.date.toThankYouDateString().prefix(7))
-        guard let sectionIndex = sections.firstIndex(where: {$0.sectionDateString == dateYearMonthString}),
-            let thankYouIndex = sections[sectionIndex].thankYouList
-                .firstIndex(where: {$0.id == thankYouData.id}) else { return }
-        sections[sectionIndex].thankYouList.remove(at: thankYouIndex)
-        if sections[sectionIndex].thankYouList.count == 0 {
-            sections.remove(at: sectionIndex)
-        }
-    }
+    func showBanner(bannerType: BannerType) {
+        bannerCancellables.removeAll()
 
-    func presentEditThankYouViewController(thankYouId: String) {
-        router?.presentEditThankYou(thankYouId: thankYouId)
-    }
+        let bannerView = ThankYouListBannerView.instanceFromNib()
+        bannerView.bind(bannerType: bannerType)
 
-    func showDeleteConfirmationAlert(thankYouId: String) {
-        let deleteAction = AlertAction(title: R.string.localizable.delete(),
-                                       style: .destructive) { [weak self] in
-            self?.deleteThankYou(thankYouId: thankYouId)
-        }
-        let cancelAction = AlertAction(title: R.string.localizable.cancel(),
-                                       style: .cancel)
-        router?.presentAlert(title: R.string.localizable.deleteThankYou(),
-                             message: R.string.localizable.areYouSureYouWantToDeleteThisThankYou(),
-                             actions: [deleteAction, cancelAction])
-    }
+        bannerView.actionButtonDidTap
+            .map { bannerType }
+            .subscribe(viewModel.inputs.bannerActionButtonDidTap)
+            .store(in: &bannerCancellables)
 
-    func deleteThankYou(thankYouId: String) {
-        guard let userId = Auth.auth().currentUser?.uid else {
-            showErrorAlert(title: nil, message: R.string.localizable.failedToDelete())
-            return
-        }
-        db.collection(FirestoreConst.usersCollecion)
-            .document(userId)
-            .collection(FirestoreConst.thankYouListCollection)
-            .document(thankYouId)
-            .delete(completion: { [weak self] error in
-                guard let self = self else { return }
-                if let error = error {
-                    debugPrint(error)
-                    self.showErrorAlert(title: nil, message: R.string.localizable.failedToDelete())
-                    return
-                }
-                if let thankYouData = self.thankYouDataSingleton.thankYouList.first(where: { $0.id == thankYouId }) {
-                    self.analyticsManager.logEvent(
-                        eventName: AnalyticsEventConst.deleteThankYou,
-                        targetDate: thankYouData.date)
-                }
-            })
-    }
+        bannerView.closeButtonDidTap
+            .map { bannerType }
+            .subscribe(viewModel.inputs.bannerCloseButtonDidTap)
+            .store(in: &bannerCancellables)
 
-    func handleMenuTapAction(item: BottomHalfSheetMenuItem) {
-        guard let itemRawValue = item.rawValue,
-              let cellMenu = ThankYouCellTapMenu(rawValue: itemRawValue),
-              let thankYouId = item.id else { return }
-        presentedViewController?.dismiss(animated: true, completion: nil)
-        switch cellMenu {
-        case .edit:
-            presentEditThankYouViewController(thankYouId: thankYouId)
-        case .delete:
-            showDeleteConfirmationAlert(thankYouId: thankYouId)
-        }
+        tableView.tableHeaderView = bannerView
+        NSLayoutConstraint.activate([
+            bannerView.widthAnchor.constraint(equalTo: tableView.widthAnchor)
+        ])
+        tableView.layoutIfNeeded()
+        // Reassigning forces UITableView's setter to re-read the header's updated frame.
+        // Without this, the tableView may hold a stale frame from the initial assignment,
+        // causing a gap between the banner and the content in some cases (e.g. re-showing the banner).
+        tableView.tableHeaderView = tableView.tableHeaderView
     }
 }
     
@@ -248,21 +163,21 @@ private extension ThankYouListViewController {
 extension ThankYouListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard hasLoadedThankYouList else {
+        if viewModel.outputs.shouldShowSkeleton.value {
             return skeletonedThankYouCellCount
         }
-        return sections.getSafely(at: section)?.thankYouList.count ?? 0
+        return viewModel.outputs.listSections.value.getSafely(at: section)?.items.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.thankYouCell, for: indexPath)!
-        guard hasLoadedThankYouList else {
+        if viewModel.outputs.shouldShowSkeleton.value {
             cell.showLoadingSkeleton()
             return cell
         }
-        if let section = sections.getSafely(at: indexPath.section),
-           let thankYouData = section.thankYouList.getSafely(at: indexPath.row) {
-            scrollIndicator.bind(title: section.displayDateString)
+        if let section = viewModel.outputs.listSections.value.getSafely(at: indexPath.section),
+           let thankYouData = section.items.getSafely(at: indexPath.row) {
+            scrollIndicator.bind(title: section.headerTitle)
             cell.bind(thankYouData: thankYouData)
         }
         cell.delegate = self
@@ -270,7 +185,9 @@ extension ThankYouListViewController: UITableViewDataSource {
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return hasLoadedThankYouList ? sections.count : 1
+        return viewModel.outputs.shouldShowSkeleton.value
+        ? 1
+        : viewModel.outputs.listSections.value.count
     }
 }
 
@@ -278,12 +195,12 @@ extension ThankYouListViewController: UITableViewDataSource {
 extension ThankYouListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListSectionHeaderView.cellIdentifier()) as! ListSectionHeaderView
-        guard hasLoadedThankYouList else {
+        if viewModel.outputs.shouldShowSkeleton.value {
             header.showLoadingSkeleton()
             return header
         }
-        if let sct = sections.getSafely(at: section) {
-            header.bind(sectionString: sct.displayDateString)
+        if let sct = viewModel.outputs.listSections.value.getSafely(at: section) {
+            header.bind(sectionString: sct.headerTitle)
         }
         return header
     }
@@ -293,10 +210,10 @@ extension ThankYouListViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard hasLoadedThankYouList else {
+        if viewModel.outputs.shouldShowSkeleton.value {
             return tableView.estimatedRowHeight
         }
-        guard let thankYouId = sections.getSafely(at: indexPath.section)?.thankYouList.getSafely(at: indexPath.row)?.id,
+        guard let thankYouId = viewModel.outputs.listSections.value.getSafely(at: indexPath.section)?.items.getSafely(at: indexPath.row)?.id,
               let height = estimatedRowHeights[thankYouId] else {
             return tableView.estimatedRowHeight
         }
@@ -304,9 +221,9 @@ extension ThankYouListViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard hasLoadedThankYouList else { return }
+        if viewModel.outputs.shouldShowSkeleton.value { return }
         cell.contentView.updateConstraintsIfNeeded()
-        if let thankYouId =  sections.getSafely(at: indexPath.section)?.thankYouList.getSafely(at: indexPath.row)?.id {
+        if let thankYouId =  viewModel.outputs.listSections.value.getSafely(at: indexPath.section)?.items.getSafely(at: indexPath.row)?.id {
             estimatedRowHeights[thankYouId] = cell.frame.size.height
         }
     }
@@ -327,9 +244,7 @@ extension ThankYouListViewController: UITableViewDelegate {
 // MARK: - ListScrollIndicatorDelegate
 extension ThankYouListViewController: ListScrollIndicatorDelegate {
     func listScrollIndicatorDidBeginDraggingMovableIcon(_ indicator: ListScrollIndicator) {
-        analyticsManager.logEvent(
-            eventName: AnalyticsEventConst.startDraggingListScrollIndicatorMovableIcon
-        )
+        viewModel.inputs.listScrollIndicatorDidBeginDragging.send()
     }
 }
 
@@ -342,9 +257,7 @@ extension ThankYouListViewController: ThankYouCellDelegate {
             return
         }
         bottomHalfSheetMenuViewController.itemDidTap
-            .sink { [weak self] item in
-                self?.handleMenuTapAction(item: item)
-            }
+            .subscribe(viewModel.inputs.bottomHalfSheetMenuDidTap)
             .store(in: &bottomHalfSheetMenuViewController.cancellables)
 
         present(floatingPanelViewController, animated: true, completion: nil)

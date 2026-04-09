@@ -20,6 +20,7 @@ final class PositiveStatementListViewModelTests: XCTestCase {
     private var scheduler: TestSchedulerOf<DispatchQueue>!
     private var analyticsManager: MockAnalyticsManager!
     private var widgetManager: MockWidgetManager!
+    private var userDefaultDataStore: UserDefaultsDataStore!
 
     override func setUp() {
         userRepository = MockUserRepository()
@@ -28,6 +29,7 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         scheduler = DispatchQueue.test
         analyticsManager = MockAnalyticsManager()
         widgetManager = MockWidgetManager()
+        userDefaultDataStore = MockUserDefaultsDataStore()
 
         viewModel = PositiveStatementListViewModel(
             userRepository: userRepository,
@@ -35,7 +37,8 @@ final class PositiveStatementListViewModelTests: XCTestCase {
             router: router,
             scheduler: scheduler.eraseToAnyScheduler(),
             analyticsManager: analyticsManager,
-            widgetManager: widgetManager
+            widgetManager: widgetManager,
+            userDefaultsDataStore: userDefaultDataStore
         )
     }
 
@@ -192,6 +195,14 @@ final class PositiveStatementListViewModelTests: XCTestCase {
     func test_ifAUserTapsAddButton__itShouldPresentAddPositiveStatement() {
         // Taps add button
         viewModel.inputs.addButtonDidTap.send()
+
+        // It should present AddPositiveStatement
+        XCTAssertEqual(router.presentAddPositiveStatement_calledCount, 1)
+    }
+
+    func test_ifAUserTapsOnboardingAddButton__itShouldPresentAddPositiveStatement() {
+        // Taps onboarding add button
+        viewModel.inputs.onboardingAddButtonDidTap.send()
 
         // It should present AddPositiveStatement
         XCTAssertEqual(router.presentAddPositiveStatement_calledCount, 1)
@@ -365,6 +376,73 @@ final class PositiveStatementListViewModelTests: XCTestCase {
         viewModel.inputs.onAppear.send()
         XCTAssertEqual(analyticsManager.loggedEvent.count, 1)
         XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.openPositiveStatementList)
+    }
+
+    func test_ifAUserOpensTheScreen_positiveStatementsIsEmpty_andHasSeenPositiveStatementOnboardingFalse__itShouldShowOnboardingSheet() {
+        positiveStatementRepository.subscribePositiveStatements_result = Just([])
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+        userDefaultDataStore.hasSeenPositiveStatementOnboarding = false
+
+        let showOnboardingSheetRecords = TestRecord(publisher: viewModel.outputs.$showOnboardingSheet.eraseToAnyPublisher())
+        showOnboardingSheetRecords.clearResult()
+
+        viewModel.inputs.onAppear.send()
+
+        XCTAssertEqual(showOnboardingSheetRecords.results, [
+            .value(true)
+        ])
+    }
+
+    func test_ifAUserOpensTheScreen_positiveStatementsIsNotEmpty_andHasSeenPositiveStatementOnboardingFalse__itShouldNotShowOnboardingSheet() {
+        positiveStatementRepository.subscribePositiveStatements_result = Just([PositiveStatementModel(id: "id", value: "value", createdDate: Date())])
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+        userDefaultDataStore.hasSeenPositiveStatementOnboarding = false
+
+        let showOnboardingSheetRecords = TestRecord(publisher: viewModel.outputs.$showOnboardingSheet.eraseToAnyPublisher())
+        showOnboardingSheetRecords.clearResult()
+
+        viewModel.inputs.onAppear.send()
+
+        XCTAssertEqual(showOnboardingSheetRecords.results, [
+            .value(false)
+        ])
+    }
+
+    func test_ifAUserOpensTheScreen_positiveStatementsIsEmpty_andHasSeenPositiveStatementOnboardingTrue__itShouldNotShowOnboardingSheet() {
+        positiveStatementRepository.subscribePositiveStatements_result = Just([])
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+        userDefaultDataStore.hasSeenPositiveStatementOnboarding = true
+
+        let showOnboardingSheetRecords = TestRecord(publisher: viewModel.outputs.$showOnboardingSheet.eraseToAnyPublisher())
+        showOnboardingSheetRecords.clearResult()
+
+        viewModel.inputs.onAppear.send()
+
+        XCTAssertEqual(showOnboardingSheetRecords.results, [
+            .value(false)
+        ])
+    }
+
+    func test_ifTheOnboardingSheetIsShown__itShouldMarkHasSeenPositiveStatementOnboardingAsTrue() {
+        userDefaultDataStore.hasSeenPositiveStatementOnboarding = false
+
+        viewModel.outputs.showOnboardingSheet = true
+
+        XCTAssertTrue(userDefaultDataStore.hasSeenPositiveStatementOnboarding)
+    }
+
+    func test_ifAUserOpensTheScreen_positiveStatementsIsNotEmpty__itShouldMarkHasSeenPositiveStatementOnboardingAsTrue() {
+        positiveStatementRepository.subscribePositiveStatements_result = Just([PositiveStatementModel(id: "id", value: "value", createdDate: Date())])
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+        userDefaultDataStore.hasSeenPositiveStatementOnboarding = false
+
+        viewModel.inputs.onAppear.send()
+
+        XCTAssertTrue(userDefaultDataStore.hasSeenPositiveStatementOnboarding)
     }
 }
 

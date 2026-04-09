@@ -76,7 +76,7 @@ extension ListScrollIndicator {
     }
 
     /// Call when scrollView contents has set
-    func updatedContent() {
+    func didUpdateContent() {
         updateMovableIconHiddenStatus()
     }
 

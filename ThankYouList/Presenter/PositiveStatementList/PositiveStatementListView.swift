@@ -6,6 +6,7 @@
 //  Copyright © 2024 Aika Yamada. All rights reserved.
 //
 
+import DotLottie
 import SharedResources
 import SwiftUI
 
@@ -23,6 +24,10 @@ private let emptyViewDescriptionFontSize = CGFloat(15)
 private let emptyViewDescriptionLineSpacing = CGFloat(3)
 
 private let bottomMenuButtonHeight = CGFloat(52)
+
+private let onboardingSheetPresentationDetent = 0.8
+private let onboardingAnimationFileName = "positiveStatementOnboarding"
+private let onboardingAnimationSize = CGFloat(280)
 
 struct PositiveStatementListView: View {
 
@@ -54,6 +59,9 @@ struct PositiveStatementListView: View {
         .flexibleHeightBottomHalfSheet(
             isPresented: $viewModelOutputs.showBottomMenu,
             sheetContent: bottomMenu)
+        .sheet(isPresented: $viewModelOutputs.showOnboardingSheet) {
+            onboardingSheet
+        }
         .alert(item: $viewModelOutputs.showAlert) { alertItem in alertItem.toAlert }
         .onAppear { viewModelInputs.onAppear.send() }
     }
@@ -110,7 +118,7 @@ struct PositiveStatementListView: View {
                 .foregroundStyle(Color.text.opacity(widgetSetupHintRightArrowIconOpacity))
         }
         .padding(.horizontal, ViewConst.spacing12)
-        .background(Color.primary100)
+        .background(Color.primary200)
         .clipShape(RoundedRectangle(cornerRadius: widgetSetupHintButtonCornerRadius, style: .circular))
         .onTapGesture {
             viewModelInputs.widgetHintButtonDidTap.send()
@@ -234,6 +242,44 @@ private extension PositiveStatementListView {
     }
 }
 
+// MARK: - Onboarding
+
+private extension PositiveStatementListView {
+    var onboardingSheet: some View {
+        VStack(spacing: ViewConst.spacing24) {
+            DotLottieAnimation(
+                fileName: onboardingAnimationFileName,
+                config: .init(autoplay: true)).view()
+                .frame(width: onboardingAnimationSize, height: onboardingAnimationSize)
+                .padding(.bottom, ViewConst.spacing8)
+
+            Text(R.string.localizable.positive_statement_list_onboarding_sheet_title)
+                .font(.boldAvenir(ofSize: ViewConst.fontSize28))
+                .foregroundStyle(Color.text)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+
+            Text(R.string.localizable.positive_statement_list_onboarding_sheet_description)
+                .font(.regularAvenir(ofSize: ViewConst.fontSize16))
+                .foregroundStyle(Color.text)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+
+            Spacer()
+
+            Button {
+                viewModelInputs.onboardingAddButtonDidTap.send()
+            } label: {
+                Text(R.string.localizable.positive_statement_list_onboarding_sheet_button)
+            }
+            .buttonStyle(PrimaryButtonStyle())
+            .padding(.bottom, ViewConst.spacing16)
+        }
+        .padding(.horizontal, ViewConst.spacing28)
+        .presentationDetents([.fraction(onboardingSheetPresentationDetent)])
+    }
+}
+
 // MARK: - Preview
 
 #Preview {
@@ -242,7 +288,8 @@ private extension PositiveStatementListView {
         positiveStatementRepository: DefaultPositiveStatementRepository(),
         router: nil,
         analyticsManager: DefaultAnalyticsManager(),
-        widgetManager: DefaultWidgetManager()
+        widgetManager: DefaultWidgetManager(),
+        userDefaultsDataStore: DefaultUserDefaultsDataStore()
     )
     return PositiveStatementListView(viewModel: viewModel)
 }

@@ -26,7 +26,15 @@ extension Color {
     }
 
     public static var primary900: Color {
-        return Color(hex: 0xfa8d8d)
+        return Color(hex: 0xf57c7c)
+    }
+
+    public static var yellow100: Color {
+        return Color(hex: 0xfffbe4)
+    }
+
+    public static var yellow200: Color {
+        return Color(hex: 0xfde68a)
     }
 
     public static var defaultBackground: Color {

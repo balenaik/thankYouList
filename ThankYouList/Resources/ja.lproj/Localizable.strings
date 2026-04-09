@@ -17,6 +17,9 @@
 "thank_you_list_empty_view_title" = "Thank You Listへようこそ";
 "thank_you_list_empty_view_description" = "ここにThank Youが表示されます。\nさっそく作成しましょう！";
 
+"thank_you_list_load_error_title" = "Thank You Listの読み込みに失敗しました";
+"thank_you_list_load_error_message" = "後でもう一度お試しください。";
+
 "add_thank_you_title" = "Thank Youを作成";
 "add_thank_you_text_view_placeholder" = "ありがとうの気持ちを書こう";
 "add_thank_you_discard_title" = "Thank Youを破棄しますか？";
@@ -76,10 +79,12 @@
 "something_went_wrong_title" = "問題が発生しました";
 
 "date_format_thankyou_date" = "yyyy/MM/dd";
-"date_format_year_month" = "yyyy/MM";
 "date_format_month_year" = "yyyy年 MMMM";
 
 "privacy_policy_url" = "https://thank-you-list-dc0da.firebaseapp.com/ja.html";
+
+"positive_statement_promotion_banner_text" = "ポジティブな言葉を\nホーム画面に表示してみませんか？";
+"positive_statement_promotion_banner_button_text" = "今すぐ試す";
 
 "positive_statement_list_title" = "ポジティブメッセージ";
 "positive_statement_list_description" = "あなたを元気づけるポジティブな言葉を追加しましょう。あなたの言葉はホーム画面のウィジェットに表示されます。最大10個まで追加できます。";
@@ -89,6 +94,10 @@
 "positive_statement_list_add_button_text" = "ポジティブメッセージを追加";
 "positive_statement_list_confirm_delete_title" = "ポジティブメッセージを削除";
 "positive_statement_list_confirm_delete_message" = "本当にこのポジティブメッセージを削除してよろしいですか?";
+"positive_statement_list_onboarding_sheet_title" = "未来への想いを\n言葉にする";
+"positive_statement_list_onboarding_sheet_description" = "理想の未来や、なりたい自分を
+ポジティブな言葉で表現してみましょう。\nその言葉は、ホーム画面のウィジェットとして表示されます。";
+"positive_statement_list_onboarding_sheet_button" = "ポジティブな言葉を書いてみる";
 
 "add_positive_statement_title" = "あなたの理想の未来はどんな状態ですか？";
 "add_positive_statement_description" = "あなたの理想の未来、またはなりたい自分の姿をイメージしましょう。\nそして「私は〜ます。」「私は〜です。」という形で、あなたが現在すでにそうであるかのように言葉にしてみましょう。";

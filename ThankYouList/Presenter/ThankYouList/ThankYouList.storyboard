@@ -34,6 +34,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lM8-nN-2dF">
                                 <rect key="frame" x="0.0" y="760" width="414" height="68"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="4FU-1b-knr" userLabel="Ad Banner View" customClass="GADBannerView">
+                                        <rect key="frame" x="0.0" y="9" width="414" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -58,6 +62,7 @@
                         <color key="backgroundColor" red="0.94901960780000005" green="0.96862745100000003" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="adP-X3-het" firstAttribute="top" secondItem="s0L-7X-hNI" secondAttribute="top" id="00B-vL-Qoc"/>
+                            <constraint firstItem="s0L-7X-hNI" firstAttribute="bottom" secondItem="lM8-nN-2dF" secondAttribute="bottom" id="3Vj-Ik-3uB"/>
                             <constraint firstItem="s0L-7X-hNI" firstAttribute="bottom" secondItem="ezU-hS-Ipk" secondAttribute="bottom" id="5s7-VQ-JYq"/>
                             <constraint firstItem="s0L-7X-hNI" firstAttribute="bottom" secondItem="adP-X3-het" secondAttribute="bottom" id="5ta-GA-h3e"/>
                             <constraint firstItem="ezU-hS-Ipk" firstAttribute="leading" secondItem="yk0-yc-lwD" secondAttribute="leading" id="HoQ-Jb-ZWL"/>

@@ -7,12 +7,20 @@
 //
 
 import Combine
+import GoogleMobileAds
 import UIKit
 import SkeletonView
 import FloatingPanel
 import SharedResources
 
 private let skeletonedThankYouCellCount = 3
+private let adUnitID: String = {
+    #if DEBUG
+    return "ca-app-pub-3940256099942544/2435281174"
+    #else
+    return "ca-app-pub-1773580597609831/6587571216"
+    #endif
+}()
 
 class ThankYouListViewController: UIViewController {
 
@@ -36,6 +44,8 @@ class ThankYouListViewController: UIViewController {
     @IBOutlet private weak var scrollIndicator: ListScrollIndicator!
     @IBOutlet private weak var emptyView: ThankYouEmptyView!
     @IBOutlet private weak var userIcon: UIBarButtonItem!
+
+    @IBOutlet private weak var bannerView: BannerView?
 
     // MARK: - View Lifecycle
 
@@ -128,6 +138,8 @@ private extension ThankYouListViewController {
         emptyView.isHidden = true
         scrollIndicator.setup(scrollView: tableView)
         scrollIndicator.delegate = self
+
+        bannerView?.adUnitID = adUnitID
     }
 
     func showBanner(bannerType: BannerType) {

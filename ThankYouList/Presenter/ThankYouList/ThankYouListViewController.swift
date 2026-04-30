@@ -140,6 +140,7 @@ private extension ThankYouListViewController {
         scrollIndicator.delegate = self
 
         bannerView?.adUnitID = adUnitID
+        bannerView?.delegate = self
     }
 
     func showBanner(bannerType: BannerType) {
@@ -273,5 +274,14 @@ extension ThankYouListViewController: ThankYouCellDelegate {
             .store(in: &bottomHalfSheetMenuViewController.cancellables)
 
         present(floatingPanelViewController, animated: true, completion: nil)
+    }
+}
+
+// MARK: - GADBannerViewDelegate
+extension ThankYouListViewController: BannerViewDelegate {
+    func bannerViewDidReceiveAd(_ bannerView: BannerView) {
+    }
+
+    func bannerView(_ bannerView: BannerView, didFailToReceiveAdWithError error: Error) {
     }
 }

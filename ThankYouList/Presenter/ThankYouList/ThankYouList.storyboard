@@ -83,7 +83,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="adBannerContainerView" destination="lM8-nN-2dF" id="bX1-aA-cVe"/>
-                        <outlet property="bannerView" destination="4FU-1b-knr" id="4ag-0V-l0c"/>
+                        <outlet property="adView" destination="4FU-1b-knr" id="4ag-0V-l0c"/>
                         <outlet property="emptyView" destination="ezU-hS-Ipk" id="Nab-Yu-ahs"/>
                         <outlet property="scrollIndicator" destination="adP-X3-het" id="Qg7-H2-cKo"/>
                         <outlet property="tableView" destination="J3S-5e-ePR" id="S1W-iu-Hld"/>

@@ -45,7 +45,7 @@ class ThankYouListViewController: UIViewController {
     @IBOutlet private weak var emptyView: ThankYouEmptyView!
     @IBOutlet private weak var userIcon: UIBarButtonItem!
 
-    @IBOutlet private weak var bannerView: BannerView?
+    @IBOutlet private weak var adView: BannerView?
 
     // MARK: - View Lifecycle
 
@@ -139,8 +139,8 @@ private extension ThankYouListViewController {
         scrollIndicator.setup(scrollView: tableView)
         scrollIndicator.delegate = self
 
-        bannerView?.adUnitID = adUnitID
-        bannerView?.delegate = self
+        adView?.adUnitID = adUnitID
+        adView?.delegate = self
     }
 
     func showBanner(bannerType: BannerType) {

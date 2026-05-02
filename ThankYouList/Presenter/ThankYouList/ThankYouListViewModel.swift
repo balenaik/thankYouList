@@ -297,6 +297,7 @@ extension ThankYouListViewModel {
     class Inputs {
         let viewDidLoad = PassthroughSubject<Void, Never>()
         let viewWillAppear = PassthroughSubject<Void, Never>()
+        let viewDidAppear = PassthroughSubject<Void, Never>()
         let userIconDidTap = PassthroughSubject<Void, Never>()
         let bottomHalfSheetMenuDidTap = PassthroughSubject<BottomHalfSheetMenuItem, Never>()
         let listScrollIndicatorDidBeginDragging = PassthroughSubject<Void, Never>()

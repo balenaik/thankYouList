@@ -313,5 +313,6 @@ extension ThankYouListViewModel {
         let dismissPresentedView = PassthroughSubject<Void, Never>()
         let showBanner = PassthroughSubject<BannerType, Never>()
         let hideBanner = PassthroughSubject<Void, Never>()
+        let loadAd = PassthroughSubject<Void, Never>()
     }
 }

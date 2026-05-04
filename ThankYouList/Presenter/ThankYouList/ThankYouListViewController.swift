@@ -118,6 +118,14 @@ private extension ThankYouListViewController {
                 self?.tableView.tableHeaderView = nil
             }
             .store(in: &cancellables)
+
+        viewModel.outputs
+            .loadAd
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.adView?.load(Request())
+            }
+            .store(in: &cancellables)
     }
 
     func bindInputs() {

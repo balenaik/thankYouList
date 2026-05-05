@@ -1902,7 +1902,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3.0;
+				MARKETING_VERSION = 2.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(MAIN_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.balenaik.ThankYouList";
@@ -1931,7 +1931,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3.0;
+				MARKETING_VERSION = 2.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(MAIN_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.balenaik.ThankYouList";
@@ -2305,11 +2305,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3.0;
+				MARKETING_VERSION = 2.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(MAIN_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.balenaik.ThankYouList";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development com.balenaik.ThankYouList.staging";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG STAGING";
 				SWIFT_VERSION = 5.0;
 			};
 			name = "Debug-Staging";
@@ -2374,7 +2375,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.3.0;
+				MARKETING_VERSION = 2.4.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(MAIN_BUNDLE_ID).PositiveStatementWidget";
@@ -2513,7 +2514,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.3.0;
+				MARKETING_VERSION = 2.4.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(MAIN_BUNDLE_ID).PositiveStatementWidget";
@@ -2559,7 +2560,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.3.0;
+				MARKETING_VERSION = 2.4.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(MAIN_BUNDLE_ID).PositiveStatementWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";

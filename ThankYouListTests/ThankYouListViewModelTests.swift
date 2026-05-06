@@ -1218,6 +1218,14 @@ final class ThankYouListViewModelTests: XCTestCase {
         XCTAssertEqual(analyticsManager.loggedEvent.count, 1)
         XCTAssertEqual(analyticsManager.loggedEvent.first?.eventName, AnalyticsEventConst.tapDismissPositiveStatementBanner)
     }
+
+    func test_ifViewDidAppear__loadAdShouldEmit() {
+        let loadAdRecords = TestRecord(publisher: viewModel.outputs.loadAd.map { "" }.eraseToAnyPublisher())
+
+        viewModel.inputs.viewDidAppear.send()
+
+        XCTAssertEqual(loadAdRecords.results, [.value("")])
+    }
 }
 
 private class MockThankYouListRouter: MockRouter, ThankYouListRouter {

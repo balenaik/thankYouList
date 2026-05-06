@@ -54,6 +54,7 @@ private extension ThankYouListViewModel {
     func bind() {
         bindCardTapAction()
         bindBanner()
+        bindAd()
 
         inputs.viewDidLoad
             .flatMap { [userRepository] in
@@ -197,6 +198,12 @@ private extension ThankYouListViewModel {
                 router?.presentAlert(title: nil,
                                      message: R.string.localizable.failedToDelete())
             }
+            .store(in: &cancellables)
+    }
+
+    func bindAd() {
+        inputs.viewDidAppear
+            .subscribe(outputs.loadAd)
             .store(in: &cancellables)
     }
 

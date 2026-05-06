@@ -153,6 +153,7 @@ private extension ThankYouListViewController {
         scrollIndicator.delegate = self
 
         adView?.adUnitID = adUnitID
+        adView?.adSize = AdSizeBanner
         adView?.delegate = self
     }
 

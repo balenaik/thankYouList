@@ -45,6 +45,7 @@ class ThankYouListViewController: UIViewController {
     @IBOutlet private weak var emptyView: ThankYouEmptyView!
     @IBOutlet private weak var userIcon: UIBarButtonItem!
 
+    @IBOutlet private weak var adContainerView: UIView!
     @IBOutlet private weak var adView: BannerView?
 
     // MARK: - View Lifecycle
@@ -155,6 +156,7 @@ private extension ThankYouListViewController {
         adView?.adUnitID = adUnitID
         adView?.adSize = AdSizeBanner
         adView?.delegate = self
+        adContainerView.isHidden = true
     }
 
     func showBanner(bannerType: BannerType) {
@@ -294,8 +296,17 @@ extension ThankYouListViewController: ThankYouCellDelegate {
 // MARK: - GADBannerViewDelegate
 extension ThankYouListViewController: BannerViewDelegate {
     func bannerViewDidReceiveAd(_ bannerView: BannerView) {
+        showAd(shouldShow: true)
     }
 
     func bannerView(_ bannerView: BannerView, didFailToReceiveAdWithError error: Error) {
+        showAd(shouldShow: false)
+    }
+
+    private func showAd(shouldShow: Bool) {
+        adContainerView.isHidden = !shouldShow
+        let height: CGFloat = shouldShow ? (adView?.frame.height ?? 0) : 0
+        tableView.contentInset.bottom = height
+        tableView.verticalScrollIndicatorInsets.bottom = height
     }
 }

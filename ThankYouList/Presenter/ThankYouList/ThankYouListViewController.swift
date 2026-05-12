@@ -7,12 +7,20 @@
 //
 
 import Combine
+import GoogleMobileAds
 import UIKit
 import SkeletonView
 import FloatingPanel
 import SharedResources
 
 private let skeletonedThankYouCellCount = 3
+private let adUnitID: String = {
+    #if DEBUG
+    return "ca-app-pub-3940256099942544/2435281174"
+    #else
+    return "ca-app-pub-1773580597609831/6587571216"
+    #endif
+}()
 
 class ThankYouListViewController: UIViewController {
 
@@ -37,6 +45,9 @@ class ThankYouListViewController: UIViewController {
     @IBOutlet private weak var emptyView: ThankYouEmptyView!
     @IBOutlet private weak var userIcon: UIBarButtonItem!
 
+    @IBOutlet private weak var adContainerView: UIView!
+    @IBOutlet private weak var adView: BannerView?
+
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
@@ -51,6 +62,11 @@ class ThankYouListViewController: UIViewController {
         super.viewWillAppear(animated)
         viewModel.inputs.viewWillAppear.send()
         self.tableView.reloadData()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.inputs.viewDidAppear.send()
     }
 }
 
@@ -103,6 +119,14 @@ private extension ThankYouListViewController {
                 self?.tableView.tableHeaderView = nil
             }
             .store(in: &cancellables)
+
+        viewModel.outputs
+            .loadAd
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.adView?.load(Request())
+            }
+            .store(in: &cancellables)
     }
 
     func bindInputs() {
@@ -128,6 +152,11 @@ private extension ThankYouListViewController {
         emptyView.isHidden = true
         scrollIndicator.setup(scrollView: tableView)
         scrollIndicator.delegate = self
+
+        adView?.adUnitID = adUnitID
+        adView?.adSize = AdSizeBanner
+        adView?.delegate = self
+        adContainerView.isHidden = true
     }
 
     func showBanner(bannerType: BannerType) {
@@ -261,5 +290,23 @@ extension ThankYouListViewController: ThankYouCellDelegate {
             .store(in: &bottomHalfSheetMenuViewController.cancellables)
 
         present(floatingPanelViewController, animated: true, completion: nil)
+    }
+}
+
+// MARK: - GADBannerViewDelegate
+extension ThankYouListViewController: BannerViewDelegate {
+    func bannerViewDidReceiveAd(_ bannerView: BannerView) {
+        showAd(shouldShow: true)
+    }
+
+    func bannerView(_ bannerView: BannerView, didFailToReceiveAdWithError error: Error) {
+        showAd(shouldShow: false)
+    }
+
+    private func showAd(shouldShow: Bool) {
+        adContainerView.isHidden = !shouldShow
+        let height: CGFloat = shouldShow ? (adView?.frame.height ?? 0) : 0
+        tableView.contentInset.bottom = height
+        tableView.verticalScrollIndicatorInsets.bottom = height
     }
 }

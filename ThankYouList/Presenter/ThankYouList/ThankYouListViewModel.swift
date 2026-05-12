@@ -54,6 +54,7 @@ private extension ThankYouListViewModel {
     func bind() {
         bindCardTapAction()
         bindBanner()
+        bindAd()
 
         inputs.viewDidLoad
             .flatMap { [userRepository] in
@@ -200,6 +201,12 @@ private extension ThankYouListViewModel {
             .store(in: &cancellables)
     }
 
+    func bindAd() {
+        inputs.viewDidAppear
+            .subscribe(outputs.loadAd)
+            .store(in: &cancellables)
+    }
+
     func bindBanner() {
         let shouldShowPositiveStatementBanner = Publishers
             .Merge(
@@ -297,6 +304,7 @@ extension ThankYouListViewModel {
     class Inputs {
         let viewDidLoad = PassthroughSubject<Void, Never>()
         let viewWillAppear = PassthroughSubject<Void, Never>()
+        let viewDidAppear = PassthroughSubject<Void, Never>()
         let userIconDidTap = PassthroughSubject<Void, Never>()
         let bottomHalfSheetMenuDidTap = PassthroughSubject<BottomHalfSheetMenuItem, Never>()
         let listScrollIndicatorDidBeginDragging = PassthroughSubject<Void, Never>()
@@ -312,5 +320,6 @@ extension ThankYouListViewModel {
         let dismissPresentedView = PassthroughSubject<Void, Never>()
         let showBanner = PassthroughSubject<BannerType, Never>()
         let hideBanner = PassthroughSubject<Void, Never>()
+        let loadAd = PassthroughSubject<Void, Never>()
     }
 }

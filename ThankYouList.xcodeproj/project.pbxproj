@@ -108,6 +108,7 @@
 		A892354C29D731730093A92F /* ConfirmDeleteAccountViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A892354B29D731730093A92F /* ConfirmDeleteAccountViewModelTests.swift */; };
 		A892355429D73E3D0093A92F /* MockUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A892355329D73E3D0093A92F /* MockUserRepository.swift */; };
 		A892355A29D818500093A92F /* EntwineTest in Frameworks */ = {isa = PBXBuildFile; productRef = A892355929D818500093A92F /* EntwineTest */; };
+		A89290AB2F8071B20060B152 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = A89290AA2F8071B20060B152 /* GoogleMobileAds */; };
 		A893A19B2D6D349D00E01848 /* NavigationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A893A19A2D6D349D00E01848 /* NavigationError.swift */; };
 		A893A19D2D6EC9BF00E01848 /* UIViewController+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A893A19C2D6EC9BF00E01848 /* UIViewController+ViewController.swift */; };
 		A893A1A32D816D8B00E01848 /* DeeplinkDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = A893A1962D6D32C500E01848 /* DeeplinkDestination.swift */; };
@@ -492,6 +493,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A89290AB2F8071B20060B152 /* GoogleMobileAds in Frameworks */,
 				A8CF3B072F00FF73004B7CED /* DotLottie in Frameworks */,
 				A8DF48222D1BA57C008290FA /* SharedResources.framework in Frameworks */,
 				A8A1E2072B0AC1590083C3FF /* CombineSchedulers in Frameworks */,
@@ -1144,6 +1146,7 @@
 				A83C32C02E473BC500DA1421 /* FirebaseAnalytics */,
 				A8E88DC82E5B43B7004C0E64 /* RswiftLibrary */,
 				A8CF3B062F00FF73004B7CED /* DotLottie */,
+				A89290AA2F8071B20060B152 /* GoogleMobileAds */,
 			);
 			productName = ThankYouList;
 			productReference = A8831CC31E9CFE6B00F3CA0A /* ThankYouList.app */;
@@ -1289,6 +1292,7 @@
 				A8CF39AB2EC8A7B5004B7CED /* XCRemoteSwiftPackageReference "CryptoSwift" */,
 				A8CF39B62ECB512C004B7CED /* XCRemoteSwiftPackageReference "RNCryptor" */,
 				A8CF3B052F00FF73004B7CED /* XCRemoteSwiftPackageReference "dotlottie-ios" */,
+				A89290A92F8071B20060B152 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = A8831CC41E9CFE6B00F3CA0A /* Products */;
 			projectDirPath = "";
@@ -1898,7 +1902,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3.0;
+				MARKETING_VERSION = 2.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(MAIN_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.balenaik.ThankYouList";
@@ -1927,7 +1931,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3.0;
+				MARKETING_VERSION = 2.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(MAIN_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.balenaik.ThankYouList";
@@ -2301,11 +2305,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3.0;
+				MARKETING_VERSION = 2.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(MAIN_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.balenaik.ThankYouList";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development com.balenaik.ThankYouList.staging";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG STAGING";
 				SWIFT_VERSION = 5.0;
 			};
 			name = "Debug-Staging";
@@ -2370,7 +2375,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.3.0;
+				MARKETING_VERSION = 2.4.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(MAIN_BUNDLE_ID).PositiveStatementWidget";
@@ -2509,7 +2514,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.3.0;
+				MARKETING_VERSION = 2.4.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(MAIN_BUNDLE_ID).PositiveStatementWidget";
@@ -2555,7 +2560,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.3.0;
+				MARKETING_VERSION = 2.4.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(MAIN_BUNDLE_ID).PositiveStatementWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2666,6 +2671,14 @@
 				kind = branch;
 			};
 		};
+		A89290A92F8071B20060B152 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = exactVersion;
+				version = 13.2.0;
+			};
+		};
 		A893A1742D5F150400E01848 /* XCRemoteSwiftPackageReference "R.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mac-cain13/R.swift.git";
@@ -2753,6 +2766,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A892355829D818500093A92F /* XCRemoteSwiftPackageReference "Entwine" */;
 			productName = EntwineTest;
+		};
+		A89290AA2F8071B20060B152 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A89290A92F8071B20060B152 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
 		};
 		A893A17D2D5F181E00E01848 /* RswiftGenerateInternalResources */ = {
 			isa = XCSwiftPackageProductDependency;

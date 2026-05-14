@@ -402,6 +402,7 @@
 		A8A85AEC25A7473D00182B99 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		A8AC1BCF1FAE00B600D1B25B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A8AC1BD11FAE00DE00D1B25B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A8AC1BD21FAE00DE00D1B25B /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A8AC1BD61FD20E5500D1B25B /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		A8ADC1542C43366200830B39 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		A8ADC1562C43B45200830B39 /* Color+Blend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Blend.swift"; sourceTree = "<group>"; };
@@ -1280,6 +1281,7 @@
 				en,
 				Base,
 				ja,
+				ko,
 			);
 			mainGroup = A8831CBA1E9CFE6B00F3CA0A;
 			packageReferences = (
@@ -1718,6 +1720,7 @@
 			children = (
 				A8AC1BCF1FAE00B600D1B25B /* Base */,
 				A8AC1BD11FAE00DE00D1B25B /* ja */,
+				A8AC1BD21FAE00DE00D1B25B /* ko */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

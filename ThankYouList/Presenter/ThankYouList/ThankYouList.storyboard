@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -30,6 +31,21 @@
                                     <outlet property="delegate" destination="tYx-4c-akF" id="Gdh-IN-CWN"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lM8-nN-2dF">
+                                <rect key="frame" x="0.0" y="760" width="414" height="68"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="4FU-1b-knr" userLabel="Ad Banner View" customClass="GADBannerView">
+                                        <rect key="frame" x="0.0" y="9" width="414" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="68" id="ImH-T7-w4Y"/>
+                                    <constraint firstItem="4FU-1b-knr" firstAttribute="centerY" secondItem="lM8-nN-2dF" secondAttribute="centerY" id="VYg-LU-GBK"/>
+                                    <constraint firstItem="4FU-1b-knr" firstAttribute="centerX" secondItem="lM8-nN-2dF" secondAttribute="centerX" id="y2b-GJ-JAX"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="adP-X3-het" customClass="ListScrollIndicator" customModule="ThankYouList" customModuleProvider="target">
                                 <rect key="frame" x="374" y="150" width="40" height="678"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -46,6 +62,7 @@
                         <color key="backgroundColor" red="0.94901960780000005" green="0.96862745100000003" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="adP-X3-het" firstAttribute="top" secondItem="s0L-7X-hNI" secondAttribute="top" id="00B-vL-Qoc"/>
+                            <constraint firstItem="s0L-7X-hNI" firstAttribute="bottom" secondItem="lM8-nN-2dF" secondAttribute="bottom" id="3Vj-Ik-3uB"/>
                             <constraint firstItem="s0L-7X-hNI" firstAttribute="bottom" secondItem="ezU-hS-Ipk" secondAttribute="bottom" id="5s7-VQ-JYq"/>
                             <constraint firstItem="s0L-7X-hNI" firstAttribute="bottom" secondItem="adP-X3-het" secondAttribute="bottom" id="5ta-GA-h3e"/>
                             <constraint firstItem="ezU-hS-Ipk" firstAttribute="leading" secondItem="yk0-yc-lwD" secondAttribute="leading" id="HoQ-Jb-ZWL"/>
@@ -53,6 +70,8 @@
                             <constraint firstItem="adP-X3-het" firstAttribute="trailing" secondItem="s0L-7X-hNI" secondAttribute="trailing" id="Mtk-zP-q7H"/>
                             <constraint firstAttribute="bottom" secondItem="J3S-5e-ePR" secondAttribute="bottom" id="OIx-FW-cwM"/>
                             <constraint firstItem="ezU-hS-Ipk" firstAttribute="top" secondItem="s0L-7X-hNI" secondAttribute="top" id="ibD-40-lY0"/>
+                            <constraint firstAttribute="trailing" secondItem="lM8-nN-2dF" secondAttribute="trailing" id="omI-SO-0I9"/>
+                            <constraint firstItem="lM8-nN-2dF" firstAttribute="leading" secondItem="yk0-yc-lwD" secondAttribute="leading" id="rZT-6S-WJr"/>
                             <constraint firstItem="J3S-5e-ePR" firstAttribute="top" secondItem="s0L-7X-hNI" secondAttribute="top" id="rol-cS-hYo"/>
                             <constraint firstAttribute="trailing" secondItem="J3S-5e-ePR" secondAttribute="trailing" id="sQf-32-rcj"/>
                             <constraint firstItem="J3S-5e-ePR" firstAttribute="leading" secondItem="yk0-yc-lwD" secondAttribute="leading" id="ufX-CX-DGz"/>
@@ -63,6 +82,8 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="adContainerView" destination="lM8-nN-2dF" id="bX1-aA-cVe"/>
+                        <outlet property="adView" destination="4FU-1b-knr" id="4ag-0V-l0c"/>
                         <outlet property="emptyView" destination="ezU-hS-Ipk" id="Nab-Yu-ahs"/>
                         <outlet property="scrollIndicator" destination="adP-X3-het" id="Qg7-H2-cKo"/>
                         <outlet property="tableView" destination="J3S-5e-ePR" id="S1W-iu-Hld"/>
@@ -82,5 +103,8 @@
         <namedColor name="tableViewBg">
             <color red="0.94117647058823528" green="0.94901960784313721" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

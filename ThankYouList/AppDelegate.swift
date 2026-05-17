@@ -10,6 +10,7 @@ import UIKit
 import Combine
 import Firebase
 import FirebaseAuth
+import GoogleMobileAds
 import SharedResources
 
 @UIApplicationMain
@@ -31,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         setupFirebase()
+        setupGoogleAds()
         setupNavigationBar()
         setupListView()
         reAuthenticateToProvider()
@@ -78,6 +80,10 @@ private extension AppDelegate {
             // TODO: Log error on Crashlytics
             print("Error setting user access group: %@", error)
         }
+    }
+
+    func setupGoogleAds() {
+        MobileAds.shared.start()
     }
 
     func setupNavigationBar() {

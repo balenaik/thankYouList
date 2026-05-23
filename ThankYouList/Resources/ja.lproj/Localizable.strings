@@ -49,6 +49,7 @@
 
 "mypage_title" = "アカウント";
 "mypage_positive_statements" = "ポジティブメッセージ";
+"mypage_language" = "言語";
 "mypage_rate" = "Thank You Listを評価する";
 "mypage_feedback" = "フィードバック";
 "mypage_privacy_policy" = "プライバシーポリシー";

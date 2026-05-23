@@ -49,6 +49,7 @@
 
 "mypage_title" = "계정";
 "mypage_positive_statements" = "긍정 메시지";
+"mypage_language" = "언어";
 "mypage_rate" = "Thank You List 평가하기";
 "mypage_feedback" = "피드백 보내기";
 "mypage_privacy_policy" = "개인정보 처리방침";

@@ -23,6 +23,7 @@ protocol MyPageRouter: Router {
     func presentPrivacyPolicy()
     func presentConfirmDeleteAccount()
     func pushToPositiveStatementList()
+    func openLanguageSetting()
     func openDefaultMailAppIfAvailable(to: String, subject: String) -> Bool
     func openGmailAppIfAvailable(to: String, subject: String) -> Bool
 }

@@ -215,6 +215,8 @@ extension MyPageViewController: UITableViewDelegate {
         switch item.item {
         case .positiveStatements:
             router?.pushToPositiveStatementList()
+        case .language:
+            break
         case .rate:
             showRating()
         case .feedback:

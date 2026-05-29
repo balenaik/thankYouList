@@ -218,7 +218,7 @@ extension MyPageViewController: UITableViewDelegate {
         case .positiveStatements:
             router?.pushToPositiveStatementList()
         case .language:
-            break
+            router?.openLanguageSetting()
         case .rate:
             showRating()
         case .feedback:

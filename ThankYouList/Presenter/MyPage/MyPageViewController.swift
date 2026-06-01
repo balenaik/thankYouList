@@ -23,6 +23,7 @@ protocol MyPageRouter: Router {
     func presentPrivacyPolicy()
     func presentConfirmDeleteAccount()
     func pushToPositiveStatementList()
+    func openLanguageSetting()
     func openDefaultMailAppIfAvailable(to: String, subject: String) -> Bool
     func openGmailAppIfAvailable(to: String, subject: String) -> Bool
 }
@@ -68,6 +69,7 @@ private extension MyPageViewController {
     func setupTableItems() {
         let myInfoSection = [TableItem(item: .myInformation, style: .profieInfo)]
         let settingSection = [TableItem(item: .positiveStatements, style: .button)]
+        let languageSection = [TableItem(item: .language, style: .button)]
         let additionalSection = [
             TableItem(item: .rate, style: .button),
             TableItem(item: .feedback, style: .button),
@@ -78,6 +80,7 @@ private extension MyPageViewController {
         tableItems.append(contentsOf: [
             myInfoSection,
             settingSection,
+            languageSection,
             additionalSection,
             logoutSection,
             deleteAccountSection
@@ -214,6 +217,8 @@ extension MyPageViewController: UITableViewDelegate {
         switch item.item {
         case .positiveStatements:
             router?.pushToPositiveStatementList()
+        case .language:
+            router?.openLanguageSetting()
         case .rate:
             showRating()
         case .feedback:

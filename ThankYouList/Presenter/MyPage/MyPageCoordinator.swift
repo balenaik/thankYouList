@@ -70,6 +70,11 @@ extension MyPageCoordinator: MyPageRouter {
         coordinator.start()
     }
 
+    func openLanguageSetting() {
+        guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+        UIApplication.shared.open(url)
+    }
+
     func openDefaultMailAppIfAvailable(to: String, subject: String) -> Bool {
         guard MFMailComposeViewController.canSendMail(),
               // TODO: Wanna fix how to access MyPageVC

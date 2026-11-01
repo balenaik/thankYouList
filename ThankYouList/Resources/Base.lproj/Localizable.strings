@@ -50,6 +50,7 @@
 
 "mypage_title" = "Account";
 "mypage_positive_statements" = "Positive Statements";
+"mypage_language" = "Language";
 "mypage_rate" = "Rate Thank You List";
 "mypage_feedback" = "Give us Feedback";
 "mypage_privacy_policy" = "Privacy Policy";

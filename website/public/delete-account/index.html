@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delete Your Account – Thank You List</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #fff5f5;
+      --surface:   #FFFFFF;
+      --primary:   #fcb5b5;
+      --primary-dk:#f57c7c;
+      --text:      #1a1a1a;
+      --muted:     #757575;
+      --border:    #fedada;
+      --radius:    16px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255, 245, 245, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 760px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px;
+    }
+    .nav-logo {
+      font-weight: 700; font-size: 1rem;
+      color: var(--primary-dk); text-decoration: none;
+      letter-spacing: -0.3px;
+    }
+
+    /* ── LANG TOGGLE ── */
+    .lang-toggle {
+      display: flex; gap: 2px;
+      background: #fee9e9; border-radius: 999px;
+      padding: 3px;
+    }
+    .lang-btn {
+      font-size: 0.75rem; font-weight: 600;
+      padding: 3px 10px; border-radius: 999px;
+      border: none; cursor: pointer;
+      background: transparent; color: var(--muted);
+      transition: background 0.2s, color 0.2s;
+    }
+    .lang-btn.active {
+      background: #fff; color: var(--primary-dk);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+
+    /* ── CONTENT ── */
+    main {
+      max-width: 760px; margin: 0 auto;
+      padding: 56px 24px 72px;
+    }
+    h1 {
+      font-size: clamp(1.7rem, 5vw, 2.4rem);
+      font-weight: 800; letter-spacing: -0.5px;
+      line-height: 1.2; color: var(--primary-dk);
+      margin-bottom: 16px;
+    }
+    .lead { color: var(--muted); margin-bottom: 40px; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      margin-bottom: 20px;
+    }
+    .card h2 {
+      font-size: 1.15rem; font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .card p + p, .card p + ol, .card p + ul, .card ol + p, .card ul + p { margin-top: 12px; }
+    .card ol, .card ul { padding-left: 1.4em; }
+    .card li + li { margin-top: 6px; }
+    .card strong { font-weight: 700; }
+
+    .label {
+      display: inline-block;
+      background: #fee9e9; color: var(--primary-dk);
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 3px 12px; border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    .mail-btn {
+      display: inline-block; margin-top: 16px;
+      background: var(--primary-dk); color: #fff;
+      text-decoration: none; font-weight: 600;
+      padding: 12px 24px; border-radius: 12px;
+      transition: background 0.2s;
+    }
+    .mail-btn:hover { background: #ef6262; }
+
+    .note { font-size: 0.875rem; color: var(--muted); }
+
+    a { color: var(--primary-dk); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .footer-links {
+      display: flex; justify-content: center;
+      flex-wrap: wrap; gap: 8px 24px;
+      margin-bottom: 12px;
+    }
+    .footer-links a {
+      font-size: 0.875rem; color: var(--muted);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--primary-dk); }
+    .footer-copy { font-size: 0.78rem; color: #C0AFA5; }
+
+    @media (max-width: 600px) {
+      main { padding: 40px 16px 56px; }
+      nav { padding: 0 16px; }
+      .card { padding: 24px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="/">Thank You List</a>
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('ja')">JA</button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <h1 data-i18n="title">Delete your Thank You List account</h1>
+    <p class="lead" data-i18n="lead">You can delete your Thank You List account and all associated data at any time, either from the app or by contacting us by email. The same account is used on Android and iOS.</p>
+
+    <section class="card">
+      <span class="label" data-i18n="opt1.label">Option 1</span>
+      <h2 data-i18n="opt1.title">Delete your account in the app</h2>
+      <ol>
+        <li data-i18n="opt1.s1">Open the Thank You List app and log in.</li>
+        <li data-i18n="opt1.s2">Tap the account icon in the top right corner of the main screen to open the <strong>Account</strong> screen.</li>
+        <li data-i18n="opt1.s3">Scroll to the bottom and tap <strong>Delete Account</strong>, then confirm.</li>
+        <li data-i18n="opt1.s4">Enter the email address registered to your account and tap <strong>Delete Account</strong>.</li>
+      </ol>
+      <p data-i18n="opt1.after">Your account and data are deleted immediately.</p>
+    </section>
+
+    <section class="card">
+      <span class="label" data-i18n="opt2.label">Option 2</span>
+      <h2 data-i18n="opt2.title">Request deletion by email</h2>
+      <p data-i18n="opt2.desc">If you no longer have the app installed, send an email to <strong>balenaik@gmail.com</strong> with the subject "Account deletion request" and include the email address registered to your Thank You List account.</p>
+      <p data-i18n="opt2.time">We will delete your account and data within 30 days and let you know by email when it's done. We may contact you to confirm that you are the owner of the account.</p>
+      <a class="mail-btn" id="mail-btn" href="#" data-i18n="opt2.button">Send a deletion request</a>
+    </section>
+
+    <section class="card">
+      <h2 data-i18n="deleted.title">Data that will be deleted</h2>
+      <ul>
+        <li data-i18n="deleted.d1">Your account information (name, email address, profile image and sign-in information from Google or Apple)</li>
+        <li data-i18n="deleted.d2">All thank-you entries you have created</li>
+        <li data-i18n="deleted.d3">All positive statements you have created</li>
+      </ul>
+      <p data-i18n="deleted.note">Deleted data cannot be recovered.</p>
+    </section>
+
+    <section class="card">
+      <h2 data-i18n="kept.title">Data that will be kept</h2>
+      <p data-i18n="kept.desc">Usage statistics (Google Analytics for Firebase) and crash reports (Firebase Crashlytics) may be linked to an internal user ID, not your name or email address. They are not deleted with your account and are automatically deleted after up to 14 months (usage statistics) and 90 days (crash reports). We do not keep any other data associated with your account.</p>
+      <p class="note" data-i18n="kept.note">Note: Logging out or uninstalling the app does not delete your account. Settings stored only on your device are removed when you uninstall the app.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/" data-i18n="footer.home">Home</a>
+      <a href="/privacy-policy/en.html" data-i18n="footer.privacy" data-i18n-href="privacy.url">Privacy Policy</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Thank You List. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        'title':        'Delete your Thank You List account',
+        'lead':         'You can delete your Thank You List account and all associated data at any time, either from the app or by contacting us by email. The same account is used on Android and iOS.',
+        'opt1.label':   'Option 1',
+        'opt1.title':   'Delete your account in the app',
+        'opt1.s1':      'Open the Thank You List app and log in.',
+        'opt1.s2':      'Tap the account icon in the top right corner of the main screen to open the <strong>Account</strong> screen.',
+        'opt1.s3':      'Scroll to the bottom and tap <strong>Delete Account</strong>, then confirm.',
+        'opt1.s4':      'Enter the email address registered to your account and tap <strong>Delete Account</strong>.',
+        'opt1.after':   'Your account and data are deleted immediately.',
+        'opt2.label':   'Option 2',
+        'opt2.title':   'Request deletion by email',
+        'opt2.desc':    'If you no longer have the app installed, send an email to <strong>balenaik@gmail.com</strong> with the subject "Account deletion request" and include the email address registered to your Thank You List account.',
+        'opt2.time':    'We will delete your account and data within 30 days and let you know by email when it\'s done. We may contact you to confirm that you are the owner of the account.',
+        'opt2.button':  'Send a deletion request',
+        'deleted.title':'Data that will be deleted',
+        'deleted.d1':   'Your account information (name, email address, profile image and sign-in information from Google or Apple)',
+        'deleted.d2':   'All thank-you entries you have created',
+        'deleted.d3':   'All positive statements you have created',
+        'deleted.note': 'Deleted data cannot be recovered.',
+        'kept.title':   'Data that will be kept',
+        'kept.desc':    'Usage statistics (Google Analytics for Firebase) and crash reports (Firebase Crashlytics) may be linked to an internal user ID, not your name or email address. They are not deleted with your account and are automatically deleted after up to 14 months (usage statistics) and 90 days (crash reports). We do not keep any other data associated with your account.',
+        'kept.note':    'Note: Logging out or uninstalling the app does not delete your account. Settings stored only on your device are removed when you uninstall the app.',
+        'footer.home':  'Home',
+        'footer.privacy': 'Privacy Policy',
+        'privacy.url':  '/privacy-policy/en.html',
+        'mail.subject': 'Account deletion request',
+        'mail.body':    'Please delete my Thank You List account and all associated data.\n\nRegistered email address: ',
+      },
+      ja: {
+        'title':        'Thank You List アカウントの削除',
+        'lead':         'Thank You List のアカウントと関連するすべてのデータは、アプリから、またはメールでのご依頼により、いつでも削除できます。Android 版と iOS 版で同じアカウントが使われます。',
+        'opt1.label':   '方法 1',
+        'opt1.title':   'アプリから削除する',
+        'opt1.s1':      'Thank You List アプリを開き、ログインします。',
+        'opt1.s2':      'メイン画面右上のアカウントアイコンをタップし、<strong>アカウント</strong>（Account）画面を開きます。',
+        'opt1.s3':      '画面下部の<strong>アカウントを削除</strong>（Delete Account）をタップし、確認します。',
+        'opt1.s4':      'アカウントに登録されているメールアドレスを入力し、<strong>アカウント削除</strong>（Delete Account）をタップします。',
+        'opt1.after':   'アカウントとデータは直ちに削除されます。',
+        'opt2.label':   '方法 2',
+        'opt2.title':   'メールで削除を依頼する',
+        'opt2.desc':    'アプリをアンインストール済みの場合は、件名を「アカウント削除依頼」として <strong>balenaik@gmail.com</strong> 宛にメールをお送りください。本文には Thank You List アカウントに登録されているメールアドレスをご記載ください。',
+        'opt2.time':    'ご依頼から 30 日以内にアカウントとデータを削除し、完了後にメールでお知らせします。ご本人確認のため、ご連絡させていただく場合があります。',
+        'opt2.button':  '削除を依頼する',
+        'deleted.title':'削除されるデータ',
+        'deleted.d1':   'アカウント情報（名前、メールアドレス、プロフィール画像、Google・Apple のログイン情報）',
+        'deleted.d2':   '作成したすべての Thank You（感謝の記録）',
+        'deleted.d3':   '作成したすべてのポジティブメッセージ',
+        'deleted.note': '削除したデータは復元できません。',
+        'kept.title':   '保持されるデータ',
+        'kept.desc':    '利用統計データ（Google Analytics for Firebase）およびクラッシュレポート（Firebase Crashlytics）は、内部のユーザー ID（名前やメールアドレスではありません）に紐づいている場合があります。これらはアカウント削除時には削除されず、最長 14 か月（利用統計データ）、90 日（クラッシュレポート）で自動的に削除されます。それ以外のアカウントに紐づくデータは保持しません。',
+        'kept.note':    '※ ログアウトやアプリのアンインストールだけではアカウントは削除されません。端末内にのみ保存されている設定は、アプリのアンインストール時に削除されます。',
+        'footer.home':  'ホーム',
+        'footer.privacy': 'プライバシーポリシー',
+        'privacy.url':  '/privacy-policy/ja.html',
+        'mail.subject': 'アカウント削除依頼',
+        'mail.body':    'Thank You List のアカウントと関連するすべてのデータの削除をお願いします。\n\n登録メールアドレス: ',
+      },
+    };
+
+    function detectLang() {
+      const param = new URLSearchParams(location.search).get('lang');
+      if (param === 'ja' || param === 'en') return param;
+      const lang = navigator.language || navigator.userLanguage || 'en';
+      return lang.startsWith('ja') ? 'ja' : 'en';
+    }
+
+    function setLang(lang) {
+      const t = translations[lang];
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) el.innerHTML = t[key];
+      });
+
+      document.querySelectorAll('[data-i18n-href]').forEach(el => {
+        const key = el.getAttribute('data-i18n-href');
+        if (t[key] !== undefined) el.href = t[key];
+      });
+
+      document.getElementById('mail-btn').href =
+        'mailto:balenaik@gmail.com' +
+        '?subject=' + encodeURIComponent(t['mail.subject']) +
+        '&body=' + encodeURIComponent(t['mail.body']);
+
+      document.documentElement.lang = lang;
+      document.title = lang === 'ja'
+        ? 'アカウントの削除 – Thank You List'
+        : 'Delete Your Account – Thank You List';
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+      });
+    }
+
+    setLang(detectLang());
+  </script>
+
+</body>
+</html>

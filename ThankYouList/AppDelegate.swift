@@ -38,8 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         reAuthenticateToProvider()
         observeAuthenticationChanges()
 
-        appCoordinator.start()
-        
         return true
     }
 

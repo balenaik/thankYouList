@@ -22,5 +22,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let coordinator = AppCoordinator(window: window, userRepository: userRepository)
         appCoordinator = coordinator
         coordinator.start()
+
+        if let url = connectionOptions.urlContexts.first?.url {
+            try? coordinator.handleDeeplink(url: url)
+        }
     }
 }

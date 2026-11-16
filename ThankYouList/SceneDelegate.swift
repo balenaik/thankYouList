@@ -27,4 +27,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             try? coordinator.handleDeeplink(url: url)
         }
     }
+
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let url = URLContexts.first?.url else { return }
+        try? appCoordinator?.handleDeeplink(url: url)
+    }
 }

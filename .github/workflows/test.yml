@@ -7,13 +7,13 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: xcode-27
 
     steps:
     - uses: actions/checkout@v4
 
     - name: Select Xcode
-      run: sudo xcode-select -switch /Applications/Xcode_26.2.app
+      run: sudo xcode-select -switch /Applications/Xcode_27.2.app
 
     - name: Allow plugin execution for Rswift
       run: defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidatation -bool YES
@@ -32,6 +32,6 @@ jobs:
           xcodebuild -workspace ThankYouList.xcworkspace \
                      -scheme ThankYouListTests \
                      -configuration Debug-Staging \
-                     -destination 'platform=iOS Simulator,OS=26.2,name=iPhone 17' \
+                     -destination 'platform=iOS Simulator,OS=27.2,name=iPhone 17' \
                      -skipPackagePluginValidation \
                      build test

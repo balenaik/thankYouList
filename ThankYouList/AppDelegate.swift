@@ -16,11 +16,7 @@ import SharedResources
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    private let window = UIWindow(frame: UIScreen.main.bounds)
     private let userRepository: UserRepository = DefaultUserRepository()
-    private lazy var appCoordinator = AppCoordinator(
-        window: window,
-        userRepository: userRepository)
     private let analyticsManager: AnalyticsManager = DefaultAnalyticsManager()
     private var cancellable = Set<AnyCancellable>()
 
@@ -38,8 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         reAuthenticateToProvider()
         observeAuthenticationChanges()
 
-        appCoordinator.start()
-        
         return true
     }
 
@@ -63,11 +57,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-
-    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
-        -> Bool {
-            handleDeeplink(url: url)
     }
 }
 
@@ -114,15 +103,6 @@ private extension AppDelegate {
                 analyticsManager.setUserId(userId: userId)
             }
             .store(in: &cancellable)
-    }
-
-    func handleDeeplink(url: URL) -> Bool {
-        do {
-            try appCoordinator.handleDeeplink(url: url)
-            return true
-        } catch {
-            return false
-        }
     }
 }
 
